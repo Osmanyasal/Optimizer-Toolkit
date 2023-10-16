@@ -3,10 +3,7 @@
     <summary><h1 style="display: inline-block;">Optimizer Toolkit</h1></summary>
   </ul>
 </div>
-<div align="center"> 
-
-            <!-- <img align="center" alt="ICON" width="500" height="500" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/724adbf8-853b-4d73-8bc6-81d184887526" />  -->
-            <!-- <img align="center" alt="ICON" width="500" height="500" src="https://github.com/Osmanyasal/Recursion-Engine/assets/22853419/43181e63-15a4-49d3-98a7-c059f6e34765" />  -->
+<div align="center">  
             <img align="center" alt="ICON" width="500" height="500" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/3e92363a-6067-40d3-9e52-4fb4919e1365" /> 
 </div>  
 <div align="center">
