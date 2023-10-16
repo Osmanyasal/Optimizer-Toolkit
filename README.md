@@ -1,10 +1,10 @@
 <div id="user-content-toc" align=center>
   <ul>
-    <summary><h1 style="display: inline-block;">Recursion Optimizer Toolkit</h1></summary>
+    <summary><h1 style="display: inline-block;">Optimizer Toolkit</h1></summary>
   </ul>
 </div>
 <div align="center">
-            <!-- <img align="center" alt="ICON" width="500" height="500" src="https://github.com/Osmanyasal/Recursion-Optimizer-Toolkit/assets/22853419/724adbf8-853b-4d73-8bc6-81d184887526" />  -->
+            <!-- <img align="center" alt="ICON" width="500" height="500" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/724adbf8-853b-4d73-8bc6-81d184887526" />  -->
             <img align="center" alt="ICON" width="500" height="500" src="https://github.com/Osmanyasal/Recursion-Engine/assets/22853419/43181e63-15a4-49d3-98a7-c059f6e34765" /> 
 </div>  
 <div align="center">
@@ -19,7 +19,7 @@
 <div align="center">
                 <img align="center" title="GLFW" alt="GLFW" width="60px" src="https://www.glfw.org/img/favicon/favicon-196x196.png" />
                 &nbsp;&nbsp; 
-                <img align="center" title="libpfm4" alt="libpfm4" width="100px" src="https://github.com/Osmanyasal/Recursion-Optimizer-Toolkit/assets/22853419/5b4313af-b87e-4615-b110-75733b67289d" /> 
+                <img align="center" title="libpfm4" alt="libpfm4" width="100px" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/5b4313af-b87e-4615-b110-75733b67289d" /> 
                 &nbsp;&nbsp; 
                 <img align="center" title="Dear Imgui" alt="Dear Imgui" width="60px" src="https://raw.githubusercontent.com/wiki/sammyfreg/netImgui/Web/img/DearImGui.png" /> 
                 &nbsp;&nbsp; 
@@ -42,13 +42,13 @@
 
 ## To run 🚀 <br>
 ```
-git clone --recurse-submodules https://github.com/Osmanyasal/Recursion-Optimizer-Toolkit.git
-cd ./Recursion-Optimizer-Toolkit
+git clone --recurse-submodules https://github.com/Osmanyasal/Optimizer-Toolkit.git
+cd ./Optimizer-Toolkit
 make
 ```
 
 ## IN DEVELOPMENT PERFORMANCE AID 🔎  
-![Screenshot from 2023-10-16 12-59-26](https://github.com/Osmanyasal/Recursion-Optimizer-Toolkit/assets/22853419/039b5dd2-6635-435d-9dfc-4977336db0a8)
+![Screenshot from 2023-10-16 12-59-26](https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/039b5dd2-6635-435d-9dfc-4977336db0a8)
  
  * Recursion Optimizer Toolkit gives you an API that you can use in your C++ and Python projects to monitor Performance Monitoring Unit (PMU) events in your CPU.<br>
  * With the help of RAII, you can monitor any pmu events including (cycles, instruction count, LXX cache hits/misses) or use cases including (microarchitecture analysis, energy-consumption analysis, thread interaction monitoring, etc.)
@@ -57,7 +57,7 @@ make
 
 
 ## POST MORTERM PERFORMANCE MONITORING 🔎  
- ![Screenshot from 2023-10-16 12-58-53](https://github.com/Osmanyasal/Recursion-Optimizer-Toolkit/assets/22853419/f17c6d7f-0d50-4785-8282-5259d277a653)
+ ![Screenshot from 2023-10-16 12-58-53](https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/f17c6d7f-0d50-4785-8282-5259d277a653)
  
  * Recursion Optimizer Toolkit also gives you a total GUI to perform post-mortem analysis on `any` executable.
  * The binary executable does `NOT` need to be written with Recursion Optimizer Toolkit API.
