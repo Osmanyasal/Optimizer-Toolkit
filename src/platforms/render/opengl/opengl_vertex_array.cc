@@ -2,7 +2,7 @@
 
 #include <logger.hh>
 #include <iostream>
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
 
     VertexArray::VertexArray() : stride{0}, transparent{false}
@@ -162,4 +162,4 @@ namespace Recursion::platforms::opengl::render
         // glDisable(GL_TEXTURE_2D);
     }
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render

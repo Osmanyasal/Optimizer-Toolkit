@@ -62,9 +62,6 @@ IMGUI_OPENGL_DIR := $(GUI)/imgui_opengl3_glfw
 LIB_SPD_PATH :=./lib/spdlog
 LIB_SPD := -I./lib/spdlog/include/  -I./lib/spdlog/include/spdlog 
 
-LIB_ENTT_PATH :=./lib/entt
-LIB_ENTT := -I./lib/entt/single_include/entt/
-
 LIB_GLEW_PATH := ./lib/glew
 LIB_GLEW := -I./lib/glew/include/ -I./lib/spdlog/include/glew 
 
@@ -73,9 +70,6 @@ LIB_GLFW := -I./lib/glfw/include/ -I./lib/spdlog/include/glfw
 
 LIB_IMGUI_PATH := ./lib/imgui
 LIB_IMGUI := -I./lib/imgui/ -I./lib/imgui/backends -I./lib/imgui/docs -I./lib/imgui/examples -I./lib/imgui/mics
-
-LIB_GLM_PATH := ./lib/glm
-LIB_GLM := -I./lib/glm/glm -I./lib/glm/glm/detail -I./lib/glm/glm/ext -I./lib/glm/glm/gtc -I./lib/glm/gtx -I./lib/glm/simd
 
 LIB_STB_IMAGE_PATH := ./lib/stb
 LIB_STB_IMAGE := -I./lib/stb
@@ -120,20 +114,18 @@ INCLUDE := -I$(SRC_DIR)\
 		   -I$(OPENGL_SCENE_OBJECTS)\
 		   -I$(OPENGL_SCENE_SHAPES)\
 		   -I$(OPENGL_SCENE_LIGHTS)\
-		   	$(LIB_ENTT)\
 			$(LIB_SPD)\
 			$(LIB_GLEW)\
 			$(LIB_GLFW)\
 			$(LIB_IMGUI)\
-			$(LIB_GLM)\
 			$(LIB_STB_IMAGE)
 
-EXECUTABLE := recursion.engine
+EXECUTABLE := optimizer.toolkit
 
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
-all: ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a $(LIB_GLFW_PATH)/build/src/libglfw3.a $(LIB_GLEW_PATH)/lib/libGLEW.a $(BIN)/$(EXECUTABLE) $(BIN)/recursion_engine.desktop
+all: ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a $(LIB_GLFW_PATH)/build/src/libglfw3.a $(LIB_GLEW_PATH)/lib/libGLEW.a $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop
 	@if [ ! -d "$(BIN)/fonts" ]; then \
         mkdir -p "$(BIN)/fonts"; \
         cp -R ./lib/fonts/* "$(BIN)/fonts"; \
@@ -147,17 +139,17 @@ mem_check:
 	cd $(BIN) && valgrind --leak-check=full --show-leak-kinds=all ./$(EXECUTABLE)
 
 ## create a desktop file and move it to applications
-$(BIN)/recursion_engine.desktop:
+$(BIN)/optimizer_toolkit.desktop:
 	echo -e "[Desktop Entry]\n\
 Version=1.0\n\
 Type=Application\n\
 Terminal=true\n\
-Name=Recursion Engine\n\
+Name=Optimizer Toolkit\n\
 Path=$(shell pwd)/bin/\n\
-Exec=$(shell pwd)/bin/recursion.engine\n\
-Icon=$(shell pwd)/icon/icon.png\n" > $(BIN)/recursion_engine.desktop
+Exec=$(shell pwd)/bin/$(EXECUTABLE)\n\
+Icon=$(shell pwd)/icon/icon.png\n" > $(BIN)/optimizer_toolkit.desktop
 
-	cp $(BIN)/recursion_engine.desktop ~/.local/share/applications
+	cp $(BIN)/optimizer_toolkit.desktop ~/.local/share/applications
 
 $(LIB_GLEW_PATH)/lib/libGLEW.a:
 	cd $(LIB_GLEW_PATH) && ./install.sh
@@ -190,7 +182,7 @@ $(OBJ)/%.o: ./%.cc
 clean:
 	@echo "🧹 Cleaning..."
 	rm -rf $(BIN)/*
-	rm -rf ~/.local/share/applications/recursion_engine.desktop ## remove dekstop icon
+	rm -rf ~/.local/share/applications/optimizer_toolkit.desktop ## remove dekstop icon
 
 clean_all: clean
 	cd $(LIB_GLEW_PATH) && ./install.sh clean

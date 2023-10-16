@@ -1,7 +1,7 @@
 
 #include <opengl_texture.hh>
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     uint32_t OpenGLTexture::TEXTURE_UNIT_LIMIT = []()
     {
@@ -146,4 +146,4 @@ namespace Recursion::platforms::opengl::render
         REC_CORE_TRACE("Texture {} is destroyed", meta.path);
     }
 
-} // namespace Recursion::opengl::core
+} // namespace OPTKIT::opengl::core

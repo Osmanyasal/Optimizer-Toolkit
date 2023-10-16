@@ -1,9 +1,9 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_BUFFER_LAYOUT_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_BUFFER_LAYOUT_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_BUFFER_LAYOUT_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_BUFFER_LAYOUT_HH
 
 #include <buffer.hh>
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     class OpenGLBufferLayout : public core::render::BufferLayout
     {
@@ -87,6 +87,6 @@ namespace Recursion::platforms::opengl::render
     using Quantity = OpenGLBufferLayout::Quantity;
     using Normalized = OpenGLBufferLayout::Normalized;
 
-} // namespace Recursion::opengl::render
+} // namespace OPTKIT::opengl::render
 
 #endif

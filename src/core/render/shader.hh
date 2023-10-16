@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__RENDER__SHADER_HH
-#define RECURSION_ENGINE__SRC__CORE__RENDER__SHADER_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__SHADER_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__SHADER_HH
 
 #include <string>
 #include <unordered_map>
 #include <bindable.hh>
 
-namespace Recursion::core::render
+namespace OPTKIT::core::render
 {
     class Shader : public Bindable
     {
@@ -56,6 +56,6 @@ namespace Recursion::core::render
         virtual void set_uniformMatrix4x3fv(const std::string &name, uint8_t transpose, const float *value) const = 0;
     };
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render
 
 #endif

@@ -1,10 +1,10 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__APPLICATION_HH
-#define RECURSION_ENGINE__SRC__CORE__APPLICATION_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__APPLICATION_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__APPLICATION_HH
 
 #include <app_config.hh>
 #include <core_modules.hh>
 #include <platform_impl.hh>
-namespace Recursion::core
+namespace OPTKIT::core
 {
     class Application : public core::layer::Layer
     {

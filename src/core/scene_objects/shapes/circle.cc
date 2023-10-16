@@ -1,6 +1,6 @@
 #include <circle.hh>
 
-namespace Recursion::core::scene
+namespace OPTKIT::core::scene
 {
     std::vector<float> Circle2D::get_positions(float radius, float z, float unit_angle)
     {

@@ -1,12 +1,12 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__EVENTS__INPUT_FACTORY_HH
-#define RECURSION_ENGINE__SRC__CORE__EVENTS__INPUT_FACTORY_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__INPUT_FACTORY_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__INPUT_FACTORY_HH
 
 #include <Input.hh>
 #include <logger.hh>
 #include <glfw_opengl_Input.hh>
 #include <render_api.hh>
 
-namespace Recursion::core::input
+namespace OPTKIT::core::input
 {
     class InputFactory
     {
@@ -41,6 +41,6 @@ namespace Recursion::core::input
         InputFactory();
         ~InputFactory();
     };
-} // namespace Recursion::core::input
+} // namespace OPTKIT::core::input
 
 #endif

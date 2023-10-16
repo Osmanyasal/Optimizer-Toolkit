@@ -1,6 +1,6 @@
 #include <camera.hh>
 
-namespace Recursion::core::scene
+namespace OPTKIT::core::scene
 {
     ////////// CAMERA ///////////
 
@@ -138,4 +138,4 @@ namespace Recursion::core::scene
         return true;
     }
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render

@@ -1,5 +1,5 @@
-#ifndef RECURSION_ENGINE__SRC__UTILS__TYPE
-#define RECURSION_ENGINE__SRC__UTILS__TYPE
+#ifndef OPTIMIZER_TOOLKIT__SRC__UTILS__TYPE
+#define OPTIMIZER_TOOLKIT__SRC__UTILS__TYPE
 
 /*
     Following works like this class structure..

@@ -1,6 +1,6 @@
 #include <opengl_render_context.hh>
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     OpenGLRenderContext::OpenGLRenderContext(const core::window::WindowProps &default_props) : RenderContext{core::render::RenderAPI::OPENGL}
     {
@@ -64,4 +64,4 @@ namespace Recursion::platforms::opengl::render
         // Process events
         glfwPollEvents();
     }
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render

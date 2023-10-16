@@ -1,6 +1,6 @@
 #include <opengl_shapes.hh>
 
-namespace Recursion::platforms::opengl::scene
+namespace OPTKIT::platforms::opengl::scene
 {
     std::unique_ptr<opengl::render::VertexArray> OpenGLShapes::tilemap2D(const glm::vec3 &size, float tile_factor, const glm::vec4 &color)
     {
@@ -32,22 +32,22 @@ namespace Recursion::platforms::opengl::scene
         VAO->bind_vertex_buffer(VBO)
             .add_layout({"position",
                          0,
-                         render::Quantity::Float3, position.size() / (int)render::Quantity::Float3,
+                         render::Quantity::Float3, position.size() / (int32_t)render::Quantity::Float3,
                          render::Type::Float,
                          render::Normalized::FALSE})
             .add_layout({"color",
                          1,
-                         render::Quantity::Float4, colors.size() / (int)render::Quantity::Float4,
+                         render::Quantity::Float4, colors.size() / (int32_t)render::Quantity::Float4,
                          render::Type::Float,
                          render::Normalized::FALSE})
             .add_layout({"texture",
                          2,
-                         render::Quantity::Float2, texture.size() / (int)render::Quantity::Float2,
+                         render::Quantity::Float2, texture.size() / (int32_t)render::Quantity::Float2,
                          render::Type::Float,
                          render::Normalized::FALSE})
             .add_layout({"normals",
                          3,
-                         render::Quantity::Float3, normals.size() / (int)render::Quantity::Float3,
+                         render::Quantity::Float3, normals.size() / (int32_t)render::Quantity::Float3,
                          render::Type::Float,
                          render::Normalized::FALSE});
         if (OPT_LIKELY(texture.size() != 0))
@@ -78,22 +78,22 @@ namespace Recursion::platforms::opengl::scene
         VAO->bind_vertex_buffer(VBO)
             .add_layout({"position",
                          0,
-                         render::Quantity::Float3, position.size() / (int)render::Quantity::Float3,
+                         render::Quantity::Float3, position.size() / (int32_t)render::Quantity::Float3,
                          render::Type::Float,
                          render::Normalized::FALSE})
             .add_layout({"color",
                          1,
-                         render::Quantity::Float4, colors.size() / (int)render::Quantity::Float4,
+                         render::Quantity::Float4, colors.size() / (int32_t)render::Quantity::Float4,
                          render::Type::Float,
                          render::Normalized::FALSE})
             .add_layout({"texture",
                          2,
-                         render::Quantity::Float2, texture.size() / (int)render::Quantity::Float2,
+                         render::Quantity::Float2, texture.size() / (int32_t)render::Quantity::Float2,
                          render::Type::Float,
                          render::Normalized::FALSE})
             .add_layout({"normals",
                          3,
-                         render::Quantity::Float3, normals.size() / (int)render::Quantity::Float3,
+                         render::Quantity::Float3, normals.size() / (int32_t)render::Quantity::Float3,
                          render::Type::Float,
                          render::Normalized::FALSE});
         if (OPT_LIKELY(texture.size() != 0))
@@ -150,4 +150,4 @@ namespace Recursion::platforms::opengl::scene
         return result;
     }
 
-} // namespace Recursion::opengl::scene
+} // namespace OPTKIT::opengl::scene

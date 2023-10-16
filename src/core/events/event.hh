@@ -1,10 +1,10 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__EVENTS__EVENT_HH
-#define RECURSION_ENGINE__SRC__CORE__EVENTS__EVENT_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__EVENT_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__EVENT_HH
 
 #include <sstream>
 #include <utils.hh>
 
-namespace Recursion::core::events
+namespace OPTKIT::core::events
 {
     enum class EventType : int32_t
     {
@@ -115,6 +115,6 @@ namespace Recursion::core::events
         Event &m_event;
     };
 
-} // namespace Recursion::core::events
+} // namespace OPTKIT::core::events
 
 #endif

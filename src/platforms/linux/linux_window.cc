@@ -1,6 +1,6 @@
 #include <linux_window.hh>
 #include <cstdint>
-namespace Recursion::platforms::linux::window
+namespace OPTKIT::platforms::linux::window
 {
 
     LinuxWindow::LinuxWindow(core::render::RenderContext<GLFWwindow> *render_context) : Window{&render_context->get_window_props()}, context{render_context}

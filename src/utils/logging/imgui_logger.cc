@@ -2,17 +2,17 @@
 
 ImGuiTextBuffer ImGuiLogger::Buf;
 ImGuiTextFilter ImGuiLogger::Filter;
-ImVector<int> ImGuiLogger::LineOffsets;
+ImVector<int32_t> ImGuiLogger::LineOffsets;
 bool ImGuiLogger::ScrollToBottom = true;  
 
 void ImGuiLogger::AddLog(const char *fmt, ...)
 {
-    int old_size = Buf.size();
+    int32_t old_size = Buf.size();
     va_list args;
     va_start(args, fmt);
     Buf.appendfv(fmt, args);
     va_end(args);
-    for (int new_size = Buf.size(); old_size < new_size; old_size++)
+    for (int32_t new_size = Buf.size(); old_size < new_size; old_size++)
         if (Buf[old_size] == '\n')
             LineOffsets.push_back(old_size);
     ScrollToBottom = true;
@@ -36,7 +36,7 @@ void ImGuiLogger::Draw()
     {
         const char *buf_begin = Buf.begin();
         const char *line = buf_begin;
-        for (int line_no = 0; line != NULL; line_no++)
+        for (int32_t line_no = 0; line != NULL; line_no++)
         {
             const char *line_end = (line_no < LineOffsets.Size) ? buf_begin + LineOffsets[line_no] : NULL;
             if (Filter.PassFilter(line, line_end))

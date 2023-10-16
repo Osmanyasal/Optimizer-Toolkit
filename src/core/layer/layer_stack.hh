@@ -1,9 +1,9 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__LAYER__LAYER_STACK_HH
-#define RECURSION_ENGINE__SRC__CORE__LAYER__LAYER_STACK_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__LAYER__LAYER_STACK_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__LAYER__LAYER_STACK_HH
 
 #include <layer.hh>
 #include <vector>
-namespace Recursion::core::layer
+namespace OPTKIT::core::layer
 {
     class LayerStack
     {
@@ -35,6 +35,6 @@ namespace Recursion::core::layer
     private:
         std::vector<Layer *> layers;
     };
-} // namespace Recursion::core::layer
+} // namespace OPTKIT::core::layer
 
 #endif

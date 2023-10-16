@@ -1,10 +1,10 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_SHADER_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_SHADER_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_SHADER_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_SHADER_HH
 
 #include <render_context.hh>
 #include <shader.hh> 
 #include <vector>
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     class OpenGLShader : public core::render::Shader
     {
@@ -53,6 +53,6 @@ namespace Recursion::platforms::opengl::render
         virtual void set_uniformMatrix4x3fv(const std::string &name, uint8_t transpose, const float *value) const override;
     };
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render
 
 #endif

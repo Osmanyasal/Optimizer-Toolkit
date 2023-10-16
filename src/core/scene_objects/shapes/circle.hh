@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__SCENE_OBJECTS__CIRCLE_HH
-#define RECURSION_ENGINE__SRC__CORE__SCENE_OBJECTS__CIRCLE_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__SCENE_OBJECTS__CIRCLE_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__SCENE_OBJECTS__CIRCLE_HH
 
 #include <inttypes.h>
 #include <vector>
 #include <glm_utils.hh>
 
-namespace Recursion::core::scene
+namespace OPTKIT::core::scene
 {
     class Circle2D
     {
@@ -20,6 +20,6 @@ namespace Recursion::core::scene
         Circle2D(/* args */);
         ~Circle2D();
     };
-} // namespace Recursion::core::scene
+} // namespace OPTKIT::core::scene
 
 #endif

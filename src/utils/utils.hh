@@ -1,5 +1,5 @@
-#ifndef RECURSION_ENGINE__SRC__UTILS__UTILS
-#define RECURSION_ENGINE__SRC__UTILS__UTILS
+#ifndef OPTIMIZER_TOOLKIT__SRC__UTILS__UTILS
+#define OPTIMIZER_TOOLKIT__SRC__UTILS__UTILS
 /*
     All header files that's defined in utils.
     to access utils include this file
@@ -38,7 +38,7 @@
 #define GET_FPS() 1.0f / delta_time
 
 #define BLOCK_TIMER(block_name) \
-    Recursion::utils::BlockTimer block_timer { block_name }
+    OPTKIT::utils::BlockTimer block_timer { block_name }
 
 // FUNCTION DECLERATIONS
 std::string generateGUID();

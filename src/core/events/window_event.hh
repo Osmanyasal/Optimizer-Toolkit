@@ -1,9 +1,9 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__EVENTS__WINDOW_EVENT_HH
-#define RECURSION_ENGINE__SRC__CORE__EVENTS__WINDOW_EVENT_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__WINDOW_EVENT_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__WINDOW_EVENT_HH
 
 #include <event.hh>
 
-namespace Recursion::core::events
+namespace OPTKIT::core::events
 {
     class WindowEvent : public Event
     {
@@ -159,5 +159,5 @@ namespace Recursion::core::events
         }
     };
 
-} // namespace Recursion::core::events
+} // namespace OPTKIT::core::events
 #endif

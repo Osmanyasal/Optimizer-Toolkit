@@ -1,5 +1,5 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_TEXTURE_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_TEXTURE_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_TEXTURE_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_TEXTURE_HH
 
 #include <utils.hh>
 #include <GL/glew.h>
@@ -7,7 +7,7 @@
 #include <stb_image.h>
 #include <unordered_map>
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     class OpenGLTexture : public core::render::Texture
     {
@@ -55,6 +55,6 @@ namespace Recursion::platforms::opengl::render
         static uint32_t AVAILABLE_TEXTURE_UNIT;
     };
 
-} // namespace Recursion::opengl::render
+} // namespace OPTKIT::opengl::render
 
 #endif

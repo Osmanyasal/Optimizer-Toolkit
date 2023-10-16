@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_RENDER_CONTEXT_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_RENDER_CONTEXT_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_RENDER_CONTEXT_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_RENDER_CONTEXT_HH
 
 #include <gui_config.hh>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <render_context.hh>
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     class OpenGLRenderContext : public core::render::RenderContext<GLFWwindow>
     {
@@ -15,6 +15,6 @@ namespace Recursion::platforms::opengl::render
         virtual void swap_buffer() override;
     };
 
-} // namespace Recursion::opengl::render
+} // namespace OPTKIT::opengl::render
 
 #endif

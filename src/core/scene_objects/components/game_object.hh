@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__SCENE_OBJECTS__COMPONENTS__GAME_OBJECT__HH
-#define RECURSION_ENGINE__SRC__CORE__SCENE_OBJECTS__COMPONENTS__GAME_OBJECT__HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__SCENE_OBJECTS__COMPONENTS__GAME_OBJECT__HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__SCENE_OBJECTS__COMPONENTS__GAME_OBJECT__HH
 
 #include <string>
 #include <unordered_map>
 #include <components.hh>
 #include <buffer.hh>
-namespace Recursion::core::scene
+namespace OPTKIT::core::scene
 {
     class GameObject : public core::render::Drawable
     {

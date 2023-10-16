@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__SHAPES_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__SHAPES_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__SHAPES_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__SHAPES_HH
 
 #include <memory>
 #include <core_shapes.hh>
 #include <opengl_vertex_array.hh>
 
-namespace Recursion::platforms::opengl::scene
+namespace OPTKIT::platforms::opengl::scene
 {
 
     // TODO: get texture parameter as a texture? maybe not idk
@@ -21,6 +21,6 @@ namespace Recursion::platforms::opengl::scene
         OpenGLShapes();
         ~OpenGLShapes();
     };
-} // namespace Recursion::opengl::scene
+} // namespace OPTKIT::opengl::scene
 
 #endif

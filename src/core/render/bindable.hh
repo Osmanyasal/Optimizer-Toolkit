@@ -1,7 +1,7 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__RENDER__BINDABLE_HH
-#define RECURSION_ENGINE__SRC__CORE__RENDER__BINDABLE_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__BINDABLE_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__BINDABLE_HH
 
-namespace Recursion::core
+namespace OPTKIT::core
 {
     class Bindable
     {
@@ -14,6 +14,6 @@ namespace Recursion::core
         virtual void destroy() = 0;
     };
 
-} // namespace Recursion::core
+} // namespace OPTKIT::core
 
 #endif

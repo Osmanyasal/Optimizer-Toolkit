@@ -1,6 +1,6 @@
 #include <layer_stack.hh>
 
-namespace Recursion::core::layer
+namespace OPTKIT::core::layer
 {
     void LayerStack::add_layer(Layer *layer)
     {
@@ -48,4 +48,4 @@ namespace Recursion::core::layer
         }
         return false;
     }
-} // namespace Recursion::core::layer
+} // namespace OPTKIT::core::layer

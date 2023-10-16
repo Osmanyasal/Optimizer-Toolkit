@@ -1,10 +1,10 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__RENDER__BUFFER_HH
-#define RECURSION_ENGINE__SRC__CORE__RENDER__BUFFER_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__BUFFER_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__BUFFER_HH
 
 #include <bindable.hh>
 #include <shader.hh>
 
-namespace Recursion::core::render
+namespace OPTKIT::core::render
 {
     class Buffer : public Bindable
     {
@@ -30,6 +30,6 @@ namespace Recursion::core::render
         virtual ~BufferLayout() {}
     };
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render
 
 #endif

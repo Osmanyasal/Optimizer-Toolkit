@@ -1,6 +1,6 @@
 #include <game_object.hh>
 
-namespace Recursion::core::scene
+namespace OPTKIT::core::scene
 {
     GameObject::GameObject(const std::string name) : id{generateGUID()}, name{name}, drawable_obj{nullptr}
     {

@@ -1,5 +1,5 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__RENDER__TEXTURE_HH
-#define RECURSION_ENGINE__SRC__CORE__RENDER__TEXTURE_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__TEXTURE_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__TEXTURE_HH
 
 #include <string>
 #include <sstream>
@@ -11,7 +11,7 @@
 #include <logger.hh>
 #include <stdexcept>
 
-namespace Recursion::core::render
+namespace OPTKIT::core::render
 {
 
     using json = nlohmann::json;

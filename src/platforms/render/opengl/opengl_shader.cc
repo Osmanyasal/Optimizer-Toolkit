@@ -1,6 +1,6 @@
 #include <opengl_shader.hh>
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
 
   OpenGLShader::OpenGLShader() : OpenGLShader("../src/core/render/default_vertex.glsl", "../src/core/render/default_fragment.glsl")
@@ -758,4 +758,4 @@ namespace Recursion::platforms::opengl::render
     }
   }
 
-} // namespace Recursion::opengl::render
+} // namespace OPTKIT::opengl::render

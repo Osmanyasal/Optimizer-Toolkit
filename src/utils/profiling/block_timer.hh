@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__UTILS__PROFILING__BLOCK_TIMER_HH
-#define RECURSION_ENGINE__SRC__UTILS__PROFILING__BLOCK_TIMER_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__UTILS__PROFILING__BLOCK_TIMER_HH
+#define OPTIMIZER_TOOLKIT__SRC__UTILS__PROFILING__BLOCK_TIMER_HH
 
 #include <logger.hh>
 #include <string>
 #include <chrono> 
 
-namespace Recursion::utils
+namespace OPTKIT::utils
 {
     class BlockTimer
     {
@@ -18,6 +18,6 @@ namespace Recursion::utils
         std::chrono::high_resolution_clock::time_point start;
     };
 
-} // namespace Recursion::utils
+} // namespace OPTKIT::utils
 
 #endif

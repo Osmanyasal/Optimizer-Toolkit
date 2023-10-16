@@ -1,7 +1,7 @@
 
 #include <imgui_impl.hh>
 
-namespace Recursion::platforms::imgui::window
+namespace OPTKIT::platforms::imgui::window
 {
     void ImguiLayer_glfw_opengl_impl::on_attach()
     {

@@ -1,9 +1,9 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__EVENTS__INPUT_HH
-#define RECURSION_ENGINE__SRC__CORE__EVENTS__INPUT_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__INPUT_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__INPUT_HH
 
 #include <logger.hh>
 #include <stdint.h>
-namespace Recursion::core::input
+namespace OPTKIT::core::input
 {
     class BaseInput
     {
@@ -30,6 +30,6 @@ namespace Recursion::core::input
     // will be set on window creatin @see platform/../linux_config.hh
     extern BaseInput* Input;
 
-} // namespace Recursion::core::input
+} // namespace OPTKIT::core::input
 
 #endif

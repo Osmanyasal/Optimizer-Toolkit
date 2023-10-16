@@ -1,10 +1,10 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__EVENTS__KEYBOARD_EVENT_HH
-#define RECURSION_ENGINE__SRC__CORE__EVENTS__KEYBOARD_EVENT_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__KEYBOARD_EVENT_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__EVENTS__KEYBOARD_EVENT_HH
 
 #include <event.hh>
 #include <keyboard_mapping.hh>
 
-namespace Recursion::core::events
+namespace OPTKIT::core::events
 {
 
     class KeyEvent : public Event

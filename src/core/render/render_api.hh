@@ -1,7 +1,7 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__RENDER__RENDERING_API_HH
-#define RECURSION_ENGINE__SRC__CORE__RENDER__RENDERING_API_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__RENDERING_API_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__RENDERING_API_HH
 
-namespace Recursion::core::render
+namespace OPTKIT::core::render
 {
     enum class RenderAPI
     {
@@ -11,5 +11,5 @@ namespace Recursion::core::render
         D3D
     };
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render
 #endif

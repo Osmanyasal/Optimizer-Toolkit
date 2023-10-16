@@ -1,10 +1,10 @@
-#ifndef RECURSION_ENGINE__SANDBOX__PROJ1__PROJ1_HH
-#define RECURSION_ENGINE__SANDBOX__PROJ1__PROJ1_HH
+#ifndef OPTIMIZER_TOOLKIT__SANDBOX__PROJ1__PROJ1_HH
+#define OPTIMIZER_TOOLKIT__SANDBOX__PROJ1__PROJ1_HH
 
 #include <recursion.hh>
 
-using Recursion::core::render::Renderer2D;
-class Proj1 : public Recursion::core::Application
+using OPTKIT::core::render::Renderer2D;
+class Proj1 : public OPTKIT::core::Application
 {
 public:
     Proj1();

@@ -1,5 +1,5 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__RENDER__RENDERER_HH
-#define RECURSION_ENGINE__SRC__CORE__RENDER__RENDERER_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__RENDERER_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__RENDERER_HH
 
 #include <memory>
 #include <map>
@@ -10,7 +10,7 @@
 #include <game_object.hh>
 
 // TODO: Remove this, make vertex-array and buffer objects generic!
-namespace Recursion::core::render
+namespace OPTKIT::core::render
 {
     class Renderer
     {

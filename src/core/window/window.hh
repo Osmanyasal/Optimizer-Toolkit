@@ -1,15 +1,15 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__WINDOW__WINDOW_HH
-#define RECURSION_ENGINE__SRC__CORE__WINDOW__WINDOW_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__WINDOW__WINDOW_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__WINDOW__WINDOW_HH
 
 #include <window_config.hh>
 #include <string>
 #include <memory>
 #include <core_events.hh>
-namespace Recursion::core
+namespace OPTKIT::core
 {
     class Engine;
 }
-namespace Recursion::core::window
+namespace OPTKIT::core::window
 {
     struct WindowProps
     {
@@ -28,7 +28,7 @@ namespace Recursion::core::window
         {
         }
         // global event callback function
-        bool (*engine_callback_func)(Recursion::core::events::Event &event);
+        bool (*engine_callback_func)(OPTKIT::core::events::Event &event);
     };
 
     // interface representing a window system based Linux
@@ -79,6 +79,6 @@ namespace Recursion::core::window
         const WindowProps &win_props;
     };
 
-} // namespace Recursion::core::window
+} // namespace OPTKIT::core::window
 
 #endif

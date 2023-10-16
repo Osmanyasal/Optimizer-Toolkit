@@ -1,7 +1,7 @@
 #include <recursion.hh>
 #include <cstdio>
 
-namespace Recursion::core
+namespace OPTKIT::core
 {
     Engine *engine_ptr;
 
@@ -34,7 +34,7 @@ namespace Recursion::core
 
     void Engine::add_application(Application *application)
     {
-        layer_stack->add_layer((Recursion::core::layer::Layer *)application);
+        layer_stack->add_layer((OPTKIT::core::layer::Layer *)application);
         imgui_layer = new platforms::imgui::window::ImguiLayer_glfw_opengl_impl{((platforms::linux::window::LinuxWindow *)window)->get_window(), &application->framebuffer};
         layer_stack->add_layer(imgui_layer);
         this->application.reset(application);
@@ -47,7 +47,7 @@ namespace Recursion::core
         REC_CORE_INFO("Engine Terminated!");
     }
 
-    bool Engine::on_event(Recursion::core::events::Event &e)
+    bool Engine::on_event(OPTKIT::core::events::Event &e)
     {
         for (auto layer = layer_stack->rbegin(); layer != layer_stack->rend(); layer++)
         {
@@ -87,4 +87,4 @@ namespace Recursion::core
         }
     }
 
-} // namespace Recursion::core
+} // namespace OPTKIT::core

@@ -1,8 +1,8 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__SCENE_OBJECTS__COMPONENTS__COMPONENTS__HH
-#define RECURSION_ENGINE__SRC__CORE__SCENE_OBJECTS__COMPONENTS__COMPONENTS__HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__SCENE_OBJECTS__COMPONENTS__COMPONENTS__HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__SCENE_OBJECTS__COMPONENTS__COMPONENTS__HH
 
 #include <utils.hh>
-namespace Recursion::core::scene
+namespace OPTKIT::core::scene
 {
     /////////// Component ///////////
     class Component

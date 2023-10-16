@@ -1,9 +1,9 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__RENDER__RENDERING_CONTEXT_HH
-#define RECURSION_ENGINE__SRC__CORE__RENDER__RENDERING_CONTEXT_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__RENDERING_CONTEXT_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__RENDERING_CONTEXT_HH
 
 #include <window.hh>
 #include <render_api.hh>
-namespace Recursion::core::render
+namespace OPTKIT::core::render
 {
     /**
      * @brief This class is about the window that we see that all the rendering is taking place
@@ -16,7 +16,7 @@ namespace Recursion::core::render
      * and is given to a window technology as follows
      *
      *
-     * window = new Recursion::core::window::LinuxWindow{new Recursion::core::render::OpenGLRenderContext{default_props}};
+     * window = new OPTKIT::core::window::LinuxWindow{new OPTKIT::core::render::OpenGLRenderContext{default_props}};
      *
      * linux window can be constructed for opengl or vulkan etc.
      */
@@ -43,5 +43,5 @@ namespace Recursion::core::render
         window::WindowProps render_window_props;
     };
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render
 #endif

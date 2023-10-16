@@ -1,7 +1,7 @@
 
 #include <opengl_index_buffer.hh>
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     IndexBuffer::IndexBuffer(){
         IBO = 0;

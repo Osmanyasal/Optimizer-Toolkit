@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__LINUX__LINUX_WINDOW_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__LINUX__LINUX_WINDOW_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__LINUX__LINUX_WINDOW_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__LINUX__LINUX_WINDOW_HH
 
 #include <linux_config.hh>
 #include <window.hh>
 #include <opengl_render_context.hh>
 #include <memory>
-namespace Recursion::platforms::linux::window
+namespace OPTKIT::platforms::linux::window
 {
     class LinuxWindow : public core::window::Window
     {

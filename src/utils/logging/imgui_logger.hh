@@ -1,5 +1,5 @@
-#ifndef RECURSION_ENGINE__SRC__UTILS__LOGGING__IMGUI_LOGGER_HH
-#define RECURSION_ENGINE__SRC__UTILS__LOGGING__IMGUI_LOGGER_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__UTILS__LOGGING__IMGUI_LOGGER_HH
+#define OPTIMIZER_TOOLKIT__SRC__UTILS__LOGGING__IMGUI_LOGGER_HH
 
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -20,7 +20,7 @@ public:
 private:
     static ImGuiTextBuffer Buf;
     static ImGuiTextFilter Filter;
-    static ImVector<int> LineOffsets; // Index to lines offset
+    static ImVector<int32_t> LineOffsets; // Index to lines offset
     static bool ScrollToBottom;
 };
 

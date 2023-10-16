@@ -1,7 +1,7 @@
 #include <Input.hh>
 
-namespace Recursion::core::input
+namespace OPTKIT::core::input
 {
     BaseInput* Input;
     
-} // namespace Recursion::core::input
+} // namespace OPTKIT::core::input

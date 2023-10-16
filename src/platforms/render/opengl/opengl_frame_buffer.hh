@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_FRAME_BUFFER_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_FRAME_BUFFER_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_FRAME_BUFFER_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_FRAME_BUFFER_HH
 
 #include <GL/glew.h>
 #include <buffer.hh>
 #include <opengl_texture.hh>
 #include <shader.hh>
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     class OpenGLFrameBuffer : core::render::Drawable
     {

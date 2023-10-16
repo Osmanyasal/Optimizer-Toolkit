@@ -1,5 +1,5 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_VAO_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_VAO_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_VAO_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_VAO_HH
 
 #include <opengl_shader.hh> 
 #include <opengl_index_buffer.hh>
@@ -7,7 +7,7 @@
 #include <opengl_buffer_layout.hh>
 #include <opengl_texture.hh> 
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     class VertexArray : public core::render::Drawable
     {
@@ -42,6 +42,6 @@ namespace Recursion::platforms::opengl::render
         bool transparent;
     };
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render
 
 #endif

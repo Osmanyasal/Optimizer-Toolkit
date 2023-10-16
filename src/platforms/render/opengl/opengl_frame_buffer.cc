@@ -1,7 +1,7 @@
 
 #include <opengl_frame_buffer.hh>
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     OpenGLFrameBuffer::OpenGLFrameBuffer(float width, float height) : OpenGLFrameBuffer{width, height, OpenGLTexture{width, height, "frame_buffer_0"}}
     {

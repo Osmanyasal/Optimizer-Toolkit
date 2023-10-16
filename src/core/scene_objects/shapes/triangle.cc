@@ -1,7 +1,7 @@
 
 #include <triangle.hh>
 
-namespace Recursion::core::scene
+namespace OPTKIT::core::scene
 {
 
     std::vector<float> Triangle2D::get_positions(const glm::vec3 &size) // x,y,z

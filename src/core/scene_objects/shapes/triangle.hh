@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__SCENE_OBJECTS__TRIANGLE_HH
-#define RECURSION_ENGINE__SRC__CORE__SCENE_OBJECTS__TRIANGLE_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__SCENE_OBJECTS__TRIANGLE_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__SCENE_OBJECTS__TRIANGLE_HH
 
 #include <inttypes.h>
 #include <vector>
 #include <glm_utils.hh>
 
-namespace Recursion::core::scene
+namespace OPTKIT::core::scene
 {
     class Triangle2D
     {
@@ -21,6 +21,6 @@ namespace Recursion::core::scene
         Triangle2D(/* args */);
         ~Triangle2D();
     };
-} // namespace Recursion::core::scene
+} // namespace OPTKIT::core::scene
 
 #endif

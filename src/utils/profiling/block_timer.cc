@@ -1,6 +1,6 @@
 #include <block_timer.hh>
 
-namespace Recursion::utils
+namespace OPTKIT::utils
 {
 
     BlockTimer::BlockTimer(const std::string &block_name) : block_name{block_name}
@@ -16,4 +16,4 @@ namespace Recursion::utils
         REC_CORE_INFO("block :{} execution time : {}ms", this->block_name, duration);
     }
 
-} // namespace Recursion::utils
+} // namespace OPTKIT::utils

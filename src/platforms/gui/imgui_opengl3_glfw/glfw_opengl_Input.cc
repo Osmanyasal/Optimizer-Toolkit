@@ -1,7 +1,7 @@
 
 #include <glfw_opengl_Input.hh>
 
-namespace Recursion::platforms::imgui::window
+namespace OPTKIT::platforms::imgui::window
 {
     Glfw_OpenGL_Input::Glfw_OpenGL_Input(GLFWwindow *gl_window)
     {

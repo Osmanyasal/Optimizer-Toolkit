@@ -1,7 +1,7 @@
 
 #include <renderer.hh>
 
-namespace Recursion::core::render
+namespace OPTKIT::core::render
 {
 
     ////////// RENDERER //////////

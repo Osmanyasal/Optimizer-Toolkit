@@ -1,5 +1,5 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__IMGUI_LAYER_GLFW_OPENGL_IMPL_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__IMGUI_LAYER_GLFW_OPENGL_IMPL_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__IMGUI_LAYER_GLFW_OPENGL_IMPL_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__IMGUI_LAYER_GLFW_OPENGL_IMPL_HH
 
 #define IMGUI_DEFINE_MATH_OPERATORS
 
@@ -16,7 +16,7 @@
 #include <opengl_frame_buffer.hh>
 #include <opengl_texture.hh>
 
-namespace Recursion::platforms::imgui::window
+namespace OPTKIT::platforms::imgui::window
 {
 
     class ImguiLayer_glfw_opengl_impl : public core::layer::Layer
@@ -72,6 +72,6 @@ namespace Recursion::platforms::imgui::window
         opengl::render::OpenGLFrameBuffer *fb;
     };
  
-} // namespace Recursion::core::window
+} // namespace OPTKIT::core::window
 
 #endif

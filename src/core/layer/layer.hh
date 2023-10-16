@@ -1,10 +1,10 @@
-#ifndef RECURSION_ENGINE__SRC__CORE__LAYER__LAYER_HH
-#define RECURSION_ENGINE__SRC__CORE__LAYER__LAYER_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__LAYER__LAYER_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__LAYER__LAYER_HH
 
 #include <utils.hh>
 #include <core_events.hh>
 
-namespace Recursion::core::layer
+namespace OPTKIT::core::layer
 {
 	class Layer
 	{
@@ -39,5 +39,5 @@ namespace Recursion::core::layer
 		bool m_is_active;
 	};
 
-} // namespace Recursion::core::layer
+} // namespace OPTKIT::core::layer
 #endif

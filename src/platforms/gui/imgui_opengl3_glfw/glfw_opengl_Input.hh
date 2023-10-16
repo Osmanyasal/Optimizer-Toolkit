@@ -1,13 +1,13 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__IMGUI_LAYER_GLFW_OPENGL_INPUT_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__IMGUI_LAYER_GLFW_OPENGL_INPUT_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__IMGUI_LAYER_GLFW_OPENGL_INPUT_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__IMGUI_LAYER_GLFW_OPENGL_INPUT_HH
  
 #include <Input.hh>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-namespace Recursion::platforms::imgui::window
+namespace OPTKIT::platforms::imgui::window
 {
-    class Glfw_OpenGL_Input : public Recursion::core::input::BaseInput
+    class Glfw_OpenGL_Input : public OPTKIT::core::input::BaseInput
     {
     public:
         Glfw_OpenGL_Input(GLFWwindow *gl_window);
@@ -20,6 +20,6 @@ namespace Recursion::platforms::imgui::window
     private:
         GLFWwindow *gl_window;
     };
-} // namespace Recursion::platforms::imgui::window
+} // namespace OPTKIT::platforms::imgui::window
 
 #endif

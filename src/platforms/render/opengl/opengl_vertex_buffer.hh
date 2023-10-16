@@ -1,11 +1,11 @@
-#ifndef RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_VBO_HH
-#define RECURSION_ENGINE__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_VBO_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_VBO_HH
+#define OPTIMIZER_TOOLKIT__SRC__PLATFORMS__RENDER__OPENGL__OPENGL_VBO_HH
 
 #include <GL/glew.h>
 #include <buffer.hh>
 #include <logger.hh>
 
-namespace Recursion::platforms::opengl::render
+namespace OPTKIT::platforms::opengl::render
 {
     class VertexBuffer : public core::render::Buffer
     {
@@ -35,6 +35,6 @@ namespace Recursion::platforms::opengl::render
         uint32_t offset;
     };
 
-} // namespace Recursion::core::render
+} // namespace OPTKIT::core::render
 
 #endif

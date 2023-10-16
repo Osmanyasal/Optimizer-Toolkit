@@ -1,6 +1,6 @@
 #include <application.hh>
 
-namespace Recursion::core
+namespace OPTKIT::core
 {
     Application::Application(const std::string &app_name) : app_name{app_name}
     {
