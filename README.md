@@ -27,14 +27,14 @@
 
 ## About <br>
 * Cross Platform Performance Ecosystem mainly developed for Linux and MacOS environments.<br>
-* <b>Utilizes</b> all advantageous features of <b>PAPI,Linux Perf, Intel Vtune/Advisor, AMD uProf profilers into a single, unified platform</b> by harnessing the code and binary instrumentation techniques while providing a straightforward but elegant GUI for advanced in- and post-development monitoring.
+* <b>Utilizes</b> all advantageous features of <b>PAPI, Linux Perf, Intel Vtune/Advisor, and AMD uProf profilers into a single, unified platform</b> by harnessing the code and binary instrumentation techniques while providing a straightforward but elegant GUI for advanced in- and post-development monitoring.
 * <b>100% CPU agnostic profiling</b>
 * Provides <b>100% accuracy</b> thanks to code-line instrumentation.
 * <b>An Intuitive Programming API for in-development monitoring support</b>
 * Supports diverse PMU monitoring with <b>0 learning curve</b>.
 * <b>Bottleneck detection in any phase of the development.</b>
 * <b>Overhead is very very low</b> and upto the programmer itself.
-* Python binding. Yes you’ll have a full python support in code-line instrumentation.
+* Python binding. Yes, you’ll have full Python support in code-line instrumentation.
 * Developed with C++ and Make/Bash scripts.
 * <b>You can monitor any executable file</b>
 * <b>Use in your c++ and python projects</b>
@@ -46,19 +46,21 @@ cd ./Samaritan
 make
 ```
 
-## PERFORMANCE AID 🔎<br>
+## IN DEVELOPMENT PERFORMANCE AID 🔎  
+![Screenshot from 2023-10-16 12-59-26](https://github.com/Osmanyasal/Samaritan/assets/22853419/039b5dd2-6635-435d-9dfc-4977336db0a8)
  
-## PERFORMANCE MONITORING 🔎<br>
-The engine itself contains many profiling tools ```(Perf, Valgrind, Intel Vtune, Advisor...)``` and binary instrumentations ```(chrome://tracing)``` allowing the user to write high-performant code and monitor and optimize the pre-written code.
-You can use the following makefile targets to collect meaningful metrics <br>
-All targets use perf tool and Valgrind, so make sure they're installed<br>
-```
-make tma_analiysis # makes tma analysis unearths how much of your application {front,back}-end bounded or bad-speculated 
-make monitor_callstack # hottest ran functions 
-make mem_check # runs the Valgrind tool to make a detailed memory analysis.
-```
-## Currently
- - You can follow the current development status at projects section
- - Main support is on Linux, MacOS and Windows side-supported.
- - Developing fundamentals; OpenGL and glfw3 are preferred, Vulkan and DirectX will be supported later.
+ * Samaritan gives you an API that you can use in your C++ and Python projects to monitor Performance Monitoring Unit (PMU) events in your CPU.<br>
+ * With the help of RAII, you can monitor any pmu events including (cycles, instruction count, LXX cache hits/misses) or use cases including (microarchitecture analysis, energy-consumption analysis, thread interaction monitoring, etc.)
+ * API can also draw charts as your program is being run for live monitoring
+
+
+
+## POST MORTERM PERFORMANCE MONITORING 🔎  
+ ![Screenshot from 2023-10-16 12-58-53](https://github.com/Osmanyasal/Samaritan/assets/22853419/f17c6d7f-0d50-4785-8282-5259d277a653)
+ 
+ * Samaritan also gives you a total GUI to perform post-mortem analysis on `any` executable.
+ * The binary executable does `NOT` need to be written with Samaritan API.
+ * It simply injects API code into binary executable via static and dynamic binary instrumentation with the Intel PIN tool.
+ * User can monitor any method in the executable, all monitoring in API is available here as well.
+
  
