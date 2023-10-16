@@ -5,7 +5,7 @@
 </div>
 <div align="center">
             <img align="center" alt="ICON" width="500" height="500" src="https://github.com/Osmanyasal/Samaritan/assets/22853419/724adbf8-853b-4d73-8bc6-81d184887526" /> 
-</div>   
+</div>  
 <div align="center">
                 <img align="center" title="C++" alt="C++" width="80px" src="https://github.com/Osmanyasal/Recursion-Engine/assets/22853419/f79dfb8b-ec5e-43a9-b3ec-7db4555b54e0" />
                 &nbsp;&nbsp; 
@@ -18,7 +18,7 @@
 <div align="center">
                 <img align="center" title="GLFW" alt="GLFW" width="60px" src="https://www.glfw.org/img/favicon/favicon-196x196.png" />
                 &nbsp;&nbsp; 
-                <img align="center" title="libpfm4" alt="libpfm4" width="100px" src=" https://github.com/Osmanyasal/Samaritan/assets/22853419/c4e36bdf-322d-4561-aab4-74200988d117 " />
+                <img align="center" title="libpfm4" alt="libpfm4" width="100px" src="https://github.com/Osmanyasal/Samaritan/assets/22853419/5b4313af-b87e-4615-b110-75733b67289d" /> 
                 &nbsp;&nbsp; 
                 <img align="center" title="Dear Imgui" alt="Dear Imgui" width="60px" src="https://raw.githubusercontent.com/wiki/sammyfreg/netImgui/Web/img/DearImGui.png" /> 
                 &nbsp;&nbsp; 
