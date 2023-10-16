@@ -1,19 +1,15 @@
-#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RECURSION_HH
-#define OPTIMIZER_TOOLKIT__SRC__CORE__RECURSION_HH
+#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__OPTIMIZER_TOOLKIT_GUI_HH
+#define OPTIMIZER_TOOLKIT__SRC__CORE__OPTIMIZER_TOOLKIT_GUI_HH
  
 #include <application.hh>
 namespace OPTKIT::core
-{
-    // global on_event function
-    extern Engine *engine_ptr;
-    template <typename T>
-    bool core_on_event(T &e);
-
-    class Engine
+{ 
+  
+    class OptimizerToolKitGUI
     {
     public:
-        Engine();
-        virtual ~Engine();
+        OptimizerToolKitGUI();
+        virtual ~OptimizerToolKitGUI();
         void add_application(Application *application);
         virtual void start() final;
 
@@ -26,6 +22,12 @@ namespace OPTKIT::core
         layer::LayerStack *layer_stack;
         platforms::imgui::window::ImguiLayer_glfw_opengl_impl *imgui_layer;
     };
+
+    extern OptimizerToolKitGUI *optimizer_toolkit_gui_ptr;
+
+    // global on_event function
+    template <typename T>
+    bool core_on_event(T &e);
 
 } // namespace Recursion
 

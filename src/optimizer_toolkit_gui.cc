@@ -1,25 +1,25 @@
-#include <recursion.hh>
+#include <optimizer_toolkit_gui.hh>
 #include <cstdio>
 
 namespace OPTKIT::core
 {
-    Engine *engine_ptr;
+    OptimizerToolKitGUI *optimizer_toolkit_gui_ptr;
 
     template <typename T>
     bool core_on_event(T &e)
     {
-        if (OPT_LIKELY(engine_ptr != nullptr))
-            engine_ptr->on_event(e);
+        if (OPT_LIKELY(optimizer_toolkit_gui_ptr != nullptr))
+            optimizer_toolkit_gui_ptr->on_event(e);
         return true; // at this point, event is handled
     }
 
-    Engine::Engine() : is_running{true},
-                       layer_stack{new layer::LayerStack{}}
+    OptimizerToolKitGUI::OptimizerToolKitGUI() : is_running{true},
+                                           layer_stack{new layer::LayerStack{}}
 
     {
-        engine_ptr = this;
+        optimizer_toolkit_gui_ptr = this;
         CREATE_WINDOW(); // GENERIC CREATE_WINDOW MACRO. DEFINE YOURS IN CONFIG.HH
-        REC_CORE_INFO("Engine Created!");
+        REC_CORE_INFO("OptimizerToolKitGUI Created!");
 
         // delete this to makesure imgui draws successfully
         if (std::remove("imgui.ini") != 0)
@@ -32,7 +32,7 @@ namespace OPTKIT::core
         }
     }
 
-    void Engine::add_application(Application *application)
+    void OptimizerToolKitGUI::add_application(Application *application)
     {
         layer_stack->add_layer((OPTKIT::core::layer::Layer *)application);
         imgui_layer = new platforms::imgui::window::ImguiLayer_glfw_opengl_impl{((platforms::linux::window::LinuxWindow *)window)->get_window(), &application->framebuffer};
@@ -41,13 +41,13 @@ namespace OPTKIT::core
         REC_CORE_INFO("Application Added!");
     }
 
-    Engine::~Engine()
+    OptimizerToolKitGUI::~OptimizerToolKitGUI()
     {
         delete layer_stack;
-        REC_CORE_INFO("Engine Terminated!");
+        REC_CORE_INFO("OptimizerToolKitGUI Terminated!");
     }
 
-    bool Engine::on_event(OPTKIT::core::events::Event &e)
+    bool OptimizerToolKitGUI::on_event(OPTKIT::core::events::Event &e)
     {
         for (auto layer = layer_stack->rbegin(); layer != layer_stack->rend(); layer++)
         {
@@ -64,11 +64,11 @@ namespace OPTKIT::core
         return true;
     }
 
-    void Engine::start()
+    void OptimizerToolKitGUI::start()
     {
         REC_CORE_PROFILE_FUNCTION();
 
-        REC_CORE_INFO("Engine Started!");
+        REC_CORE_INFO("OptimizerToolKitGUI Started!");
         DELTA_TIME_INIT();
         while (OPT_LIKELY(is_running))
         {

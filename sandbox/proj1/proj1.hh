@@ -1,7 +1,7 @@
 #ifndef OPTIMIZER_TOOLKIT__SANDBOX__PROJ1__PROJ1_HH
 #define OPTIMIZER_TOOLKIT__SANDBOX__PROJ1__PROJ1_HH
 
-#include <recursion.hh>
+#include <optimizer_toolkit_gui.hh>
 
 using OPTKIT::core::render::Renderer2D;
 class Proj1 : public OPTKIT::core::Application
