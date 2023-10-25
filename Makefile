@@ -34,9 +34,12 @@ LIB_GLEW := -I./lib/glew/include/ -I./lib/spdlog/include/glew
 
 LIB_GLFW_PATH := ./lib/glfw
 LIB_GLFW := -I./lib/glfw/include/ -I./lib/spdlog/include/glfw
-
+  
 LIB_IMGUI_PATH := ./lib/imgui
 LIB_IMGUI := -I./lib/imgui/ -I./lib/imgui/backends -I./lib/imgui/docs -I./lib/imgui/examples -I./lib/imgui/mics
+
+LIB_IMPLOT_PATH := ./lib/implot
+LIB_IMPLOT := -I./lib/implot/
 
 DYNAMIC := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL
 
@@ -53,7 +56,8 @@ INCLUDE := -I$(SRC_DIR)\
 			$(LIB_SPD)\
 			$(LIB_GLEW)\
 			$(LIB_GLFW)\
-			$(LIB_IMGUI)
+			$(LIB_IMGUI)\
+			$(LIB_IMPLOT)
 
 EXECUTABLE := optimizer_toolkit.core
 

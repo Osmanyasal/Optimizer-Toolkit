@@ -16,3 +16,6 @@
 [submodule "lib/libpfm4"]
 	path = lib/libpfm4
 	url = https://github.com/Osmanyasal/libpfm4.git
+[submodule "lib/implot"]
+	path = lib/implot
+	url = https://github.com/epezent/implot.git

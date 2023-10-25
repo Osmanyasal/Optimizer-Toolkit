@@ -26,6 +26,7 @@ namespace OPTKIT::platforms::imgui
         // Setup Dear ImGui context
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
+        ImPlot::CreateContext();
 
         ImGuiIO &io = ImGui::GetIO();
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
@@ -65,6 +66,7 @@ namespace OPTKIT::platforms::imgui
     {
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
+        ImPlot::DestroyContext();
         ImGui::DestroyContext();
     }
 
@@ -76,6 +78,7 @@ namespace OPTKIT::platforms::imgui
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
         ImGui::ShowDemoWindow();
+        ImPlot::ShowDemoWindow();
     }
     void ImguiLayer_glfw_opengl_impl::end_loop()
     {
