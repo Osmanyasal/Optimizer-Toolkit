@@ -23,7 +23,6 @@
 
 // MACRO DEFINITIONS
 #define BIT(x) (1 << x)
-// #define REC_BIND_EVENT_FUNC(x) std::bind(&x,this,std::placeholders::_1)
 
 #define DELTA_TIME_INIT()                 \
     double previous_time = glfwGetTime(); \

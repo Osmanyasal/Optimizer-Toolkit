@@ -36,7 +36,7 @@ std::string read_file(std::string location)
     std::ifstream file(location);
     if (OPT_UNLIKELY(!file.is_open()))
     {
-        REC_CORE_ERROR("file not found at the location {}",location);
+        OPTKIT_CORE_ERROR("file not found at the location {}",location);
         throw std::runtime_error("Failed to open the file: " + location);
     }
     buffer << file.rdbuf();

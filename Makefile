@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 CXX := g++ 
-CXX_VERSION = -std=c++17
+CXX_VERSION = -std=c++11
 CXX_DEBUG := -g
 CXX_WARNINGS := -Wall
 CXX_OPT_FLAGS := -Og -flto
@@ -12,52 +12,19 @@ BIN := ./bin
 SRC := ./src
 OBJ := $(BIN)/obj
 SANDBOX := ./sandbox
+SANDBOX_DIR := ./sandbox/proj1 
 
 # CORE Directories for source and header files
 SRC_DIR := ./src
 CORE_DIR := $(SRC_DIR)/core
-EVENTS_DIR := $(CORE_DIR)/events
-LAYER_DIR := $(CORE_DIR)/layer
-RENDER_DIR := $(CORE_DIR)/render
-
-SCENE_DIR := $(CORE_DIR)/scene_objects
-COMPONENT_DIR := $(SCENE_DIR)/components
-CAMERA_DIR := $(SCENE_DIR)/camera
-SHAPE_DIR := $(SCENE_DIR)/shapes
-LIGHT_DIR := $(SCENE_DIR)/lights
-TILE_MAPS_DIR := $(SCENE_DIR)/tile_maps
-
-WINDOW_DIR := $(CORE_DIR)/window
-MATH_DIR := $(CORE_DIR)/math
 PLATFORMS_DIR := $(SRC_DIR)/platforms
+IMGUI_OPENGL_DIR := $(PLATFORMS_DIR)/imgui_opengl3_glfw
 UTILS_DIR := $(SRC_DIR)/utils
-
-LINUX_DIR := $(PLATFORMS_DIR)/linux
-MACOS_DIR := $(PLATFORMS_DIR)/macos
-WINDOWS_DIR := $(PLATFORMS_DIR)/windows
+DEPLOYTMENT_DIR := $(UTILS_DIR)/deployment
+LOGGING_DIR := $(UTILS_DIR)/logging
 OPTIMIZATIONS_DIR := $(UTILS_DIR)/optimizations
 PROFILING_DIR := $(UTILS_DIR)/profiling
-LOGGING_DIR := $(UTILS_DIR)/logging
-
-DEPLOYMENT_DIR := $(UTILS_DIR)/deployment
-DEPLOYMENT_LINUX_DIR := $(DEPLOYMENT_DIR)/linux
-DEPLOYMENT_MACOS_DIR := $(DEPLOYMENT_DIR)/macos
-DEPLOYMENT_ANDROID_DIR := $(DEPLOYMENT_DIR)/android
-DEPLOYMENT_IOS_DIR := $(DEPLOYMENT_DIR)/ios
-DEPLOYMENT_WINDOWS_DIR := $(DEPLOYMENT_DIR)/windows
-
-SANDBOX_DIR := ./sandbox/proj1
-
-RENDER_IMPL_DIR := $(PLATFORMS_DIR)/render
-RENDER_OPENGL_DIR := $(RENDER_IMPL_DIR)/opengl
-OPENGL_SCENE_OBJECTS := $(RENDER_OPENGL_DIR)/scene_objects
-OPENGL_SCENE_SHAPES := $(OPENGL_SCENE_OBJECTS)/shapes
-OPENGL_SCENE_LIGHTS := $(OPENGL_SCENE_OBJECTS)/lights
-RENDER_VULKAN_DIR := $(RENDER_IMPL_DIR)/vulkan
-RENDER_DIRECTX_DIR := $(RENDER_IMPL_DIR)/d3d
-GUI := $(PLATFORMS_DIR)/gui
-IMGUI_OPENGL_DIR := $(GUI)/imgui_opengl3_glfw
-
+ 
 # LIB Directories for source and header files
 LIB_SPD_PATH :=./lib/spdlog
 LIB_SPD := -I./lib/spdlog/include/  -I./lib/spdlog/include/spdlog 
@@ -71,56 +38,24 @@ LIB_GLFW := -I./lib/glfw/include/ -I./lib/spdlog/include/glfw
 LIB_IMGUI_PATH := ./lib/imgui
 LIB_IMGUI := -I./lib/imgui/ -I./lib/imgui/backends -I./lib/imgui/docs -I./lib/imgui/examples -I./lib/imgui/mics
 
-LIB_STB_IMAGE_PATH := ./lib/stb
-LIB_STB_IMAGE := -I./lib/stb
-
 DYNAMIC := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL
 
 # Include directories
 INCLUDE := -I$(SRC_DIR)\
            -I$(CORE_DIR)\
-		   -I$(RENDER_DIR)\
-           -I$(EVENTS_DIR)\
-           -I$(WINDOW_DIR)\
-           -I$(LAYER_DIR)\
-		   -I$(SCENE_DIR)\
-		   -I$(COMPONENT_DIR)\
-		   -I$(CAMERA_DIR)\
-		   -I$(TILE_MAPS_DIR)\
-		   -I$(MATH_DIR)\
            -I$(PLATFORMS_DIR)\
-		   -I$(GUI)\
            -I$(IMGUI_OPENGL_DIR)\
-           -I$(LINUX_DIR)\
-           -I$(MACOS_DIR)\
-           -I$(WINDOWS_DIR)\
            -I$(UTILS_DIR)\
-		   -I$(DEPLOYMENT_DIR)\
-		   -I$(DEPLOYMENT_LINUX_DIR)\
-		   -I$(DEPLOYMENT_MACOS_DIR)\
-		   -I$(DEPLOYMENT_WINDOWS_DIR)\
-		   -I$(DEPLOYMENT_IOS_DIR)\
-		   -I$(DEPLOYMENT_ANDROID_DIR)\
+           -I$(DEPLOYTMENT_DIR)\
 		   -I$(PROFILING_DIR)\
 		   -I$(LOGGING_DIR)\
            -I$(OPTIMIZATIONS_DIR)\
-		   -I$(RENDER_IMPL_DIR)\
-           -I$(RENDER_VULKAN_DIR)\
-           -I$(RENDER_DIRECTX_DIR)\
-           -I$(RENDER_OPENGL_DIR)\
-           -I$(SANDBOX_DIR)\
-		   -I$(SHAPE_DIR)\
-		   -I$(LIGHT_DIR)\
-		   -I$(OPENGL_SCENE_OBJECTS)\
-		   -I$(OPENGL_SCENE_SHAPES)\
-		   -I$(OPENGL_SCENE_LIGHTS)\
 			$(LIB_SPD)\
 			$(LIB_GLEW)\
 			$(LIB_GLFW)\
-			$(LIB_IMGUI)\
-			$(LIB_STB_IMAGE)
+			$(LIB_IMGUI)
 
-EXECUTABLE := optimizer.toolkit
+EXECUTABLE := optimizer_toolkit.core
 
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 

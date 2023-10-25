@@ -1,7 +1,0 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__PLATFORMS__RENDER__OPENGL__SCENE_OBJECTS_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__PLATFORMS__RENDER__OPENGL__SCENE_OBJECTS_HH
-
-#include <opengl_lights.hh>
-#include <opengl_shapes.hh>
-
-#endif

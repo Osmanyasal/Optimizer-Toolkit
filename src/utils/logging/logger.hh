@@ -28,40 +28,40 @@ namespace OPTKIT::utils::logger
 #define STRINGIFY(...) #__VA_ARGS__
 
 // ENGINE CORE LOGGERS
-#define REC_CORE_DEBUG(...)                                                                                                         \
+#define OPTKIT_CORE_DEBUG(...)                                                                                                         \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_client_logger()->debug(__VA_ARGS__)
-#define REC_CORE_TRACE(...)                                                                                                         \
+#define OPTKIT_CORE_TRACE(...)                                                                                                         \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_core_logger()->trace(__VA_ARGS__)
-#define REC_CORE_INFO(...)                                                                                                          \
+#define OPTKIT_CORE_INFO(...)                                                                                                          \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_core_logger()->info(__VA_ARGS__)
-#define REC_CORE_WARN(...)                                                                                                          \
+#define OPTKIT_CORE_WARN(...)                                                                                                          \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_core_logger()->warn(__VA_ARGS__)
-#define REC_CORE_ERROR(...)                                                                                                         \
+#define OPTKIT_CORE_ERROR(...)                                                                                                         \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_core_logger()->error(__VA_ARGS__)
 
 // CLIENT LOGGERS
-#define REC_DEBUG(...)                                                                                                              \
+#define OPTKIT_DEBUG(...)                                                                                                              \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_client_logger()->debug(__VA_ARGS__);                                                  \
     ImGuiLogger::AddLog(("[DEBUG] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
-#define REC_TRACE(...)                                                                                                              \
+#define OPTKIT_TRACE(...)                                                                                                              \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_client_logger()->trace(__VA_ARGS__);                                                  \
     ImGuiLogger::AddLog(("[TRACE] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
-#define REC_INFO(...)                                                                                                               \
+#define OPTKIT_INFO(...)                                                                                                               \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_client_logger()->info(__VA_ARGS__);                                                   \
     ImGuiLogger::AddLog(("[INFO] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
-#define REC_WARN(...)                                                                                                               \
+#define OPTKIT_WARN(...)                                                                                                               \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_client_logger()->warn(__VA_ARGS__);                                                   \
     ImGuiLogger::AddLog(("[WARN] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
-#define REC_ERROR(...)                                                                                                              \
+#define OPTKIT_ERROR(...)                                                                                                              \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
     OPTKIT::utils::logger::BaseLogger::get_client_logger()->error(__VA_ARGS__);                                                  \
     ImGuiLogger::AddLog(("[ERROR] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
@@ -69,51 +69,51 @@ namespace OPTKIT::utils::logger
 // Get rid of things that shouldn't be on production..
 #if CONF__PORTING__IS_PRODUCTION || !CONF__LOG__ENABLE_TRACE
 
-#undef REC_CORE_TRACE
-#undef REC_TRACE
+#undef OPTKIT_CORE_TRACE
+#undef OPTKIT_TRACE
 
-#define REC_CORE_TRACE(...)
-#define REC_TRACE(...)
+#define OPTKIT_CORE_TRACE(...)
+#define OPTKIT_TRACE(...)
 
 #endif
 
 #if CONF__PORTING__IS_PRODUCTION || !CONF__LOG__ENABLE_DEBUG
 
-#undef REC_CORE_DEBUG
-#undef REC_DEBUG
+#undef OPTKIT_CORE_DEBUG
+#undef OPTKIT_DEBUG
 
-#define REC_CORE_DEBUG(...)
-#define REC_DEBUG(...)
+#define OPTKIT_CORE_DEBUG(...)
+#define OPTKIT_DEBUG(...)
 
 #endif
 
 #if !CONF__LOG__ENABLE_INFO
 
-#undef REC_CORE_INFO
-#undef REC_INFO
+#undef OPTKIT_CORE_INFO
+#undef OPTKIT_INFO
 
-#define REC_CORE_INFO(...)
-#define REC_INFO(...)
+#define OPTKIT_CORE_INFO(...)
+#define OPTKIT_INFO(...)
 
 #endif
 
 #if !CONF__LOG__ENABLE_WARN
 
-#undef REC_CORE_WARN
-#undef REC_WARN
+#undef OPTKIT_CORE_WARN
+#undef OPTKIT_WARN
 
-#define REC_CORE_WARN(...)
-#define REC_WARN(...)
+#define OPTKIT_CORE_WARN(...)
+#define OPTKIT_WARN(...)
 
 #endif
 
 #if !CONF__LOG__ENABLE_ERROR
 
-#undef REC_CORE_ERROR
-#undef REC_ERROR
+#undef OPTKIT_CORE_ERROR
+#undef OPTKIT_ERROR
 
-#define REC_CORE_ERROR(...)
-#define REC_ERROR(...)
+#define OPTKIT_CORE_ERROR(...)
+#define OPTKIT_ERROR(...)
 
 #endif
 
