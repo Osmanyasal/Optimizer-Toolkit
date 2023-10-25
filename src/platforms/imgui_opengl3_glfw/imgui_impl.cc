@@ -3,6 +3,11 @@
 
 namespace OPTKIT::platforms::imgui
 {
+    void framebuffer_size_callback(GLFWwindow *window, int width, int height)
+    {
+        glViewport(0, 0, width, height);
+    }
+
     void ImguiLayer_glfw_opengl_impl::on_attach()
     {
         if (!glfwInit())
@@ -15,6 +20,7 @@ namespace OPTKIT::platforms::imgui
             return;
         glfwMakeContextCurrent(m_window);
         glfwSwapInterval(1); // Enable vsync
+        glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 
         // Initialize GLEW
         if (glewInit() != GLEW_OK)
@@ -23,6 +29,7 @@ namespace OPTKIT::platforms::imgui
             glfwTerminate();
             return;
         }
+
         // Setup Dear ImGui context
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -32,7 +39,7 @@ namespace OPTKIT::platforms::imgui
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;  // Enable Gamepad Controls
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;     // Enable Docking
-        // io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable; // Enable Multi-Viewport / Platform Windows
+        // io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;   // Enable Multi-Viewport / Platform Windows
         // io.ConfigFlags |= ImGuiWindowFlags_AlwaysAutoResize;
         // io.ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleViewports;
         // io.ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleFonts;
@@ -77,8 +84,8 @@ namespace OPTKIT::platforms::imgui
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        ImGui::ShowDemoWindow();
         ImPlot::ShowDemoWindow();
+        // ImGui::ShowDemoWindow();
     }
     void ImguiLayer_glfw_opengl_impl::end_loop()
     {
@@ -86,7 +93,14 @@ namespace OPTKIT::platforms::imgui
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-       
+
+        if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            GLFWwindow *backup_current_context = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(backup_current_context);
+        }
     }
 
     void ImguiLayer_glfw_opengl_impl::on_update(float delta_time) {}

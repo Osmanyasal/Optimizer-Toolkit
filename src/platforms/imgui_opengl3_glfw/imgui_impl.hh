@@ -35,11 +35,13 @@ namespace OPTKIT::platforms::imgui
         void begin_loop();
         void end_loop();
         void set_dark_theme_colors();
-        void set_white_theme_colors();
+        void set_white_theme_colors(); 
 
     public:
         GLFWwindow *m_window;
     };
+
+    void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
 } // namespace OPTKIT::core::window
 
