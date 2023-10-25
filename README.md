@@ -1,6 +1,6 @@
 <div id="user-content-toc" align=center>
   <ul>
-    <summary><h1 style="display: inline-block;">Optimizer Toolkit</h1></summary>
+    <summary><h1 style="display: inline-block;">Optimizer Toolkit-Core</h1></summary>
   </ul>
 </div>
 <div align="center">  
