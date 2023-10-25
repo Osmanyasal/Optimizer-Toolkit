@@ -1,5 +1,5 @@
-#ifndef OPTIMIZER_TOOLKIT__SRC__UTILS__TYPE
-#define OPTIMIZER_TOOLKIT__SRC__UTILS__TYPE
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__TYPE
+#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__TYPE
 
 /*
     Following works like this class structure..

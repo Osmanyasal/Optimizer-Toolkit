@@ -1,5 +1,5 @@
-#ifndef OPTIMIZER_TOOLKIT__SRC__UTILS__UTILS
-#define OPTIMIZER_TOOLKIT__SRC__UTILS__UTILS
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__UTILS
+#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__UTILS
 /*
     All header files that's defined in utils.
     to access utils include this file

@@ -22,7 +22,8 @@ for file in $cc_files_list; do
             s/\bfloat\b/float/g;
             s/\bchar\b/char/g;
             s/\bshort\b/int16_t/g;
-            s/\blong\b/int64_t/g;' "$file" > "$file.tmp"
+            s/\blong\b/int64_t/g;
+            s/\OPTIMIZER_TOOLKIT__/OPTIMIZER_TOOLKIT_CORE__/g;' "$file" > "$file.tmp"
     
     # Overwrite the original file with the temporary file
     mv "$file.tmp" "$file"

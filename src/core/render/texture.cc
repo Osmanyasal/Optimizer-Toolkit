@@ -1,4 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT__SRC__CORE__RENDER__TEXTURE_HH
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RENDER__TEXTURE_HH
 #include <texture.hh>
 
 namespace OPTKIT::core::render

@@ -1,5 +1,5 @@
-#ifndef OPTIMIZER_TOOLKIT__SRC__UTILS__GLM_UTILS
-#define OPTIMIZER_TOOLKIT__SRC__UTILS__GLM_UTILS
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__GLM_UTILS
+#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__GLM_UTILS
 
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>                  // glm::vec3
