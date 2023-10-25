@@ -23,19 +23,7 @@
 
 // MACRO DEFINITIONS
 #define BIT(x) (1 << x)
-
-#define DELTA_TIME_INIT()                 \
-    double previous_time = glfwGetTime(); \
-    double current_time = 0;              \
-    double delta_time = 0;
-
-#define DELTA_TIME_UPDATE()                    \
-    current_time = glfwGetTime();              \
-    delta_time = current_time - previous_time; \
-    previous_time = current_time;
-
-#define GET_FPS() 1.0f / delta_time
-
+ 
 #define BLOCK_TIMER(block_name) \
     OPTKIT::utils::BlockTimer block_timer { block_name }
 
