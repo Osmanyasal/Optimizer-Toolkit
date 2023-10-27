@@ -17,6 +17,7 @@ SANDBOX_DIR := ./sandbox/proj1
 # CORE Directories for source and header files
 SRC_DIR := ./src
 CORE_DIR := $(SRC_DIR)/core
+EVENTS_DIR := $(CORE_DIR)/events
 PLATFORMS_DIR := $(SRC_DIR)/platforms
 IMGUI_OPENGL_DIR := $(PLATFORMS_DIR)/imgui_opengl3_glfw
 UTILS_DIR := $(SRC_DIR)/utils
@@ -38,14 +39,18 @@ LIB_GLFW := -I./lib/glfw/include/ -I./lib/spdlog/include/glfw
 LIB_IMGUI_PATH := ./lib/imgui
 LIB_IMGUI := -I./lib/imgui/ -I./lib/imgui/backends -I./lib/imgui/docs -I./lib/imgui/examples -I./lib/imgui/mics
 
-LIB_IMPLOT_PATH := ./lib/implot
-LIB_IMPLOT := -I./lib/implot/
+LIB_IMPLOT_PATH := ./lib/implot 
+
+LIB_PFM_PATH := ./lib/libpfm4
+LIB_PFM := -I./lib/implot/
+
 
 DYNAMIC := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL
 
 # Include directories
 INCLUDE := -I$(SRC_DIR)\
            -I$(CORE_DIR)\
+		   -I$(EVENTS_DIR)\
            -I$(PLATFORMS_DIR)\
            -I$(IMGUI_OPENGL_DIR)\
            -I$(UTILS_DIR)\
@@ -64,7 +69,7 @@ EXECUTABLE := optimizer_toolkit.core
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
-all: ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a $(LIB_GLFW_PATH)/build/src/libglfw3.a $(LIB_GLEW_PATH)/lib/libGLEW.a $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop
+all: ${EVENTS_DIR}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a $(LIB_GLFW_PATH)/build/src/libglfw3.a $(LIB_GLEW_PATH)/lib/libGLEW.a $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop
 	@if [ ! -d "$(BIN)/fonts" ]; then \
         mkdir -p "$(BIN)/fonts"; \
         cp -R ./lib/fonts/* "$(BIN)/fonts"; \
@@ -106,6 +111,10 @@ run: all
 	@echo "🚀 Executing..."
 	cd $(BIN); ./$(EXECUTABLE)
 
+${EVENTS_DIR}/all_set:
+	@echo "⛏️ Exporting events from libpfm4"
+	cd $(UTILS_DIR) && python3 pmu_parser.py $(shell find ${LIB_PFM_PATH}/lib/events -type f -name "*.h")
+
 clean_run: clean all
 	@echo "🚀 Executing..."
 	./$(BIN)/$(EXECUTABLE)
@@ -128,6 +137,7 @@ clean_all: clean
 	cd $(LIB_GLFW_PATH) && ./install.sh clean
 	cd ${LIB_IMGUI_PATH} && ./install.sh clean
 	cd $(LIB_SPD_PATH) && ./install.sh clean
+	rm -rf ${EVENTS_DIR}
 
 ## THESE ARE FOR MONITORING
 CALL_STACK_METHOD := lbr
