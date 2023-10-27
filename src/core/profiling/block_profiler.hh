@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <linux/perf_event.h>
+#include <perfmon/pfmlib.h>
 #include <sys/ioctl.h>
 #include <cstdint>
 #include <cstring>

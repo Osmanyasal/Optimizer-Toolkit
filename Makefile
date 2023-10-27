@@ -3,7 +3,7 @@ CXX := g++
 CXX_VERSION = -std=c++11
 CXX_DEBUG := -g
 CXX_WARNINGS := -Wall
-CXX_OPT_FLAGS := -Og -flto
+CXX_OPT_FLAGS := -O3 -flto
 CXX_PFM := -lpfm
 CXX_LIBS := -fopenmp
 CXX_PGO_GENERATE := -fprofile-generate 
