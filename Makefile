@@ -4,9 +4,10 @@ CXX_VERSION = -std=c++11
 CXX_DEBUG := -g
 CXX_WARNINGS := -Wall
 CXX_OPT_FLAGS := -Og -flto
+CXX_PFM := -lpfm
 CXX_LIBS := -fopenmp
 CXX_PGO_GENERATE := -fprofile-generate 
-CXX_FLAGS :=  $(CXX_OPT_FLAGS) $(CXX_VERSION) $(CXX_DEBUG) $(CXX_PGO_GENERATE) $(CXX_WARNINGS) $(CXX_LIBS) 
+CXX_FLAGS :=  $(CXX_OPT_FLAGS) $(CXX_VERSION) $(CXX_DEBUG) $(CXX_WARNINGS) $(CXX_LIBS) 
 
 BIN := ./bin
 SRC := ./src
@@ -18,6 +19,7 @@ SANDBOX_DIR := ./sandbox/proj1
 SRC_DIR := ./src
 CORE_DIR := $(SRC_DIR)/core
 EVENTS_DIR := $(CORE_DIR)/events
+CORE_PROFILING := $(CORE_DIR)/profiling
 PLATFORMS_DIR := $(SRC_DIR)/platforms
 IMGUI_OPENGL_DIR := $(PLATFORMS_DIR)/imgui_opengl3_glfw
 UTILS_DIR := $(SRC_DIR)/utils
@@ -40,9 +42,9 @@ LIB_IMGUI_PATH := ./lib/imgui
 LIB_IMGUI := -I./lib/imgui/ -I./lib/imgui/backends -I./lib/imgui/docs -I./lib/imgui/examples -I./lib/imgui/mics
 
 LIB_IMPLOT_PATH := ./lib/implot 
+LIB_IMPLOT := -I./lib/implot/
 
 LIB_PFM_PATH := ./lib/libpfm4
-LIB_PFM := -I./lib/implot/
 
 
 DYNAMIC := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL
@@ -51,6 +53,7 @@ DYNAMIC := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglf
 INCLUDE := -I$(SRC_DIR)\
            -I$(CORE_DIR)\
 		   -I$(EVENTS_DIR)\
+		   -I$(CORE_PROFILING)\
            -I$(PLATFORMS_DIR)\
            -I$(IMGUI_OPENGL_DIR)\
            -I$(UTILS_DIR)\
@@ -69,7 +72,7 @@ EXECUTABLE := optimizer_toolkit.core
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
-all: ${EVENTS_DIR}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a $(LIB_GLFW_PATH)/build/src/libglfw3.a $(LIB_GLEW_PATH)/lib/libGLEW.a $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop
+all: ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a $(LIB_GLFW_PATH)/build/src/libglfw3.a $(LIB_GLEW_PATH)/lib/libGLEW.a ${LIB_PFM_PATH}/all_set ${EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop 
 	@if [ ! -d "$(BIN)/fonts" ]; then \
         mkdir -p "$(BIN)/fonts"; \
         cp -R ./lib/fonts/* "$(BIN)/fonts"; \
@@ -107,13 +110,16 @@ $(LIB_GLFW_PATH)/build/src/libglfw3.a:
 ${LIB_IMGUI_PATH}/build:
 	cd ${LIB_IMGUI_PATH} && ./install.sh
 
+${LIB_PFM_PATH}/all_set:
+	cd ${LIB_PFM_PATH} && ./install.sh
+
 run: all
 	@echo "🚀 Executing..."
 	cd $(BIN); ./$(EXECUTABLE)
 
 ${EVENTS_DIR}/all_set:
 	@echo "⛏️ Exporting events from libpfm4"
-	cd $(UTILS_DIR) && python3 pmu_parser.py $(shell find ${LIB_PFM_PATH}/lib/events -type f -name "*.h")
+	cd $(UTILS_DIR) && python3 pmu_parser.py $(shell find ${LIB_PFM_PATH}/lib/events -type f -name "*.h" -exec echo "../../{}" \;)
 
 clean_run: clean all
 	@echo "🚀 Executing..."
@@ -121,23 +127,31 @@ clean_run: clean all
 
 $(BIN)/$(EXECUTABLE): $(OBJ_FILES)
 	echo "🚧 Building..."
-	$(CXX) $(CXX_FLAGS) $^ -o ./$(BIN)/$(EXECUTABLE) ${LIB_IMGUI_PATH}/build/*.o $(INCLUDE) $(DYNAMIC)
+	$(CXX) $(CXX_FLAGS) $^ -o ./$(BIN)/$(EXECUTABLE) ${LIB_IMGUI_PATH}/build/*.o $(INCLUDE) $(DYNAMIC) $(CXX_PFM) 
 
 $(OBJ)/%.o: ./%.cc
 	mkdir -p $(@D)
-	$(CXX) $(CXX_FLAGS) -c -o $@ $< $(INCLUDE) 
+	$(CXX) $(CXX_FLAGS) -c -o $@ $< $(INCLUDE) $(CXX_PFM) 
 
-clean:
-	@echo "🧹 Cleaning..."
+clean: 
 	rm -rf $(BIN)/*
 	rm -rf ~/.local/share/applications/optimizer_toolkit.desktop ## remove dekstop icon
+	@echo "🧹 Bin Directory cleaned!"
 
-clean_all: clean
+clean_events:
+	rm -rf ${EVENTS_DIR}/*
+	@echo "🧹 Events cleaned!"
+
+clean_libs:
 	cd $(LIB_GLEW_PATH) && ./install.sh clean
 	cd $(LIB_GLFW_PATH) && ./install.sh clean
 	cd ${LIB_IMGUI_PATH} && ./install.sh clean
-	cd $(LIB_SPD_PATH) && ./install.sh clean
-	rm -rf ${EVENTS_DIR}
+	cd $(LIB_SPD_PATH) && ./install.sh clean 
+	cd $(LIB_PFM_PATH) && ./install.sh clean 
+	@echo "🧹 Libraries cleaned!"
+
+clean_all: clean clean_events clean_libs
+	@echo "🧹 Everything is cleaned"
 
 ## THESE ARE FOR MONITORING
 CALL_STACK_METHOD := lbr

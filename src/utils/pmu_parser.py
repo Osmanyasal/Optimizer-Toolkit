@@ -55,11 +55,11 @@ def process_event_dic(event_dict,event_pe):
 
 if __name__ == "__main__": 
 
-    if os.path.exists(EVENT_FILE_PATH+"/all_set"):
-        os.remove(EVENT_FILE_PATH+"/all_set")
+    if os.path.exists(EVENT_FILE_PATH+"all_set"):
+        os.remove(EVENT_FILE_PATH+"all_set")
 
-    if os.path.exists(EVENT_FILE_PATH+"/errors"):
-        os.remove(EVENT_FILE_PATH+"/errors")
+    if os.path.exists(EVENT_FILE_PATH+"errors"):
+        os.remove(EVENT_FILE_PATH+"errors")
 
     event_dict = {}
     # Get command-line arguments
@@ -71,16 +71,17 @@ if __name__ == "__main__":
          
     for event_file in event_files:
         if not os.path.isfile(event_file):
-            if os.path.exists(EVENT_FILE_PATH+"/all_set"):
-                os.remove(EVENT_FILE_PATH+"/all_set")
+            if os.path.exists(EVENT_FILE_PATH+"all_set"):
+                os.remove(EVENT_FILE_PATH+"all_set")
 
             err_msg = f"[ERROR]: The file '{event_file}' does not exists!\n"
             print(err_msg)
-            with open(EVENT_FILE_PATH+"/errors","a") as error_file:
+            with open(EVENT_FILE_PATH+"errors","a") as error_file:
                 error_file.write(err_msg)
 
         else:  
             try:
+                print("processing :",event_file)
                 with open(event_file, 'r') as file:
                     lines = file.readlines()
                 
@@ -91,7 +92,7 @@ if __name__ == "__main__":
                 for line in lines:
                     line = line.strip()
                     if line.find("static") != -1:
-                        while line.find("[]") == -1:
+                        if line.replace(" ","").find("[]") == -1:
                             continue
                         word = [word for word in line.split() if word.find("[") != -1][0]
                         word = word[: word.find("[")]
@@ -111,7 +112,7 @@ if __name__ == "__main__":
                 
                 ## do c++ class-enum_class conversion here based on the format
                 vendor_name = event_pe.split("_")[0]
-                vendor_folder = EVENT_FILE_PATH+"/"+vendor_name
+                vendor_folder = EVENT_FILE_PATH+vendor_name
                 pmu_name = event_pe.replace(vendor_name + "_" ,"").replace("_pe","")
                 if not os.path.exists(vendor_folder):
                     os.mkdir(vendor_folder)
@@ -120,12 +121,12 @@ if __name__ == "__main__":
                     cpp_file.writelines(class_higherachy)
 
             except Exception as e:
-                if os.path.exists(EVENT_FILE_PATH+"/all_set"):
-                    os.remove(EVENT_FILE_PATH+"/all_set")
-                with open(EVENT_FILE_PATH+"/errors", "a") as error_file:
+                if os.path.exists(EVENT_FILE_PATH+"all_set"):
+                    os.remove(EVENT_FILE_PATH+"all_set")
+                with open(EVENT_FILE_PATH+"errors", "a") as error_file:
                     error_file.write(str(e)+"\n")
 
-    if not os.path.exists(EVENT_FILE_PATH+"/errors"):
-        with open(EVENT_FILE_PATH+"/all_set", "a") as f:
+    if not os.path.exists(EVENT_FILE_PATH+"errors"):
+        with open(EVENT_FILE_PATH+"all_set", "a") as f:
             f.write("All SET!\n")
 
