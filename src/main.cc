@@ -2,7 +2,10 @@
 #include <imgui_impl.hh>
 #include <block_profiler.hh>
 #include <core/events/intel/icl.hh>
+#include <core/events/amd64/fam19h_zen3.hh>
 #include <utils.hh>
+
+using optkit::BlockProfiler;
 
 int32_t main(int32_t argc, char **argv)
 {
@@ -39,7 +42,8 @@ int32_t main(int32_t argc, char **argv)
     // MEASURE BLOCK
     float sum = 1.12;
     {
-        optkit::BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)optkit::intel::icl::INSTRUCTIONS_RETIRED};
+        // BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)optkit::intel::icl::INSTRUCTIONS_RETIRED};
+        BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)optkit::amd64::fam19h_zen3::RETIRED_INSTRUCTIONS};
         for (size_t i = 1; i <= 10; i++)
         {
             if (i % 2 == 0)
