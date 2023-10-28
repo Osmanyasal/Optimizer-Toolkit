@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::ibm{
 	enum class power8 : uint64_t {
 		PM_1LPAR_CYC = 0x1f05e, // Number of cycles in single lpar mode. All threads in the core are assigned to the same lpar

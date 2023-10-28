@@ -18,12 +18,20 @@ import os
 EVENT_FILE_EXTENSION = ".hh"
 EVENT_FILE_PATH = "../core/events/"
 
-HEADERS = "#include <cstdint>\n\n"
+HEADERS = "#include <cstdint>\n"
 NAMESPACE_BEGIN = "namespace optkit::{}{{\n\t"
 EVENT_CLASS_BEGIN = "enum class {} : uint64_t {{\n\t\t"
 PMU_EVENT = "{} = {}, // {}"
 EVENT_CLASS_END = "\n\t};"
 NAMESPACE_END = "\n};"
+
+
+
+PRIV_DEFINITIONS = {
+    "intel":[
+        "#include <intel_priv.hh>\n",
+    ]
+}
 
 def process_event_dic(event_dict,event_pe): 
     vendor_name = event_pe.split("_")[0]
@@ -33,7 +41,14 @@ def process_event_dic(event_dict,event_pe):
         vendor_name = "ibm"
         pmu_name = event_pe.replace("_pe","")
     
-    result = HEADERS + NAMESPACE_BEGIN.format(vendor_name) + EVENT_CLASS_BEGIN.format(pmu_name)
+    result = HEADERS 
+    
+    for key in PRIV_DEFINITIONS.keys():
+        if vendor_name in key:
+            for _def in PRIV_DEFINITIONS[key]:
+                result = result + _def
+    
+    result = result + NAMESPACE_BEGIN.format(vendor_name) + EVENT_CLASS_BEGIN.format(pmu_name)
     
     event_counter = {}    
     for event in event_dict[event_pe]: 
@@ -65,7 +80,7 @@ def process_event_dic(event_dict,event_pe):
                 mask_name = next((mask_val for mask_val in mask_members if ".uname" in  mask_val.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
                 mask_code = next((mask_val for mask_val in mask_members if ".ucode" in mask_val.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
                 mask_desc = next((mask_val for mask_val in mask_members if ".udesc" in mask_val.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
-                result += PMU_EVENT.format(event_name + "_MASK_" + mask_name ,mask_code,mask_desc) + "\n\t\t"
+                result += PMU_EVENT.format(event_name + "__MASK__" + event_umasks.upper() + "__" + mask_name ,mask_code,mask_desc) + "\n\t\t"
  
             
     return result + EVENT_CLASS_END + NAMESPACE_END

@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::arm{
 	enum class kunpeng_unc_l3c : uint64_t {
 		spill_success = 0x21, // rd_cpipe

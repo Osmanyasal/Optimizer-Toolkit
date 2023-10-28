@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::ibm{
 	enum class power9 : uint64_t {
 		PM_1FLOP_CMPL = 0x0000045050, // one flop (fadd

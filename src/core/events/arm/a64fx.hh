@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::arm{
 	enum class a64fx : uint64_t {
 		SW_INCR = 0x0000, // This event counts on writes to the PMSWINC register.

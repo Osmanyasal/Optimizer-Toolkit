@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::arm{
 	enum class n2 : uint64_t {
 		SW_INCR = 0x00, // Instruction architecturally executed (condition check pass) software increment

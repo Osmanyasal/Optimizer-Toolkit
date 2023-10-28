@@ -1,5 +1,5 @@
 #include <cstdint>
-
+#include <intel_priv.hh>
 namespace optkit::intel{
 	enum class bdx_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x0, // The PCU runs off a fixed 1 GHz clock.  This event counts the number of pclk cycles measured while the counter was enabled.  The pclk
@@ -46,9 +46,9 @@ namespace optkit::intel{
 		UNC_P_FREQ_TRANS_CYCLES = 0x74, // Counts the number of cycles when the system is changing frequency.  This can not be filtered by thread ID.  One can also use it with the occupancy counter that monitors number of threads in C0 to estimate the performance impact that frequency transitions had on the system.
 		UNC_P_MEMORY_PHASE_SHEDDING_CYCLES = 0x2f, // Counts the number of cycles that the PCU has triggered memory phase shedding.  This is a mode that can be run in the iMC physicals that saves power at the expense of additional latency.
 		UNC_P_POWER_STATE_OCCUPANCY = 0x80, // This is an occupancy event that tracks the number of cores that are in the chosen C-State.  It can be used by itself to get the average number of cores in that C-state with threshholding to generate histograms
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C0 = 0x4000, // Number of cores in C-State -- C0 and C1
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C3 = 0x8000, // Number of cores in C-State -- C3
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C6 = 0xc000, // Number of cores in C-State -- C6 and C7
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__BDX_UNC_P_POWER_STATE_OCCUPANCY__CORES_C0 = 0x4000, // Number of cores in C-State -- C0 and C1
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__BDX_UNC_P_POWER_STATE_OCCUPANCY__CORES_C3 = 0x8000, // Number of cores in C-State -- C3
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__BDX_UNC_P_POWER_STATE_OCCUPANCY__CORES_C6 = 0xc000, // Number of cores in C-State -- C6 and C7
 		UNC_P_PROCHOT_EXTERNAL_CYCLES = 0xa, // Counts the number of cycles that we are in external PROCHOT mode.  This mode is triggered when a sensor off the die determines that something off-die (like DRAM) is too hot and must throttle to avoid damaging the chip.
 		UNC_P_PROCHOT_INTERNAL_CYCLES = 0x9, // Counts the number of cycles that we are in internal PROCHOT mode.  This mode is triggered when a sensor on the die determines that we are too hot and must throttle to avoid damaging the chip.
 		UNC_P_TOTAL_TRANSITION_CYCLES = 0x72, // Number of cycles spent performing core C state transitions across all cores.

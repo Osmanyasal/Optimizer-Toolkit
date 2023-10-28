@@ -1,5 +1,5 @@
 #include <cstdint>
-
+#include <intel_priv.hh>
 namespace optkit::intel{
 	enum class ivbep_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x00, // PCU Uncore clockticks
@@ -62,9 +62,9 @@ namespace optkit::intel{
 		UNC_P_MEMORY_PHASE_SHEDDING_CYCLES = 0x2f, // Memory Phase Shedding Cycles
 		UNC_P_PKG_C_EXIT_LATENCY = 0x26 | (1ULL << 21), // Package C state exit latency. Counts cycles the package is transitioning from C2 to C3
 		UNC_P_POWER_STATE_OCCUPANCY = 0x80, // Number of cores in C0
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C0 = 0x4000, // Counts number of cores in C0
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C3 = 0x8000, // Counts number of cores in C3
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C6 = 0xc000, // Counts number of cores in C6
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__IVBEP_UNC_P_POWER_STATE_OCCUPANCY__CORES_C0 = 0x4000, // Counts number of cores in C0
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__IVBEP_UNC_P_POWER_STATE_OCCUPANCY__CORES_C3 = 0x8000, // Counts number of cores in C3
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__IVBEP_UNC_P_POWER_STATE_OCCUPANCY__CORES_C6 = 0xc000, // Counts number of cores in C6
 		UNC_P_PROCHOT_EXTERNAL_CYCLES = 0xa, // External Prochot
 		UNC_P_PROCHOT_INTERNAL_CYCLES = 0x9, // Internal Prochot
 		UNC_P_TOTAL_TRANSITION_CYCLES = 0x63, // Total Core C State Transition Cycles

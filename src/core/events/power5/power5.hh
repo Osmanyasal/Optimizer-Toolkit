@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::ibm{
 	enum class power5 : uint64_t {
 		PM_LSU_REJECT_RELOAD_CDF = 0x2c6090, // LSU reject due to reload CDF or tag update collision

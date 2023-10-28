@@ -1,5 +1,5 @@
 #include <cstdint>
-
+#include <intel_priv.hh>
 namespace optkit::{
 	enum class  : uint64_t {
 		ICACHE_MISS = 0x00, // Instruction cache miss (includes speculative accesses)

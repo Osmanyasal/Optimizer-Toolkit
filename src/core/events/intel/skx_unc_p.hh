@@ -1,5 +1,5 @@
 #include <cstdint>
-
+#include <intel_priv.hh>
 namespace optkit::intel{
 	enum class skx_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x0, // The PCU runs off a fixed 1 GHz clock.  This event counts the number of pclk cycles measured while the counter was enabled.  The pclk
@@ -31,9 +31,9 @@ namespace optkit::intel{
 		UNC_P_FREQ_BAND3_CYCLES = 0xe, // Frequency Residency
 		UNC_P_VR_HOT_CYCLES = 0x42, // TBD
 		UNC_P_POWER_STATE_OCCUPANCY = 0x80, // This is an occupancy event that tracks the number of cores that are in the chosen C-State.  It can be used by itself to get the average number of cores in that C-state with threshholding to generate histograms
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C0 = 0x4000, // Number of cores in C-State -- C0 and C1
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C3 = 0x8000, // Number of cores in C-State -- C3
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C6 = 0xc000, // Number of cores in C-State -- C6 and C7
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__SKX_UNC_P_POWER_STATE_OCCUPANCY__CORES_C0 = 0x4000, // Number of cores in C-State -- C0 and C1
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__SKX_UNC_P_POWER_STATE_OCCUPANCY__CORES_C3 = 0x8000, // Number of cores in C-State -- C3
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__SKX_UNC_P_POWER_STATE_OCCUPANCY__CORES_C6 = 0xc000, // Number of cores in C-State -- C6 and C7
 		
 	};
 };

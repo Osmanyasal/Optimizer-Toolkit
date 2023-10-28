@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::arm{
 	enum class cortex_a7 : uint64_t {
 		SW_INCR = 0x00, // Incremented on writes to the Software Increment Register

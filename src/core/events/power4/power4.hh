@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::ibm{
 	enum class power4 : uint64_t {
 		PM_MRK_LSU_SRQ_INST_VALID = 0x933, // Marked instruction valid in SRQ

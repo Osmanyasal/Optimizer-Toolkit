@@ -1,5 +1,5 @@
 #include <cstdint>
-
+#include <intel_priv.hh>
 namespace optkit::intel{
 	enum class snbep_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x00, // PCU Uncore clockticks
@@ -28,22 +28,22 @@ namespace optkit::intel{
 		UNC_P_FREQ_MAX_OS_CYCLES = 0x6, // OS Strongest Upper Limit Cycles
 		UNC_P_FREQ_MAX_POWER_CYCLES = 0x5, // Power Strongest Upper Limit Cycles
 		UNC_P_FREQ_MIN_IO_P_CYCLES = 0x1 | (1ULL << 21), // IO P Limit Strongest Lower Limit Cycles
-		UNC_P_FREQ_MIN_IO_P_CYCLES_MASK_C0 = 0x0100, // Counts number of cores in C0
-		UNC_P_FREQ_MIN_IO_P_CYCLES_MASK_C3 = 0x0200, // Counts number of cores in C3
-		UNC_P_FREQ_MIN_IO_P_CYCLES_MASK_C6 = 0x0300, // Counts number of cores in C6
+		UNC_P_FREQ_MIN_IO_P_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C0 = 0x0100, // Counts number of cores in C0
+		UNC_P_FREQ_MIN_IO_P_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C3 = 0x0200, // Counts number of cores in C3
+		UNC_P_FREQ_MIN_IO_P_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C6 = 0x0300, // Counts number of cores in C6
 		UNC_P_FREQ_MIN_PERF_P_CYCLES = 0x2 | (1ULL << 21), // Perf P Limit Strongest Lower Limit Cycles
-		UNC_P_FREQ_MIN_PERF_P_CYCLES_MASK_C0 = 0x0100, // Counts number of cores in C0
-		UNC_P_FREQ_MIN_PERF_P_CYCLES_MASK_C3 = 0x0200, // Counts number of cores in C3
-		UNC_P_FREQ_MIN_PERF_P_CYCLES_MASK_C6 = 0x0300, // Counts number of cores in C6
+		UNC_P_FREQ_MIN_PERF_P_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C0 = 0x0100, // Counts number of cores in C0
+		UNC_P_FREQ_MIN_PERF_P_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C3 = 0x0200, // Counts number of cores in C3
+		UNC_P_FREQ_MIN_PERF_P_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C6 = 0x0300, // Counts number of cores in C6
 		UNC_P_FREQ_TRANS_CYCLES = 0x0 | (1ULL << 21), // Cycles spent changing Frequency
-		UNC_P_FREQ_TRANS_CYCLES_MASK_C0 = 0x0100, // Counts number of cores in C0
-		UNC_P_FREQ_TRANS_CYCLES_MASK_C3 = 0x0200, // Counts number of cores in C3
-		UNC_P_FREQ_TRANS_CYCLES_MASK_C6 = 0x0300, // Counts number of cores in C6
+		UNC_P_FREQ_TRANS_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C0 = 0x0100, // Counts number of cores in C0
+		UNC_P_FREQ_TRANS_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C3 = 0x0200, // Counts number of cores in C3
+		UNC_P_FREQ_TRANS_CYCLES__MASK__SNBEP_UNC_P_OCCUPANCY_COUNTERS__C6 = 0x0300, // Counts number of cores in C6
 		UNC_P_MEMORY_PHASE_SHEDDING_CYCLES = 0x2f, // Memory Phase Shedding Cycles
 		UNC_P_POWER_STATE_OCCUPANCY = 0x80, // Number of cores in C0
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C0 = 0x4000, // Counts number of cores in C0
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C3 = 0x8000, // Counts number of cores in C3
-		UNC_P_POWER_STATE_OCCUPANCY_MASK_CORES_C6 = 0xc000, // Counts number of cores in C6
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__SNBEP_UNC_P_POWER_STATE_OCCUPANCY__CORES_C0 = 0x4000, // Counts number of cores in C0
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__SNBEP_UNC_P_POWER_STATE_OCCUPANCY__CORES_C3 = 0x8000, // Counts number of cores in C3
+		UNC_P_POWER_STATE_OCCUPANCY__MASK__SNBEP_UNC_P_POWER_STATE_OCCUPANCY__CORES_C6 = 0xc000, // Counts number of cores in C6
 		UNC_P_PROCHOT_EXTERNAL_CYCLES = 0xa, // External Prochot
 		UNC_P_PROCHOT_INTERNAL_CYCLES = 0x9, // Internal Prochot
 		UNC_P_TOTAL_TRANSITION_CYCLES = 0xb | (1ULL << 21), // Total Core C State Transition Cycles

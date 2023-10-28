@@ -1,5 +1,4 @@
 #include <cstdint>
-
 namespace optkit::arm{
 	enum class thunderx2_unc_llc : uint64_t {
 		UNC_CCPI_GIC = CCPI2_EVENT_GIC_PKT_SENT, // UNC_LLC_READ

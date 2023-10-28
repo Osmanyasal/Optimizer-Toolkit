@@ -45,7 +45,7 @@ LIB_IMPLOT_PATH := ./lib/implot
 LIB_IMPLOT := -I./lib/implot/
 
 LIB_PFM_PATH := ./lib/libpfm4
-
+LIB_PFM := -I./lib/libpfm4/include/perfmon/ -I./lib/libpfm4/lib/ 
 
 DYNAMIC := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL
 
@@ -65,7 +65,8 @@ INCLUDE := -I$(SRC_DIR)\
 			$(LIB_GLEW)\
 			$(LIB_GLFW)\
 			$(LIB_IMGUI)\
-			$(LIB_IMPLOT)
+			$(LIB_IMPLOT)\
+			$(LIB_PFM)
 
 EXECUTABLE := optimizer_toolkit.core
 

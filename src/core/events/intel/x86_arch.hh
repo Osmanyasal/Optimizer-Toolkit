@@ -1,5 +1,5 @@
 #include <cstdint>
-
+#include <intel_priv.hh>
 namespace optkit::intel{
 	enum class x86_arch : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x003c, // count core clock cycles whenever the clock signal on the specific core is running (not halted)

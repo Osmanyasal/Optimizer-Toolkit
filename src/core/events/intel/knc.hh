@@ -1,5 +1,5 @@
 #include <cstdint>
-
+#include <intel_priv.hh>
 namespace optkit::intel{
 	enum class knc : uint64_t {
 		BANK_CONFLICTS = 0xa, // Number of actual bank conflicts
