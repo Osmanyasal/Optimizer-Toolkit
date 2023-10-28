@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class nhm_unc : uint64_t {
 		UNC_CLK_UNHALTED = 0xff, // Uncore clockticks.
 		UNC_DRAM_OPEN = 0x60, // DRAM open commands issued for read or write

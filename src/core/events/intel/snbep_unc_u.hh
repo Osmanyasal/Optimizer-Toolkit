@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class snbep_unc_u : uint64_t {
 		UNC_U_EVENT_MSG = 0x42, // VLW Received
 		UNC_U_EVENT_MSG_MASK_DOORBELL_RCVD = 0x800, // TBD

@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_arm{
+namespace optkit::arm{
 	enum class cortex_a15 : uint64_t {
 		SW_INCR = 0x00, // Instruction architecturally executed (condition check pass) Software increment
 		L1I_CACHE_REFILL = 0x01, // Level 1 instruction cache refill

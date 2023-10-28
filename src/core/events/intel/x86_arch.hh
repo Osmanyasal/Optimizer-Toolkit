@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class x86_arch : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x003c, // count core clock cycles whenever the clock signal on the specific core is running (not halted)
 		INSTRUCTION_RETIRED = 0x00c0, // count the number of instructions at retirement. For instructions that consists of multiple micro-ops

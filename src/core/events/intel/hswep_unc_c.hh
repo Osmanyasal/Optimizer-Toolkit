@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class hswep_unc_c : uint64_t {
 		BL = 0x00, // C-box Uncore clockticks
 		UNC_C_COUNTER0_OCCUPANCY = 0x1f, // Counter 0 occupancy. Counts the occupancy related information by filtering CB0 occupancy count captured in counter 0.

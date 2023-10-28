@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_IBM{
+namespace optkit::ibm{
 	enum class power6 : uint64_t {
 		PM_LSU_REJECT_STQ_FULL = 0x1a0030, // LSU reject due to store queue full
 		PM_DPU_HELD_FXU_MULTI = 0x210a6, // DISP unit held due to FXU multicycle

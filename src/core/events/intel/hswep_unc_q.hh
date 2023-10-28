@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class hswep_unc_q : uint64_t {
 		UNC_Q_CLOCKTICKS = 0x14, // Number of qfclks
 		UNC_Q_CTO_COUNT = 0x38 | (1ULL << 21), // Count of CTO Events

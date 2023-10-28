@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class hswep_unc_r2 : uint64_t {
 		UNC_R2_CLOCKTICKS = 0x1, // Number of uclks in domain
 		UNC_R2_RING_AD_USED = 0x7, // R2 AD Ring in Use

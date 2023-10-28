@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class bdx_unc_h : uint64_t {
 		UNC_H_BT_CYCLES_NE = 0x42, // Cycles the Backup Tracker (BT) is not empty. The BT is the actual HOM tracker in IVT.
 		UNC_H_BT_OCCUPANCY = 0x43, // Accumulates the occupancy of te HA BT pool in every cycle. This can be used with the 'not empty' stat to calculate the average queue occupancy or the 'allocations' stat to calculate average queue latency. HA BTs are allocated as son as a request enters the HA and are released after the snoop response and data return and the response is returned to the ring

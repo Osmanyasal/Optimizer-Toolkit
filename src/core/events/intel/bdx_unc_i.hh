@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class bdx_unc_i : uint64_t {
 		UNC_I_CACHE_TOTAL_OCCUPANCY = 0x12, // Accumulates the number of reads and writes that are outstanding in the uncore in each cycle.  This is effectively the sum of the READ_OCCUPANCY and WRITE_OCCUPANCY events.
 		UNC_I_CACHE_TOTAL_OCCUPANCY_MASK_ANY = 0x100, // Total Write Cache Occupancy -- Any Source

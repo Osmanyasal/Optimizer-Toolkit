@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class bdx_unc_r2 : uint64_t {
 		UNC_R2_CLOCKTICKS = 0x1, // Counts the number of uclks in the R2PCIe uclk domain.  This could be slightly different than the count in the Ubox because of enable/freeze delays.  However
 		UNC_R2_IIO_CREDIT = 0x2d, // TBD

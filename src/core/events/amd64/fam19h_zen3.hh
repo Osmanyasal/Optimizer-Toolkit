@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_amd64{
+namespace optkit::amd64{
 	enum class fam19h_zen3 : uint64_t {
 		RETIRED_SSE_AVX_FLOPS = 0x3, // This is a retire-based event. The number of retired SSE/AVX FLOPS. The number of events logged per cycle can vary from 0 to 64. This event can count above 15 and therefore requires the MergeEvent
 		RETIRED_SSE_AVX_FLOPS_MASK_ADD_SUB_FLOPS = 0x1, // Addition/subtraction FLOPS

@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class knl_unc_cha : uint64_t {
 		UNC_H_U_CLOCKTICKS = 0x00, // Uncore clockticks
 		UNC_H_INGRESS_OCCUPANCY = 0x11, // Ingress Occupancy. Ingress Occupancy. Counts number of entries in the specified Ingress queue in each cycle

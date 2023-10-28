@@ -19,7 +19,7 @@ EVENT_FILE_EXTENSION = ".hh"
 EVENT_FILE_PATH = "../core/events/"
 
 HEADERS = "#include <cstdint>\n\n"
-NAMESPACE_BEGIN = "namespace optkit_{}{{\n\t"
+NAMESPACE_BEGIN = "namespace optkit::{}{{\n\t"
 EVENT_CLASS_BEGIN = "enum class {} : uint64_t {{\n\t\t"
 PMU_EVENT = "{} = {}, // {}"
 EVENT_CLASS_END = "\n\t};"
@@ -30,7 +30,7 @@ def process_event_dic(event_dict,event_pe):
     pmu_name = event_pe.replace(vendor_name + "_" ,"").replace("_pe","")
     
     if "power" in event_pe:
-        vendor_name = "IBM"
+        vendor_name = "ibm"
         pmu_name = event_pe.replace("_pe","")
     
     result = HEADERS + NAMESPACE_BEGIN.format(vendor_name) + EVENT_CLASS_BEGIN.format(pmu_name)
@@ -44,7 +44,7 @@ def process_event_dic(event_dict,event_pe):
             if event_name[0].isdigit():
                 event_name = "_"+event_name 
         
-        if vendor_name != "IBM":
+        if vendor_name != "ibm":
             event_code = next((item for item in members if ".code" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
             event_desc = next((item for item in members if ".desc" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
         else:

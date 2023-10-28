@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class ivbep_unc_r3 : uint64_t {
 		UNC_R3_CLOCKTICKS = 0x1, // Number of uclks in domain
 		UNC_R3_RING_AD_USED = 0x7, // R3 AD Ring in Use

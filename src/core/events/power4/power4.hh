@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_IBM{
+namespace optkit::ibm{
 	enum class power4 : uint64_t {
 		PM_MRK_LSU_SRQ_INST_VALID = 0x933, // Marked instruction valid in SRQ
 		PM_FPU1_SINGLE = 0x127, // FPU1 executed single precision instruction

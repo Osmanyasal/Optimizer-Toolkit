@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class hswep_unc_i : uint64_t {
 		UNC_I_CLOCKTICKS = 0x0, // Number of uclks in domain
 		UNC_I_SNOOP_RESP = 0x17, // Snoop responses

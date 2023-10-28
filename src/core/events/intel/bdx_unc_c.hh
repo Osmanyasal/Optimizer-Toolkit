@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class bdx_unc_c : uint64_t {
 		UNC_C_BOUNCE_CONTROL = 0xa, // TBD
 		UNC_C_CLOCKTICKS = 0x0, // Clock ticks

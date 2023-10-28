@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class ppro : uint64_t {
 		CPU_CLK_UNHALTED = 0x79, // Number cycles during which the processor is not halted
 		INST_RETIRED = 0xc0, // Number of instructions retired

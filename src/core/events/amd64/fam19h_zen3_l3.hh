@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_amd64{
+namespace optkit::amd64{
 	enum class fam19h_zen3_l3 : uint64_t {
 		UNC_L3_REQUESTS = 0x04, // Number of requests to L3 cache
 		UNC_L3_REQUESTS_MASK_ALL = 0xff, // All types of requests

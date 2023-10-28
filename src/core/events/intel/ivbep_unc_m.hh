@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class ivbep_unc_m : uint64_t {
 		VMSE_RETRY = 0xff, // IMC Uncore clockticks (fixed counter)
 		UNC_M_DCLOCKTICKS = 0x00, // IMC Uncore clockticks (generic counters)

@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class bdx_unc_q : uint64_t {
 		UNC_Q_CLOCKTICKS = 0x14, // Counts the number of clocks in the QPI LL.  This clock runs at 1/4th the GT/s speed of the QPI link.  For example
 		UNC_Q_CTO_COUNT = 0x38 | (1 << 21), // Counts the number of CTO (cluster trigger outs) events that were asserted across the two slots.  If both slots trigger in a given cycle

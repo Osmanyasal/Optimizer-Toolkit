@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class skx_unc_m2m : uint64_t {
 		UNC_M2_AG0_AD_CRD_ACQUIRED = 0x80, // Number of CMS Agent 0 AD credits acquired in a given cycle
 		UNC_M2_AG0_AD_CRD_ACQUIRED_MASK_TGR0 = 0x100, // CMS Agent0 Credits Acquired -- For Transgress 0

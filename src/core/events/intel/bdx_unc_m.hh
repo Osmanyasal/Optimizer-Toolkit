@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class bdx_unc_m : uint64_t {
 		UNC_M_CLOCKTICKS = 0xff, // IMC Uncore clockticks (fixed counter)
 		UNC_M_ACT_COUNT = 0x1, // Counts the number of DRAM Activate commands sent on this channel.  Activate commands are issued to open up a page on the DRAM devices so that it can be read or written to with a CAS.  One can calculate the number of Page Misses by subtracting the number of Page Miss precharges from the number of Activates.

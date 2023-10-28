@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class ivbep_unc_h : uint64_t {
 		LAST = 0x00, // HA Uncore clockticks
 		UNC_H_CONFLICT_CYCLES = 0xb, // Conflict Checks

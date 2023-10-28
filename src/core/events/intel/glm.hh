@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class glm : uint64_t {
 		ICACHE = 0x80, // References per ICache line that are available in the ICache (hit). This event counts differently than Intel processors based on Silvermont microarchitecture
 		ICACHE_MASK_HIT = 0x0100, // References per ICache line that are available in the ICache (hit). This event counts differently than Intel processors based on Silvermont microarchitecture

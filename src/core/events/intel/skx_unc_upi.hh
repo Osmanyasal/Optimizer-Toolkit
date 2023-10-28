@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class skx_unc_upi : uint64_t {
 		UNC_UPI_CLOCKTICKS = 0x1, // Counts the number of clocks in the UPI LL.  This clock runs at 1/8th the GT/s speed of the UPI link.  For example
 		UNC_UPI_DIRECT_ATTEMPTS = 0x12, // Counts the number of Data Response(DRS) packets UPI attempted to send directly to the core or to a different UPI link.  Note:  This only counts attempts on valid candidates such as DRS packets destined for CHAs.

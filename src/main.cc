@@ -1,12 +1,14 @@
 #include <utils.hh>
 #include <imgui_impl.hh>
-#include <block_profiler.hh> 
-#include <core/events/intel/icl.hh>
+#include <block_profiler.hh>
+// #include <core/events/intel/icl.hh>
+#include <core/events/power5/power5.hh>
 #include <utils.hh>
+
 int32_t main(int32_t argc, char **argv)
 {
     OPTKIT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
-    OPTKIT::utils::logger::BaseLogger::init(); 
+    OPTKIT::utils::logger::BaseLogger::init();
 
     // QUERY PMUs and EVENTS
     pfm_pmu_info_t pmuInfo;
@@ -37,8 +39,9 @@ int32_t main(int32_t argc, char **argv)
 
     // MEASURE BLOCK
     float sum = 1.12;
-    {   
-        BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)optkit_intel::icl::INSTRUCTIONS_RETIRED};
+    {
+        optkit::ibm::power5::PM_LSU_REJECT_RELOAD_CDF;
+        // BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)intel::icl::INSTRUCTIONS_RETIRED};
         for (size_t i = 1; i <= 10; i++)
         {
             if (i % 2 == 0)

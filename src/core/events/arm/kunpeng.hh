@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_arm{
+namespace optkit::arm{
 	enum class kunpeng : uint64_t {
 		SW_INCR = 0x00, // Instruction architecturally executed
 		INST_RETIRED = 0x08, // Instruction architecturally executed

@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class ivbep_unc_i : uint64_t {
 		UNC_I_CLOCKTICKS = 0x0, // Number of uclks in domain
 		UNC_I_ADDRESS_MATCH = 0x17, // Address match conflict count

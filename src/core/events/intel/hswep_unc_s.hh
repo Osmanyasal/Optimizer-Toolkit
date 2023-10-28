@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class hswep_unc_s : uint64_t {
 		BL = 0x00, // S-box Uncore clockticks
 		UNC_S_RING_AD_USED = 0x1b, // Address ring in use. Counts number of cycles ring is being used at this ring stop

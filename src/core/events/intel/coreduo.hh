@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class coreduo : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x3c, // Unhalted core cycles
 		UNHALTED_REFERENCE_CYCLES = 0x13c, // Unhalted reference cycles. Measures bus cycles

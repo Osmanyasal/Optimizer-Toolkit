@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_IBM{
+namespace optkit::ibm{
 	enum class powerpc_nest_write : uint64_t {
 		MCS_00 = 0x198, // Total Write Bandwidth seen on both MCS of MC0
 		MCS_01 = 0x1a0, // Total Write Bandwidth seen on both MCS of MC1

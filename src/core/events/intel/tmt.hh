@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class tmt : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x3c, // Count core clock cycles whenever the clock signal on the specific core is running (not halted)
 		UNHALTED_REFERENCE_CYCLES = 0x0300, // Unhalted reference cycles

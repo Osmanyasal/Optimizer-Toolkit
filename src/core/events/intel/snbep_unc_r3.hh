@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class snbep_unc_r3 : uint64_t {
 		UNC_R3_CLOCKTICKS = 0x1, // Number of uclks in domain
 		UNC_R3_IIO_CREDITS_ACQUIRED = 0x20, // to IIO BL Credit Acquired

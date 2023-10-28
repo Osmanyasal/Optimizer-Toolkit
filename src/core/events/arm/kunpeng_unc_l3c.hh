@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_arm{
+namespace optkit::arm{
 	enum class kunpeng_unc_l3c : uint64_t {
 		spill_success = 0x21, // rd_cpipe
 		wr_cpipe = 0x01, // Total write accesses.

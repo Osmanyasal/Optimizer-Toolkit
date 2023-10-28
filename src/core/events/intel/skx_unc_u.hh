@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class skx_unc_u : uint64_t {
 		UNC_U_EVENT_MSG = 0x42, // Virtual Logical Wire (legacy) message were received from Uncore.
 		UNC_U_EVENT_MSG_MASK_DOORBELL_RCVD = 0x800, // Message Received --

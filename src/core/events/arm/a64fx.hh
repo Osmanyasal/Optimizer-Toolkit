@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_arm{
+namespace optkit::arm{
 	enum class a64fx : uint64_t {
 		SW_INCR = 0x0000, // This event counts on writes to the PMSWINC register.
 		L1I_CACHE_REFILL = 0x0001, // This event counts operations that cause a refill of at least the L1I cache.

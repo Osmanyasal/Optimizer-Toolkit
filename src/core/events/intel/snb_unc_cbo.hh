@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class snb_unc_cbo : uint64_t {
 		UNC_CBO_XSNP_RESPONSE = 0x22, // Snoop responses (must provide a snoop type and filter)
 		UNC_CBO_XSNP_RESPONSE_MASK_MISS = 0x100, // Number of snoop misses

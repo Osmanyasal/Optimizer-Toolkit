@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_{
+namespace optkit::{
 	enum class  : uint64_t {
 		ICACHE_MISS = 0x00, // Instruction cache miss (includes speculative accesses)
 		IBUF_STALL = 0x01, // Stall because instruction buffer cannot deliver an instruction

@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_amd64{
+namespace optkit::amd64{
 	enum class fam11h : uint64_t {
 		DISPATCHED_FPU = 0x0, // Dispatched FPU Operations
 		DISPATCHED_FPU_MASK_OPS_ADD = 0x1, // Add pipe ops excluding load ops and SSE move ops

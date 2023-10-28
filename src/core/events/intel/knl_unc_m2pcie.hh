@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class knl_unc_m2pcie : uint64_t {
 		UNC_M2P_INGRESS_CYCLES_NE = 0x10, // Ingress Queue Cycles Not Empty. Counts the number of cycles when the M2PCIe Ingress is not empty
 		UNC_M2P_INGRESS_CYCLES_NE_MASK_CBO_IDI = 0x0100, // CBO_IDI

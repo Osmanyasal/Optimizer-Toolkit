@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class snbep_unc_h : uint64_t {
 		UNC_H_CLOCKTICKS = 0x00, // HA Uncore clockticks
 		UNC_H_CONFLICT_CYCLES = 0xb, // Conflict Checks

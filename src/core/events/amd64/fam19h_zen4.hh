@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_amd64{
+namespace optkit::amd64{
 	enum class fam19h_zen4 : uint64_t {
 		RETIRED_X87_FP_OPS = 0x2, // Number of X87 floating-point ops retired
 		RETIRED_X87_FP_OPS_MASK_ADD_SUB_OPS = 0x01, // Number of add/subtract ops

@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class snbep_unc_m : uint64_t {
 		UNC_M_CLOCKTICKS = 0xff, // IMC Uncore clockticks
 		UNC_M_ACT_COUNT = 0x1, // DRAM Activate Count

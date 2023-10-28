@@ -1,6 +1,6 @@
 #include <cstdint>
 
-namespace optkit_intel{
+namespace optkit::intel{
 	enum class skx_unc_iio : uint64_t {
 		UNC_IO_CLOCKTICKS = 0x1, // IIO clockticks
 		UNC_IO_COMP_BUF_INSERTS = 0xc2, // TBD
