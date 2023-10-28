@@ -119,7 +119,7 @@ run: all
 
 ${EVENTS_DIR}/all_set:
 	@echo "⛏️ Exporting events from libpfm4"
-	cd $(UTILS_DIR) && python3 pmu_parser.py $(shell find ${LIB_PFM_PATH}/lib/events -type f -name "*.h" -exec echo "../../{}" \;)
+	cd $(UTILS_DIR) && python3 pmu_parser.py $(shell find ${LIB_PFM_PATH}/lib/events -type f \( -name "intel*.h" -or -name "amd*.h" -or -name "arm*.h" -or -name "power*.h" \) -exec echo "../../{}" \;)
 
 clean_run: clean all
 	@echo "🚀 Executing..."
