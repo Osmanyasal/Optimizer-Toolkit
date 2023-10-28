@@ -1,0 +1,87 @@
+#include <cstdint>
+
+namespace optkit_intel{
+	enum class snbep_unc_r3 : uint64_t {
+		UNC_R3_CLOCKTICKS = 0x1, // Number of uclks in domain
+		UNC_R3_IIO_CREDITS_ACQUIRED = 0x20, // to IIO BL Credit Acquired
+		UNC_R3_IIO_CREDITS_ACQUIRED_MASK_DRS = 0x800, // DRS
+		UNC_R3_IIO_CREDITS_ACQUIRED_MASK_NCB = 0x1000, // NCB
+		UNC_R3_IIO_CREDITS_ACQUIRED_MASK_NCS = 0x2000, // NCS
+		UNC_R3_IIO_CREDITS_REJECT = 0x21, // to IIO BL Credit Rejected
+		UNC_R3_IIO_CREDITS_REJECT_MASK_DRS = 0x800, // DRS
+		UNC_R3_IIO_CREDITS_REJECT_MASK_NCB = 0x1000, // NCB
+		UNC_R3_IIO_CREDITS_REJECT_MASK_NCS = 0x2000, // NCS
+		UNC_R3_IIO_CREDITS_USED = 0x22, // to IIO BL Credit In Use
+		UNC_R3_IIO_CREDITS_USED_MASK_DRS = 0x800, // DRS
+		UNC_R3_IIO_CREDITS_USED_MASK_NCB = 0x1000, // NCB
+		UNC_R3_IIO_CREDITS_USED_MASK_NCS = 0x2000, // NCS
+		UNC_R3_RING_AD_USED = 0x7, // R3 AD Ring in Use
+		UNC_R3_RING_AD_USED_MASK_CCW_EVEN = 0x400, // Counter-Clockwise and even ring polarity
+		UNC_R3_RING_AD_USED_MASK_CCW_ODD = 0x800, // Counter-Clockwise and odd ring polarity
+		UNC_R3_RING_AD_USED_MASK_CW_EVEN = 0x100, // Clockwise and even ring polarity
+		UNC_R3_RING_AD_USED_MASK_CW_ODD = 0x200, // Clockwise and odd ring polarity
+		UNC_R3_RING_AK_USED = 0x8, // R3 AK Ring in Use
+		UNC_R3_RING_AK_USED_MASK_CCW_EVEN = 0x400, // Counter-Clockwise and even ring polarity
+		UNC_R3_RING_AK_USED_MASK_CCW_ODD = 0x800, // Counter-Clockwise and odd ring polarity
+		UNC_R3_RING_AK_USED_MASK_CW_EVEN = 0x100, // Clockwise and even ring polarity
+		UNC_R3_RING_AK_USED_MASK_CW_ODD = 0x200, // Clockwise and odd ring polarity
+		UNC_R3_RING_BL_USED = 0x9, // R3 BL Ring in Use
+		UNC_R3_RING_BL_USED_MASK_CCW_EVEN = 0x400, // Counter-Clockwise and even ring polarity
+		UNC_R3_RING_BL_USED_MASK_CCW_ODD = 0x800, // Counter-Clockwise and odd ring polarity
+		UNC_R3_RING_BL_USED_MASK_CW_EVEN = 0x100, // Clockwise and even ring polarity
+		UNC_R3_RING_BL_USED_MASK_CW_ODD = 0x200, // Clockwise and odd ring polarity
+		UNC_R3_RING_IV_USED = 0xa, // R3 IV Ring in Use
+		UNC_R3_RING_IV_USED_MASK_ANY = 0xf00, // Any polarity
+		UNC_R3_RXR_BYPASSED = 0x12, // Ingress Bypassed
+		UNC_R3_RXR_BYPASSED_MASK_AD = 0x100, // Ingress Bypassed
+		UNC_R3_RXR_CYCLES_NE = 0x10, // Ingress Cycles Not Empty
+		UNC_R3_RXR_CYCLES_NE_MASK_DRS = 0x800, // DRS Ingress queue
+		UNC_R3_RXR_CYCLES_NE_MASK_HOM = 0x100, // HOM Ingress queue
+		UNC_R3_RXR_CYCLES_NE_MASK_NCB = 0x1000, // NCB Ingress queue
+		UNC_R3_RXR_CYCLES_NE_MASK_NCS = 0x2000, // NCS Ingress queue
+		UNC_R3_RXR_CYCLES_NE_MASK_NDR = 0x400, // NDR Ingress queue
+		UNC_R3_RXR_CYCLES_NE_MASK_SNP = 0x200, // SNP Ingress queue
+		UNC_R3_RXR_INSERTS = 0x11, // Ingress Allocations
+		UNC_R3_RXR_INSERTS_MASK_DRS = 0x800, // DRS Ingress queue
+		UNC_R3_RXR_INSERTS_MASK_HOM = 0x100, // HOM Ingress queue
+		UNC_R3_RXR_INSERTS_MASK_NCB = 0x1000, // NCB Ingress queue
+		UNC_R3_RXR_INSERTS_MASK_NCS = 0x2000, // NCS Ingress queue
+		UNC_R3_RXR_INSERTS_MASK_NDR = 0x400, // NDR Ingress queue
+		UNC_R3_RXR_INSERTS_MASK_SNP = 0x200, // SNP Ingress queue
+		UNC_R3_RXR_OCCUPANCY = 0x13, // Ingress Occupancy Accumulator
+		UNC_R3_RXR_OCCUPANCY_MASK_DRS = 0x800, // DRS Ingress queue
+		UNC_R3_RXR_OCCUPANCY_MASK_HOM = 0x100, // HOM Ingress queue
+		UNC_R3_RXR_OCCUPANCY_MASK_NCB = 0x1000, // NCB Ingress queue
+		UNC_R3_RXR_OCCUPANCY_MASK_NCS = 0x2000, // NCS Ingress queue
+		UNC_R3_RXR_OCCUPANCY_MASK_NDR = 0x400, // NDR Ingress queue
+		UNC_R3_RXR_OCCUPANCY_MASK_SNP = 0x200, // SNP Ingress queue
+		UNC_R3_TXR_CYCLES_FULL = 0x25, // Egress cycles full
+		UNC_R3_TXR_INSERTS = 0x24, // Egress allocations
+		UNC_R3_TXR_NACK = 0x26, // Egress Nack
+		UNC_R3_VN0_CREDITS_REJECT = 0x37, // VN0 Credit Acquisition Failed on DRS
+		UNC_R3_VN0_CREDITS_REJECT_MASK_DRS = 0x800, // Filter DRS message class
+		UNC_R3_VN0_CREDITS_REJECT_MASK_HOM = 0x100, // Filter HOM message class
+		UNC_R3_VN0_CREDITS_REJECT_MASK_NCB = 0x1000, // Filter NCB message class
+		UNC_R3_VN0_CREDITS_REJECT_MASK_NCS = 0x2000, // Filter NCS message class
+		UNC_R3_VN0_CREDITS_REJECT_MASK_NDR = 0x400, // Filter NDR message class
+		UNC_R3_VN0_CREDITS_REJECT_MASK_SNP = 0x200, // Filter SNP message class
+		UNC_R3_VN0_CREDITS_USED = 0x36, // VN0 Credit Used
+		UNC_R3_VN0_CREDITS_USED_MASK_DRS = 0x800, // Filter DRS message class
+		UNC_R3_VN0_CREDITS_USED_MASK_HOM = 0x100, // Filter HOM message class
+		UNC_R3_VN0_CREDITS_USED_MASK_NCB = 0x1000, // Filter NCB message class
+		UNC_R3_VN0_CREDITS_USED_MASK_NCS = 0x2000, // Filter NCS message class
+		UNC_R3_VN0_CREDITS_USED_MASK_NDR = 0x400, // Filter NDR message class
+		UNC_R3_VN0_CREDITS_USED_MASK_SNP = 0x200, // Filter SNP message class
+		UNC_R3_VNA_CREDITS_ACQUIRED = 0x33, // VNA credit Acquisitions
+		UNC_R3_VNA_CREDITS_REJECT = 0x34, // VNA Credit Reject
+		UNC_R3_VNA_CREDITS_REJECT_MASK_DRS = 0x800, // Filter DRS message class
+		UNC_R3_VNA_CREDITS_REJECT_MASK_HOM = 0x100, // Filter HOM message class
+		UNC_R3_VNA_CREDITS_REJECT_MASK_NCB = 0x1000, // Filter NCB message class
+		UNC_R3_VNA_CREDITS_REJECT_MASK_NCS = 0x2000, // Filter NCS message class
+		UNC_R3_VNA_CREDITS_REJECT_MASK_NDR = 0x400, // Filter NDR message class
+		UNC_R3_VNA_CREDITS_REJECT_MASK_SNP = 0x200, // Filter SNP message class
+		UNC_R3_VNA_CREDIT_CYCLES_OUT = 0x31, // Cycles with no VNA credits available
+		UNC_R3_VNA_CREDIT_CYCLES_USED = 0x32, // Cycles with 1 or more VNA credits in use
+		
+	};
+};

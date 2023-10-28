@@ -38,14 +38,19 @@ def process_event_dic(event_dict,event_pe):
     event_counter = {}    
     for event in event_dict[event_pe]: 
         members = event.replace("{","").replace("}","").split(",")
-        event_name = next((item for item in members if ".name" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
+        event_name = next((item for item in members if "name" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
         if len(event_name) > 0: 
             event_name = event_name.split()[0]
             if event_name[0].isdigit():
-                event_name = "_"+event_name
-                
-        event_code = next((item for item in members if ".code" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
-        event_desc = next((item for item in members if ".desc" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
+                event_name = "_"+event_name 
+        
+        if vendor_name != "IBM":
+            event_code = next((item for item in members if ".code" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
+            event_desc = next((item for item in members if ".desc" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
+        else:
+            event_code = next((item for item in members if "code" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
+            event_desc = next((item for item in members if "desc" in item.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
+            
         event_umasks = next((item for item in members if ".umasks" in item.replace(" "," ")),"").split("=")[-1].replace("\"","").strip()
         if len(event_umasks) > 0:
             event_umasks = event_umasks.split()[0]
@@ -130,7 +135,13 @@ if __name__ == "__main__":
                 ## do c++ class-enum_class conversion here based on the format
                 vendor_name = event_pe.split("_")[0]
                 vendor_folder = EVENT_FILE_PATH+vendor_name
-                pmu_name = event_pe.replace(vendor_name + "_" ,"").replace("_pe","")
+                
+                if event_pe.count("_") == 1:
+                    pmu_name = vendor_name.replace("_pe","")
+                else:
+                    pmu_name = event_pe.replace(vendor_name + "_" ,"").replace("_pe","")
+                 
+                
                 if not os.path.exists(vendor_folder):
                     os.mkdir(vendor_folder)
                 with open(vendor_folder+"/" + pmu_name + EVENT_FILE_EXTENSION, "w") as cpp_file:
