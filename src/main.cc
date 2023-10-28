@@ -2,6 +2,7 @@
 #include <imgui_impl.hh>
 #include <block_profiler.hh> 
 #include <core/events/intel/icl.hh>
+#include <utils.hh>
 int32_t main(int32_t argc, char **argv)
 {
     OPTKIT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
@@ -45,6 +46,7 @@ int32_t main(int32_t argc, char **argv)
         }
     }
 
+    OPTKIT_CORE_INFO("sum:{}", sum);
 
     // VISUALIZE (OPTIONAL)
 
