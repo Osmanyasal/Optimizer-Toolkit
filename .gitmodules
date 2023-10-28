@@ -1,9 +1,6 @@
 [submodule "lib/font_opensans"]
 	path = lib/font_opensans
 	url = https://github.com/googlefonts/opensans.git
-[submodule "lib/glew"]
-	path = lib/glew
-	url = https://github.com/Osmanyasal/glew.git
 [submodule "lib/glfw"]
 	path = lib/glfw
 	url = https://github.com/Osmanyasal/glfw.git
@@ -19,3 +16,6 @@
 [submodule "lib/implot"]
 	path = lib/implot
 	url = https://github.com/epezent/implot.git
+[submodule "glew"]
+	path = glew
+	url = https://github.com/Osmanyasal/glew.git
