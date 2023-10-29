@@ -1,7 +1,7 @@
 
 #include <imgui_impl.hh>
 
-namespace OPTKIT::platforms::imgui
+namespace optkit::platforms::imgui
 {
     void framebuffer_size_callback(GLFWwindow *window, int width, int height)
     {

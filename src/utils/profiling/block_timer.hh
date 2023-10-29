@@ -5,7 +5,7 @@
 #include <string>
 #include <chrono> 
 
-namespace OPTKIT::utils
+namespace optkit::utils
 {
     class BlockTimer
     {
@@ -18,6 +18,6 @@ namespace OPTKIT::utils
         std::chrono::high_resolution_clock::time_point start;
     };
 
-} // namespace OPTKIT::utils
+} // namespace optkit::utils
 
 #endif

@@ -12,7 +12,7 @@
 #include <sstream>
 #include <mutex>
 
-namespace OPTKIT::utils
+namespace optkit::utils
 {
 
 	using FloatingPointMicroseconds = std::chrono::duration<double, std::micro>;
@@ -196,7 +196,7 @@ namespace OPTKIT::utils
 		// 	return result;
 		// }
 	}
-} // OPTKIT::utils
+} // optkit::utils
 
 #if OPTKIT_CORE_PROFILE || OPTKIT_PROFILE
   // Resolve which function signature macro will be used. Note that this only

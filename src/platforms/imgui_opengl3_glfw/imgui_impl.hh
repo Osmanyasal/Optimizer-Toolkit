@@ -14,9 +14,9 @@
 #include <implot_internal.h> 
 
 #include <GL/glew.h>
-#include <GLFW/glfw3.h> 
+#include <GLFW/glfw3.h>
 
-namespace OPTKIT::platforms::imgui
+namespace optkit::platforms::imgui
 {
 
     class ImguiLayer_glfw_opengl_impl

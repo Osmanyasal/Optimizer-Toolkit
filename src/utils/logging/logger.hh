@@ -8,7 +8,7 @@
 #include <spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <imgui_logger.hh>
-namespace OPTKIT::utils::logger
+namespace optkit::utils::logger
 {
     class BaseLogger final
     {
