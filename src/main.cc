@@ -9,7 +9,7 @@ using optkit::core::BlockProfiler;
 int32_t main(int32_t argc, char **argv)
 {
     OPTKIT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
-    OPTKIT::utils::logger::BaseLogger::init();
+    optkit::utils::logger::BaseLogger::init();
 
     // QUERY PMUs and EVENTS
     pfm_pmu_info_t pmuInfo;

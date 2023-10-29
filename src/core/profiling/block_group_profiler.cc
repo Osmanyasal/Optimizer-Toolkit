@@ -1,15 +1,15 @@
-#include <block_profiler.hh>
+#include <block_group_profiler.hh>
 
 namespace optkit::core
 {
-    std::vector<int> BlockProfiler::fd_stack;
+    std::vector<int> BlockGroupProfiler::fd_stack;
 
-    BlockProfiler::BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list)
+    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list)
     {
 
         // disable all other counters
-        for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
+        for (int i = 0; i < BlockGroupProfiler::fd_stack.size(); i++)
+            ioctl(BlockGroupProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
         this->block_name = block_name;
         for (auto &raw_event : raw_event_list)
@@ -33,7 +33,7 @@ namespace optkit::core
                 return;
             }
             else{
-                BlockProfiler::fd_stack.push_back(fd);
+                BlockGroupProfiler::fd_stack.push_back(fd);
                 fd_list.push_back(fd);
             }
 
@@ -41,17 +41,17 @@ namespace optkit::core
         }
 
         // enable all other counters
-        for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
+        for (int i = BlockGroupProfiler::fd_stack.size() - 1; i >= 0; i--)
         {
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
+            ioctl(BlockGroupProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
         }
     }
-    BlockProfiler ::~BlockProfiler()
+    BlockGroupProfiler ::~BlockGroupProfiler()
     {
 
         // disable all other counters
-        for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
+        for (int i = 0; i < BlockGroupProfiler::fd_stack.size(); i++)
+            ioctl(BlockGroupProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
         uint64_t count;
         for (int fd : fd_list)
@@ -62,18 +62,18 @@ namespace optkit::core
         }
 
         // enable all other counters
-        for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
+        for (int i = BlockGroupProfiler::fd_stack.size() - 1; i >= 0; i--)
+            ioctl(BlockGroupProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
     }
 
-    void BlockProfiler::disable()
+    void BlockGroupProfiler::disable()
     {
         for (int fd : fd_list)
         {
             ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
         } 
     }
-    void BlockProfiler::enable()
+    void BlockGroupProfiler::enable()
     {
         for (int fd : fd_list)
         {
@@ -81,11 +81,11 @@ namespace optkit::core
         }
     }
 
-    std::vector<uint64_t> BlockProfiler::read_counter()
+    std::vector<uint64_t> BlockGroupProfiler::read_counter()
     {
         // disable all other counters
-        for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
+        for (int i = 0; i < BlockGroupProfiler::fd_stack.size(); i++)
+            ioctl(BlockGroupProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
         std::vector<uint64_t> result;
         uint64_t count;
@@ -96,8 +96,8 @@ namespace optkit::core
         }
 
         // enable all other counters
-        for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
+        for (int i = BlockGroupProfiler::fd_stack.size() - 1; i >= 0; i--)
+            ioctl(BlockGroupProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
 
         return result;
     }

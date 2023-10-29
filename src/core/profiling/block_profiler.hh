@@ -28,7 +28,7 @@ namespace optkit::core
      *        events E1 and E2 will record the same instructions.<br>
      *        for more information about grouping @see https://man7.org/linux/man-pages/man2/perf_event_open.2.html
      */
-    class BlockProfiler
+    class BlockProfiler 
     {
     public:
         BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list);
@@ -44,6 +44,8 @@ namespace optkit::core
 
     private:
         static std::vector<int> fd_stack;
+
+        std::chrono::high_resolution_clock::time_point start;
     };
 } // namespace optkit::core
 
