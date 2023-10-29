@@ -47,7 +47,7 @@ LIB_IMPLOT := -I./lib/implot/
 LIB_PFM_PATH := ./lib/libpfm4
 LIB_PFM := -I./lib/libpfm4/include/perfmon/ -I./lib/libpfm4/lib/ 
 
-DYNAMIC := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL
+DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL
 
 # Include directories
 INCLUDE := -I$(SRC_DIR)\
@@ -73,7 +73,7 @@ EXECUTABLE := optimizer_toolkit.core
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
-all: ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a $(LIB_GLFW_PATH)/build/src/libglfw3.a $(LIB_GLEW_PATH)/lib/libGLEW.a ${LIB_PFM_PATH}/all_set ${EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop 
+all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop 
 	@if [ ! -d "$(BIN)/fonts" ]; then \
         mkdir -p "$(BIN)/fonts"; \
         cp -R ./lib/fonts/* "$(BIN)/fonts"; \
@@ -128,7 +128,7 @@ clean_run: clean all
 
 $(BIN)/$(EXECUTABLE): $(OBJ_FILES)
 	echo "🚧 Building..."
-	$(CXX) $(CXX_FLAGS) $^ -o ./$(BIN)/$(EXECUTABLE) ${LIB_IMGUI_PATH}/build/*.o $(INCLUDE) $(DYNAMIC) $(CXX_PFM) 
+	$(CXX) $(CXX_FLAGS) $^ -o ./$(BIN)/$(EXECUTABLE) ${LIB_IMGUI_PATH}/build/*.o $(INCLUDE) $(DYNAMIC_LIBS) $(CXX_PFM) 
 
 $(OBJ)/%.o: ./%.cc
 	mkdir -p $(@D)

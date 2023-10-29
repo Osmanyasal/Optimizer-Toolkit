@@ -11,16 +11,14 @@ namespace optkit
         for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
-        int padding = 8;
+        std::size_t sz = flags.size();
+        if (OPT_UNLIKELY(sz > 1))
+        {
+            OPTKIT_CORE_WARN("Flags exceeded the size: {}",sz);
+        }
         for (uint64_t flag : flags)
         {
-            if (padding > 64)
-            {
-                OPTKIT_CORE_WARN("Padding exceeded the size !!");
-                break;
-            }
-            raw_event = raw_event | (flag << padding);
-            padding *= 2;
+            raw_event = raw_event | flag;
         }
 
         this->event_name = event_name;
@@ -34,6 +32,7 @@ namespace optkit
         attr.exclude_kernel = 1; // Exclude kernel events
         attr.exclude_hv = 1;
         attr.exclude_idle = 1;
+        attr.pinned = 1;
 
         fd = syscall(__NR_perf_event_open, &attr, 0, -1, -1, 0);
         BlockProfiler::fd_stack.push_back(fd);

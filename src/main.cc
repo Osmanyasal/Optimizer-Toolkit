@@ -40,21 +40,26 @@ int32_t main(int32_t argc, char **argv)
     pfm_terminate();
 
     // MEASURE BLOCK
-    float sum = 1.12;
+    float sum = 1.12f;
+    double dsum = 0.05;
     {
-        BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)optkit::intel::icl::INSTRUCTIONS_RETIRED};
+        using icl = optkit::intel::icl;
+        BlockProfiler inst{"FP_ARITH", (uint64_t)icl::FP_ARITH_INST_RETIRED, 
+            {(uint64_t)icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE, 
+             (uint64_t)icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
         // BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)optkit::amd64::fam19h_zen3::RETIRED_INSTRUCTIONS};
-        for (size_t i = 1; i <= 10; i++)
-        {
-            if (i % 2 == 0)
-                sum *= i;
-        }
+
+        sum += 3.14f;
+        sum *= 3.14f;
+        dsum += 3.152;
     }
 
     OPTKIT_CORE_INFO("sum:{}", sum);
+    OPTKIT_CORE_INFO("dsum:{}", dsum);
 
     // VISUALIZE (OPTIONAL)
 
+    /*
     OPTKIT::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
     while (!glfwWindowShouldClose(impl.m_window))
     {
@@ -71,7 +76,7 @@ int32_t main(int32_t argc, char **argv)
         glfwSwapBuffers(impl.m_window);
         glfwPollEvents();
     }
-
+    */
     OPTKIT_PROFILE_END_SESSION();
     return 0;
 }
