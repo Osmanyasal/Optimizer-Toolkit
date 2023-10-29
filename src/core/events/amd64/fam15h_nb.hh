@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::amd64{
-	enum class fam15h_nb : uint64_t {
+namespace optkit::amd64::fam15h_nb{
+	enum fam15h_nb : uint64_t {
 		DRAM_ACCESSES = 0xe0, // DRAM Accesses
 		DRAM_ACCESSES__MASK__AMD64_FAM15H_NB_DRAM_ACCESSES__DCT0_PAGE_HIT = 0x1, // DCT0 Page hit
 		DRAM_ACCESSES__MASK__AMD64_FAM15H_NB_DRAM_ACCESSES__DCT0_PAGE_MISS = 0x2, // DCT0 Page Miss
@@ -332,3 +332,5 @@ namespace optkit::amd64{
 		
 	};
 };
+
+namespace fam15h_nb = optkit::amd64::fam15h_nb;

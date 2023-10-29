@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::amd64{
-	enum class fam17h_zen1 : uint64_t {
+namespace optkit::amd64::fam17h_zen1{
+	enum fam17h_zen1 : uint64_t {
 		L1_ITLB_MISS_L2_ITLB_HIT = 0x84, // The number of instruction fetches that miss in the L1 ITLB but hit in the L2 ITLB.
 		L1_ITLB_MISS_L2_ITLB_MISS = 0x85, // The number of instruction fetches that miss in both the L1 and L2 TLBs.
 		L1_ITLB_MISS_L2_ITLB_MISS__MASK__AMD64_FAM17H_ZEN1_L1_ITLB_MISS_L2_ITLB_MISS__IF1G = 0x4, // TBD
@@ -203,3 +203,5 @@ namespace optkit::amd64{
 		
 	};
 };
+
+namespace fam17h_zen1 = optkit::amd64::fam17h_zen1;

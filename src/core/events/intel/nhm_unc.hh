@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class nhm_unc : uint64_t {
+namespace optkit::intel::nhm_unc{
+	enum nhm_unc : uint64_t {
 		UNC_CLK_UNHALTED = 0xff, // Uncore clockticks.
 		UNC_DRAM_OPEN = 0x60, // DRAM open commands issued for read or write
 		UNC_DRAM_OPEN__MASK__NHM_UNC_UNC_DRAM_OPEN__CH0 = 0x100, // DRAM Channel 0 open commands issued for read or write
@@ -221,3 +221,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace nhm_unc = optkit::intel::nhm_unc;

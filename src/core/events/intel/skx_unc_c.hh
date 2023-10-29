@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class skx_unc_c : uint64_t {
+namespace optkit::intel::skx_unc_c{
+	enum skx_unc_c : uint64_t {
 		UNC_C_AG0_AD_CRD_ACQUIRED = 0x80, // Number of CMS Agent 0 AD credits acquired in a given cycle
 		UNC_C_AG0_AD_CRD_ACQUIRED__MASK__SKX_UNC_C_AG0_AD_CRD_ACQUIRED__TGR0 = 0x100, // CMS Agent0 AD Credits Acquired -- For Transgress 0
 		UNC_C_AG0_AD_CRD_ACQUIRED__MASK__SKX_UNC_C_AG0_AD_CRD_ACQUIRED__TGR1 = 0x200, // CMS Agent0 AD Credits Acquired -- For Transgress 1
@@ -672,3 +672,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace skx_unc_c = optkit::intel::skx_unc_c;

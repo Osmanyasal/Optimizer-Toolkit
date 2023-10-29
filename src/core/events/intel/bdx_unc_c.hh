@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class bdx_unc_c : uint64_t {
+namespace optkit::intel::bdx_unc_c{
+	enum bdx_unc_c : uint64_t {
 		UNC_C_BOUNCE_CONTROL = 0xa, // TBD
 		UNC_C_CLOCKTICKS = 0x0, // Clock ticks
 		UNC_C_COUNTER0_OCCUPANCY = 0x1f, // Since occupancy counts can only be captured in the Cbos 0 counter
@@ -173,3 +173,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace bdx_unc_c = optkit::intel::bdx_unc_c;

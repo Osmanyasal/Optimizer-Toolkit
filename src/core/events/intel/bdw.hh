@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class bdw : uint64_t {
+namespace optkit::intel::bdw{
+	enum bdw : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x3c, // Count core clock cycles whenever the clock signal on the specific core is running (not halted)
 		UNHALTED_REFERENCE_CYCLES = 0x0300, // Unhalted reference cycles
 		INSTRUCTION_RETIRED = 0xc0, // Number of instructions at retirement
@@ -545,3 +545,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace bdw = optkit::intel::bdw;

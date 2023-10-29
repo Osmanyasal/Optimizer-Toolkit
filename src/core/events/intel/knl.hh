@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class knl : uint64_t {
+namespace optkit::intel::knl{
+	enum knl : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x3c, // Unhalted core cycles
 		UNHALTED_REFERENCE_CYCLES = 0x0300, // Unhalted reference cycle
 		INSTRUCTION_RETIRED = 0xc0, // Instructions retired (any thread modifier supported in fixed counter)
@@ -189,3 +189,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace knl = optkit::intel::knl;

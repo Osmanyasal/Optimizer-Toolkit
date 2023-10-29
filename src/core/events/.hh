@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::{
-	enum class  : uint64_t {
+namespace optkit::::{
+	enum  : uint64_t {
 		ICACHE_MISS = 0x00, // Instruction cache miss (includes speculative accesses)
 		IBUF_STALL = 0x01, // Stall because instruction buffer cannot deliver an instruction
 		DDEP_STALL = 0x02, // Stall because of data dependency
@@ -30,3 +30,5 @@ namespace optkit::{
 		
 	};
 };
+
+namespace  = optkit::::;

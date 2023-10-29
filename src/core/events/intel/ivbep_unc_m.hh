@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class ivbep_unc_m : uint64_t {
+namespace optkit::intel::ivbep_unc_m{
+	enum ivbep_unc_m : uint64_t {
 		VMSE_RETRY = 0xff, // IMC Uncore clockticks (fixed counter)
 		UNC_M_DCLOCKTICKS = 0x00, // IMC Uncore clockticks (generic counters)
 		UNC_M_ACT_COUNT = 0x1, // DRAM Activate Count
@@ -213,3 +213,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace ivbep_unc_m = optkit::intel::ivbep_unc_m;

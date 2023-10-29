@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class snb_unc_cbo : uint64_t {
+namespace optkit::intel::snb_unc_cbo{
+	enum snb_unc_cbo : uint64_t {
 		UNC_CBO_XSNP_RESPONSE = 0x22, // Snoop responses (must provide a snoop type and filter)
 		UNC_CBO_XSNP_RESPONSE__MASK__SNB_UNC_CBO_XSNP_RESPONSE__MISS = 0x100, // Number of snoop misses
 		UNC_CBO_XSNP_RESPONSE__MASK__SNB_UNC_CBO_XSNP_RESPONSE__INVAL = 0x200, // Number of snoop invalidates of a non-modified line
@@ -25,3 +25,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace snb_unc_cbo = optkit::intel::snb_unc_cbo;

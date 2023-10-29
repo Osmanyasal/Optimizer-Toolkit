@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class ivbep_unc_h : uint64_t {
+namespace optkit::intel::ivbep_unc_h{
+	enum ivbep_unc_h : uint64_t {
 		LAST = 0x00, // HA Uncore clockticks
 		UNC_H_CONFLICT_CYCLES = 0xb, // Conflict Checks
 		UNC_H_CONFLICT_CYCLES__MASK__IVBEP_UNC_H_CONFLICT_CYCLES__CONFLICT = 0x200, // Number of cycles that we are handling conflicts
@@ -166,3 +166,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace ivbep_unc_h = optkit::intel::ivbep_unc_h;

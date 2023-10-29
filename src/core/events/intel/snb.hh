@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class snb : uint64_t {
+namespace optkit::intel::snb{
+	enum snb : uint64_t {
 		AGU_BYPASS_CANCEL = 0xb6, // Number of executed load operations with all the following traits: 1. addressing of the format [base + offset]
 		AGU_BYPASS_CANCEL__MASK__SNB_AGU_BYPASS_CANCEL__COUNT = 0x100, // This event counts executed load operations
 		ARITH = 0x14, // Counts arithmetic multiply operations
@@ -487,3 +487,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace snb = optkit::intel::snb;

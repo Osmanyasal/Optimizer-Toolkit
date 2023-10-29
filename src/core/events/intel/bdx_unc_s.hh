@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class bdx_unc_s : uint64_t {
+namespace optkit::intel::bdx_unc_s{
+	enum bdx_unc_s : uint64_t {
 		UNC_S_BOUNCE_CONTROL = 0xa, // TBD
 		UNC_S_CLOCKTICKS = 0x0, // TBD
 		UNC_S_FAST_ASSERTED = 0x9, // Counts the number of cycles either the local or incoming distress signals are asserted.  Incoming distress includes up
@@ -83,3 +83,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace bdx_unc_s = optkit::intel::bdx_unc_s;

@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class snbep_unc_r3 : uint64_t {
+namespace optkit::intel::snbep_unc_r3{
+	enum snbep_unc_r3 : uint64_t {
 		UNC_R3_CLOCKTICKS = 0x1, // Number of uclks in domain
 		UNC_R3_IIO_CREDITS_ACQUIRED = 0x20, // to IIO BL Credit Acquired
 		UNC_R3_IIO_CREDITS_ACQUIRED__MASK__SNBEP_UNC_R3_IIO_CREDITS_ACQUIRED__DRS = 0x800, // DRS
@@ -85,3 +85,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace snbep_unc_r3 = optkit::intel::snbep_unc_r3;

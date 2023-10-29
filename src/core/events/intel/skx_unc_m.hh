@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class skx_unc_m : uint64_t {
+namespace optkit::intel::skx_unc_m{
+	enum skx_unc_m : uint64_t {
 		UNC_M_ACT_COUNT = 0x1, // Counts the number of DRAM Activate commands sent on this channel.  Activate commands are issued to open up a page on the DRAM devices so that it can be read or written to with a CAS.  One can calculate the number of Page Misses by subtracting the number of Page Miss precharges from the number of Activates.
 		UNC_M_ACT_COUNT__MASK__SKX_UNC_M_ACT_COUNT__BYP = 0x800, // DRAM Activate Count -- Activate due to Bypass
 		UNC_M_ACT_COUNT__MASK__SKX_UNC_M_ACT_COUNT__RD = 0x100, // DRAM Activate Count -- Activate due to Read
@@ -440,3 +440,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace skx_unc_m = optkit::intel::skx_unc_m;

@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::ibm{
-	enum class power9 : uint64_t {
+namespace optkit::ibm::power9{
+	enum power9 : uint64_t {
 		PM_1FLOP_CMPL = 0x0000045050, // one flop (fadd
 		PM_1PLUS_PPC_CMPL = 0x00000100F2, // 1 or more ppc insts finished
 		PM_1PLUS_PPC_DISP = 0x00000400F2, // Cycles at least one Instr Dispatched
@@ -962,3 +962,5 @@ namespace optkit::ibm{
 		
 	};
 };
+
+namespace power9 = optkit::ibm::power9;

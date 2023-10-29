@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class snbep_unc_r2 : uint64_t {
+namespace optkit::intel::snbep_unc_r2{
+	enum snbep_unc_r2 : uint64_t {
 		UNC_R2_CLOCKTICKS = 0x1, // Number of uclks in domain
 		UNC_R2_RING_AD_USED = 0x7, // R2 AD Ring in Use
 		UNC_R2_RING_AD_USED__MASK__SNBEP_UNC_R2_RING_AD_USED__CCW_EVEN = 0x400, // Counter-clockwise and even ring polarity
@@ -46,3 +46,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace snbep_unc_r2 = optkit::intel::snbep_unc_r2;

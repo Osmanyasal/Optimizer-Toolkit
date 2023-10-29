@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class ivbep_unc_u : uint64_t {
+namespace optkit::intel::ivbep_unc_u{
+	enum ivbep_unc_u : uint64_t {
 		UNC_U_EVENT_MSG = 0x42, // VLW Received
 		UNC_U_EVENT_MSG__MASK__IVBEP_UNC_U_EVENT_MSG__DOORBELL_RCVD = 0x800, // TBD
 		UNC_U_EVENT_MSG__MASK__IVBEP_UNC_U_EVENT_MSG__INT_PRIO = 0x1000, // TBD
@@ -16,3 +16,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace ivbep_unc_u = optkit::intel::ivbep_unc_u;

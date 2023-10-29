@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class skx_unc_iio : uint64_t {
+namespace optkit::intel::skx_unc_iio{
+	enum skx_unc_iio : uint64_t {
 		UNC_IO_CLOCKTICKS = 0x1, // IIO clockticks
 		UNC_IO_COMP_BUF_INSERTS = 0xc2, // TBD
 		UNC_IO_COMP_BUF_INSERTS__MASK__SKX_UNC_IO_COMP_BUF_INSERTS__PORT0 = 0x400ULL | 1ULL << 36, // PCIe Completion Buffer Inserts -- Port 0
@@ -232,3 +232,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace skx_unc_iio = optkit::intel::skx_unc_iio;

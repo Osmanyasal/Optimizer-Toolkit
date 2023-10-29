@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class ivbep_unc_r3 : uint64_t {
+namespace optkit::intel::ivbep_unc_r3{
+	enum ivbep_unc_r3 : uint64_t {
 		UNC_R3_CLOCKTICKS = 0x1, // Number of uclks in domain
 		UNC_R3_RING_AD_USED = 0x7, // R3 AD Ring in Use
 		UNC_R3_RING_AD_USED__MASK__IVBEP_UNC_R3_RING_AD_USED__CCW_VR0_EVEN = 0x400, // Counter-Clockwise and even ring polarity on virtual ring 0
@@ -152,3 +152,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace ivbep_unc_r3 = optkit::intel::ivbep_unc_r3;

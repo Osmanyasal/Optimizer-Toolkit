@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::ibm{
-	enum class power7 : uint64_t {
+namespace optkit::ibm::power7{
+	enum power7 : uint64_t {
 		PM_IC_DEMAND_L2_BR_ALL = 0x4898, // L2 I cache demand request due to BHT or redirect
 		PM_GCT_UTIL_7_TO_10_SLOTS = 0x20a0, // GCT Utilization 7-10 entries
 		PM_PMC2_SAVED = 0x10022, // PMC2 Rewind Value saved
@@ -551,3 +551,5 @@ namespace optkit::ibm{
 		
 	};
 };
+
+namespace power7 = optkit::ibm::power7;

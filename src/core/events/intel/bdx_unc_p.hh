@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class bdx_unc_p : uint64_t {
+namespace optkit::intel::bdx_unc_p{
+	enum bdx_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x0, // The PCU runs off a fixed 1 GHz clock.  This event counts the number of pclk cycles measured while the counter was enabled.  The pclk
 		UNC_P_CORE0_TRANSITION_CYCLES = 0x60, // Number of cycles spent performing core C state transitions.  There is one event per core.
 		UNC_P_CORE10_TRANSITION_CYCLES = 0x6a, // Number of cycles spent performing core C state transitions.  There is one event per core.
@@ -70,3 +70,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace bdx_unc_p = optkit::intel::bdx_unc_p;

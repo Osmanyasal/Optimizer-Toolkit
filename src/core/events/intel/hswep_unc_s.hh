@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class hswep_unc_s : uint64_t {
+namespace optkit::intel::hswep_unc_s{
+	enum hswep_unc_s : uint64_t {
 		BL = 0x00, // S-box Uncore clockticks
 		UNC_S_RING_AD_USED = 0x1b, // Address ring in use. Counts number of cycles ring is being used at this ring stop
 		UNC_S_RING_AD_USED__MASK__HSWEP_UNC_S_RING_AD_USED__UP_EVEN = 0x100, // Up and Even ring polarity filter
@@ -75,3 +75,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace hswep_unc_s = optkit::intel::hswep_unc_s;

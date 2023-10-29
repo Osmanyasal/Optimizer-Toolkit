@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::ibm{
-	enum class power5 : uint64_t {
+namespace optkit::ibm::power5{
+	enum power5 : uint64_t {
 		PM_LSU_REJECT_RELOAD_CDF = 0x2c6090, // LSU reject due to reload CDF or tag update collision
 		PM_FPU1_SINGLE = 0x20e7, // FPU1 executed single precision instruction
 		PM_L3SB_REF = 0x701c4, // L3 slice B references
@@ -477,3 +477,5 @@ namespace optkit::ibm{
 		
 	};
 };
+
+namespace power5 = optkit::ibm::power5;

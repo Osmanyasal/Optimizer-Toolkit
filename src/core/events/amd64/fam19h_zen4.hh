@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::amd64{
-	enum class fam19h_zen4 : uint64_t {
+namespace optkit::amd64::fam19h_zen4{
+	enum fam19h_zen4 : uint64_t {
 		RETIRED_X87_FP_OPS = 0x2, // Number of X87 floating-point ops retired
 		RETIRED_X87_FP_OPS__MASK__AMD64_FAM19H_ZEN4_RETIRED_X87_FP_OPS__ADD_SUB_OPS = 0x01, // Number of add/subtract ops
 		RETIRED_X87_FP_OPS__MASK__AMD64_FAM19H_ZEN4_RETIRED_X87_FP_OPS__MUL_OPS = 0x2, // Number of multiply ops
@@ -347,3 +347,5 @@ namespace optkit::amd64{
 		
 	};
 };
+
+namespace fam19h_zen4 = optkit::amd64::fam19h_zen4;

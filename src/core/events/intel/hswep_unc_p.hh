@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class hswep_unc_p : uint64_t {
+namespace optkit::intel::hswep_unc_p{
+	enum hswep_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x00, // PCU Uncore clockticks
 		UNC_P_CORE0_TRANSITION_CYCLES = 0x60, // Core 0 C State Transition Cycles
 		UNC_P_CORE1_TRANSITION_CYCLES = 0x61, // Core 1 C State Transition Cycles
@@ -66,3 +66,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace hswep_unc_p = optkit::intel::hswep_unc_p;

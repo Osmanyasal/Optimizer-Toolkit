@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::amd64{
-	enum class k8 : uint64_t {
+namespace optkit::amd64::k8{
+	enum k8 : uint64_t {
 		DISPATCHED_FPU = 0x0, // Dispatched FPU Operations
 		DISPATCHED_FPU__MASK__AMD64_K8_DISPATCHED_FPU__OPS_ADD = 0x1, // Add pipe ops
 		DISPATCHED_FPU__MASK__AMD64_K8_DISPATCHED_FPU__OPS_MULTIPLY = 0x2, // Multiply pipe ops
@@ -254,3 +254,5 @@ namespace optkit::amd64{
 		
 	};
 };
+
+namespace k8 = optkit::amd64::k8;

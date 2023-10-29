@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class snbep_unc_m : uint64_t {
+namespace optkit::intel::snbep_unc_m{
+	enum snbep_unc_m : uint64_t {
 		UNC_M_CLOCKTICKS = 0xff, // IMC Uncore clockticks
 		UNC_M_ACT_COUNT = 0x1, // DRAM Activate Count
 		UNC_M_CAS_COUNT = 0x4, // DRAM RD_CAS and WR_CAS Commands.
@@ -63,3 +63,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace snbep_unc_m = optkit::intel::snbep_unc_m;

@@ -43,10 +43,8 @@ int32_t main(int32_t argc, char **argv)
     float sum = 1.12f;
     double dsum = 0.05;
     {
-        using icl = optkit::intel::icl;
-        BlockProfiler inst{"FP_ARITH", (uint64_t)icl::FP_ARITH_INST_RETIRED, 
-            {(uint64_t)icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE, 
-             (uint64_t)icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
+
+        BlockProfiler inst{"FP_ARITH", icl::FP_ARITH_INST_RETIRED, {icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE, icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
         // BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)optkit::amd64::fam19h_zen3::RETIRED_INSTRUCTIONS};
 
         sum += 3.14f;

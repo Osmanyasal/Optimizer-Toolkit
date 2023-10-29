@@ -19,11 +19,12 @@ EVENT_FILE_EXTENSION = ".hh"
 EVENT_FILE_PATH = "../core/events/"
 
 HEADERS = "#include <cstdint>\n"
-NAMESPACE_BEGIN = "namespace optkit::{}{{\n\t"
-EVENT_CLASS_BEGIN = "enum class {} : uint64_t {{\n\t\t"
-PMU_EVENT = "{} = {}, // {}"
+NAMESPACE_BEGIN = "namespace optkit::{}::{}{{\n\t" # added pmu_name to the namespace to define scope for enum
+EVENT_CLASS_BEGIN = "enum {} : uint64_t {{\n\t\t"  # didn't create enum class for implicit conversion sake.
+PMU_EVENT = "{} = {}, // {}"                       # same functionality preserved.
 EVENT_CLASS_END = "\n\t};"
 NAMESPACE_END = "\n};"
+NAMESPACE_ALIASING = "\n\nnamespace {} = optkit::{}::{};"
 
 
 
@@ -48,7 +49,7 @@ def process_event_dic(event_dict,event_pe):
             for _def in PRIV_DEFINITIONS[key]:
                 result = result + _def
     
-    result = result + NAMESPACE_BEGIN.format(vendor_name) + EVENT_CLASS_BEGIN.format(pmu_name)
+    result = result + NAMESPACE_BEGIN.format(vendor_name,pmu_name) + EVENT_CLASS_BEGIN.format(pmu_name)
     
     event_counter = {}    
     for event in event_dict[event_pe]: 
@@ -82,8 +83,7 @@ def process_event_dic(event_dict,event_pe):
                 mask_desc = next((mask_val for mask_val in mask_members if ".udesc" in mask_val.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
                 result += PMU_EVENT.format(event_name + "__MASK__" + event_umasks.upper() + "__" + mask_name ,mask_code,mask_desc) + "\n\t\t"
  
-            
-    return result + EVENT_CLASS_END + NAMESPACE_END
+    return result + EVENT_CLASS_END + NAMESPACE_END + NAMESPACE_ALIASING.format(pmu_name, vendor_name, pmu_name)
 
 if __name__ == "__main__": 
 

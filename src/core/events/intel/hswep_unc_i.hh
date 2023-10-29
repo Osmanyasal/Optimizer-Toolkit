@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class hswep_unc_i : uint64_t {
+namespace optkit::intel::hswep_unc_i{
+	enum hswep_unc_i : uint64_t {
 		UNC_I_CLOCKTICKS = 0x0, // Number of uclks in domain
 		UNC_I_SNOOP_RESP = 0x17, // Snoop responses
 		UNC_I_SNOOP_RESP__MASK__HSWEP_UNC_I_SNOOP_RESP__MISS = 0x100, // Miss
@@ -67,3 +67,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace hswep_unc_i = optkit::intel::hswep_unc_i;

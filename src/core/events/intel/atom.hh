@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class atom : uint64_t {
+namespace optkit::intel::atom{
+	enum atom : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x3c, // Unhalted core cycles
 		UNHALTED_REFERENCE_CYCLES = 0x0300, // Unhalted reference cycle
 		INSTRUCTION_RETIRED = 0xc0, // Instructions retired
@@ -310,3 +310,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace atom = optkit::intel::atom;

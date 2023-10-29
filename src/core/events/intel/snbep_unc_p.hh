@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class snbep_unc_p : uint64_t {
+namespace optkit::intel::snbep_unc_p{
+	enum snbep_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x00, // PCU Uncore clockticks
 		UNC_P_CORE0_TRANSITION_CYCLES = 0x3 | (1ULL << 21), // Core C State Transition Cycles
 		UNC_P_CORE1_TRANSITION_CYCLES = 0x4 | (1ULL << 21), // Core C State Transition Cycles
@@ -54,3 +54,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace snbep_unc_p = optkit::intel::snbep_unc_p;

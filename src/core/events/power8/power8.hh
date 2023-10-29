@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::ibm{
-	enum class power8 : uint64_t {
+namespace optkit::ibm::power8{
+	enum power8 : uint64_t {
 		PM_1LPAR_CYC = 0x1f05e, // Number of cycles in single lpar mode. All threads in the core are assigned to the same lpar
 		PM_1PLUS_PPC_CMPL = 0x100f2, // 1 or more ppc insts finished
 		PM_1PLUS_PPC_DISP = 0x400f2, // Cycles at least one Instr Dispatched
@@ -1067,3 +1067,5 @@ namespace optkit::ibm{
 		
 	};
 };
+
+namespace power8 = optkit::ibm::power8;

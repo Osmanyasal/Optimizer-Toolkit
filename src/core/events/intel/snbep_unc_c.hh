@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class snbep_unc_c : uint64_t {
+namespace optkit::intel::snbep_unc_c{
+	enum snbep_unc_c : uint64_t {
 		UNC_C_CLOCKTICKS = 0x00, // C-box Uncore clockticks
 		UNC_C_COUNTER0_OCCUPANCY = 0x1f, // Counter 0 occupancy. Counts the occupancy related information by filtering CB0 occupancy count captured in counter 0.
 		UNC_C_ISMQ_DRD_MISS_OCC = 0x21, // TBD
@@ -111,3 +111,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace snbep_unc_c = optkit::intel::snbep_unc_c;

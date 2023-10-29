@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class knl_unc_cha : uint64_t {
+namespace optkit::intel::knl_unc_cha{
+	enum knl_unc_cha : uint64_t {
 		UNC_H_U_CLOCKTICKS = 0x00, // Uncore clockticks
 		UNC_H_INGRESS_OCCUPANCY = 0x11, // Ingress Occupancy. Ingress Occupancy. Counts number of entries in the specified Ingress queue in each cycle
 		UNC_H_INGRESS_OCCUPANCY__MASK__KNL_UNC_CHA_INGRESS_EXT__IRQ = 0x0100, // IRQ
@@ -505,3 +505,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace knl_unc_cha = optkit::intel::knl_unc_cha;

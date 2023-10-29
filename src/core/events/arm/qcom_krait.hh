@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::arm{
-	enum class qcom_krait : uint64_t {
+namespace optkit::arm::qcom_krait{
+	enum qcom_krait : uint64_t {
 		L1D_CACHE_REFILL = 0x03, // Level 1 data cache refill
 		L1D_CACHE_ACCESS = 0x04, // Level 1 data cache access
 		INSTR_EXECUTED = 0x08, // Instructions architecturally executed
@@ -12,3 +12,5 @@ namespace optkit::arm{
 		
 	};
 };
+
+namespace qcom_krait = optkit::arm::qcom_krait;

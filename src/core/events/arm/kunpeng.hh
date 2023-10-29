@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::arm{
-	enum class kunpeng : uint64_t {
+namespace optkit::arm::kunpeng{
+	enum kunpeng : uint64_t {
 		SW_INCR = 0x00, // Instruction architecturally executed
 		INST_RETIRED = 0x08, // Instruction architecturally executed
 		EXC_TAKEN = 0x09, // Exception taken
@@ -126,3 +126,5 @@ namespace optkit::arm{
 		
 	};
 };
+
+namespace kunpeng = optkit::arm::kunpeng;

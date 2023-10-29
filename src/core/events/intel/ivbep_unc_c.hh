@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class ivbep_unc_c : uint64_t {
+namespace optkit::intel::ivbep_unc_c{
+	enum ivbep_unc_c : uint64_t {
 		UNC_C_CLOCKTICKS = 0x00, // C-box Uncore clockticks
 		UNC_C_COUNTER0_OCCUPANCY = 0x1f, // Counter 0 occupancy. Counts the occupancy related information by filtering CB0 occupancy count captured in counter 0.
 		UNC_C_LLC_LOOKUP = 0x34, // Cache lookups
@@ -153,3 +153,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace ivbep_unc_c = optkit::intel::ivbep_unc_c;

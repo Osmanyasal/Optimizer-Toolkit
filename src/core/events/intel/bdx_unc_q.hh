@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class bdx_unc_q : uint64_t {
+namespace optkit::intel::bdx_unc_q{
+	enum bdx_unc_q : uint64_t {
 		UNC_Q_CLOCKTICKS = 0x14, // Counts the number of clocks in the QPI LL.  This clock runs at 1/4th the GT/s speed of the QPI link.  For example
 		UNC_Q_CTO_COUNT = 0x38 | (1 << 21), // Counts the number of CTO (cluster trigger outs) events that were asserted across the two slots.  If both slots trigger in a given cycle
 		UNC_Q_DIRECT2CORE = 0x13, // Counts the number of DRS packets that we attempted to do direct2core on.  There are 4 mutually exclusive filters.  Filter [0] can be used to get successful spawns
@@ -159,3 +159,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace bdx_unc_q = optkit::intel::bdx_unc_q;

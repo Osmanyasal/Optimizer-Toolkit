@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class hswep_unc_q : uint64_t {
+namespace optkit::intel::hswep_unc_q{
+	enum hswep_unc_q : uint64_t {
 		UNC_Q_CLOCKTICKS = 0x14, // Number of qfclks
 		UNC_Q_CTO_COUNT = 0x38 | (1ULL << 21), // Count of CTO Events
 		UNC_Q_DIRECT2CORE = 0x13, // Direct 2 Core Spawning
@@ -159,3 +159,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace hswep_unc_q = optkit::intel::hswep_unc_q;

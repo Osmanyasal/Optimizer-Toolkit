@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::amd64{
-	enum class fam14h : uint64_t {
+namespace optkit::amd64::fam14h{
+	enum fam14h : uint64_t {
 		DISPATCHED_FPU = 0x0, // Number of uops dispatched to FPU execution pipelines
 		DISPATCHED_FPU__MASK__AMD64_FAM14H_DISPATCHED_FPU__PIPE0 = 0x1, // Pipe 0 (fadd
 		DISPATCHED_FPU__MASK__AMD64_FAM14H_DISPATCHED_FPU__PIPE1 = 0x2, // Pipe 1 (fmul
@@ -301,3 +301,5 @@ namespace optkit::amd64{
 		
 	};
 };
+
+namespace fam14h = optkit::amd64::fam14h;

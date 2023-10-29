@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class bdx_unc_r3 : uint64_t {
+namespace optkit::intel::bdx_unc_r3{
+	enum bdx_unc_r3 : uint64_t {
 		UNC_R3_CLOCKTICKS = 0x1, // Counts the number of uclks in the QPI uclk domain.  This could be slightly different than the count in the Ubox because of enable/freeze delays.  However
 		UNC_R3_C_HI_AD_CREDITS_EMPTY = 0x1f, // No credits available to send to Cbox on the AD Ring (covers higher CBoxes)
 		UNC_R3_C_HI_AD_CREDITS_EMPTY__MASK__BDX_UNC_R3_C_HI_AD_CREDITS_EMPTY__CBO10 = 0x400, // CBox AD Credits Empty
@@ -172,3 +172,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace bdx_unc_r3 = optkit::intel::bdx_unc_r3;

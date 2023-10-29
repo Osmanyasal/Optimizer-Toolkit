@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class bdx_unc_h : uint64_t {
+namespace optkit::intel::bdx_unc_h{
+	enum bdx_unc_h : uint64_t {
 		UNC_H_BT_CYCLES_NE = 0x42, // Cycles the Backup Tracker (BT) is not empty. The BT is the actual HOM tracker in IVT.
 		UNC_H_BT_OCCUPANCY = 0x43, // Accumulates the occupancy of te HA BT pool in every cycle. This can be used with the 'not empty' stat to calculate the average queue occupancy or the 'allocations' stat to calculate average queue latency. HA BTs are allocated as son as a request enters the HA and are released after the snoop response and data return and the response is returned to the ring
 		UNC_H_BYPASS_IMC = 0x14, // Counts the number of times when the HA was able to bypass was attempted.  This is a latency optimization for situations when there is light loadings on the memory subsystem.  This can be filted by when the bypass was taken and when it was not.
@@ -224,3 +224,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace bdx_unc_h = optkit::intel::bdx_unc_h;

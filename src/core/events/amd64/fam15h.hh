@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::amd64{
-	enum class fam15h : uint64_t {
+namespace optkit::amd64::fam15h{
+	enum fam15h : uint64_t {
 		DISPATCHED_FPU_OPS = 0x0, // FPU Pipe Assignment
 		DISPATCHED_FPU_OPS__MASK__AMD64_FAM15H_DISPATCHED_FPU_OPS__OPS_PIPE0 = 0x1, // Total number uops assigned to Pipe 0
 		DISPATCHED_FPU_OPS__MASK__AMD64_FAM15H_DISPATCHED_FPU_OPS__OPS_PIPE1 = 0x2, // Total number uops assigned to Pipe 1
@@ -243,3 +243,5 @@ namespace optkit::amd64{
 		
 	};
 };
+
+namespace fam15h = optkit::amd64::fam15h;

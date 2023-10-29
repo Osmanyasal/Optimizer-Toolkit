@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class hswep_unc_u : uint64_t {
+namespace optkit::intel::hswep_unc_u{
+	enum hswep_unc_u : uint64_t {
 		UNC_U_EVENT_MSG = 0x42, // VLW Received
 		UNC_U_EVENT_MSG__MASK__HSWEP_UNC_U_EVENT_MSG__DOORBELL_RCVD = 0x800, // TBD
 		UNC_U_PHOLD_CYCLES = 0x45, // Cycles PHOLD asserts to Ack
@@ -10,3 +10,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace hswep_unc_u = optkit::intel::hswep_unc_u;

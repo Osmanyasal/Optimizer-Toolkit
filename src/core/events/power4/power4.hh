@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::ibm{
-	enum class power4 : uint64_t {
+namespace optkit::ibm::power4{
+	enum power4 : uint64_t {
 		PM_MRK_LSU_SRQ_INST_VALID = 0x933, // Marked instruction valid in SRQ
 		PM_FPU1_SINGLE = 0x127, // FPU1 executed single precision instruction
 		PM_DC_PREF_OUT_STREAMS = 0xc36, // Out of prefetch streams
@@ -247,3 +247,5 @@ namespace optkit::ibm{
 		
 	};
 };
+
+namespace power4 = optkit::ibm::power4;

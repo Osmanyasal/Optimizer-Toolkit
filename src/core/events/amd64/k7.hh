@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::amd64{
-	enum class k7 : uint64_t {
+namespace optkit::amd64::k7{
+	enum k7 : uint64_t {
 		DATA_CACHE_ACCESSES = 0x40, // Data Cache Accesses
 		DATA_CACHE_MISSES = 0x41, // Data Cache Misses
 		DATA_CACHE_REFILLS = 0x42, // Data Cache Refills from L2
@@ -46,3 +46,5 @@ namespace optkit::amd64{
 		
 	};
 };
+
+namespace k7 = optkit::amd64::k7;

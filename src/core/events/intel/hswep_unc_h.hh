@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class hswep_unc_h : uint64_t {
+namespace optkit::intel::hswep_unc_h{
+	enum hswep_unc_h : uint64_t {
 		UNC_H_CLOCKTICKS = 0x00, // HA Uncore clockticks
 		UNC_H_CONFLICT_CYCLES = 0xb, // Conflict Checks
 		UNC_H_DIRECT2CORE_COUNT = 0x11, // Direct2Core Messages Sent
@@ -231,3 +231,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace hswep_unc_h = optkit::intel::hswep_unc_h;

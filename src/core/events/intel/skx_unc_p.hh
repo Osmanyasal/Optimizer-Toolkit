@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class skx_unc_p : uint64_t {
+namespace optkit::intel::skx_unc_p{
+	enum skx_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x0, // The PCU runs off a fixed 1 GHz clock.  This event counts the number of pclk cycles measured while the counter was enabled.  The pclk
 		UNC_P_CORE_TRANSITION_CYCLES = 0x60, // TBD
 		UNC_P_CTS_EVENT0 = 0x11, // TBD
@@ -37,3 +37,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace skx_unc_p = optkit::intel::skx_unc_p;

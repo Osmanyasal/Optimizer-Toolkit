@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class pii : uint64_t {
+namespace optkit::intel::pii{
+	enum pii : uint64_t {
 		CPU_CLK_UNHALTED = 0x79, // Number cycles during which the processor is not halted
 		INST_RETIRED = 0xc0, // Number of instructions retired
 		DATA_MEM_REFS = 0x43, // All loads from any memory type. All stores to any memory typeEach part of a split is counted separately. The internal logic counts not only memory loads and stores but also internal retries. 80-bit floating point accesses are double counted
@@ -143,3 +143,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace pii = optkit::intel::pii;

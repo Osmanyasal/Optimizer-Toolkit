@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class skx_unc_i : uint64_t {
+namespace optkit::intel::skx_unc_i{
+	enum skx_unc_i : uint64_t {
 		UNC_I_CACHE_TOTAL_OCCUPANCY = 0xf, // Accumulates the number of reads and writes that are outstanding in the uncore in each cycle.  This is effectively the sum of the READ_OCCUPANCY and WRITE_OCCUPANCY events.
 		UNC_I_CACHE_TOTAL_OCCUPANCY__MASK__SKX_UNC_I_CACHE_TOTAL_OCCUPANCY__ANY = 0x100, // Total Write Cache Occupancy -- Any Source
 		UNC_I_CACHE_TOTAL_OCCUPANCY__MASK__SKX_UNC_I_CACHE_TOTAL_OCCUPANCY__IV_Q = 0x200, // Total Write Cache Occupancy -- Snoops
@@ -84,3 +84,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace skx_unc_i = optkit::intel::skx_unc_i;

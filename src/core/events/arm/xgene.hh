@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::arm{
-	enum class xgene : uint64_t {
+namespace optkit::arm::xgene{
+	enum xgene : uint64_t {
 		SW_INCR = 0x00, // Instruction architecturally executed (condition check pass) software increment
 		L1I_CACHE_REFILL = 0x01, // Level 1 instruction cache refill
 		L1I_TLB_REFILL = 0x02, // Level 1 instruction TLB refill
@@ -104,3 +104,5 @@ namespace optkit::arm{
 		
 	};
 };
+
+namespace xgene = optkit::arm::xgene;

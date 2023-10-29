@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class knc : uint64_t {
+namespace optkit::intel::knc{
+	enum knc : uint64_t {
 		BANK_CONFLICTS = 0xa, // Number of actual bank conflicts
 		BRANCHES = 0x12, // Number of taken and not taken branches
 		BRANCHES_MISPREDICTED = 0x2b, // Number of branch mispredictions that occurred on BTB hits. BTB misses are not considered branch mispredicts because no prediction exists for them yet.
@@ -64,3 +64,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace knc = optkit::intel::knc;

@@ -1,6 +1,6 @@
 #include <cstdint>
-namespace optkit::arm{
-	enum class kunpeng_unc_l3c : uint64_t {
+namespace optkit::arm::kunpeng_unc_l3c{
+	enum kunpeng_unc_l3c : uint64_t {
 		spill_success = 0x21, // rd_cpipe
 		wr_cpipe = 0x01, // Total write accesses.
 		rd_hit_cpipe = 0x02, // Total read hits.
@@ -16,3 +16,5 @@ namespace optkit::arm{
 		
 	};
 };
+
+namespace kunpeng_unc_l3c = optkit::arm::kunpeng_unc_l3c;

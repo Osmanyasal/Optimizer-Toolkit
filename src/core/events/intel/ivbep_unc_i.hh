@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class ivbep_unc_i : uint64_t {
+namespace optkit::intel::ivbep_unc_i{
+	enum ivbep_unc_i : uint64_t {
 		UNC_I_CLOCKTICKS = 0x0, // Number of uclks in domain
 		UNC_I_ADDRESS_MATCH = 0x17, // Address match conflict count
 		UNC_I_ADDRESS_MATCH__MASK__IVBEP_UNC_I_ADDRESS_MATCH__STALL_COUNT = 0x100, // Number of time when it is not possible to merge two conflicting requests
@@ -49,3 +49,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace ivbep_unc_i = optkit::intel::ivbep_unc_i;

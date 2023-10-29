@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <intel_priv.hh>
-namespace optkit::intel{
-	enum class ivb : uint64_t {
+namespace optkit::intel::ivb{
+	enum ivb : uint64_t {
 		ARITH = 0x14, // Counts arithmetic multiply operations
 		ARITH__MASK__IVB_ARITH__FPU_DIV_ACTIVE = 0x100, // Cycles that the divider is active
 		ARITH__MASK__IVB_ARITH__FPU_DIV = 0x400 | INTEL_X86_MOD_EDGE | (1 << INTEL_X86_CMASK_BIT), // Number of cycles the divider is activated
@@ -470,3 +470,5 @@ namespace optkit::intel{
 		
 	};
 };
+
+namespace ivb = optkit::intel::ivb;
