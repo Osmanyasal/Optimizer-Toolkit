@@ -1,0 +1,95 @@
+\hypertarget{snbep__unc__r3_8hh_source}{}\doxysection{snbep\+\_\+unc\+\_\+r3.\+hh}
+\label{snbep__unc__r3_8hh_source}\index{snbep\_unc\_r3.hh@{snbep\_unc\_r3.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::snbep\_unc\_r3\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} snbep\_unc\_r3 : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_R3\_CLOCKTICKS = 0x1, \textcolor{comment}{// Number of uclks in domain}}
+\DoxyCodeLine{00006         UNC\_R3\_IIO\_CREDITS\_ACQUIRED = 0x20, \textcolor{comment}{// to IIO BL Credit Acquired}}
+\DoxyCodeLine{00007         UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_DRS = 0x800, \textcolor{comment}{// DRS}}
+\DoxyCodeLine{00008         UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_NCB = 0x1000, \textcolor{comment}{// NCB}}
+\DoxyCodeLine{00009         UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_NCS = 0x2000, \textcolor{comment}{// NCS}}
+\DoxyCodeLine{00010         UNC\_R3\_IIO\_CREDITS\_REJECT = 0x21, \textcolor{comment}{// to IIO BL Credit Rejected}}
+\DoxyCodeLine{00011         UNC\_R3\_IIO\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_DRS = 0x800, \textcolor{comment}{// DRS}}
+\DoxyCodeLine{00012         UNC\_R3\_IIO\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_NCB = 0x1000, \textcolor{comment}{// NCB}}
+\DoxyCodeLine{00013         UNC\_R3\_IIO\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_NCS = 0x2000, \textcolor{comment}{// NCS}}
+\DoxyCodeLine{00014         UNC\_R3\_IIO\_CREDITS\_USED = 0x22, \textcolor{comment}{// to IIO BL Credit In Use}}
+\DoxyCodeLine{00015         UNC\_R3\_IIO\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_DRS = 0x800, \textcolor{comment}{// DRS}}
+\DoxyCodeLine{00016         UNC\_R3\_IIO\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_NCB = 0x1000, \textcolor{comment}{// NCB}}
+\DoxyCodeLine{00017         UNC\_R3\_IIO\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_IIO\_CREDITS\_ACQUIRED\_\_NCS = 0x2000, \textcolor{comment}{// NCS}}
+\DoxyCodeLine{00018         UNC\_R3\_RING\_AD\_USED = 0x7, \textcolor{comment}{// R3 AD Ring in Use}}
+\DoxyCodeLine{00019         UNC\_R3\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counter-\/Clockwise and even ring polarity}}
+\DoxyCodeLine{00020         UNC\_R3\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counter-\/Clockwise and odd ring polarity}}
+\DoxyCodeLine{00021         UNC\_R3\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and even ring polarity}}
+\DoxyCodeLine{00022         UNC\_R3\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and odd ring polarity}}
+\DoxyCodeLine{00023         UNC\_R3\_RING\_AK\_USED = 0x8, \textcolor{comment}{// R3 AK Ring in Use}}
+\DoxyCodeLine{00024         UNC\_R3\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counter-\/Clockwise and even ring polarity}}
+\DoxyCodeLine{00025         UNC\_R3\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counter-\/Clockwise and odd ring polarity}}
+\DoxyCodeLine{00026         UNC\_R3\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and even ring polarity}}
+\DoxyCodeLine{00027         UNC\_R3\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and odd ring polarity}}
+\DoxyCodeLine{00028         UNC\_R3\_RING\_BL\_USED = 0x9, \textcolor{comment}{// R3 BL Ring in Use}}
+\DoxyCodeLine{00029         UNC\_R3\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counter-\/Clockwise and even ring polarity}}
+\DoxyCodeLine{00030         UNC\_R3\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counter-\/Clockwise and odd ring polarity}}
+\DoxyCodeLine{00031         UNC\_R3\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and even ring polarity}}
+\DoxyCodeLine{00032         UNC\_R3\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and odd ring polarity}}
+\DoxyCodeLine{00033         UNC\_R3\_RING\_IV\_USED = 0xa, \textcolor{comment}{// R3 IV Ring in Use}}
+\DoxyCodeLine{00034         UNC\_R3\_RING\_IV\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_RING\_IV\_USED\_\_ANY = 0xf00, \textcolor{comment}{// Any polarity}}
+\DoxyCodeLine{00035         UNC\_R3\_RXR\_BYPASSED = 0x12, \textcolor{comment}{// Ingress Bypassed}}
+\DoxyCodeLine{00036         UNC\_R3\_RXR\_BYPASSED\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_BYPASSED\_\_AD = 0x100, \textcolor{comment}{// Ingress Bypassed}}
+\DoxyCodeLine{00037         UNC\_R3\_RXR\_CYCLES\_NE = 0x10, \textcolor{comment}{// Ingress Cycles Not Empty}}
+\DoxyCodeLine{00038         UNC\_R3\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_DRS = 0x800, \textcolor{comment}{// DRS Ingress queue}}
+\DoxyCodeLine{00039         UNC\_R3\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_HOM = 0x100, \textcolor{comment}{// HOM Ingress queue}}
+\DoxyCodeLine{00040         UNC\_R3\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NCB = 0x1000, \textcolor{comment}{// NCB Ingress queue}}
+\DoxyCodeLine{00041         UNC\_R3\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NCS = 0x2000, \textcolor{comment}{// NCS Ingress queue}}
+\DoxyCodeLine{00042         UNC\_R3\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NDR = 0x400, \textcolor{comment}{// NDR Ingress queue}}
+\DoxyCodeLine{00043         UNC\_R3\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_SNP = 0x200, \textcolor{comment}{// SNP Ingress queue}}
+\DoxyCodeLine{00044         UNC\_R3\_RXR\_INSERTS = 0x11, \textcolor{comment}{// Ingress Allocations}}
+\DoxyCodeLine{00045         UNC\_R3\_RXR\_INSERTS\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_DRS = 0x800, \textcolor{comment}{// DRS Ingress queue}}
+\DoxyCodeLine{00046         UNC\_R3\_RXR\_INSERTS\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_HOM = 0x100, \textcolor{comment}{// HOM Ingress queue}}
+\DoxyCodeLine{00047         UNC\_R3\_RXR\_INSERTS\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NCB = 0x1000, \textcolor{comment}{// NCB Ingress queue}}
+\DoxyCodeLine{00048         UNC\_R3\_RXR\_INSERTS\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NCS = 0x2000, \textcolor{comment}{// NCS Ingress queue}}
+\DoxyCodeLine{00049         UNC\_R3\_RXR\_INSERTS\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NDR = 0x400, \textcolor{comment}{// NDR Ingress queue}}
+\DoxyCodeLine{00050         UNC\_R3\_RXR\_INSERTS\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_SNP = 0x200, \textcolor{comment}{// SNP Ingress queue}}
+\DoxyCodeLine{00051         UNC\_R3\_RXR\_OCCUPANCY = 0x13, \textcolor{comment}{// Ingress Occupancy Accumulator}}
+\DoxyCodeLine{00052         UNC\_R3\_RXR\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_DRS = 0x800, \textcolor{comment}{// DRS Ingress queue}}
+\DoxyCodeLine{00053         UNC\_R3\_RXR\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_HOM = 0x100, \textcolor{comment}{// HOM Ingress queue}}
+\DoxyCodeLine{00054         UNC\_R3\_RXR\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NCB = 0x1000, \textcolor{comment}{// NCB Ingress queue}}
+\DoxyCodeLine{00055         UNC\_R3\_RXR\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NCS = 0x2000, \textcolor{comment}{// NCS Ingress queue}}
+\DoxyCodeLine{00056         UNC\_R3\_RXR\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_NDR = 0x400, \textcolor{comment}{// NDR Ingress queue}}
+\DoxyCodeLine{00057         UNC\_R3\_RXR\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_R3\_RXR\_CYCLES\_NE\_\_SNP = 0x200, \textcolor{comment}{// SNP Ingress queue}}
+\DoxyCodeLine{00058         UNC\_R3\_TXR\_CYCLES\_FULL = 0x25, \textcolor{comment}{// Egress cycles full}}
+\DoxyCodeLine{00059         UNC\_R3\_TXR\_INSERTS = 0x24, \textcolor{comment}{// Egress allocations}}
+\DoxyCodeLine{00060         UNC\_R3\_TXR\_NACK = 0x26, \textcolor{comment}{// Egress Nack}}
+\DoxyCodeLine{00061         UNC\_R3\_VN0\_CREDITS\_REJECT = 0x37, \textcolor{comment}{// VN0 Credit Acquisition Failed on DRS}}
+\DoxyCodeLine{00062         UNC\_R3\_VN0\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_DRS = 0x800, \textcolor{comment}{// Filter DRS message class}}
+\DoxyCodeLine{00063         UNC\_R3\_VN0\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_HOM = 0x100, \textcolor{comment}{// Filter HOM message class}}
+\DoxyCodeLine{00064         UNC\_R3\_VN0\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NCB = 0x1000, \textcolor{comment}{// Filter NCB message class}}
+\DoxyCodeLine{00065         UNC\_R3\_VN0\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NCS = 0x2000, \textcolor{comment}{// Filter NCS message class}}
+\DoxyCodeLine{00066         UNC\_R3\_VN0\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NDR = 0x400, \textcolor{comment}{// Filter NDR message class}}
+\DoxyCodeLine{00067         UNC\_R3\_VN0\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_SNP = 0x200, \textcolor{comment}{// Filter SNP message class}}
+\DoxyCodeLine{00068         UNC\_R3\_VN0\_CREDITS\_USED = 0x36, \textcolor{comment}{// VN0 Credit Used}}
+\DoxyCodeLine{00069         UNC\_R3\_VN0\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_DRS = 0x800, \textcolor{comment}{// Filter DRS message class}}
+\DoxyCodeLine{00070         UNC\_R3\_VN0\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_HOM = 0x100, \textcolor{comment}{// Filter HOM message class}}
+\DoxyCodeLine{00071         UNC\_R3\_VN0\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NCB = 0x1000, \textcolor{comment}{// Filter NCB message class}}
+\DoxyCodeLine{00072         UNC\_R3\_VN0\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NCS = 0x2000, \textcolor{comment}{// Filter NCS message class}}
+\DoxyCodeLine{00073         UNC\_R3\_VN0\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NDR = 0x400, \textcolor{comment}{// Filter NDR message class}}
+\DoxyCodeLine{00074         UNC\_R3\_VN0\_CREDITS\_USED\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_SNP = 0x200, \textcolor{comment}{// Filter SNP message class}}
+\DoxyCodeLine{00075         UNC\_R3\_VNA\_CREDITS\_ACQUIRED = 0x33, \textcolor{comment}{// VNA credit Acquisitions}}
+\DoxyCodeLine{00076         UNC\_R3\_VNA\_CREDITS\_REJECT = 0x34, \textcolor{comment}{// VNA Credit Reject}}
+\DoxyCodeLine{00077         UNC\_R3\_VNA\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_DRS = 0x800, \textcolor{comment}{// Filter DRS message class}}
+\DoxyCodeLine{00078         UNC\_R3\_VNA\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_HOM = 0x100, \textcolor{comment}{// Filter HOM message class}}
+\DoxyCodeLine{00079         UNC\_R3\_VNA\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NCB = 0x1000, \textcolor{comment}{// Filter NCB message class}}
+\DoxyCodeLine{00080         UNC\_R3\_VNA\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NCS = 0x2000, \textcolor{comment}{// Filter NCS message class}}
+\DoxyCodeLine{00081         UNC\_R3\_VNA\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_NDR = 0x400, \textcolor{comment}{// Filter NDR message class}}
+\DoxyCodeLine{00082         UNC\_R3\_VNA\_CREDITS\_REJECT\_\_MASK\_\_SNBEP\_UNC\_R3\_VN0\_CREDITS\_REJECT\_\_SNP = 0x200, \textcolor{comment}{// Filter SNP message class}}
+\DoxyCodeLine{00083         UNC\_R3\_VNA\_CREDIT\_CYCLES\_OUT = 0x31, \textcolor{comment}{// Cycles with no VNA credits available}}
+\DoxyCodeLine{00084         UNC\_R3\_VNA\_CREDIT\_CYCLES\_USED = 0x32, \textcolor{comment}{// Cycles with 1 or more VNA credits in use}}
+\DoxyCodeLine{00085         }
+\DoxyCodeLine{00086     \};}
+\DoxyCodeLine{00087 \};}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089 \textcolor{keyword}{namespace }snbep\_unc\_r3 = optkit::intel::snbep\_unc\_r3;}
+
+\end{DoxyCode}

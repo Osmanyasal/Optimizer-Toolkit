@@ -1,0 +1,56 @@
+\hypertarget{k7_8hh_source}{}\doxysection{k7.\+hh}
+\label{k7_8hh_source}\index{k7.hh@{k7.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{keyword}{namespace }optkit::amd64::k7\{}
+\DoxyCodeLine{00003     \textcolor{keyword}{enum} k7 : uint64\_t \{}
+\DoxyCodeLine{00004         DATA\_CACHE\_ACCESSES = 0x40, \textcolor{comment}{// Data Cache Accesses}}
+\DoxyCodeLine{00005         DATA\_CACHE\_MISSES = 0x41, \textcolor{comment}{// Data Cache Misses}}
+\DoxyCodeLine{00006         DATA\_CACHE\_REFILLS = 0x42, \textcolor{comment}{// Data Cache Refills from L2}}
+\DoxyCodeLine{00007         DATA\_CACHE\_REFILLS\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_\_L2\_INVALID = 0x1, \textcolor{comment}{// Invalid line from L2}}
+\DoxyCodeLine{00008         DATA\_CACHE\_REFILLS\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_\_L2\_SHARED = 0x2, \textcolor{comment}{// Shared-\/state line from L2}}
+\DoxyCodeLine{00009         DATA\_CACHE\_REFILLS\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_\_L2\_EXCLUSIVE = 0x4, \textcolor{comment}{// Exclusive-\/state line from L2}}
+\DoxyCodeLine{00010         DATA\_CACHE\_REFILLS\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_\_L2\_OWNED = 0x8, \textcolor{comment}{// Owned-\/state line from L2}}
+\DoxyCodeLine{00011         DATA\_CACHE\_REFILLS\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_\_L2\_MODIFIED = 0x10, \textcolor{comment}{// Modified-\/state line from L2}}
+\DoxyCodeLine{00012         DATA\_CACHE\_REFILLS\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_\_ALL = 0x1f, \textcolor{comment}{// Shared}}
+\DoxyCodeLine{00013         DATA\_CACHE\_REFILLS\_FROM\_SYSTEM = 0x43, \textcolor{comment}{// Data Cache Refills from System}}
+\DoxyCodeLine{00014         DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_INVALID = 0x1, \textcolor{comment}{// Invalid}}
+\DoxyCodeLine{00015         DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_SHARED = 0x2, \textcolor{comment}{// Shared}}
+\DoxyCodeLine{00016         DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_EXCLUSIVE = 0x4, \textcolor{comment}{// Exclusive}}
+\DoxyCodeLine{00017         DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_OWNED = 0x8, \textcolor{comment}{// Owned}}
+\DoxyCodeLine{00018         DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_MODIFIED = 0x10, \textcolor{comment}{// Modified}}
+\DoxyCodeLine{00019         DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_ALL = 0x1f, \textcolor{comment}{// Invalid}}
+\DoxyCodeLine{00020         DATA\_CACHE\_LINES\_EVICTED = 0x44, \textcolor{comment}{// Data Cache Lines Evicted}}
+\DoxyCodeLine{00021         DATA\_CACHE\_LINES\_EVICTED\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_INVALID = 0x1, \textcolor{comment}{// Invalid}}
+\DoxyCodeLine{00022         DATA\_CACHE\_LINES\_EVICTED\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_SHARED = 0x2, \textcolor{comment}{// Shared}}
+\DoxyCodeLine{00023         DATA\_CACHE\_LINES\_EVICTED\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_EXCLUSIVE = 0x4, \textcolor{comment}{// Exclusive}}
+\DoxyCodeLine{00024         DATA\_CACHE\_LINES\_EVICTED\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_OWNED = 0x8, \textcolor{comment}{// Owned}}
+\DoxyCodeLine{00025         DATA\_CACHE\_LINES\_EVICTED\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_MODIFIED = 0x10, \textcolor{comment}{// Modified}}
+\DoxyCodeLine{00026         DATA\_CACHE\_LINES\_EVICTED\_\_MASK\_\_AMD64\_K7\_DATA\_CACHE\_REFILLS\_FROM\_SYSTEM\_\_ALL = 0x1f, \textcolor{comment}{// Invalid}}
+\DoxyCodeLine{00027         L1\_DTLB\_MISS\_AND\_L2\_DTLB\_HIT = 0x45, \textcolor{comment}{// L1 DTLB Miss and L2 DTLB Hit}}
+\DoxyCodeLine{00028         L1\_DTLB\_AND\_L2\_DTLB\_MISS = 0x46, \textcolor{comment}{// L1 DTLB and L2 DTLB Miss}}
+\DoxyCodeLine{00029         MISALIGNED\_ACCESSES = 0x47, \textcolor{comment}{// Misaligned Accesses}}
+\DoxyCodeLine{00030         CPU\_CLK\_UNHALTED = 0x76, \textcolor{comment}{// CPU Clocks not Halted}}
+\DoxyCodeLine{00031         INSTRUCTION\_CACHE\_FETCHES = 0x80, \textcolor{comment}{// Instruction Cache Fetches}}
+\DoxyCodeLine{00032         INSTRUCTION\_CACHE\_MISSES = 0x81, \textcolor{comment}{// Instruction Cache Misses}}
+\DoxyCodeLine{00033         L1\_ITLB\_MISS\_AND\_L2\_ITLB\_HIT = 0x84, \textcolor{comment}{// L1 ITLB Miss and L2 ITLB Hit}}
+\DoxyCodeLine{00034         L1\_ITLB\_MISS\_AND\_L2\_ITLB\_MISS = 0x85, \textcolor{comment}{// L1 ITLB Miss and L2 ITLB Miss}}
+\DoxyCodeLine{00035         RETIRED\_INSTRUCTIONS = 0xc0, \textcolor{comment}{// Retired Instructions (includes exceptions}}
+\DoxyCodeLine{00036         RETIRED\_UOPS = 0xc1, \textcolor{comment}{// Retired uops}}
+\DoxyCodeLine{00037         RETIRED\_BRANCH\_INSTRUCTIONS = 0xc2, \textcolor{comment}{// Retired Branch Instructions}}
+\DoxyCodeLine{00038         RETIRED\_MISPREDICTED\_BRANCH\_INSTRUCTIONS = 0xc3, \textcolor{comment}{// Retired Mispredicted Branch Instructions}}
+\DoxyCodeLine{00039         RETIRED\_TAKEN\_BRANCH\_INSTRUCTIONS = 0xc4, \textcolor{comment}{// Retired Taken Branch Instructions}}
+\DoxyCodeLine{00040         RETIRED\_TAKEN\_BRANCH\_INSTRUCTIONS\_MISPREDICTED = 0xc5, \textcolor{comment}{// Retired Taken Branch Instructions Mispredicted}}
+\DoxyCodeLine{00041         RETIRED\_FAR\_CONTROL\_TRANSFERS = 0xc6, \textcolor{comment}{// Retired Far Control Transfers}}
+\DoxyCodeLine{00042         RETIRED\_BRANCH\_RESYNCS = 0xc7, \textcolor{comment}{// Retired Branch Resyncs (only non-\/control transfer branches)}}
+\DoxyCodeLine{00043         INTERRUPTS\_MASKED\_CYCLES = 0xcd, \textcolor{comment}{// Interrupts-\/Masked Cycles}}
+\DoxyCodeLine{00044         INTERRUPTS\_MASKED\_CYCLES\_WITH\_INTERRUPT\_PENDING = 0xce, \textcolor{comment}{// Interrupts-\/Masked Cycles with Interrupt Pending}}
+\DoxyCodeLine{00045         INTERRUPTS\_TAKEN = 0xcf, \textcolor{comment}{// Interrupts Taken}}
+\DoxyCodeLine{00046         }
+\DoxyCodeLine{00047     \};}
+\DoxyCodeLine{00048 \};}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050 \textcolor{keyword}{namespace }k7 = optkit::amd64::k7;}
+
+\end{DoxyCode}

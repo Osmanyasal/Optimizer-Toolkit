@@ -1,0 +1,44 @@
+\hypertarget{type_8hh_source}{}\doxysection{type.\+hh}
+\label{type_8hh_source}\index{type.hh@{type.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#ifndef OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_UTILS\_\_TYPE}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#define OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_UTILS\_\_TYPE}}
+\DoxyCodeLine{00003 }
+\DoxyCodeLine{00004 \textcolor{comment}{/*}}
+\DoxyCodeLine{00005 \textcolor{comment}{    Following works like this class structure..}}
+\DoxyCodeLine{00006 \textcolor{comment}{}}
+\DoxyCodeLine{00007 \textcolor{comment}{    class Base}}
+\DoxyCodeLine{00008 \textcolor{comment}{    \{}}
+\DoxyCodeLine{00009 \textcolor{comment}{        public:}}
+\DoxyCodeLine{00010 \textcolor{comment}{            virtual \string~Base() \{\}}}
+\DoxyCodeLine{00011 \textcolor{comment}{    \};}}
+\DoxyCodeLine{00012 \textcolor{comment}{}}
+\DoxyCodeLine{00013 \textcolor{comment}{    class Derived : public Base}}
+\DoxyCodeLine{00014 \textcolor{comment}{    \{}}
+\DoxyCodeLine{00015 \textcolor{comment}{    \};}}
+\DoxyCodeLine{00016 \textcolor{comment}{}}
+\DoxyCodeLine{00017 \textcolor{comment}{    \# takes references}}
+\DoxyCodeLine{00018 \textcolor{comment}{}}
+\DoxyCodeLine{00019 \textcolor{comment}{        Derived dd;}}
+\DoxyCodeLine{00020 \textcolor{comment}{        Base\& bref = dd;}}
+\DoxyCodeLine{00021 \textcolor{comment}{}}
+\DoxyCodeLine{00022 \textcolor{comment}{        INSTANCEOF(Base, dd) -\/> true}}
+\DoxyCodeLine{00023 \textcolor{comment}{        INSTANCEOF(Derived, dd) -\/> true}}
+\DoxyCodeLine{00024 \textcolor{comment}{}}
+\DoxyCodeLine{00025 \textcolor{comment}{        INSTANCEOF(Base, bref) -\/> true}}
+\DoxyCodeLine{00026 \textcolor{comment}{        INSTANCEOF(Derived, bref) -\/> true}}
+\DoxyCodeLine{00027 \textcolor{comment}{}}
+\DoxyCodeLine{00028 \textcolor{comment}{    \# takes pointers}}
+\DoxyCodeLine{00029 \textcolor{comment}{}}
+\DoxyCodeLine{00030 \textcolor{comment}{        Derived* dd = new Derived;}}
+\DoxyCodeLine{00031 \textcolor{comment}{        INSTANCEOF\_PTR(Base, dd) -\/> true}}
+\DoxyCodeLine{00032 \textcolor{comment}{        INSTANCEOF\_PTR(Derived, dd) -\/> true}}
+\DoxyCodeLine{00033 \textcolor{comment}{*/}}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035 \textcolor{preprocessor}{\#define INSTANCEOF(CLASS, objREF) (dynamic\_cast<CLASS *>(\&objREF) != nullptr)}}
+\DoxyCodeLine{00036 \textcolor{preprocessor}{\#define INSTANCEOF\_PTR(CLASS, objPTR) (dynamic\_cast<CLASS *>(objPTR) != nullptr)}}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

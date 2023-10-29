@@ -1,0 +1,56 @@
+\hypertarget{snbep__unc__r2_8hh_source}{}\doxysection{snbep\+\_\+unc\+\_\+r2.\+hh}
+\label{snbep__unc__r2_8hh_source}\index{snbep\_unc\_r2.hh@{snbep\_unc\_r2.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::snbep\_unc\_r2\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} snbep\_unc\_r2 : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_R2\_CLOCKTICKS = 0x1, \textcolor{comment}{// Number of uclks in domain}}
+\DoxyCodeLine{00006         UNC\_R2\_RING\_AD\_USED = 0x7, \textcolor{comment}{// R2 AD Ring in Use}}
+\DoxyCodeLine{00007         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counter-\/clockwise and even ring polarity}}
+\DoxyCodeLine{00008         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counter-\/clockwise and odd ring polarity}}
+\DoxyCodeLine{00009         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and even ring polarity}}
+\DoxyCodeLine{00010         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and odd ring polarity}}
+\DoxyCodeLine{00011         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ANY = 0x300, \textcolor{comment}{// Clockwise with any polarity}}
+\DoxyCodeLine{00012         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ANY = 0xc00, \textcolor{comment}{// Counter-\/clockwise with any polarity}}
+\DoxyCodeLine{00013         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_ANY = 0xf00, \textcolor{comment}{// any direction and any polarity}}
+\DoxyCodeLine{00014         UNC\_R2\_RING\_AK\_USED = 0x8, \textcolor{comment}{// R2 AK Ring in Use}}
+\DoxyCodeLine{00015         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counter-\/clockwise and even ring polarity}}
+\DoxyCodeLine{00016         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counter-\/clockwise and odd ring polarity}}
+\DoxyCodeLine{00017         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and even ring polarity}}
+\DoxyCodeLine{00018         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and odd ring polarity}}
+\DoxyCodeLine{00019         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ANY = 0x300, \textcolor{comment}{// Clockwise with any polarity}}
+\DoxyCodeLine{00020         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ANY = 0xc00, \textcolor{comment}{// Counter-\/clockwise with any polarity}}
+\DoxyCodeLine{00021         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_ANY = 0xf00, \textcolor{comment}{// any direction and any polarity}}
+\DoxyCodeLine{00022         UNC\_R2\_RING\_BL\_USED = 0x9, \textcolor{comment}{// R2 BL Ring in Use}}
+\DoxyCodeLine{00023         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counter-\/clockwise and even ring polarity}}
+\DoxyCodeLine{00024         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counter-\/clockwise and odd ring polarity}}
+\DoxyCodeLine{00025         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and even ring polarity}}
+\DoxyCodeLine{00026         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and odd ring polarity}}
+\DoxyCodeLine{00027         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ANY = 0x300, \textcolor{comment}{// Clockwise with any polarity}}
+\DoxyCodeLine{00028         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ANY = 0xc00, \textcolor{comment}{// Counter-\/clockwise with any polarity}}
+\DoxyCodeLine{00029         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_AD\_USED\_\_ANY = 0xf00, \textcolor{comment}{// any direction and any polarity}}
+\DoxyCodeLine{00030         UNC\_R2\_RING\_IV\_USED = 0xa, \textcolor{comment}{// R2 IV Ring in Use}}
+\DoxyCodeLine{00031         UNC\_R2\_RING\_IV\_USED\_\_MASK\_\_SNBEP\_UNC\_R2\_RING\_IV\_USED\_\_ANY = 0xf00, \textcolor{comment}{// R2 IV Ring in Use}}
+\DoxyCodeLine{00032         UNC\_R2\_RXR\_AK\_BOUNCES = 0x12, \textcolor{comment}{// AK Ingress Bounced}}
+\DoxyCodeLine{00033         UNC\_R2\_RXR\_CYCLES\_NE = 0x10, \textcolor{comment}{// Ingress Cycles Not Empty}}
+\DoxyCodeLine{00034         UNC\_R2\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R2\_RXR\_CYCLES\_NE\_\_DRS = 0x800, \textcolor{comment}{// DRS Ingress queue}}
+\DoxyCodeLine{00035         UNC\_R2\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R2\_RXR\_CYCLES\_NE\_\_NCB = 0x1000, \textcolor{comment}{// NCB Ingress queue}}
+\DoxyCodeLine{00036         UNC\_R2\_RXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R2\_RXR\_CYCLES\_NE\_\_NCS = 0x2000, \textcolor{comment}{// NCS Ingress queue}}
+\DoxyCodeLine{00037         UNC\_R2\_TXR\_CYCLES\_FULL = 0x25, \textcolor{comment}{// Egress Cycles Full}}
+\DoxyCodeLine{00038         UNC\_R2\_TXR\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_AD = 0x100, \textcolor{comment}{// AD Egress queue}}
+\DoxyCodeLine{00039         UNC\_R2\_TXR\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_AK = 0x200, \textcolor{comment}{// AK Egress queue}}
+\DoxyCodeLine{00040         UNC\_R2\_TXR\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_BL = 0x400, \textcolor{comment}{// BL Egress queue}}
+\DoxyCodeLine{00041         UNC\_R2\_TXR\_CYCLES\_NE = 0x23, \textcolor{comment}{// Egress Cycles Not Empty}}
+\DoxyCodeLine{00042         UNC\_R2\_TXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_AD = 0x100, \textcolor{comment}{// AD Egress queue}}
+\DoxyCodeLine{00043         UNC\_R2\_TXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_AK = 0x200, \textcolor{comment}{// AK Egress queue}}
+\DoxyCodeLine{00044         UNC\_R2\_TXR\_CYCLES\_NE\_\_MASK\_\_SNBEP\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_BL = 0x400, \textcolor{comment}{// BL Egress queue}}
+\DoxyCodeLine{00045         UNC\_R2\_TXR\_INSERTS = 0x24, \textcolor{comment}{// Egress allocations}}
+\DoxyCodeLine{00046         }
+\DoxyCodeLine{00047     \};}
+\DoxyCodeLine{00048 \};}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050 \textcolor{keyword}{namespace }snbep\_unc\_r2 = optkit::intel::snbep\_unc\_r2;}
+
+\end{DoxyCode}

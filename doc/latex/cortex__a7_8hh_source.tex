@@ -1,0 +1,55 @@
+\hypertarget{cortex__a7_8hh_source}{}\doxysection{cortex\+\_\+a7.\+hh}
+\label{cortex__a7_8hh_source}\index{cortex\_a7.hh@{cortex\_a7.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{keyword}{namespace }optkit::arm::cortex\_a7\{}
+\DoxyCodeLine{00003     \textcolor{keyword}{enum} cortex\_a7 : uint64\_t \{}
+\DoxyCodeLine{00004         SW\_INCR = 0x00, \textcolor{comment}{// Incremented on writes to the Software Increment Register}}
+\DoxyCodeLine{00005         L1I\_CACHE\_REFILL = 0x01, \textcolor{comment}{// Level 1 instruction cache refill}}
+\DoxyCodeLine{00006         L1I\_TLB\_REFILL = 0x02, \textcolor{comment}{// Level 1 instruction TLB refill}}
+\DoxyCodeLine{00007         L1D\_CACHE\_REFILL = 0x03, \textcolor{comment}{// Level 1 data cache refill}}
+\DoxyCodeLine{00008         L1D\_CACHE\_ACCESS = 0x04, \textcolor{comment}{// Level 1 data cache access}}
+\DoxyCodeLine{00009         L1D\_TLB\_REFILL = 0x05, \textcolor{comment}{// Level 1 data TLB refill}}
+\DoxyCodeLine{00010         DATA\_READS = 0x06, \textcolor{comment}{// Data reads architecturally executed}}
+\DoxyCodeLine{00011         DATA\_WRITES = 0x07, \textcolor{comment}{// Data writes architecturally executed}}
+\DoxyCodeLine{00012         INST\_RETIRED = 0x08, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00013         EXCEPTION\_TAKEN = 0x09, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00014         EXCEPTION\_RETURN = 0x0a, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00015         CID\_WRITE\_RETIRED = 0x0b, \textcolor{comment}{// Change to ContextID retired}}
+\DoxyCodeLine{00016         SW\_CHANGE\_PC = 0x0c, \textcolor{comment}{// Software change of PC}}
+\DoxyCodeLine{00017         IMMEDIATE\_BRANCHES = 0x0d, \textcolor{comment}{// Immediate branch architecturally executed}}
+\DoxyCodeLine{00018         PROCEDURE\_RETURNS = 0x0e, \textcolor{comment}{// Procedure returns architecturally executed}}
+\DoxyCodeLine{00019         UNALIGNED\_LOAD\_STORE = 0x0f, \textcolor{comment}{// Unaligned load-\/store}}
+\DoxyCodeLine{00020         BRANCH\_MISPRED = 0x10, \textcolor{comment}{// Branches mispredicted/not predicted}}
+\DoxyCodeLine{00021         CPU\_CYCLES = 0x11, \textcolor{comment}{// Cycles}}
+\DoxyCodeLine{00022         BRANCH\_PRED = 0x12, \textcolor{comment}{// Predictable branch speculatively executed}}
+\DoxyCodeLine{00023         DATA\_MEM\_ACCESS = 0x13, \textcolor{comment}{// Data memory access}}
+\DoxyCodeLine{00024         L1I\_CACHE\_ACCESS = 0x14, \textcolor{comment}{// Level 1 instruction cache access}}
+\DoxyCodeLine{00025         L1D\_CACHE\_EVICTION = 0x15, \textcolor{comment}{// Level 1 data cache eviction}}
+\DoxyCodeLine{00026         L2D\_CACHE\_ACCESS = 0x16, \textcolor{comment}{// Level 2 data cache access}}
+\DoxyCodeLine{00027         L2D\_CACHE\_REFILL = 0x17, \textcolor{comment}{// Level 2 data cache refill}}
+\DoxyCodeLine{00028         L2D\_CACHE\_WB = 0x18, \textcolor{comment}{// Level 2 data cache WriteBack}}
+\DoxyCodeLine{00029         BUS\_ACCESS = 0x19, \textcolor{comment}{// Bus accesses}}
+\DoxyCodeLine{00030         BUS\_CYCLES = 0x1d, \textcolor{comment}{// Bus cycle}}
+\DoxyCodeLine{00031         BUS\_READ\_ACCESS = 0x60, \textcolor{comment}{// Bus read access}}
+\DoxyCodeLine{00032         BUS\_WRITE\_ACCESS = 0x61, \textcolor{comment}{// Bus write access}}
+\DoxyCodeLine{00033         IRQ\_EXCEPTION\_TAKEN = 0x86, \textcolor{comment}{// IRQ Exception Taken}}
+\DoxyCodeLine{00034         FIQ\_EXCEPTION\_TAKEN = 0x87, \textcolor{comment}{// FIQ Exception Taken}}
+\DoxyCodeLine{00035         EXTERNAL\_MEMORY\_REQUEST = 0xc0, \textcolor{comment}{// External memory request}}
+\DoxyCodeLine{00036         NONCACHE\_EXTERNAL\_MEMORY\_REQUEST = 0xc1, \textcolor{comment}{// Non-\/cacheable xternal memory request}}
+\DoxyCodeLine{00037         PREFETCH\_LINEFILL = 0xc2, \textcolor{comment}{// Linefill due to prefetch}}
+\DoxyCodeLine{00038         PREFETCH\_LINEFILL\_DROPPED = 0xc3, \textcolor{comment}{// Prefetch linefill dropped}}
+\DoxyCodeLine{00039         ENTERING\_READ\_ALLOC = 0xc4, \textcolor{comment}{// Entering read allocate mode}}
+\DoxyCodeLine{00040         READ\_ALLOC = 0xc5, \textcolor{comment}{// Read allocate mode}}
+\DoxyCodeLine{00041         ETM\_EXT\_OUT\_0 = 0xc7, \textcolor{comment}{// ETM Ext Out[0]}}
+\DoxyCodeLine{00042         ETM\_EXT\_OUT\_1 = 0xc8, \textcolor{comment}{// ETM Ext Out[1]}}
+\DoxyCodeLine{00043         DATA\_WRITE\_STALL = 0xc9, \textcolor{comment}{// Data write operation that stalls pipeline due to full store buffer}}
+\DoxyCodeLine{00044         DATA\_SNOOPED = 0xca, \textcolor{comment}{// Data snooped from other processor}}
+\DoxyCodeLine{00045         }
+\DoxyCodeLine{00046     \};}
+\DoxyCodeLine{00047 \};}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049 \textcolor{keyword}{namespace }cortex\_a7 = optkit::arm::cortex\_a7;}
+
+\end{DoxyCode}

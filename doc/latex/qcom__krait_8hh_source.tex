@@ -1,0 +1,22 @@
+\hypertarget{qcom__krait_8hh_source}{}\doxysection{qcom\+\_\+krait.\+hh}
+\label{qcom__krait_8hh_source}\index{qcom\_krait.hh@{qcom\_krait.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{keyword}{namespace }optkit::arm::qcom\_krait\{}
+\DoxyCodeLine{00003     \textcolor{keyword}{enum} qcom\_krait : uint64\_t \{}
+\DoxyCodeLine{00004         L1D\_CACHE\_REFILL = 0x03, \textcolor{comment}{// Level 1 data cache refill}}
+\DoxyCodeLine{00005         L1D\_CACHE\_ACCESS = 0x04, \textcolor{comment}{// Level 1 data cache access}}
+\DoxyCodeLine{00006         INSTR\_EXECUTED = 0x08, \textcolor{comment}{// Instructions architecturally executed}}
+\DoxyCodeLine{00007         PC\_WRITE = 0x0c, \textcolor{comment}{// Software change of PC.  Equivalent to branches}}
+\DoxyCodeLine{00008         PC\_BRANCH\_MIS\_PRED = 0x10, \textcolor{comment}{// Branches mispredicted or not predicted}}
+\DoxyCodeLine{00009         CLOCK\_CYCLES = 0x11, \textcolor{comment}{// Cycles}}
+\DoxyCodeLine{00010         BRANCH\_PRED = 0x12, \textcolor{comment}{// Predictable branch speculatively executed}}
+\DoxyCodeLine{00011         CPU\_CYCLES = 0xff, \textcolor{comment}{// Cycles}}
+\DoxyCodeLine{00012         }
+\DoxyCodeLine{00013     \};}
+\DoxyCodeLine{00014 \};}
+\DoxyCodeLine{00015 }
+\DoxyCodeLine{00016 \textcolor{keyword}{namespace }qcom\_krait = optkit::arm::qcom\_krait;}
+
+\end{DoxyCode}

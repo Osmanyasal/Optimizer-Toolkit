@@ -1,0 +1,92 @@
+\hypertarget{snbep__unc__h_8hh_source}{}\doxysection{snbep\+\_\+unc\+\_\+h.\+hh}
+\label{snbep__unc__h_8hh_source}\index{snbep\_unc\_h.hh@{snbep\_unc\_h.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::snbep\_unc\_h\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} snbep\_unc\_h : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_H\_CLOCKTICKS = 0x00, \textcolor{comment}{// HA Uncore clockticks}}
+\DoxyCodeLine{00006         UNC\_H\_CONFLICT\_CYCLES = 0xb, \textcolor{comment}{// Conflict Checks}}
+\DoxyCodeLine{00007         UNC\_H\_CONFLICT\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_H\_CONFLICT\_CYCLES\_\_CONFLICT = 0x200, \textcolor{comment}{// Number of cycles that we are handling conflicts}}
+\DoxyCodeLine{00008         UNC\_H\_CONFLICT\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_H\_CONFLICT\_CYCLES\_\_NO\_CONFLICT = 0x100, \textcolor{comment}{// Number of cycles that we are not handling conflicts}}
+\DoxyCodeLine{00009         UNC\_H\_DIRECT2CORE\_COUNT = 0x11, \textcolor{comment}{// Direct2Core Messages Sent}}
+\DoxyCodeLine{00010         UNC\_H\_DIRECT2CORE\_CYCLES\_DISABLED = 0x12, \textcolor{comment}{// Cycles when Direct2Core was Disabled}}
+\DoxyCodeLine{00011         UNC\_H\_DIRECT2CORE\_TXN\_OVERRIDE = 0x13, \textcolor{comment}{// Number of Reads that had Direct2Core Overridden}}
+\DoxyCodeLine{00012         UNC\_H\_DIRECTORY\_LOOKUP = 0xc, \textcolor{comment}{// Directory Lookups}}
+\DoxyCodeLine{00013         UNC\_H\_DIRECTORY\_LOOKUP\_\_MASK\_\_SNBEP\_UNC\_H\_DIRECTORY\_LOOKUP\_\_NO\_SNP = 0x200, \textcolor{comment}{// Snoop not needed}}
+\DoxyCodeLine{00014         UNC\_H\_DIRECTORY\_LOOKUP\_\_MASK\_\_SNBEP\_UNC\_H\_DIRECTORY\_LOOKUP\_\_SNP = 0x100, \textcolor{comment}{// Snoop needed}}
+\DoxyCodeLine{00015         UNC\_H\_DIRECTORY\_UPDATE = 0xd, \textcolor{comment}{// Directory Updates}}
+\DoxyCodeLine{00016         UNC\_H\_DIRECTORY\_UPDATE\_\_MASK\_\_SNBEP\_UNC\_H\_DIRECTORY\_UPDATE\_\_ANY = 0x300, \textcolor{comment}{// Counts any directory update}}
+\DoxyCodeLine{00017         UNC\_H\_DIRECTORY\_UPDATE\_\_MASK\_\_SNBEP\_UNC\_H\_DIRECTORY\_UPDATE\_\_CLEAR = 0x200, \textcolor{comment}{// Directory clears}}
+\DoxyCodeLine{00018         UNC\_H\_DIRECTORY\_UPDATE\_\_MASK\_\_SNBEP\_UNC\_H\_DIRECTORY\_UPDATE\_\_SET = 0x100, \textcolor{comment}{// Directory set}}
+\DoxyCodeLine{00019         UNC\_H\_IGR\_NO\_CREDIT\_CYCLES = 0x22, \textcolor{comment}{// Cycles without QPI Ingress Credits}}
+\DoxyCodeLine{00020         UNC\_H\_IGR\_NO\_CREDIT\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_H\_IGR\_NO\_CREDIT\_CYCLES\_\_AD\_QPI0 = 0x100, \textcolor{comment}{// AD to QPI link 0}}
+\DoxyCodeLine{00021         UNC\_H\_IGR\_NO\_CREDIT\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_H\_IGR\_NO\_CREDIT\_CYCLES\_\_AD\_QPI1 = 0x200, \textcolor{comment}{// AD to QPI link 1}}
+\DoxyCodeLine{00022         UNC\_H\_IGR\_NO\_CREDIT\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_H\_IGR\_NO\_CREDIT\_CYCLES\_\_BL\_QPI0 = 0x400, \textcolor{comment}{// BL to QPI link 0}}
+\DoxyCodeLine{00023         UNC\_H\_IGR\_NO\_CREDIT\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_H\_IGR\_NO\_CREDIT\_CYCLES\_\_BL\_QPI1 = 0x800, \textcolor{comment}{// BL to QPI link 1}}
+\DoxyCodeLine{00024         UNC\_H\_IMC\_RETRY = 0x1e, \textcolor{comment}{// Retry Events}}
+\DoxyCodeLine{00025         UNC\_H\_IMC\_WRITES = 0x1a, \textcolor{comment}{// HA to iMC Full Line Writes Issued}}
+\DoxyCodeLine{00026         UNC\_H\_IMC\_WRITES\_\_MASK\_\_SNBEP\_UNC\_H\_IMC\_WRITES\_\_ALL = 0xf00, \textcolor{comment}{// Counts all writes}}
+\DoxyCodeLine{00027         UNC\_H\_IMC\_WRITES\_\_MASK\_\_SNBEP\_UNC\_H\_IMC\_WRITES\_\_FULL = 0x100, \textcolor{comment}{// Counts full line non ISOCH}}
+\DoxyCodeLine{00028         UNC\_H\_IMC\_WRITES\_\_MASK\_\_SNBEP\_UNC\_H\_IMC\_WRITES\_\_FULL\_ISOCH = 0x400, \textcolor{comment}{// Counts ISOCH full line}}
+\DoxyCodeLine{00029         UNC\_H\_IMC\_WRITES\_\_MASK\_\_SNBEP\_UNC\_H\_IMC\_WRITES\_\_PARTIAL = 0x200, \textcolor{comment}{// Counts partial non-\/ISOCH}}
+\DoxyCodeLine{00030         UNC\_H\_IMC\_WRITES\_\_MASK\_\_SNBEP\_UNC\_H\_IMC\_WRITES\_\_PARTIAL\_ISOCH = 0x800, \textcolor{comment}{// Counts ISOCH partial}}
+\DoxyCodeLine{00031         UNC\_H\_REQUESTS = 0x1, \textcolor{comment}{// Read and Write Requests}}
+\DoxyCodeLine{00032         UNC\_H\_REQUESTS\_\_MASK\_\_SNBEP\_UNC\_H\_REQUESTS\_\_READS = 0x300, \textcolor{comment}{// Counts incoming read requests. Good proxy for LLC read misses}}
+\DoxyCodeLine{00033         UNC\_H\_REQUESTS\_\_MASK\_\_SNBEP\_UNC\_H\_REQUESTS\_\_WRITES = 0xc00, \textcolor{comment}{// Counts incoming writes}}
+\DoxyCodeLine{00034         UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS = 0x15, \textcolor{comment}{// iMC RPQ Credits Empty -\/ Regular}}
+\DoxyCodeLine{00035         UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_MASK\_\_SNBEP\_UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_CHN0 = 0x100, \textcolor{comment}{// Channel 0}}
+\DoxyCodeLine{00036         UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_MASK\_\_SNBEP\_UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_CHN1 = 0x200, \textcolor{comment}{// Channel 1}}
+\DoxyCodeLine{00037         UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_MASK\_\_SNBEP\_UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_CHN2 = 0x400, \textcolor{comment}{// channel 2}}
+\DoxyCodeLine{00038         UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_MASK\_\_SNBEP\_UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_CHN3 = 0x800, \textcolor{comment}{// Chanell 3}}
+\DoxyCodeLine{00039         UNC\_H\_TAD\_REQUESTS\_G0 = 0x1b, \textcolor{comment}{// HA Requests to a TAD Region -\/ Group 0}}
+\DoxyCodeLine{00040         UNC\_H\_TAD\_REQUESTS\_G0\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G0\_\_REGION0 = 0x100, \textcolor{comment}{// Counts for TAD Region 0}}
+\DoxyCodeLine{00041         UNC\_H\_TAD\_REQUESTS\_G0\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G0\_\_REGION1 = 0x200, \textcolor{comment}{// Counts for TAD Region 1}}
+\DoxyCodeLine{00042         UNC\_H\_TAD\_REQUESTS\_G0\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G0\_\_REGION2 = 0x400, \textcolor{comment}{// Counts for TAD Region 2}}
+\DoxyCodeLine{00043         UNC\_H\_TAD\_REQUESTS\_G0\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G0\_\_REGION3 = 0x800, \textcolor{comment}{// Counts for TAD Region 3}}
+\DoxyCodeLine{00044         UNC\_H\_TAD\_REQUESTS\_G0\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G0\_\_REGION4 = 0x1000, \textcolor{comment}{// Counts for TAD Region 4}}
+\DoxyCodeLine{00045         UNC\_H\_TAD\_REQUESTS\_G0\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G0\_\_REGION5 = 0x2000, \textcolor{comment}{// Counts for TAD Region 5}}
+\DoxyCodeLine{00046         UNC\_H\_TAD\_REQUESTS\_G0\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G0\_\_REGION6 = 0x4000, \textcolor{comment}{// Counts for TAD Region 6}}
+\DoxyCodeLine{00047         UNC\_H\_TAD\_REQUESTS\_G0\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G0\_\_REGION7 = 0x8000, \textcolor{comment}{// Counts for TAD Region 7}}
+\DoxyCodeLine{00048         UNC\_H\_TAD\_REQUESTS\_G1 = 0x1c, \textcolor{comment}{// HA Requests to a TAD Region -\/ Group 1}}
+\DoxyCodeLine{00049         UNC\_H\_TAD\_REQUESTS\_G1\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G1\_\_REGION8 = 0x100, \textcolor{comment}{// Counts for TAD Region 8}}
+\DoxyCodeLine{00050         UNC\_H\_TAD\_REQUESTS\_G1\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G1\_\_REGION9 = 0x200, \textcolor{comment}{// Counts for TAD Region 9}}
+\DoxyCodeLine{00051         UNC\_H\_TAD\_REQUESTS\_G1\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G1\_\_REGION10 = 0x400, \textcolor{comment}{// Counts for TAD Region 10}}
+\DoxyCodeLine{00052         UNC\_H\_TAD\_REQUESTS\_G1\_\_MASK\_\_SNBEP\_UNC\_H\_TAD\_REQUESTS\_G1\_\_REGION11 = 0x800, \textcolor{comment}{// Counts for TAD Region 11}}
+\DoxyCodeLine{00053         UNC\_H\_TRACKER\_INSERTS = 0x6, \textcolor{comment}{// Tracker Allocations}}
+\DoxyCodeLine{00054         UNC\_H\_TRACKER\_INSERTS\_\_MASK\_\_SNBEP\_UNC\_H\_TRACKER\_INSERTS\_\_ALL = 0x300, \textcolor{comment}{// Counts all requests}}
+\DoxyCodeLine{00055         UNC\_H\_TXR\_AD = 0xf, \textcolor{comment}{// Outbound NDR Ring Transactions}}
+\DoxyCodeLine{00056         UNC\_H\_TXR\_AD\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AD\_\_NDR = 0x100, \textcolor{comment}{// Counts non-\/data responses}}
+\DoxyCodeLine{00057         UNC\_H\_TXR\_AD\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AD\_\_SNP = 0x200, \textcolor{comment}{// Counts outbound snoops send on the ring}}
+\DoxyCodeLine{00058         UNC\_H\_TXR\_AD\_CYCLES\_FULL = 0x2a, \textcolor{comment}{// AD Egress Full}}
+\DoxyCodeLine{00059         UNC\_H\_TXR\_AD\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AD\_CYCLES\_FULL\_\_ALL = 0x300, \textcolor{comment}{// Counts cycles full from both schedulers}}
+\DoxyCodeLine{00060         UNC\_H\_TXR\_AD\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AD\_CYCLES\_FULL\_\_SCHED0 = 0x100, \textcolor{comment}{// Counts cycles full from scheduler bank 0}}
+\DoxyCodeLine{00061         UNC\_H\_TXR\_AD\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AD\_CYCLES\_FULL\_\_SCHED1 = 0x200, \textcolor{comment}{// Counts cycles full from scheduler bank 1}}
+\DoxyCodeLine{00062         UNC\_H\_TXR\_AK\_CYCLES\_FULL = 0x32, \textcolor{comment}{// AK Egress Full}}
+\DoxyCodeLine{00063         UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_ALL = 0x300, \textcolor{comment}{// Counts cycles from both schedulers}}
+\DoxyCodeLine{00064         UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_SCHED0 = 0x100, \textcolor{comment}{// Counts cycles from scheduler bank 0}}
+\DoxyCodeLine{00065         UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_SCHED1 = 0x200, \textcolor{comment}{// Counts cycles from scheduler bank 1}}
+\DoxyCodeLine{00066         UNC\_H\_TXR\_AK\_NDR = 0xe, \textcolor{comment}{// Outbound NDR Ring Transactions}}
+\DoxyCodeLine{00067         UNC\_H\_TXR\_BL = 0x10, \textcolor{comment}{// Outbound DRS Ring Transactions to Cache}}
+\DoxyCodeLine{00068         UNC\_H\_TXR\_BL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_BL\_\_DRS\_CACHE = 0x100, \textcolor{comment}{// Counts data being sent to the cache}}
+\DoxyCodeLine{00069         UNC\_H\_TXR\_BL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_BL\_\_DRS\_CORE = 0x200, \textcolor{comment}{// Counts data being sent directly to the requesting core}}
+\DoxyCodeLine{00070         UNC\_H\_TXR\_BL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_BL\_\_DRS\_QPI = 0x400, \textcolor{comment}{// Counts data being sent to a remote socket over QPI}}
+\DoxyCodeLine{00071         UNC\_H\_TXR\_BL\_CYCLES\_FULL = 0x36, \textcolor{comment}{// BL Egress Full}}
+\DoxyCodeLine{00072         UNC\_H\_TXR\_BL\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_ALL = 0x300, \textcolor{comment}{// Counts cycles from both schedulers}}
+\DoxyCodeLine{00073         UNC\_H\_TXR\_BL\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_SCHED0 = 0x100, \textcolor{comment}{// Counts cycles from scheduler bank 0}}
+\DoxyCodeLine{00074         UNC\_H\_TXR\_BL\_CYCLES\_FULL\_\_MASK\_\_SNBEP\_UNC\_H\_TXR\_AK\_CYCLES\_FULL\_\_SCHED1 = 0x200, \textcolor{comment}{// Counts cycles from scheduler bank 1}}
+\DoxyCodeLine{00075         UNC\_H\_WPQ\_CYCLES\_NO\_REG\_CREDITS = 0x18, \textcolor{comment}{// HA iMC CHN0 WPQ Credits Empty -\/ Regular}}
+\DoxyCodeLine{00076         UNC\_H\_WPQ\_CYCLES\_NO\_REG\_CREDITS\_\_MASK\_\_SNBEP\_UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_CHN0 = 0x100, \textcolor{comment}{// Channel 0}}
+\DoxyCodeLine{00077         UNC\_H\_WPQ\_CYCLES\_NO\_REG\_CREDITS\_\_MASK\_\_SNBEP\_UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_CHN1 = 0x200, \textcolor{comment}{// Channel 1}}
+\DoxyCodeLine{00078         UNC\_H\_WPQ\_CYCLES\_NO\_REG\_CREDITS\_\_MASK\_\_SNBEP\_UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_CHN2 = 0x400, \textcolor{comment}{// channel 2}}
+\DoxyCodeLine{00079         UNC\_H\_WPQ\_CYCLES\_NO\_REG\_CREDITS\_\_MASK\_\_SNBEP\_UNC\_H\_RPQ\_CYCLES\_NO\_REG\_CREDITS\_\_CHN3 = 0x800, \textcolor{comment}{// Chanell 3}}
+\DoxyCodeLine{00080         UNC\_H\_ADDR\_OPC\_MATCH = 0x20, \textcolor{comment}{// QPI address/opcode match}}
+\DoxyCodeLine{00081         UNC\_H\_ADDR\_OPC\_MATCH\_\_MASK\_\_SNBEP\_UNC\_H\_ADDR\_OPC\_MATCH\_\_FILT = 0x300, \textcolor{comment}{// modifiers)}}
+\DoxyCodeLine{00082         }
+\DoxyCodeLine{00083     \};}
+\DoxyCodeLine{00084 \};}
+\DoxyCodeLine{00085 }
+\DoxyCodeLine{00086 \textcolor{keyword}{namespace }snbep\_unc\_h = optkit::intel::snbep\_unc\_h;}
+
+\end{DoxyCode}

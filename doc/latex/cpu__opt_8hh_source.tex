@@ -1,0 +1,27 @@
+\hypertarget{cpu__opt_8hh_source}{}\doxysection{cpu\+\_\+opt.\+hh}
+\label{cpu__opt_8hh_source}\index{cpu\_opt.hh@{cpu\_opt.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#ifndef OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_UTILS\_\_OPTIMIZATIONS\_\_CPU\_OPT\_HH}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#define OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_UTILS\_\_OPTIMIZATIONS\_\_CPU\_OPT\_HH}}
+\DoxyCodeLine{00003 }
+\DoxyCodeLine{00004 \textcolor{comment}{// all macros start with OPT\_ prefix.}}
+\DoxyCodeLine{00005 }
+\DoxyCodeLine{00006 }
+\DoxyCodeLine{00007 \textcolor{preprocessor}{\#ifdef \_\_GNUC\_\_ }}
+\DoxyCodeLine{00008 }
+\DoxyCodeLine{00009 \textcolor{preprocessor}{    \#define OPT\_LIKELY(EXPR) \_\_builtin\_expect((bool)(EXPR), true)}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{    \#define OPT\_UNLIKELY(EXPR) \_\_builtin\_expect((bool)(EXPR), false)}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{    \#define OPT\_PREFETCH(address, rw, locality) \_\_builtin\_prefetch((address), (rw), (locality))}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{    \#define OPT\_FORCE\_INLINE \_\_attribute\_\_((always\_inline)) }}
+\DoxyCodeLine{00013 }
+\DoxyCodeLine{00014 \textcolor{preprocessor}{\#else }\textcolor{comment}{// if compiler is not GNU}}
+\DoxyCodeLine{00015 \textcolor{preprocessor}{    \#define OPT\_LIKELY(EXPR) EXPR}}
+\DoxyCodeLine{00016 \textcolor{preprocessor}{    \#define OPT\_UNLIKELY(EXPR) EXPR}}
+\DoxyCodeLine{00017 \textcolor{preprocessor}{    \#define OPT\_PREFETCH(address, rw, locality)}}
+\DoxyCodeLine{00018 \textcolor{preprocessor}{    \#define OPT\_FORCE\_INLINE }}
+\DoxyCodeLine{00019 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00020 }
+\DoxyCodeLine{00021 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

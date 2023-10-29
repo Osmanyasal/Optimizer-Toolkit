@@ -1,0 +1,136 @@
+\hypertarget{kunpeng_8hh_source}{}\doxysection{kunpeng.\+hh}
+\label{kunpeng_8hh_source}\index{kunpeng.hh@{kunpeng.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{keyword}{namespace }optkit::arm::kunpeng\{}
+\DoxyCodeLine{00003     \textcolor{keyword}{enum} kunpeng : uint64\_t \{}
+\DoxyCodeLine{00004         SW\_INCR = 0x00, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00005         INST\_RETIRED = 0x08, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00006         EXC\_TAKEN = 0x09, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00007         EXC\_RETURN = 0x0a, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00008         CID\_WRITE\_RETIRED = 0x0b, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00009         BR\_RETURN\_RETIRED = 0x0e, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00010         TTBR\_WRITE\_RETIRED = 0x1c, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00011         BR\_RETIRED = 0x21, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00012         SVE\_INST\_RETIRED = 0x8002, \textcolor{comment}{// This event counts architecturally executed SVE instructions.}}
+\DoxyCodeLine{00013         L1I\_CACHE\_REFILL = 0x01, \textcolor{comment}{// Level 1 instruction cache refill.}}
+\DoxyCodeLine{00014         L1I\_TLB\_REFILL = 0x02, \textcolor{comment}{// Attributable Level 1 instruction TLB refill.}}
+\DoxyCodeLine{00015         L1D\_CACHE\_REFILL = 0x03, \textcolor{comment}{// Level 1 data cache refill.}}
+\DoxyCodeLine{00016         L1D\_CACHE = 0x04, \textcolor{comment}{// Level 1 data cache access.}}
+\DoxyCodeLine{00017         L1D\_TLB\_REFILL = 0x05, \textcolor{comment}{// Attributable Level 1 data TLB refill.}}
+\DoxyCodeLine{00018         BR\_MIS\_PRED = 0x10, \textcolor{comment}{// Mispredicted or not predicted branch. Speculatively executed.}}
+\DoxyCodeLine{00019         CPU\_CYCLES = 0x11, \textcolor{comment}{// Cycle.}}
+\DoxyCodeLine{00020         BR\_PRED = 0x12, \textcolor{comment}{// Predictable branch. Speculatively executed.}}
+\DoxyCodeLine{00021         MEM\_ACCESS = 0x13, \textcolor{comment}{// Data memory access.}}
+\DoxyCodeLine{00022         L1I\_CACHE = 0x14, \textcolor{comment}{// Attributable Level 1 instruction cache access.}}
+\DoxyCodeLine{00023         L1D\_CACHE\_WB = 0x15, \textcolor{comment}{// Attributable Level 1 data cache write-\/back.}}
+\DoxyCodeLine{00024         L2D\_CACHE = 0x16, \textcolor{comment}{// Level 2 data cache access.}}
+\DoxyCodeLine{00025         L2D\_CACHE\_REFILL = 0x17, \textcolor{comment}{// Level 2 data cache refill.}}
+\DoxyCodeLine{00026         L2D\_CACHE\_WB = 0x18, \textcolor{comment}{// Attributable Level 2 data cache write-\/back.}}
+\DoxyCodeLine{00027         BUS\_ACCESS = 0x19, \textcolor{comment}{// Attributable Bus access.}}
+\DoxyCodeLine{00028         MEMORY\_ERROR = 0x1a, \textcolor{comment}{// Local memory error.}}
+\DoxyCodeLine{00029         INST\_SPEC = 0x001b, \textcolor{comment}{// Operation speculatively executed.}}
+\DoxyCodeLine{00030         BUS\_CYCLES = 0x1d, \textcolor{comment}{// Bus cycle.}}
+\DoxyCodeLine{00031         BR\_MIS\_PRED\_RETIRED = 0x22, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00032         STALL\_FRONTEND = 0x23, \textcolor{comment}{// No operation issued due to the frontend.}}
+\DoxyCodeLine{00033         STALL\_BACKEND = 0x24, \textcolor{comment}{// No operation issued due to the backend.}}
+\DoxyCodeLine{00034         L1D\_TLB = 0x25, \textcolor{comment}{// Attributable Level 1 data or unified TLB access.}}
+\DoxyCodeLine{00035         L1I\_TLB = 0x26, \textcolor{comment}{// Attributable Level 1 instruction TLB access.}}
+\DoxyCodeLine{00036         L2I\_CACHE = 0x27, \textcolor{comment}{// Attributable Level 2 instruction cache access.}}
+\DoxyCodeLine{00037         L2I\_CACHE\_REFILL = 0x28, \textcolor{comment}{// Attributable Level 2 instruction cache refill.}}
+\DoxyCodeLine{00038         L2D\_TLB\_REFILL = 0x2d, \textcolor{comment}{// Attributable Level 2 data TLB refill.}}
+\DoxyCodeLine{00039         L2I\_TLB\_REFILL = 0x2e, \textcolor{comment}{// Attributable Level 2 instruction TLB refill.}}
+\DoxyCodeLine{00040         L2D\_TLB = 0x2f, \textcolor{comment}{// Attributable Level 2 data or unified TLB access.}}
+\DoxyCodeLine{00041         L2I\_TLB = 0x30, \textcolor{comment}{// Attributable Level 2 instruction TLB access.}}
+\DoxyCodeLine{00042         REMOTE\_ACCESS = 0x31, \textcolor{comment}{// Access to another socket in a multi-\/socket system.}}
+\DoxyCodeLine{00043         LL\_CACHE = 0x32, \textcolor{comment}{// Last Level cache access.}}
+\DoxyCodeLine{00044         LL\_CACHE\_MISS = 0x33, \textcolor{comment}{// Last Level cache miss.}}
+\DoxyCodeLine{00045         DTLB\_WALK = 0x34, \textcolor{comment}{// Access to data TLB causes a translation table walk.}}
+\DoxyCodeLine{00046         ITLB\_WALK = 0x35, \textcolor{comment}{// Access to instruction TLB that causes a translation table walk.}}
+\DoxyCodeLine{00047         LL\_CACHE\_RD = 0x36, \textcolor{comment}{// Attributable Last level cache memory read.}}
+\DoxyCodeLine{00048         LL\_CACHE\_MISS\_RD = 0x37, \textcolor{comment}{// Last level cache miss}}
+\DoxyCodeLine{00049         REMOTE\_ACCESS\_RD = 0x38, \textcolor{comment}{// Access to another socket in a multi-\/socket system}}
+\DoxyCodeLine{00050         SAMPLE\_POP = 0x4000, \textcolor{comment}{// Sample Population.}}
+\DoxyCodeLine{00051         SAMPLE\_FEED = 0x4001, \textcolor{comment}{// Sample Taken.}}
+\DoxyCodeLine{00052         SAMPLE\_FILTRATE = 0x4002, \textcolor{comment}{// Sample taken and not removed by filtering.}}
+\DoxyCodeLine{00053         SAMPLE\_COLLISION = 0x4003, \textcolor{comment}{// Sample collided with a previous sample.}}
+\DoxyCodeLine{00054         L1D\_CACHE\_RD = 0x40, \textcolor{comment}{// Attributable Level 1 data cache access}}
+\DoxyCodeLine{00055         L1D\_CACHE\_WR = 0x41, \textcolor{comment}{// Attributable Level 1 data cache access}}
+\DoxyCodeLine{00056         L1D\_CACHE\_REFILL\_RD = 0x42, \textcolor{comment}{// Attributable Level 1 data cache refill}}
+\DoxyCodeLine{00057         L1D\_CACHE\_REFILL\_WR = 0x43, \textcolor{comment}{// Attributable Level 1 data cache refill}}
+\DoxyCodeLine{00058         L1D\_CACHE\_WB\_VICTIM = 0x46, \textcolor{comment}{// Attributable Level 1 data cache Write-\/Back}}
+\DoxyCodeLine{00059         L1D\_CACHE\_WB\_CLEAN = 0x47, \textcolor{comment}{// Level 1 data cache Write-\/Back}}
+\DoxyCodeLine{00060         L1D\_CACHE\_INVAL = 0x48, \textcolor{comment}{// Attributable Level 1 data cache invalidate.}}
+\DoxyCodeLine{00061         L1D\_TLB\_REFILL\_RD = 0x4c, \textcolor{comment}{// Attributable Level 1 data TLB refill}}
+\DoxyCodeLine{00062         L1D\_TLB\_REFILL\_WR = 0x4d, \textcolor{comment}{// Attributable Level 1 data TLB refill}}
+\DoxyCodeLine{00063         L1D\_TLB\_RD = 0x4e, \textcolor{comment}{// Attributable Level 1 data or unified TLB access}}
+\DoxyCodeLine{00064         L1D\_TLB\_WR = 0x4f, \textcolor{comment}{// Attributable Level 1 data or unified TLB access}}
+\DoxyCodeLine{00065         L2D\_CACHE\_RD = 0x50, \textcolor{comment}{// Attributable Level 2 data cache access}}
+\DoxyCodeLine{00066         L2D\_CACHE\_WR = 0x51, \textcolor{comment}{// Attributable Level 2 data cache access}}
+\DoxyCodeLine{00067         L2D\_CACHE\_REFILL\_RD = 0x52, \textcolor{comment}{// Attributable Level 2 data cache refill}}
+\DoxyCodeLine{00068         L2D\_CACHE\_REFILL\_WR = 0x53, \textcolor{comment}{// Attributable Level 2 data cache refill}}
+\DoxyCodeLine{00069         L2D\_CACHE\_WB\_VICTIM = 0x56, \textcolor{comment}{// Attributable Level 2 data cache Write-\/Back}}
+\DoxyCodeLine{00070         L2D\_CACHE\_WB\_CLEAN = 0x57, \textcolor{comment}{// Level 2 data cache Write-\/Back}}
+\DoxyCodeLine{00071         L2D\_CACHE\_INVAL = 0x58, \textcolor{comment}{// Attributable Level 2 data cache invalidate.}}
+\DoxyCodeLine{00072         BUS\_ACCESS\_RD = 0x60, \textcolor{comment}{// Bus access}}
+\DoxyCodeLine{00073         BUS\_ACCESS\_WR = 0x61, \textcolor{comment}{// Bus access}}
+\DoxyCodeLine{00074         BUS\_ACCESS\_SHARED = 0x62, \textcolor{comment}{// Bus access}}
+\DoxyCodeLine{00075         BUS\_ACCESS\_NOT\_SHARED = 0x63, \textcolor{comment}{// Bus access}}
+\DoxyCodeLine{00076         BUS\_ACCESS\_NORMAL = 0x64, \textcolor{comment}{// Bus access}}
+\DoxyCodeLine{00077         BUS\_ACCESS\_PERIPH = 0x65, \textcolor{comment}{// Bus access}}
+\DoxyCodeLine{00078         MEM\_ACCESS\_RD = 0x66, \textcolor{comment}{// Data memory access}}
+\DoxyCodeLine{00079         MEM\_ACCESS\_WR = 0x67, \textcolor{comment}{// Data memory access}}
+\DoxyCodeLine{00080         UNALIGNED\_LD\_SPEC = 0x68, \textcolor{comment}{// Unaligned access}}
+\DoxyCodeLine{00081         UNALIGNED\_ST\_SPEC = 0x69, \textcolor{comment}{// Unaligned access}}
+\DoxyCodeLine{00082         UNALIGNED\_LDST\_SPEC = 0x6a, \textcolor{comment}{// Unaligned access.}}
+\DoxyCodeLine{00083         LDREX\_SPEC = 0x6c, \textcolor{comment}{// Exclusive operation speculatively executed}}
+\DoxyCodeLine{00084         STREX\_PASS\_SPEC = 0x6d, \textcolor{comment}{// Exclusive operation speculatively executed}}
+\DoxyCodeLine{00085         STREX\_FAIL\_SPEC = 0x6e, \textcolor{comment}{// Exclusive operation speculatively executed}}
+\DoxyCodeLine{00086         STREX\_SPEC = 0x6f, \textcolor{comment}{// Exclusive operation speculatively executed}}
+\DoxyCodeLine{00087         LD\_SPEC = 0x70, \textcolor{comment}{// Operation speculatively executed}}
+\DoxyCodeLine{00088         ST\_SPEC = 0x71, \textcolor{comment}{// Operation speculatively executed}}
+\DoxyCodeLine{00089         LDST\_SPEC = 0x72, \textcolor{comment}{// Operation speculatively executed}}
+\DoxyCodeLine{00090         DP\_SPEC = 0x73, \textcolor{comment}{// Operation speculatively executed}}
+\DoxyCodeLine{00091         ASE\_SPEC = 0x74, \textcolor{comment}{// Operation speculatively executed}}
+\DoxyCodeLine{00092         VFP\_SPEC = 0x75, \textcolor{comment}{// Operation speculatively executed}}
+\DoxyCodeLine{00093         PC\_WRITE\_SPEC = 0x76, \textcolor{comment}{// Operation speculatively executed}}
+\DoxyCodeLine{00094         CRYPTO\_SPEC = 0x77, \textcolor{comment}{// Operation speculatively executed}}
+\DoxyCodeLine{00095         BR\_IMMED\_SPEC = 0x78, \textcolor{comment}{// Branch speculatively executed}}
+\DoxyCodeLine{00096         BR\_RETURN\_SPEC = 0x79, \textcolor{comment}{// Branch speculatively executed}}
+\DoxyCodeLine{00097         BR\_INDIRECT\_SPEC = 0x7a, \textcolor{comment}{// Branch speculatively executed}}
+\DoxyCodeLine{00098         ISB\_SPEC = 0x7c, \textcolor{comment}{// Barrier speculatively executed}}
+\DoxyCodeLine{00099         DSB\_SPEC = 0x7d, \textcolor{comment}{// Barrier speculatively executed}}
+\DoxyCodeLine{00100         DMB\_SPEC = 0x7e, \textcolor{comment}{// Barrier speculatively executed}}
+\DoxyCodeLine{00101         EXC\_UNDEF = 0x81, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00102         EXC\_SVC = 0x82, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00103         EXC\_PABORT = 0x83, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00104         EXC\_DABORT = 0x84, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00105         EXC\_IRQ = 0x86, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00106         EXC\_FIQ = 0x87, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00107         EXC\_SMC = 0x88, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00108         EXC\_HVC = 0x8a, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00109         EXC\_TRAP\_PABORT = 0x8b, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00110         EXC\_TRAP\_DABORT = 0x8c, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00111         EXC\_TRAP\_OTHER = 0x8d, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00112         EXC\_TRAP\_IRQ = 0x8e, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00113         EXC\_TRAP\_FIQ = 0x8f, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00114         RC\_LD\_SPEC = 0x90, \textcolor{comment}{// Release consistency operation speculatively executed}}
+\DoxyCodeLine{00115         RC\_ST\_SPEC = 0x91, \textcolor{comment}{// Release consistency operation speculatively executed}}
+\DoxyCodeLine{00116         L1I\_CACHE\_PRF = 0x102e, \textcolor{comment}{// Level 1 instruction cache prefetch access count.}}
+\DoxyCodeLine{00117         L1I\_CACHE\_PRF\_REFILL = 0x102f, \textcolor{comment}{// Level 1 instruction cache miss due to prefetch access count}}
+\DoxyCodeLine{00118         IQ\_IS\_EMPTY = 0x1043, \textcolor{comment}{// Instruction queue is empty}}
+\DoxyCodeLine{00119         IF\_IS\_STALL = 0x1044, \textcolor{comment}{// Instruction fetch stall cycles}}
+\DoxyCodeLine{00120         FETCH\_BUBBLE = 0x2014, \textcolor{comment}{// Instructions can receive}}
+\DoxyCodeLine{00121         PRF\_REQ = 0x6013, \textcolor{comment}{// Prefetch request from LSU}}
+\DoxyCodeLine{00122         HIT\_ON\_PRF = 0x6014, \textcolor{comment}{// Hit on prefetched data}}
+\DoxyCodeLine{00123         EXE\_STALL\_CYCLE = 0x7001, \textcolor{comment}{// Cycles of that the number of issuing micro operations are less than 4}}
+\DoxyCodeLine{00124         MEM\_STALL\_ANYLOAD = 0x7004, \textcolor{comment}{// No any micro operation is issued and meanwhile any load operation is not resolved}}
+\DoxyCodeLine{00125         MEM\_STALL\_L1MISS = 0x7006, \textcolor{comment}{// No any micro operation is issued and meanwhile there is any load operation missing L1 cache and pending data refill}}
+\DoxyCodeLine{00126         }
+\DoxyCodeLine{00127     \};}
+\DoxyCodeLine{00128 \};}
+\DoxyCodeLine{00129 }
+\DoxyCodeLine{00130 \textcolor{keyword}{namespace }kunpeng = optkit::arm::kunpeng;}
+
+\end{DoxyCode}

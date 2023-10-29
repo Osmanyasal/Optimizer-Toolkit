@@ -1,0 +1,35 @@
+\hypertarget{snb__unc__cbo_8hh_source}{}\doxysection{snb\+\_\+unc\+\_\+cbo.\+hh}
+\label{snb__unc__cbo_8hh_source}\index{snb\_unc\_cbo.hh@{snb\_unc\_cbo.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::snb\_unc\_cbo\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} snb\_unc\_cbo : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_CBO\_XSNP\_RESPONSE = 0x22, \textcolor{comment}{// Snoop responses (must provide a snoop type and filter)}}
+\DoxyCodeLine{00006         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_MISS = 0x100, \textcolor{comment}{// Number of snoop misses}}
+\DoxyCodeLine{00007         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_INVAL = 0x200, \textcolor{comment}{// Number of snoop invalidates of a non-\/modified line}}
+\DoxyCodeLine{00008         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_HIT = 0x400, \textcolor{comment}{// Number of snoop hits of a non-\/modified line}}
+\DoxyCodeLine{00009         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_HITM = 0x800, \textcolor{comment}{// Number of snoop hits of a modified line}}
+\DoxyCodeLine{00010         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_INVAL\_M = 0x1000, \textcolor{comment}{// Number of snoop invalidates of a modified line}}
+\DoxyCodeLine{00011         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_ANY\_SNP = 0x1f00, \textcolor{comment}{// Number of snoops}}
+\DoxyCodeLine{00012         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_EXTERNAL\_FILTER = 0x2000, \textcolor{comment}{// Filter on cross-\/core snoops initiated by this Cbox due to external snoop request}}
+\DoxyCodeLine{00013         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_XCORE\_FILTER = 0x4000, \textcolor{comment}{// Filter on cross-\/core snoops initiated by this Cbox due to processor core memory request}}
+\DoxyCodeLine{00014         UNC\_CBO\_XSNP\_RESPONSE\_\_MASK\_\_SNB\_UNC\_CBO\_XSNP\_RESPONSE\_\_EVICTION\_FILTER = 0x8000, \textcolor{comment}{// Filter on cross-\/core snoops initiated by this Cbox due to LLC eviction}}
+\DoxyCodeLine{00015         UNC\_CBO\_CACHE\_LOOKUP = 0x34, \textcolor{comment}{// LLC cache lookups}}
+\DoxyCodeLine{00016         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_STATE\_M = 0x100, \textcolor{comment}{// Number of LLC lookup requests for a line in modified state}}
+\DoxyCodeLine{00017         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_STATE\_E = 0x200, \textcolor{comment}{// Number of LLC lookup requests for a line in exclusive state}}
+\DoxyCodeLine{00018         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_STATE\_S = 0x400, \textcolor{comment}{// Number of LLC lookup requests for a line in shared state}}
+\DoxyCodeLine{00019         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_STATE\_I = 0x800, \textcolor{comment}{// Number of LLC lookup requests for a line in invalid state}}
+\DoxyCodeLine{00020         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_STATE\_MESI = 0xf00, \textcolor{comment}{// Number of LLC lookup requests for a line}}
+\DoxyCodeLine{00021         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_READ\_FILTER = 0x1000, \textcolor{comment}{// Filter on processor core initiated cacheable read requests}}
+\DoxyCodeLine{00022         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_WRITE\_FILTER = 0x2000, \textcolor{comment}{// Filter on processor core initiated cacheable write requests}}
+\DoxyCodeLine{00023         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_EXTSNP\_FILTER = 0x4000, \textcolor{comment}{// Filter on external snoop requests}}
+\DoxyCodeLine{00024         UNC\_CBO\_CACHE\_LOOKUP\_\_MASK\_\_SNB\_UNC\_CBO\_CACHE\_LOOKUP\_\_ANY\_FILTER = 0x8000, \textcolor{comment}{// Filter on any IRQ or IPQ initiated requests including uncacheable}}
+\DoxyCodeLine{00025         }
+\DoxyCodeLine{00026     \};}
+\DoxyCodeLine{00027 \};}
+\DoxyCodeLine{00028 }
+\DoxyCodeLine{00029 \textcolor{keyword}{namespace }snb\_unc\_cbo = optkit::intel::snb\_unc\_cbo;}
+
+\end{DoxyCode}

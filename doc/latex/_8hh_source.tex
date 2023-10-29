@@ -1,0 +1,40 @@
+\hypertarget{_8hh_source}{}\doxysection{.hh}
+\label{_8hh_source}\index{.hh@{.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::::\{}
+\DoxyCodeLine{00004     enum  : uint64\_t \{}
+\DoxyCodeLine{00005         ICACHE\_MISS = 0x00, \textcolor{comment}{// Instruction cache miss (includes speculative accesses)}}
+\DoxyCodeLine{00006         IBUF\_STALL = 0x01, \textcolor{comment}{// Stall because instruction buffer cannot deliver an instruction}}
+\DoxyCodeLine{00007         DDEP\_STALL = 0x02, \textcolor{comment}{// Stall because of data dependency}}
+\DoxyCodeLine{00008         ITLB\_MISS = 0x03, \textcolor{comment}{// Instruction MicroTLB miss}}
+\DoxyCodeLine{00009         DTLB\_MISS = 0x04, \textcolor{comment}{// Data MicroTLB miss}}
+\DoxyCodeLine{00010         BR\_EXEC = 0x05, \textcolor{comment}{// Branch instruction executed}}
+\DoxyCodeLine{00011         BR\_MISPREDICT = 0x06, \textcolor{comment}{// Branch mispredicted}}
+\DoxyCodeLine{00012         INSTR\_EXEC = 0x07, \textcolor{comment}{// Instruction executed}}
+\DoxyCodeLine{00013         DCACHE\_HIT = 0x09, \textcolor{comment}{// Data cache hit}}
+\DoxyCodeLine{00014         DCACHE\_ACCESS = 0x0a, \textcolor{comment}{// Data cache access}}
+\DoxyCodeLine{00015         DCACHE\_MISS = 0x0b, \textcolor{comment}{// Data cache miss}}
+\DoxyCodeLine{00016         DCACHE\_WBACK = 0x0c, \textcolor{comment}{// Data cache writeback}}
+\DoxyCodeLine{00017         SW\_PC\_CHANGE = 0x0d, \textcolor{comment}{// Software changed the PC.}}
+\DoxyCodeLine{00018         MAIN\_TLB\_MISS = 0x0f, \textcolor{comment}{// Main TLB miss}}
+\DoxyCodeLine{00019         EXPL\_D\_ACCESS = 0x10, \textcolor{comment}{// Explicit external data cache access}}
+\DoxyCodeLine{00020         LSU\_FULL\_STALL = 0x11, \textcolor{comment}{// Stall because of a full Load Store Unit request queue.}}
+\DoxyCodeLine{00021         WBUF\_DRAINED = 0x12, \textcolor{comment}{// Write buffer drained due to data synchronization barrier or strongly ordered operation}}
+\DoxyCodeLine{00022         ETMEXTOUT\_0 = 0x20, \textcolor{comment}{// ETMEXTOUT[0] was asserted}}
+\DoxyCodeLine{00023         ETMEXTOUT\_1 = 0x21, \textcolor{comment}{// ETMEXTOUT[1] was asserted}}
+\DoxyCodeLine{00024         ETMEXTOUT = 0x22, \textcolor{comment}{// Increment once for each of ETMEXTOUT[0] or ETMEXTOUT[1]}}
+\DoxyCodeLine{00025         PROC\_CALL\_EXEC = 0x23, \textcolor{comment}{// Procedure call instruction executed}}
+\DoxyCodeLine{00026         PROC\_RET\_EXEC = 0x24, \textcolor{comment}{// Procedure return instruction executed}}
+\DoxyCodeLine{00027         PROC\_RET\_EXEC\_PRED = 0x25, \textcolor{comment}{// Procedure return instruction executed and address predicted}}
+\DoxyCodeLine{00028         PROC\_RET\_EXEC\_PRED\_INCORRECT = 0x26, \textcolor{comment}{// Procedure return instruction executed and address predicted incorrectly}}
+\DoxyCodeLine{00029         CPU\_CYCLES = 0xff, \textcolor{comment}{// CPU cycles}}
+\DoxyCodeLine{00030         }
+\DoxyCodeLine{00031     \};}
+\DoxyCodeLine{00032 \};}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034 \textcolor{keyword}{namespace  }= optkit::::;}
+
+\end{DoxyCode}

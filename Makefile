@@ -9,6 +9,9 @@ CXX_LIBS := -fopenmp
 CXX_PGO_GENERATE := -fprofile-generate 
 CXX_FLAGS :=  $(CXX_OPT_FLAGS) $(CXX_VERSION) $(CXX_DEBUG) $(CXX_WARNINGS) $(CXX_LIBS) 
 
+DOXYGEN_CONFIG_FILE := ./doxyfile
+DOXYGEN_OUT_FOLDER := ./doc/
+
 BIN := ./bin
 SRC := ./src
 OBJ := $(BIN)/obj
@@ -134,6 +137,12 @@ $(OBJ)/%.o: ./%.cc
 	mkdir -p $(@D)
 	$(CXX) $(CXX_FLAGS) -c -o $@ $< $(INCLUDE) $(CXX_PFM) 
 
+doc_build:
+	@doxygen ${DOXYGEN_CONFIG_FILE}
+
+doc_clean:
+	@rm -rf ${DOXYGEN_OUT_FOLDER}
+
 clean: 
 	rm -rf $(BIN)/*
 	rm -rf ~/.local/share/applications/optimizer_toolkit.desktop ## remove dekstop icon
@@ -151,9 +160,9 @@ clean_libs:
 	cd $(LIB_PFM_PATH) && ./install.sh clean 
 	@echo "🧹 Libraries cleaned!"
 
-clean_all: clean clean_events clean_libs
+clean_all: clean clean_events clean_libs doc_clean
 	@echo "🧹 Everything is cleaned"
-
+ 
 ## THESE ARE FOR MONITORING
 CALL_STACK_METHOD := lbr
 monitor_callstack: $(BIN)/$(EXECUTABLE)

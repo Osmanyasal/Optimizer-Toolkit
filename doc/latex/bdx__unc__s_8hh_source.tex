@@ -1,0 +1,93 @@
+\hypertarget{bdx__unc__s_8hh_source}{}\doxysection{bdx\+\_\+unc\+\_\+s.\+hh}
+\label{bdx__unc__s_8hh_source}\index{bdx\_unc\_s.hh@{bdx\_unc\_s.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::bdx\_unc\_s\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} bdx\_unc\_s : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_S\_BOUNCE\_CONTROL = 0xa, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00006         UNC\_S\_CLOCKTICKS = 0x0, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00007         UNC\_S\_FAST\_ASSERTED = 0x9, \textcolor{comment}{// Counts the number of cycles either the local or incoming distress signals are asserted.  Incoming distress includes up}}
+\DoxyCodeLine{00008         UNC\_S\_RING\_AD\_USED = 0x1b, \textcolor{comment}{// Counts the number of cycles that the AD ring is being used at this ring stop.  This includes when packets are passing by and when packets are being sent}}
+\DoxyCodeLine{00009         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and Event}}
+\DoxyCodeLine{00010         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and Odd}}
+\DoxyCodeLine{00011         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even}}
+\DoxyCodeLine{00012         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and Odd}}
+\DoxyCodeLine{00013         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x300, \textcolor{comment}{// Up}}
+\DoxyCodeLine{00014         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down}}
+\DoxyCodeLine{00015         UNC\_S\_RING\_AK\_USED = 0x1c, \textcolor{comment}{// Counts the number of cycles that the AK ring is being used at this ring stop.  This includes when packets are passing by and when packets are being sent}}
+\DoxyCodeLine{00016         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and Event}}
+\DoxyCodeLine{00017         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and Odd}}
+\DoxyCodeLine{00018         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even}}
+\DoxyCodeLine{00019         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and Odd}}
+\DoxyCodeLine{00020         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x300, \textcolor{comment}{// Up}}
+\DoxyCodeLine{00021         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down}}
+\DoxyCodeLine{00022         UNC\_S\_RING\_BL\_USED = 0x1d, \textcolor{comment}{// Counts the number of cycles that the BL ring is being used at this ring stop.  This includes when packets are passing by and when packets are being sent}}
+\DoxyCodeLine{00023         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and Event}}
+\DoxyCodeLine{00024         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and Odd}}
+\DoxyCodeLine{00025         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even}}
+\DoxyCodeLine{00026         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and Odd}}
+\DoxyCodeLine{00027         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x300, \textcolor{comment}{// Up}}
+\DoxyCodeLine{00028         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down}}
+\DoxyCodeLine{00029         UNC\_S\_RING\_BOUNCES = 0x5, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00030         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_BDX\_UNC\_S\_RING\_BOUNCES\_\_AD\_CACHE = 0x100, \textcolor{comment}{// Number of LLC responses that bounced on the Ring. -\/-\/}}
+\DoxyCodeLine{00031         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_BDX\_UNC\_S\_RING\_BOUNCES\_\_AK\_CORE = 0x200, \textcolor{comment}{// Number of LLC responses that bounced on the Ring. -\/-\/ Acknowledgements to core}}
+\DoxyCodeLine{00032         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_BDX\_UNC\_S\_RING\_BOUNCES\_\_BL\_CORE = 0x400, \textcolor{comment}{// Number of LLC responses that bounced on the Ring. -\/-\/ Data Responses to core}}
+\DoxyCodeLine{00033         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_BDX\_UNC\_S\_RING\_BOUNCES\_\_IV\_CORE = 0x800, \textcolor{comment}{// Number of LLC responses that bounced on the Ring. -\/-\/ Snoops of processors cachee.}}
+\DoxyCodeLine{00034         UNC\_S\_RING\_IV\_USED = 0x1e, \textcolor{comment}{// Counts the number of cycles that the BL ring is being used at this ring stop.  This includes when packets are passing by and when packets are being sent}}
+\DoxyCodeLine{00035         UNC\_S\_RING\_IV\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_IV\_USED\_\_DN = 0xc00, \textcolor{comment}{// BL Ring in Use -\/-\/ Any}}
+\DoxyCodeLine{00036         UNC\_S\_RING\_IV\_USED\_\_MASK\_\_BDX\_UNC\_S\_RING\_IV\_USED\_\_UP = 0x300, \textcolor{comment}{// BL Ring in Use -\/-\/ Any}}
+\DoxyCodeLine{00037         UNC\_S\_RXR\_BYPASS = 0x12, \textcolor{comment}{// Bypass the Sbo Ingress.}}
+\DoxyCodeLine{00038         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x200, \textcolor{comment}{// Bypass -\/-\/ AD -\/ Bounces}}
+\DoxyCodeLine{00039         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x100, \textcolor{comment}{// Bypass -\/-\/ AD -\/ Credits}}
+\DoxyCodeLine{00040         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// Bypass -\/-\/ AK}}
+\DoxyCodeLine{00041         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x800, \textcolor{comment}{// Bypass -\/-\/ BL -\/ Bounces}}
+\DoxyCodeLine{00042         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x400, \textcolor{comment}{// Bypass -\/-\/ BL -\/ Credits}}
+\DoxyCodeLine{00043         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// Bypass -\/-\/ IV}}
+\DoxyCodeLine{00044         UNC\_S\_RXR\_INSERTS = 0x13, \textcolor{comment}{// Number of allocations into the Sbo Ingress  The Ingress is used to queue up requests received from the ring.}}
+\DoxyCodeLine{00045         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_INSERTS\_\_AD\_BNC = 0x200, \textcolor{comment}{// Ingress Allocations -\/-\/ AD -\/ Bounces}}
+\DoxyCodeLine{00046         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_INSERTS\_\_AD\_CRD = 0x100, \textcolor{comment}{// Ingress Allocations -\/-\/ AD -\/ Credits}}
+\DoxyCodeLine{00047         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_INSERTS\_\_AK = 0x1000, \textcolor{comment}{// Ingress Allocations -\/-\/ AK}}
+\DoxyCodeLine{00048         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_INSERTS\_\_BL\_BNC = 0x800, \textcolor{comment}{// Ingress Allocations -\/-\/ BL -\/ Bounces}}
+\DoxyCodeLine{00049         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_INSERTS\_\_BL\_CRD = 0x400, \textcolor{comment}{// Ingress Allocations -\/-\/ BL -\/ Credits}}
+\DoxyCodeLine{00050         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_RXR\_INSERTS\_\_IV = 0x2000, \textcolor{comment}{// Ingress Allocations -\/-\/ IV}}
+\DoxyCodeLine{00051         UNC\_S\_RXR\_OCCUPANCY = 0x11, \textcolor{comment}{// Occupancy event for the Ingress buffers in the Sbo.  The Ingress is used to queue up requests received from the ring.}}
+\DoxyCodeLine{00052         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_RXR\_OCCUPANCY\_\_AD\_BNC = 0x200, \textcolor{comment}{// Ingress Occupancy -\/-\/ AD -\/ Bounces}}
+\DoxyCodeLine{00053         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_RXR\_OCCUPANCY\_\_AD\_CRD = 0x100, \textcolor{comment}{// Ingress Occupancy -\/-\/ AD -\/ Credits}}
+\DoxyCodeLine{00054         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_RXR\_OCCUPANCY\_\_AK = 0x1000, \textcolor{comment}{// Ingress Occupancy -\/-\/ AK}}
+\DoxyCodeLine{00055         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_RXR\_OCCUPANCY\_\_BL\_BNC = 0x800, \textcolor{comment}{// Ingress Occupancy -\/-\/ BL -\/ Bounces}}
+\DoxyCodeLine{00056         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_RXR\_OCCUPANCY\_\_BL\_CRD = 0x400, \textcolor{comment}{// Ingress Occupancy -\/-\/ BL -\/ Credits}}
+\DoxyCodeLine{00057         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_RXR\_OCCUPANCY\_\_IV = 0x2000, \textcolor{comment}{// Ingress Occupancy -\/-\/ IV}}
+\DoxyCodeLine{00058         UNC\_S\_TXR\_ADS\_USED = 0x4, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00059         UNC\_S\_TXR\_ADS\_USED\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ADS\_USED\_\_AD = 0x100, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00060         UNC\_S\_TXR\_ADS\_USED\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ADS\_USED\_\_AK = 0x200, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00061         UNC\_S\_TXR\_ADS\_USED\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ADS\_USED\_\_BL = 0x400, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00062         UNC\_S\_TXR\_INSERTS = 0x2, \textcolor{comment}{// Number of allocations into the Sbo Egress.  The Egress is used to queue up requests destined for the ring.}}
+\DoxyCodeLine{00063         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_TXR\_INSERTS\_\_AD\_BNC = 0x200, \textcolor{comment}{// Egress Allocations -\/-\/ AD -\/ Bounces}}
+\DoxyCodeLine{00064         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_TXR\_INSERTS\_\_AD\_CRD = 0x100, \textcolor{comment}{// Egress Allocations -\/-\/ AD -\/ Credits}}
+\DoxyCodeLine{00065         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_TXR\_INSERTS\_\_AK = 0x1000, \textcolor{comment}{// Egress Allocations -\/-\/ AK}}
+\DoxyCodeLine{00066         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_TXR\_INSERTS\_\_BL\_BNC = 0x800, \textcolor{comment}{// Egress Allocations -\/-\/ BL -\/ Bounces}}
+\DoxyCodeLine{00067         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_TXR\_INSERTS\_\_BL\_CRD = 0x400, \textcolor{comment}{// Egress Allocations -\/-\/ BL -\/ Credits}}
+\DoxyCodeLine{00068         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_S\_TXR\_INSERTS\_\_IV = 0x2000, \textcolor{comment}{// Egress Allocations -\/-\/ IV}}
+\DoxyCodeLine{00069         UNC\_S\_TXR\_OCCUPANCY = 0x1, \textcolor{comment}{// Occupancy event for the Egress buffers in the Sbo.  The egress is used to queue up requests destined for the ring.}}
+\DoxyCodeLine{00070         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_TXR\_OCCUPANCY\_\_AD\_BNC = 0x200, \textcolor{comment}{// Egress Occupancy -\/-\/ AD -\/ Bounces}}
+\DoxyCodeLine{00071         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_TXR\_OCCUPANCY\_\_AD\_CRD = 0x100, \textcolor{comment}{// Egress Occupancy -\/-\/ AD -\/ Credits}}
+\DoxyCodeLine{00072         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_TXR\_OCCUPANCY\_\_AK = 0x1000, \textcolor{comment}{// Egress Occupancy -\/-\/ AK}}
+\DoxyCodeLine{00073         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_TXR\_OCCUPANCY\_\_BL\_BNC = 0x800, \textcolor{comment}{// Egress Occupancy -\/-\/ BL -\/ Bounces}}
+\DoxyCodeLine{00074         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_TXR\_OCCUPANCY\_\_BL\_CRD = 0x400, \textcolor{comment}{// Egress Occupancy -\/-\/ BL -\/ Credits}}
+\DoxyCodeLine{00075         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_S\_TXR\_OCCUPANCY\_\_IV = 0x2000, \textcolor{comment}{// Egress Occupancy -\/-\/ IV}}
+\DoxyCodeLine{00076         UNC\_S\_TXR\_ORDERING = 0x7, \textcolor{comment}{// TB}}
+\DoxyCodeLine{00077         UNC\_S\_TXR\_ORDERING\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ORDERING\_\_IVSNOOPGO\_UP = 0x100, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00078         UNC\_S\_TXR\_ORDERING\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ORDERING\_\_IVSNOOP\_DN = 0x200, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00079         UNC\_S\_TXR\_ORDERING\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ORDERING\_\_AK\_U2C\_UP\_EVEN = 0x400, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00080         UNC\_S\_TXR\_ORDERING\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ORDERING\_\_AK\_U2C\_UP\_ODD = 0x800, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00081         UNC\_S\_TXR\_ORDERING\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ORDERING\_\_AK\_U2C\_DN\_EVEN = 0x1000, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00082         UNC\_S\_TXR\_ORDERING\_\_MASK\_\_BDX\_UNC\_S\_TXR\_ORDERING\_\_AK\_U2C\_DN\_ODD = 0x2000, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00083         }
+\DoxyCodeLine{00084     \};}
+\DoxyCodeLine{00085 \};}
+\DoxyCodeLine{00086 }
+\DoxyCodeLine{00087 \textcolor{keyword}{namespace }bdx\_unc\_s = optkit::intel::bdx\_unc\_s;}
+
+\end{DoxyCode}

@@ -1,0 +1,46 @@
+\hypertarget{cortex__a53_8hh_source}{}\doxysection{cortex\+\_\+a53.\+hh}
+\label{cortex__a53_8hh_source}\index{cortex\_a53.hh@{cortex\_a53.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{keyword}{namespace }optkit::arm::cortex\_a53\{}
+\DoxyCodeLine{00003     \textcolor{keyword}{enum} cortex\_a53 : uint64\_t \{}
+\DoxyCodeLine{00004         SW\_INCR = 0x00, \textcolor{comment}{// Instruction architecturally executed (condition check pass) Software increment}}
+\DoxyCodeLine{00005         L1I\_CACHE\_REFILL = 0x01, \textcolor{comment}{// Level 1 instruction cache refill}}
+\DoxyCodeLine{00006         L1I\_TLB\_REFILL = 0x02, \textcolor{comment}{// Level 1 instruction TLB refill}}
+\DoxyCodeLine{00007         L1D\_CACHE\_REFILL = 0x03, \textcolor{comment}{// Level 1 data cache refill}}
+\DoxyCodeLine{00008         L1D\_CACHE\_ACCESS = 0x04, \textcolor{comment}{// Level 1 data cache access}}
+\DoxyCodeLine{00009         L1D\_TLB\_REFILL = 0x05, \textcolor{comment}{// Level 1 data TLB refill}}
+\DoxyCodeLine{00010         LD\_RETIRED = 0x06, \textcolor{comment}{// Load Instruction architecturally executed}}
+\DoxyCodeLine{00011         ST\_RETIRED = 0x07, \textcolor{comment}{// Store Instruction architecturally executed}}
+\DoxyCodeLine{00012         INST\_RETIRED = 0x08, \textcolor{comment}{// Instruction architecturally executed}}
+\DoxyCodeLine{00013         EXCEPTION\_TAKEN = 0x09, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00014         EXCEPTION\_RETURN = 0x0a, \textcolor{comment}{// Instruction architecturally executed (condition check pass) Exception return}}
+\DoxyCodeLine{00015         CID\_WRITE\_RETIRED = 0x0b, \textcolor{comment}{// Change to Context ID retired}}
+\DoxyCodeLine{00016         PC\_WRITE\_RETIRED = 0x0c, \textcolor{comment}{// Write to CONTEXTIDR}}
+\DoxyCodeLine{00017         BR\_IMMED\_RETIRED = 0x0d, \textcolor{comment}{// Software change of the PC}}
+\DoxyCodeLine{00018         UNALIGNED\_LDST\_RETIRED = 0x0f, \textcolor{comment}{// Procedure return}}
+\DoxyCodeLine{00019         BRANCH\_MISPRED = 0x10, \textcolor{comment}{// Mispredicted or not predicted branch speculatively executed}}
+\DoxyCodeLine{00020         CPU\_CYCLES = 0x11, \textcolor{comment}{// Cycles}}
+\DoxyCodeLine{00021         BRANCH\_PRED = 0x12, \textcolor{comment}{// Predictable branch speculatively executed}}
+\DoxyCodeLine{00022         DATA\_MEM\_ACCESS = 0x13, \textcolor{comment}{// Data memory access}}
+\DoxyCodeLine{00023         L1I\_CACHE\_ACCESS = 0x14, \textcolor{comment}{// Level 1 instruction cache access}}
+\DoxyCodeLine{00024         L1D\_CACHE\_WB = 0x15, \textcolor{comment}{// Level 1 data cache WriteBack}}
+\DoxyCodeLine{00025         L2D\_CACHE\_ACCESS = 0x16, \textcolor{comment}{// Level 2 data cache access}}
+\DoxyCodeLine{00026         L2D\_CACHE\_REFILL = 0x17, \textcolor{comment}{// Level 2 data cache refill}}
+\DoxyCodeLine{00027         L2D\_CACHE\_WB = 0x18, \textcolor{comment}{// Level 2 data cache WriteBack}}
+\DoxyCodeLine{00028         BUS\_ACCESS = 0x19, \textcolor{comment}{// Bus access}}
+\DoxyCodeLine{00029         LOCAL\_MEMORY\_ERROR = 0x1a, \textcolor{comment}{// Local memory error}}
+\DoxyCodeLine{00030         BUS\_CYCLES = 0x1d, \textcolor{comment}{// Bus cycle}}
+\DoxyCodeLine{00031         BUS\_READ\_ACCESS = 0x60, \textcolor{comment}{// Bus read access}}
+\DoxyCodeLine{00032         BUS\_WRITE\_ACCESS = 0x61, \textcolor{comment}{// Bus write access}}
+\DoxyCodeLine{00033         BRANCH\_SPEC\_EXEC\_IND = 0x7a, \textcolor{comment}{// Indirect branch speculatively executed}}
+\DoxyCodeLine{00034         EXCEPTION\_IRQ = 0x86, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00035         EXCEPTION\_FIQ = 0x87, \textcolor{comment}{// Exception taken}}
+\DoxyCodeLine{00036         }
+\DoxyCodeLine{00037     \};}
+\DoxyCodeLine{00038 \};}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040 \textcolor{keyword}{namespace }cortex\_a53 = optkit::arm::cortex\_a53;}
+
+\end{DoxyCode}

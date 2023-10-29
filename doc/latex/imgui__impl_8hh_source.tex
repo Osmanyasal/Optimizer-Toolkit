@@ -1,0 +1,54 @@
+\hypertarget{imgui__impl_8hh_source}{}\doxysection{imgui\+\_\+impl.\+hh}
+\label{imgui__impl_8hh_source}\index{imgui\_impl.hh@{imgui\_impl.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#ifndef OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_PLATFORMS\_\_IMGUI\_LAYER\_GLFW\_OPENGL\_IMPL\_HH}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#define OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_PLATFORMS\_\_IMGUI\_LAYER\_GLFW\_OPENGL\_IMPL\_HH}}
+\DoxyCodeLine{00003 }
+\DoxyCodeLine{00004 \textcolor{preprocessor}{\#define IMGUI\_DEFINE\_MATH\_OPERATORS}}
+\DoxyCodeLine{00005 }
+\DoxyCodeLine{00006 \textcolor{preprocessor}{\#include <utils.hh>}}
+\DoxyCodeLine{00007 \textcolor{preprocessor}{\#include <gui\_config.hh>}}
+\DoxyCodeLine{00008 \textcolor{preprocessor}{\#include <imgui.h>}}
+\DoxyCodeLine{00009 \textcolor{preprocessor}{\#include <imgui\_internal.h>}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include <imgui\_impl\_glfw.h>}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include <imgui\_impl\_opengl3.h>}}
+\DoxyCodeLine{00012 \textcolor{preprocessor}{\#include <imgui\_logger.hh>}}
+\DoxyCodeLine{00013 \textcolor{preprocessor}{\#include <implot.h>}}
+\DoxyCodeLine{00014 \textcolor{preprocessor}{\#include <implot\_internal.h>} }
+\DoxyCodeLine{00015 }
+\DoxyCodeLine{00016 \textcolor{preprocessor}{\#include <GL/glew.h>}}
+\DoxyCodeLine{00017 \textcolor{preprocessor}{\#include <GLFW/glfw3.h>} }
+\DoxyCodeLine{00018 }
+\DoxyCodeLine{00019 \textcolor{keyword}{namespace }OPTKIT::platforms::imgui}
+\DoxyCodeLine{00020 \{}
+\DoxyCodeLine{00021 }
+\DoxyCodeLine{\Hypertarget{imgui__impl_8hh_source_l00022}\mbox{\hyperlink{classOPTKIT_1_1platforms_1_1imgui_1_1ImguiLayer__glfw__opengl__impl}{00022}}     \textcolor{keyword}{class }\mbox{\hyperlink{classOPTKIT_1_1platforms_1_1imgui_1_1ImguiLayer__glfw__opengl__impl}{ImguiLayer\_glfw\_opengl\_impl}}}
+\DoxyCodeLine{00023     \{}
+\DoxyCodeLine{00024     \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025         \mbox{\hyperlink{classOPTKIT_1_1platforms_1_1imgui_1_1ImguiLayer__glfw__opengl__impl}{ImguiLayer\_glfw\_opengl\_impl}}()}
+\DoxyCodeLine{00026         \{ }
+\DoxyCodeLine{00027             on\_attach();}
+\DoxyCodeLine{00028         \}}
+\DoxyCodeLine{00029         \string~\mbox{\hyperlink{classOPTKIT_1_1platforms_1_1imgui_1_1ImguiLayer__glfw__opengl__impl}{ImguiLayer\_glfw\_opengl\_impl}}() \{ on\_detach(); \}}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031         \textcolor{keywordtype}{void} on\_attach();}
+\DoxyCodeLine{00032         \textcolor{keywordtype}{void} on\_detach();}
+\DoxyCodeLine{00033         \textcolor{keywordtype}{void} on\_update(\textcolor{keywordtype}{float} delta\_time);}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035         \textcolor{keywordtype}{void} begin\_loop();}
+\DoxyCodeLine{00036         \textcolor{keywordtype}{void} end\_loop();}
+\DoxyCodeLine{00037         \textcolor{keywordtype}{void} set\_dark\_theme\_colors();}
+\DoxyCodeLine{00038         \textcolor{keywordtype}{void} set\_white\_theme\_colors(); }
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040     \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041         GLFWwindow *m\_window;}
+\DoxyCodeLine{00042     \};}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044     \textcolor{keywordtype}{void} framebuffer\_size\_callback(GLFWwindow *window, \textcolor{keywordtype}{int} width, \textcolor{keywordtype}{int} height);}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046 \} \textcolor{comment}{// namespace OPTKIT::core::window}}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

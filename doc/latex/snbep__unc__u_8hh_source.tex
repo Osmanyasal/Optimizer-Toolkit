@@ -1,0 +1,22 @@
+\hypertarget{snbep__unc__u_8hh_source}{}\doxysection{snbep\+\_\+unc\+\_\+u.\+hh}
+\label{snbep__unc__u_8hh_source}\index{snbep\_unc\_u.hh@{snbep\_unc\_u.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::snbep\_unc\_u\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} snbep\_unc\_u : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_U\_EVENT\_MSG = 0x42, \textcolor{comment}{// VLW Received}}
+\DoxyCodeLine{00006         UNC\_U\_EVENT\_MSG\_\_MASK\_\_SNBEP\_UNC\_U\_EVENT\_MSG\_\_DOORBELL\_RCVD = 0x800, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00007         UNC\_U\_EVENT\_MSG\_\_MASK\_\_SNBEP\_UNC\_U\_EVENT\_MSG\_\_INT\_PRIO = 0x1000, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00008         UNC\_U\_EVENT\_MSG\_\_MASK\_\_SNBEP\_UNC\_U\_EVENT\_MSG\_\_IPI\_RCVD = 0x400, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00009         UNC\_U\_EVENT\_MSG\_\_MASK\_\_SNBEP\_UNC\_U\_EVENT\_MSG\_\_MSI\_RCVD = 0x200, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00010         UNC\_U\_EVENT\_MSG\_\_MASK\_\_SNBEP\_UNC\_U\_EVENT\_MSG\_\_VLW\_RCVD = 0x100, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00011         UNC\_U\_LOCK\_CYCLES = 0x44, \textcolor{comment}{// IDI Lock/SplitLock Cycles}}
+\DoxyCodeLine{00012         }
+\DoxyCodeLine{00013     \};}
+\DoxyCodeLine{00014 \};}
+\DoxyCodeLine{00015 }
+\DoxyCodeLine{00016 \textcolor{keyword}{namespace }snbep\_unc\_u = optkit::intel::snbep\_unc\_u;}
+
+\end{DoxyCode}

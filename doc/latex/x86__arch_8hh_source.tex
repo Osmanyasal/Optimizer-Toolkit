@@ -1,0 +1,21 @@
+\hypertarget{x86__arch_8hh_source}{}\doxysection{x86\+\_\+arch.\+hh}
+\label{x86__arch_8hh_source}\index{x86\_arch.hh@{x86\_arch.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::x86\_arch\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} x86\_arch : uint64\_t \{}
+\DoxyCodeLine{00005         UNHALTED\_CORE\_CYCLES = 0x003c, \textcolor{comment}{// count core clock cycles whenever the clock signal on the specific core is running (not halted)}}
+\DoxyCodeLine{00006         INSTRUCTION\_RETIRED = 0x00c0, \textcolor{comment}{// count the number of instructions at retirement. For instructions that consists of multiple micro-\/ops}}
+\DoxyCodeLine{00007         UNHALTED\_REFERENCE\_CYCLES = 0x013c, \textcolor{comment}{// count reference clock cycles while the clock signal on the specific core is running. The reference clock operates at a fixed frequency}}
+\DoxyCodeLine{00008         LLC\_REFERENCES = 0x4f2e, \textcolor{comment}{// count each request originating from the core to reference a cache line in the last level cache. The count may include speculation}}
+\DoxyCodeLine{00009         LLC\_MISSES = 0x412e, \textcolor{comment}{// count each cache miss condition for references to the last level cache. The event count may include speculation}}
+\DoxyCodeLine{00010         BRANCH\_INSTRUCTIONS\_RETIRED = 0x00c4, \textcolor{comment}{// count branch instructions at retirement. Specifically}}
+\DoxyCodeLine{00011         }
+\DoxyCodeLine{00012     \};}
+\DoxyCodeLine{00013 \};}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00015 \textcolor{keyword}{namespace }x86\_arch = optkit::intel::x86\_arch;}
+
+\end{DoxyCode}

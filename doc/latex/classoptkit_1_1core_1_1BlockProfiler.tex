@@ -1,0 +1,55 @@
+\hypertarget{classoptkit_1_1core_1_1BlockProfiler}{}\doxysection{optkit\+::core\+::Block\+Profiler Class Reference}
+\label{classoptkit_1_1core_1_1BlockProfiler}\index{optkit::core::BlockProfiler@{optkit::core::BlockProfiler}}
+
+
+The \mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{Block\+Profiler}} class utilizes the RAII technique to initiate and conclude profiling for a specific raw event. Profiling commences upon instantiation and persists until the current scope is exited.  
+
+
+
+
+{\ttfamily \#include $<$block\+\_\+profiler.\+hh$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockProfiler_a0b5c270aa20f32865aa95b1ad464bcd5}\label{classoptkit_1_1core_1_1BlockProfiler_a0b5c270aa20f32865aa95b1ad464bcd5}} 
+{\bfseries Block\+Profiler} (const char $\ast$block\+\_\+name, std\+::initializer\+\_\+list$<$ uint64\+\_\+t $>$ raw\+\_\+event\+\_\+list)
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockProfiler_a93868ec773ab21b9daa9b1a7968ca236}\label{classoptkit_1_1core_1_1BlockProfiler_a93868ec773ab21b9daa9b1a7968ca236}} 
+virtual void {\bfseries disable} ()
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockProfiler_a9b4b13644a472efc8d4fb86706d3b85f}\label{classoptkit_1_1core_1_1BlockProfiler_a9b4b13644a472efc8d4fb86706d3b85f}} 
+virtual void {\bfseries enable} ()
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockProfiler_a4ece57b6f8623c867c84a9a0f534d908}\label{classoptkit_1_1core_1_1BlockProfiler_a4ece57b6f8623c867c84a9a0f534d908}} 
+virtual std\+::vector$<$ uint64\+\_\+t $>$ {\bfseries read\+\_\+counter} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockProfiler_a0b02585c9abaf1dff564d849227abbaa}\label{classoptkit_1_1core_1_1BlockProfiler_a0b02585c9abaf1dff564d849227abbaa}} 
+std\+::vector$<$ int $>$ {\bfseries fd\+\_\+list}
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockProfiler_af2a0263347190a851d0275d1c92529e2}\label{classoptkit_1_1core_1_1BlockProfiler_af2a0263347190a851d0275d1c92529e2}} 
+const char $\ast$ {\bfseries block\+\_\+name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{Block\+Profiler}} class utilizes the RAII technique to initiate and conclude profiling for a specific raw event. Profiling commences upon instantiation and persists until the current scope is exited. 
+
+Note that block profiler does NOT group raw\+\_\+events! If you want that ability please \begin{DoxySeeAlso}{See also}
+Block\+Group\+Profiler
+\end{DoxySeeAlso}
+Each raw\+\_\+event creates seperate file\+\_\+description (fd) to read data and each raw\+\_\+event is treated seperately.~\newline
+ In cases where CPU performs multiplexing and since each event treated seperately, you cannot gurantee that ~\newline
+ events E1 and E2 will record the same instructions.~\newline
+ for more information about grouping \begin{DoxySeeAlso}{See also}
+\href{https://man7.org/linux/man-pages/man2/perf_event_open.2.html}{\texttt{ https\+://man7.\+org/linux/man-\/pages/man2/perf\+\_\+event\+\_\+open.\+2.\+html}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+block\+\_\+profiler.\+hh\item 
+block\+\_\+profiler.\+cc\end{DoxyCompactItemize}

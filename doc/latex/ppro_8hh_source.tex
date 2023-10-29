@@ -1,0 +1,127 @@
+\hypertarget{ppro_8hh_source}{}\doxysection{ppro.\+hh}
+\label{ppro_8hh_source}\index{ppro.hh@{ppro.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::ppro\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} ppro : uint64\_t \{}
+\DoxyCodeLine{00005         CPU\_CLK\_UNHALTED = 0x79, \textcolor{comment}{// Number cycles during which the processor is not halted}}
+\DoxyCodeLine{00006         INST\_RETIRED = 0xc0, \textcolor{comment}{// Number of instructions retired}}
+\DoxyCodeLine{00007         DATA\_MEM\_REFS = 0x43, \textcolor{comment}{// All loads from any memory type. All stores to any memory typeEach part of a split is counted separately. The internal logic counts not only memory loads and stores but also internal retries. 80-\/bit floating point accesses are double counted}}
+\DoxyCodeLine{00008         DCU\_LINES\_IN = 0x45, \textcolor{comment}{// Total lines allocated in the DCU}}
+\DoxyCodeLine{00009         DCU\_M\_LINES\_IN = 0x46, \textcolor{comment}{// Number of M state lines allocated in the DCU}}
+\DoxyCodeLine{00010         DCU\_M\_LINES\_OUT = 0x47, \textcolor{comment}{// Number of M state lines evicted from the DCU. This includes evictions via snoop HITM}}
+\DoxyCodeLine{00011         DCU\_MISS\_OUTSTANDING = 0x48, \textcolor{comment}{// Weighted number of cycle while a DCU miss is outstanding}}
+\DoxyCodeLine{00012         IFU\_IFETCH = 0x80, \textcolor{comment}{// Number of instruction fetches}}
+\DoxyCodeLine{00013         IFU\_IFETCH\_MISS = 0x81, \textcolor{comment}{// Number of instruction fetch misses. All instructions fetches that do not hit the IFU (i.e.}}
+\DoxyCodeLine{00014         ITLB\_MISS = 0x85, \textcolor{comment}{// Number of ITLB misses}}
+\DoxyCodeLine{00015         IFU\_MEM\_STALL = 0x86, \textcolor{comment}{// Number of cycles instruction fetch is stalled for any reason. Includes IFU cache misses}}
+\DoxyCodeLine{00016         ILD\_STALL = 0x87, \textcolor{comment}{// Number of cycles that the instruction length decoder is stalled}}
+\DoxyCodeLine{00017         L2\_IFETCH = 0x28, \textcolor{comment}{// Number of L2 instruction fetches. This event indicates that a normal instruction fetch was received by the L2. The count includes only L2 cacheable instruction fetches: it does not include UC instruction fetches It does not include ITLB miss accesses}}
+\DoxyCodeLine{00018         L2\_IFETCH\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_I = 0x100, \textcolor{comment}{// Invalid state}}
+\DoxyCodeLine{00019         L2\_IFETCH\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_S = 0x200, \textcolor{comment}{// Shared state}}
+\DoxyCodeLine{00020         L2\_IFETCH\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_E = 0x400, \textcolor{comment}{// Exclusive state}}
+\DoxyCodeLine{00021         L2\_IFETCH\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_M = 0x800, \textcolor{comment}{// Modified state}}
+\DoxyCodeLine{00022         L2\_ST = 0x2a, \textcolor{comment}{// Number of L2 data stores. This event indicates that a normal}}
+\DoxyCodeLine{00023         L2\_ST\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_I = 0x100, \textcolor{comment}{// Invalid state}}
+\DoxyCodeLine{00024         L2\_ST\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_S = 0x200, \textcolor{comment}{// Shared state}}
+\DoxyCodeLine{00025         L2\_ST\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_E = 0x400, \textcolor{comment}{// Exclusive state}}
+\DoxyCodeLine{00026         L2\_ST\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_M = 0x800, \textcolor{comment}{// Modified state}}
+\DoxyCodeLine{00027         L2\_M\_LINES\_INM = 0x25, \textcolor{comment}{// Number of modified lines allocated in the L2}}
+\DoxyCodeLine{00028         L2\_RQSTS = 0x2e, \textcolor{comment}{// Total number of L2 requests}}
+\DoxyCodeLine{00029         L2\_RQSTS\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_I = 0x100, \textcolor{comment}{// Invalid state}}
+\DoxyCodeLine{00030         L2\_RQSTS\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_S = 0x200, \textcolor{comment}{// Shared state}}
+\DoxyCodeLine{00031         L2\_RQSTS\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_E = 0x400, \textcolor{comment}{// Exclusive state}}
+\DoxyCodeLine{00032         L2\_RQSTS\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_M = 0x800, \textcolor{comment}{// Modified state}}
+\DoxyCodeLine{00033         L2\_ADS = 0x21, \textcolor{comment}{// Number of L2 address strobes}}
+\DoxyCodeLine{00034         L2\_DBUS\_BUSY = 0x22, \textcolor{comment}{// Number of cycles during which the L2 cache data bus was busy}}
+\DoxyCodeLine{00035         L2\_DBUS\_BUSY\_RD = 0x23, \textcolor{comment}{// Number of cycles during which the data bus was busy transferring read data from L2 to the processor}}
+\DoxyCodeLine{00036         BUS\_DRDY\_CLOCKS = 0x62, \textcolor{comment}{// Number of clocks during which DRDY\# is asserted. Utilization of the external system data bus during data transfers}}
+\DoxyCodeLine{00037         BUS\_DRDY\_CLOCKS\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00038         BUS\_DRDY\_CLOCKS\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00039         BUS\_LOCK\_CLOCKS = 0x63, \textcolor{comment}{// Number of clocks during which LOCK\# is asserted on the external system bus}}
+\DoxyCodeLine{00040         BUS\_LOCK\_CLOCKS\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00041         BUS\_LOCK\_CLOCKS\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00042         BUS\_REQ\_OUTSTANDING = 0x60, \textcolor{comment}{// Number of bus requests outstanding. This counter is incremented by the number of cacheable read bus requests outstanding in any given cycle}}
+\DoxyCodeLine{00043         BUS\_TRANS\_BRD = 0x65, \textcolor{comment}{// Number of burst read transactions}}
+\DoxyCodeLine{00044         BUS\_TRANS\_BRD\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00045         BUS\_TRANS\_BRD\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00046         BUS\_TRANS\_RFO = 0x66, \textcolor{comment}{// Number of completed read for ownership transactions}}
+\DoxyCodeLine{00047         BUS\_TRANS\_RFO\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00048         BUS\_TRANS\_RFO\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00049         BUS\_TRANS\_WB = 0x67, \textcolor{comment}{// Number of completed write back transactions}}
+\DoxyCodeLine{00050         BUS\_TRANS\_WB\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00051         BUS\_TRANS\_WB\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00052         BUS\_TRAN\_IFETCH = 0x68, \textcolor{comment}{// Number of completed instruction fetch transactions}}
+\DoxyCodeLine{00053         BUS\_TRAN\_IFETCH\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00054         BUS\_TRAN\_IFETCH\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00055         BUS\_TRAN\_INVAL = 0x69, \textcolor{comment}{// Number of completed invalidate transactions}}
+\DoxyCodeLine{00056         BUS\_TRAN\_INVAL\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00057         BUS\_TRAN\_INVAL\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00058         BUS\_TRAN\_PWR = 0x6a, \textcolor{comment}{// Number of completed partial write transactions}}
+\DoxyCodeLine{00059         BUS\_TRAN\_PWR\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00060         BUS\_TRAN\_PWR\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00061         BUS\_TRANS\_P = 0x6b, \textcolor{comment}{// Number of completed partial transactions}}
+\DoxyCodeLine{00062         BUS\_TRANS\_P\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00063         BUS\_TRANS\_P\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00064         BUS\_TRANS\_IO = 0x6c, \textcolor{comment}{// Number of completed I/O transactions}}
+\DoxyCodeLine{00065         BUS\_TRANS\_IO\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00066         BUS\_TRANS\_IO\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00067         BUS\_TRAN\_DEF = 0x6d, \textcolor{comment}{// Number of completed deferred transactions}}
+\DoxyCodeLine{00068         BUS\_TRAN\_DEF\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00069         BUS\_TRAN\_DEF\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00070         BUS\_TRAN\_BURST = 0x6e, \textcolor{comment}{// Number of completed burst transactions}}
+\DoxyCodeLine{00071         BUS\_TRAN\_BURST\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00072         BUS\_TRAN\_BURST\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00073         BUS\_TRAN\_ANY = 0x70, \textcolor{comment}{// Number of all completed bus transactions. Address bus utilization can be calculated knowing the minimum address bus occupancy. Includes special cycles}}
+\DoxyCodeLine{00074         BUS\_TRAN\_ANY\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00075         BUS\_TRAN\_ANY\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00076         BUS\_TRAN\_MEM = 0x6f, \textcolor{comment}{// Number of completed memory transactions}}
+\DoxyCodeLine{00077         BUS\_TRAN\_MEM\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_SELF = 0x0, \textcolor{comment}{// Clocks when processor is driving bus}}
+\DoxyCodeLine{00078         BUS\_TRAN\_MEM\_\_MASK\_\_PPRO\_BUS\_DRDY\_CLOCKS\_\_ANY = 0x2000, \textcolor{comment}{// Clocks when any agent is driving bus}}
+\DoxyCodeLine{00079         BUS\_DATA\_RECV = 0x64, \textcolor{comment}{// Number of bus clock cycles during which this processor is receiving data}}
+\DoxyCodeLine{00080         BUS\_BNR\_DRV = 0x61, \textcolor{comment}{// Number of bus clock cycles during which this processor is driving the BNR\# pin}}
+\DoxyCodeLine{00081         BUS\_HIT\_DRV = 0x7a, \textcolor{comment}{// Number of bus clock cycles during which this processor is driving the HIT\# pin}}
+\DoxyCodeLine{00082         BUS\_HITM\_DRV = 0x7b, \textcolor{comment}{// Number of bus clock cycles during which this processor is driving the HITM\# pin}}
+\DoxyCodeLine{00083         BUS\_SNOOP\_STALL = 0x7e, \textcolor{comment}{// Number of clock cycles during which the bus is snoop stalled}}
+\DoxyCodeLine{00084         FLOPS = 0xc1, \textcolor{comment}{// Number of computational floating-\/point operations retired. Excludes floating-\/point computational operations that cause traps or assists. Includes internal sub-\/operations for complex floating-\/point instructions like transcendentals. Excludes floating point loads and stores}}
+\DoxyCodeLine{00085         FP\_COMP\_OPS\_EXE = 0x10, \textcolor{comment}{// Number of computational floating-\/point operations executed. The number of FADD}}
+\DoxyCodeLine{00086         FP\_ASSIST = 0x11, \textcolor{comment}{// Number of floating-\/point exception cases handled by microcode.}}
+\DoxyCodeLine{00087         MUL = 0x12, \textcolor{comment}{// Number of multiplies.This count includes integer as well as FP multiplies and is speculative}}
+\DoxyCodeLine{00088         DIV = 0x13, \textcolor{comment}{// Number of divides.This count includes integer as well as FP divides and is speculative}}
+\DoxyCodeLine{00089         CYCLES\_DIV\_BUSY = 0x14, \textcolor{comment}{// Number of cycles during which the divider is busy}}
+\DoxyCodeLine{00090         LD\_BLOCKS = 0x3, \textcolor{comment}{// Number of load operations delayed due to store buffer blocks. Includes counts caused by preceding stores whose addresses are unknown}}
+\DoxyCodeLine{00091         SB\_DRAINS = 0x4, \textcolor{comment}{// Number of store buffer drain cycles. Incremented every cycle the store buffer is draining. Draining is caused by serializing operations like CPUID}}
+\DoxyCodeLine{00092         MISALIGN\_MEM\_REF = 0x5, \textcolor{comment}{// Number of misaligned data memory references. Incremented by 1 every cycle during which}}
+\DoxyCodeLine{00093         UOPS\_RETIRED = 0xc2, \textcolor{comment}{// Number of micro-\/ops retired}}
+\DoxyCodeLine{00094         INST\_DECODED = 0xd0, \textcolor{comment}{// Number of instructions decoded}}
+\DoxyCodeLine{00095         HW\_INT\_RX = 0xc8, \textcolor{comment}{// Number of hardware interrupts received}}
+\DoxyCodeLine{00096         CYCLES\_INT\_MASKED = 0xc6, \textcolor{comment}{// Number of processor cycles for which interrupts are disabled}}
+\DoxyCodeLine{00097         CYCLES\_INT\_PENDING\_AND\_MASKED = 0xc7, \textcolor{comment}{// Number of processor cycles for which interrupts are disabled and interrupts are pending.}}
+\DoxyCodeLine{00098         BR\_INST\_RETIRED = 0xc4, \textcolor{comment}{// Number of branch instructions retired}}
+\DoxyCodeLine{00099         BR\_MISS\_PRED\_RETIRED = 0xc5, \textcolor{comment}{// Number of mispredicted branches retired}}
+\DoxyCodeLine{00100         BR\_TAKEN\_RETIRED = 0xc9, \textcolor{comment}{// Number of taken branches retired}}
+\DoxyCodeLine{00101         BR\_MISS\_PRED\_TAKEN\_RET = 0xca, \textcolor{comment}{// Number of taken mispredicted branches retired}}
+\DoxyCodeLine{00102         BR\_INST\_DECODED = 0xe0, \textcolor{comment}{// Number of branch instructions decoded}}
+\DoxyCodeLine{00103         BTB\_MISSES = 0xe2, \textcolor{comment}{// Number of branches for which the BTB did not produce a prediction}}
+\DoxyCodeLine{00104         BR\_BOGUS = 0xe4, \textcolor{comment}{// Number of bogus branches}}
+\DoxyCodeLine{00105         BACLEARS = 0xe6, \textcolor{comment}{// }}
+\DoxyCodeLine{00106         RESOURCE\_STALLS = 0xa2, \textcolor{comment}{// Incremented by 1 during every cycle for which there is a resource related stall. Includes register renaming buffer entries}}
+\DoxyCodeLine{00107         PARTIAL\_RAT\_STALLS = 0xd2, \textcolor{comment}{// Number of cycles or events for partial stalls. This includes flag partial stalls}}
+\DoxyCodeLine{00108         SEGMENT\_REG\_LOADS = 0x6, \textcolor{comment}{// Number of segment register loads.}}
+\DoxyCodeLine{00109         L2\_LD = 0x29, \textcolor{comment}{// Number of L2 data loads. This event indicates that a normal}}
+\DoxyCodeLine{00110         L2\_LD\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_I = 0x100, \textcolor{comment}{// Invalid state}}
+\DoxyCodeLine{00111         L2\_LD\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_S = 0x200, \textcolor{comment}{// Shared state}}
+\DoxyCodeLine{00112         L2\_LD\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_E = 0x400, \textcolor{comment}{// Exclusive state}}
+\DoxyCodeLine{00113         L2\_LD\_\_MASK\_\_PPRO\_L2\_IFETCH\_\_M = 0x800, \textcolor{comment}{// Modified state}}
+\DoxyCodeLine{00114         L2\_LINES\_IN = 0x24, \textcolor{comment}{// Number of lines allocated in the L2}}
+\DoxyCodeLine{00115         L2\_LINES\_OUT = 0x26, \textcolor{comment}{// Number of lines removed from the L2 for any reason}}
+\DoxyCodeLine{00116         L2\_M\_LINES\_OUTM = 0x27, \textcolor{comment}{// Number of modified lines removed from the L2 for any reason}}
+\DoxyCodeLine{00117         }
+\DoxyCodeLine{00118     \};}
+\DoxyCodeLine{00119 \};}
+\DoxyCodeLine{00120 }
+\DoxyCodeLine{00121 \textcolor{keyword}{namespace }ppro = optkit::intel::ppro;}
+
+\end{DoxyCode}

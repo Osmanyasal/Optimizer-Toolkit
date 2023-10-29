@@ -1,0 +1,80 @@
+\hypertarget{bdx__unc__r2_8hh_source}{}\doxysection{bdx\+\_\+unc\+\_\+r2.\+hh}
+\label{bdx__unc__r2_8hh_source}\index{bdx\_unc\_r2.hh@{bdx\_unc\_r2.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::bdx\_unc\_r2\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} bdx\_unc\_r2 : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_R2\_CLOCKTICKS = 0x1, \textcolor{comment}{// Counts the number of uclks in the R2PCIe uclk domain.  This could be slightly different than the count in the Ubox because of enable/freeze delays.  However}}
+\DoxyCodeLine{00006         UNC\_R2\_IIO\_CREDIT = 0x2d, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00007         UNC\_R2\_IIO\_CREDIT\_\_MASK\_\_BDX\_UNC\_R2\_IIO\_CREDIT\_\_ISOCH\_QPI0 = 0x400, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00008         UNC\_R2\_IIO\_CREDIT\_\_MASK\_\_BDX\_UNC\_R2\_IIO\_CREDIT\_\_ISOCH\_QPI1 = 0x800, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00009         UNC\_R2\_IIO\_CREDIT\_\_MASK\_\_BDX\_UNC\_R2\_IIO\_CREDIT\_\_PRQ\_QPI0 = 0x100, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00010         UNC\_R2\_IIO\_CREDIT\_\_MASK\_\_BDX\_UNC\_R2\_IIO\_CREDIT\_\_PRQ\_QPI1 = 0x200, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00011         UNC\_R2\_RING\_AD\_USED = 0x7, \textcolor{comment}{// Counts the number of cycles that the AD ring is being used at this ring stop.  This includes when packets are passing by and when packets are being sunk}}
+\DoxyCodeLine{00012         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW = 0xc00, \textcolor{comment}{// Counterclockwise}}
+\DoxyCodeLine{00013         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counterclockwise and Even}}
+\DoxyCodeLine{00014         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counterclockwise and Odd}}
+\DoxyCodeLine{00015         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW = 0x300, \textcolor{comment}{// Clockwise}}
+\DoxyCodeLine{00016         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and Even}}
+\DoxyCodeLine{00017         UNC\_R2\_RING\_AD\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and Odd}}
+\DoxyCodeLine{00018         UNC\_R2\_RING\_AK\_BOUNCES = 0x12, \textcolor{comment}{// Counts the number of times when a request destined for the AK ingress bounced.}}
+\DoxyCodeLine{00019         UNC\_R2\_RING\_AK\_BOUNCES\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AK\_BOUNCES\_\_DN = 0x200, \textcolor{comment}{// AK Ingress Bounced -\/-\/ Dn}}
+\DoxyCodeLine{00020         UNC\_R2\_RING\_AK\_BOUNCES\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AK\_BOUNCES\_\_UP = 0x100, \textcolor{comment}{// AK Ingress Bounced -\/-\/ Up}}
+\DoxyCodeLine{00021         UNC\_R2\_RING\_AK\_USED = 0x8, \textcolor{comment}{// Counts the number of cycles that the AK ring is being used at this ring stop.  This includes when packets are passing by and when packets are being sunk}}
+\DoxyCodeLine{00022         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW = 0xc00, \textcolor{comment}{// Counterclockwise}}
+\DoxyCodeLine{00023         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counterclockwise and Even}}
+\DoxyCodeLine{00024         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counterclockwise and Odd}}
+\DoxyCodeLine{00025         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW = 0x300, \textcolor{comment}{// Clockwise}}
+\DoxyCodeLine{00026         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and Even}}
+\DoxyCodeLine{00027         UNC\_R2\_RING\_AK\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and Odd}}
+\DoxyCodeLine{00028         UNC\_R2\_RING\_BL\_USED = 0x9, \textcolor{comment}{// Counts the number of cycles that the BL ring is being used at this ring stop.  This includes when packets are passing by and when packets are being sunk}}
+\DoxyCodeLine{00029         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW = 0xc00, \textcolor{comment}{// Counterclockwise}}
+\DoxyCodeLine{00030         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_EVEN = 0x400, \textcolor{comment}{// Counterclockwise and Even}}
+\DoxyCodeLine{00031         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CCW\_ODD = 0x800, \textcolor{comment}{// Counterclockwise and Odd}}
+\DoxyCodeLine{00032         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW = 0x300, \textcolor{comment}{// Clockwise}}
+\DoxyCodeLine{00033         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW\_EVEN = 0x100, \textcolor{comment}{// Clockwise and Even}}
+\DoxyCodeLine{00034         UNC\_R2\_RING\_BL\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_AD\_USED\_\_CW\_ODD = 0x200, \textcolor{comment}{// Clockwise and Odd}}
+\DoxyCodeLine{00035         UNC\_R2\_RING\_IV\_USED = 0xa, \textcolor{comment}{// Counts the number of cycles that the IV ring is being used at this ring stop.  This includes when packets are passing by and when packets are being sent}}
+\DoxyCodeLine{00036         UNC\_R2\_RING\_IV\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_IV\_USED\_\_ANY = 0xf00, \textcolor{comment}{// Any directions}}
+\DoxyCodeLine{00037         UNC\_R2\_RING\_IV\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_IV\_USED\_\_CCW = 0xc00, \textcolor{comment}{// Counterclockwise}}
+\DoxyCodeLine{00038         UNC\_R2\_RING\_IV\_USED\_\_MASK\_\_BDX\_UNC\_R2\_RING\_IV\_USED\_\_CW = 0x300, \textcolor{comment}{// Clockwise}}
+\DoxyCodeLine{00039         UNC\_R2\_RXR\_CYCLES\_NE = 0x10, \textcolor{comment}{// Counts the number of cycles when the R2PCIe Ingress is not empty.  This tracks one of the three rings that are used by the R2PCIe agent.  This can be used in conjunction with the R2PCIe Ingress Occupancy Accumulator event in order to calculate average queue occupancy.  Multiple ingress buffers can be tracked at a given time using multiple counters.}}
+\DoxyCodeLine{00040         UNC\_R2\_RXR\_CYCLES\_NE\_\_MASK\_\_BDX\_UNC\_R2\_RXR\_CYCLES\_NE\_\_NCB = 0x1000, \textcolor{comment}{// NCB}}
+\DoxyCodeLine{00041         UNC\_R2\_RXR\_CYCLES\_NE\_\_MASK\_\_BDX\_UNC\_R2\_RXR\_CYCLES\_NE\_\_NCS = 0x2000, \textcolor{comment}{// NCS}}
+\DoxyCodeLine{00042         UNC\_R2\_RXR\_INSERTS = 0x11, \textcolor{comment}{// Counts the number of allocations into the R2PCIe Ingress.  This tracks one of the three rings that are used by the R2PCIe agent.  This can be used in conjunction with the R2PCIe Ingress Occupancy Accumulator event in order to calculate average queue latency.  Multiple ingress buffers can be tracked at a given time using multiple counters.}}
+\DoxyCodeLine{00043         UNC\_R2\_RXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_R2\_RXR\_CYCLES\_NE\_\_NCB = 0x1000, \textcolor{comment}{// NCB}}
+\DoxyCodeLine{00044         UNC\_R2\_RXR\_INSERTS\_\_MASK\_\_BDX\_UNC\_R2\_RXR\_CYCLES\_NE\_\_NCS = 0x2000, \textcolor{comment}{// NCS}}
+\DoxyCodeLine{00045         UNC\_R2\_RXR\_OCCUPANCY = 0x13, \textcolor{comment}{// Accumulates the occupancy of a given R2PCIe Ingress queue in each cycles.  This tracks one of the three ring Ingress buffers.  This can be used with the R2PCIe Ingress Not Empty event to calculate average occupancy or the R2PCIe Ingress Allocations event in order to calculate average queuing latency.}}
+\DoxyCodeLine{00046         UNC\_R2\_RXR\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_R2\_RXR\_OCCUPANCY\_\_DRS = 0x800, \textcolor{comment}{// Ingress Occupancy Accumulator -\/-\/ DRS}}
+\DoxyCodeLine{00047         UNC\_R2\_SBO0\_CREDITS\_ACQUIRED = 0x28, \textcolor{comment}{// Number of Sbo 0 credits acquired in a given cycle}}
+\DoxyCodeLine{00048         UNC\_R2\_SBO0\_CREDITS\_ACQUIRED\_\_MASK\_\_BDX\_UNC\_R2\_SBO0\_CREDITS\_ACQUIRED\_\_AD = 0x100, \textcolor{comment}{// SBo0 Credits Acquired -\/-\/ For AD Ring}}
+\DoxyCodeLine{00049         UNC\_R2\_SBO0\_CREDITS\_ACQUIRED\_\_MASK\_\_BDX\_UNC\_R2\_SBO0\_CREDITS\_ACQUIRED\_\_BL = 0x200, \textcolor{comment}{// SBo0 Credits Acquired -\/-\/ For BL Ring}}
+\DoxyCodeLine{00050         UNC\_R2\_STALL\_NO\_SBO\_CREDIT = 0x2c, \textcolor{comment}{// Number of cycles Egress is stalled waiting for an Sbo credit to become available.  Per Sbo}}
+\DoxyCodeLine{00051         UNC\_R2\_STALL\_NO\_SBO\_CREDIT\_\_MASK\_\_BDX\_UNC\_R2\_STALL\_NO\_SBO\_CREDIT\_\_SBO0\_AD = 0x100, \textcolor{comment}{// Stall on No Sbo Credits -\/-\/ For SBo0}}
+\DoxyCodeLine{00052         UNC\_R2\_STALL\_NO\_SBO\_CREDIT\_\_MASK\_\_BDX\_UNC\_R2\_STALL\_NO\_SBO\_CREDIT\_\_SBO0\_BL = 0x400, \textcolor{comment}{// Stall on No Sbo Credits -\/-\/ For SBo0}}
+\DoxyCodeLine{00053         UNC\_R2\_STALL\_NO\_SBO\_CREDIT\_\_MASK\_\_BDX\_UNC\_R2\_STALL\_NO\_SBO\_CREDIT\_\_SBO1\_AD = 0x200, \textcolor{comment}{// Stall on No Sbo Credits -\/-\/ For SBo1}}
+\DoxyCodeLine{00054         UNC\_R2\_STALL\_NO\_SBO\_CREDIT\_\_MASK\_\_BDX\_UNC\_R2\_STALL\_NO\_SBO\_CREDIT\_\_SBO1\_BL = 0x800, \textcolor{comment}{// Stall on No Sbo Credits -\/-\/ For SBo1}}
+\DoxyCodeLine{00055         UNC\_R2\_TXR\_CYCLES\_FULL = 0x25, \textcolor{comment}{// Counts the number of cycles when the R2PCIe Egress buffer is full.}}
+\DoxyCodeLine{00056         UNC\_R2\_TXR\_CYCLES\_FULL\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_AD = 0x100, \textcolor{comment}{// Egress Cycles Full -\/-\/ AD}}
+\DoxyCodeLine{00057         UNC\_R2\_TXR\_CYCLES\_FULL\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_AK = 0x200, \textcolor{comment}{// Egress Cycles Full -\/-\/ AK}}
+\DoxyCodeLine{00058         UNC\_R2\_TXR\_CYCLES\_FULL\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_CYCLES\_FULL\_\_BL = 0x400, \textcolor{comment}{// Egress Cycles Full -\/-\/ BL}}
+\DoxyCodeLine{00059         UNC\_R2\_TXR\_CYCLES\_NE = 0x23, \textcolor{comment}{// Counts the number of cycles when the R2PCIe Egress is not empty.  This tracks one of the three rings that are used by the R2PCIe agent.  This can be used in conjunction with the R2PCIe Egress Occupancy Accumulator event in order to calculate average queue occupancy.  Only a single Egress queue can be tracked at any given time.  It is not possible to filter based on direction or polarity.}}
+\DoxyCodeLine{00060         UNC\_R2\_TXR\_CYCLES\_NE\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_CYCLES\_NE\_\_AD = 0x100, \textcolor{comment}{// Egress Cycles Not Empty -\/-\/ AD}}
+\DoxyCodeLine{00061         UNC\_R2\_TXR\_CYCLES\_NE\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_CYCLES\_NE\_\_AK = 0x200, \textcolor{comment}{// Egress Cycles Not Empty -\/-\/ AK}}
+\DoxyCodeLine{00062         UNC\_R2\_TXR\_CYCLES\_NE\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_CYCLES\_NE\_\_BL = 0x400, \textcolor{comment}{// Egress Cycles Not Empty -\/-\/ BL}}
+\DoxyCodeLine{00063         UNC\_R2\_TXR\_NACK\_CW = 0x26, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00064         UNC\_R2\_TXR\_NACK\_CW\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_NACK\_CW\_\_DN\_AD = 0x100, \textcolor{comment}{// Egress CCW NACK -\/-\/ AD CCW}}
+\DoxyCodeLine{00065         UNC\_R2\_TXR\_NACK\_CW\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_NACK\_CW\_\_DN\_AK = 0x400, \textcolor{comment}{// Egress CCW NACK -\/-\/ AK CCW}}
+\DoxyCodeLine{00066         UNC\_R2\_TXR\_NACK\_CW\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_NACK\_CW\_\_DN\_BL = 0x200, \textcolor{comment}{// Egress CCW NACK -\/-\/ BL CCW}}
+\DoxyCodeLine{00067         UNC\_R2\_TXR\_NACK\_CW\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_NACK\_CW\_\_UP\_AD = 0x800, \textcolor{comment}{// Egress CCW NACK -\/-\/ AK CCW}}
+\DoxyCodeLine{00068         UNC\_R2\_TXR\_NACK\_CW\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_NACK\_CW\_\_UP\_AK = 0x2000, \textcolor{comment}{// Egress CCW NACK -\/-\/ BL CW}}
+\DoxyCodeLine{00069         UNC\_R2\_TXR\_NACK\_CW\_\_MASK\_\_BDX\_UNC\_R2\_TXR\_NACK\_CW\_\_UP\_BL = 0x1000, \textcolor{comment}{// Egress CCW NACK -\/-\/ BL CCW}}
+\DoxyCodeLine{00070         }
+\DoxyCodeLine{00071     \};}
+\DoxyCodeLine{00072 \};}
+\DoxyCodeLine{00073 }
+\DoxyCodeLine{00074 \textcolor{keyword}{namespace }bdx\_unc\_r2 = optkit::intel::bdx\_unc\_r2;}
+
+\end{DoxyCode}

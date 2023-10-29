@@ -1,0 +1,59 @@
+\hypertarget{ivbep__unc__i_8hh_source}{}\doxysection{ivbep\+\_\+unc\+\_\+i.\+hh}
+\label{ivbep__unc__i_8hh_source}\index{ivbep\_unc\_i.hh@{ivbep\_unc\_i.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::ivbep\_unc\_i\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} ivbep\_unc\_i : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_I\_CLOCKTICKS = 0x0, \textcolor{comment}{// Number of uclks in domain}}
+\DoxyCodeLine{00006         UNC\_I\_ADDRESS\_MATCH = 0x17, \textcolor{comment}{// Address match conflict count}}
+\DoxyCodeLine{00007         UNC\_I\_ADDRESS\_MATCH\_\_MASK\_\_IVBEP\_UNC\_I\_ADDRESS\_MATCH\_\_STALL\_COUNT = 0x100, \textcolor{comment}{// Number of time when it is not possible to merge two conflicting requests}}
+\DoxyCodeLine{00008         UNC\_I\_ADDRESS\_MATCH\_\_MASK\_\_IVBEP\_UNC\_I\_ADDRESS\_MATCH\_\_MERGE\_COUNT = 0x200, \textcolor{comment}{// Number of times when two requests to the same address from the same source are received back to back}}
+\DoxyCodeLine{00009         UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY = 0x14, \textcolor{comment}{// Write ACK pending occupancy}}
+\DoxyCodeLine{00010         UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Any source}}
+\DoxyCodeLine{00011         UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Track all requests from any source port}}
+\DoxyCodeLine{00012         UNC\_I\_CACHE\_OWN\_OCCUPANCY = 0x13, \textcolor{comment}{// Outstanding write ownership occupancy}}
+\DoxyCodeLine{00013         UNC\_I\_CACHE\_OWN\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Any source}}
+\DoxyCodeLine{00014         UNC\_I\_CACHE\_OWN\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Track all requests from any source port}}
+\DoxyCodeLine{00015         UNC\_I\_CACHE\_READ\_OCCUPANCY = 0x10, \textcolor{comment}{// Outstanding read occupancy}}
+\DoxyCodeLine{00016         UNC\_I\_CACHE\_READ\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Any source}}
+\DoxyCodeLine{00017         UNC\_I\_CACHE\_READ\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Track all requests from any source port}}
+\DoxyCodeLine{00018         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY = 0x12, \textcolor{comment}{// Total write cache occupancy}}
+\DoxyCodeLine{00019         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Any source}}
+\DoxyCodeLine{00020         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Track all requests from any source port}}
+\DoxyCodeLine{00021         UNC\_I\_CACHE\_WRITE\_OCCUPANCY = 0x11, \textcolor{comment}{// Outstanding write occupancy}}
+\DoxyCodeLine{00022         UNC\_I\_CACHE\_WRITE\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Any source}}
+\DoxyCodeLine{00023         UNC\_I\_CACHE\_WRITE\_OCCUPANCY\_\_MASK\_\_IVBEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Track all requests from any source port}}
+\DoxyCodeLine{00024         UNC\_I\_RXR\_AK\_CYCLES\_FULL = 0xb, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00025         UNC\_I\_RXR\_AK\_INSERTS = 0xa, \textcolor{comment}{// Egress cycles full}}
+\DoxyCodeLine{00026         UNC\_I\_RXR\_AK\_OCCUPANCY = 0x0c, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00027         UNC\_I\_RXR\_BL\_DRS\_CYCLES\_FULL = 0x4, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00028         UNC\_I\_RXR\_BL\_DRS\_INSERTS = 0x1, \textcolor{comment}{// BL Ingress occupancy DRS}}
+\DoxyCodeLine{00029         UNC\_I\_RXR\_BL\_DRS\_OCCUPANCY = 0x7, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00030         UNC\_I\_RXR\_BL\_NCB\_CYCLES\_FULL = 0x5, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00031         UNC\_I\_RXR\_BL\_NCB\_INSERTS = 0x2, \textcolor{comment}{// BL Ingress occupancy NCB}}
+\DoxyCodeLine{00032         UNC\_I\_RXR\_BL\_NCB\_OCCUPANCY = 0x8, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00033         UNC\_I\_RXR\_BL\_NCS\_CYCLES\_FULL = 0x6, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00034         UNC\_I\_RXR\_BL\_NCS\_INSERTS = 0x3, \textcolor{comment}{// BL Ingress Occupancy NCS}}
+\DoxyCodeLine{00035         UNC\_I\_RXR\_BL\_NCS\_OCCUPANCY = 0x9, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00036         UNC\_I\_TICKLES = 0x16, \textcolor{comment}{// Tickle count}}
+\DoxyCodeLine{00037         UNC\_I\_TICKLES\_\_MASK\_\_IVBEP\_UNC\_I\_TICKLES\_\_LOST\_OWNERSHIP = 0x100, \textcolor{comment}{// Number of request that lost ownership as a result of a tickle}}
+\DoxyCodeLine{00038         UNC\_I\_TICKLES\_\_MASK\_\_IVBEP\_UNC\_I\_TICKLES\_\_TOP\_OF\_QUEUE = 0x200, \textcolor{comment}{// Number of cases when a tickle was received but the request was at the head of the queue in the switch. In this case data is returned rather than releasing ownership}}
+\DoxyCodeLine{00039         UNC\_I\_TRANSACTIONS = 0x15, \textcolor{comment}{// Inbound transaction count}}
+\DoxyCodeLine{00040         UNC\_I\_TRANSACTIONS\_\_MASK\_\_IVBEP\_UNC\_I\_TRANSACTIONS\_\_READS = 0x100, \textcolor{comment}{// Number of read requests (not including read prefetches)}}
+\DoxyCodeLine{00041         UNC\_I\_TRANSACTIONS\_\_MASK\_\_IVBEP\_UNC\_I\_TRANSACTIONS\_\_WRITES = 0x200, \textcolor{comment}{// Number of write requests. Each write should have a prefetch}}
+\DoxyCodeLine{00042         UNC\_I\_TRANSACTIONS\_\_MASK\_\_IVBEP\_UNC\_I\_TRANSACTIONS\_\_RD\_PREFETCHES = 0x400, \textcolor{comment}{// Number of read prefetches}}
+\DoxyCodeLine{00043         UNC\_I\_TXR\_AD\_STALL\_CREDIT\_CYCLES = 0x18, \textcolor{comment}{// No AD Egress credit stalls}}
+\DoxyCodeLine{00044         UNC\_I\_TXR\_BL\_STALL\_CREDIT\_CYCLES = 0x19, \textcolor{comment}{// No BL Egress credit stalls}}
+\DoxyCodeLine{00045         UNC\_I\_TXR\_DATA\_INSERTS\_NCB = 0xe, \textcolor{comment}{// Outbound read requests}}
+\DoxyCodeLine{00046         UNC\_I\_TXR\_DATA\_INSERTS\_NCS = 0xf, \textcolor{comment}{// Outbound read requests}}
+\DoxyCodeLine{00047         UNC\_I\_TXR\_REQUEST\_OCCUPANCY = 0xd, \textcolor{comment}{// Outbound request queue occupancy}}
+\DoxyCodeLine{00048         UNC\_I\_WRITE\_ORDERING\_STALL\_CYCLES = 0x1a, \textcolor{comment}{// Write ordering stalls}}
+\DoxyCodeLine{00049         }
+\DoxyCodeLine{00050     \};}
+\DoxyCodeLine{00051 \};}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053 \textcolor{keyword}{namespace }ivbep\_unc\_i = optkit::intel::ivbep\_unc\_i;}
+
+\end{DoxyCode}

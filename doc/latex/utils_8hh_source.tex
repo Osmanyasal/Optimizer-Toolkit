@@ -1,0 +1,41 @@
+\hypertarget{utils_8hh_source}{}\doxysection{utils.\+hh}
+\label{utils_8hh_source}\index{utils.hh@{utils.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#ifndef OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_UTILS\_\_UTILS}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#define OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_UTILS\_\_UTILS}}
+\DoxyCodeLine{00003 \textcolor{comment}{/*}}
+\DoxyCodeLine{00004 \textcolor{comment}{    All header files that's defined in utils.}}
+\DoxyCodeLine{00005 \textcolor{comment}{    to access utils include this file}}
+\DoxyCodeLine{00006 \textcolor{comment}{*/}}
+\DoxyCodeLine{00007 \textcolor{preprocessor}{\#include <random>}}
+\DoxyCodeLine{00008 }
+\DoxyCodeLine{00009 \textcolor{comment}{// CUSTOM HEADERS}}
+\DoxyCodeLine{00010 \textcolor{preprocessor}{\#include <logger.hh>}}
+\DoxyCodeLine{00011 \textcolor{preprocessor}{\#include <type.hh>}}
+\DoxyCodeLine{00012 }
+\DoxyCodeLine{00013 \textcolor{comment}{// TODO: Migrate this to a math wrapper.}}
+\DoxyCodeLine{00014 \textcolor{comment}{//  INCLUDE GLM}}
+\DoxyCodeLine{00015 \textcolor{preprocessor}{\#include <glm\_utils.hh>}}
+\DoxyCodeLine{00016 }
+\DoxyCodeLine{00017 \textcolor{comment}{// OPTIMIZATION HEADERS}}
+\DoxyCodeLine{00018 \textcolor{preprocessor}{\#include <cpu\_opt.hh>}}
+\DoxyCodeLine{00019 }
+\DoxyCodeLine{00020 \textcolor{comment}{// PROFILING HEADERS}}
+\DoxyCodeLine{00021 \textcolor{preprocessor}{\#include <block\_timer.hh>}}
+\DoxyCodeLine{00022 \textcolor{preprocessor}{\#include <gantt\_instrumentor.hh>}}
+\DoxyCodeLine{00023 }
+\DoxyCodeLine{00024 \textcolor{comment}{// MACRO DEFINITIONS}}
+\DoxyCodeLine{00025 \textcolor{preprocessor}{\#define BIT(x) (1 << x)}}
+\DoxyCodeLine{00026  }
+\DoxyCodeLine{00027 \textcolor{preprocessor}{\#define BLOCK\_TIMER(block\_name) \(\backslash\)}}
+\DoxyCodeLine{00028 \textcolor{preprocessor}{    OPTKIT::utils::BlockTimer block\_timer \{ block\_name \}}}
+\DoxyCodeLine{00029 }
+\DoxyCodeLine{00030 \textcolor{comment}{// FUNCTION DECLERATIONS}}
+\DoxyCodeLine{00031 std::string generateGUID();}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033 std::string read\_file(std::string location);}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,64 @@
+\hypertarget{snbep__unc__p_8hh_source}{}\doxysection{snbep\+\_\+unc\+\_\+p.\+hh}
+\label{snbep__unc__p_8hh_source}\index{snbep\_unc\_p.hh@{snbep\_unc\_p.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::snbep\_unc\_p\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} snbep\_unc\_p : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_P\_CLOCKTICKS = 0x00, \textcolor{comment}{// PCU Uncore clockticks}}
+\DoxyCodeLine{00006         UNC\_P\_CORE0\_TRANSITION\_CYCLES = 0x3 | (1ULL << 21), \textcolor{comment}{// Core C State Transition Cycles}}
+\DoxyCodeLine{00007         UNC\_P\_CORE1\_TRANSITION\_CYCLES = 0x4 | (1ULL << 21), \textcolor{comment}{// Core C State Transition Cycles}}
+\DoxyCodeLine{00008         UNC\_P\_CORE2\_TRANSITION\_CYCLES = 0x5 | (1ULL << 21), \textcolor{comment}{// Core C State Transition Cycles}}
+\DoxyCodeLine{00009         UNC\_P\_CORE3\_TRANSITION\_CYCLES = 0x6 | (1ULL << 21), \textcolor{comment}{// Core C State Transition Cycles}}
+\DoxyCodeLine{00010         UNC\_P\_CORE4\_TRANSITION\_CYCLES = 0x7 | (1ULL << 21), \textcolor{comment}{// Core C State Transition Cycles}}
+\DoxyCodeLine{00011         UNC\_P\_CORE5\_TRANSITION\_CYCLES = 0x8 | (1ULL << 21), \textcolor{comment}{// Core C State Transition Cycles}}
+\DoxyCodeLine{00012         UNC\_P\_CORE6\_TRANSITION\_CYCLES = 0x9 | (1ULL << 21), \textcolor{comment}{// Core C State Transition Cycles}}
+\DoxyCodeLine{00013         UNC\_P\_CORE7\_TRANSITION\_CYCLES = 0xa | (1ULL << 21), \textcolor{comment}{// Core C State Transition Cycles}}
+\DoxyCodeLine{00014         UNC\_P\_DEMOTIONS\_CORE0 = 0x1e, \textcolor{comment}{// Core C State Demotions}}
+\DoxyCodeLine{00015         UNC\_P\_DEMOTIONS\_CORE1 = 0x1f, \textcolor{comment}{// Core C State Demotions}}
+\DoxyCodeLine{00016         UNC\_P\_DEMOTIONS\_CORE2 = 0x20, \textcolor{comment}{// Core C State Demotions}}
+\DoxyCodeLine{00017         UNC\_P\_DEMOTIONS\_CORE3 = 0x21, \textcolor{comment}{// Core C State Demotions}}
+\DoxyCodeLine{00018         UNC\_P\_DEMOTIONS\_CORE4 = 0x22, \textcolor{comment}{// Core C State Demotions}}
+\DoxyCodeLine{00019         UNC\_P\_DEMOTIONS\_CORE5 = 0x23, \textcolor{comment}{// Core C State Demotions}}
+\DoxyCodeLine{00020         UNC\_P\_DEMOTIONS\_CORE6 = 0x24, \textcolor{comment}{// Core C State Demotions}}
+\DoxyCodeLine{00021         UNC\_P\_DEMOTIONS\_CORE7 = 0x25, \textcolor{comment}{// Core C State Demotions}}
+\DoxyCodeLine{00022         UNC\_P\_FREQ\_BAND0\_CYCLES = 0xb, \textcolor{comment}{// Frequency Residency}}
+\DoxyCodeLine{00023         UNC\_P\_FREQ\_BAND1\_CYCLES = 0xc, \textcolor{comment}{// Frequency Residency}}
+\DoxyCodeLine{00024         UNC\_P\_FREQ\_BAND2\_CYCLES = 0xd, \textcolor{comment}{// Frequency Residency}}
+\DoxyCodeLine{00025         UNC\_P\_FREQ\_BAND3\_CYCLES = 0xe, \textcolor{comment}{// Frequency Residency}}
+\DoxyCodeLine{00026         UNC\_P\_FREQ\_MAX\_CURRENT\_CYCLES = 0x7, \textcolor{comment}{// Current Strongest Upper Limit Cycles}}
+\DoxyCodeLine{00027         UNC\_P\_FREQ\_MAX\_LIMIT\_THERMAL\_CYCLES = 0x4, \textcolor{comment}{// Thermal Strongest Upper Limit Cycles}}
+\DoxyCodeLine{00028         UNC\_P\_FREQ\_MAX\_OS\_CYCLES = 0x6, \textcolor{comment}{// OS Strongest Upper Limit Cycles}}
+\DoxyCodeLine{00029         UNC\_P\_FREQ\_MAX\_POWER\_CYCLES = 0x5, \textcolor{comment}{// Power Strongest Upper Limit Cycles}}
+\DoxyCodeLine{00030         UNC\_P\_FREQ\_MIN\_IO\_P\_CYCLES = 0x1 | (1ULL << 21), \textcolor{comment}{// IO P Limit Strongest Lower Limit Cycles}}
+\DoxyCodeLine{00031         UNC\_P\_FREQ\_MIN\_IO\_P\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C0 = 0x0100, \textcolor{comment}{// Counts number of cores in C0}}
+\DoxyCodeLine{00032         UNC\_P\_FREQ\_MIN\_IO\_P\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C3 = 0x0200, \textcolor{comment}{// Counts number of cores in C3}}
+\DoxyCodeLine{00033         UNC\_P\_FREQ\_MIN\_IO\_P\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C6 = 0x0300, \textcolor{comment}{// Counts number of cores in C6}}
+\DoxyCodeLine{00034         UNC\_P\_FREQ\_MIN\_PERF\_P\_CYCLES = 0x2 | (1ULL << 21), \textcolor{comment}{// Perf P Limit Strongest Lower Limit Cycles}}
+\DoxyCodeLine{00035         UNC\_P\_FREQ\_MIN\_PERF\_P\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C0 = 0x0100, \textcolor{comment}{// Counts number of cores in C0}}
+\DoxyCodeLine{00036         UNC\_P\_FREQ\_MIN\_PERF\_P\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C3 = 0x0200, \textcolor{comment}{// Counts number of cores in C3}}
+\DoxyCodeLine{00037         UNC\_P\_FREQ\_MIN\_PERF\_P\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C6 = 0x0300, \textcolor{comment}{// Counts number of cores in C6}}
+\DoxyCodeLine{00038         UNC\_P\_FREQ\_TRANS\_CYCLES = 0x0 | (1ULL << 21), \textcolor{comment}{// Cycles spent changing Frequency}}
+\DoxyCodeLine{00039         UNC\_P\_FREQ\_TRANS\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C0 = 0x0100, \textcolor{comment}{// Counts number of cores in C0}}
+\DoxyCodeLine{00040         UNC\_P\_FREQ\_TRANS\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C3 = 0x0200, \textcolor{comment}{// Counts number of cores in C3}}
+\DoxyCodeLine{00041         UNC\_P\_FREQ\_TRANS\_CYCLES\_\_MASK\_\_SNBEP\_UNC\_P\_OCCUPANCY\_COUNTERS\_\_C6 = 0x0300, \textcolor{comment}{// Counts number of cores in C6}}
+\DoxyCodeLine{00042         UNC\_P\_MEMORY\_PHASE\_SHEDDING\_CYCLES = 0x2f, \textcolor{comment}{// Memory Phase Shedding Cycles}}
+\DoxyCodeLine{00043         UNC\_P\_POWER\_STATE\_OCCUPANCY = 0x80, \textcolor{comment}{// Number of cores in C0}}
+\DoxyCodeLine{00044         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C0 = 0x4000, \textcolor{comment}{// Counts number of cores in C0}}
+\DoxyCodeLine{00045         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C3 = 0x8000, \textcolor{comment}{// Counts number of cores in C3}}
+\DoxyCodeLine{00046         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_SNBEP\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C6 = 0xc000, \textcolor{comment}{// Counts number of cores in C6}}
+\DoxyCodeLine{00047         UNC\_P\_PROCHOT\_EXTERNAL\_CYCLES = 0xa, \textcolor{comment}{// External Prochot}}
+\DoxyCodeLine{00048         UNC\_P\_PROCHOT\_INTERNAL\_CYCLES = 0x9, \textcolor{comment}{// Internal Prochot}}
+\DoxyCodeLine{00049         UNC\_P\_TOTAL\_TRANSITION\_CYCLES = 0xb | (1ULL << 21), \textcolor{comment}{// Total Core C State Transition Cycles}}
+\DoxyCodeLine{00050         UNC\_P\_VOLT\_TRANS\_CYCLES\_CHANGE = 0x3, \textcolor{comment}{// Cycles Changing Voltage}}
+\DoxyCodeLine{00051         UNC\_P\_VOLT\_TRANS\_CYCLES\_DECREASE = 0x2, \textcolor{comment}{// Cycles Decreasing Voltage}}
+\DoxyCodeLine{00052         UNC\_P\_VOLT\_TRANS\_CYCLES\_INCREASE = 0x1, \textcolor{comment}{// Cycles Increasing Voltage}}
+\DoxyCodeLine{00053         UNC\_P\_VR\_HOT\_CYCLES = 0x32, \textcolor{comment}{// VR Hot}}
+\DoxyCodeLine{00054         }
+\DoxyCodeLine{00055     \};}
+\DoxyCodeLine{00056 \};}
+\DoxyCodeLine{00057 }
+\DoxyCodeLine{00058 \textcolor{keyword}{namespace }snbep\_unc\_p = optkit::intel::snbep\_unc\_p;}
+
+\end{DoxyCode}

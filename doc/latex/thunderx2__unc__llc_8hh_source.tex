@@ -1,0 +1,17 @@
+\hypertarget{thunderx2__unc__llc_8hh_source}{}\doxysection{thunderx2\+\_\+unc\+\_\+llc.\+hh}
+\label{thunderx2__unc__llc_8hh_source}\index{thunderx2\_unc\_llc.hh@{thunderx2\_unc\_llc.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{keyword}{namespace }optkit::arm::thunderx2\_unc\_llc\{}
+\DoxyCodeLine{00003     \textcolor{keyword}{enum} thunderx2\_unc\_llc : uint64\_t \{}
+\DoxyCodeLine{00004         UNC\_CCPI\_GIC = CCPI2\_EVENT\_GIC\_PKT\_SENT, \textcolor{comment}{// UNC\_LLC\_READ}}
+\DoxyCodeLine{00005         UNC\_LLC\_EVICT = L3\_EVENT\_EVICT\_REQ, \textcolor{comment}{// Evict requests to LLC}}
+\DoxyCodeLine{00006         UNC\_LLC\_READ\_HIT = L3\_EVENT\_READ\_HIT, \textcolor{comment}{// Read requests to LLC which hit}}
+\DoxyCodeLine{00007         }
+\DoxyCodeLine{00008     \};}
+\DoxyCodeLine{00009 \};}
+\DoxyCodeLine{00010 }
+\DoxyCodeLine{00011 \textcolor{keyword}{namespace }thunderx2\_unc\_llc = optkit::arm::thunderx2\_unc\_llc;}
+
+\end{DoxyCode}

@@ -1,0 +1,18 @@
+\hypertarget{knl__unc__edc__eclk_8hh_source}{}\doxysection{knl\+\_\+unc\+\_\+edc\+\_\+eclk.\+hh}
+\label{knl__unc__edc__eclk_8hh_source}\index{knl\_unc\_edc\_eclk.hh@{knl\_unc\_edc\_eclk.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::knl\_unc\_edc\_eclk\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} knl\_unc\_edc\_eclk : uint64\_t \{}
+\DoxyCodeLine{00005         UNC\_E\_E\_CLOCKTICKS = 0x00, \textcolor{comment}{// EDC ECLK clockticks (generic counters)}}
+\DoxyCodeLine{00006         UNC\_E\_RPQ\_INSERTS = 0x0101, \textcolor{comment}{// Counts total number of EDC RPQ insers}}
+\DoxyCodeLine{00007         UNC\_E\_WPQ\_INSERTS = 0x0102, \textcolor{comment}{// Counts total number of EDC WPQ insers}}
+\DoxyCodeLine{00008         }
+\DoxyCodeLine{00009     \};}
+\DoxyCodeLine{00010 \};}
+\DoxyCodeLine{00011 }
+\DoxyCodeLine{00012 \textcolor{keyword}{namespace }knl\_unc\_edc\_eclk = optkit::intel::knl\_unc\_edc\_eclk;}
+
+\end{DoxyCode}
