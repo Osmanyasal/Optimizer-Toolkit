@@ -1,48 +1,44 @@
 #include <block_profiler.hh>
 
-namespace optkit
+namespace optkit::core
 {
     std::vector<int> BlockProfiler::fd_stack;
 
-    BlockProfiler::BlockProfiler(const char *event_name, uint64_t raw_event, std::initializer_list<uint64_t> flags)
+    BlockProfiler::BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list)
     {
 
         // disable all other counters
         for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
-        std::size_t sz = flags.size();
-        if (OPT_UNLIKELY(sz > 1))
+        this->block_name = block_name;
+        for (auto &raw_event : raw_event_list)
         {
-            OPTKIT_CORE_WARN("Flags exceeded the size: {}",sz);
-        }
-        for (uint64_t flag : flags)
-        {
-            raw_event = raw_event | flag;
-        }
+            struct perf_event_attr attr;
+            memset(&attr, 0, sizeof(struct perf_event_attr));
+            attr.type = PERF_TYPE_RAW;
+            attr.config = raw_event;
+            attr.size = sizeof(struct perf_event_attr);
+            attr.disabled = 1;       // Enable the event later
+            attr.inherit = 1;        // Inherit the counter to child processes
+            attr.exclude_kernel = 1; // Exclude kernel events
+            attr.exclude_hv = 1;
+            attr.pinned = 1;
+            // attr.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
 
-        this->event_name = event_name;
-        struct perf_event_attr attr;
-        memset(&attr, 0, sizeof(struct perf_event_attr));
-        attr.type = PERF_TYPE_RAW;
-        attr.config = raw_event;
-        attr.size = sizeof(struct perf_event_attr);
-        attr.disabled = 1;       // Enable the event later
-        attr.inherit = 1;        // Inherit the counter to child processes
-        attr.exclude_kernel = 1; // Exclude kernel events
-        attr.exclude_hv = 1;
-        attr.exclude_idle = 1;
-        attr.pinned = 1;
+            int fd = syscall(__NR_perf_event_open, &attr, 0, -1, -1, 0); // <-- first becomes -1 and later we use the group_leader's fd.
+            if (fd == -1)
+            {
+                std::cout << "perf_event_open error" << std::endl;
+                return;
+            }
+            else{
+                BlockProfiler::fd_stack.push_back(fd);
+                fd_list.push_back(fd);
+            }
 
-        fd = syscall(__NR_perf_event_open, &attr, 0, -1, -1, 0);
-        BlockProfiler::fd_stack.push_back(fd);
-        if (fd == -1)
-        {
-            std::cout << "perf_event_open error" << std::endl;
-            return;
+            ioctl(fd, PERF_EVENT_IOC_RESET, 0);
         }
-
-        ioctl(fd, PERF_EVENT_IOC_RESET, 0);
 
         // enable all other counters
         for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
@@ -58,9 +54,12 @@ namespace optkit
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
         uint64_t count;
-        read(fd, &count, sizeof(count));
-        std::cout << "Event:" << event_name << " Count: " << count << std::endl;
-        close(fd);
+        for (int fd : fd_list)
+        {
+            read(fd, &count, sizeof(count));
+            std::cout << "Event:" << block_name << " Count: " << count << std::endl;
+            close(fd);
+        }
 
         // enable all other counters
         for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
@@ -69,26 +68,37 @@ namespace optkit
 
     void BlockProfiler::disable()
     {
-        ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
+        for (int fd : fd_list)
+        {
+            ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
+        } 
     }
     void BlockProfiler::enable()
     {
-        ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
+        for (int fd : fd_list)
+        {
+            ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
+        }
     }
 
-    uint64_t BlockProfiler::read_counter()
+    std::vector<uint64_t> BlockProfiler::read_counter()
     {
         // disable all other counters
         for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
+        std::vector<uint64_t> result;
         uint64_t count;
-        read(fd, &count, sizeof(count));
+        for (int fd : fd_list)
+        {
+            read(fd, &count, sizeof(count));
+            result.push_back(count);
+        }
 
         // enable all other counters
         for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
 
-        return count;
+        return result;
     }
-}
+} // namespace optkit::core

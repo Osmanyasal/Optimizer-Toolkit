@@ -2,10 +2,9 @@
 #include <imgui_impl.hh>
 #include <block_profiler.hh>
 #include <core/events/intel/icl.hh>
-#include <core/events/amd64/fam19h_zen3.hh>
 #include <utils.hh>
 
-using optkit::BlockProfiler;
+using optkit::core::BlockProfiler;
 
 int32_t main(int32_t argc, char **argv)
 {
@@ -40,16 +39,35 @@ int32_t main(int32_t argc, char **argv)
     pfm_terminate();
 
     // MEASURE BLOCK
+
+    std::cout << "-------------------" << std::endl;
+
+    OPTKIT_CORE_INFO("MONITOR SINGLE");
     float sum = 1.12f;
     double dsum = 0.05;
     {
 
-        BlockProfiler inst{"FP_ARITH", icl::FP_ARITH_INST_RETIRED, {icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE, icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
-        // BlockProfiler inst{"INSTRUCTIONS_RETIRED", (uint64_t)optkit::amd64::fam19h_zen3::RETIRED_INSTRUCTIONS};
+        BlockProfiler fp_arit{"FP_ARITH", {icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
+        {
+            BlockProfiler inst{"INSTRUCTIONS_RETIRED", {icl::INSTRUCTIONS_RETIRED}};
 
-        sum += 3.14f;
-        sum *= 3.14f;
-        dsum += 3.152;
+            sum += 3.14f;
+            sum *= 3.14f;
+            dsum += 3.152;
+        }
+    }
+
+    OPTKIT_CORE_INFO("MONITOR COLLECTIVE");
+    sum = 1.12f;
+    dsum = 0.05;
+    {
+        BlockProfiler fp_arit{"COLECTIVE_FP_INST", {icl::INSTRUCTIONS_RETIRED, icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
+        {
+
+            sum += 3.14f;
+            sum *= 3.14f;
+            dsum += 3.152;
+        }
     }
 
     OPTKIT_CORE_INFO("sum:{}", sum);

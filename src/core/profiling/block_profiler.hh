@@ -15,25 +15,25 @@
 #include <vector>
 #include <utils.hh>
 
-namespace optkit
+namespace optkit::core
 {
     class BlockProfiler
     {
     public:
-        BlockProfiler(const char *event_name, uint64_t raw_event, std::initializer_list<uint64_t> flags = {});
-        virtual ~BlockProfiler() final;
+        BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list);
+        virtual ~BlockProfiler();
 
-        void disable();
-        void enable();
-        uint64_t read_counter();
+        virtual void disable();
+        virtual void enable();
+        virtual std::vector<uint64_t> read_counter();
 
     public:
-        int fd;
-        const char *event_name;
+        std::vector<int> fd_list;
+        const char *block_name;
 
     private:
         static std::vector<int> fd_stack;
     };
-} // namespace optkit
+} // namespace optkit::core
 
 #endif
