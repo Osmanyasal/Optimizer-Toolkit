@@ -1,7 +1,7 @@
 var searchData=
 [
   ['cached_5fpower_457',['cached_power',['../d4/d7b/structdetail_1_1dtoa__impl_1_1cached__power.html',1,'detail::dtoa_impl']]],
-  ['changeresult_458',['ChangeResult',['../d8/d90/structOPTKIT_1_1utils_1_1InstrumentorUtils_1_1ChangeResult.html',1,'OPTKIT::utils::InstrumentorUtils']]],
+  ['changeresult_458',['ChangeResult',['../da/d61/structoptkit_1_1utils_1_1InstrumentorUtils_1_1ChangeResult.html',1,'optkit::utils::InstrumentorUtils']]],
   ['conjunction_459',['conjunction',['../dd/d29/structdetail_1_1conjunction.html',1,'detail']]],
   ['conjunction_3c_20b_20_3e_460',['conjunction&lt; B &gt;',['../d6/d30/structdetail_1_1conjunction_3_01B_01_4.html',1,'detail']]],
   ['conjunction_3c_20b_2c_20bn_2e_2e_2e_20_3e_461',['conjunction&lt; B, Bn... &gt;',['../dd/dc1/structdetail_1_1conjunction_3_01B_00_01Bn_8_8_8_01_4.html',1,'detail']]],

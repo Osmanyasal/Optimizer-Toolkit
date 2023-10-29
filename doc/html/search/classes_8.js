@@ -1,7 +1,7 @@
 var searchData=
 [
   ['identity_5ftag_511',['identity_tag',['../d8/d23/structdetail_1_1identity__tag.html',1,'detail']]],
-  ['imguilayer_5fglfw_5fopengl_5fimpl_512',['ImguiLayer_glfw_opengl_impl',['../d6/d37/classOPTKIT_1_1platforms_1_1imgui_1_1ImguiLayer__glfw__opengl__impl.html',1,'OPTKIT::platforms::imgui']]],
+  ['imguilayer_5fglfw_5fopengl_5fimpl_512',['ImguiLayer_glfw_opengl_impl',['../dc/d41/classoptkit_1_1platforms_1_1imgui_1_1ImguiLayer__glfw__opengl__impl.html',1,'optkit::platforms::imgui']]],
   ['imguilogger_513',['ImGuiLogger',['../d7/d2b/classImGuiLogger.html',1,'']]],
   ['implotstylevarinfo_514',['ImPlotStyleVarInfo',['../dc/d51/structImPlot_1_1ImPlotStyleVarInfo.html',1,'ImPlot']]],
   ['indexeradd_515',['IndexerAdd',['../df/d1d/structImPlot_1_1IndexerAdd.html',1,'ImPlot']]],
@@ -9,9 +9,9 @@ var searchData=
   ['indexeridx_517',['IndexerIdx',['../d5/d7d/structImPlot_1_1IndexerIdx.html',1,'ImPlot']]],
   ['indexerlin_518',['IndexerLin',['../d9/dac/structImPlot_1_1IndexerLin.html',1,'ImPlot']]],
   ['input_5fstream_5fadapter_519',['input_stream_adapter',['../db/d4c/classdetail_1_1input__stream__adapter.html',1,'detail']]],
-  ['instrumentationsession_520',['InstrumentationSession',['../d9/d04/structOPTKIT_1_1utils_1_1InstrumentationSession.html',1,'OPTKIT::utils']]],
-  ['instrumentationtimer_521',['InstrumentationTimer',['../d1/d9e/classOPTKIT_1_1utils_1_1InstrumentationTimer.html',1,'OPTKIT::utils']]],
-  ['instrumentor_522',['Instrumentor',['../d4/dc8/classOPTKIT_1_1utils_1_1Instrumentor.html',1,'OPTKIT::utils']]],
+  ['instrumentationsession_520',['InstrumentationSession',['../d6/d4f/structoptkit_1_1utils_1_1InstrumentationSession.html',1,'optkit::utils']]],
+  ['instrumentationtimer_521',['InstrumentationTimer',['../d6/d32/classoptkit_1_1utils_1_1InstrumentationTimer.html',1,'optkit::utils']]],
+  ['instrumentor_522',['Instrumentor',['../d3/d04/classoptkit_1_1utils_1_1Instrumentor.html',1,'optkit::utils']]],
   ['integer_5fsequence_523',['integer_sequence',['../d2/df9/structdetail_1_1integer__sequence.html',1,'detail']]],
   ['internal_5fiterator_524',['internal_iterator',['../d5/d82/structdetail_1_1internal__iterator.html',1,'detail']]],
   ['internal_5fiterator_3c_20typename_20std_3a_3aremove_5fconst_3c_20basicjsontype_20_3e_3a_3atype_20_3e_525',['internal_iterator&lt; typename std::remove_const&lt; BasicJsonType &gt;::type &gt;',['../d5/d82/structdetail_1_1internal__iterator.html',1,'detail']]],

@@ -14,6 +14,6 @@ var searchData=
   ['primitive_5fiterator_5ft_348',['primitive_iterator_t',['../d8/d63/classdetail_1_1primitive__iterator__t.html',1,'detail']]],
   ['priority_5ftag_349',['priority_tag',['../d6/d27/structdetail_1_1priority__tag.html',1,'detail']]],
   ['priority_5ftag_3c_200_20_3e_350',['priority_tag&lt; 0 &gt;',['../da/dfa/structdetail_1_1priority__tag_3_010_01_4.html',1,'detail']]],
-  ['profileresult_351',['ProfileResult',['../d7/d90/structOPTKIT_1_1utils_1_1ProfileResult.html',1,'OPTKIT::utils']]],
+  ['profileresult_351',['ProfileResult',['../dd/d2b/structoptkit_1_1utils_1_1ProfileResult.html',1,'optkit::utils']]],
   ['push_5fback_352',['push_back',['../d2/de9/classjson__pointer.html#adbe97f9c00a221fb7be88d940b39a24f',1,'json_pointer::push_back(const string_t &amp;token)'],['../d2/de9/classjson__pointer.html#a6fa4848eafc232ae1af91c3d2696897e',1,'json_pointer::push_back(string_t &amp;&amp;token)'],['../d1/d72/classbasic__json.html#aca01ca3a9bc310e5c5d067a39dca6933',1,'basic_json::push_back(const basic_json &amp;val)'],['../d1/d72/classbasic__json.html#af17fe93acad9b0b991600225dabd42be',1,'basic_json::push_back(const typename object_t::value_type &amp;val)'],['../d1/d72/classbasic__json.html#a4fcacc90f17b156f0b6c8e0430624853',1,'basic_json::push_back(initializer_list_t init)']]]
 ];

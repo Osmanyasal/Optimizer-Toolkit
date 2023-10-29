@@ -2,7 +2,7 @@ var searchData=
 [
   ['cached_5fpower_30',['cached_power',['../d4/d7b/structdetail_1_1dtoa__impl_1_1cached__power.html',1,'detail::dtoa_impl']]],
   ['cbor_5ftag_5fhandler_5ft_31',['cbor_tag_handler_t',['../dd/d39/namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592',1,'detail::cbor_tag_handler_t()'],['../d1/d72/classbasic__json.html#a067b4f0e63e55055272fec0a26b5b991',1,'basic_json::cbor_tag_handler_t()']]],
-  ['changeresult_32',['ChangeResult',['../d8/d90/structOPTKIT_1_1utils_1_1InstrumentorUtils_1_1ChangeResult.html',1,'OPTKIT::utils::InstrumentorUtils']]],
+  ['changeresult_32',['ChangeResult',['../da/d61/structoptkit_1_1utils_1_1InstrumentorUtils_1_1ChangeResult.html',1,'optkit::utils::InstrumentorUtils']]],
   ['chars_5fread_5fcurrent_5fline_33',['chars_read_current_line',['../df/dbb/structdetail_1_1position__t.html#a6548d584bd03d1d47bfcd7cf8b1fb0c6',1,'detail::position_t']]],
   ['chars_5fread_5ftotal_34',['chars_read_total',['../df/dbb/structdetail_1_1position__t.html#ac4d220d61ce61eeffbea40985727a3b0',1,'detail::position_t']]],
   ['clear_5fsubtype_35',['clear_subtype',['../d7/dbb/classbyte__container__with__subtype.html#ad18f6a7557a2bfce28f1ed8d4d10607c',1,'byte_container_with_subtype']]],

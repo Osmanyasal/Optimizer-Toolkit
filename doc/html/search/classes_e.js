@@ -6,5 +6,5 @@ var searchData=
   ['primitive_5fiterator_5ft_624',['primitive_iterator_t',['../d8/d63/classdetail_1_1primitive__iterator__t.html',1,'detail']]],
   ['priority_5ftag_625',['priority_tag',['../d6/d27/structdetail_1_1priority__tag.html',1,'detail']]],
   ['priority_5ftag_3c_200_20_3e_626',['priority_tag&lt; 0 &gt;',['../da/dfa/structdetail_1_1priority__tag_3_010_01_4.html',1,'detail']]],
-  ['profileresult_627',['ProfileResult',['../d7/d90/structOPTKIT_1_1utils_1_1ProfileResult.html',1,'OPTKIT::utils']]]
+  ['profileresult_627',['ProfileResult',['../dd/d2b/structoptkit_1_1utils_1_1ProfileResult.html',1,'optkit::utils']]]
 ];
