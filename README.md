@@ -47,7 +47,7 @@ make
 ```
 
 ## IN DEVELOPMENT PERFORMANCE AID 🔎  
-<img align="center" alt="ICON" width="100%" height="450" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/039b5dd2-6635-435d-9dfc-4977336db0a8" />
+<img align="center" alt="ICON" width="100%" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/039b5dd2-6635-435d-9dfc-4977336db0a8" />
  
  * Recursion Optimizer Toolkit gives you an API that you can use in your C++ and Python projects to monitor Performance Monitoring Unit (PMU) events in your CPU.<br>
  * With the help of RAII, you can monitor any pmu events including (cycles, instruction count, LXX cache hits/misses) or use cases including (microarchitecture analysis, energy-consumption analysis, thread interaction monitoring, etc.)
@@ -56,7 +56,7 @@ make
 
 
 ## POST MORTERM PERFORMANCE MONITORING 🔎  
- <img align="center" alt="ICON" width="100%" height="450" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/f17c6d7f-0d50-4785-8282-5259d277a653" />
+ <img align="center" alt="ICON" width="100%" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/f17c6d7f-0d50-4785-8282-5259d277a653" />
  
  * Recursion Optimizer Toolkit also gives you a total GUI to perform post-mortem analysis on `any` executable.
  * The binary executable does `NOT` need to be written with Recursion Optimizer Toolkit API.

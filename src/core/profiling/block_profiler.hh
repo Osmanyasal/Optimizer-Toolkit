@@ -21,8 +21,8 @@ namespace optkit::core
      * @brief The BlockProfiler class utilizes the RAII technique to initiate and conclude profiling for a specific raw event.
      *        Profiling commences upon instantiation and persists until the current scope is exited.
      *
-     *        Note that block profiler does NOT group raw_events! If you want that ability please @see BlockGroupProfiler
-     * 
+     *        Note that block profiler does NOT group raw_events! If you want that ability please BlockGroupProfiler
+     *
      *        Each raw_event creates seperate file_description (fd) to read data and each raw_event is treated seperately.<br>
      *        In cases where CPU performs multiplexing and since each event treated seperately, you cannot gurantee that <br>
      *        events E1 and E2 will record the same instructions.<br>
