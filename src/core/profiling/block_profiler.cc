@@ -4,7 +4,7 @@ namespace optkit::core
 {
     std::vector<int> BlockProfiler::fd_stack;
 
-    BlockProfiler::BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list) 
+    BlockProfiler::BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list)
     {
 
         // disable all other counters
@@ -32,7 +32,8 @@ namespace optkit::core
                 std::cout << "perf_event_open error" << std::endl;
                 return;
             }
-            else{
+            else
+            {
                 BlockProfiler::fd_stack.push_back(fd);
                 fd_list.push_back(fd);
             }
@@ -64,7 +65,7 @@ namespace optkit::core
         for (int fd : fd_list)
         {
             read(fd, &count, sizeof(count));
-            OPTKIT_CORE_INFO("[{}]ms Block: {} Measured: {}", duration_ms, this->block_name, count);
+            std::cout << "[" << duration_ms << "ms] Block: " << this->block_name << " Measured: " << count << std::endl;
             close(fd);
         }
 
@@ -78,7 +79,7 @@ namespace optkit::core
         for (int fd : fd_list)
         {
             ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
-        } 
+        }
     }
     void BlockProfiler::enable()
     {
