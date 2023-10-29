@@ -11,6 +11,29 @@ Purpose
 Read all <vendor>_<pmu>_events.h files in libpfm4 and convert them to 
 compatible c++ class higherarchy for effective usage.
 
+example layout is as follows:
+
+-- icl.hh --
+
+#include <cstdint>
+#include <intel_priv.hh>
+namespace optkit::intel::icl{
+	enum icl : uint64_t {
+		UNHALTED_CORE_CYCLES = 0x3c, // Count core clock cycles whenever the clock signal on the specific core is running (not halted)
+		UNHALTED_REFERENCE_CYCLES = 0x0300, // Unhalted reference cycles
+		INSTRUCTION_RETIRED = 0xc0, // Number of instructions at retirement
+		INSTRUCTIONS_RETIRED = 0xc0, // Number of instructions at retirement
+		SQ_MISC = 0x00f4, // SuperQueue miscellaneous.
+        ...
+        ...
+        ...
+    };
+};
+
+namespace icl = optkit::intel::icl;
+
+For detail you can check /lib/libpfm4/lib/events/* for each pmu events.
+
 """
 import sys
 import os
