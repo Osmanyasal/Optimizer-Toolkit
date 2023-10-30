@@ -6,43 +6,43 @@
 namespace optkit::core
 {
     inline const char *pmu_names[]{
-        "NONE             ", /* no PMU */
-        "GEN_IA64         ", /* Intel IA-64 architected PMU */
-        "ITANIUM          ", /* Intel Itanium   */
-        "ITANIUM2         ", /* Intel Itanium 2 */
-        "MONTECITO        ", /* Intel Dual-Core Itanium 2 9000 */
-        "AMD64            ", /* AMD AMD64 (obsolete) */
-        "I386_P6          ", /* Intel PIII (P6 core) */
-        "INTEL_NETBURST   ", /* Intel Netburst (Pentium 4) */
-        "INTEL_NETBURST_P ", /* Intel Netburst Prescott (Pentium 4) */
-        "COREDUO          ", /* Intel Core Duo/Core Solo */
-        "I386_PM          ", /* Intel Pentium M */
-        "INTEL_CORE       ", /* Intel Core */
-        "INTEL_PPRO       ", /* Intel Pentium Pro */
-        "INTEL_PII        ", /* Intel Pentium II */
-        "INTEL_ATOM       ", /* Intel Atom */
-        "INTEL_NHM        ", /* Intel Nehalem core PMU */
-        "INTEL_NHM_EX     ", /* Intel Nehalem-EX core PMU */
-        "INTEL_NHM_UNC    ", /* Intel Nehalem uncore PMU */
-        "INTEL_X86_ARCH   ", /* Intel X86 architectural PMU */
+        "NONE",             /* no PMU */
+        "GEN_IA64",         /* Intel IA-64 architected PMU */
+        "ITANIUM",          /* Intel Itanium   */
+        "ITANIUM2",         /* Intel Itanium 2 */
+        "MONTECITO",        /* Intel Dual-Core Itanium 2 9000 */
+        "AMD64",            /* AMD AMD64 (obsolete) */
+        "I386_P6",          /* Intel PIII (P6 core) */
+        "INTEL_NETBURST",   /* Intel Netburst (Pentium 4) */
+        "INTEL_NETBURST_P", /* Intel Netburst Prescott (Pentium 4) */
+        "COREDUO",          /* Intel Core Duo/Core Solo */
+        "I386_PM",          /* Intel Pentium M */
+        "INTEL_CORE",       /* Intel Core */
+        "INTEL_PPRO",       /* Intel Pentium Pro */
+        "INTEL_PII",        /* Intel Pentium II */
+        "INTEL_ATOM",       /* Intel Atom */
+        "INTEL_NHM",        /* Intel Nehalem core PMU */
+        "INTEL_NHM_EX",     /* Intel Nehalem-EX core PMU */
+        "INTEL_NHM_UNC",    /* Intel Nehalem uncore PMU */
+        "INTEL_X86_ARCH",   /* Intel X86 architectural PMU */
 
-        "MIPS_20KC   ", /* MIPS 20KC */
-        "MIPS_24K    ", /* MIPS 24K */
-        "MIPS_25KF   ", /* MIPS 25KF */
-        "MIPS_34K    ", /* MIPS 34K */
-        "MIPS_5KC    ", /* MIPS 5KC */
-        "MIPS_74K    ", /* MIPS 74K */
-        "MIPS_R10000 ", /* MIPS R10000 */
-        "MIPS_R12000 ", /* MIPS R12000 */
-        "MIPS_RM7000 ", /* MIPS RM7000 */
-        "MIPS_RM9000 ", /* MIPS RM9000 */
-        "MIPS_SB1    ", /* MIPS SB1/SB1A */
-        "MIPS_VR5432 ", /* MIPS VR5432 */
-        "MIPS_VR5500 ", /* MIPS VR5500 */
-        "MIPS_ICE9A  ", /* SiCortex ICE9A */
-        "MIPS_ICE9B  ", /* SiCortex ICE9B */
-        "POWERPC     ", /* POWERPC */
-        "CELL        ", /* IBM CELL */
+        "MIPS_20KC",    /* MIPS 20KC */
+        "MIPS_24K",     /* MIPS 24K */
+        "MIPS_25KF",    /* MIPS 25KF */
+        "MIPS_34K",     /* MIPS 34K */
+        "MIPS_5KC",     /* MIPS 5KC */
+        "MIPS_74K",     /* MIPS 74K */
+        "MIPS_R10000",  /* MIPS R10000 */
+        "MIPS_R12000",  /* MIPS R12000 */
+        "MIPS_RM7000",  /* MIPS RM7000 */
+        "MIPS_RM9000",  /* MIPS RM9000 */
+        "MIPS_SB1",     /* MIPS SB1/SB1A */
+        "MIPS_VR5432",  /* MIPS VR5432 */
+        "MIPS_VR5500",  /* MIPS VR5500 */
+        "MIPS_ICE9A",   /* SiCortex ICE9A */
+        "MIPS_ICE9B",   /* SiCortex ICE9B */
+        "POWERPC",      /* POWERPC */
+        "CELL",         /* IBM CELL */
 
         "SPARC_ULTRA12",    /* UltraSPARC I, II, IIi, and IIe */
         "SPARC_ULTRA3",     /* UltraSPARC III */

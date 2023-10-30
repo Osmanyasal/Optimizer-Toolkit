@@ -5,7 +5,7 @@ std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info)
 {
 
     // Calculate the number of spaces needed for "Information" label and vertical bars
-    int horizontalLineWidth = 45; // Width of the horizontal line
+    int horizontalLineWidth = 16 + 30 + 4; // Width of the horizontal line 4 for (| and blank) x 2
     int informationWidth = horizontalLineWidth - 2; // 2 is for the two vertical bars
     int paddingWidth = (informationWidth - 16) / 2; // 16 is for the "PMU Information" label
  
@@ -26,20 +26,20 @@ std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info)
     // Output the middle horizontal line
     out << std::string(horizontalLineWidth, '-') << "\n";
 
-    out << "| " << std::setw(16) << "name:" << std::setw(25) << pmu_info.name << " |\n";
-    out << "| " << std::setw(16) << "desc:" << std::setw(25) << pmu_info.desc << " |\n";
-    out << "| " << std::setw(16) << "size:" << std::setw(25) << pmu_info.size << " |\n";
+    out << "| " << std::setw(16) << "name:" << std::setw(30) << pmu_info.name << " |\n";
+    out << "| " << std::setw(16) << "desc:" << std::setw(30) << pmu_info.desc << " |\n";
+    out << "| " << std::setw(16) << "size:" << std::setw(30) << pmu_info.size << " |\n";
     // Print the rest of the members with appropriate setw values
-    out << "| " << std::setw(16) << "pmu:" << std::setw(25) << optkit::core::pmu_names[pmu_info.pmu] << " |\n";
-    out << "| " << std::setw(16) << "type:" << std::setw(25) << optkit::core::pmu_types[pmu_info.type] << " |\n";
-    out << "| " << std::setw(16) << "nevents:" << std::setw(25) << pmu_info.nevents << " |\n";
-    out << "| " << std::setw(16) << "first_event:" << std::setw(25) << pmu_info.first_event << " |\n";
-    out << "| " << std::setw(16) << "max_encoding:" << std::setw(25) << pmu_info.max_encoding << " |\n";
-    out << "| " << std::setw(16) << "num_cntrs:" << std::setw(25) << pmu_info.num_cntrs << " |\n";
-    out << "| " << std::setw(16) << "num_fixed_cntrs:" << std::setw(25) << pmu_info.num_fixed_cntrs << " |\n";
-    out << "| " << std::setw(16) << "is_present:" << std::setw(25) << pmu_info.is_present << " |\n";
-    out << "| " << std::setw(16) << "is_dfl:" << std::setw(25) << pmu_info.is_dfl << " |\n";
-    out << "| " << std::setw(16) << "reserved_bits:" << std::setw(25) << pmu_info.reserved_bits << " |\n";
+    out << "| " << std::setw(16) << "pmu:" << std::setw(30) << optkit::core::pmu_names[pmu_info.pmu] << " |\n";
+    out << "| " << std::setw(16) << "type:" << std::setw(30) << optkit::core::pmu_types[pmu_info.type] << " |\n";
+    out << "| " << std::setw(16) << "nevents:" << std::setw(30) << pmu_info.nevents << " |\n";
+    out << "| " << std::setw(16) << "first_event:" << std::setw(30) << pmu_info.first_event << " |\n";
+    out << "| " << std::setw(16) << "max_encoding:" << std::setw(30) << pmu_info.max_encoding << " |\n";
+    out << "| " << std::setw(16) << "num_cntrs:" << std::setw(30) << pmu_info.num_cntrs << " |\n";
+    out << "| " << std::setw(16) << "num_fixed_cntrs:" << std::setw(30) << pmu_info.num_fixed_cntrs << " |\n";
+    out << "| " << std::setw(16) << "is_present:" << std::setw(30) << pmu_info.is_present << " |\n";
+    out << "| " << std::setw(16) << "is_dfl:" << std::setw(30) << pmu_info.is_dfl << " |\n";
+    out << "| " << std::setw(16) << "reserved_bits:" << std::setw(30) << pmu_info.reserved_bits << " |\n";
     out << std::string(horizontalLineWidth, '-') << "\n";
 
     return out;
@@ -68,21 +68,35 @@ namespace optkit::core
         is_active = false;
     }
     
-    pfm_pmu_info_t Query::pmu_info(const char *pmu_name)
+    pfm_pmu_info_t Query::pmu_info(int pmu_id)
     {
         pfm_pmu_info_t pmu_info;
         memset(&pmu_info, 0, sizeof(pfm_pmu_info_t));
 
         if (OPT_LIKELY(Query::is_active))
-            pfm_get_pmu_info(PFM_PMU_INTEL_ICL, &pmu_info);
+            pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pmu_info);
         else{
             OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
         return pmu_info;
     }
-    void Query::local_pmu_info()
+
+    void Query::list_avail_pmus()
     {
+        std::cout << "[INFO] Listing Available PMUs...." << std::endl;
+        int i = 0;
+        pfm_for_all_pmus(i)
+        {
+            pfm_pmu_info_t pmu_info = Query::pmu_info(i);
+            if(pmu_info.is_present)
+                std::cout << pmu_info << std::endl;
+        }
     }
+    std::vector<int> Query::get_avail_pmus()
+    {
+
+    }
+
     void Query::event_info(const char *pmu_event_name)
     {
     }

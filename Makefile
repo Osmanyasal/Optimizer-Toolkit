@@ -118,6 +118,7 @@ ${LIB_PFM_PATH}/all_set:
 	cd ${LIB_PFM_PATH} && ./install.sh
 
 run: all
+	@clear
 	@echo "🚀 Executing..."
 	cd $(BIN); ./$(EXECUTABLE)
 

@@ -5,6 +5,7 @@
 #include <utils.hh>
 #include <iomanip>  
 #include <libpfm4_wrapper.hh>
+#include <vector>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
 
@@ -20,10 +21,13 @@ namespace optkit::core
     {
     public:
         static void init();
-        static void destroy();
-        static pfm_pmu_info_t pmu_info(const char *pmu_name);
-        static void local_pmu_info();
+        static void destroy(); 
+        
+        static pfm_pmu_info_t pmu_info(int pmu_id);
         static void event_info(const char *pmu_event_name);
+
+        static void list_avail_pmus();
+        static std::vector<int> get_avail_pmus();
 
     private:
         static bool is_active;
