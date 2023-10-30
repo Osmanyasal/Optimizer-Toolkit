@@ -30,8 +30,8 @@ std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info)
     out << "| " << std::setw(16) << "desc:" << std::setw(25) << pmu_info.desc << " |\n";
     out << "| " << std::setw(16) << "size:" << std::setw(25) << pmu_info.size << " |\n";
     // Print the rest of the members with appropriate setw values
-    out << "| " << std::setw(16) << "pmu:" << std::setw(25) << pmu_info.pmu << " |\n";
-    out << "| " << std::setw(16) << "type:" << std::setw(25) << pmu_info.type << " |\n";
+    out << "| " << std::setw(16) << "pmu:" << std::setw(25) << optkit::core::pmu_names[pmu_info.pmu] << " |\n";
+    out << "| " << std::setw(16) << "type:" << std::setw(25) << optkit::core::pmu_types[pmu_info.type] << " |\n";
     out << "| " << std::setw(16) << "nevents:" << std::setw(25) << pmu_info.nevents << " |\n";
     out << "| " << std::setw(16) << "first_event:" << std::setw(25) << pmu_info.first_event << " |\n";
     out << "| " << std::setw(16) << "max_encoding:" << std::setw(25) << pmu_info.max_encoding << " |\n";

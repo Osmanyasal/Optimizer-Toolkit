@@ -1,10 +1,10 @@
 #ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH
 #define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH
 
-#include <iostream>
-#include <perfmon/pfmlib.h>
+#include <iostream> 
 #include <utils.hh>
 #include <iomanip>  
+#include <libpfm4_wrapper.hh>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
 
