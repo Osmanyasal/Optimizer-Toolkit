@@ -61,7 +61,7 @@ namespace optkit::core
          * @return pfm_event_info_t
          * @see list_avail_events()
          */
-        static pfm_event_info_t get_event_detail(int32_t pmu_id, const char *event_name);
+        static pfm_event_info_t get_event_detail(int32_t pmu_id, uint32_t event_id);
 
         /**
          * @brief List available PMUs on the system with details.

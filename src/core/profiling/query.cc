@@ -86,20 +86,54 @@ namespace optkit::core
         return pmu_info;
     }
 
+    // TODO: Check this!
     void Query::list_avail_events(int32_t pmu_id)
     {
         if (OPT_LIKELY(Query::is_active))
         {
+            pfm_event_info_t info;
+            pfm_pmu_info_t pinfo;
+            int i, ret;
+
+            memset(&info, 0, sizeof(info));
+            memset(&pinfo, 0, sizeof(pinfo));
+
+            info.size = sizeof(info);
+            pinfo.size = sizeof(pinfo);
+
+            ret = pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pinfo);
+            if (ret != PFM_SUCCESS)
+                std::cout << "[ERROR] cannot get pmu info" << std::endl;
+
+            for (i = pinfo.first_event; i != -1; i = pfm_get_event_next(i))
+            {
+                ret = pfm_get_event_info(i, pfm_os_t::PFM_OS_NONE, &info);
+                if (ret != PFM_SUCCESS)
+                    std::cout << "[ERROR] cannot get event info" << std::endl;
+                else
+                    std::cout << (pinfo.is_present ? "Active" : "Supported") << " Event: " << pinfo.name << "::" << info.name << std::endl;
+            }
         }
         else
         {
             OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
     }
-    pfm_event_info_t Query::get_event_detail(int32_t pmu_id, const char *event_name)
+    //TODO: Complete this
+    pfm_event_info_t Query::get_event_detail(int32_t pmu_id, uint32_t event_id)
     {
         if (OPT_LIKELY(Query::is_active))
         {
+            int ret;
+            pfm_event_info_t info;
+            memset(&info, 0, sizeof(info));
+            ret = pfm_get_event_info(event_id, pfm_os_t::PFM_OS_NONE, &info);
+            if (ret != PFM_SUCCESS)
+                std::cout << "[ERROR] cannot get event info" << std::endl;
+            else{
+
+            }
+
         }
         else
         {
