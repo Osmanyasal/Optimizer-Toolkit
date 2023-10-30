@@ -2,13 +2,13 @@
 
 namespace optkit::core
 {
-    std::vector<int> BlockProfiler::fd_stack;
+    std::vector<int32_t> BlockProfiler::fd_stack;
 
     BlockProfiler::BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list)
     {
 
         // disable all other counters
-        for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
+        for (int32_t i = 0; i < BlockProfiler::fd_stack.size(); i++)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
         this->block_name = block_name;
@@ -25,7 +25,7 @@ namespace optkit::core
             attr.exclude_hv = 1;
             // attr.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
 
-            int fd = syscall(__NR_perf_event_open, &attr, 0, -1, -1, 0); // <-- first becomes -1 and later we use the group_leader's fd.
+            int32_t fd = syscall(__NR_perf_event_open, &attr, 0, -1, -1, 0); // <-- first becomes -1 and later we use the group_leader's fd.
             if (fd == -1)
             {
                 std::cout << "perf_event_open error" << std::endl;
@@ -44,7 +44,7 @@ namespace optkit::core
         start = std::chrono::high_resolution_clock::now();
 
         // enable all other counters
-        for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
+        for (int32_t i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
         {
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
         }
@@ -53,7 +53,7 @@ namespace optkit::core
     {
 
         // disable all other counters
-        for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
+        for (int32_t i = 0; i < BlockProfiler::fd_stack.size(); i++)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
         // disable clock now!
@@ -61,7 +61,7 @@ namespace optkit::core
         auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
 
         uint64_t count;
-        for (int fd : fd_list)
+        for (int32_t fd : fd_list)
         {
             read(fd, &count, sizeof(count));
             std::cout << "[" << duration_ms << "ms] Block: " << this->block_name << " Measured: " << count << std::endl;
@@ -69,20 +69,20 @@ namespace optkit::core
         }
 
         // enable all other counters
-        for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
+        for (int32_t i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
     }
 
     void BlockProfiler::disable()
     {
-        for (int fd : fd_list)
+        for (int32_t fd : fd_list)
         {
             ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
         }
     }
     void BlockProfiler::enable()
     {
-        for (int fd : fd_list)
+        for (int32_t fd : fd_list)
         {
             ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
         }
@@ -91,19 +91,19 @@ namespace optkit::core
     std::vector<uint64_t> BlockProfiler::read_counter()
     {
         // disable all other counters
-        for (int i = 0; i < BlockProfiler::fd_stack.size(); i++)
+        for (int32_t i = 0; i < BlockProfiler::fd_stack.size(); i++)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
 
         std::vector<uint64_t> result;
         uint64_t count;
-        for (int fd : fd_list)
+        for (int32_t fd : fd_list)
         {
             read(fd, &count, sizeof(count));
             result.push_back(count);
         }
 
         // enable all other counters
-        for (int i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
+        for (int32_t i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
             ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
 
         return result;

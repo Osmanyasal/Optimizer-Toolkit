@@ -34,12 +34,11 @@ namespace optkit::core
         virtual std::vector<uint64_t> read_counter();
 
     public:
-        std::vector<int> fd_list;
+        std::vector<int32_t> fd_list;
         const char *block_name;
 
     private:
-        static std::vector<int> fd_stack;
-
+        static std::vector<int32_t> fd_stack;
         std::chrono::high_resolution_clock::time_point start;
     };
 } // namespace optkit::core

@@ -5,10 +5,10 @@ std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info)
 {
 
     // Calculate the number of spaces needed for "Information" label and vertical bars
-    int horizontalLineWidth = 16 + 30 + 4; // Width of the horizontal line 4 for (| and blank) x 2
-    int informationWidth = horizontalLineWidth - 2; // 2 is for the two vertical bars
-    int paddingWidth = (informationWidth - 16) / 2; // 16 is for the "PMU Information" label
- 
+    int32_t horizontalLineWidth = 16 + 30 + 4;          // Width of the horizontal line 4 for (| and blank) x 2
+    int32_t informationWidth = horizontalLineWidth - 2; // 2 is for the two vertical bars
+    int32_t paddingWidth = (informationWidth - 16) / 2; // 16 is for the "PMU Information" label
+
     // Output the top horizontal line
     out << std::string(horizontalLineWidth, '-') << "\n";
 
@@ -30,8 +30,10 @@ std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info)
     out << "| " << std::setw(16) << "desc:" << std::setw(30) << pmu_info.desc << " |\n";
     out << "| " << std::setw(16) << "size:" << std::setw(30) << pmu_info.size << " |\n";
     // Print the rest of the members with appropriate setw values
-    out << "| " << std::setw(16) << "pmu:" << std::setw(24) << optkit::core::pmu_names[pmu_info.pmu] << std::setw(6) << "(" + std::to_string(pmu_info.pmu) + ")" << " |\n";
-    out << "| " << std::setw(16) << "type:" << std::setw(24) << optkit::core::pmu_types[pmu_info.type] << std::setw(6) << "(" + std::to_string(pmu_info.pmu) + ")" << " |\n";
+    out << "| " << std::setw(16) << "pmu:" << std::setw(24) << optkit::core::pmu_names[pmu_info.pmu] << std::setw(6) << "(" + std::to_string(pmu_info.pmu) + ")"
+        << " |\n";
+    out << "| " << std::setw(16) << "type:" << std::setw(24) << optkit::core::pmu_types[pmu_info.type] << std::setw(6) << "(" + std::to_string(pmu_info.pmu) + ")"
+        << " |\n";
     out << "| " << std::setw(16) << "nevents:" << std::setw(30) << pmu_info.nevents << " |\n";
     out << "| " << std::setw(16) << "first_event:" << std::setw(30) << pmu_info.first_event << " |\n";
     out << "| " << std::setw(16) << "max_encoding:" << std::setw(30) << pmu_info.max_encoding << " |\n";
@@ -67,44 +69,81 @@ namespace optkit::core
         pfm_terminate();
         is_active = false;
     }
-    
-    pfm_pmu_info_t Query::pmu_info(int pmu_id)
+
+    pfm_pmu_info_t Query::pmu_info(int32_t pmu_id)
     {
         pfm_pmu_info_t pmu_info;
         memset(&pmu_info, 0, sizeof(pfm_pmu_info_t));
 
         if (OPT_LIKELY(Query::is_active))
+        {
             pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pmu_info);
-        else{
+        }
+        else
+        {
             OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
         return pmu_info;
     }
 
-    void Query::list_avail_pmus()
+    void Query::list_avail_events(int32_t pmu_id)
     {
-        std::cout << "[INFO] Listing Available PMUs...." << std::endl;
-        int i = 0;
-        pfm_for_all_pmus(i)
+        if (OPT_LIKELY(Query::is_active))
         {
-            pfm_pmu_info_t pmu_info = Query::pmu_info(i);
-            if(pmu_info.is_present)
-                std::cout << pmu_info << std::endl;
+        }
+        else
+        {
+            OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
     }
-    std::vector<int> Query::get_avail_pmus()
+    pfm_event_info_t Query::get_event_detail(int32_t pmu_id, const char *event_name)
     {
-        std::vector<int> avail_pmu_ids;
-        int i = 0;
-        pfm_for_all_pmus(i)
+        if (OPT_LIKELY(Query::is_active))
         {
-            if (Query::pmu_info(i).is_present)
-                avail_pmu_ids.push_back(i);
         }
+        else
+        {
+            OPTKIT_CORE_WARN("pfm is NOT initialized!");
+        }
+    }
+
+    void Query::list_avail_pmus()
+    {
+        if (OPT_LIKELY(Query::is_active))
+        {
+            std::cout << "[INFO] Listing Available PMUs...." << std::endl;
+            int32_t i = 0;
+            pfm_for_all_pmus(i)
+            {
+                pfm_pmu_info_t pmu_info = Query::pmu_info(i);
+                if (pmu_info.is_present)
+                    std::cout << pmu_info << std::endl;
+            }
+        }
+        else
+        {
+            OPTKIT_CORE_WARN("pfm is NOT initialized!");
+        }
+    }
+    std::vector<int32_t> Query::get_avail_pmus()
+    {
+        std::vector<int32_t> avail_pmu_ids;
+
+        if (OPT_LIKELY(Query::is_active))
+        {
+            int32_t i = 0;
+            pfm_for_all_pmus(i)
+            {
+                if (Query::pmu_info(i).is_present)
+                    avail_pmu_ids.push_back(i);
+            }
+        }
+        else
+        {
+            OPTKIT_CORE_WARN("pfm is NOT initialized!");
+        }
+
         return avail_pmu_ids;
     }
 
-    void Query::event_info()
-    {
-    }
 } // namespace optkit::core

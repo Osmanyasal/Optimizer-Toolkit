@@ -16,7 +16,7 @@ int32_t main(int32_t argc, char **argv)
     optkit::core::Query::list_avail_pmus();
     auto avail_pmu_list = optkit::core::Query::get_avail_pmus();
 
-    for(int i: avail_pmu_list)
+    for(int32_t i: avail_pmu_list)
         std::cout << i << ", ";
 
     if (false)
