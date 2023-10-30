@@ -6,6 +6,7 @@
 #include <iomanip>  
 #include <libpfm4_wrapper.hh>
 #include <vector>
+#include <string>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
 

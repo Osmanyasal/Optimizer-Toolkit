@@ -13,9 +13,11 @@ int32_t main(int32_t argc, char **argv)
     optkit::utils::logger::BaseLogger::init();
     optkit::core::Query::init();
 
-    std::cout << optkit::core::Query::pmu_info(PFM_PMU_INTEL_ICL);
-
     optkit::core::Query::list_avail_pmus();
+    auto avail_pmu_list = optkit::core::Query::get_avail_pmus();
+
+    for(int i: avail_pmu_list)
+        std::cout << i << ", ";
 
     if (false)
     {
