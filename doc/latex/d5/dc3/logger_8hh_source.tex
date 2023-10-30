@@ -34,40 +34,40 @@
 \DoxyCodeLine{00030 \textcolor{comment}{// ENGINE CORE LOGGERS}}
 \DoxyCodeLine{00031 \textcolor{preprocessor}{\#define OPTKIT\_CORE\_DEBUG(...)                                                                                                         \(\backslash\)}}
 \DoxyCodeLine{00032 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00033     OPTKIT::utils::logger::BaseLogger::get\_client\_logger()-\/>debug(\_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{00033     optkit::utils::logger::BaseLogger::get\_client\_logger()-\/>debug(\_\_VA\_ARGS\_\_)}
 \DoxyCodeLine{00034 \textcolor{preprocessor}{\#define OPTKIT\_CORE\_TRACE(...)                                                                                                         \(\backslash\)}}
 \DoxyCodeLine{00035 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00036     OPTKIT::utils::logger::BaseLogger::get\_core\_logger()-\/>trace(\_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{00036     optkit::utils::logger::BaseLogger::get\_core\_logger()-\/>trace(\_\_VA\_ARGS\_\_)}
 \DoxyCodeLine{00037 \textcolor{preprocessor}{\#define OPTKIT\_CORE\_INFO(...)                                                                                                          \(\backslash\)}}
 \DoxyCodeLine{00038 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00039     OPTKIT::utils::logger::BaseLogger::get\_core\_logger()-\/>info(\_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{00039     optkit::utils::logger::BaseLogger::get\_core\_logger()-\/>info(\_\_VA\_ARGS\_\_)}
 \DoxyCodeLine{00040 \textcolor{preprocessor}{\#define OPTKIT\_CORE\_WARN(...)                                                                                                          \(\backslash\)}}
 \DoxyCodeLine{00041 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00042     OPTKIT::utils::logger::BaseLogger::get\_core\_logger()-\/>warn(\_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{00042     optkit::utils::logger::BaseLogger::get\_core\_logger()-\/>warn(\_\_VA\_ARGS\_\_)}
 \DoxyCodeLine{00043 \textcolor{preprocessor}{\#define OPTKIT\_CORE\_ERROR(...)                                                                                                         \(\backslash\)}}
 \DoxyCodeLine{00044 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00045     OPTKIT::utils::logger::BaseLogger::get\_core\_logger()-\/>error(\_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{00045     optkit::utils::logger::BaseLogger::get\_core\_logger()-\/>error(\_\_VA\_ARGS\_\_)}
 \DoxyCodeLine{00046 }
 \DoxyCodeLine{00047 \textcolor{comment}{// CLIENT LOGGERS}}
 \DoxyCodeLine{00048 \textcolor{preprocessor}{\#define OPTKIT\_DEBUG(...)                                                                                                              \(\backslash\)}}
 \DoxyCodeLine{00049 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00050     OPTKIT::utils::logger::BaseLogger::get\_client\_logger()-\/>debug(\_\_VA\_ARGS\_\_);                                                  \(\backslash\)}
+\DoxyCodeLine{00050     optkit::utils::logger::BaseLogger::get\_client\_logger()-\/>debug(\_\_VA\_ARGS\_\_);                                                  \(\backslash\)}
 \DoxyCodeLine{00051     ImGuiLogger::AddLog(("{}[DEBUG] ["{} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] ["{} + fmt::format(\_\_VA\_ARGS\_\_) + "{}]\(\backslash\)n"{}).c\_str())}
 \DoxyCodeLine{00052 \textcolor{preprocessor}{\#define OPTKIT\_TRACE(...)                                                                                                              \(\backslash\)}}
 \DoxyCodeLine{00053 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00054     OPTKIT::utils::logger::BaseLogger::get\_client\_logger()-\/>trace(\_\_VA\_ARGS\_\_);                                                  \(\backslash\)}
+\DoxyCodeLine{00054     optkit::utils::logger::BaseLogger::get\_client\_logger()-\/>trace(\_\_VA\_ARGS\_\_);                                                  \(\backslash\)}
 \DoxyCodeLine{00055     ImGuiLogger::AddLog(("{}[TRACE] ["{} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] ["{} + fmt::format(\_\_VA\_ARGS\_\_) + "{}]\(\backslash\)n"{}).c\_str())}
 \DoxyCodeLine{00056 \textcolor{preprocessor}{\#define OPTKIT\_INFO(...)                                                                                                               \(\backslash\)}}
 \DoxyCodeLine{00057 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00058     OPTKIT::utils::logger::BaseLogger::get\_client\_logger()-\/>info(\_\_VA\_ARGS\_\_);                                                   \(\backslash\)}
+\DoxyCodeLine{00058     optkit::utils::logger::BaseLogger::get\_client\_logger()-\/>info(\_\_VA\_ARGS\_\_);                                                   \(\backslash\)}
 \DoxyCodeLine{00059     ImGuiLogger::AddLog(("{}[INFO] ["{} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] ["{} + fmt::format(\_\_VA\_ARGS\_\_) + "{}]\(\backslash\)n"{}).c\_str())}
 \DoxyCodeLine{00060 \textcolor{preprocessor}{\#define OPTKIT\_WARN(...)                                                                                                               \(\backslash\)}}
 \DoxyCodeLine{00061 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00062     OPTKIT::utils::logger::BaseLogger::get\_client\_logger()-\/>warn(\_\_VA\_ARGS\_\_);                                                   \(\backslash\)}
+\DoxyCodeLine{00062     optkit::utils::logger::BaseLogger::get\_client\_logger()-\/>warn(\_\_VA\_ARGS\_\_);                                                   \(\backslash\)}
 \DoxyCodeLine{00063     ImGuiLogger::AddLog(("{}[WARN] ["{} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] ["{} + fmt::format(\_\_VA\_ARGS\_\_) + "{}]\(\backslash\)n"{}).c\_str())}
 \DoxyCodeLine{00064 \textcolor{preprocessor}{\#define OPTKIT\_ERROR(...)                                                                                                              \(\backslash\)}}
 \DoxyCodeLine{00065 \textcolor{preprocessor}{    spdlog::set\_pattern("{}[\%n][\%\string^\%l\%\$][\%Y-\/\%m-\/\%d \%H:\%M:\%S.\%f]["{}} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] [\%v]"{}); \(\backslash\)}
-\DoxyCodeLine{00066     OPTKIT::utils::logger::BaseLogger::get\_client\_logger()-\/>error(\_\_VA\_ARGS\_\_);                                                  \(\backslash\)}
+\DoxyCodeLine{00066     optkit::utils::logger::BaseLogger::get\_client\_logger()-\/>error(\_\_VA\_ARGS\_\_);                                                  \(\backslash\)}
 \DoxyCodeLine{00067     ImGuiLogger::AddLog(("{}[ERROR] ["{} + std::string(\_\_FILE\_\_) + "{}:"{} + std::to\_string(\_\_LINE\_\_) + "{}] ["{} + fmt::format(\_\_VA\_ARGS\_\_) + "{}]\(\backslash\)n"{}).c\_str())}
 \DoxyCodeLine{00068 }
 \DoxyCodeLine{00069 \textcolor{comment}{// Get rid of things that shouldn't be on production..}}

@@ -1,26 +1,4 @@
 var searchData=
 [
-  ['rectc_353',['RectC',['../df/d7b/structImPlot_1_1RectC.html',1,'ImPlot']]],
-  ['reference_354',['reference',['../d1/d72/classbasic__json.html#a6ca7bfb35987ce7cb8d27447cda5b80a',1,'basic_json::reference()'],['../df/d8f/classdetail_1_1json__reverse__iterator.html#a81a4d0a61246d4ece37fd14eacfadda0',1,'detail::json_reverse_iterator::reference()'],['../d7/d0e/classdetail_1_1iter__impl.html#aef4718cdd15a8743df34c4861c375144',1,'detail::iter_impl::reference()']]],
-  ['rendererbarsfillh_355',['RendererBarsFillH',['../dc/d37/structImPlot_1_1RendererBarsFillH.html',1,'ImPlot']]],
-  ['rendererbarsfillv_356',['RendererBarsFillV',['../d9/ddc/structImPlot_1_1RendererBarsFillV.html',1,'ImPlot']]],
-  ['rendererbarslineh_357',['RendererBarsLineH',['../d5/da6/structImPlot_1_1RendererBarsLineH.html',1,'ImPlot']]],
-  ['rendererbarslinev_358',['RendererBarsLineV',['../d1/d92/structImPlot_1_1RendererBarsLineV.html',1,'ImPlot']]],
-  ['rendererbase_359',['RendererBase',['../db/d8e/structImPlot_1_1RendererBase.html',1,'ImPlot']]],
-  ['rendererlinesegments1_360',['RendererLineSegments1',['../d9/dc7/structImPlot_1_1RendererLineSegments1.html',1,'ImPlot']]],
-  ['rendererlinesegments2_361',['RendererLineSegments2',['../d8/d3c/structImPlot_1_1RendererLineSegments2.html',1,'ImPlot']]],
-  ['rendererlinestrip_362',['RendererLineStrip',['../d3/d7d/structImPlot_1_1RendererLineStrip.html',1,'ImPlot']]],
-  ['rendererlinestripskip_363',['RendererLineStripSkip',['../db/d86/structImPlot_1_1RendererLineStripSkip.html',1,'ImPlot']]],
-  ['renderermarkersfill_364',['RendererMarkersFill',['../db/d85/structImPlot_1_1RendererMarkersFill.html',1,'ImPlot']]],
-  ['renderermarkersline_365',['RendererMarkersLine',['../d7/df2/structImPlot_1_1RendererMarkersLine.html',1,'ImPlot']]],
-  ['rendererrectc_366',['RendererRectC',['../da/d74/structImPlot_1_1RendererRectC.html',1,'ImPlot']]],
-  ['renderershaded_367',['RendererShaded',['../df/d91/structImPlot_1_1RendererShaded.html',1,'ImPlot']]],
-  ['rendererstairspost_368',['RendererStairsPost',['../df/d50/structImPlot_1_1RendererStairsPost.html',1,'ImPlot']]],
-  ['rendererstairspostshaded_369',['RendererStairsPostShaded',['../d3/d27/structImPlot_1_1RendererStairsPostShaded.html',1,'ImPlot']]],
-  ['rendererstairspre_370',['RendererStairsPre',['../db/d51/structImPlot_1_1RendererStairsPre.html',1,'ImPlot']]],
-  ['rendererstairspreshaded_371',['RendererStairsPreShaded',['../d8/d7c/structImPlot_1_1RendererStairsPreShaded.html',1,'ImPlot']]],
-  ['replace_372',['replace',['../dd/d39/namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298a9dde360102c103867bd2f45872f1129c',1,'detail']]],
-  ['replace_5fsubstring_373',['replace_substring',['../dd/d39/namespacedetail.html#a6fd295e53b1dd4f46e235e6afee26d5e',1,'detail']]],
-  ['reverse_5fiterator_374',['reverse_iterator',['../d1/d72/classbasic__json.html#aedc059cdae078322bb0d434b2127d1cf',1,'basic_json']]],
-  ['rollingbuffer_375',['RollingBuffer',['../d8/d07/structImPlot_1_1RollingBuffer.html',1,'ImPlot']]]
+  ['query_353',['Query',['../d1/d1d/classoptkit_1_1core_1_1Query.html',1,'optkit::core']]]
 ];

@@ -3,14 +3,9 @@
 
 #include <iostream>
 #include <linux/perf_event.h>
-#include <perfmon/pfmlib.h>
 #include <sys/ioctl.h>
 #include <cstdint>
-#include <cstring>
-#include <asm/unistd.h>
 #include <sys/syscall.h>
-#include <unistd.h>
-#include <sys/wait.h>
 #include <initializer_list>
 #include <vector>
 #include <utils.hh>

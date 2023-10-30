@@ -1,7 +1,22 @@
 var searchData=
 [
-  ['scrollingbuffer_647',['ScrollingBuffer',['../df/de6/structImPlot_1_1ScrollingBuffer.html',1,'ImPlot']]],
-  ['serializer_648',['serializer',['../d1/d62/classdetail_1_1serializer.html',1,'detail']]],
-  ['span_5finput_5fadapter_649',['span_input_adapter',['../d3/d02/classdetail_1_1span__input__adapter.html',1,'detail']]],
-  ['static_5fconst_650',['static_const',['../de/dad/structdetail_1_1static__const.html',1,'detail']]]
+  ['rectc_630',['RectC',['../df/d7b/structImPlot_1_1RectC.html',1,'ImPlot']]],
+  ['rendererbarsfillh_631',['RendererBarsFillH',['../dc/d37/structImPlot_1_1RendererBarsFillH.html',1,'ImPlot']]],
+  ['rendererbarsfillv_632',['RendererBarsFillV',['../d9/ddc/structImPlot_1_1RendererBarsFillV.html',1,'ImPlot']]],
+  ['rendererbarslineh_633',['RendererBarsLineH',['../d5/da6/structImPlot_1_1RendererBarsLineH.html',1,'ImPlot']]],
+  ['rendererbarslinev_634',['RendererBarsLineV',['../d1/d92/structImPlot_1_1RendererBarsLineV.html',1,'ImPlot']]],
+  ['rendererbase_635',['RendererBase',['../db/d8e/structImPlot_1_1RendererBase.html',1,'ImPlot']]],
+  ['rendererlinesegments1_636',['RendererLineSegments1',['../d9/dc7/structImPlot_1_1RendererLineSegments1.html',1,'ImPlot']]],
+  ['rendererlinesegments2_637',['RendererLineSegments2',['../d8/d3c/structImPlot_1_1RendererLineSegments2.html',1,'ImPlot']]],
+  ['rendererlinestrip_638',['RendererLineStrip',['../d3/d7d/structImPlot_1_1RendererLineStrip.html',1,'ImPlot']]],
+  ['rendererlinestripskip_639',['RendererLineStripSkip',['../db/d86/structImPlot_1_1RendererLineStripSkip.html',1,'ImPlot']]],
+  ['renderermarkersfill_640',['RendererMarkersFill',['../db/d85/structImPlot_1_1RendererMarkersFill.html',1,'ImPlot']]],
+  ['renderermarkersline_641',['RendererMarkersLine',['../d7/df2/structImPlot_1_1RendererMarkersLine.html',1,'ImPlot']]],
+  ['rendererrectc_642',['RendererRectC',['../da/d74/structImPlot_1_1RendererRectC.html',1,'ImPlot']]],
+  ['renderershaded_643',['RendererShaded',['../df/d91/structImPlot_1_1RendererShaded.html',1,'ImPlot']]],
+  ['rendererstairspost_644',['RendererStairsPost',['../df/d50/structImPlot_1_1RendererStairsPost.html',1,'ImPlot']]],
+  ['rendererstairspostshaded_645',['RendererStairsPostShaded',['../d3/d27/structImPlot_1_1RendererStairsPostShaded.html',1,'ImPlot']]],
+  ['rendererstairspre_646',['RendererStairsPre',['../db/d51/structImPlot_1_1RendererStairsPre.html',1,'ImPlot']]],
+  ['rendererstairspreshaded_647',['RendererStairsPreShaded',['../d8/d7c/structImPlot_1_1RendererStairsPreShaded.html',1,'ImPlot']]],
+  ['rollingbuffer_648',['RollingBuffer',['../d8/d07/structImPlot_1_1RollingBuffer.html',1,'ImPlot']]]
 ];

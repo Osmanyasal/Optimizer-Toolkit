@@ -21,7 +21,7 @@
 \DoxyCodeLine{00017 }
 \DoxyCodeLine{00018 \textcolor{keyword}{namespace }optkit::core}
 \DoxyCodeLine{00019 \{}
-\DoxyCodeLine{\Hypertarget{block__profiler_8hh_source_l00031}\mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{00031}}     \textcolor{keyword}{class }\mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{BlockProfiler}}}
+\DoxyCodeLine{\Hypertarget{block__profiler_8hh_source_l00031}\mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{00031}}     \textcolor{keyword}{class }\mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{BlockProfiler}} }
 \DoxyCodeLine{00032     \{}
 \DoxyCodeLine{00033     \textcolor{keyword}{public}:}
 \DoxyCodeLine{00034         \mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{BlockProfiler}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *block\_name, std::initializer\_list<uint64\_t> raw\_event\_list);}
@@ -37,9 +37,11 @@
 \DoxyCodeLine{00044 }
 \DoxyCodeLine{00045     \textcolor{keyword}{private}:}
 \DoxyCodeLine{00046         \textcolor{keyword}{static} std::vector<int> fd\_stack;}
-\DoxyCodeLine{00047     \};}
-\DoxyCodeLine{00048 \} \textcolor{comment}{// namespace optkit::core}}
-\DoxyCodeLine{00049 }
-\DoxyCodeLine{00050 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048         std::chrono::high\_resolution\_clock::time\_point start;}
+\DoxyCodeLine{00049     \};}
+\DoxyCodeLine{00050 \} \textcolor{comment}{// namespace optkit::core}}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -15,7 +15,7 @@ namespace optkit::core
         for (auto &raw_event : raw_event_list)
         {
             struct perf_event_attr attr;
-            memset(&attr, 0, sizeof(struct perf_event_attr));
+            std::memset(&attr, 0, sizeof(struct perf_event_attr));
             attr.type = PERF_TYPE_RAW;
             attr.config = raw_event;
             attr.size = sizeof(struct perf_event_attr);
@@ -23,7 +23,6 @@ namespace optkit::core
             attr.inherit = 1;        // Inherit the counter to child processes
             attr.exclude_kernel = 1; // Exclude kernel events
             attr.exclude_hv = 1;
-            attr.pinned = 1;
             // attr.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
 
             int fd = syscall(__NR_perf_event_open, &attr, 0, -1, -1, 0); // <-- first becomes -1 and later we use the group_leader's fd.

@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['wavedata_667',['WaveData',['../d8/def/structMyImPlot_1_1WaveData.html',1,'MyImPlot']]],
-  ['wide_5fstring_5finput_5fadapter_668',['wide_string_input_adapter',['../dd/dc0/classdetail_1_1wide__string__input__adapter.html',1,'detail']]],
-  ['wide_5fstring_5finput_5fhelper_669',['wide_string_input_helper',['../d5/d0b/structdetail_1_1wide__string__input__helper.html',1,'detail']]],
-  ['wide_5fstring_5finput_5fhelper_3c_20baseinputadapter_2c_202_20_3e_670',['wide_string_input_helper&lt; BaseInputAdapter, 2 &gt;',['../df/daf/structdetail_1_1wide__string__input__helper_3_01BaseInputAdapter_00_012_01_4.html',1,'detail']]],
-  ['wide_5fstring_5finput_5fhelper_3c_20baseinputadapter_2c_204_20_3e_671',['wide_string_input_helper&lt; BaseInputAdapter, 4 &gt;',['../df/d17/structdetail_1_1wide__string__input__helper_3_01BaseInputAdapter_00_014_01_4.html',1,'detail']]]
+  ['value_5fin_5frange_5fof_5fimpl1_660',['value_in_range_of_impl1',['../d6/dac/structdetail_1_1value__in__range__of__impl1.html',1,'detail']]],
+  ['value_5fin_5frange_5fof_5fimpl1_3c_20oftype_2c_20t_2c_20false_20_3e_661',['value_in_range_of_impl1&lt; OfType, T, false &gt;',['../dd/d43/structdetail_1_1value__in__range__of__impl1_3_01OfType_00_01T_00_01false_01_4.html',1,'detail']]],
+  ['value_5fin_5frange_5fof_5fimpl1_3c_20oftype_2c_20t_2c_20true_20_3e_662',['value_in_range_of_impl1&lt; OfType, T, true &gt;',['../d8/db6/structdetail_1_1value__in__range__of__impl1_3_01OfType_00_01T_00_01true_01_4.html',1,'detail']]],
+  ['value_5fin_5frange_5fof_5fimpl2_663',['value_in_range_of_impl2',['../d7/d75/structdetail_1_1value__in__range__of__impl2.html',1,'detail']]],
+  ['value_5fin_5frange_5fof_5fimpl2_3c_20oftype_2c_20t_2c_20false_2c_20false_20_3e_664',['value_in_range_of_impl2&lt; OfType, T, false, false &gt;',['../d7/d7d/structdetail_1_1value__in__range__of__impl2_3_01OfType_00_01T_00_01false_00_01false_01_4.html',1,'detail']]],
+  ['value_5fin_5frange_5fof_5fimpl2_3c_20oftype_2c_20t_2c_20false_2c_20true_20_3e_665',['value_in_range_of_impl2&lt; OfType, T, false, true &gt;',['../de/d54/structdetail_1_1value__in__range__of__impl2_3_01OfType_00_01T_00_01false_00_01true_01_4.html',1,'detail']]],
+  ['value_5fin_5frange_5fof_5fimpl2_3c_20oftype_2c_20t_2c_20true_2c_20false_20_3e_666',['value_in_range_of_impl2&lt; OfType, T, true, false &gt;',['../da/db6/structdetail_1_1value__in__range__of__impl2_3_01OfType_00_01T_00_01true_00_01false_01_4.html',1,'detail']]],
+  ['value_5fin_5frange_5fof_5fimpl2_3c_20oftype_2c_20t_2c_20true_2c_20true_20_3e_667',['value_in_range_of_impl2&lt; OfType, T, true, true &gt;',['../d1/dbe/structdetail_1_1value__in__range__of__impl2_3_01OfType_00_01T_00_01true_00_01true_01_4.html',1,'detail']]],
+  ['vector2f_668',['Vector2f',['../d2/d49/structMyImPlot_1_1Vector2f.html',1,'MyImPlot']]]
 ];
