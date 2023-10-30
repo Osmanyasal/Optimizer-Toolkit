@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['merge_5fpatch_755',['merge_patch',['../d1/d72/classbasic__json.html#a8676ac2433fe299b8d420f00a0741395',1,'basic_json']]],
-  ['meta_756',['meta',['../d1/d72/classbasic__json.html#a7b435c2ed2db99cb1daa78ae3c6c4580',1,'basic_json']]],
-  ['mul_757',['mul',['../dc/d4d/structdetail_1_1dtoa__impl_1_1diyfp.html#a046c61f2c13411677eedfb5b9b7a8226',1,'detail::dtoa_impl::diyfp']]]
+  ['list_5favail_5fevents_766',['list_avail_events',['../d1/d1d/classoptkit_1_1core_1_1Query.html#a232d4b84df050e5cf0fbd9d775a2cef5',1,'optkit::core::Query']]],
+  ['list_5favail_5fpmus_767',['list_avail_pmus',['../d1/d1d/classoptkit_1_1core_1_1Query.html#a86a1d50daeb28edca3dca445ed72cd56',1,'optkit::core::Query']]]
 ];

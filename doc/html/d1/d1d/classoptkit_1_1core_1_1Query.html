@@ -75,28 +75,274 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html" title="Query CPU PMU and PMU events here  This Query class uses libpfm4 to retrieve information .">Query</a> CPU PMU and PMU events here<br  />
- This <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html" title="Query CPU PMU and PMU events here  This Query class uses libpfm4 to retrieve information .">Query</a> class uses <b>libpfm4</b> to retrieve information .  
+<p>ASK CPU PMU and PMU related queries here<br  />
+ This <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html" title="ASK CPU PMU and PMU related queries here  This Query class uses libpfm4 to retrieve information.">Query</a> class uses <b>libpfm4</b> to retrieve information.  
  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d7/df1/query_8hh_source.html">query.hh</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a257a4d8571a8e68034ebaba4993e46dd"><td class="memItemLeft" align="right" valign="top"><a id="a257a4d8571a8e68034ebaba4993e46dd"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>pmu_info</b> (const char *pmu_name)</td></tr>
-<tr class="separator:a257a4d8571a8e68034ebaba4993e46dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad43a97e140ff0fb677e976b0bf66eb7a"><td class="memItemLeft" align="right" valign="top"><a id="ad43a97e140ff0fb677e976b0bf66eb7a"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>local_pmu_info</b> ()</td></tr>
-<tr class="separator:ad43a97e140ff0fb677e976b0bf66eb7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a547ba9d5e1b7ea97467de0b2a4af869e"><td class="memItemLeft" align="right" valign="top"><a id="a547ba9d5e1b7ea97467de0b2a4af869e"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>event_info</b> (const char *pmu_event_name)</td></tr>
-<tr class="separator:a547ba9d5e1b7ea97467de0b2a4af869e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4df06ae168f82a895eccb67e9d10436"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#ab4df06ae168f82a895eccb67e9d10436">init</a> ()</td></tr>
+<tr class="memdesc:ab4df06ae168f82a895eccb67e9d10436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes libpfm4 library.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#ab4df06ae168f82a895eccb67e9d10436">More...</a><br /></td></tr>
+<tr class="separator:ab4df06ae168f82a895eccb67e9d10436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9851b438489ebf27e1ef0f7cba38e878"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a9851b438489ebf27e1ef0f7cba38e878">destroy</a> ()</td></tr>
+<tr class="memdesc:a9851b438489ebf27e1ef0f7cba38e878"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy libpfm4 library.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a9851b438489ebf27e1ef0f7cba38e878">More...</a><br /></td></tr>
+<tr class="separator:a9851b438489ebf27e1ef0f7cba38e878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b6724e2006638bc27935d6da74ef6cb"><td class="memItemLeft" align="right" valign="top">static pfm_pmu_info_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a9b6724e2006638bc27935d6da74ef6cb">pmu_info</a> (int32_t pmu_id)</td></tr>
+<tr class="memdesc:a9b6724e2006638bc27935d6da74ef6cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets PMU detail information based on the pmu_id value.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a9b6724e2006638bc27935d6da74ef6cb">More...</a><br /></td></tr>
+<tr class="separator:a9b6724e2006638bc27935d6da74ef6cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a232d4b84df050e5cf0fbd9d775a2cef5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a232d4b84df050e5cf0fbd9d775a2cef5">list_avail_events</a> (int32_t pmu_id)</td></tr>
+<tr class="memdesc:a232d4b84df050e5cf0fbd9d775a2cef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all available events of the pmu_id.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a232d4b84df050e5cf0fbd9d775a2cef5">More...</a><br /></td></tr>
+<tr class="separator:a232d4b84df050e5cf0fbd9d775a2cef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ccf85b6ae24bf1723ee55431a46fe4"><td class="memItemLeft" align="right" valign="top">static pfm_event_info_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a71ccf85b6ae24bf1723ee55431a46fe4">get_event_detail</a> (int32_t pmu_id, const char *event_name)</td></tr>
+<tr class="memdesc:a71ccf85b6ae24bf1723ee55431a46fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the event detail object.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a71ccf85b6ae24bf1723ee55431a46fe4">More...</a><br /></td></tr>
+<tr class="separator:a71ccf85b6ae24bf1723ee55431a46fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86a1d50daeb28edca3dca445ed72cd56"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a86a1d50daeb28edca3dca445ed72cd56">list_avail_pmus</a> ()</td></tr>
+<tr class="memdesc:a86a1d50daeb28edca3dca445ed72cd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">List available PMUs on the system with details.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a86a1d50daeb28edca3dca445ed72cd56">More...</a><br /></td></tr>
+<tr class="separator:a86a1d50daeb28edca3dca445ed72cd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b7c5ed0bea82e2319d0d1680b572e9"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; int32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#af0b7c5ed0bea82e2319d0d1680b572e9">get_avail_pmus</a> ()</td></tr>
+<tr class="memdesc:af0b7c5ed0bea82e2319d0d1680b572e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get detected PMU IDs on the system.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#af0b7c5ed0bea82e2319d0d1680b572e9">More...</a><br /></td></tr>
+<tr class="separator:af0b7c5ed0bea82e2319d0d1680b572e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html" title="Query CPU PMU and PMU events here  This Query class uses libpfm4 to retrieve information .">Query</a> CPU PMU and PMU events here<br  />
- This <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html" title="Query CPU PMU and PMU events here  This Query class uses libpfm4 to retrieve information .">Query</a> class uses <b>libpfm4</b> to retrieve information . </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<div class="textblock"><p>ASK CPU PMU and PMU related queries here<br  />
+ This <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html" title="ASK CPU PMU and PMU related queries here  This Query class uses libpfm4 to retrieve information.">Query</a> class uses <b>libpfm4</b> to retrieve information. </p>
+<p>Don't forget to call <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#ab4df06ae168f82a895eccb67e9d10436" title="Initializes libpfm4 library.">init()</a> before using it and <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a9851b438489ebf27e1ef0f7cba38e878" title="Destroy libpfm4 library.">destroy()</a> when you're done with it.<br  />
+ These 2 method calls can be done at the beginning and end of the application. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9851b438489ebf27e1ef0f7cba38e878"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9851b438489ebf27e1ef0f7cba38e878">&#9670;&nbsp;</a></span>destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void optkit::core::Query::destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destroy libpfm4 library. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#ab4df06ae168f82a895eccb67e9d10436" title="Initializes libpfm4 library.">init()</a> </dd></dl>
+
+</div>
+</div>
+<a id="af0b7c5ed0bea82e2319d0d1680b572e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0b7c5ed0bea82e2319d0d1680b572e9">&#9670;&nbsp;</a></span>get_avail_pmus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; int32_t &gt; optkit::core::Query::get_avail_pmus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get detected PMU IDs on the system. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;int32_t&gt; containing PMU IDs </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>libpfm.h pfm_pmu_t, <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a9b6724e2006638bc27935d6da74ef6cb" title="Gets PMU detail information based on the pmu_id value.">pmu_info()</a>, <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a232d4b84df050e5cf0fbd9d775a2cef5" title="Lists all available events of the pmu_id.">list_avail_events()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a71ccf85b6ae24bf1723ee55431a46fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71ccf85b6ae24bf1723ee55431a46fe4">&#9670;&nbsp;</a></span>get_event_detail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pfm_event_info_t optkit::core::Query::get_event_detail </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>pmu_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>event_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the event detail object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pmu_id</td><td>The PMU ID to get event details for. </td></tr>
+    <tr><td class="paramname">event_name</td><td>The name of the event. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pfm_event_info_t </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a232d4b84df050e5cf0fbd9d775a2cef5" title="Lists all available events of the pmu_id.">list_avail_events()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ab4df06ae168f82a895eccb67e9d10436"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4df06ae168f82a895eccb67e9d10436">&#9670;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void optkit::core::Query::init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes libpfm4 library. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a9851b438489ebf27e1ef0f7cba38e878" title="Destroy libpfm4 library.">destroy()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a232d4b84df050e5cf0fbd9d775a2cef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a232d4b84df050e5cf0fbd9d775a2cef5">&#9670;&nbsp;</a></span>list_avail_events()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void optkit::core::Query::list_avail_events </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>pmu_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lists all available events of the pmu_id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pmu_id</td><td>The PMU ID to list events for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>libpfm.h pfm_pmu_t for pmu_ids </dd></dl>
+
+</div>
+</div>
+<a id="a86a1d50daeb28edca3dca445ed72cd56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86a1d50daeb28edca3dca445ed72cd56">&#9670;&nbsp;</a></span>list_avail_pmus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void optkit::core::Query::list_avail_pmus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List available PMUs on the system with details. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#af0b7c5ed0bea82e2319d0d1680b572e9" title="Get detected PMU IDs on the system.">get_avail_pmus()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a9b6724e2006638bc27935d6da74ef6cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b6724e2006638bc27935d6da74ef6cb">&#9670;&nbsp;</a></span>pmu_info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pfm_pmu_info_t optkit::core::Query::pmu_info </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>pmu_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets PMU detail information based on the pmu_id value. </p>
+<dl class="section return"><dt>Returns</dt><dd>pfm_pmu_info_t</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pmu_id</td><td>The PMU ID to retrieve information for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>libpfm.h pfm_pmu_t for pmu_ids, <a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a232d4b84df050e5cf0fbd9d775a2cef5" title="Lists all available events of the pmu_id.">list_avail_events()</a> </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d7/df1/query_8hh_source.html">query.hh</a></li>
 <li>query.cc</li>
 </ul>

@@ -2,8 +2,8 @@
 \label{classoptkit_1_1core_1_1Query}\index{optkit::core::Query@{optkit::core::Query}}
 
 
-\mbox{\hyperlink{classoptkit_1_1core_1_1Query}{Query}} CPU PMU and PMU events here~\newline
- This \mbox{\hyperlink{classoptkit_1_1core_1_1Query}{Query}} class uses {\bfseries{libpfm4}} to retrieve information .  
+ASK CPU PMU and PMU related queries here~\newline
+ This \mbox{\hyperlink{classoptkit_1_1core_1_1Query}{Query}} class uses {\bfseries{libpfm4}} to retrieve information.  
 
 
 
@@ -13,20 +13,148 @@
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_a257a4d8571a8e68034ebaba4993e46dd}\label{classoptkit_1_1core_1_1Query_a257a4d8571a8e68034ebaba4993e46dd}} 
-static void {\bfseries pmu\+\_\+info} (const char $\ast$pmu\+\_\+name)
-\item 
-\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_ad43a97e140ff0fb677e976b0bf66eb7a}\label{classoptkit_1_1core_1_1Query_ad43a97e140ff0fb677e976b0bf66eb7a}} 
-static void {\bfseries local\+\_\+pmu\+\_\+info} ()
-\item 
-\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_a547ba9d5e1b7ea97467de0b2a4af869e}\label{classoptkit_1_1core_1_1Query_a547ba9d5e1b7ea97467de0b2a4af869e}} 
-static void {\bfseries event\+\_\+info} (const char $\ast$pmu\+\_\+event\+\_\+name)
-\end{DoxyCompactItemize}
+static void \mbox{\hyperlink{classoptkit_1_1core_1_1Query_ab4df06ae168f82a895eccb67e9d10436}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes libpfm4 library. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a9851b438489ebf27e1ef0f7cba38e878}{destroy}} ()
+\begin{DoxyCompactList}\small\item\em Destroy libpfm4 library. \end{DoxyCompactList}\item 
+static pfm\+\_\+pmu\+\_\+info\+\_\+t \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a9b6724e2006638bc27935d6da74ef6cb}{pmu\+\_\+info}} (int32\+\_\+t pmu\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Gets PMU detail information based on the pmu\+\_\+id value. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a232d4b84df050e5cf0fbd9d775a2cef5}{list\+\_\+avail\+\_\+events}} (int32\+\_\+t pmu\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Lists all available events of the pmu\+\_\+id. \end{DoxyCompactList}\item 
+static pfm\+\_\+event\+\_\+info\+\_\+t \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a71ccf85b6ae24bf1723ee55431a46fe4}{get\+\_\+event\+\_\+detail}} (int32\+\_\+t pmu\+\_\+id, const char $\ast$event\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Get the event detail object. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a86a1d50daeb28edca3dca445ed72cd56}{list\+\_\+avail\+\_\+pmus}} ()
+\begin{DoxyCompactList}\small\item\em List available PMUs on the system with details. \end{DoxyCompactList}\item 
+static std\+::vector$<$ int32\+\_\+t $>$ \mbox{\hyperlink{classoptkit_1_1core_1_1Query_af0b7c5ed0bea82e2319d0d1680b572e9}{get\+\_\+avail\+\_\+pmus}} ()
+\begin{DoxyCompactList}\small\item\em Get detected PMU IDs on the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\mbox{\hyperlink{classoptkit_1_1core_1_1Query}{Query}} CPU PMU and PMU events here~\newline
- This \mbox{\hyperlink{classoptkit_1_1core_1_1Query}{Query}} class uses {\bfseries{libpfm4}} to retrieve information . 
+ASK CPU PMU and PMU related queries here~\newline
+ This \mbox{\hyperlink{classoptkit_1_1core_1_1Query}{Query}} class uses {\bfseries{libpfm4}} to retrieve information. 
+
+Don\textquotesingle{}t forget to call \mbox{\hyperlink{classoptkit_1_1core_1_1Query_ab4df06ae168f82a895eccb67e9d10436}{init()}} before using it and \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a9851b438489ebf27e1ef0f7cba38e878}{destroy()}} when you\textquotesingle{}re done with it.~\newline
+ These 2 method calls can be done at the beginning and end of the application. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_a9851b438489ebf27e1ef0f7cba38e878}\label{classoptkit_1_1core_1_1Query_a9851b438489ebf27e1ef0f7cba38e878}} 
+\index{optkit::core::Query@{optkit::core::Query}!destroy@{destroy}}
+\index{destroy@{destroy}!optkit::core::Query@{optkit::core::Query}}
+\doxysubsubsection{\texorpdfstring{destroy()}{destroy()}}
+{\footnotesize\ttfamily void optkit\+::core\+::\+Query\+::destroy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Destroy libpfm4 library. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classoptkit_1_1core_1_1Query_ab4df06ae168f82a895eccb67e9d10436}{init()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_af0b7c5ed0bea82e2319d0d1680b572e9}\label{classoptkit_1_1core_1_1Query_af0b7c5ed0bea82e2319d0d1680b572e9}} 
+\index{optkit::core::Query@{optkit::core::Query}!get\_avail\_pmus@{get\_avail\_pmus}}
+\index{get\_avail\_pmus@{get\_avail\_pmus}!optkit::core::Query@{optkit::core::Query}}
+\doxysubsubsection{\texorpdfstring{get\_avail\_pmus()}{get\_avail\_pmus()}}
+{\footnotesize\ttfamily std\+::vector$<$ int32\+\_\+t $>$ optkit\+::core\+::\+Query\+::get\+\_\+avail\+\_\+pmus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get detected PMU IDs on the system. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$int32\+\_\+t$>$ containing PMU IDs 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+libpfm.\+h pfm\+\_\+pmu\+\_\+t, \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a9b6724e2006638bc27935d6da74ef6cb}{pmu\+\_\+info()}}, \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a232d4b84df050e5cf0fbd9d775a2cef5}{list\+\_\+avail\+\_\+events()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_a71ccf85b6ae24bf1723ee55431a46fe4}\label{classoptkit_1_1core_1_1Query_a71ccf85b6ae24bf1723ee55431a46fe4}} 
+\index{optkit::core::Query@{optkit::core::Query}!get\_event\_detail@{get\_event\_detail}}
+\index{get\_event\_detail@{get\_event\_detail}!optkit::core::Query@{optkit::core::Query}}
+\doxysubsubsection{\texorpdfstring{get\_event\_detail()}{get\_event\_detail()}}
+{\footnotesize\ttfamily pfm\+\_\+event\+\_\+info\+\_\+t optkit\+::core\+::\+Query\+::get\+\_\+event\+\_\+detail (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{pmu\+\_\+id,  }\item[{const char $\ast$}]{event\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the event detail object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pmu\+\_\+id} & The PMU ID to get event details for. \\
+\hline
+{\em event\+\_\+name} & The name of the event. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pfm\+\_\+event\+\_\+info\+\_\+t 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classoptkit_1_1core_1_1Query_a232d4b84df050e5cf0fbd9d775a2cef5}{list\+\_\+avail\+\_\+events()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_ab4df06ae168f82a895eccb67e9d10436}\label{classoptkit_1_1core_1_1Query_ab4df06ae168f82a895eccb67e9d10436}} 
+\index{optkit::core::Query@{optkit::core::Query}!init@{init}}
+\index{init@{init}!optkit::core::Query@{optkit::core::Query}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void optkit\+::core\+::\+Query\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initializes libpfm4 library. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classoptkit_1_1core_1_1Query_a9851b438489ebf27e1ef0f7cba38e878}{destroy()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_a232d4b84df050e5cf0fbd9d775a2cef5}\label{classoptkit_1_1core_1_1Query_a232d4b84df050e5cf0fbd9d775a2cef5}} 
+\index{optkit::core::Query@{optkit::core::Query}!list\_avail\_events@{list\_avail\_events}}
+\index{list\_avail\_events@{list\_avail\_events}!optkit::core::Query@{optkit::core::Query}}
+\doxysubsubsection{\texorpdfstring{list\_avail\_events()}{list\_avail\_events()}}
+{\footnotesize\ttfamily void optkit\+::core\+::\+Query\+::list\+\_\+avail\+\_\+events (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{pmu\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Lists all available events of the pmu\+\_\+id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pmu\+\_\+id} & The PMU ID to list events for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+libpfm.\+h pfm\+\_\+pmu\+\_\+t for pmu\+\_\+ids 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_a86a1d50daeb28edca3dca445ed72cd56}\label{classoptkit_1_1core_1_1Query_a86a1d50daeb28edca3dca445ed72cd56}} 
+\index{optkit::core::Query@{optkit::core::Query}!list\_avail\_pmus@{list\_avail\_pmus}}
+\index{list\_avail\_pmus@{list\_avail\_pmus}!optkit::core::Query@{optkit::core::Query}}
+\doxysubsubsection{\texorpdfstring{list\_avail\_pmus()}{list\_avail\_pmus()}}
+{\footnotesize\ttfamily void optkit\+::core\+::\+Query\+::list\+\_\+avail\+\_\+pmus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+List available PMUs on the system with details. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classoptkit_1_1core_1_1Query_af0b7c5ed0bea82e2319d0d1680b572e9}{get\+\_\+avail\+\_\+pmus()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_a9b6724e2006638bc27935d6da74ef6cb}\label{classoptkit_1_1core_1_1Query_a9b6724e2006638bc27935d6da74ef6cb}} 
+\index{optkit::core::Query@{optkit::core::Query}!pmu\_info@{pmu\_info}}
+\index{pmu\_info@{pmu\_info}!optkit::core::Query@{optkit::core::Query}}
+\doxysubsubsection{\texorpdfstring{pmu\_info()}{pmu\_info()}}
+{\footnotesize\ttfamily pfm\+\_\+pmu\+\_\+info\+\_\+t optkit\+::core\+::\+Query\+::pmu\+\_\+info (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{pmu\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets PMU detail information based on the pmu\+\_\+id value. 
+
+\begin{DoxyReturn}{Returns}
+pfm\+\_\+pmu\+\_\+info\+\_\+t
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em pmu\+\_\+id} & The PMU ID to retrieve information for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+libpfm.\+h pfm\+\_\+pmu\+\_\+t for pmu\+\_\+ids, \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a232d4b84df050e5cf0fbd9d775a2cef5}{list\+\_\+avail\+\_\+events()}} 
+\end{DoxySeeAlso}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

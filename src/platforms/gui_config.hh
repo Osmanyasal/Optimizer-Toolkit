@@ -16,6 +16,7 @@
  *
  */
 #define CONF__IDE__TEXT_SIZE 18
+#define CONF__OPTKIT__IDE_THEME set_dark_theme_colors() // set_white_theme_colors() alternatively
 
 /**
  * @brief Window Features
@@ -27,5 +28,6 @@
 #define CONF__OPTKIT__WINDOW_WIDTH 2560.0
 #define CONF__OPTKIT__WINDOW_HEIGHT 1440.0
 
+ 
 
 #endif

@@ -1,0 +1,598 @@
+\hypertarget{libpfm4__wrapper_8hh_source}{}\doxysection{libpfm4\+\_\+wrapper.\+hh}
+\label{libpfm4__wrapper_8hh_source}\index{libpfm4\_wrapper.hh@{libpfm4\_wrapper.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#ifndef OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_CORE\_\_PROFILING\_\_LIBPFM4\_WRAPPER\_HH}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#define OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_CORE\_\_PROFILING\_\_LIBPFM4\_WRAPPER\_HH}}
+\DoxyCodeLine{00003 }
+\DoxyCodeLine{00004 \textcolor{preprocessor}{\#include <perfmon/pfmlib.h>}}
+\DoxyCodeLine{00005 }
+\DoxyCodeLine{00006 \textcolor{keyword}{namespace }optkit::core}
+\DoxyCodeLine{00007 \{}
+\DoxyCodeLine{00008     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pmu\_names[]\{}
+\DoxyCodeLine{00009         \textcolor{stringliteral}{"{}NONE"{}},             \textcolor{comment}{/* no PMU */}}
+\DoxyCodeLine{00010         \textcolor{stringliteral}{"{}GEN\_IA64"{}},         \textcolor{comment}{/* Intel IA-\/64 architected PMU */}}
+\DoxyCodeLine{00011         \textcolor{stringliteral}{"{}ITANIUM"{}},          \textcolor{comment}{/* Intel Itanium   */}}
+\DoxyCodeLine{00012         \textcolor{stringliteral}{"{}ITANIUM2"{}},         \textcolor{comment}{/* Intel Itanium 2 */}}
+\DoxyCodeLine{00013         \textcolor{stringliteral}{"{}MONTECITO"{}},        \textcolor{comment}{/* Intel Dual-\/Core Itanium 2 9000 */}}
+\DoxyCodeLine{00014         \textcolor{stringliteral}{"{}AMD64"{}},            \textcolor{comment}{/* AMD AMD64 (obsolete) */}}
+\DoxyCodeLine{00015         \textcolor{stringliteral}{"{}I386\_P6"{}},          \textcolor{comment}{/* Intel PIII (P6 core) */}}
+\DoxyCodeLine{00016         \textcolor{stringliteral}{"{}INTEL\_NETBURST"{}},   \textcolor{comment}{/* Intel Netburst (Pentium 4) */}}
+\DoxyCodeLine{00017         \textcolor{stringliteral}{"{}INTEL\_NETBURST\_P"{}}, \textcolor{comment}{/* Intel Netburst Prescott (Pentium 4) */}}
+\DoxyCodeLine{00018         \textcolor{stringliteral}{"{}COREDUO"{}},          \textcolor{comment}{/* Intel Core Duo/Core Solo */}}
+\DoxyCodeLine{00019         \textcolor{stringliteral}{"{}I386\_PM"{}},          \textcolor{comment}{/* Intel Pentium M */}}
+\DoxyCodeLine{00020         \textcolor{stringliteral}{"{}INTEL\_CORE"{}},       \textcolor{comment}{/* Intel Core */}}
+\DoxyCodeLine{00021         \textcolor{stringliteral}{"{}INTEL\_PPRO"{}},       \textcolor{comment}{/* Intel Pentium Pro */}}
+\DoxyCodeLine{00022         \textcolor{stringliteral}{"{}INTEL\_PII"{}},        \textcolor{comment}{/* Intel Pentium II */}}
+\DoxyCodeLine{00023         \textcolor{stringliteral}{"{}INTEL\_ATOM"{}},       \textcolor{comment}{/* Intel Atom */}}
+\DoxyCodeLine{00024         \textcolor{stringliteral}{"{}INTEL\_NHM"{}},        \textcolor{comment}{/* Intel Nehalem core PMU */}}
+\DoxyCodeLine{00025         \textcolor{stringliteral}{"{}INTEL\_NHM\_EX"{}},     \textcolor{comment}{/* Intel Nehalem-\/EX core PMU */}}
+\DoxyCodeLine{00026         \textcolor{stringliteral}{"{}INTEL\_NHM\_UNC"{}},    \textcolor{comment}{/* Intel Nehalem uncore PMU */}}
+\DoxyCodeLine{00027         \textcolor{stringliteral}{"{}INTEL\_X86\_ARCH"{}},   \textcolor{comment}{/* Intel X86 architectural PMU */}}
+\DoxyCodeLine{00028 }
+\DoxyCodeLine{00029         \textcolor{stringliteral}{"{}MIPS\_20KC"{}},    \textcolor{comment}{/* MIPS 20KC */}}
+\DoxyCodeLine{00030         \textcolor{stringliteral}{"{}MIPS\_24K"{}},     \textcolor{comment}{/* MIPS 24K */}}
+\DoxyCodeLine{00031         \textcolor{stringliteral}{"{}MIPS\_25KF"{}},    \textcolor{comment}{/* MIPS 25KF */}}
+\DoxyCodeLine{00032         \textcolor{stringliteral}{"{}MIPS\_34K"{}},     \textcolor{comment}{/* MIPS 34K */}}
+\DoxyCodeLine{00033         \textcolor{stringliteral}{"{}MIPS\_5KC"{}},     \textcolor{comment}{/* MIPS 5KC */}}
+\DoxyCodeLine{00034         \textcolor{stringliteral}{"{}MIPS\_74K"{}},     \textcolor{comment}{/* MIPS 74K */}}
+\DoxyCodeLine{00035         \textcolor{stringliteral}{"{}MIPS\_R10000"{}},  \textcolor{comment}{/* MIPS R10000 */}}
+\DoxyCodeLine{00036         \textcolor{stringliteral}{"{}MIPS\_R12000"{}},  \textcolor{comment}{/* MIPS R12000 */}}
+\DoxyCodeLine{00037         \textcolor{stringliteral}{"{}MIPS\_RM7000"{}},  \textcolor{comment}{/* MIPS RM7000 */}}
+\DoxyCodeLine{00038         \textcolor{stringliteral}{"{}MIPS\_RM9000"{}},  \textcolor{comment}{/* MIPS RM9000 */}}
+\DoxyCodeLine{00039         \textcolor{stringliteral}{"{}MIPS\_SB1"{}},     \textcolor{comment}{/* MIPS SB1/SB1A */}}
+\DoxyCodeLine{00040         \textcolor{stringliteral}{"{}MIPS\_VR5432"{}},  \textcolor{comment}{/* MIPS VR5432 */}}
+\DoxyCodeLine{00041         \textcolor{stringliteral}{"{}MIPS\_VR5500"{}},  \textcolor{comment}{/* MIPS VR5500 */}}
+\DoxyCodeLine{00042         \textcolor{stringliteral}{"{}MIPS\_ICE9A"{}},   \textcolor{comment}{/* SiCortex ICE9A */}}
+\DoxyCodeLine{00043         \textcolor{stringliteral}{"{}MIPS\_ICE9B"{}},   \textcolor{comment}{/* SiCortex ICE9B */}}
+\DoxyCodeLine{00044         \textcolor{stringliteral}{"{}POWERPC"{}},      \textcolor{comment}{/* POWERPC */}}
+\DoxyCodeLine{00045         \textcolor{stringliteral}{"{}CELL"{}},         \textcolor{comment}{/* IBM CELL */}}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047         \textcolor{stringliteral}{"{}SPARC\_ULTRA12"{}},    \textcolor{comment}{/* UltraSPARC I, II, IIi, and IIe */}}
+\DoxyCodeLine{00048         \textcolor{stringliteral}{"{}SPARC\_ULTRA3"{}},     \textcolor{comment}{/* UltraSPARC III */}}
+\DoxyCodeLine{00049         \textcolor{stringliteral}{"{}SPARC\_ULTRA3I"{}},    \textcolor{comment}{/* UltraSPARC IIIi and IIIi+ */}}
+\DoxyCodeLine{00050         \textcolor{stringliteral}{"{}SPARC\_ULTRA3PLUS"{}}, \textcolor{comment}{/* UltraSPARC III+ and IV */}}
+\DoxyCodeLine{00051         \textcolor{stringliteral}{"{}SPARC\_ULTRA4PLUS"{}}, \textcolor{comment}{/* UltraSPARC IV+ */}}
+\DoxyCodeLine{00052         \textcolor{stringliteral}{"{}SPARC\_NIAGARA1"{}},   \textcolor{comment}{/* Niagara-\/1 */}}
+\DoxyCodeLine{00053         \textcolor{stringliteral}{"{}SPARC\_NIAGARA2"{}},   \textcolor{comment}{/* Niagara-\/2 */}}
+\DoxyCodeLine{00054 }
+\DoxyCodeLine{00055         \textcolor{stringliteral}{"{}PPC970"{}},   \textcolor{comment}{/* IBM PowerPC 970(FX"{},GX) */}}
+\DoxyCodeLine{00056         \textcolor{stringliteral}{"{}PPC970MP"{}}, \textcolor{comment}{/* IBM PowerPC 970MP */}}
+\DoxyCodeLine{00057         \textcolor{stringliteral}{"{}POWER3"{}},   \textcolor{comment}{/* IBM POWER3 */}}
+\DoxyCodeLine{00058         \textcolor{stringliteral}{"{}POWER4"{}},   \textcolor{comment}{/* IBM POWER4 */}}
+\DoxyCodeLine{00059         \textcolor{stringliteral}{"{}POWER5"{}},   \textcolor{comment}{/* IBM POWER5 */}}
+\DoxyCodeLine{00060         \textcolor{stringliteral}{"{}POWER5p"{}},  \textcolor{comment}{/* IBM POWER5+ */}}
+\DoxyCodeLine{00061         \textcolor{stringliteral}{"{}POWER6"{}},   \textcolor{comment}{/* IBM POWER6 */}}
+\DoxyCodeLine{00062         \textcolor{stringliteral}{"{}POWER7"{}},   \textcolor{comment}{/* IBM POWER7 */}}
+\DoxyCodeLine{00063 }
+\DoxyCodeLine{00064         \textcolor{stringliteral}{"{}PERF\_EVENT"{}},    \textcolor{comment}{/* perf\_event PMU */}}
+\DoxyCodeLine{00065         \textcolor{stringliteral}{"{}INTEL\_WSM"{}},     \textcolor{comment}{/* Intel Westmere single-\/socket (Clarkdale) */}}
+\DoxyCodeLine{00066         \textcolor{stringliteral}{"{}INTEL\_WSM\_DP"{}},  \textcolor{comment}{/* Intel Westmere dual-\/socket (Westmere-\/EP"{}, Gulftwon) */}}
+\DoxyCodeLine{00067         \textcolor{stringliteral}{"{}INTEL\_WSM\_UNC"{}}, \textcolor{comment}{/* Intel Westmere uncore PMU */}}
+\DoxyCodeLine{00068 }
+\DoxyCodeLine{00069         \textcolor{stringliteral}{"{}AMD64\_K7"{}},               \textcolor{comment}{/* AMD AMD64 K7 */}}
+\DoxyCodeLine{00070         \textcolor{stringliteral}{"{}AMD64\_K8\_REVB"{}},          \textcolor{comment}{/* AMD AMD64 K8 RevB */}}
+\DoxyCodeLine{00071         \textcolor{stringliteral}{"{}AMD64\_K8\_REVC"{}},          \textcolor{comment}{/* AMD AMD64 K8 RevC */}}
+\DoxyCodeLine{00072         \textcolor{stringliteral}{"{}AMD64\_K8\_REVD"{}},          \textcolor{comment}{/* AMD AMD64 K8 RevD */}}
+\DoxyCodeLine{00073         \textcolor{stringliteral}{"{}AMD64\_K8\_REVE"{}},          \textcolor{comment}{/* AMD AMD64 K8 RevE */}}
+\DoxyCodeLine{00074         \textcolor{stringliteral}{"{}AMD64\_K8\_REVF"{}},          \textcolor{comment}{/* AMD AMD64 K8 RevF */}}
+\DoxyCodeLine{00075         \textcolor{stringliteral}{"{}AMD64\_K8\_REVG"{}},          \textcolor{comment}{/* AMD AMD64 K8 RevG */}}
+\DoxyCodeLine{00076         \textcolor{stringliteral}{"{}AMD64\_FAM10H\_BARCELONA"{}}, \textcolor{comment}{/* AMD AMD64 Fam10h Barcelona RevB */}}
+\DoxyCodeLine{00077         \textcolor{stringliteral}{"{}AMD64\_FAM10H\_SHANGHAI"{}},  \textcolor{comment}{/* AMD AMD64 Fam10h Shanghai RevC  */}}
+\DoxyCodeLine{00078         \textcolor{stringliteral}{"{}AMD64\_FAM10H\_ISTANBUL"{}},  \textcolor{comment}{/* AMD AMD64 Fam10h Istanbul RevD  */}}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080         \textcolor{stringliteral}{"{}ARM\_CORTEX\_A8"{}}, \textcolor{comment}{/* ARM Cortex A8 */}}
+\DoxyCodeLine{00081         \textcolor{stringliteral}{"{}ARM\_CORTEX\_A9"{}}, \textcolor{comment}{/* ARM Cortex A9 */}}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083         \textcolor{stringliteral}{"{}TORRENT"{}}, \textcolor{comment}{/* IBM Torrent hub chip */}}
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085         \textcolor{stringliteral}{"{}INTEL\_SNB"{}},               \textcolor{comment}{/* Intel Sandy Bridge (single socket) */}}
+\DoxyCodeLine{00086         \textcolor{stringliteral}{"{}AMD64\_FAM14H\_BOBCAT"{}},     \textcolor{comment}{/* AMD AMD64 Fam14h Bobcat */}}
+\DoxyCodeLine{00087         \textcolor{stringliteral}{"{}AMD64\_FAM15H\_INTERLAGOS"{}}, \textcolor{comment}{/* AMD AMD64 Fam15h Interlagos */}}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089         \textcolor{stringliteral}{"{}INTEL\_SNB\_EP"{}},        \textcolor{comment}{/* Intel SandyBridge EP */}}
+\DoxyCodeLine{00090         \textcolor{stringliteral}{"{}AMD64\_FAM12H\_LLANO"{}},  \textcolor{comment}{/* AMD AMD64 Fam12h Llano */}}
+\DoxyCodeLine{00091         \textcolor{stringliteral}{"{}AMD64\_FAM11H\_TURION"{}}, \textcolor{comment}{/* AMD AMD64 Fam11h Turion */}}
+\DoxyCodeLine{00092         \textcolor{stringliteral}{"{}INTEL\_IVB"{}},           \textcolor{comment}{/* Intel IvyBridge */}}
+\DoxyCodeLine{00093         \textcolor{stringliteral}{"{}ARM\_CORTEX\_A15"{}},      \textcolor{comment}{/* ARM Cortex A15 */}}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095         \textcolor{stringliteral}{"{}INTEL\_SNB\_UNC\_CB0"{}}, \textcolor{comment}{/* Intel SandyBridge C-\/box 0 uncore PMU */}}
+\DoxyCodeLine{00096         \textcolor{stringliteral}{"{}INTEL\_SNB\_UNC\_CB1"{}}, \textcolor{comment}{/* Intel SandyBridge C-\/box 1 uncore PMU */}}
+\DoxyCodeLine{00097         \textcolor{stringliteral}{"{}INTEL\_SNB\_UNC\_CB2"{}}, \textcolor{comment}{/* Intel SandyBridge C-\/box 2 uncore PMU */}}
+\DoxyCodeLine{00098         \textcolor{stringliteral}{"{}INTEL\_SNB\_UNC\_CB3"{}}, \textcolor{comment}{/* Intel SandyBridge C-\/box 3 uncore PMU */}}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_CB0"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP C-\/Box core 0 uncore */}}
+\DoxyCodeLine{00101         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_CB1"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP C-\/Box core 1 uncore */}}
+\DoxyCodeLine{00102         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_CB2"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP C-\/Box core 2 uncore */}}
+\DoxyCodeLine{00103         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_CB3"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP C-\/Box core 3 uncore */}}
+\DoxyCodeLine{00104         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_CB4"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP C-\/Box core 4 uncore */}}
+\DoxyCodeLine{00105         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_CB5"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP C-\/Box core 5 uncore */}}
+\DoxyCodeLine{00106         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_CB6"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP C-\/Box core 6 uncore */}}
+\DoxyCodeLine{00107         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_CB7"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP C-\/Box core 7 uncore */}}
+\DoxyCodeLine{00108         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_HA"{}},     \textcolor{comment}{/* Intel SandyBridge-\/EP HA uncore */}}
+\DoxyCodeLine{00109         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_IMC0"{}},   \textcolor{comment}{/* Intel SandyBridge-\/EP IMC socket 0 uncore */}}
+\DoxyCodeLine{00110         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_IMC1"{}},   \textcolor{comment}{/* Intel SandyBridge-\/EP IMC socket 1 uncore */}}
+\DoxyCodeLine{00111         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_IMC2"{}},   \textcolor{comment}{/* Intel SandyBridge-\/EP IMC socket 2 uncore */}}
+\DoxyCodeLine{00112         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_IMC3"{}},   \textcolor{comment}{/* Intel SandyBridge-\/EP IMC socket 3 uncore */}}
+\DoxyCodeLine{00113         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_PCU"{}},    \textcolor{comment}{/* Intel SandyBridge-\/EP PCU uncore */}}
+\DoxyCodeLine{00114         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_QPI0"{}},   \textcolor{comment}{/* Intel SandyBridge-\/EP QPI link 0 uncore */}}
+\DoxyCodeLine{00115         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_QPI1"{}},   \textcolor{comment}{/* Intel SandyBridge-\/EP QPI link 1 uncore */}}
+\DoxyCodeLine{00116         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_UBOX"{}},   \textcolor{comment}{/* Intel SandyBridge-\/EP U-\/Box uncore */}}
+\DoxyCodeLine{00117         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_R2PCIE"{}}, \textcolor{comment}{/* Intel SandyBridge-\/EP R2PCIe uncore */}}
+\DoxyCodeLine{00118         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_R3QPI0"{}}, \textcolor{comment}{/* Intel SandyBridge-\/EP R3QPI 0 uncore */}}
+\DoxyCodeLine{00119         \textcolor{stringliteral}{"{}INTEL\_SNBEP\_UNC\_R3QPI1"{}}, \textcolor{comment}{/* Intel SandyBridge-\/EP R3QPI 1 uncore */}}
+\DoxyCodeLine{00120         \textcolor{stringliteral}{"{}INTEL\_KNC"{}},              \textcolor{comment}{/* Intel Knights Corner (Xeon Phi) */}}
+\DoxyCodeLine{00121 }
+\DoxyCodeLine{00122         \textcolor{stringliteral}{"{}S390X\_CPUM\_CF"{}}, \textcolor{comment}{/* s390x: CPU-\/M counter facility */}}
+\DoxyCodeLine{00123 }
+\DoxyCodeLine{00124         \textcolor{stringliteral}{"{}ARM\_1176"{}}, \textcolor{comment}{/* ARM 1176 */}}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126         \textcolor{stringliteral}{"{}INTEL\_IVB\_EP"{}}, \textcolor{comment}{/* Intel IvyBridge EP */}}
+\DoxyCodeLine{00127         \textcolor{stringliteral}{"{}INTEL\_HSW"{}},    \textcolor{comment}{/* Intel Haswell */}}
+\DoxyCodeLine{00128 }
+\DoxyCodeLine{00129         \textcolor{stringliteral}{"{}INTEL\_IVB\_UNC\_CB0"{}}, \textcolor{comment}{/* Intel IvyBridge C-\/box 0 uncore PMU */}}
+\DoxyCodeLine{00130         \textcolor{stringliteral}{"{}INTEL\_IVB\_UNC\_CB1"{}}, \textcolor{comment}{/* Intel IvyBridge C-\/box 1 uncore PMU */}}
+\DoxyCodeLine{00131         \textcolor{stringliteral}{"{}INTEL\_IVB\_UNC\_CB2"{}}, \textcolor{comment}{/* Intel IvyBridge C-\/box 2 uncore PMU */}}
+\DoxyCodeLine{00132         \textcolor{stringliteral}{"{}INTEL\_IVB\_UNC\_CB3"{}}, \textcolor{comment}{/* Intel IvyBridge C-\/box 3 uncore PMU */}}
+\DoxyCodeLine{00133 }
+\DoxyCodeLine{00134         \textcolor{stringliteral}{"{}POWER8"{}},     \textcolor{comment}{/* IBM POWER8 */}}
+\DoxyCodeLine{00135         \textcolor{stringliteral}{"{}INTEL\_RAPL"{}}, \textcolor{comment}{/* Intel RAPL */}}
+\DoxyCodeLine{00136 }
+\DoxyCodeLine{00137         \textcolor{stringliteral}{"{}INTEL\_SLM"{}},       \textcolor{comment}{/* Intel Silvermont */}}
+\DoxyCodeLine{00138         \textcolor{stringliteral}{"{}AMD64\_FAM15H\_NB"{}}, \textcolor{comment}{/* AMD AMD64 Fam15h NorthBridge */}}
+\DoxyCodeLine{00139 }
+\DoxyCodeLine{00140         \textcolor{stringliteral}{"{}ARM\_QCOM\_KRAIT"{}}, \textcolor{comment}{/* Qualcomm Krait */}}
+\DoxyCodeLine{00141         \textcolor{stringliteral}{"{}PERF\_EVENT\_RAW"{}}, \textcolor{comment}{/* perf\_events RAW event syntax */}}
+\DoxyCodeLine{00142 }
+\DoxyCodeLine{00143         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB0"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 0 uncore */}}
+\DoxyCodeLine{00144         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB1"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 1 uncore */}}
+\DoxyCodeLine{00145         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB2"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 2 uncore */}}
+\DoxyCodeLine{00146         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB3"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 3 uncore */}}
+\DoxyCodeLine{00147         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB4"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 4 uncore */}}
+\DoxyCodeLine{00148         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB5"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 5 uncore */}}
+\DoxyCodeLine{00149         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB6"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 6 uncore */}}
+\DoxyCodeLine{00150         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB7"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 7 uncore */}}
+\DoxyCodeLine{00151         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB8"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 8 uncore */}}
+\DoxyCodeLine{00152         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB9"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 9 uncore */}}
+\DoxyCodeLine{00153         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB10"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 10 uncore */}}
+\DoxyCodeLine{00154         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB11"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 11 uncore */}}
+\DoxyCodeLine{00155         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB12"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 12 uncore */}}
+\DoxyCodeLine{00156         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB13"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 13 uncore */}}
+\DoxyCodeLine{00157         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_CB14"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP C-\/Box core 14 uncore */}}
+\DoxyCodeLine{00158         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_HA0"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP HA 0 uncore */}}
+\DoxyCodeLine{00159         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_HA1"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP HA 1 uncore */}}
+\DoxyCodeLine{00160         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IMC0"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP IMC socket 0 uncore */}}
+\DoxyCodeLine{00161         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IMC1"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP IMC socket 1 uncore */}}
+\DoxyCodeLine{00162         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IMC2"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP IMC socket 2 uncore */}}
+\DoxyCodeLine{00163         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IMC3"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP IMC socket 3 uncore */}}
+\DoxyCodeLine{00164         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IMC4"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP IMC socket 4 uncore */}}
+\DoxyCodeLine{00165         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IMC5"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP IMC socket 5 uncore */}}
+\DoxyCodeLine{00166         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IMC6"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP IMC socket 6 uncore */}}
+\DoxyCodeLine{00167         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IMC7"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP IMC socket 7 uncore */}}
+\DoxyCodeLine{00168         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_PCU"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP PCU uncore */}}
+\DoxyCodeLine{00169         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_QPI0"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP QPI link 0 uncore */}}
+\DoxyCodeLine{00170         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_QPI1"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP QPI link 1 uncore */}}
+\DoxyCodeLine{00171         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_QPI2"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP QPI link 2 uncore */}}
+\DoxyCodeLine{00172         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_UBOX"{}},   \textcolor{comment}{/* Intel IvyBridge-\/EP U-\/Box uncore */}}
+\DoxyCodeLine{00173         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_R2PCIE"{}}, \textcolor{comment}{/* Intel IvyBridge-\/EP R2PCIe uncore */}}
+\DoxyCodeLine{00174         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_R3QPI0"{}}, \textcolor{comment}{/* Intel IvyBridge-\/EP R3QPI 0 uncore */}}
+\DoxyCodeLine{00175         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_R3QPI1"{}}, \textcolor{comment}{/* Intel IvyBridge-\/EP R3QPI 1 uncore */}}
+\DoxyCodeLine{00176         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_R3QPI2"{}}, \textcolor{comment}{/* Intel IvyBridge-\/EP R3QPI 2 uncore */}}
+\DoxyCodeLine{00177         \textcolor{stringliteral}{"{}INTEL\_IVBEP\_UNC\_IRP"{}},    \textcolor{comment}{/* Intel IvyBridge-\/EP IRP uncore */}}
+\DoxyCodeLine{00178 }
+\DoxyCodeLine{00179         \textcolor{stringliteral}{"{}S390X\_CPUM\_SF"{}}, \textcolor{comment}{/* s390x: CPU-\/M sampling facility */}}
+\DoxyCodeLine{00180 }
+\DoxyCodeLine{00181         \textcolor{stringliteral}{"{}ARM\_CORTEX\_A57"{}}, \textcolor{comment}{/* ARM Cortex A57 (ARMv8) */}}
+\DoxyCodeLine{00182         \textcolor{stringliteral}{"{}ARM\_CORTEX\_A53"{}}, \textcolor{comment}{/* ARM Cortex A53 (ARMv8) */}}
+\DoxyCodeLine{00183 }
+\DoxyCodeLine{00184         \textcolor{stringliteral}{"{}ARM\_CORTEX\_A7"{}}, \textcolor{comment}{/* ARM Cortex A7 */}}
+\DoxyCodeLine{00185 }
+\DoxyCodeLine{00186         \textcolor{stringliteral}{"{}INTEL\_HSW\_EP"{}}, \textcolor{comment}{/* Intel Haswell EP */}}
+\DoxyCodeLine{00187         \textcolor{stringliteral}{"{}INTEL\_BDW"{}},    \textcolor{comment}{/* Intel Broadwell */}}
+\DoxyCodeLine{00188 }
+\DoxyCodeLine{00189         \textcolor{stringliteral}{"{}ARM\_XGENE"{}}, \textcolor{comment}{/* Applied Micro X-\/Gene (ARMv8) */}}
+\DoxyCodeLine{00190 }
+\DoxyCodeLine{00191         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB0"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 0 uncore */}}
+\DoxyCodeLine{00192         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB1"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 1 uncore */}}
+\DoxyCodeLine{00193         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB2"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 2 uncore */}}
+\DoxyCodeLine{00194         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB3"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 3 uncore */}}
+\DoxyCodeLine{00195         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB4"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 4 uncore */}}
+\DoxyCodeLine{00196         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB5"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 5 uncore */}}
+\DoxyCodeLine{00197         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB6"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 6 uncore */}}
+\DoxyCodeLine{00198         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB7"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 7 uncore */}}
+\DoxyCodeLine{00199         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB8"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 8 uncore */}}
+\DoxyCodeLine{00200         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB9"{}},    \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 9 uncore */}}
+\DoxyCodeLine{00201         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB10"{}},   \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 10 uncore */}}
+\DoxyCodeLine{00202         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB11"{}},   \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 11 uncore */}}
+\DoxyCodeLine{00203         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB12"{}},   \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 12 uncore */}}
+\DoxyCodeLine{00204         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB13"{}},   \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 13 uncore */}}
+\DoxyCodeLine{00205         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB14"{}},   \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 14 uncore */}}
+\DoxyCodeLine{00206         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB15"{}},   \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 15 uncore */}}
+\DoxyCodeLine{00207         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB16"{}},   \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 16 uncore */}}
+\DoxyCodeLine{00208         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_CB17"{}},   \textcolor{comment}{/* Intel Haswell-\/EP C-\/Box core 17 uncore */}}
+\DoxyCodeLine{00209         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_HA0"{}},    \textcolor{comment}{/* Intel Haswell-\/EP HA 0 uncore */}}
+\DoxyCodeLine{00210         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_HA1"{}},    \textcolor{comment}{/* Intel Haswell-\/EP HA 1 uncore */}}
+\DoxyCodeLine{00211         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IMC0"{}},   \textcolor{comment}{/* Intel Haswell-\/EP IMC socket 0 uncore */}}
+\DoxyCodeLine{00212         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IMC1"{}},   \textcolor{comment}{/* Intel Haswell-\/EP IMC socket 1 uncore */}}
+\DoxyCodeLine{00213         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IMC2"{}},   \textcolor{comment}{/* Intel Haswell-\/EP IMC socket 2 uncore */}}
+\DoxyCodeLine{00214         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IMC3"{}},   \textcolor{comment}{/* Intel Haswell-\/EP IMC socket 3 uncore */}}
+\DoxyCodeLine{00215         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IMC4"{}},   \textcolor{comment}{/* Intel Haswell-\/EP IMC socket 4 uncore */}}
+\DoxyCodeLine{00216         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IMC5"{}},   \textcolor{comment}{/* Intel Haswell-\/EP IMC socket 5 uncore */}}
+\DoxyCodeLine{00217         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IMC6"{}},   \textcolor{comment}{/* Intel Haswell-\/EP IMC socket 6 uncore */}}
+\DoxyCodeLine{00218         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IMC7"{}},   \textcolor{comment}{/* Intel Haswell-\/EP IMC socket 7 uncore */}}
+\DoxyCodeLine{00219         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_PCU"{}},    \textcolor{comment}{/* Intel Haswell-\/EP PCU uncore */}}
+\DoxyCodeLine{00220         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_QPI0"{}},   \textcolor{comment}{/* Intel Haswell-\/EP QPI link 0 uncore */}}
+\DoxyCodeLine{00221         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_QPI1"{}},   \textcolor{comment}{/* Intel Haswell-\/EP QPI link 1 uncore */}}
+\DoxyCodeLine{00222         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_UBOX"{}},   \textcolor{comment}{/* Intel Haswell-\/EP U-\/Box uncore */}}
+\DoxyCodeLine{00223         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_R2PCIE"{}}, \textcolor{comment}{/* Intel Haswell-\/EP R2PCIe uncore */}}
+\DoxyCodeLine{00224         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_R3QPI0"{}}, \textcolor{comment}{/* Intel Haswell-\/EP R3QPI 0 uncore */}}
+\DoxyCodeLine{00225         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_R3QPI1"{}}, \textcolor{comment}{/* Intel Haswell-\/EP R3QPI 1 uncore */}}
+\DoxyCodeLine{00226         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_R3QPI2"{}}, \textcolor{comment}{/* Intel Haswell-\/EP R3QPI 2 uncore */}}
+\DoxyCodeLine{00227         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_IRP"{}},    \textcolor{comment}{/* Intel Haswell-\/EP IRP uncore */}}
+\DoxyCodeLine{00228         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_SB0"{}},    \textcolor{comment}{/* Intel Haswell-\/EP S-\/Box 0 uncore */}}
+\DoxyCodeLine{00229         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_SB1"{}},    \textcolor{comment}{/* Intel Haswell-\/EP S-\/Box 1 uncore */}}
+\DoxyCodeLine{00230         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_SB2"{}},    \textcolor{comment}{/* Intel Haswell-\/EP S-\/Box 2 uncore */}}
+\DoxyCodeLine{00231         \textcolor{stringliteral}{"{}INTEL\_HSWEP\_UNC\_SB3"{}},    \textcolor{comment}{/* Intel Haswell-\/EP S-\/Box 3 uncore */}}
+\DoxyCodeLine{00232 }
+\DoxyCodeLine{00233         \textcolor{stringliteral}{"{}POWERPC\_NEST\_MCS\_READ\_BW"{}},  \textcolor{comment}{/* POWERPC Nest Memory Read bandwidth */}}
+\DoxyCodeLine{00234         \textcolor{stringliteral}{"{}POWERPC\_NEST\_MCS\_WRITE\_BW"{}}, \textcolor{comment}{/* POWERPC Nest Memory Write bandwidth */}}
+\DoxyCodeLine{00235 }
+\DoxyCodeLine{00236         \textcolor{stringliteral}{"{}INTEL\_SKL"{}}, \textcolor{comment}{/* Intel Skylake */}}
+\DoxyCodeLine{00237 }
+\DoxyCodeLine{00238         \textcolor{stringliteral}{"{}INTEL\_BDW\_EP"{}}, \textcolor{comment}{/* Intel Broadwell EP */}}
+\DoxyCodeLine{00239 }
+\DoxyCodeLine{00240         \textcolor{stringliteral}{"{}INTEL\_GLM"{}}, \textcolor{comment}{/* Intel Goldmont */}}
+\DoxyCodeLine{00241 }
+\DoxyCodeLine{00242         \textcolor{stringliteral}{"{}INTEL\_KNL"{}},               \textcolor{comment}{/* Intel Knights Landing */}}
+\DoxyCodeLine{00243         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_IMC0"{}},      \textcolor{comment}{/* Intel KnightLanding IMC channel 0 uncore */}}
+\DoxyCodeLine{00244         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_IMC1"{}},      \textcolor{comment}{/* Intel KnightLanding IMC channel 1 uncore */}}
+\DoxyCodeLine{00245         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_IMC2"{}},      \textcolor{comment}{/* Intel KnightLanding IMC channel 2 uncore */}}
+\DoxyCodeLine{00246         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_IMC3"{}},      \textcolor{comment}{/* Intel KnightLanding IMC channel 3 uncore */}}
+\DoxyCodeLine{00247         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_IMC4"{}},      \textcolor{comment}{/* Intel KnightLanding IMC channel 4 uncore */}}
+\DoxyCodeLine{00248         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_IMC5"{}},      \textcolor{comment}{/* Intel KnightLanding IMC channel 5 uncore */}}
+\DoxyCodeLine{00249         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_IMC\_UCLK0"{}}, \textcolor{comment}{/* Intel KnightLanding IMC UCLK unit 0 uncore */}}
+\DoxyCodeLine{00250         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_IMC\_UCLK1"{}}, \textcolor{comment}{/* Intel KnightLanding IMC UCLK unit 1 uncore */}}
+\DoxyCodeLine{00251         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_ECLK0"{}}, \textcolor{comment}{/* Intel KnightLanding EDC ECLK unit 0 uncore */}}
+\DoxyCodeLine{00252         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_ECLK1"{}}, \textcolor{comment}{/* Intel KnightLanding EDC ECLK unit 1 uncore */}}
+\DoxyCodeLine{00253         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_ECLK2"{}}, \textcolor{comment}{/* Intel KnightLanding EDC ECLK unit 2 uncore */}}
+\DoxyCodeLine{00254         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_ECLK3"{}}, \textcolor{comment}{/* Intel KnightLanding EDC ECLK unit 3 uncore */}}
+\DoxyCodeLine{00255         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_ECLK4"{}}, \textcolor{comment}{/* Intel KnightLanding EDC ECLK unit 4 uncore */}}
+\DoxyCodeLine{00256         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_ECLK5"{}}, \textcolor{comment}{/* Intel KnightLanding EDC ECLK unit 5 uncore */}}
+\DoxyCodeLine{00257         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_ECLK6"{}}, \textcolor{comment}{/* Intel KnightLanding EDC ECLK unit 6 uncore */}}
+\DoxyCodeLine{00258         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_ECLK7"{}}, \textcolor{comment}{/* Intel KnightLanding EDC ECLK unit 7 uncore */}}
+\DoxyCodeLine{00259         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_UCLK0"{}}, \textcolor{comment}{/* Intel KnightLanding EDC UCLK unit 0 uncore */}}
+\DoxyCodeLine{00260         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_UCLK1"{}}, \textcolor{comment}{/* Intel KnightLanding EDC UCLK unit 1 uncore */}}
+\DoxyCodeLine{00261         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_UCLK2"{}}, \textcolor{comment}{/* Intel KnightLanding EDC UCLK unit 2 uncore */}}
+\DoxyCodeLine{00262         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_UCLK3"{}}, \textcolor{comment}{/* Intel KnightLanding EDC UCLK unit 3 uncore */}}
+\DoxyCodeLine{00263         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_UCLK4"{}}, \textcolor{comment}{/* Intel KnightLanding EDC UCLK unit 4 uncore */}}
+\DoxyCodeLine{00264         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_UCLK5"{}}, \textcolor{comment}{/* Intel KnightLanding EDC UCLK unit 5 uncore */}}
+\DoxyCodeLine{00265         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_UCLK6"{}}, \textcolor{comment}{/* Intel KnightLanding EDC UCLK unit 6 uncore */}}
+\DoxyCodeLine{00266         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_EDC\_UCLK7"{}}, \textcolor{comment}{/* Intel KnightLanding EDC UCLK unit 7 uncore */}}
+\DoxyCodeLine{00267 }
+\DoxyCodeLine{00268         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA0"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 0 uncore */}}
+\DoxyCodeLine{00269         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA1"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 1 uncore */}}
+\DoxyCodeLine{00270         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA2"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 2 uncore */}}
+\DoxyCodeLine{00271         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA3"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 3 uncore */}}
+\DoxyCodeLine{00272         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA4"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 4 uncore */}}
+\DoxyCodeLine{00273         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA5"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 5 uncore */}}
+\DoxyCodeLine{00274         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA6"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 6 uncore */}}
+\DoxyCodeLine{00275         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA7"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 7 uncore */}}
+\DoxyCodeLine{00276         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA8"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 8 uncore */}}
+\DoxyCodeLine{00277         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA9"{}},  \textcolor{comment}{/* Intel KnightLanding CHA unit 9 uncore */}}
+\DoxyCodeLine{00278         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA10"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 10 uncore */}}
+\DoxyCodeLine{00279         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA11"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 11 uncore */}}
+\DoxyCodeLine{00280         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA12"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 12 uncore */}}
+\DoxyCodeLine{00281         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA13"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 13 uncore */}}
+\DoxyCodeLine{00282         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA14"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 14 uncore */}}
+\DoxyCodeLine{00283         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA15"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 15 uncore */}}
+\DoxyCodeLine{00284         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA16"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 16 uncore */}}
+\DoxyCodeLine{00285         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA17"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 17 uncore */}}
+\DoxyCodeLine{00286         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA18"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 18 uncore */}}
+\DoxyCodeLine{00287         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA19"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 19 uncore */}}
+\DoxyCodeLine{00288         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA20"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 20 uncore */}}
+\DoxyCodeLine{00289         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA21"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 21 uncore */}}
+\DoxyCodeLine{00290         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA22"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 22 uncore */}}
+\DoxyCodeLine{00291         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA23"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 23 uncore */}}
+\DoxyCodeLine{00292         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA24"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 24 uncore */}}
+\DoxyCodeLine{00293         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA25"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 25 uncore */}}
+\DoxyCodeLine{00294         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA26"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 26 uncore */}}
+\DoxyCodeLine{00295         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA27"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 27 uncore */}}
+\DoxyCodeLine{00296         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA28"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 28 uncore */}}
+\DoxyCodeLine{00297         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA29"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 29 uncore */}}
+\DoxyCodeLine{00298         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA30"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 30 uncore */}}
+\DoxyCodeLine{00299         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA31"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 31 uncore */}}
+\DoxyCodeLine{00300         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA32"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 32 uncore */}}
+\DoxyCodeLine{00301         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA33"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 33 uncore */}}
+\DoxyCodeLine{00302         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA34"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 34 uncore */}}
+\DoxyCodeLine{00303         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA35"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 35 uncore */}}
+\DoxyCodeLine{00304         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA36"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 36 uncore */}}
+\DoxyCodeLine{00305         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_CHA37"{}}, \textcolor{comment}{/* Intel KnightLanding CHA unit 37 uncore */}}
+\DoxyCodeLine{00306 }
+\DoxyCodeLine{00307         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_UBOX"{}},   \textcolor{comment}{/* Intel KnightLanding Ubox uncore */}}
+\DoxyCodeLine{00308         \textcolor{stringliteral}{"{}INTEL\_KNL\_UNC\_M2PCIE"{}}, \textcolor{comment}{/* Intel KnightLanding M2PCIe uncore */}}
+\DoxyCodeLine{00309 }
+\DoxyCodeLine{00310         \textcolor{stringliteral}{"{}POWER9"{}}, \textcolor{comment}{/* IBM POWER9 */}}
+\DoxyCodeLine{00311 }
+\DoxyCodeLine{00312         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB0"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 0 uncore */}}
+\DoxyCodeLine{00313         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB1"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 1 uncore */}}
+\DoxyCodeLine{00314         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB2"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 2 uncore */}}
+\DoxyCodeLine{00315         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB3"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 3 uncore */}}
+\DoxyCodeLine{00316         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB4"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 4 uncore */}}
+\DoxyCodeLine{00317         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB5"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 5 uncore */}}
+\DoxyCodeLine{00318         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB6"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 6 uncore */}}
+\DoxyCodeLine{00319         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB7"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 7 uncore */}}
+\DoxyCodeLine{00320         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB8"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 8 uncore */}}
+\DoxyCodeLine{00321         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB9"{}},    \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 9 uncore */}}
+\DoxyCodeLine{00322         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB10"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 10 uncore */}}
+\DoxyCodeLine{00323         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB11"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 11 uncore */}}
+\DoxyCodeLine{00324         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB12"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 12 uncore */}}
+\DoxyCodeLine{00325         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB13"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 13 uncore */}}
+\DoxyCodeLine{00326         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB14"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 14 uncore */}}
+\DoxyCodeLine{00327         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB15"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 15 uncore */}}
+\DoxyCodeLine{00328         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB16"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 16 uncore */}}
+\DoxyCodeLine{00329         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB17"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 17 uncore */}}
+\DoxyCodeLine{00330         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB18"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 18 uncore */}}
+\DoxyCodeLine{00331         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB19"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 19 uncore */}}
+\DoxyCodeLine{00332         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB20"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 20 uncore */}}
+\DoxyCodeLine{00333         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB21"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 21 uncore */}}
+\DoxyCodeLine{00334         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB22"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 22 uncore */}}
+\DoxyCodeLine{00335         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_CB23"{}},   \textcolor{comment}{/* Intel Broadwell-\/X C-\/Box core 23 uncore */}}
+\DoxyCodeLine{00336         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_HA0"{}},    \textcolor{comment}{/* Intel Broadwell-\/X HA 0 uncore */}}
+\DoxyCodeLine{00337         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_HA1"{}},    \textcolor{comment}{/* Intel Broadwell-\/X HA 1 uncore */}}
+\DoxyCodeLine{00338         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IMC0"{}},   \textcolor{comment}{/* Intel Broadwell-\/X IMC socket 0 uncore */}}
+\DoxyCodeLine{00339         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IMC1"{}},   \textcolor{comment}{/* Intel Broadwell-\/X IMC socket 1 uncore */}}
+\DoxyCodeLine{00340         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IMC2"{}},   \textcolor{comment}{/* Intel Broadwell-\/X IMC socket 2 uncore */}}
+\DoxyCodeLine{00341         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IMC3"{}},   \textcolor{comment}{/* Intel Broadwell-\/X IMC socket 3 uncore */}}
+\DoxyCodeLine{00342         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IMC4"{}},   \textcolor{comment}{/* Intel Broadwell-\/X IMC socket 4 uncore */}}
+\DoxyCodeLine{00343         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IMC5"{}},   \textcolor{comment}{/* Intel Broadwell-\/X IMC socket 5 uncore */}}
+\DoxyCodeLine{00344         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IMC6"{}},   \textcolor{comment}{/* Intel Broadwell-\/X IMC socket 6 uncore */}}
+\DoxyCodeLine{00345         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IMC7"{}},   \textcolor{comment}{/* Intel Broadwell-\/X IMC socket 7 uncore */}}
+\DoxyCodeLine{00346         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_PCU"{}},    \textcolor{comment}{/* Intel Broadwell-\/X PCU uncore */}}
+\DoxyCodeLine{00347         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_QPI0"{}},   \textcolor{comment}{/* Intel Broadwell-\/X QPI link 0 uncore */}}
+\DoxyCodeLine{00348         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_QPI1"{}},   \textcolor{comment}{/* Intel Broadwell-\/X QPI link 1 uncore */}}
+\DoxyCodeLine{00349         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_QPI2"{}},   \textcolor{comment}{/* Intel Broadwell-\/X QPI link 2 uncore */}}
+\DoxyCodeLine{00350         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_UBOX"{}},   \textcolor{comment}{/* Intel Broadwell-\/X U-\/Box uncore */}}
+\DoxyCodeLine{00351         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_R2PCIE"{}}, \textcolor{comment}{/* Intel Broadwell-\/X R2PCIe uncore */}}
+\DoxyCodeLine{00352         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_R3QPI0"{}}, \textcolor{comment}{/* Intel Broadwell-\/X R3QPI 0 uncore */}}
+\DoxyCodeLine{00353         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_R3QPI1"{}}, \textcolor{comment}{/* Intel Broadwell-\/X R3QPI 1 uncore */}}
+\DoxyCodeLine{00354         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_R3QPI2"{}}, \textcolor{comment}{/* Intel Broadwell-\/X R3QPI 2 uncore */}}
+\DoxyCodeLine{00355         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_IRP"{}},    \textcolor{comment}{/* Intel Broadwell-\/X IRP uncore */}}
+\DoxyCodeLine{00356         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_SB0"{}},    \textcolor{comment}{/* Intel Broadwell-\/X S-\/Box 0 uncore */}}
+\DoxyCodeLine{00357         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_SB1"{}},    \textcolor{comment}{/* Intel Broadwell-\/X S-\/Box 1 uncore */}}
+\DoxyCodeLine{00358         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_SB2"{}},    \textcolor{comment}{/* Intel Broadwell-\/X S-\/Box 2 uncore */}}
+\DoxyCodeLine{00359         \textcolor{stringliteral}{"{}INTEL\_BDX\_UNC\_SB3"{}},    \textcolor{comment}{/* Intel Broadwell-\/X S-\/Box 3 uncore */}}
+\DoxyCodeLine{00360 }
+\DoxyCodeLine{00361         \textcolor{stringliteral}{"{}AMD64\_FAM17H"{}}, \textcolor{comment}{/* AMD AMD64 Fam17h Zen1 (deprecated) */}}
+\DoxyCodeLine{00362         \textcolor{stringliteral}{"{}AMD64\_FAM16H"{}}, \textcolor{comment}{/* AMD AMD64 Fam16h Jaguar */}}
+\DoxyCodeLine{00363 }
+\DoxyCodeLine{00364         \textcolor{stringliteral}{"{}INTEL\_SKX"{}}, \textcolor{comment}{/* Intel Skylake-\/X */}}
+\DoxyCodeLine{00365 }
+\DoxyCodeLine{00366         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA0"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 0 uncore */}}
+\DoxyCodeLine{00367         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA1"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 1 uncore */}}
+\DoxyCodeLine{00368         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA2"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 2 uncore */}}
+\DoxyCodeLine{00369         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA3"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 3 uncore */}}
+\DoxyCodeLine{00370         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA4"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 4 uncore */}}
+\DoxyCodeLine{00371         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA5"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 5 uncore */}}
+\DoxyCodeLine{00372         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA6"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 6 uncore */}}
+\DoxyCodeLine{00373         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA7"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 7 uncore */}}
+\DoxyCodeLine{00374         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA8"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 8 uncore */}}
+\DoxyCodeLine{00375         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA9"{}},   \textcolor{comment}{/* Intel Skylake-\/X CHA core 9 uncore */}}
+\DoxyCodeLine{00376         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA10"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 10 uncore */}}
+\DoxyCodeLine{00377         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA11"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 11 uncore */}}
+\DoxyCodeLine{00378         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA12"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 12 uncore */}}
+\DoxyCodeLine{00379         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA13"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 13 uncore */}}
+\DoxyCodeLine{00380         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA14"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 14 uncore */}}
+\DoxyCodeLine{00381         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA15"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 15 uncore */}}
+\DoxyCodeLine{00382         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA16"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 16 uncore */}}
+\DoxyCodeLine{00383         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA17"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 17 uncore */}}
+\DoxyCodeLine{00384         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA18"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 18 uncore */}}
+\DoxyCodeLine{00385         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA19"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 19 uncore */}}
+\DoxyCodeLine{00386         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA20"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 20 uncore */}}
+\DoxyCodeLine{00387         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA21"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 21 uncore */}}
+\DoxyCodeLine{00388         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA22"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 22 uncore */}}
+\DoxyCodeLine{00389         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA23"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 23 uncore */}}
+\DoxyCodeLine{00390         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA24"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 24 uncore */}}
+\DoxyCodeLine{00391         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA25"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 25 uncore */}}
+\DoxyCodeLine{00392         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA26"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 26 uncore */}}
+\DoxyCodeLine{00393         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_CHA27"{}},  \textcolor{comment}{/* Intel Skylake-\/X CHA core 27 uncore */}}
+\DoxyCodeLine{00394         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IIO0"{}},   \textcolor{comment}{/* Intel Skylake-\/X IIO0 uncore */}}
+\DoxyCodeLine{00395         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IIO1"{}},   \textcolor{comment}{/* Intel Skylake-\/X IIO1 uncore */}}
+\DoxyCodeLine{00396         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IIO2"{}},   \textcolor{comment}{/* Intel Skylake-\/X IIO2 uncore */}}
+\DoxyCodeLine{00397         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IIO3"{}},   \textcolor{comment}{/* Intel Skylake-\/X IIO3 uncore */}}
+\DoxyCodeLine{00398         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IIO4"{}},   \textcolor{comment}{/* Intel Skylake-\/X IIO4 uncore */}}
+\DoxyCodeLine{00399         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IIO5"{}},   \textcolor{comment}{/* Intel Skylake-\/X IIO5 uncore */}}
+\DoxyCodeLine{00400         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IMC0"{}},   \textcolor{comment}{/* Intel Skylake-\/X IMC0 uncore */}}
+\DoxyCodeLine{00401         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IMC1"{}},   \textcolor{comment}{/* Intel Skylake-\/X IMC1 uncore */}}
+\DoxyCodeLine{00402         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IMC2"{}},   \textcolor{comment}{/* Intel Skylake-\/X IMC2 uncore */}}
+\DoxyCodeLine{00403         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IMC3"{}},   \textcolor{comment}{/* Intel Skylake-\/X IMC3 uncore */}}
+\DoxyCodeLine{00404         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IMC4"{}},   \textcolor{comment}{/* Intel Skylake-\/X IMC4 uncore */}}
+\DoxyCodeLine{00405         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IMC5"{}},   \textcolor{comment}{/* Intel Skylake-\/X IMC5 uncore */}}
+\DoxyCodeLine{00406         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_IRP"{}},    \textcolor{comment}{/* Intel Skylake-\/X IRP  uncore */}}
+\DoxyCodeLine{00407         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_M2M0"{}},   \textcolor{comment}{/* Intel Skylake-\/X M2M0 uncore */}}
+\DoxyCodeLine{00408         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_M2M1"{}},   \textcolor{comment}{/* Intel Skylake-\/X M2M1 uncore */}}
+\DoxyCodeLine{00409         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_M3UPI0"{}}, \textcolor{comment}{/* Intel Skylake-\/X M3UPI0 uncore */}}
+\DoxyCodeLine{00410         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_M3UPI1"{}}, \textcolor{comment}{/* Intel Skylake-\/X M3UPI1 uncore */}}
+\DoxyCodeLine{00411         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_M3UPI2"{}}, \textcolor{comment}{/* Intel Skylake-\/X M3UPI2 uncore */}}
+\DoxyCodeLine{00412         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_PCU"{}},    \textcolor{comment}{/* Intel Skylake-\/X PCU uncore */}}
+\DoxyCodeLine{00413         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_UBOX"{}},   \textcolor{comment}{/* Intel Skylake-\/X U-\/Box uncore */}}
+\DoxyCodeLine{00414         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_UPI0"{}},   \textcolor{comment}{/* Intel Skylake-\/X UPI link 0 uncore */}}
+\DoxyCodeLine{00415         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_UPI1"{}},   \textcolor{comment}{/* Intel Skylake-\/X UPI link 1 uncore */}}
+\DoxyCodeLine{00416         \textcolor{stringliteral}{"{}INTEL\_SKX\_UNC\_UPI2"{}},   \textcolor{comment}{/* Intel Skylake-\/X UPI link 2 uncore */}}
+\DoxyCodeLine{00417 }
+\DoxyCodeLine{00418         \textcolor{stringliteral}{"{}INTEL\_KNM"{}},               \textcolor{comment}{/* Intel Knights Mill */}}
+\DoxyCodeLine{00419         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_IMC0"{}},      \textcolor{comment}{/* Intel Knights Mill IMC channel 0 uncore */}}
+\DoxyCodeLine{00420         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_IMC1"{}},      \textcolor{comment}{/* Intel Knights Mill IMC channel 1 uncore */}}
+\DoxyCodeLine{00421         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_IMC2"{}},      \textcolor{comment}{/* Intel Knights Mill IMC channel 2 uncore */}}
+\DoxyCodeLine{00422         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_IMC3"{}},      \textcolor{comment}{/* Intel Knights Mill IMC channel 3 uncore */}}
+\DoxyCodeLine{00423         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_IMC4"{}},      \textcolor{comment}{/* Intel Knights Mill IMC channel 4 uncore */}}
+\DoxyCodeLine{00424         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_IMC5"{}},      \textcolor{comment}{/* Intel Knights Mill IMC channel 5 uncore */}}
+\DoxyCodeLine{00425         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_IMC\_UCLK0"{}}, \textcolor{comment}{/* Intel Knights Mill IMC UCLK unit 0 uncore */}}
+\DoxyCodeLine{00426         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_IMC\_UCLK1"{}}, \textcolor{comment}{/* Intel Knights Mill IMC UCLK unit 1 uncore */}}
+\DoxyCodeLine{00427         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_ECLK0"{}}, \textcolor{comment}{/* Intel Knights Mill EDC ECLK unit 0 uncore */}}
+\DoxyCodeLine{00428         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_ECLK1"{}}, \textcolor{comment}{/* Intel Knights Mill EDC ECLK unit 1 uncore */}}
+\DoxyCodeLine{00429         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_ECLK2"{}}, \textcolor{comment}{/* Intel Knights Mill EDC ECLK unit 2 uncore */}}
+\DoxyCodeLine{00430         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_ECLK3"{}}, \textcolor{comment}{/* Intel Knights Mill EDC ECLK unit 3 uncore */}}
+\DoxyCodeLine{00431         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_ECLK4"{}}, \textcolor{comment}{/* Intel Knights Mill EDC ECLK unit 4 uncore */}}
+\DoxyCodeLine{00432         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_ECLK5"{}}, \textcolor{comment}{/* Intel Knights Mill EDC ECLK unit 5 uncore */}}
+\DoxyCodeLine{00433         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_ECLK6"{}}, \textcolor{comment}{/* Intel Knights Mill EDC ECLK unit 6 uncore */}}
+\DoxyCodeLine{00434         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_ECLK7"{}}, \textcolor{comment}{/* Intel Knights Mill EDC ECLK unit 7 uncore */}}
+\DoxyCodeLine{00435         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_UCLK0"{}}, \textcolor{comment}{/* Intel Knights Mill EDC UCLK unit 0 uncore */}}
+\DoxyCodeLine{00436         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_UCLK1"{}}, \textcolor{comment}{/* Intel Knights Mill EDC UCLK unit 1 uncore */}}
+\DoxyCodeLine{00437         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_UCLK2"{}}, \textcolor{comment}{/* Intel Knights Mill EDC UCLK unit 2 uncore */}}
+\DoxyCodeLine{00438         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_UCLK3"{}}, \textcolor{comment}{/* Intel Knights Mill EDC UCLK unit 3 uncore */}}
+\DoxyCodeLine{00439         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_UCLK4"{}}, \textcolor{comment}{/* Intel Knights Mill EDC UCLK unit 4 uncore */}}
+\DoxyCodeLine{00440         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_UCLK5"{}}, \textcolor{comment}{/* Intel Knights Mill EDC UCLK unit 5 uncore */}}
+\DoxyCodeLine{00441         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_UCLK6"{}}, \textcolor{comment}{/* Intel Knights Mill EDC UCLK unit 6 uncore */}}
+\DoxyCodeLine{00442         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_EDC\_UCLK7"{}}, \textcolor{comment}{/* Intel Knights Mill EDC UCLK unit 7 uncore */}}
+\DoxyCodeLine{00443 }
+\DoxyCodeLine{00444         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA0"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 0 uncore */}}
+\DoxyCodeLine{00445         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA1"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 1 uncore */}}
+\DoxyCodeLine{00446         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA2"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 2 uncore */}}
+\DoxyCodeLine{00447         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA3"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 3 uncore */}}
+\DoxyCodeLine{00448         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA4"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 4 uncore */}}
+\DoxyCodeLine{00449         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA5"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 5 uncore */}}
+\DoxyCodeLine{00450         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA6"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 6 uncore */}}
+\DoxyCodeLine{00451         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA7"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 7 uncore */}}
+\DoxyCodeLine{00452         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA8"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 8 uncore */}}
+\DoxyCodeLine{00453         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA9"{}},  \textcolor{comment}{/* Intel Knights Mill CHA unit 9 uncore */}}
+\DoxyCodeLine{00454         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA10"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 10 uncore */}}
+\DoxyCodeLine{00455         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA11"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 11 uncore */}}
+\DoxyCodeLine{00456         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA12"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 12 uncore */}}
+\DoxyCodeLine{00457         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA13"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 13 uncore */}}
+\DoxyCodeLine{00458         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA14"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 14 uncore */}}
+\DoxyCodeLine{00459         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA15"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 15 uncore */}}
+\DoxyCodeLine{00460         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA16"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 16 uncore */}}
+\DoxyCodeLine{00461         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA17"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 17 uncore */}}
+\DoxyCodeLine{00462         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA18"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 18 uncore */}}
+\DoxyCodeLine{00463         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA19"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 19 uncore */}}
+\DoxyCodeLine{00464         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA20"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 20 uncore */}}
+\DoxyCodeLine{00465         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA21"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 21 uncore */}}
+\DoxyCodeLine{00466         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA22"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 22 uncore */}}
+\DoxyCodeLine{00467         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA23"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 23 uncore */}}
+\DoxyCodeLine{00468         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA24"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 24 uncore */}}
+\DoxyCodeLine{00469         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA25"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 25 uncore */}}
+\DoxyCodeLine{00470         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA26"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 26 uncore */}}
+\DoxyCodeLine{00471         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA27"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 27 uncore */}}
+\DoxyCodeLine{00472         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA28"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 28 uncore */}}
+\DoxyCodeLine{00473         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA29"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 29 uncore */}}
+\DoxyCodeLine{00474         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA30"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 30 uncore */}}
+\DoxyCodeLine{00475         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA31"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 31 uncore */}}
+\DoxyCodeLine{00476         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA32"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 32 uncore */}}
+\DoxyCodeLine{00477         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA33"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 33 uncore */}}
+\DoxyCodeLine{00478         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA34"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 34 uncore */}}
+\DoxyCodeLine{00479         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA35"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 35 uncore */}}
+\DoxyCodeLine{00480         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA36"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 36 uncore */}}
+\DoxyCodeLine{00481         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_CHA37"{}}, \textcolor{comment}{/* Intel Knights Mill CHA unit 37 uncore */}}
+\DoxyCodeLine{00482 }
+\DoxyCodeLine{00483         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_UBOX"{}},   \textcolor{comment}{/* Intel Knights Mill Ubox uncore */}}
+\DoxyCodeLine{00484         \textcolor{stringliteral}{"{}INTEL\_KNM\_UNC\_M2PCIE"{}}, \textcolor{comment}{/* Intel Knights Mill M2PCIe uncore */}}
+\DoxyCodeLine{00485         \textcolor{stringliteral}{"{}ARM\_THUNDERX2"{}},        \textcolor{comment}{/* Marvell ThunderX2 */}}
+\DoxyCodeLine{00486 }
+\DoxyCodeLine{00487         \textcolor{stringliteral}{"{}INTEL\_CLX"{}}, \textcolor{comment}{/* Intel CascadeLake X */}}
+\DoxyCodeLine{00488 }
+\DoxyCodeLine{00489         \textcolor{stringliteral}{"{}ARM\_THUNDERX2\_DMC0"{}},  \textcolor{comment}{/* Marvell ThunderX2 DMC unit 0 uncore */}}
+\DoxyCodeLine{00490         \textcolor{stringliteral}{"{}ARM\_THUNDERX2\_DMC1"{}},  \textcolor{comment}{/* Marvell ThunderX2 DMC unit 1 uncore */}}
+\DoxyCodeLine{00491         \textcolor{stringliteral}{"{}ARM\_THUNDERX2\_LLC0"{}},  \textcolor{comment}{/* Marvell ThunderX2 LLC unit 0 uncore */}}
+\DoxyCodeLine{00492         \textcolor{stringliteral}{"{}ARM\_THUNDERX2\_LLC1"{}},  \textcolor{comment}{/* Marvell ThunderX2 LLC unit 1 uncore */}}
+\DoxyCodeLine{00493         \textcolor{stringliteral}{"{}ARM\_THUNDERX2\_CCPI0"{}}, \textcolor{comment}{/* Marvell ThunderX2 Cross-\/Socket Interconnect unit 0 uncore */}}
+\DoxyCodeLine{00494         \textcolor{stringliteral}{"{}ARM\_THUNDERX2\_CCPI1"{}}, \textcolor{comment}{/* Marvell ThunderX2 Cross-\/Socket Interconnect unit 1 uncore */}}
+\DoxyCodeLine{00495 }
+\DoxyCodeLine{00496         \textcolor{stringliteral}{"{}AMD64\_FAM17H\_ZEN1"{}}, \textcolor{comment}{/* AMD AMD64 Fam17h Zen1 */}}
+\DoxyCodeLine{00497         \textcolor{stringliteral}{"{}AMD64\_FAM17H\_ZEN2"{}}, \textcolor{comment}{/* AMD AMD64 Fam17h Zen2 */}}
+\DoxyCodeLine{00498 }
+\DoxyCodeLine{00499         \textcolor{stringliteral}{"{}INTEL\_TMT"{}}, \textcolor{comment}{/* Intel Tremont */}}
+\DoxyCodeLine{00500         \textcolor{stringliteral}{"{}INTEL\_ICL"{}}, \textcolor{comment}{/* Intel IceLake */}}
+\DoxyCodeLine{00501 }
+\DoxyCodeLine{00502         \textcolor{stringliteral}{"{}ARM\_A64FX"{}}, \textcolor{comment}{/* Fujitsu A64FX processor */}}
+\DoxyCodeLine{00503         \textcolor{stringliteral}{"{}ARM\_N1"{}},    \textcolor{comment}{/* Arm Neoverse N1 */}}
+\DoxyCodeLine{00504 }
+\DoxyCodeLine{00505         \textcolor{stringliteral}{"{}AMD64\_FAM19H\_ZEN3"{}},    \textcolor{comment}{/* AMD AMD64 Fam19h Zen3 */}}
+\DoxyCodeLine{00506         \textcolor{stringliteral}{"{}AMD64\_RAPL"{}},           \textcolor{comment}{/* AMD64 RAPL */}}
+\DoxyCodeLine{00507         \textcolor{stringliteral}{"{}AMD64\_FAM19H\_ZEN3\_L3"{}}, \textcolor{comment}{/* AMD64 Fam17h Zen3 L3 */}}
+\DoxyCodeLine{00508 }
+\DoxyCodeLine{00509         \textcolor{stringliteral}{"{}INTEL\_ICX"{}}, \textcolor{comment}{/* Intel IceLakeX */}}
+\DoxyCodeLine{00510 }
+\DoxyCodeLine{00511         \textcolor{stringliteral}{"{}ARM\_N2"{}}, \textcolor{comment}{/* Arm Neoverse N2 */}}
+\DoxyCodeLine{00512 }
+\DoxyCodeLine{00513         \textcolor{stringliteral}{"{}ARM\_KUNPENG"{}},                 \textcolor{comment}{/* HiSilicon Kunpeng processor */}}
+\DoxyCodeLine{00514         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_DDRC0"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 DDRC 0 uncore */}}
+\DoxyCodeLine{00515         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_DDRC1"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 DDRC 1 uncore */}}
+\DoxyCodeLine{00516         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_DDRC2"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 DDRC 2 uncore */}}
+\DoxyCodeLine{00517         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_DDRC3"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 DDRC 3 uncore */}}
+\DoxyCodeLine{00518         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_DDRC0"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 DDRC 0 uncore */}}
+\DoxyCodeLine{00519         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_DDRC1"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 DDRC 1 uncore */}}
+\DoxyCodeLine{00520         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_DDRC2"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 DDRC 2 uncore */}}
+\DoxyCodeLine{00521         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_DDRC3"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 DDRC 3 uncore */}}
+\DoxyCodeLine{00522         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_DDRC0"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 DDRC 0 uncore */}}
+\DoxyCodeLine{00523         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_DDRC1"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 DDRC 1 uncore */}}
+\DoxyCodeLine{00524         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_DDRC2"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 DDRC 2 uncore */}}
+\DoxyCodeLine{00525         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_DDRC3"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 DDRC 3 uncore */}}
+\DoxyCodeLine{00526         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_DDRC0"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 DDRC 0 uncore */}}
+\DoxyCodeLine{00527         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_DDRC1"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 DDRC 1 uncore */}}
+\DoxyCodeLine{00528         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_DDRC2"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 DDRC 2 uncore */}}
+\DoxyCodeLine{00529         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_DDRC3"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 DDRC 3 uncore */}}
+\DoxyCodeLine{00530         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_HHA2"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 HHA 2 uncore */}}
+\DoxyCodeLine{00531         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_HHA3"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 HHA 3 uncore */}}
+\DoxyCodeLine{00532         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_HHA0"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 HHA 0 uncore */}}
+\DoxyCodeLine{00533         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_HHA1"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 HHA 1 uncore */}}
+\DoxyCodeLine{00534         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_HHA6"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 HHA 6 uncore */}}
+\DoxyCodeLine{00535         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_HHA7"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 HHA 7 uncore */}}
+\DoxyCodeLine{00536         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_HHA4"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 HHA 4 uncore */}}
+\DoxyCodeLine{00537         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_HHA5"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 HHA 5 uncore */}}
+\DoxyCodeLine{00538         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_L3C10"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 L3C uncore */}}
+\DoxyCodeLine{00539         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_L3C11"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 L3C uncore */}}
+\DoxyCodeLine{00540         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_L3C12"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 L3C uncore */}}
+\DoxyCodeLine{00541         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_L3C13"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 L3C uncore */}}
+\DoxyCodeLine{00542         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_L3C14"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 L3C uncore */}}
+\DoxyCodeLine{00543         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_L3C15"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 L3C uncore */}}
+\DoxyCodeLine{00544         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_L3C8"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 L3C uncore */}}
+\DoxyCodeLine{00545         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL1\_L3C9"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 1 L3C uncore */}}
+\DoxyCodeLine{00546         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_L3C0"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 L3C uncore */}}
+\DoxyCodeLine{00547         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_L3C1"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 L3C uncore */}}
+\DoxyCodeLine{00548         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_L3C2"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 L3C uncore */}}
+\DoxyCodeLine{00549         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_L3C3"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 L3C uncore */}}
+\DoxyCodeLine{00550         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_L3C4"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 L3C uncore */}}
+\DoxyCodeLine{00551         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_L3C5"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 L3C uncore */}}
+\DoxyCodeLine{00552         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_L3C6"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 L3C uncore */}}
+\DoxyCodeLine{00553         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL3\_L3C7"{}},  \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 3 L3C uncore */}}
+\DoxyCodeLine{00554         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_L3C24"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 L3C uncore */}}
+\DoxyCodeLine{00555         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_L3C25"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 L3C uncore */}}
+\DoxyCodeLine{00556         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_L3C26"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 L3C uncore */}}
+\DoxyCodeLine{00557         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_L3C27"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 L3C uncore */}}
+\DoxyCodeLine{00558         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_L3C28"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 L3C uncore */}}
+\DoxyCodeLine{00559         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_L3C29"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 L3C uncore */}}
+\DoxyCodeLine{00560         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_L3C30"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 L3C uncore */}}
+\DoxyCodeLine{00561         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL5\_L3C31"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 5 L3C uncore */}}
+\DoxyCodeLine{00562         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_L3C16"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 L3C uncore */}}
+\DoxyCodeLine{00563         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_L3C17"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 L3C uncore */}}
+\DoxyCodeLine{00564         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_L3C18"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 L3C uncore */}}
+\DoxyCodeLine{00565         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_L3C19"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 L3C uncore */}}
+\DoxyCodeLine{00566         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_L3C20"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 L3C uncore */}}
+\DoxyCodeLine{00567         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_L3C21"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 L3C uncore */}}
+\DoxyCodeLine{00568         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_L3C22"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 L3C uncore */}}
+\DoxyCodeLine{00569         \textcolor{stringliteral}{"{}ARM\_KUNPENG\_UNC\_SCCL7\_L3C23"{}}, \textcolor{comment}{/* Hisilicon Kunpeng SCCL unit 7 L3C uncore */}}
+\DoxyCodeLine{00570 }
+\DoxyCodeLine{00571         \textcolor{stringliteral}{"{}INTEL\_SPR"{}}, \textcolor{comment}{/* Intel SapphireRapid */}}
+\DoxyCodeLine{00572 }
+\DoxyCodeLine{00573         \textcolor{stringliteral}{"{}POWER10"{}},           \textcolor{comment}{/* IBM POWER10 */}}
+\DoxyCodeLine{00574         \textcolor{stringliteral}{"{}AMD64\_FAM19H\_ZEN4"{}}, \textcolor{comment}{/* AMD AMD64 Fam19h Zen4 */}}
+\DoxyCodeLine{00575         \textcolor{stringliteral}{"{}ARM\_V1"{}},            \textcolor{comment}{/* ARM Neoverse V1 */}}
+\DoxyCodeLine{00576         \textcolor{stringliteral}{"{}ARM\_V2"{}},            \textcolor{comment}{/* Arm Neoverse V2 */}}
+\DoxyCodeLine{00577         \textcolor{stringliteral}{"{}INTEL\_EMR"{}},         \textcolor{comment}{/* Intel EmeraldRapid */}}
+\DoxyCodeLine{00578 }
+\DoxyCodeLine{00579         \textcolor{comment}{/* MUST ADD NEW PMU MODELS HERE */}}
+\DoxyCodeLine{00580 }
+\DoxyCodeLine{00581         \textcolor{stringliteral}{"{}MAX"{}} \textcolor{comment}{/* end marker */}}
+\DoxyCodeLine{00582     \};}
+\DoxyCodeLine{00583 }
+\DoxyCodeLine{00584     \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pmu\_types[]\{}
+\DoxyCodeLine{00585         \textcolor{stringliteral}{"{}UNKNOWN"{}},    \textcolor{comment}{/* unknown PMU type */}}
+\DoxyCodeLine{00586         \textcolor{stringliteral}{"{}CORE"{}},       \textcolor{comment}{/* processor core PMU */}}
+\DoxyCodeLine{00587         \textcolor{stringliteral}{"{}UNCORE"{}},     \textcolor{comment}{/* processor socket-\/level PMU */}}
+\DoxyCodeLine{00588         \textcolor{stringliteral}{"{}OS\_GENERIC"{}}, \textcolor{comment}{/* generic OS-\/provided PMU */}}
+\DoxyCodeLine{00589         \textcolor{stringliteral}{"{}MAX"{}}\};}
+\DoxyCodeLine{00590 \}}
+\DoxyCodeLine{00591 }
+\DoxyCodeLine{00592 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

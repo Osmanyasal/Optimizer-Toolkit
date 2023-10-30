@@ -66,8 +66,8 @@ namespace optkit::platforms::imgui
             style.WindowRounding = 0.0f;
             style.Colors[ImGuiCol_WindowBg].w = 1.0f;
         }
-        set_dark_theme_colors();
-        // set_white_theme_colors();
+
+        CONF__OPTKIT__IDE_THEME;
     }
 
     void ImguiLayer_glfw_opengl_impl::on_detach()
