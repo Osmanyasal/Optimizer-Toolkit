@@ -24,7 +24,7 @@ int32_t main(int32_t argc, char **argv)
     optkit::core::Query::list_avail_events(18);
  
 
-    if (false)
+    if (true)
     {
         // MEASURE BLOCK
         std::cout << "-------------------" << std::endl;

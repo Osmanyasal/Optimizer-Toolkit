@@ -95,9 +95,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a232d4b84df050e5cf0fbd9d775a2cef5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a232d4b84df050e5cf0fbd9d775a2cef5">list_avail_events</a> (int32_t pmu_id)</td></tr>
 <tr class="memdesc:a232d4b84df050e5cf0fbd9d775a2cef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all available events of the pmu_id.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a232d4b84df050e5cf0fbd9d775a2cef5">More...</a><br /></td></tr>
 <tr class="separator:a232d4b84df050e5cf0fbd9d775a2cef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71ccf85b6ae24bf1723ee55431a46fe4"><td class="memItemLeft" align="right" valign="top">static pfm_event_info_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a71ccf85b6ae24bf1723ee55431a46fe4">get_event_detail</a> (int32_t pmu_id, const char *event_name)</td></tr>
-<tr class="memdesc:a71ccf85b6ae24bf1723ee55431a46fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the event detail object.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a71ccf85b6ae24bf1723ee55431a46fe4">More...</a><br /></td></tr>
-<tr class="separator:a71ccf85b6ae24bf1723ee55431a46fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1c0febafe4354c12611413a28fa557b"><td class="memItemLeft" align="right" valign="top">static pfm_event_info_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#af1c0febafe4354c12611413a28fa557b">get_event_detail</a> (int32_t pmu_id, uint32_t event_id)</td></tr>
+<tr class="memdesc:af1c0febafe4354c12611413a28fa557b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the event detail object.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#af1c0febafe4354c12611413a28fa557b">More...</a><br /></td></tr>
+<tr class="separator:af1c0febafe4354c12611413a28fa557b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86a1d50daeb28edca3dca445ed72cd56"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a86a1d50daeb28edca3dca445ed72cd56">list_avail_pmus</a> ()</td></tr>
 <tr class="memdesc:a86a1d50daeb28edca3dca445ed72cd56"><td class="mdescLeft">&#160;</td><td class="mdescRight">List available PMUs on the system with details.  <a href="../../d1/d1d/classoptkit_1_1core_1_1Query.html#a86a1d50daeb28edca3dca445ed72cd56">More...</a><br /></td></tr>
 <tr class="separator:a86a1d50daeb28edca3dca445ed72cd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,8 +168,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a71ccf85b6ae24bf1723ee55431a46fe4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71ccf85b6ae24bf1723ee55431a46fe4">&#9670;&nbsp;</a></span>get_event_detail()</h2>
+<a id="af1c0febafe4354c12611413a28fa557b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1c0febafe4354c12611413a28fa557b">&#9670;&nbsp;</a></span>get_event_detail()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,8 +186,8 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>event_name</em>&#160;</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>event_id</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

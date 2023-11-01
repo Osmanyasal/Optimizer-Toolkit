@@ -21,7 +21,7 @@ static pfm\+\_\+pmu\+\_\+info\+\_\+t \mbox{\hyperlink{classoptkit_1_1core_1_1Que
 \begin{DoxyCompactList}\small\item\em Gets PMU detail information based on the pmu\+\_\+id value. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a232d4b84df050e5cf0fbd9d775a2cef5}{list\+\_\+avail\+\_\+events}} (int32\+\_\+t pmu\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Lists all available events of the pmu\+\_\+id. \end{DoxyCompactList}\item 
-static pfm\+\_\+event\+\_\+info\+\_\+t \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a71ccf85b6ae24bf1723ee55431a46fe4}{get\+\_\+event\+\_\+detail}} (int32\+\_\+t pmu\+\_\+id, const char $\ast$event\+\_\+name)
+static pfm\+\_\+event\+\_\+info\+\_\+t \mbox{\hyperlink{classoptkit_1_1core_1_1Query_af1c0febafe4354c12611413a28fa557b}{get\+\_\+event\+\_\+detail}} (int32\+\_\+t pmu\+\_\+id, uint32\+\_\+t event\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Get the event detail object. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a86a1d50daeb28edca3dca445ed72cd56}{list\+\_\+avail\+\_\+pmus}} ()
 \begin{DoxyCompactList}\small\item\em List available PMUs on the system with details. \end{DoxyCompactList}\item 
@@ -66,11 +66,11 @@ std\+::vector$<$int32\+\_\+t$>$ containing PMU IDs
 \begin{DoxySeeAlso}{See also}
 libpfm.\+h pfm\+\_\+pmu\+\_\+t, \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a9b6724e2006638bc27935d6da74ef6cb}{pmu\+\_\+info()}}, \mbox{\hyperlink{classoptkit_1_1core_1_1Query_a232d4b84df050e5cf0fbd9d775a2cef5}{list\+\_\+avail\+\_\+events()}} 
 \end{DoxySeeAlso}
-\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_a71ccf85b6ae24bf1723ee55431a46fe4}\label{classoptkit_1_1core_1_1Query_a71ccf85b6ae24bf1723ee55431a46fe4}} 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1Query_af1c0febafe4354c12611413a28fa557b}\label{classoptkit_1_1core_1_1Query_af1c0febafe4354c12611413a28fa557b}} 
 \index{optkit::core::Query@{optkit::core::Query}!get\_event\_detail@{get\_event\_detail}}
 \index{get\_event\_detail@{get\_event\_detail}!optkit::core::Query@{optkit::core::Query}}
 \doxysubsubsection{\texorpdfstring{get\_event\_detail()}{get\_event\_detail()}}
-{\footnotesize\ttfamily pfm\+\_\+event\+\_\+info\+\_\+t optkit\+::core\+::\+Query\+::get\+\_\+event\+\_\+detail (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{pmu\+\_\+id,  }\item[{const char $\ast$}]{event\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily pfm\+\_\+event\+\_\+info\+\_\+t optkit\+::core\+::\+Query\+::get\+\_\+event\+\_\+detail (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{pmu\+\_\+id,  }\item[{uint32\+\_\+t}]{event\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 

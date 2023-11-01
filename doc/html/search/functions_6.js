@@ -6,7 +6,7 @@ var searchData=
   ['get_5fbinary_724',['get_binary',['../d1/d72/classbasic__json.html#ac55de1b3601085c32e4a1dc32ef6d32d',1,'basic_json::get_binary()'],['../d1/d72/classbasic__json.html#a4ab13e0430cfea76c05ccd062aa528ec',1,'basic_json::get_binary() const']]],
   ['get_5fcached_5fpower_5ffor_5fbinary_5fexponent_725',['get_cached_power_for_binary_exponent',['../d4/d2c/namespacedetail_1_1dtoa__impl.html#a29ae6574f6be09a5c8ab08da9a3f71b4',1,'detail::dtoa_impl']]],
   ['get_5ferror_5fmessage_726',['get_error_message',['../d0/d02/classdetail_1_1lexer.html#aa1a8108c8bafc5d9dd0cb115b0b8dbb5',1,'detail::lexer']]],
-  ['get_5fevent_5fdetail_727',['get_event_detail',['../d1/d1d/classoptkit_1_1core_1_1Query.html#a71ccf85b6ae24bf1723ee55431a46fe4',1,'optkit::core::Query']]],
+  ['get_5fevent_5fdetail_727',['get_event_detail',['../d1/d1d/classoptkit_1_1core_1_1Query.html#af1c0febafe4354c12611413a28fa557b',1,'optkit::core::Query']]],
   ['get_5fnumber_5ffloat_728',['get_number_float',['../d0/d02/classdetail_1_1lexer.html#af2e903d32a7e3705c66539ea1e30ce59',1,'detail::lexer']]],
   ['get_5fnumber_5finteger_729',['get_number_integer',['../d0/d02/classdetail_1_1lexer.html#a4227de7d0382fb4d3e18b119f0cc87d7',1,'detail::lexer']]],
   ['get_5fnumber_5funsigned_730',['get_number_unsigned',['../d0/d02/classdetail_1_1lexer.html#a65495d5d60a279adb009efa728708441',1,'detail::lexer']]],
