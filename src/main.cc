@@ -1,11 +1,14 @@
-#include <utils.hh>
-#include <imgui_impl.hh>
-#include <query.hh>
-#include <block_profiler.hh>
-#include <core/events/intel/icl.hh>
-#include <utils.hh>
+#include <optkit_core.hh>
 
 using optkit::core::BlockProfiler;
+
+#define POWER_CARM {11}
+#define STREAM_ARRAY_SIZE 100000
+
+double a[3];
+double b[3];
+double c[3];
+int scalar = 3;
 
 int32_t main(int32_t argc, char **argv)
 {
@@ -22,19 +25,32 @@ int32_t main(int32_t argc, char **argv)
     std::cout << std::endl;
     std::cout << "___________447____________" << std::endl;
     optkit::core::Query::list_avail_events(18);
- 
+
+
+
+    // STREAM TRIAD
+    {
+        BlockProfiler power_carm{"BLOCK_NUM_1", POWER_CARM};
+        ssize_t j;
+        #pragma omp parallel for
+        for (j = 0; j < STREAM_ARRAY_SIZE; j++)
+            a[j] = b[j] + scalar * c[j];
+    }
+
+
 
     if (true)
     {
-        // MEASURE BLOCK
-        std::cout << "-------------------" << std::endl;
+
 
         OPTKIT_CORE_INFO("MONITOR SINGLE");
         float sum = 1.12f;
-        double dsum = 0.05;
+        double dsum = 0.05;  
         {
 
-            BlockProfiler fp_arit{"FP_ARITH", {icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
+            BlockProfiler fp_arit{"FP_ARITH", {icl::FP_ARITH_INST_RETIRED | 
+                                               icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | 
+                                               icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
             {
                 BlockProfiler inst{"INSTRUCTIONS_RETIRED", {icl::INSTRUCTIONS_RETIRED}};
 
@@ -44,6 +60,9 @@ int32_t main(int32_t argc, char **argv)
             }
         }
 
+
+
+        /*
         OPTKIT_CORE_INFO("MONITOR COLLECTIVE");
         sum = 1.12f;
         dsum = 0.05;
@@ -58,7 +77,7 @@ int32_t main(int32_t argc, char **argv)
         }
         OPTKIT_CORE_INFO("sum:{}", sum);
         OPTKIT_CORE_INFO("dsum:{}", dsum);
-
+        */
         // VISUALIZE (OPTIONAL)
 
         /*
