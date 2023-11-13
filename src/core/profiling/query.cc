@@ -50,12 +50,14 @@ std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info)
 namespace optkit::core
 {
     bool Query::is_active = false;
+    pfm_pmu_info_t Query::default_architectural_pmu;
 
     void Query::init()
     {
         if (pfm_initialize() == PFM_SUCCESS)
         {
             is_active = true;
+            memset(&Query::default_architectural_pmu, 0, sizeof(pfm_pmu_info_t));
             OPTKIT_CORE_INFO("pfm initialized successfully!");
         }
         else
@@ -64,6 +66,7 @@ namespace optkit::core
             OPTKIT_CORE_ERROR("pfm initialize failed!");
         }
     }
+
     void Query::destroy()
     {
         pfm_terminate();
@@ -83,6 +86,29 @@ namespace optkit::core
         {
             OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
+        return pmu_info;
+    }
+
+    pfm_pmu_info_t Query::default_pmu_info()
+    {
+        if (OPT_LIKELY(Query::default_architectural_pmu.is_dfl))
+            return Query::default_architectural_pmu;
+
+        std::vector<int32_t> pmu_ids = Query::get_avail_pmu_ids();
+        for (auto pmu_id : pmu_ids)
+        {
+            pfm_pmu_info_t info = Query::pmu_info(pmu_id);
+            if (info.is_dfl)
+            {
+                Query::default_architectural_pmu = info;
+                return Query::default_architectural_pmu;
+            }
+        }
+
+        // If not found return defaul pmu_info
+        OPTKIT_CORE_WARN("Default PMU architecture is not detected!");
+        pfm_pmu_info_t pmu_info;
+        memset(&pmu_info, 0, sizeof(pfm_pmu_info_t));
         return pmu_info;
     }
 
@@ -119,7 +145,7 @@ namespace optkit::core
             OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
     }
-    //TODO: Complete this
+    // TODO: Complete this
     pfm_event_info_t Query::get_event_detail(int32_t pmu_id, uint32_t event_id)
     {
         if (OPT_LIKELY(Query::is_active))
@@ -130,10 +156,9 @@ namespace optkit::core
             ret = pfm_get_event_info(event_id, pfm_os_t::PFM_OS_NONE, &info);
             if (ret != PFM_SUCCESS)
                 std::cout << "[ERROR] cannot get event info" << std::endl;
-            else{
-
+            else
+            {
             }
-
         }
         else
         {
@@ -159,7 +184,8 @@ namespace optkit::core
             OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
     }
-    std::vector<int32_t> Query::get_avail_pmus()
+
+    std::vector<int32_t> Query::get_avail_pmu_ids()
     {
         std::vector<int32_t> avail_pmu_ids;
 

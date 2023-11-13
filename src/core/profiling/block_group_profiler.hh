@@ -1,5 +1,5 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__BLOCK_PROFILER
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__BLOCK_PROFILER
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__BLOCK_PROFILER_HH
+#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__BLOCK_PROFILER_HH
 
 #include <iostream>
 #include <linux/perf_event.h>
@@ -9,6 +9,7 @@
 #include <initializer_list>
 #include <vector>
 #include <utils.hh>
+
 namespace optkit::core
 {
     /**
@@ -33,11 +34,26 @@ namespace optkit::core
         virtual std::vector<uint64_t> read_counter();
 
     public:
+        /**
+         * @brief fd_list holds pmu events being monitor by this BlockGroupProfiler Object.
+         * when created the same file description must be registered global fd_stack
+         *
+         */
         std::vector<int32_t> fd_list;
+
+        /**
+         * @brief Used for identification of blocks and chart titles
+         *
+         */
         const char *block_name;
 
     private:
+        /**
+         * @brief fd_stack holds all PMU events being monitored on the system
+         *
+         */
         static std::vector<int32_t> fd_stack;
+        std::chrono::high_resolution_clock::time_point start;
     };
 } // namespace optkit::core
 

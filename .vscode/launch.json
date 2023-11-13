@@ -1,10 +1,10 @@
 {
     "configurations": [
         {
-            "name": "Recursion Engine Launch",
+            "name": "Optimizer Toolkit Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/recursion.engine",
+            "program": "${workspaceFolder}/bin/optimizer_toolkit.core",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin/",

@@ -46,6 +46,13 @@ namespace optkit::core
         static pfm_pmu_info_t pmu_info(int32_t pmu_id);
 
         /**
+         * @brief Provides comprehensive information about the Default PMU Architecture.
+         *
+         * @return pfm_pmu_info_t
+         */
+        static pfm_pmu_info_t default_pmu_info();
+
+        /**
          * @brief Lists all available events of the pmu_id.
          *
          * @param pmu_id The PMU ID to list events for.
@@ -64,7 +71,7 @@ namespace optkit::core
         static pfm_event_info_t get_event_detail(int32_t pmu_id, uint32_t event_id);
 
         /**
-         * @brief List available PMUs on the system with details.
+         * @brief List available PMUs on the system with respective details.
          *
          * @see get_avail_pmus()
          */
@@ -76,7 +83,7 @@ namespace optkit::core
          * @return std::vector<int32_t> containing PMU IDs
          * @see  libpfm.h pfm_pmu_t, pmu_info(), list_avail_events()
          */
-        static std::vector<int32_t> get_avail_pmus();
+        static std::vector<int32_t> get_avail_pmu_ids();
 
     private:
         Query();
@@ -84,6 +91,7 @@ namespace optkit::core
 
     private:
         static bool is_active;
+        static pfm_pmu_info_t default_architectural_pmu;
     };
 
 } // namespace optkit::core

@@ -63,8 +63,8 @@ namespace optkit::core
         uint64_t count;
         for (int32_t fd : fd_list)
         {
-            read(fd, &count, sizeof(count));
-            std::cout << "[" << duration_ms << "ms] Block: " << this->block_name << " Measured: " << count << std::endl;
+            read(fd, &count, sizeof(count)); 
+            std::cout << "\033[1;35m" << "Block: " << this->block_name << "\033[0m" << " [" << duration_ms << "ms] " << "Measured: " << count << std::endl;
             close(fd);
         }
 

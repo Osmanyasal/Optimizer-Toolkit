@@ -7,6 +7,7 @@
  
 #include <deployment_config.hh>
 #include <gui_config.hh>
+#include <core_profiling_config.hh>
 #include <profiling_config.hh>
 #include <logger_config.hh> 
 

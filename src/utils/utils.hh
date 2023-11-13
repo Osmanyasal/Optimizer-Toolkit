@@ -4,6 +4,7 @@
     All header files that's defined in utils.
     to access utils include this file
 */
+#include <cstdint>
 #include <random>
 
 // CUSTOM HEADERS
