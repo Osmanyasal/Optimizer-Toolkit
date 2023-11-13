@@ -1,4 +1,6 @@
 #include <optkit_core.hh>
+#include <core/events/intel/icl.hh>
+#include <core/events/amd64/fam19h_zen3.hh>
 
 using optkit::core::BlockProfiler;
 
@@ -25,23 +27,21 @@ int32_t main(int32_t argc, char **argv)
         std::cout << i << ", ";
 
     std::cout << std::endl;
-    std::cout << "___________ 447 ____________" << std::endl;
-    optkit::core::Query::list_avail_events(447);
+    // std::cout << "___________ 447 ____________" << std::endl;
+    // optkit::core::Query::list_avail_events(447);
 
 
     // STREAM TRIAD
     {
-        BlockProfiler fp_arit{"FP_ARITH", {icl::FP_ARITH_INST_RETIRED | 
-                                               icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | 
-                                               icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
+        BlockProfiler fp_arit{"FP_ARITH", { fam19h_zen3::RETIRED_SSE_AVX_FLOPS | fam19h_zen3::RETIRED_SSE_AVX_FLOPS__MASK__AMD64_FAM19H_ZEN3_RETIRED_SSE_AVX_FLOPS__MULT_FLOPS}};
+
         ssize_t j;
         #pragma omp parallel for
         for (j = 0; j < STREAM_ARRAY_SIZE; j++)
             a[j] = b[j] + scalar * c[j];
     }
- 
     /*
-    OPTKIT::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
+    optkit::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
     while (!glfwWindowShouldClose(impl.m_window))
     {
         // input

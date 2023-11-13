@@ -104,7 +104,6 @@ namespace optkit::core
                 return Query::default_architectural_pmu;
             }
         }
-
         // If not found return defaul pmu_info
         OPTKIT_CORE_WARN("Default PMU architecture is not detected!");
         pfm_pmu_info_t pmu_info;
