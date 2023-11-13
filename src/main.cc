@@ -1,4 +1,5 @@
 #include <optkit_core.hh>
+#include <intel/icl.hh>
 
 using optkit::core::BlockProfiler;
 
