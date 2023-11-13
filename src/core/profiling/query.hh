@@ -42,7 +42,7 @@ namespace optkit::core
          * @brief Gets PMU detail information based on the pmu_id value.
          * @return pfm_pmu_info_t
          *
-         * @param pmu_id The PMU ID to retrieve information for.
+         * @param pmu_id The PMU ID to retrieve information for. @see pfm_pmu_t enum
          * @see libpfm.h pfm_pmu_t for pmu_ids, list_avail_events()
          */
         static pfm_pmu_info_t pmu_info(int32_t pmu_id);
@@ -70,7 +70,7 @@ namespace optkit::core
          * @return pfm_event_info_t
          * @see list_avail_events()
          */
-        static pfm_event_info_t get_event_detail(int32_t pmu_id, uint32_t event_code);
+        static pfm_event_info_t event_detail(int32_t pmu_id, uint32_t event_code);
 
         /**
          * @brief List available PMUs on the system with respective details.
@@ -85,7 +85,7 @@ namespace optkit::core
          * @return std::vector<int32_t> containing PMU IDs
          * @see  libpfm.h pfm_pmu_t, pmu_info(), list_avail_events()
          */
-        static std::vector<int32_t> get_avail_pmu_ids();
+        static std::vector<int32_t> avail_pmu_ids();
 
     private:
         Query();

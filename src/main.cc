@@ -21,15 +21,17 @@ int32_t main(int32_t argc, char **argv)
     auto default_pmu = optkit::core::Query::default_pmu_info();
     auto default_pmu2 = optkit::core::Query::default_pmu_info();
     optkit::core::Query::list_avail_pmus();
-    auto avail_pmu_list = optkit::core::Query::get_avail_pmu_ids();
+    auto avail_pmu_list = optkit::core::Query::avail_pmu_ids();
 
     for (int32_t i : avail_pmu_list)
         std::cout << i << ", ";
 
+    std::cout << optkit::core::Query::pmu_info(avail_pmu_list[0]);
+
     std::cout << std::endl;
     std::cout << "___________ 447 ____________" << std::endl;
     optkit::core::Query::list_avail_events(PFM_PMU_INTEL_ICL);
-    std::cout << optkit::core::Query::get_event_detail(PFM_PMU_INTEL_ICL, icl::UNHALTED_CORE_CYCLES);
+    std::cout << optkit::core::Query::event_detail(PFM_PMU_INTEL_ICL, icl::UNHALTED_CORE_CYCLES);
 
     // STREAM TRIAD
     {

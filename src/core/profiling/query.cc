@@ -48,7 +48,7 @@ namespace optkit::core
         if (OPT_LIKELY(Query::default_architectural_pmu.is_dfl))
             return Query::default_architectural_pmu;
 
-        std::vector<int32_t> pmu_ids = Query::get_avail_pmu_ids();
+        std::vector<int32_t> pmu_ids = Query::avail_pmu_ids();
         for (auto pmu_id : pmu_ids)
         {
             pfm_pmu_info_t info = Query::pmu_info(pmu_id);
@@ -101,7 +101,7 @@ namespace optkit::core
             OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
     }
-    pfm_event_info_t Query::get_event_detail(int32_t pmu_id, uint32_t event_code)
+    pfm_event_info_t Query::event_detail(int32_t pmu_id, uint32_t event_code)
     {
 
         pfm_event_info_t info;
@@ -163,7 +163,7 @@ namespace optkit::core
         }
     }
 
-    std::vector<int32_t> Query::get_avail_pmu_ids()
+    std::vector<int32_t> Query::avail_pmu_ids()
     {
         std::vector<int32_t> avail_pmu_ids;
 
