@@ -1,6 +1,7 @@
 #ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH
 #define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH
 
+#include <ostream>
 #include <iostream>
 #include <utils.hh>
 #include <iomanip>
@@ -9,6 +10,7 @@
 #include <string>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
+std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info);
 
 namespace optkit::core
 {
@@ -64,11 +66,11 @@ namespace optkit::core
          * @brief Get the event detail object.
          *
          * @param pmu_id The PMU ID to get event details for.
-         * @param event_name The name of the event.
+         * @param event_code The code of the event.
          * @return pfm_event_info_t
          * @see list_avail_events()
          */
-        static pfm_event_info_t get_event_detail(int32_t pmu_id, uint32_t event_id);
+        static pfm_event_info_t get_event_detail(int32_t pmu_id, uint32_t event_code);
 
         /**
          * @brief List available PMUs on the system with respective details.

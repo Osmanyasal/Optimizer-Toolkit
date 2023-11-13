@@ -1,5 +1,6 @@
 #include <optkit_core.hh>
 #include <intel/icl.hh>
+#include <omp.h>
 
 using optkit::core::BlockProfiler;
 
@@ -27,8 +28,8 @@ int32_t main(int32_t argc, char **argv)
 
     std::cout << std::endl;
     std::cout << "___________ 447 ____________" << std::endl;
-    optkit::core::Query::list_avail_events(447);
-
+    optkit::core::Query::list_avail_events(PFM_PMU_INTEL_ICL);
+    std::cout << optkit::core::Query::get_event_detail(PFM_PMU_INTEL_ICL, icl::UNHALTED_CORE_CYCLES);
 
     // STREAM TRIAD
     {
@@ -36,9 +37,18 @@ int32_t main(int32_t argc, char **argv)
                                                icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | 
                                                icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE}};
         ssize_t j;
-        #pragma omp parallel for
-        for (j = 0; j < STREAM_ARRAY_SIZE; j++)
-            a[j] = b[j] + scalar * c[j];
+        #pragma omp parallel
+        {
+            #pragma omp single
+            {
+                OPTKIT_CORE_INFO("{}/{}",omp_get_thread_num(),omp_get_num_threads());
+            }
+                
+            #pragma omp for
+            for (j = 0; j < STREAM_ARRAY_SIZE; j++)
+                a[j] = b[j] + scalar * c[j];
+        }
+        
     }
  
     /*
