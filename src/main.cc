@@ -31,7 +31,7 @@ int32_t main(int32_t argc, char **argv)
     // optkit::core::Query::list_avail_events(447);
 
 
-    // STREAM TRIAD 
+    // STREAM TRIAD??
     {
         BlockProfiler fp_arit{"FP_ARITH", { fam19h_zen3::RETIRED_SSE_AVX_FLOPS | fam19h_zen3::RETIRED_SSE_AVX_FLOPS__MASK__AMD64_FAM19H_ZEN3_RETIRED_SSE_AVX_FLOPS__MULT_FLOPS}};
 
