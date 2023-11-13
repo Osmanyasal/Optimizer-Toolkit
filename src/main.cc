@@ -39,7 +39,7 @@ int32_t main(int32_t argc, char **argv)
         for (j = 0; j < STREAM_ARRAY_SIZE; j++)
             a[j] = b[j] + scalar * c[j];
     }
-
+ 
     /*
     OPTKIT::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
     while (!glfwWindowShouldClose(impl.m_window))

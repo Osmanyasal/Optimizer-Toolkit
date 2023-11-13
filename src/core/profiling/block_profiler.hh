@@ -2,12 +2,10 @@
 #define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__BLOCK_PROFILER_HH
 
 #include <iostream>
-#include <linux/perf_event.h>
-#include <sys/ioctl.h> 
-#include <sys/syscall.h>
 #include <initializer_list>
 #include <vector>
 #include <utils.hh>
+#include <pmu_event_manager.hh>
 
 namespace optkit::core
 {
@@ -47,12 +45,6 @@ namespace optkit::core
         const char *block_name;
 
     private:
-
-        /**
-         * @brief fd_stack holds all PMU events being monitored on the system
-         * 
-         */
-        static std::vector<int32_t> fd_stack;
         std::chrono::high_resolution_clock::time_point start;
     };
 } // namespace optkit::core

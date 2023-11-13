@@ -3,8 +3,10 @@
 
 #include <utils.hh>
 #include <vector>
-#include <unordered_map>
+#include <map>
 #include <query.hh>
+#include <sys/ioctl.h>
+#include <linux/perf_event.h>
 
 namespace optkit::core
 {
@@ -13,9 +15,9 @@ namespace optkit::core
 
     public:
         /**
-         * @brief Register  a file descriptor
+         * @brief Register a file descriptor
          *
-         * @param fd file descriptor itself @see BlockProfiler
+         * @param fd file descriptor itself @see BlockProfiler or BlockGroupProfiler
          * @param num_events number of events being registered for this fd.
          * @return bool wether fd is saved successfully
          *
@@ -23,20 +25,22 @@ namespace optkit::core
         static bool register_event(int32_t fd, int32_t num_events);
 
         /**
-         * @brief UnRegister  a file descriptor
+         * @brief Unregister a file descriptor
          *
-         * @param fd file descriptor itself @see BlockProfiler
-         * @return bool wether fd is unregistered successfully
+         * @param fd file descriptor itself @see BlockProfiler or BlockGroupProfiler
+         * @return uint32_t num of events were being monitored with this fd
          *
          */
-        static bool unregister(int32_t fd);
+        static int32_t unregister_event(int32_t fd);
+
+        static void disable_all_events();
+        static void enable_all_events();
 
         static std::vector<int32_t> all_fds();
-
         static int32_t number_of_events_being_monitored();
  
     private:
-        static std::unordered_map<int32_t, int32_t> fd__event_count_map;
+        static std::map<int32_t, int32_t> fd__event_count_map; // insertion order is important!!
         static int32_t event_count_being_monitor;
 
     private:

@@ -1,15 +1,12 @@
 #include <block_profiler.hh>
 
 namespace optkit::core
-{
-    std::vector<int32_t> BlockProfiler::fd_stack;
+{ 
 
     BlockProfiler::BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list)
     {
 
-        // disable all other counters
-        for (int32_t i = 0; i < BlockProfiler::fd_stack.size(); i++)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
+        PMUEventManager::disable_all_events();
 
         this->block_name = block_name;
         for (auto &raw_event : raw_event_list)
@@ -33,28 +30,20 @@ namespace optkit::core
             }
             else
             {
-                BlockProfiler::fd_stack.push_back(fd);
+                PMUEventManager::register_event(fd, 1);
                 fd_list.push_back(fd);
             }
-
             ioctl(fd, PERF_EVENT_IOC_RESET, 0);
         }
-
         // enable clock now!
         start = std::chrono::high_resolution_clock::now();
 
-        // enable all other counters
-        for (int32_t i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
-        {
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
-        }
+        PMUEventManager::enable_all_events();
     }
     BlockProfiler ::~BlockProfiler()
     {
 
-        // disable all other counters
-        for (int32_t i = 0; i < BlockProfiler::fd_stack.size(); i++)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
+        PMUEventManager::disable_all_events();
 
         // disable clock now!
         auto end = std::chrono::high_resolution_clock::now();
@@ -63,14 +52,12 @@ namespace optkit::core
         uint64_t count;
         for (int32_t fd : fd_list)
         {
-            read(fd, &count, sizeof(count)); 
+            read(fd, &count, sizeof(count)); // read last value 
+            PMUEventManager::unregister_event(fd); // unregister this event
             std::cout << "\033[1;35m" << "Block: " << this->block_name << "\033[0m" << " [" << duration_ms << "ms] " << "Measured: " << count << std::endl;
-            close(fd);
         }
 
-        // enable all other counters
-        for (int32_t i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
+        PMUEventManager::enable_all_events();
     }
 
     void BlockProfiler::disable()
@@ -90,9 +77,8 @@ namespace optkit::core
 
     std::vector<uint64_t> BlockProfiler::read_counter()
     {
-        // disable all other counters
-        for (int32_t i = 0; i < BlockProfiler::fd_stack.size(); i++)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_DISABLE, 0);
+
+        PMUEventManager::disable_all_events();
 
         std::vector<uint64_t> result;
         uint64_t count;
@@ -102,9 +88,7 @@ namespace optkit::core
             result.push_back(count);
         }
 
-        // enable all other counters
-        for (int32_t i = BlockProfiler::fd_stack.size() - 1; i >= 0; i--)
-            ioctl(BlockProfiler::fd_stack[i], PERF_EVENT_IOC_ENABLE, 0);
+        PMUEventManager::enable_all_events();
 
         return result;
     }
