@@ -4,6 +4,7 @@
 #include <core_profiling_config.hh>
 #include <query.hh>
 #include <block_profiler.hh>
+#include <block_group_profiler.hh>
 #include <pmu_event_manager.hh>
 
 #endif

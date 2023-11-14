@@ -23,7 +23,7 @@ namespace optkit::core
         int32_t num_cntrs = Query::default_pmu_info().num_cntrs;
         if (OPT_LIKELY(PMUEventManager::event_count_being_monitor > num_cntrs))
         {
-            OPTKIT_CORE_WARN("Total # of events exceed system resources. Multiplexin will take place! {}/{}", PMUEventManager::event_count_being_monitor, num_cntrs);
+            OPTKIT_CORE_WARN("Total # of events exceed system resources!! {}/{}(max) Multiplexing will take place(BlockGroup is not created by the system when this occures).", PMUEventManager::event_count_being_monitor, num_cntrs);
         }
 
         // add event
@@ -43,14 +43,14 @@ namespace optkit::core
     void PMUEventManager::disable_all_events(){
         // disable all other counters in insertion order
         for (const auto &pair : PMUEventManager::fd__event_count_map)
-            ioctl(pair.first, PERF_EVENT_IOC_DISABLE, 0);
+            ioctl(pair.first, PERF_EVENT_IOC_DISABLE, PERF_IOC_FLAG_GROUP);
     }
     void PMUEventManager::enable_all_events(){
         // enable all other counters in reverse order
         auto rit = PMUEventManager::fd__event_count_map.rbegin();
         while (rit != PMUEventManager::fd__event_count_map.rend())
         {
-            ioctl(rit->first, PERF_EVENT_IOC_ENABLE, 0);
+            ioctl(rit->first, PERF_EVENT_IOC_ENABLE, PERF_IOC_FLAG_GROUP);
             ++rit;
         }
     }

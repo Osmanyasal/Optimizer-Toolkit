@@ -3,21 +3,18 @@
 namespace optkit::core
 {
 
-    BlockProfiler::BlockProfiler(const char *block_name, std::initializer_list<uint64_t> raw_event_list, ProfilerConfig config) : BaseProfiler{config}
+    BlockProfiler::BlockProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, ProfilerConfig config) : BaseProfiler{config}, block_name{block_name}
     {
 
         PMUEventManager::disable_all_events();
 
-        this->block_name = block_name;
         int32_t fd = -1;
         for (auto &raw_event : raw_event_list)
         {
-            struct perf_event_attr attr; 
-            attr = config.perf_event_config;
+            struct perf_event_attr attr = config.perf_event_config;
             attr.config = raw_event;
-            // attr.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
 
-            fd  = syscall(__NR_perf_event_open, &attr, config.pid, config.cpu, config.is_grouped ? fd : -1, 0); // <-- first becomes -1 and later we use the group_leader's fd.
+            fd  = syscall(__NR_perf_event_open, &attr, config.pid, config.cpu, -1, 0); // <-- first becomes -1 and later we use the group_leader's fd.
             if (fd == -1)
             {
                 OPTKIT_CORE_ERROR("perf_event_open error");

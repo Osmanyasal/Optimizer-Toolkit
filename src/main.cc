@@ -3,6 +3,7 @@
 #include <omp.h>
 
 using optkit::core::BlockProfiler;
+using optkit::core::BlockGroupProfiler;
 
 #define POWER_CARM {11}
 #define STREAM_ARRAY_SIZE 100000
@@ -36,12 +37,30 @@ int32_t main(int32_t argc, char **argv)
     // STREAM TRIAD
     {
         float aa = 33;
-        BlockProfiler fp_arit{"FP_ARITH", {icl::FP_ARITH_INST_RETIRED 
-                                            | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE 
-                                            | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE
-                                            }};
+
+        // We'll see different numbers due to multiplexing
+        BlockProfiler fp_arit{"FP_ARITH", {
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
+
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                              icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
+                                          }};
         ssize_t j;
-#pragma omp parallel
+        
+        #pragma omp parallel
         {
 
             aa += 0.23f; // to scalar single, num_threads x 1
@@ -49,12 +68,12 @@ int32_t main(int32_t argc, char **argv)
             {
                 OPTKIT_CORE_INFO("{}/{}",omp_get_thread_num(),omp_get_num_threads());
             }
-                
+            
             #pragma omp for
             for (j = 0; j < STREAM_ARRAY_SIZE; j++)
                 a[j] = b[j] + scalar * c[j]; // 1 mul 1 addition for scalar double x STREAM_ARRAY_SIZE
         }
-        
+ 
     }
  
     /*
