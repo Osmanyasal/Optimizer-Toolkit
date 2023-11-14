@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::arm::n1{
 	enum n1 : uint64_t {

@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::arm::kunpeng_unc_l3c{
 	enum kunpeng_unc_l3c : uint64_t {

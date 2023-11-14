@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::arm::kunpeng{
 	enum kunpeng : uint64_t {

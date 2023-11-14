@@ -41,7 +41,7 @@ import os
 EVENT_FILE_EXTENSION = ".hh"
 EVENT_FILE_PATH = "../core/events/"
 
-HEADERS = "#include <cstdint>\n"
+HEADERS = "#pragma once\n#include <cstdint>\n"
 NAMESPACE_BEGIN = "namespace optkit::{}::{}{{\n\t" # added pmu_name to the namespace to define scope for enum
 EVENT_CLASS_BEGIN = "enum {} : uint64_t {{\n\t\t"  # didn't create enum class for implicit conversion sake.
 PMU_EVENT = "{} = {}, // {}"                       # same functionality preserved.

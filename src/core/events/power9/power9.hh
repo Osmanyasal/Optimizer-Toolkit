@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::ibm::power9{
 	enum power9 : uint64_t {

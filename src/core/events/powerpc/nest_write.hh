@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::ibm::powerpc_nest_write{
 	enum powerpc_nest_write : uint64_t {

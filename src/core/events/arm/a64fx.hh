@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::arm::a64fx{
 	enum a64fx : uint64_t {

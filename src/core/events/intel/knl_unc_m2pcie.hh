@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 #include <intel_priv.hh>
 namespace optkit::intel::knl_unc_m2pcie{

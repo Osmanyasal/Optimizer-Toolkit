@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::amd64::fam16h{
 	enum fam16h : uint64_t {

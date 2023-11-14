@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::arm::thunderx2_unc_llc{
 	enum thunderx2_unc_llc : uint64_t {

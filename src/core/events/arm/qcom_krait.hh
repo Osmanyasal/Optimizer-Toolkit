@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::arm::qcom_krait{
 	enum qcom_krait : uint64_t {

@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::arm::xgene{
 	enum xgene : uint64_t {

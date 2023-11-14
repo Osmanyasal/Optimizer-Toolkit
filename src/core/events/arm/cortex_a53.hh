@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 namespace optkit::arm::cortex_a53{
 	enum cortex_a53 : uint64_t {
