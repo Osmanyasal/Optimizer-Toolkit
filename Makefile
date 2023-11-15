@@ -20,9 +20,11 @@ SANDBOX_DIR := ./sandbox/proj1
 
 # CORE Directories for source and header files
 SRC_DIR := ./src
+EXAMPLES_DIR := ./examples
 CORE_DIR := $(SRC_DIR)/core
 EVENTS_DIR := $(CORE_DIR)/events
 CORE_PROFILING := $(CORE_DIR)/profiling
+CORE_RAPL := $(CORE_DIR)/rapl
 PLATFORMS_DIR := $(SRC_DIR)/platforms
 IMGUI_OPENGL_DIR := $(PLATFORMS_DIR)/imgui_opengl3_glfw
 UTILS_DIR := $(SRC_DIR)/utils
@@ -30,6 +32,7 @@ DEPLOYTMENT_DIR := $(UTILS_DIR)/deployment
 LOGGING_DIR := $(UTILS_DIR)/logging
 OPTIMIZATIONS_DIR := $(UTILS_DIR)/optimizations
 PROFILING_DIR := $(UTILS_DIR)/profiling
+
  
 # LIB Directories for source and header files
 LIB_SPD_PATH :=./lib/spdlog
@@ -54,9 +57,11 @@ DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ 
 
 # Include directories
 INCLUDE := -I$(SRC_DIR)\
+		   -I$(EXAMPLES_DIR)\
            -I$(CORE_DIR)\
 		   -I$(EVENTS_DIR)\
 		   -I$(CORE_PROFILING)\
+		   -I$(CORE_RAPL)\
            -I$(PLATFORMS_DIR)\
            -I$(IMGUI_OPENGL_DIR)\
            -I$(UTILS_DIR)\
@@ -73,7 +78,7 @@ INCLUDE := -I$(SRC_DIR)\
 
 EXECUTABLE := optimizer_toolkit.core
 
-SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
+SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(EXAMPLES_DIR) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
 all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop 

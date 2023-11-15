@@ -1,5 +1,1 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RAPL__INTEL_RAPL_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RAPL__INTEL_RAPL_HH
-
-
-#endif
+#include <intel_rapl.hh>
