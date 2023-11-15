@@ -4,7 +4,9 @@
   </ul>
 </div>
 <div align="center">  
-  <img align="center" alt="ICON" width="500" height="450" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/b4ce6044-496d-4fac-a548-b8224d679916" />  
+  <img align="center" alt="ICON" width="500" height="450" src="https://github.com/Osmanyasal/Optimizer-Toolkit-Core/assets/22853419/9ebee916-e82e-4ded-941e-caec84ff0e8f" />  
+  
+
 </div>  
 <div align="center">
                 <img align="center" title="C++" alt="C++" width="80px" src="https://github.com/Osmanyasal/Recursion-Engine/assets/22853419/f79dfb8b-ec5e-43a9-b3ec-7db4555b54e0" />
