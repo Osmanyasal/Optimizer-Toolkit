@@ -1,20 +1,14 @@
 #ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL_PROFILER_HH
 #define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL_PROFILER_HH
 
-#include <base_profiler.hh>
 #include <ostream>
 #include <unordered_map>
+#include <base_profiler.hh>
+#include <core_rapl.hh> 
 
 namespace optkit::core
 {
-
-    enum class RaplDomain
-    {
-        PP0,
-        PP1,
-        PACKAGE,
-        DRAM
-    };
+ 
 
     class RaplProfiler : public BaseProfiler<std::unordered_map<RaplDomain, uint32_t>>
     {
