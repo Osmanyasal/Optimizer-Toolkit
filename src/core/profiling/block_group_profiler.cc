@@ -3,10 +3,19 @@
 namespace optkit::core
 {
 
-    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, ProfilerConfig config) : BaseProfiler{config}, block_name{block_name}, group_leader{-1}
+    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, ProfilerConfig config) : BaseProfiler{config}, block_name{block_name}, group_leader{-1}, is_active{true}
     {
 
         PMUEventManager::disable_all_events();
+
+        if (raw_event_list.size() > PMUEventManager::pmu_event_size())
+        {
+            this->is_active = false;
+            OPTKIT_CORE_ERROR("Cannot create a blockgroup for block {} by monitoring more than pmu hardware event size {}|{}(max).",this->block_name, raw_event_list.size(), PMUEventManager::pmu_event_size());
+            OPTKIT_CORE_WARN("Consider dividing the BlockGroupProfiler for block {} into multiple sub-groups!", this->block_name);
+            return;
+        }
+
         for (auto &raw_event : raw_event_list)
         {
             perf_event_attr attr = this->config.perf_event_config;
@@ -27,7 +36,7 @@ namespace optkit::core
                 }
             }
         }
- 
+
         ioctl(group_leader, PERF_EVENT_IOC_RESET, PERF_IOC_FLAG_GROUP);
         // enable clock now!
         start = std::chrono::high_resolution_clock::now();
@@ -39,13 +48,21 @@ namespace optkit::core
 
         PMUEventManager::disable_all_events();
 
+        if (OPT_UNLIKELY(!is_active))
+        {
+            OPTKIT_CORE_WARN("BlockGroupProfiler for block {} is not active!",this->block_name);
+            return;
+        }
+
         // disable clock now!
         auto end = std::chrono::high_resolution_clock::now();
         auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
 
-        char buf[4096];
-        read_format *rf = (read_format *)buf;
-        ::read(group_leader, buf, sizeof(buf));
+        std::string buf;
+        buf.resize(4096);
+        const read_format *rf = reinterpret_cast<const read_format *>(buf.data());
+        ::read(group_leader, const_cast<char *>(buf.data()), buf.size());
+
         for (int i = 0; i < rf->nr; i++)
         {
             std::cout << "\033[1;35m"
@@ -53,16 +70,25 @@ namespace optkit::core
                       << " [" << duration_ms << "ms] "
                       << "Measured: " << rf->values[i].value << std::endl;
         }
-
         PMUEventManager::enable_all_events();
     }
 
     void BlockGroupProfiler::disable()
     {
+        if (OPT_UNLIKELY(!is_active))
+        {
+            OPTKIT_CORE_WARN("BlockGroupProfiler for block {} is not active!", this->block_name);
+        }
+
         ioctl(group_leader, PERF_EVENT_IOC_DISABLE, PERF_IOC_FLAG_GROUP);
     }
     void BlockGroupProfiler::enable()
     {
+        if (OPT_UNLIKELY(!is_active))
+        {
+            OPTKIT_CORE_WARN("BlockGroupProfiler for block {} is not active!", this->block_name);
+        }
+
         ioctl(group_leader, PERF_EVENT_IOC_ENABLE, PERF_IOC_FLAG_GROUP);
     }
 
@@ -72,6 +98,11 @@ namespace optkit::core
         PMUEventManager::disable_all_events();
 
         std::vector<uint64_t> result;
+        if (OPT_UNLIKELY(!is_active))
+        {
+            OPTKIT_CORE_WARN("BlockGroupProfiler for block {} is not active!", this->block_name);
+            return result;
+        }
 
         char buf[4096];
         struct read_format *rf = (struct read_format *)buf;

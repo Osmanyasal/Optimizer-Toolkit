@@ -54,7 +54,7 @@ namespace optkit::core
     private:
         int32_t group_leader;
         std::chrono::high_resolution_clock::time_point start;
-
+        bool is_active;
         struct read_format
         {
             uint64_t nr;

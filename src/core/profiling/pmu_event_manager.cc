@@ -69,4 +69,8 @@ namespace optkit::core
     {
         return PMUEventManager::event_count_being_monitor;
     }
+
+    int32_t PMUEventManager::pmu_event_size(){
+        return Query::default_pmu_info().num_cntrs;
+    }
 };

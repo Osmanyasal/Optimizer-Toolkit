@@ -38,7 +38,9 @@ namespace optkit::core
 
         static std::vector<int32_t> all_fds();
         static int32_t number_of_events_being_monitored();
- 
+
+        static int32_t pmu_event_size();
+
     private:
         static std::map<int32_t, int32_t> fd__event_count_map; // insertion order is important!!
         static int32_t event_count_being_monitor;
