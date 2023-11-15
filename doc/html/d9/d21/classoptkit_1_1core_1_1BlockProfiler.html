@@ -80,39 +80,109 @@ $(function() {
  <a href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d0/d44/block__profiler_8hh_source.html">block_profiler.hh</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for optkit::core::BlockProfiler:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/d5a/classoptkit_1_1core_1_1BlockProfiler__inherit__graph.png" border="0" usemap="#aoptkit_1_1core_1_1BlockProfiler_inherit__map" alt="Inheritance graph"/></div>
+<map name="aoptkit_1_1core_1_1BlockProfiler_inherit__map" id="aoptkit_1_1core_1_1BlockProfiler_inherit__map">
+<area shape="rect" title="The BlockProfiler class utilizes the RAII technique to initiate and conclude profiling for a specific..." alt="" coords="14,95,201,121"/>
+<area shape="rect" href="../../dd/d92/classoptkit_1_1core_1_1BaseProfiler.html" title=" " alt="" coords="5,5,209,47"/>
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for optkit::core::BlockProfiler:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/d9b/classoptkit_1_1core_1_1BlockProfiler__coll__graph.png" border="0" usemap="#aoptkit_1_1core_1_1BlockProfiler_coll__map" alt="Collaboration graph"/></div>
+<map name="aoptkit_1_1core_1_1BlockProfiler_coll__map" id="aoptkit_1_1core_1_1BlockProfiler_coll__map">
+<area shape="rect" title="The BlockProfiler class utilizes the RAII technique to initiate and conclude profiling for a specific..." alt="" coords="14,95,201,121"/>
+<area shape="rect" href="../../dd/d92/classoptkit_1_1core_1_1BaseProfiler.html" title=" " alt="" coords="5,5,209,47"/>
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0b5c270aa20f32865aa95b1ad464bcd5"><td class="memItemLeft" align="right" valign="top"><a id="a0b5c270aa20f32865aa95b1ad464bcd5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BlockProfiler</b> (const char *block_name, std::initializer_list&lt; uint64_t &gt; raw_event_list)</td></tr>
-<tr class="separator:a0b5c270aa20f32865aa95b1ad464bcd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93868ec773ab21b9daa9b1a7968ca236"><td class="memItemLeft" align="right" valign="top"><a id="a93868ec773ab21b9daa9b1a7968ca236"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>disable</b> ()</td></tr>
-<tr class="separator:a93868ec773ab21b9daa9b1a7968ca236"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b4b13644a472efc8d4fb86706d3b85f"><td class="memItemLeft" align="right" valign="top"><a id="a9b4b13644a472efc8d4fb86706d3b85f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>enable</b> ()</td></tr>
-<tr class="separator:a9b4b13644a472efc8d4fb86706d3b85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ece57b6f8623c867c84a9a0f534d908"><td class="memItemLeft" align="right" valign="top"><a id="a4ece57b6f8623c867c84a9a0f534d908"></a>
-virtual std::vector&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>read_counter</b> ()</td></tr>
-<tr class="separator:a4ece57b6f8623c867c84a9a0f534d908"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a0757d6d2840621a620658f7204a69f"><td class="memItemLeft" align="right" valign="top"><a id="a7a0757d6d2840621a620658f7204a69f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BlockProfiler</b> (const char *<a class="el" href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html#af2a0263347190a851d0275d1c92529e2">block_name</a>, std::vector&lt; uint64_t &gt; raw_event_list, const <a class="el" href="../../d2/d0c/structoptkit_1_1core_1_1ProfilerConfig.html">ProfilerConfig</a> &amp;config=<a class="el" href="../../d2/d0c/structoptkit_1_1core_1_1ProfilerConfig.html">ProfilerConfig</a>{false})</td></tr>
+<tr class="separator:a7a0757d6d2840621a620658f7204a69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86b3795b6d65b6191705440089b383cc"><td class="memItemLeft" align="right" valign="top"><a id="a86b3795b6d65b6191705440089b383cc"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html#a86b3795b6d65b6191705440089b383cc">disable</a> () override</td></tr>
+<tr class="memdesc:a86b3795b6d65b6191705440089b383cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables this block profiler and associated events. <br /></td></tr>
+<tr class="separator:a86b3795b6d65b6191705440089b383cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac34ede9a69fcef1eee35ba86601c8287"><td class="memItemLeft" align="right" valign="top"><a id="ac34ede9a69fcef1eee35ba86601c8287"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html#ac34ede9a69fcef1eee35ba86601c8287">enable</a> () override</td></tr>
+<tr class="memdesc:ac34ede9a69fcef1eee35ba86601c8287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables this block profiler and associated events. <br /></td></tr>
+<tr class="separator:ac34ede9a69fcef1eee35ba86601c8287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e76a8fdd1cfb0db11b27fb06fb25a9"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html#ae3e76a8fdd1cfb0db11b27fb06fb25a9">read</a> () override</td></tr>
+<tr class="memdesc:ae3e76a8fdd1cfb0db11b27fb06fb25a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the values of all raw_events.  <a href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html#ae3e76a8fdd1cfb0db11b27fb06fb25a9">More...</a><br /></td></tr>
+<tr class="separator:ae3e76a8fdd1cfb0db11b27fb06fb25a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classoptkit_1_1core_1_1BaseProfiler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classoptkit_1_1core_1_1BaseProfiler')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../dd/d92/classoptkit_1_1core_1_1BaseProfiler.html">optkit::core::BaseProfiler&lt; std::vector&lt; uint64_t &gt; &gt;</a></td></tr>
+<tr class="memitem:af25fbcb0d4ad65e7744110d0ccc4053e inherit pub_methods_classoptkit_1_1core_1_1BaseProfiler"><td class="memItemLeft" align="right" valign="top"><a id="af25fbcb0d4ad65e7744110d0ccc4053e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BaseProfiler</b> (const <a class="el" href="../../d2/d0c/structoptkit_1_1core_1_1ProfilerConfig.html">ProfilerConfig</a> &amp;profiler_config)</td></tr>
+<tr class="separator:af25fbcb0d4ad65e7744110d0ccc4053e inherit pub_methods_classoptkit_1_1core_1_1BaseProfiler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94af0fde75dc51c44e0f43ffed725219 inherit pub_methods_classoptkit_1_1core_1_1BaseProfiler"><td class="memItemLeft" align="right" valign="top"><a id="a94af0fde75dc51c44e0f43ffed725219"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BaseProfiler</b> (const <a class="el" href="../../d0/dca/structoptkit_1_1core_1_1RaplConfig.html">RaplConfig</a> &amp;rapl_config)</td></tr>
+<tr class="separator:a94af0fde75dc51c44e0f43ffed725219 inherit pub_methods_classoptkit_1_1core_1_1BaseProfiler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa73df7d3bf9c157f3e08d87a6b884816"><td class="memItemLeft" align="right" valign="top"><a id="aa73df7d3bf9c157f3e08d87a6b884816"></a>
-std::vector&lt; int32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>fd_list</b></td></tr>
+std::vector&lt; int32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html#aa73df7d3bf9c157f3e08d87a6b884816">fd_list</a></td></tr>
+<tr class="memdesc:aa73df7d3bf9c157f3e08d87a6b884816"><td class="mdescLeft">&#160;</td><td class="mdescRight">fd_list holds pmu events being monitor by this <a class="el" href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html" title="The BlockProfiler class utilizes the RAII technique to initiate and conclude profiling for a specific...">BlockProfiler</a> Object. when created the same file description must be registered global fd_stack <br /></td></tr>
 <tr class="separator:aa73df7d3bf9c157f3e08d87a6b884816"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2a0263347190a851d0275d1c92529e2"><td class="memItemLeft" align="right" valign="top"><a id="af2a0263347190a851d0275d1c92529e2"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>block_name</b></td></tr>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html#af2a0263347190a851d0275d1c92529e2">block_name</a></td></tr>
+<tr class="memdesc:af2a0263347190a851d0275d1c92529e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for identification of blocks and chart titles. <br /></td></tr>
 <tr class="separator:af2a0263347190a851d0275d1c92529e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classoptkit_1_1core_1_1BaseProfiler"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classoptkit_1_1core_1_1BaseProfiler')"><img src="../../closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="../../dd/d92/classoptkit_1_1core_1_1BaseProfiler.html">optkit::core::BaseProfiler&lt; std::vector&lt; uint64_t &gt; &gt;</a></td></tr>
+<tr class="memitem:af95853e0000d43aceeedd46971e3c882 inherit pro_attribs_classoptkit_1_1core_1_1BaseProfiler"><td class="memItemLeft" align="right" valign="top"><a id="af95853e0000d43aceeedd46971e3c882"></a>
+<a class="el" href="../../d2/d0c/structoptkit_1_1core_1_1ProfilerConfig.html">ProfilerConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><b>profiler_config</b></td></tr>
+<tr class="separator:af95853e0000d43aceeedd46971e3c882 inherit pro_attribs_classoptkit_1_1core_1_1BaseProfiler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e3fdc1a006cd739255d9a76cbd5ee7 inherit pro_attribs_classoptkit_1_1core_1_1BaseProfiler"><td class="memItemLeft" align="right" valign="top"><a id="a48e3fdc1a006cd739255d9a76cbd5ee7"></a>
+<a class="el" href="../../d0/dca/structoptkit_1_1core_1_1RaplConfig.html">RaplConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><b>rapl_config</b></td></tr>
+<tr class="separator:a48e3fdc1a006cd739255d9a76cbd5ee7 inherit pro_attribs_classoptkit_1_1core_1_1BaseProfiler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="../../d9/d21/classoptkit_1_1core_1_1BlockProfiler.html" title="The BlockProfiler class utilizes the RAII technique to initiate and conclude profiling for a specific...">BlockProfiler</a> class utilizes the RAII technique to initiate and conclude profiling for a specific raw event. Profiling commences upon instantiation and persists until the current scope is exited. </p>
-<p>Note that block profiler does NOT group raw_events! If you want that ability please <a class="el" href="../../db/dc7/classoptkit_1_1core_1_1BlockGroupProfiler.html" title="The BlockGroupProfiler class utilizes the RAII technique to initiate and conclude profiling for a spe...">BlockGroupProfiler</a></p>
+<p>Note that block profiler does NOT group raw_events!</p>
 <p>Each raw_event creates seperate file_description (fd) to read data and each raw_event is treated seperately.<br  />
  In cases where CPU performs multiplexing and since each event treated seperately, you cannot gurantee that <br  />
  events E1 and E2 will record the same instructions.<br  />
  for more information about grouping </p><dl class="section see"><dt>See also</dt><dd><a href="https://man7.org/linux/man-pages/man2/perf_event_open.2.html">https://man7.org/linux/man-pages/man2/perf_event_open.2.html</a> </dd></dl>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae3e76a8fdd1cfb0db11b27fb06fb25a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3e76a8fdd1cfb0db11b27fb06fb25a9">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint64_t &gt; optkit::core::BlockProfiler::read </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reads the values of all raw_events. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;uint64_t&gt; contains each raw_events' pmu data. </dd></dl>
+
+<p>Implements <a class="el" href="../../dd/d92/classoptkit_1_1core_1_1BaseProfiler.html">optkit::core::BaseProfiler&lt; std::vector&lt; uint64_t &gt; &gt;</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d44/block__profiler_8hh_source.html">block_profiler.hh</a></li>
 <li>block_profiler.cc</li>
 </ul>

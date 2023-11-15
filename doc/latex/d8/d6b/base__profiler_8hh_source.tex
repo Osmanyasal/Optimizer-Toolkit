@@ -1,0 +1,53 @@
+\hypertarget{base__profiler_8hh_source}{}\doxysection{base\+\_\+profiler.\+hh}
+\label{base__profiler_8hh_source}\index{base\_profiler.hh@{base\_profiler.hh}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#ifndef OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_CORE\_\_PROFILING\_\_BASE\_PROFILER\_HH}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#define OPTIMIZER\_TOOLKIT\_CORE\_\_SRC\_\_CORE\_\_PROFILING\_\_BASE\_PROFILER\_HH}}
+\DoxyCodeLine{00003 }
+\DoxyCodeLine{00004 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00005 \textcolor{preprocessor}{\#include <cstring>}}
+\DoxyCodeLine{00006 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{00007 \textcolor{preprocessor}{\#include <linux/perf\_event.h>}}
+\DoxyCodeLine{00008 }
+\DoxyCodeLine{00009 \textcolor{keyword}{namespace }optkit::core}
+\DoxyCodeLine{00010 \{}
+\DoxyCodeLine{00011      }
+\DoxyCodeLine{\Hypertarget{base__profiler_8hh_source_l00017}\mbox{\hyperlink{structoptkit_1_1core_1_1ProfilerConfig}{00017}} \textcolor{keyword}{struct }\mbox{\hyperlink{structoptkit_1_1core_1_1ProfilerConfig}{ProfilerConfig}}}
+\DoxyCodeLine{00018 \{}
+\DoxyCodeLine{00050     \mbox{\hyperlink{structoptkit_1_1core_1_1ProfilerConfig_a04fd712b2c127e57a59688b50a4600af}{ProfilerConfig}}(\textcolor{keywordtype}{bool} is\_grouped = \textcolor{keyword}{false}, \textcolor{keywordtype}{int} pid = 0, \textcolor{keywordtype}{int} cpu = -\/1);}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052     \textcolor{keywordtype}{bool} is\_grouped;}
+\DoxyCodeLine{00053     \textcolor{keywordtype}{int} pid;}
+\DoxyCodeLine{00054     \textcolor{keywordtype}{int} cpu;}
+\DoxyCodeLine{00055     perf\_event\_attr perf\_event\_config;}
+\DoxyCodeLine{00056 \};}
+\DoxyCodeLine{00057 }
+\DoxyCodeLine{\Hypertarget{base__profiler_8hh_source_l00058}\mbox{\hyperlink{structoptkit_1_1core_1_1RaplConfig}{00058}} \textcolor{keyword}{struct }\mbox{\hyperlink{structoptkit_1_1core_1_1RaplConfig}{RaplConfig}}}
+\DoxyCodeLine{00059 \{}
+\DoxyCodeLine{00060 }
+\DoxyCodeLine{00061 \};}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{base__profiler_8hh_source_l00064}\mbox{\hyperlink{classoptkit_1_1core_1_1BaseProfiler}{00064}} \textcolor{keyword}{class }\mbox{\hyperlink{classoptkit_1_1core_1_1BaseProfiler}{BaseProfiler}}}
+\DoxyCodeLine{00065 \{}
+\DoxyCodeLine{00066 \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067     \mbox{\hyperlink{classoptkit_1_1core_1_1BaseProfiler}{BaseProfiler}}(\textcolor{keyword}{const} \mbox{\hyperlink{structoptkit_1_1core_1_1ProfilerConfig}{ProfilerConfig}} \&profiler\_config) : profiler\_config\{profiler\_config\} \{\}}
+\DoxyCodeLine{00068     \mbox{\hyperlink{classoptkit_1_1core_1_1BaseProfiler}{BaseProfiler}}(\textcolor{keyword}{const} \mbox{\hyperlink{structoptkit_1_1core_1_1RaplConfig}{RaplConfig}} \&rapl\_config) : rapl\_config\{rapl\_config\} \{\}}
+\DoxyCodeLine{00069 }
+\DoxyCodeLine{00070     \textcolor{keyword}{virtual} \string~\mbox{\hyperlink{classoptkit_1_1core_1_1BaseProfiler}{BaseProfiler}}() \{\}}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} disable() = 0;}
+\DoxyCodeLine{00073     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} enable() = 0;}
+\DoxyCodeLine{00074     \textcolor{keyword}{virtual} T read() = 0;}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00077     \mbox{\hyperlink{structoptkit_1_1core_1_1ProfilerConfig}{ProfilerConfig}} profiler\_config;}
+\DoxyCodeLine{00078     \mbox{\hyperlink{structoptkit_1_1core_1_1RaplConfig}{RaplConfig}} rapl\_config;}
+\DoxyCodeLine{00079 \};}
+\DoxyCodeLine{00080 }
+\DoxyCodeLine{00081 \} \textcolor{comment}{// namespace optkit::core}}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

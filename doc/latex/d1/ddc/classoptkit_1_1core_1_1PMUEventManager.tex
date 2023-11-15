@@ -1,0 +1,80 @@
+\hypertarget{classoptkit_1_1core_1_1PMUEventManager}{}\doxysection{optkit\+::core\+::PMUEvent\+Manager Class Reference}
+\label{classoptkit_1_1core_1_1PMUEventManager}\index{optkit::core::PMUEventManager@{optkit::core::PMUEventManager}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classoptkit_1_1core_1_1PMUEventManager_a5b1089dde23e0dac7030e64f21e6bb9a}{register\+\_\+event}} (int32\+\_\+t fd, int32\+\_\+t num\+\_\+events)
+\begin{DoxyCompactList}\small\item\em Register a file descriptor. \end{DoxyCompactList}\item 
+static int32\+\_\+t \mbox{\hyperlink{classoptkit_1_1core_1_1PMUEventManager_ad7d5f931f10b81d1e3e0d72b840c666f}{unregister\+\_\+event}} (int32\+\_\+t fd)
+\begin{DoxyCompactList}\small\item\em Unregister a file descriptor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1PMUEventManager_a280c0eb59a528aa6f95663f539c11443}\label{classoptkit_1_1core_1_1PMUEventManager_a280c0eb59a528aa6f95663f539c11443}} 
+static void {\bfseries disable\+\_\+all\+\_\+events} ()
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1PMUEventManager_ae489f834a883ea2d2dea0802225f1fce}\label{classoptkit_1_1core_1_1PMUEventManager_ae489f834a883ea2d2dea0802225f1fce}} 
+static void {\bfseries enable\+\_\+all\+\_\+events} ()
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1PMUEventManager_ac6540678eed2fd4f67f5288e48b7ce02}\label{classoptkit_1_1core_1_1PMUEventManager_ac6540678eed2fd4f67f5288e48b7ce02}} 
+static std\+::vector$<$ int32\+\_\+t $>$ {\bfseries all\+\_\+fds} ()
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1PMUEventManager_a8b2cc512a6660a1be8cd9374d3946493}\label{classoptkit_1_1core_1_1PMUEventManager_a8b2cc512a6660a1be8cd9374d3946493}} 
+static int32\+\_\+t {\bfseries number\+\_\+of\+\_\+events\+\_\+being\+\_\+monitored} ()
+\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1PMUEventManager_a44569de42082e71c4e82270bb39b808b}\label{classoptkit_1_1core_1_1PMUEventManager_a44569de42082e71c4e82270bb39b808b}} 
+static int32\+\_\+t {\bfseries pmu\+\_\+event\+\_\+size} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1PMUEventManager_a5b1089dde23e0dac7030e64f21e6bb9a}\label{classoptkit_1_1core_1_1PMUEventManager_a5b1089dde23e0dac7030e64f21e6bb9a}} 
+\index{optkit::core::PMUEventManager@{optkit::core::PMUEventManager}!register\_event@{register\_event}}
+\index{register\_event@{register\_event}!optkit::core::PMUEventManager@{optkit::core::PMUEventManager}}
+\doxysubsubsection{\texorpdfstring{register\_event()}{register\_event()}}
+{\footnotesize\ttfamily bool optkit\+::core\+::\+PMUEvent\+Manager\+::register\+\_\+event (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{fd,  }\item[{int32\+\_\+t}]{num\+\_\+events }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Register a file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & file descriptor itself \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{Block\+Profiler}} or \mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler}{Block\+Group\+Profiler}} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+events} & number of events being registered for this fd. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool wether fd is saved successfully 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1PMUEventManager_ad7d5f931f10b81d1e3e0d72b840c666f}\label{classoptkit_1_1core_1_1PMUEventManager_ad7d5f931f10b81d1e3e0d72b840c666f}} 
+\index{optkit::core::PMUEventManager@{optkit::core::PMUEventManager}!unregister\_event@{unregister\_event}}
+\index{unregister\_event@{unregister\_event}!optkit::core::PMUEventManager@{optkit::core::PMUEventManager}}
+\doxysubsubsection{\texorpdfstring{unregister\_event()}{unregister\_event()}}
+{\footnotesize\ttfamily int32\+\_\+t optkit\+::core\+::\+PMUEvent\+Manager\+::unregister\+\_\+event (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{fd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Unregister a file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & file descriptor itself \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{Block\+Profiler}} or \mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler}{Block\+Group\+Profiler}} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t num of events were being monitored with this fd 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+pmu\+\_\+event\+\_\+manager.\+hh\item 
+pmu\+\_\+event\+\_\+manager.\+cc\end{DoxyCompactItemize}

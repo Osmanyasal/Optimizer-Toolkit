@@ -22,7 +22,8 @@ int32_t main(int32_t argc, char **argv)
 
         // We'll see different numbers due to multiplexing
         BlockGroupProfiler fp_arit{"FP_ARITH", {
-                                                   icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, 
+                                                   icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE,
+                                                   icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, 
                                                }};
         ssize_t j;
         #pragma omp parallel

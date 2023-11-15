@@ -2,76 +2,77 @@
 \label{bdx__unc__i_8hh_source}\index{bdx\_unc\_i.hh@{bdx\_unc\_i.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
-\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::bdx\_unc\_i\{}
-\DoxyCodeLine{00004     \textcolor{keyword}{enum} bdx\_unc\_i : uint64\_t \{}
-\DoxyCodeLine{00005         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY = 0x12, \textcolor{comment}{// Accumulates the number of reads and writes that are outstanding in the uncore in each cycle.  This is effectively the sum of the READ\_OCCUPANCY and WRITE\_OCCUPANCY events.}}
-\DoxyCodeLine{00006         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Any Source}}
-\DoxyCodeLine{00007         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Select Source}}
-\DoxyCodeLine{00008         UNC\_I\_CLOCKTICKS = 0x0, \textcolor{comment}{// Number of clocks in the IRP.}}
-\DoxyCodeLine{00009         UNC\_I\_COHERENT\_OPS = 0x13, \textcolor{comment}{// Counts the number of coherency related operations servied by the IRP}}
-\DoxyCodeLine{00010         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_CLFLUSH = 0x8000, \textcolor{comment}{// Coherent Ops -\/-\/ CLFlush}}
-\DoxyCodeLine{00011         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_CRD = 0x200, \textcolor{comment}{// Coherent Ops -\/-\/ CRd}}
-\DoxyCodeLine{00012         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_DRD = 0x400, \textcolor{comment}{// Coherent Ops -\/-\/ DRd}}
-\DoxyCodeLine{00013         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_PCIDCAHINT = 0x2000, \textcolor{comment}{// Coherent Ops -\/-\/ PCIDCAHin5t}}
-\DoxyCodeLine{00014         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_PCIRDCUR = 0x100, \textcolor{comment}{// Coherent Ops -\/-\/ PCIRdCur}}
-\DoxyCodeLine{00015         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_PCITOM = 0x1000, \textcolor{comment}{// Coherent Ops -\/-\/ PCIItoM}}
-\DoxyCodeLine{00016         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_RFO = 0x800, \textcolor{comment}{// Coherent Ops -\/-\/ RFO}}
-\DoxyCodeLine{00017         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_WBMTOI = 0x4000, \textcolor{comment}{// Coherent Ops -\/-\/ WbMtoI}}
-\DoxyCodeLine{00018         UNC\_I\_MISC0 = 0x14, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00019         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_2ND\_ATOMIC\_INSERT = 0x1000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Atomic Transactions as Secondary}}
-\DoxyCodeLine{00020         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_2ND\_RD\_INSERT = 0x400, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Read Transactions as Secondary}}
-\DoxyCodeLine{00021         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_2ND\_WR\_INSERT = 0x800, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Write Transactions as Secondary}}
-\DoxyCodeLine{00022         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_FAST\_REJ = 0x200, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Rejects}}
-\DoxyCodeLine{00023         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_FAST\_REQ = 0x100, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Requests}}
-\DoxyCodeLine{00024         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_FAST\_XFER = 0x2000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Transfers From Primary to Secondary}}
-\DoxyCodeLine{00025         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_PF\_ACK\_HINT = 0x4000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Prefetch Ack Hints From Primary to Secondary}}
-\DoxyCodeLine{00026         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_PF\_TIMEOUT = 0x8000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Prefetch TimeOut}}
-\DoxyCodeLine{00027         UNC\_I\_MISC1 = 0x15, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00028         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_DATA\_THROTTLE = 0x8000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Data Throttled}}
-\DoxyCodeLine{00029         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_LOST\_FWD = 0x1000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/}}
-\DoxyCodeLine{00030         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SEC\_RCVD\_INVLD = 0x2000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Received Invalid}}
-\DoxyCodeLine{00031         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SEC\_RCVD\_VLD = 0x4000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Received Valid}}
-\DoxyCodeLine{00032         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SLOW\_I = 0x100, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of I Line}}
-\DoxyCodeLine{00033         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SLOW\_S = 0x200, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of S Line}}
-\DoxyCodeLine{00034         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SLOW\_E = 0x400, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of E Line}}
-\DoxyCodeLine{00035         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SLOW\_M = 0x800, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of M Line}}
-\DoxyCodeLine{00036         UNC\_I\_RXR\_AK\_INSERTS = 0xa, \textcolor{comment}{// Counts the number of allocations into the AK Ingress.  This queue is where the IRP receives responses from R2PCIe (the ring).}}
-\DoxyCodeLine{00037         UNC\_I\_RXR\_BL\_DRS\_CYCLES\_FULL = 0x4, \textcolor{comment}{// Counts the number of cycles when the BL Ingress is full.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00038         UNC\_I\_RXR\_BL\_DRS\_INSERTS = 0x1, \textcolor{comment}{// Counts the number of allocations into the BL Ingress.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00039         UNC\_I\_RXR\_BL\_DRS\_OCCUPANCY = 0x7, \textcolor{comment}{// Accumulates the occupancy of the BL Ingress in each cycles.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00040         UNC\_I\_RXR\_BL\_NCB\_CYCLES\_FULL = 0x5, \textcolor{comment}{// Counts the number of cycles when the BL Ingress is full.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00041         UNC\_I\_RXR\_BL\_NCB\_INSERTS = 0x2, \textcolor{comment}{// Counts the number of allocations into the BL Ingress.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00042         UNC\_I\_RXR\_BL\_NCB\_OCCUPANCY = 0x8, \textcolor{comment}{// Accumulates the occupancy of the BL Ingress in each cycles.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00043         UNC\_I\_RXR\_BL\_NCS\_CYCLES\_FULL = 0x6, \textcolor{comment}{// Counts the number of cycles when the BL Ingress is full.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00044         UNC\_I\_RXR\_BL\_NCS\_INSERTS = 0x3, \textcolor{comment}{// Counts the number of allocations into the BL Ingress.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00045         UNC\_I\_RXR\_BL\_NCS\_OCCUPANCY = 0x9, \textcolor{comment}{// Accumulates the occupancy of the BL Ingress in each cycles.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
-\DoxyCodeLine{00046         UNC\_I\_SNOOP\_RESP = 0x17, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00047         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_ES = 0x400, \textcolor{comment}{// Snoop Responses -\/-\/ Hit E or S}}
-\DoxyCodeLine{00048         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_I = 0x200, \textcolor{comment}{// Snoop Responses -\/-\/ Hit I}}
-\DoxyCodeLine{00049         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_M = 0x800, \textcolor{comment}{// Snoop Responses -\/-\/ Hit M}}
-\DoxyCodeLine{00050         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_MISS = 0x100, \textcolor{comment}{// Snoop Responses -\/-\/ Miss}}
-\DoxyCodeLine{00051         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_SNPCODE = 0x1000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpCode}}
-\DoxyCodeLine{00052         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_SNPDATA = 0x2000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpData}}
-\DoxyCodeLine{00053         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_SNPINV = 0x4000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpInv}}
-\DoxyCodeLine{00054         UNC\_I\_TRANSACTIONS = 0x16, \textcolor{comment}{// Counts the number of Inbound transactions from the IRP to the Uncore.  This can be filtered based on request type in addition to the source queue.  Note the special filtering equation.  We do OR-\/reduction on the request type.  If the SOURCE bit is set}}
-\DoxyCodeLine{00055         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_ATOMIC = 0x1000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Atomic}}
-\DoxyCodeLine{00056         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_ORDERINGQ = 0x4000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Select Source via IRP orderingQ register}}
-\DoxyCodeLine{00057         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_OTHER = 0x2000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Other}}
-\DoxyCodeLine{00058         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_RD\_PREF = 0x400, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Read Prefetches}}
-\DoxyCodeLine{00059         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_READS = 0x100, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Reads}}
-\DoxyCodeLine{00060         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_WRITES = 0x200, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Writes}}
-\DoxyCodeLine{00061         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_WR\_PREF = 0x800, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Write Prefetches}}
-\DoxyCodeLine{00062         UNC\_I\_TXR\_AD\_STALL\_CREDIT\_CYCLES = 0x18, \textcolor{comment}{// Counts the number times when it is not possible to issue a request to the R2PCIe because there are no AD Egress Credits available.}}
-\DoxyCodeLine{00063         UNC\_I\_TXR\_BL\_STALL\_CREDIT\_CYCLES = 0x19, \textcolor{comment}{// Counts the number times when it is not possible to issue data to the R2PCIe because there are no BL Egress Credits available.}}
-\DoxyCodeLine{00064         UNC\_I\_TXR\_DATA\_INSERTS\_NCB = 0xe, \textcolor{comment}{// Counts the number of requests issued to the switch (towards the devices).}}
-\DoxyCodeLine{00065         UNC\_I\_TXR\_DATA\_INSERTS\_NCS = 0xf, \textcolor{comment}{// Counts the number of requests issued to the switch (towards the devices).}}
-\DoxyCodeLine{00066         UNC\_I\_TXR\_REQUEST\_OCCUPANCY = 0xd, \textcolor{comment}{// Accumultes the number of outstanding outbound requests from the IRP to the switch (towards the devices).  This can be used in conjuection with the allocations event in order to calculate average latency of outbound requests.}}
-\DoxyCodeLine{00067         }
-\DoxyCodeLine{00068     \};}
-\DoxyCodeLine{00069 \};}
-\DoxyCodeLine{00070 }
-\DoxyCodeLine{00071 \textcolor{keyword}{namespace }bdx\_unc\_i = optkit::intel::bdx\_unc\_i;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00004 \textcolor{keyword}{namespace }optkit::intel::bdx\_unc\_i\{}
+\DoxyCodeLine{00005     \textcolor{keyword}{enum} bdx\_unc\_i : uint64\_t \{}
+\DoxyCodeLine{00006         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY = 0x12, \textcolor{comment}{// Accumulates the number of reads and writes that are outstanding in the uncore in each cycle.  This is effectively the sum of the READ\_OCCUPANCY and WRITE\_OCCUPANCY events.}}
+\DoxyCodeLine{00007         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Any Source}}
+\DoxyCodeLine{00008         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Select Source}}
+\DoxyCodeLine{00009         UNC\_I\_CLOCKTICKS = 0x0, \textcolor{comment}{// Number of clocks in the IRP.}}
+\DoxyCodeLine{00010         UNC\_I\_COHERENT\_OPS = 0x13, \textcolor{comment}{// Counts the number of coherency related operations servied by the IRP}}
+\DoxyCodeLine{00011         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_CLFLUSH = 0x8000, \textcolor{comment}{// Coherent Ops -\/-\/ CLFlush}}
+\DoxyCodeLine{00012         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_CRD = 0x200, \textcolor{comment}{// Coherent Ops -\/-\/ CRd}}
+\DoxyCodeLine{00013         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_DRD = 0x400, \textcolor{comment}{// Coherent Ops -\/-\/ DRd}}
+\DoxyCodeLine{00014         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_PCIDCAHINT = 0x2000, \textcolor{comment}{// Coherent Ops -\/-\/ PCIDCAHin5t}}
+\DoxyCodeLine{00015         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_PCIRDCUR = 0x100, \textcolor{comment}{// Coherent Ops -\/-\/ PCIRdCur}}
+\DoxyCodeLine{00016         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_PCITOM = 0x1000, \textcolor{comment}{// Coherent Ops -\/-\/ PCIItoM}}
+\DoxyCodeLine{00017         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_RFO = 0x800, \textcolor{comment}{// Coherent Ops -\/-\/ RFO}}
+\DoxyCodeLine{00018         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_BDX\_UNC\_I\_COHERENT\_OPS\_\_WBMTOI = 0x4000, \textcolor{comment}{// Coherent Ops -\/-\/ WbMtoI}}
+\DoxyCodeLine{00019         UNC\_I\_MISC0 = 0x14, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00020         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_2ND\_ATOMIC\_INSERT = 0x1000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Atomic Transactions as Secondary}}
+\DoxyCodeLine{00021         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_2ND\_RD\_INSERT = 0x400, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Read Transactions as Secondary}}
+\DoxyCodeLine{00022         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_2ND\_WR\_INSERT = 0x800, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Write Transactions as Secondary}}
+\DoxyCodeLine{00023         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_FAST\_REJ = 0x200, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Rejects}}
+\DoxyCodeLine{00024         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_FAST\_REQ = 0x100, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Requests}}
+\DoxyCodeLine{00025         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_FAST\_XFER = 0x2000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Transfers From Primary to Secondary}}
+\DoxyCodeLine{00026         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_PF\_ACK\_HINT = 0x4000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Prefetch Ack Hints From Primary to Secondary}}
+\DoxyCodeLine{00027         UNC\_I\_MISC0\_\_MASK\_\_BDX\_UNC\_I\_MISC0\_\_PF\_TIMEOUT = 0x8000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Prefetch TimeOut}}
+\DoxyCodeLine{00028         UNC\_I\_MISC1 = 0x15, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00029         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_DATA\_THROTTLE = 0x8000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Data Throttled}}
+\DoxyCodeLine{00030         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_LOST\_FWD = 0x1000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/}}
+\DoxyCodeLine{00031         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SEC\_RCVD\_INVLD = 0x2000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Received Invalid}}
+\DoxyCodeLine{00032         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SEC\_RCVD\_VLD = 0x4000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Received Valid}}
+\DoxyCodeLine{00033         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SLOW\_I = 0x100, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of I Line}}
+\DoxyCodeLine{00034         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SLOW\_S = 0x200, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of S Line}}
+\DoxyCodeLine{00035         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SLOW\_E = 0x400, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of E Line}}
+\DoxyCodeLine{00036         UNC\_I\_MISC1\_\_MASK\_\_BDX\_UNC\_I\_MISC1\_\_SLOW\_M = 0x800, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of M Line}}
+\DoxyCodeLine{00037         UNC\_I\_RXR\_AK\_INSERTS = 0xa, \textcolor{comment}{// Counts the number of allocations into the AK Ingress.  This queue is where the IRP receives responses from R2PCIe (the ring).}}
+\DoxyCodeLine{00038         UNC\_I\_RXR\_BL\_DRS\_CYCLES\_FULL = 0x4, \textcolor{comment}{// Counts the number of cycles when the BL Ingress is full.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00039         UNC\_I\_RXR\_BL\_DRS\_INSERTS = 0x1, \textcolor{comment}{// Counts the number of allocations into the BL Ingress.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00040         UNC\_I\_RXR\_BL\_DRS\_OCCUPANCY = 0x7, \textcolor{comment}{// Accumulates the occupancy of the BL Ingress in each cycles.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00041         UNC\_I\_RXR\_BL\_NCB\_CYCLES\_FULL = 0x5, \textcolor{comment}{// Counts the number of cycles when the BL Ingress is full.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00042         UNC\_I\_RXR\_BL\_NCB\_INSERTS = 0x2, \textcolor{comment}{// Counts the number of allocations into the BL Ingress.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00043         UNC\_I\_RXR\_BL\_NCB\_OCCUPANCY = 0x8, \textcolor{comment}{// Accumulates the occupancy of the BL Ingress in each cycles.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00044         UNC\_I\_RXR\_BL\_NCS\_CYCLES\_FULL = 0x6, \textcolor{comment}{// Counts the number of cycles when the BL Ingress is full.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00045         UNC\_I\_RXR\_BL\_NCS\_INSERTS = 0x3, \textcolor{comment}{// Counts the number of allocations into the BL Ingress.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00046         UNC\_I\_RXR\_BL\_NCS\_OCCUPANCY = 0x9, \textcolor{comment}{// Accumulates the occupancy of the BL Ingress in each cycles.  This queue is where the IRP receives data from R2PCIe (the ring).  It is used for data returns from read requets as well as outbound MMIO writes.}}
+\DoxyCodeLine{00047         UNC\_I\_SNOOP\_RESP = 0x17, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00048         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_ES = 0x400, \textcolor{comment}{// Snoop Responses -\/-\/ Hit E or S}}
+\DoxyCodeLine{00049         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_I = 0x200, \textcolor{comment}{// Snoop Responses -\/-\/ Hit I}}
+\DoxyCodeLine{00050         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_M = 0x800, \textcolor{comment}{// Snoop Responses -\/-\/ Hit M}}
+\DoxyCodeLine{00051         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_MISS = 0x100, \textcolor{comment}{// Snoop Responses -\/-\/ Miss}}
+\DoxyCodeLine{00052         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_SNPCODE = 0x1000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpCode}}
+\DoxyCodeLine{00053         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_SNPDATA = 0x2000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpData}}
+\DoxyCodeLine{00054         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_BDX\_UNC\_I\_SNOOP\_RESP\_\_SNPINV = 0x4000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpInv}}
+\DoxyCodeLine{00055         UNC\_I\_TRANSACTIONS = 0x16, \textcolor{comment}{// Counts the number of Inbound transactions from the IRP to the Uncore.  This can be filtered based on request type in addition to the source queue.  Note the special filtering equation.  We do OR-\/reduction on the request type.  If the SOURCE bit is set}}
+\DoxyCodeLine{00056         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_ATOMIC = 0x1000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Atomic}}
+\DoxyCodeLine{00057         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_ORDERINGQ = 0x4000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Select Source via IRP orderingQ register}}
+\DoxyCodeLine{00058         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_OTHER = 0x2000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Other}}
+\DoxyCodeLine{00059         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_RD\_PREF = 0x400, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Read Prefetches}}
+\DoxyCodeLine{00060         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_READS = 0x100, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Reads}}
+\DoxyCodeLine{00061         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_WRITES = 0x200, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Writes}}
+\DoxyCodeLine{00062         UNC\_I\_TRANSACTIONS\_\_MASK\_\_BDX\_UNC\_I\_TRANSACTIONS\_\_WR\_PREF = 0x800, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Write Prefetches}}
+\DoxyCodeLine{00063         UNC\_I\_TXR\_AD\_STALL\_CREDIT\_CYCLES = 0x18, \textcolor{comment}{// Counts the number times when it is not possible to issue a request to the R2PCIe because there are no AD Egress Credits available.}}
+\DoxyCodeLine{00064         UNC\_I\_TXR\_BL\_STALL\_CREDIT\_CYCLES = 0x19, \textcolor{comment}{// Counts the number times when it is not possible to issue data to the R2PCIe because there are no BL Egress Credits available.}}
+\DoxyCodeLine{00065         UNC\_I\_TXR\_DATA\_INSERTS\_NCB = 0xe, \textcolor{comment}{// Counts the number of requests issued to the switch (towards the devices).}}
+\DoxyCodeLine{00066         UNC\_I\_TXR\_DATA\_INSERTS\_NCS = 0xf, \textcolor{comment}{// Counts the number of requests issued to the switch (towards the devices).}}
+\DoxyCodeLine{00067         UNC\_I\_TXR\_REQUEST\_OCCUPANCY = 0xd, \textcolor{comment}{// Accumultes the number of outstanding outbound requests from the IRP to the switch (towards the devices).  This can be used in conjuection with the allocations event in order to calculate average latency of outbound requests.}}
+\DoxyCodeLine{00068         }
+\DoxyCodeLine{00069     \};}
+\DoxyCodeLine{00070 \};}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072 \textcolor{keyword}{namespace }bdx\_unc\_i = optkit::intel::bdx\_unc\_i;}
 
 \end{DoxyCode}

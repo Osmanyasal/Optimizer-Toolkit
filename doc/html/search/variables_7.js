@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['m_5fit_851',['m_it',['../d7/d0e/classdetail_1_1iter__impl.html#a79b7b8c6b778d9f7e76b086b45d9ea2e',1,'detail::iter_impl']]],
-  ['m_5fvalue_852',['m_value',['../d1/d72/classbasic__json.html#acd0f167153f047a246b51858d7c921b8',1,'basic_json']]]
+  ['lines_5fread_884',['lines_read',['../df/dbb/structdetail_1_1position__t.html#a9ec1ac6600d1364f4d1c9f67de6a670b',1,'detail::position_t']]],
+  ['loc_885',['loc',['../d1/d62/classdetail_1_1serializer.html#a80ca90565eec446d377ab65a023297ab',1,'detail::serializer']]]
 ];

@@ -2,79 +2,80 @@
 \label{bdx__unc__p_8hh_source}\index{bdx\_unc\_p.hh@{bdx\_unc\_p.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
-\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::bdx\_unc\_p\{}
-\DoxyCodeLine{00004     \textcolor{keyword}{enum} bdx\_unc\_p : uint64\_t \{}
-\DoxyCodeLine{00005         UNC\_P\_CLOCKTICKS = 0x0, \textcolor{comment}{// The PCU runs off a fixed 1 GHz clock.  This event counts the number of pclk cycles measured while the counter was enabled.  The pclk}}
-\DoxyCodeLine{00006         UNC\_P\_CORE0\_TRANSITION\_CYCLES = 0x60, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00007         UNC\_P\_CORE10\_TRANSITION\_CYCLES = 0x6a, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00008         UNC\_P\_CORE11\_TRANSITION\_CYCLES = 0x6b, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00009         UNC\_P\_CORE12\_TRANSITION\_CYCLES = 0x6c, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00010         UNC\_P\_CORE13\_TRANSITION\_CYCLES = 0x6d, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00011         UNC\_P\_CORE14\_TRANSITION\_CYCLES = 0x6e, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00012         UNC\_P\_CORE15\_TRANSITION\_CYCLES = 0x6f, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00013         UNC\_P\_CORE16\_TRANSITION\_CYCLES = 0x70, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00014         UNC\_P\_CORE17\_TRANSITION\_CYCLES = 0x71, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00015         UNC\_P\_CORE1\_TRANSITION\_CYCLES = 0x61, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00016         UNC\_P\_CORE2\_TRANSITION\_CYCLES = 0x62, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00017         UNC\_P\_CORE3\_TRANSITION\_CYCLES = 0x63, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00018         UNC\_P\_CORE4\_TRANSITION\_CYCLES = 0x64, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00019         UNC\_P\_CORE5\_TRANSITION\_CYCLES = 0x65, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00020         UNC\_P\_CORE6\_TRANSITION\_CYCLES = 0x66, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00021         UNC\_P\_CORE7\_TRANSITION\_CYCLES = 0x67, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00022         UNC\_P\_CORE8\_TRANSITION\_CYCLES = 0x68, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00023         UNC\_P\_CORE9\_TRANSITION\_CYCLES = 0x69, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
-\DoxyCodeLine{00024         UNC\_P\_DEMOTIONS\_CORE0 = 0x30, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00025         UNC\_P\_DEMOTIONS\_CORE1 = 0x31, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00026         UNC\_P\_DEMOTIONS\_CORE10 = 0x3a, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00027         UNC\_P\_DEMOTIONS\_CORE11 = 0x3b, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00028         UNC\_P\_DEMOTIONS\_CORE12 = 0x3c, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00029         UNC\_P\_DEMOTIONS\_CORE13 = 0x3d, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00030         UNC\_P\_DEMOTIONS\_CORE14 = 0x3e, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00031         UNC\_P\_DEMOTIONS\_CORE15 = 0x3f, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00032         UNC\_P\_DEMOTIONS\_CORE16 = 0x40, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00033         UNC\_P\_DEMOTIONS\_CORE17 = 0x41, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00034         UNC\_P\_DEMOTIONS\_CORE2 = 0x32, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00035         UNC\_P\_DEMOTIONS\_CORE3 = 0x33, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00036         UNC\_P\_DEMOTIONS\_CORE4 = 0x34, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00037         UNC\_P\_DEMOTIONS\_CORE5 = 0x35, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00038         UNC\_P\_DEMOTIONS\_CORE6 = 0x36, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00039         UNC\_P\_DEMOTIONS\_CORE7 = 0x37, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00040         UNC\_P\_DEMOTIONS\_CORE8 = 0x38, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00041         UNC\_P\_DEMOTIONS\_CORE9 = 0x39, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
-\DoxyCodeLine{00042         UNC\_P\_FREQ\_MAX\_LIMIT\_THERMAL\_CYCLES = 0x4, \textcolor{comment}{// Counts the number of cycles when thermal conditions are the upper limit on frequency.  This is related to the THERMAL\_THROTTLE CYCLES\_ABOVE\_TEMP event}}
-\DoxyCodeLine{00043         UNC\_P\_FREQ\_MAX\_OS\_CYCLES = 0x6, \textcolor{comment}{// Counts the number of cycles when the OS is the upper limit on frequency.}}
-\DoxyCodeLine{00044         UNC\_P\_FREQ\_MAX\_POWER\_CYCLES = 0x5, \textcolor{comment}{// Counts the number of cycles when power is the upper limit on frequency.}}
-\DoxyCodeLine{00045         UNC\_P\_FREQ\_MIN\_IO\_P\_CYCLES = 0x73, \textcolor{comment}{// Counts the number of cycles when IO P Limit is preventing us from dropping the frequency lower.  This algorithm monitors the needs to the IO subsystem on both local and remote sockets and will maintain a frequency high enough to maintain good IO BW.  This is necessary for when all the IA cores on a socket are idle but a user still would like to maintain high IO Bandwidth.}}
-\DoxyCodeLine{00046         UNC\_P\_FREQ\_TRANS\_CYCLES = 0x74, \textcolor{comment}{// Counts the number of cycles when the system is changing frequency.  This can not be filtered by thread ID.  One can also use it with the occupancy counter that monitors number of threads in C0 to estimate the performance impact that frequency transitions had on the system.}}
-\DoxyCodeLine{00047         UNC\_P\_MEMORY\_PHASE\_SHEDDING\_CYCLES = 0x2f, \textcolor{comment}{// Counts the number of cycles that the PCU has triggered memory phase shedding.  This is a mode that can be run in the iMC physicals that saves power at the expense of additional latency.}}
-\DoxyCodeLine{00048         UNC\_P\_POWER\_STATE\_OCCUPANCY = 0x80, \textcolor{comment}{// This is an occupancy event that tracks the number of cores that are in the chosen C-\/State.  It can be used by itself to get the average number of cores in that C-\/state with threshholding to generate histograms}}
-\DoxyCodeLine{00049         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C0 = 0x4000, \textcolor{comment}{// Number of cores in C-\/State -\/-\/ C0 and C1}}
-\DoxyCodeLine{00050         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C3 = 0x8000, \textcolor{comment}{// Number of cores in C-\/State -\/-\/ C3}}
-\DoxyCodeLine{00051         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C6 = 0xc000, \textcolor{comment}{// Number of cores in C-\/State -\/-\/ C6 and C7}}
-\DoxyCodeLine{00052         UNC\_P\_PROCHOT\_EXTERNAL\_CYCLES = 0xa, \textcolor{comment}{// Counts the number of cycles that we are in external PROCHOT mode.  This mode is triggered when a sensor off the die determines that something off-\/die (like DRAM) is too hot and must throttle to avoid damaging the chip.}}
-\DoxyCodeLine{00053         UNC\_P\_PROCHOT\_INTERNAL\_CYCLES = 0x9, \textcolor{comment}{// Counts the number of cycles that we are in internal PROCHOT mode.  This mode is triggered when a sensor on the die determines that we are too hot and must throttle to avoid damaging the chip.}}
-\DoxyCodeLine{00054         UNC\_P\_TOTAL\_TRANSITION\_CYCLES = 0x72, \textcolor{comment}{// Number of cycles spent performing core C state transitions across all cores.}}
-\DoxyCodeLine{00055         UNC\_P\_UFS\_BANDWIDTH\_MAX\_RANGE = 0x7e, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00056         UNC\_P\_UFS\_TRANSITIONS\_DOWN = 0x7c, \textcolor{comment}{// Ring GV down due to low traffic}}
-\DoxyCodeLine{00057         UNC\_P\_UFS\_TRANSITIONS\_IO\_P\_LIMIT = 0x7d, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00058         UNC\_P\_UFS\_TRANSITIONS\_NO\_CHANGE = 0x79, \textcolor{comment}{// Ring GV with same final and initial frequency}}
-\DoxyCodeLine{00059         UNC\_P\_UFS\_TRANSITIONS\_UP\_RING = 0x7a, \textcolor{comment}{// Ring GV up due to high ring traffic}}
-\DoxyCodeLine{00060         UNC\_P\_UFS\_TRANSITIONS\_UP\_STALL = 0x7b, \textcolor{comment}{// Ring GV up due to high core stalls}}
-\DoxyCodeLine{00061         UNC\_P\_VR\_HOT\_CYCLES = 0x42, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00062         UNC\_P\_FREQ\_BAND0\_CYCLES = 0xb, \textcolor{comment}{// Frequency Residency}}
-\DoxyCodeLine{00063         UNC\_P\_FREQ\_BAND1\_CYCLES = 0xc, \textcolor{comment}{// Frequency Residency}}
-\DoxyCodeLine{00064         UNC\_P\_FREQ\_BAND2\_CYCLES = 0xd, \textcolor{comment}{// Frequency Residency}}
-\DoxyCodeLine{00065         UNC\_P\_FREQ\_BAND3\_CYCLES = 0xe, \textcolor{comment}{// Frequency Residency}}
-\DoxyCodeLine{00066         UNC\_P\_FIVR\_PS\_PS0\_CYCLES = 0x75, \textcolor{comment}{// Cycles spent in phase-\/shedding power state 0}}
-\DoxyCodeLine{00067         UNC\_P\_FIVR\_PS\_PS1\_CYCLES = 0x76, \textcolor{comment}{// Cycles spent in phase-\/shedding power state 1}}
-\DoxyCodeLine{00068         UNC\_P\_FIVR\_PS\_PS2\_CYCLES = 0x77, \textcolor{comment}{// Cycles spent in phase-\/shedding power state 2}}
-\DoxyCodeLine{00069         UNC\_P\_FIVR\_PS\_PS3\_CYCLES = 0x78, \textcolor{comment}{// Cycles spent in phase-\/shedding power state 3}}
-\DoxyCodeLine{00070         }
-\DoxyCodeLine{00071     \};}
-\DoxyCodeLine{00072 \};}
-\DoxyCodeLine{00073 }
-\DoxyCodeLine{00074 \textcolor{keyword}{namespace }bdx\_unc\_p = optkit::intel::bdx\_unc\_p;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00004 \textcolor{keyword}{namespace }optkit::intel::bdx\_unc\_p\{}
+\DoxyCodeLine{00005     \textcolor{keyword}{enum} bdx\_unc\_p : uint64\_t \{}
+\DoxyCodeLine{00006         UNC\_P\_CLOCKTICKS = 0x0, \textcolor{comment}{// The PCU runs off a fixed 1 GHz clock.  This event counts the number of pclk cycles measured while the counter was enabled.  The pclk}}
+\DoxyCodeLine{00007         UNC\_P\_CORE0\_TRANSITION\_CYCLES = 0x60, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00008         UNC\_P\_CORE10\_TRANSITION\_CYCLES = 0x6a, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00009         UNC\_P\_CORE11\_TRANSITION\_CYCLES = 0x6b, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00010         UNC\_P\_CORE12\_TRANSITION\_CYCLES = 0x6c, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00011         UNC\_P\_CORE13\_TRANSITION\_CYCLES = 0x6d, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00012         UNC\_P\_CORE14\_TRANSITION\_CYCLES = 0x6e, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00013         UNC\_P\_CORE15\_TRANSITION\_CYCLES = 0x6f, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00014         UNC\_P\_CORE16\_TRANSITION\_CYCLES = 0x70, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00015         UNC\_P\_CORE17\_TRANSITION\_CYCLES = 0x71, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00016         UNC\_P\_CORE1\_TRANSITION\_CYCLES = 0x61, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00017         UNC\_P\_CORE2\_TRANSITION\_CYCLES = 0x62, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00018         UNC\_P\_CORE3\_TRANSITION\_CYCLES = 0x63, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00019         UNC\_P\_CORE4\_TRANSITION\_CYCLES = 0x64, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00020         UNC\_P\_CORE5\_TRANSITION\_CYCLES = 0x65, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00021         UNC\_P\_CORE6\_TRANSITION\_CYCLES = 0x66, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00022         UNC\_P\_CORE7\_TRANSITION\_CYCLES = 0x67, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00023         UNC\_P\_CORE8\_TRANSITION\_CYCLES = 0x68, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00024         UNC\_P\_CORE9\_TRANSITION\_CYCLES = 0x69, \textcolor{comment}{// Number of cycles spent performing core C state transitions.  There is one event per core.}}
+\DoxyCodeLine{00025         UNC\_P\_DEMOTIONS\_CORE0 = 0x30, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00026         UNC\_P\_DEMOTIONS\_CORE1 = 0x31, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00027         UNC\_P\_DEMOTIONS\_CORE10 = 0x3a, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00028         UNC\_P\_DEMOTIONS\_CORE11 = 0x3b, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00029         UNC\_P\_DEMOTIONS\_CORE12 = 0x3c, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00030         UNC\_P\_DEMOTIONS\_CORE13 = 0x3d, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00031         UNC\_P\_DEMOTIONS\_CORE14 = 0x3e, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00032         UNC\_P\_DEMOTIONS\_CORE15 = 0x3f, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00033         UNC\_P\_DEMOTIONS\_CORE16 = 0x40, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00034         UNC\_P\_DEMOTIONS\_CORE17 = 0x41, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00035         UNC\_P\_DEMOTIONS\_CORE2 = 0x32, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00036         UNC\_P\_DEMOTIONS\_CORE3 = 0x33, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00037         UNC\_P\_DEMOTIONS\_CORE4 = 0x34, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00038         UNC\_P\_DEMOTIONS\_CORE5 = 0x35, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00039         UNC\_P\_DEMOTIONS\_CORE6 = 0x36, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00040         UNC\_P\_DEMOTIONS\_CORE7 = 0x37, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00041         UNC\_P\_DEMOTIONS\_CORE8 = 0x38, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00042         UNC\_P\_DEMOTIONS\_CORE9 = 0x39, \textcolor{comment}{// Counts the number of times when a configurable cores had a C-\/state demotion}}
+\DoxyCodeLine{00043         UNC\_P\_FREQ\_MAX\_LIMIT\_THERMAL\_CYCLES = 0x4, \textcolor{comment}{// Counts the number of cycles when thermal conditions are the upper limit on frequency.  This is related to the THERMAL\_THROTTLE CYCLES\_ABOVE\_TEMP event}}
+\DoxyCodeLine{00044         UNC\_P\_FREQ\_MAX\_OS\_CYCLES = 0x6, \textcolor{comment}{// Counts the number of cycles when the OS is the upper limit on frequency.}}
+\DoxyCodeLine{00045         UNC\_P\_FREQ\_MAX\_POWER\_CYCLES = 0x5, \textcolor{comment}{// Counts the number of cycles when power is the upper limit on frequency.}}
+\DoxyCodeLine{00046         UNC\_P\_FREQ\_MIN\_IO\_P\_CYCLES = 0x73, \textcolor{comment}{// Counts the number of cycles when IO P Limit is preventing us from dropping the frequency lower.  This algorithm monitors the needs to the IO subsystem on both local and remote sockets and will maintain a frequency high enough to maintain good IO BW.  This is necessary for when all the IA cores on a socket are idle but a user still would like to maintain high IO Bandwidth.}}
+\DoxyCodeLine{00047         UNC\_P\_FREQ\_TRANS\_CYCLES = 0x74, \textcolor{comment}{// Counts the number of cycles when the system is changing frequency.  This can not be filtered by thread ID.  One can also use it with the occupancy counter that monitors number of threads in C0 to estimate the performance impact that frequency transitions had on the system.}}
+\DoxyCodeLine{00048         UNC\_P\_MEMORY\_PHASE\_SHEDDING\_CYCLES = 0x2f, \textcolor{comment}{// Counts the number of cycles that the PCU has triggered memory phase shedding.  This is a mode that can be run in the iMC physicals that saves power at the expense of additional latency.}}
+\DoxyCodeLine{00049         UNC\_P\_POWER\_STATE\_OCCUPANCY = 0x80, \textcolor{comment}{// This is an occupancy event that tracks the number of cores that are in the chosen C-\/State.  It can be used by itself to get the average number of cores in that C-\/state with threshholding to generate histograms}}
+\DoxyCodeLine{00050         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C0 = 0x4000, \textcolor{comment}{// Number of cores in C-\/State -\/-\/ C0 and C1}}
+\DoxyCodeLine{00051         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C3 = 0x8000, \textcolor{comment}{// Number of cores in C-\/State -\/-\/ C3}}
+\DoxyCodeLine{00052         UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_MASK\_\_BDX\_UNC\_P\_POWER\_STATE\_OCCUPANCY\_\_CORES\_C6 = 0xc000, \textcolor{comment}{// Number of cores in C-\/State -\/-\/ C6 and C7}}
+\DoxyCodeLine{00053         UNC\_P\_PROCHOT\_EXTERNAL\_CYCLES = 0xa, \textcolor{comment}{// Counts the number of cycles that we are in external PROCHOT mode.  This mode is triggered when a sensor off the die determines that something off-\/die (like DRAM) is too hot and must throttle to avoid damaging the chip.}}
+\DoxyCodeLine{00054         UNC\_P\_PROCHOT\_INTERNAL\_CYCLES = 0x9, \textcolor{comment}{// Counts the number of cycles that we are in internal PROCHOT mode.  This mode is triggered when a sensor on the die determines that we are too hot and must throttle to avoid damaging the chip.}}
+\DoxyCodeLine{00055         UNC\_P\_TOTAL\_TRANSITION\_CYCLES = 0x72, \textcolor{comment}{// Number of cycles spent performing core C state transitions across all cores.}}
+\DoxyCodeLine{00056         UNC\_P\_UFS\_BANDWIDTH\_MAX\_RANGE = 0x7e, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00057         UNC\_P\_UFS\_TRANSITIONS\_DOWN = 0x7c, \textcolor{comment}{// Ring GV down due to low traffic}}
+\DoxyCodeLine{00058         UNC\_P\_UFS\_TRANSITIONS\_IO\_P\_LIMIT = 0x7d, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00059         UNC\_P\_UFS\_TRANSITIONS\_NO\_CHANGE = 0x79, \textcolor{comment}{// Ring GV with same final and initial frequency}}
+\DoxyCodeLine{00060         UNC\_P\_UFS\_TRANSITIONS\_UP\_RING = 0x7a, \textcolor{comment}{// Ring GV up due to high ring traffic}}
+\DoxyCodeLine{00061         UNC\_P\_UFS\_TRANSITIONS\_UP\_STALL = 0x7b, \textcolor{comment}{// Ring GV up due to high core stalls}}
+\DoxyCodeLine{00062         UNC\_P\_VR\_HOT\_CYCLES = 0x42, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00063         UNC\_P\_FREQ\_BAND0\_CYCLES = 0xb, \textcolor{comment}{// Frequency Residency}}
+\DoxyCodeLine{00064         UNC\_P\_FREQ\_BAND1\_CYCLES = 0xc, \textcolor{comment}{// Frequency Residency}}
+\DoxyCodeLine{00065         UNC\_P\_FREQ\_BAND2\_CYCLES = 0xd, \textcolor{comment}{// Frequency Residency}}
+\DoxyCodeLine{00066         UNC\_P\_FREQ\_BAND3\_CYCLES = 0xe, \textcolor{comment}{// Frequency Residency}}
+\DoxyCodeLine{00067         UNC\_P\_FIVR\_PS\_PS0\_CYCLES = 0x75, \textcolor{comment}{// Cycles spent in phase-\/shedding power state 0}}
+\DoxyCodeLine{00068         UNC\_P\_FIVR\_PS\_PS1\_CYCLES = 0x76, \textcolor{comment}{// Cycles spent in phase-\/shedding power state 1}}
+\DoxyCodeLine{00069         UNC\_P\_FIVR\_PS\_PS2\_CYCLES = 0x77, \textcolor{comment}{// Cycles spent in phase-\/shedding power state 2}}
+\DoxyCodeLine{00070         UNC\_P\_FIVR\_PS\_PS3\_CYCLES = 0x78, \textcolor{comment}{// Cycles spent in phase-\/shedding power state 3}}
+\DoxyCodeLine{00071         }
+\DoxyCodeLine{00072     \};}
+\DoxyCodeLine{00073 \};}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075 \textcolor{keyword}{namespace }bdx\_unc\_p = optkit::intel::bdx\_unc\_p;}
 
 \end{DoxyCode}

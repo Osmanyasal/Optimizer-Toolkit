@@ -2,84 +2,85 @@
 \label{hswep__unc__s_8hh_source}\index{hswep\_unc\_s.hh@{hswep\_unc\_s.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
-\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::hswep\_unc\_s\{}
-\DoxyCodeLine{00004     \textcolor{keyword}{enum} hswep\_unc\_s : uint64\_t \{}
-\DoxyCodeLine{00005         BL = 0x00, \textcolor{comment}{// S-\/box Uncore clockticks}}
-\DoxyCodeLine{00006         UNC\_S\_RING\_AD\_USED = 0x1b, \textcolor{comment}{// Address ring in use. Counts number of cycles ring is being used at this ring stop}}
-\DoxyCodeLine{00007         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even ring polarity filter}}
-\DoxyCodeLine{00008         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and odd ring polarity filter}}
-\DoxyCodeLine{00009         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and even ring polarity filter}}
-\DoxyCodeLine{00010         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and odd ring polarity filter}}
-\DoxyCodeLine{00011         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x3300, \textcolor{comment}{// Up ring polarity filter}}
-\DoxyCodeLine{00012         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down ring polarity filter}}
-\DoxyCodeLine{00013         UNC\_S\_RING\_AK\_USED = 0x1c, \textcolor{comment}{// Acknowledgement ring in use. Counts number of cycles ring is being used at this ring stop}}
-\DoxyCodeLine{00014         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even ring polarity filter}}
-\DoxyCodeLine{00015         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and odd ring polarity filter}}
-\DoxyCodeLine{00016         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and even ring polarity filter}}
-\DoxyCodeLine{00017         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and odd ring polarity filter}}
-\DoxyCodeLine{00018         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x3300, \textcolor{comment}{// Up ring polarity filter}}
-\DoxyCodeLine{00019         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down ring polarity filter}}
-\DoxyCodeLine{00020         UNC\_S\_RING\_BL\_USED = 0x1d, \textcolor{comment}{// Bus or Data ring in use. Counts number of cycles ring is being used at this ring stop}}
-\DoxyCodeLine{00021         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even ring polarity filter}}
-\DoxyCodeLine{00022         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and odd ring polarity filter}}
-\DoxyCodeLine{00023         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and even ring polarity filter}}
-\DoxyCodeLine{00024         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and odd ring polarity filter}}
-\DoxyCodeLine{00025         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x3300, \textcolor{comment}{// Up ring polarity filter}}
-\DoxyCodeLine{00026         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down ring polarity filter}}
-\DoxyCodeLine{00027         UNC\_S\_RING\_IV\_USED = 0x1e, \textcolor{comment}{// Invalidate ring in use. Counts number of cycles ring is being used at this ring stop}}
-\DoxyCodeLine{00028         UNC\_S\_RING\_IV\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_IV\_USED\_\_ANY = 0x0f00, \textcolor{comment}{// Any filter}}
-\DoxyCodeLine{00029         UNC\_S\_RING\_IV\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_IV\_USED\_\_UP = 0x0300, \textcolor{comment}{// Filter on any up polarity}}
-\DoxyCodeLine{00030         UNC\_S\_RING\_IV\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_IV\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Filter on any down polarity}}
-\DoxyCodeLine{00031         UNC\_S\_RING\_BOUNCES = 0x05, \textcolor{comment}{// Number of LLC responses that bounced in the ring}}
-\DoxyCodeLine{00032         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_BOUNCES\_\_AD\_CACHE = 0x100, \textcolor{comment}{// AD\_CACHE}}
-\DoxyCodeLine{00033         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_BOUNCES\_\_AK\_CORE = 0x200, \textcolor{comment}{// Acknowledgments to core}}
-\DoxyCodeLine{00034         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_BOUNCES\_\_BL\_CORE = 0x400, \textcolor{comment}{// Data responses to core}}
-\DoxyCodeLine{00035         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_BOUNCES\_\_IV\_CORE = 0x800, \textcolor{comment}{// Snoops of processor cache}}
-\DoxyCodeLine{00036         UNC\_C\_BOUNCE\_CONTROL = 0x0a, \textcolor{comment}{// Bounce control}}
-\DoxyCodeLine{00037         UNC\_S\_RXR\_OCCUPANCY = 0x11, \textcolor{comment}{// Ingress Occupancy}}
-\DoxyCodeLine{00038         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
-\DoxyCodeLine{00039         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
-\DoxyCodeLine{00040         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
-\DoxyCodeLine{00041         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
-\DoxyCodeLine{00042         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
-\DoxyCodeLine{00043         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
-\DoxyCodeLine{00044         UNC\_S\_RXR\_BYPASS = 0x12, \textcolor{comment}{// Ingress Allocations}}
-\DoxyCodeLine{00045         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
-\DoxyCodeLine{00046         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
-\DoxyCodeLine{00047         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
-\DoxyCodeLine{00048         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
-\DoxyCodeLine{00049         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
-\DoxyCodeLine{00050         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
-\DoxyCodeLine{00051         UNC\_S\_RXR\_INSERTS = 0x13, \textcolor{comment}{// Ingress Allocations}}
-\DoxyCodeLine{00052         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
-\DoxyCodeLine{00053         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
-\DoxyCodeLine{00054         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
-\DoxyCodeLine{00055         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
-\DoxyCodeLine{00056         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
-\DoxyCodeLine{00057         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
-\DoxyCodeLine{00058         UNC\_S\_TXR\_ADS\_USED = 0x04, \textcolor{comment}{// Egress events}}
-\DoxyCodeLine{00059         UNC\_S\_TXR\_ADS\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_TXR\_ADS\_USED\_\_AD = 0x100, \textcolor{comment}{// onto AD ring}}
-\DoxyCodeLine{00060         UNC\_S\_TXR\_ADS\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_TXR\_ADS\_USED\_\_AK = 0x200, \textcolor{comment}{// Onto AK ring}}
-\DoxyCodeLine{00061         UNC\_S\_TXR\_INSERTS = 0x02, \textcolor{comment}{// Egress allocations}}
-\DoxyCodeLine{00062         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
-\DoxyCodeLine{00063         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
-\DoxyCodeLine{00064         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
-\DoxyCodeLine{00065         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
-\DoxyCodeLine{00066         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
-\DoxyCodeLine{00067         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
-\DoxyCodeLine{00068         UNC\_S\_TXR\_OCCUPANCY = 0x01, \textcolor{comment}{// Egress allocations}}
-\DoxyCodeLine{00069         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
-\DoxyCodeLine{00070         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
-\DoxyCodeLine{00071         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
-\DoxyCodeLine{00072         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
-\DoxyCodeLine{00073         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
-\DoxyCodeLine{00074         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
-\DoxyCodeLine{00075         }
-\DoxyCodeLine{00076     \};}
-\DoxyCodeLine{00077 \};}
-\DoxyCodeLine{00078 }
-\DoxyCodeLine{00079 \textcolor{keyword}{namespace }hswep\_unc\_s = optkit::intel::hswep\_unc\_s;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00004 \textcolor{keyword}{namespace }optkit::intel::hswep\_unc\_s\{}
+\DoxyCodeLine{00005     \textcolor{keyword}{enum} hswep\_unc\_s : uint64\_t \{}
+\DoxyCodeLine{00006         BL = 0x00, \textcolor{comment}{// S-\/box Uncore clockticks}}
+\DoxyCodeLine{00007         UNC\_S\_RING\_AD\_USED = 0x1b, \textcolor{comment}{// Address ring in use. Counts number of cycles ring is being used at this ring stop}}
+\DoxyCodeLine{00008         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even ring polarity filter}}
+\DoxyCodeLine{00009         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and odd ring polarity filter}}
+\DoxyCodeLine{00010         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and even ring polarity filter}}
+\DoxyCodeLine{00011         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and odd ring polarity filter}}
+\DoxyCodeLine{00012         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x3300, \textcolor{comment}{// Up ring polarity filter}}
+\DoxyCodeLine{00013         UNC\_S\_RING\_AD\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down ring polarity filter}}
+\DoxyCodeLine{00014         UNC\_S\_RING\_AK\_USED = 0x1c, \textcolor{comment}{// Acknowledgement ring in use. Counts number of cycles ring is being used at this ring stop}}
+\DoxyCodeLine{00015         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even ring polarity filter}}
+\DoxyCodeLine{00016         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and odd ring polarity filter}}
+\DoxyCodeLine{00017         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and even ring polarity filter}}
+\DoxyCodeLine{00018         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and odd ring polarity filter}}
+\DoxyCodeLine{00019         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x3300, \textcolor{comment}{// Up ring polarity filter}}
+\DoxyCodeLine{00020         UNC\_S\_RING\_AK\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down ring polarity filter}}
+\DoxyCodeLine{00021         UNC\_S\_RING\_BL\_USED = 0x1d, \textcolor{comment}{// Bus or Data ring in use. Counts number of cycles ring is being used at this ring stop}}
+\DoxyCodeLine{00022         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_EVEN = 0x100, \textcolor{comment}{// Up and Even ring polarity filter}}
+\DoxyCodeLine{00023         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP\_ODD = 0x200, \textcolor{comment}{// Up and odd ring polarity filter}}
+\DoxyCodeLine{00024         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_EVEN = 0x400, \textcolor{comment}{// Down and even ring polarity filter}}
+\DoxyCodeLine{00025         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN\_ODD = 0x800, \textcolor{comment}{// Down and odd ring polarity filter}}
+\DoxyCodeLine{00026         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_UP = 0x3300, \textcolor{comment}{// Up ring polarity filter}}
+\DoxyCodeLine{00027         UNC\_S\_RING\_BL\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_AD\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Down ring polarity filter}}
+\DoxyCodeLine{00028         UNC\_S\_RING\_IV\_USED = 0x1e, \textcolor{comment}{// Invalidate ring in use. Counts number of cycles ring is being used at this ring stop}}
+\DoxyCodeLine{00029         UNC\_S\_RING\_IV\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_IV\_USED\_\_ANY = 0x0f00, \textcolor{comment}{// Any filter}}
+\DoxyCodeLine{00030         UNC\_S\_RING\_IV\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_IV\_USED\_\_UP = 0x0300, \textcolor{comment}{// Filter on any up polarity}}
+\DoxyCodeLine{00031         UNC\_S\_RING\_IV\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_IV\_USED\_\_DOWN = 0xcc00, \textcolor{comment}{// Filter on any down polarity}}
+\DoxyCodeLine{00032         UNC\_S\_RING\_BOUNCES = 0x05, \textcolor{comment}{// Number of LLC responses that bounced in the ring}}
+\DoxyCodeLine{00033         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_BOUNCES\_\_AD\_CACHE = 0x100, \textcolor{comment}{// AD\_CACHE}}
+\DoxyCodeLine{00034         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_BOUNCES\_\_AK\_CORE = 0x200, \textcolor{comment}{// Acknowledgments to core}}
+\DoxyCodeLine{00035         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_BOUNCES\_\_BL\_CORE = 0x400, \textcolor{comment}{// Data responses to core}}
+\DoxyCodeLine{00036         UNC\_S\_RING\_BOUNCES\_\_MASK\_\_HSWEP\_UNC\_S\_RING\_BOUNCES\_\_IV\_CORE = 0x800, \textcolor{comment}{// Snoops of processor cache}}
+\DoxyCodeLine{00037         UNC\_C\_BOUNCE\_CONTROL = 0x0a, \textcolor{comment}{// Bounce control}}
+\DoxyCodeLine{00038         UNC\_S\_RXR\_OCCUPANCY = 0x11, \textcolor{comment}{// Ingress Occupancy}}
+\DoxyCodeLine{00039         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
+\DoxyCodeLine{00040         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
+\DoxyCodeLine{00041         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
+\DoxyCodeLine{00042         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
+\DoxyCodeLine{00043         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
+\DoxyCodeLine{00044         UNC\_S\_RXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
+\DoxyCodeLine{00045         UNC\_S\_RXR\_BYPASS = 0x12, \textcolor{comment}{// Ingress Allocations}}
+\DoxyCodeLine{00046         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
+\DoxyCodeLine{00047         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
+\DoxyCodeLine{00048         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
+\DoxyCodeLine{00049         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
+\DoxyCodeLine{00050         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
+\DoxyCodeLine{00051         UNC\_S\_RXR\_BYPASS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
+\DoxyCodeLine{00052         UNC\_S\_RXR\_INSERTS = 0x13, \textcolor{comment}{// Ingress Allocations}}
+\DoxyCodeLine{00053         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
+\DoxyCodeLine{00054         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
+\DoxyCodeLine{00055         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
+\DoxyCodeLine{00056         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
+\DoxyCodeLine{00057         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
+\DoxyCodeLine{00058         UNC\_S\_RXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
+\DoxyCodeLine{00059         UNC\_S\_TXR\_ADS\_USED = 0x04, \textcolor{comment}{// Egress events}}
+\DoxyCodeLine{00060         UNC\_S\_TXR\_ADS\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_TXR\_ADS\_USED\_\_AD = 0x100, \textcolor{comment}{// onto AD ring}}
+\DoxyCodeLine{00061         UNC\_S\_TXR\_ADS\_USED\_\_MASK\_\_HSWEP\_UNC\_S\_TXR\_ADS\_USED\_\_AK = 0x200, \textcolor{comment}{// Onto AK ring}}
+\DoxyCodeLine{00062         UNC\_S\_TXR\_INSERTS = 0x02, \textcolor{comment}{// Egress allocations}}
+\DoxyCodeLine{00063         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
+\DoxyCodeLine{00064         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
+\DoxyCodeLine{00065         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
+\DoxyCodeLine{00066         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
+\DoxyCodeLine{00067         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
+\DoxyCodeLine{00068         UNC\_S\_TXR\_INSERTS\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
+\DoxyCodeLine{00069         UNC\_S\_TXR\_OCCUPANCY = 0x01, \textcolor{comment}{// Egress allocations}}
+\DoxyCodeLine{00070         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_CRD = 0x0100, \textcolor{comment}{// AD credis}}
+\DoxyCodeLine{00071         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AD\_BNC = 0x0200, \textcolor{comment}{// AD bounces}}
+\DoxyCodeLine{00072         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_CRD = 0x0400, \textcolor{comment}{// BL credits}}
+\DoxyCodeLine{00073         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_BL\_BNC = 0x0800, \textcolor{comment}{// BL bounces}}
+\DoxyCodeLine{00074         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_AK = 0x1000, \textcolor{comment}{// AK}}
+\DoxyCodeLine{00075         UNC\_S\_TXR\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_S\_RXR\_BYPASS\_\_IV = 0x2000, \textcolor{comment}{// IV}}
+\DoxyCodeLine{00076         }
+\DoxyCodeLine{00077     \};}
+\DoxyCodeLine{00078 \};}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080 \textcolor{keyword}{namespace }hswep\_unc\_s = optkit::intel::hswep\_unc\_s;}
 
 \end{DoxyCode}

@@ -2,25 +2,26 @@
 \label{ivbep__unc__u_8hh_source}\index{ivbep\_unc\_u.hh@{ivbep\_unc\_u.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
-\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::ivbep\_unc\_u\{}
-\DoxyCodeLine{00004     \textcolor{keyword}{enum} ivbep\_unc\_u : uint64\_t \{}
-\DoxyCodeLine{00005         UNC\_U\_EVENT\_MSG = 0x42, \textcolor{comment}{// VLW Received}}
-\DoxyCodeLine{00006         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_DOORBELL\_RCVD = 0x800, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00007         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_INT\_PRIO = 0x1000, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00008         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_IPI\_RCVD = 0x400, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00009         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_MSI\_RCVD = 0x200, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00010         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_VLW\_RCVD = 0x100, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00011         UNC\_U\_LOCK\_CYCLES = 0x44, \textcolor{comment}{// IDI Lock/SplitLock Cycles}}
-\DoxyCodeLine{00012         UNC\_U\_PHOLD\_CYCLES = 0x45, \textcolor{comment}{// Cycles PHOLD asserts to Ack}}
-\DoxyCodeLine{00013         UNC\_U\_PHOLD\_CYCLES\_\_MASK\_\_IVBEP\_UNC\_U\_PHOLD\_CYCLES\_\_ASSERT\_TO\_ACK = 0x100, \textcolor{comment}{// Number of cycles asserted to ACK}}
-\DoxyCodeLine{00014         UNC\_U\_PHOLD\_CYCLES\_\_MASK\_\_IVBEP\_UNC\_U\_PHOLD\_CYCLES\_\_ACK\_TO\_DEASSERT = 0x100, \textcolor{comment}{// Number of cycles ACK to deassert}}
-\DoxyCodeLine{00015         UNC\_U\_RACU\_REQUESTS = 0x46, \textcolor{comment}{// RACU requests}}
-\DoxyCodeLine{00016         }
-\DoxyCodeLine{00017     \};}
-\DoxyCodeLine{00018 \};}
-\DoxyCodeLine{00019 }
-\DoxyCodeLine{00020 \textcolor{keyword}{namespace }ivbep\_unc\_u = optkit::intel::ivbep\_unc\_u;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00004 \textcolor{keyword}{namespace }optkit::intel::ivbep\_unc\_u\{}
+\DoxyCodeLine{00005     \textcolor{keyword}{enum} ivbep\_unc\_u : uint64\_t \{}
+\DoxyCodeLine{00006         UNC\_U\_EVENT\_MSG = 0x42, \textcolor{comment}{// VLW Received}}
+\DoxyCodeLine{00007         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_DOORBELL\_RCVD = 0x800, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00008         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_INT\_PRIO = 0x1000, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00009         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_IPI\_RCVD = 0x400, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00010         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_MSI\_RCVD = 0x200, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00011         UNC\_U\_EVENT\_MSG\_\_MASK\_\_IVBEP\_UNC\_U\_EVENT\_MSG\_\_VLW\_RCVD = 0x100, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00012         UNC\_U\_LOCK\_CYCLES = 0x44, \textcolor{comment}{// IDI Lock/SplitLock Cycles}}
+\DoxyCodeLine{00013         UNC\_U\_PHOLD\_CYCLES = 0x45, \textcolor{comment}{// Cycles PHOLD asserts to Ack}}
+\DoxyCodeLine{00014         UNC\_U\_PHOLD\_CYCLES\_\_MASK\_\_IVBEP\_UNC\_U\_PHOLD\_CYCLES\_\_ASSERT\_TO\_ACK = 0x100, \textcolor{comment}{// Number of cycles asserted to ACK}}
+\DoxyCodeLine{00015         UNC\_U\_PHOLD\_CYCLES\_\_MASK\_\_IVBEP\_UNC\_U\_PHOLD\_CYCLES\_\_ACK\_TO\_DEASSERT = 0x100, \textcolor{comment}{// Number of cycles ACK to deassert}}
+\DoxyCodeLine{00016         UNC\_U\_RACU\_REQUESTS = 0x46, \textcolor{comment}{// RACU requests}}
+\DoxyCodeLine{00017         }
+\DoxyCodeLine{00018     \};}
+\DoxyCodeLine{00019 \};}
+\DoxyCodeLine{00020 }
+\DoxyCodeLine{00021 \textcolor{keyword}{namespace }ivbep\_unc\_u = optkit::intel::ivbep\_unc\_u;}
 
 \end{DoxyCode}

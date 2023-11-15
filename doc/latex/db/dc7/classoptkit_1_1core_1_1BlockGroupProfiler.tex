@@ -9,43 +9,75 @@ The \mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler}{Block\+Group\+Pr
 
 {\ttfamily \#include $<$block\+\_\+group\+\_\+profiler.\+hh$>$}
 
+
+
+Inheritance diagram for optkit\+::core\+::Block\+Group\+Profiler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{d9/da0/classoptkit_1_1core_1_1BlockGroupProfiler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for optkit\+::core\+::Block\+Group\+Profiler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{d8/da3/classoptkit_1_1core_1_1BlockGroupProfiler__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_ab31f583f8e0f52d1b163d24573dc188c}\label{classoptkit_1_1core_1_1BlockGroupProfiler_ab31f583f8e0f52d1b163d24573dc188c}} 
-{\bfseries Block\+Group\+Profiler} (const char $\ast$block\+\_\+name, std\+::initializer\+\_\+list$<$ uint64\+\_\+t $>$ raw\+\_\+event\+\_\+list)
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_a29436430e3a8123d5fccf1641baea47b}\label{classoptkit_1_1core_1_1BlockGroupProfiler_a29436430e3a8123d5fccf1641baea47b}} 
+{\bfseries Block\+Group\+Profiler} (const char $\ast$\mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler_a9323771d1296aa80f32d81c396108955}{block\+\_\+name}}, std\+::vector$<$ uint64\+\_\+t $>$ raw\+\_\+event\+\_\+list, const \mbox{\hyperlink{structoptkit_1_1core_1_1ProfilerConfig}{Profiler\+Config}} \&config=\mbox{\hyperlink{structoptkit_1_1core_1_1ProfilerConfig}{Profiler\+Config}}\{true\})
 \item 
-\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_a3d21b8a6fc25306540be22642efcd684}\label{classoptkit_1_1core_1_1BlockGroupProfiler_a3d21b8a6fc25306540be22642efcd684}} 
-virtual void {\bfseries disable} ()
-\item 
-\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_ac335cce79db9be40ccc55c0cd960ffc1}\label{classoptkit_1_1core_1_1BlockGroupProfiler_ac335cce79db9be40ccc55c0cd960ffc1}} 
-virtual void {\bfseries enable} ()
-\item 
-\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_ab2b4e45a737b53ca01f665b9616146ab}\label{classoptkit_1_1core_1_1BlockGroupProfiler_ab2b4e45a737b53ca01f665b9616146ab}} 
-virtual std\+::vector$<$ uint64\+\_\+t $>$ {\bfseries read\+\_\+counter} ()
-\end{DoxyCompactItemize}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_a02d180c7a5f9a2f7a78df3e1d33e9183}\label{classoptkit_1_1core_1_1BlockGroupProfiler_a02d180c7a5f9a2f7a78df3e1d33e9183}} 
+virtual void \mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler_a02d180c7a5f9a2f7a78df3e1d33e9183}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disables this block profiler and associated events. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_a25a9024c762e7259faaeb99e61e86c3d}\label{classoptkit_1_1core_1_1BlockGroupProfiler_a25a9024c762e7259faaeb99e61e86c3d}} 
+virtual void \mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler_a25a9024c762e7259faaeb99e61e86c3d}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enables this block profiler and associated events. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler_afeff6d9d6a3277491a810deed2752ef7}{read}} () override
+\begin{DoxyCompactList}\small\item\em Reads the values of all raw\+\_\+events. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_a1da653169a4ce73f918e4c461770cbb9}\label{classoptkit_1_1core_1_1BlockGroupProfiler_a1da653169a4ce73f918e4c461770cbb9}} 
-std\+::vector$<$ int32\+\_\+t $>$ {\bfseries fd\+\_\+list}
-\item 
 \mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_a9323771d1296aa80f32d81c396108955}\label{classoptkit_1_1core_1_1BlockGroupProfiler_a9323771d1296aa80f32d81c396108955}} 
-const char $\ast$ {\bfseries block\+\_\+name}
-\end{DoxyCompactItemize}
+const char $\ast$ \mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler_a9323771d1296aa80f32d81c396108955}{block\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Used for identification of blocks and chart titles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
 The \mbox{\hyperlink{classoptkit_1_1core_1_1BlockGroupProfiler}{Block\+Group\+Profiler}} class utilizes the RAII technique to initiate and conclude profiling for a specific raw event. Profiling commences upon instantiation and persists until the current scope is exited. 
 
-Note that block profiler DOES group raw\+\_\+events! If you to monitor each event standalone please \mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{Block\+Profiler}}
+Note that block profiler DOES group raw\+\_\+events!
 
-Each raw\+\_\+event creates seperate file\+\_\+description (fd) to read data and each raw\+\_\+event is treated seperately.~\newline
- In cases where CPU performs multiplexing and since each event treated seperately, you cannot gurantee that ~\newline
- events E1 and E2 will record the same instructions.~\newline
- for more information about grouping \begin{DoxySeeAlso}{See also}
+for more information about grouping \begin{DoxySeeAlso}{See also}
 \href{https://man7.org/linux/man-pages/man2/perf_event_open.2.html}{\texttt{ https\+://man7.\+org/linux/man-\/pages/man2/perf\+\_\+event\+\_\+open.\+2.\+html}} 
 \end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classoptkit_1_1core_1_1BlockGroupProfiler_afeff6d9d6a3277491a810deed2752ef7}\label{classoptkit_1_1core_1_1BlockGroupProfiler_afeff6d9d6a3277491a810deed2752ef7}} 
+\index{optkit::core::BlockGroupProfiler@{optkit::core::BlockGroupProfiler}!read@{read}}
+\index{read@{read}!optkit::core::BlockGroupProfiler@{optkit::core::BlockGroupProfiler}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily std\+::vector$<$ uint64\+\_\+t $>$ optkit\+::core\+::\+Block\+Group\+Profiler\+::read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reads the values of all raw\+\_\+events. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$uint64\+\_\+t$>$ contains each raw\+\_\+events\textquotesingle{} pmu data. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classoptkit_1_1core_1_1BaseProfiler}{optkit\+::core\+::\+Base\+Profiler$<$ std\+::vector$<$ uint64\+\_\+t $>$ $>$}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

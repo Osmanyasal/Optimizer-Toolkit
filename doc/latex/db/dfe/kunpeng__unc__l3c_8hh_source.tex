@@ -2,25 +2,26 @@
 \label{kunpeng__unc__l3c_8hh_source}\index{kunpeng\_unc\_l3c.hh@{kunpeng\_unc\_l3c.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{keyword}{namespace }optkit::arm::kunpeng\_unc\_l3c\{}
-\DoxyCodeLine{00003     \textcolor{keyword}{enum} kunpeng\_unc\_l3c : uint64\_t \{}
-\DoxyCodeLine{00004         spill\_success = 0x21, \textcolor{comment}{// rd\_cpipe}}
-\DoxyCodeLine{00005         wr\_cpipe = 0x01, \textcolor{comment}{// Total write accesses.}}
-\DoxyCodeLine{00006         rd\_hit\_cpipe = 0x02, \textcolor{comment}{// Total read hits.}}
-\DoxyCodeLine{00007         wr\_hit\_cpipe = 0x03, \textcolor{comment}{// Total write hits.}}
-\DoxyCodeLine{00008         victim\_num = 0x04, \textcolor{comment}{// l3c precharge commands.}}
-\DoxyCodeLine{00009         rd\_spipe = 0x20, \textcolor{comment}{// Count of the number of read lines that come from this cluster of CPU core in spipe.}}
-\DoxyCodeLine{00010         wr\_spipe = 0x21, \textcolor{comment}{// Count of the number of write lines that come from this cluster of CPU core in spipe.}}
-\DoxyCodeLine{00011         rd\_hit\_spipe = 0x22, \textcolor{comment}{// Count of the number of read lines that hits in spipe of this L3C.}}
-\DoxyCodeLine{00012         wr\_hit\_spipe = 0x23, \textcolor{comment}{// Count of the number of write lines that hits in spipe of this L3C.}}
-\DoxyCodeLine{00013         back\_invalid = 0x29, \textcolor{comment}{// Count of the number of L3C back invalid operations.}}
-\DoxyCodeLine{00014         retry\_cpu = 0x40, \textcolor{comment}{// Count of the number of retry that L3C suppresses the CPU operations.}}
-\DoxyCodeLine{00015         retry\_ring = 0x41, \textcolor{comment}{// Count of the number of retry that L3C suppresses the ring operations.}}
-\DoxyCodeLine{00016         }
-\DoxyCodeLine{00017     \};}
-\DoxyCodeLine{00018 \};}
-\DoxyCodeLine{00019 }
-\DoxyCodeLine{00020 \textcolor{keyword}{namespace }kunpeng\_unc\_l3c = optkit::arm::kunpeng\_unc\_l3c;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::arm::kunpeng\_unc\_l3c\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} kunpeng\_unc\_l3c : uint64\_t \{}
+\DoxyCodeLine{00005         spill\_success = 0x21, \textcolor{comment}{// rd\_cpipe}}
+\DoxyCodeLine{00006         wr\_cpipe = 0x01, \textcolor{comment}{// Total write accesses.}}
+\DoxyCodeLine{00007         rd\_hit\_cpipe = 0x02, \textcolor{comment}{// Total read hits.}}
+\DoxyCodeLine{00008         wr\_hit\_cpipe = 0x03, \textcolor{comment}{// Total write hits.}}
+\DoxyCodeLine{00009         victim\_num = 0x04, \textcolor{comment}{// l3c precharge commands.}}
+\DoxyCodeLine{00010         rd\_spipe = 0x20, \textcolor{comment}{// Count of the number of read lines that come from this cluster of CPU core in spipe.}}
+\DoxyCodeLine{00011         wr\_spipe = 0x21, \textcolor{comment}{// Count of the number of write lines that come from this cluster of CPU core in spipe.}}
+\DoxyCodeLine{00012         rd\_hit\_spipe = 0x22, \textcolor{comment}{// Count of the number of read lines that hits in spipe of this L3C.}}
+\DoxyCodeLine{00013         wr\_hit\_spipe = 0x23, \textcolor{comment}{// Count of the number of write lines that hits in spipe of this L3C.}}
+\DoxyCodeLine{00014         back\_invalid = 0x29, \textcolor{comment}{// Count of the number of L3C back invalid operations.}}
+\DoxyCodeLine{00015         retry\_cpu = 0x40, \textcolor{comment}{// Count of the number of retry that L3C suppresses the CPU operations.}}
+\DoxyCodeLine{00016         retry\_ring = 0x41, \textcolor{comment}{// Count of the number of retry that L3C suppresses the ring operations.}}
+\DoxyCodeLine{00017         }
+\DoxyCodeLine{00018     \};}
+\DoxyCodeLine{00019 \};}
+\DoxyCodeLine{00020 }
+\DoxyCodeLine{00021 \textcolor{keyword}{namespace }kunpeng\_unc\_l3c = optkit::arm::kunpeng\_unc\_l3c;}
 
 \end{DoxyCode}

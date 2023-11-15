@@ -71,22 +71,23 @@ $(function() {
 <div class="title">qcom_krait.hh</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">namespace </span>optkit::arm::qcom_krait{</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    <span class="keyword">enum</span> qcom_krait : uint64_t {</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        L1D_CACHE_REFILL = 0x03, <span class="comment">// Level 1 data cache refill</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        L1D_CACHE_ACCESS = 0x04, <span class="comment">// Level 1 data cache access</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        INSTR_EXECUTED = 0x08, <span class="comment">// Instructions architecturally executed</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        PC_WRITE = 0x0c, <span class="comment">// Software change of PC.  Equivalent to branches</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        PC_BRANCH_MIS_PRED = 0x10, <span class="comment">// Branches mispredicted or not predicted</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        CLOCK_CYCLES = 0x11, <span class="comment">// Cycles</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        BRANCH_PRED = 0x12, <span class="comment">// Predictable branch speculatively executed</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        CPU_CYCLES = 0xff, <span class="comment">// Cycles</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    };</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;};</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>qcom_krait = optkit::arm::qcom_krait;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span>optkit::arm::qcom_krait{</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    <span class="keyword">enum</span> qcom_krait : uint64_t {</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        L1D_CACHE_REFILL = 0x03, <span class="comment">// Level 1 data cache refill</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        L1D_CACHE_ACCESS = 0x04, <span class="comment">// Level 1 data cache access</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        INSTR_EXECUTED = 0x08, <span class="comment">// Instructions architecturally executed</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        PC_WRITE = 0x0c, <span class="comment">// Software change of PC.  Equivalent to branches</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        PC_BRANCH_MIS_PRED = 0x10, <span class="comment">// Branches mispredicted or not predicted</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        CLOCK_CYCLES = 0x11, <span class="comment">// Cycles</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        BRANCH_PRED = 0x12, <span class="comment">// Predictable branch speculatively executed</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        CPU_CYCLES = 0xff, <span class="comment">// Cycles</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    };</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>qcom_krait = optkit::arm::qcom_krait;</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

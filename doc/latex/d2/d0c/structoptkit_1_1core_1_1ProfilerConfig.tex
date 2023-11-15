@@ -1,0 +1,80 @@
+\hypertarget{structoptkit_1_1core_1_1ProfilerConfig}{}\doxysection{optkit\+::core\+::Profiler\+Config Struct Reference}
+\label{structoptkit_1_1core_1_1ProfilerConfig}\index{optkit::core::ProfilerConfig@{optkit::core::ProfilerConfig}}
+
+
+perf\+\_\+event\+\_\+open and general Profiler Configs.  
+
+
+
+
+{\ttfamily \#include $<$base\+\_\+profiler.\+hh$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structoptkit_1_1core_1_1ProfilerConfig_a04fd712b2c127e57a59688b50a4600af}{Profiler\+Config}} (bool is\+\_\+grouped=false, int pid=0, int cpu=-\/1)
+\begin{DoxyCompactList}\small\item\em Construct a new Profiler Config object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structoptkit_1_1core_1_1ProfilerConfig_abbb17a18606c1190c110b497fb9ddadd}\label{structoptkit_1_1core_1_1ProfilerConfig_abbb17a18606c1190c110b497fb9ddadd}} 
+bool {\bfseries is\+\_\+grouped}
+\item 
+\mbox{\Hypertarget{structoptkit_1_1core_1_1ProfilerConfig_a25751e8b77d8f96dbbb6d60d33a98498}\label{structoptkit_1_1core_1_1ProfilerConfig_a25751e8b77d8f96dbbb6d60d33a98498}} 
+int {\bfseries pid}
+\item 
+\mbox{\Hypertarget{structoptkit_1_1core_1_1ProfilerConfig_a3539df58bbe9460bbced89a5ccd6ff3d}\label{structoptkit_1_1core_1_1ProfilerConfig_a3539df58bbe9460bbced89a5ccd6ff3d}} 
+int {\bfseries cpu}
+\item 
+\mbox{\Hypertarget{structoptkit_1_1core_1_1ProfilerConfig_ae66d068a0234c0f4651e337263f2102c}\label{structoptkit_1_1core_1_1ProfilerConfig_ae66d068a0234c0f4651e337263f2102c}} 
+perf\+\_\+event\+\_\+attr {\bfseries perf\+\_\+event\+\_\+config}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+perf\+\_\+event\+\_\+open and general Profiler Configs. 
+
+\begin{DoxySeeAlso}{See also}
+perf\+\_\+event.\+h for more \mbox{\hyperlink{namespacedetail}{detail}}. 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structoptkit_1_1core_1_1ProfilerConfig_a04fd712b2c127e57a59688b50a4600af}\label{structoptkit_1_1core_1_1ProfilerConfig_a04fd712b2c127e57a59688b50a4600af}} 
+\index{optkit::core::ProfilerConfig@{optkit::core::ProfilerConfig}!ProfilerConfig@{ProfilerConfig}}
+\index{ProfilerConfig@{ProfilerConfig}!optkit::core::ProfilerConfig@{optkit::core::ProfilerConfig}}
+\doxysubsubsection{\texorpdfstring{ProfilerConfig()}{ProfilerConfig()}}
+{\footnotesize\ttfamily optkit\+::core\+::\+Profiler\+Config\+::\+Profiler\+Config (\begin{DoxyParamCaption}\item[{bool}]{is\+\_\+grouped = {\ttfamily false},  }\item[{int}]{pid = {\ttfamily 0},  }\item[{int}]{cpu = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+Construct a new Profiler Config object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pid} & \\
+\hline
+{\em cpu} & \\
+\hline
+{\em is\+\_\+grouped} & indicates all events in the \mbox{\hyperlink{classoptkit_1_1core_1_1BlockProfiler}{Block\+Profiler}} should be groupped or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+perf\+\_\+event\+\_\+open man page
+\end{DoxySeeAlso}
+pid == 0 and cpu == -\/1 This measures the calling process/thread on any CPU.
+
+pid == 0 and cpu $>$= 0 This measures the calling process/thread only when running on the specified CPU.
+
+pid $>$ 0 and cpu == -\/1 This measures the specified process/thread on any CPU.
+
+pid $>$ 0 and cpu $>$= 0 This measures the specified process/thread only when running on the specified CPU.
+
+pid == -\/1 and cpu $>$= 0 This measures all processes/threads on the specified CPU. This requires CAP\+\_\+\+PERFMON (since Linux 5.\+8) or CAP\+\_\+\+SYS\+\_\+\+ADMIN capability or a /proc/sys/kernel/perf\+\_\+event\+\_\+paranoid value of less than 1.
+
+pid == -\/1 and cpu == -\/1 This setting is invalid and will return an error. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+base\+\_\+profiler.\+hh\item 
+base\+\_\+profiler.\+cc\end{DoxyCompactItemize}

@@ -71,20 +71,21 @@ $(function() {
 <div class="title">bdx_unc_u.hh</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;intel_priv.hh&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span>optkit::intel::bdx_unc_u{</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    <span class="keyword">enum</span> bdx_unc_u : uint64_t {</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        UNC_U_EVENT_MSG = 0x42, <span class="comment">// Virtual Logical Wire (legacy) message were received from uncore</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        UNC_U_EVENT_MSG__MASK__BDX_UNC_U_EVENT_MSG__DOORBELL_RCVD = 0x800, <span class="comment">// VLW Received</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        UNC_U_PHOLD_CYCLES = 0x45, <span class="comment">// PHOLD cycles.  Filter from source CoreID.</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        UNC_U_PHOLD_CYCLES__MASK__BDX_UNC_U_PHOLD_CYCLES__ASSERT_TO_ACK = 0x100, <span class="comment">// Cycles PHOLD Assert to Ack. Assert to ACK</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        UNC_U_RACU_REQUESTS = 0x46, <span class="comment">// Number outstanding register requests within message channel tracker</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    };</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;};</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>bdx_unc_u = optkit::intel::bdx_unc_u;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;intel_priv.hh&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span>optkit::intel::bdx_unc_u{</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keyword">enum</span> bdx_unc_u : uint64_t {</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        UNC_U_EVENT_MSG = 0x42, <span class="comment">// Virtual Logical Wire (legacy) message were received from uncore</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        UNC_U_EVENT_MSG__MASK__BDX_UNC_U_EVENT_MSG__DOORBELL_RCVD = 0x800, <span class="comment">// VLW Received</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        UNC_U_PHOLD_CYCLES = 0x45, <span class="comment">// PHOLD cycles.  Filter from source CoreID.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        UNC_U_PHOLD_CYCLES__MASK__BDX_UNC_U_PHOLD_CYCLES__ASSERT_TO_ACK = 0x100, <span class="comment">// Cycles PHOLD Assert to Ack. Assert to ACK</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        UNC_U_RACU_REQUESTS = 0x46, <span class="comment">// Number outstanding register requests within message channel tracker</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    };</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;};</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>bdx_unc_u = optkit::intel::bdx_unc_u;</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

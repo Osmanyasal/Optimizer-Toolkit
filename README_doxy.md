@@ -4,7 +4,7 @@
   </ul>
 </div>
 <div align="center">  
-  <img align="center" alt="ICON" width="500" height="450" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/b4ce6044-496d-4fac-a548-b8224d679916" />  
+  <img alt="ICON" width="500" height="450" src="https://github-production-user-asset-6210df.s3.amazonaws.com/22853419/275529647-b4ce6044-496d-4fac-a548-b8224d679916.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231115%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231115T215137Z&X-Amz-Expires=300&X-Amz-Signature=7d4aced00295fa6b8bdcded1f9304404dfa15b65febf75e17f75944d1d09f3ba&X-Amz-SignedHeaders=host&actor_id=22853419&key_id=0&repo_id=705565955" />  
 </div>  
 <div align="center">
                 <img align="center" title="C++" alt="C++" width="80px" src="https://github.com/Osmanyasal/Recursion-Engine/assets/22853419/f79dfb8b-ec5e-43a9-b3ec-7db4555b54e0" />

@@ -2,14 +2,15 @@
 \label{power10_8hh_source}\index{power10.hh@{power10.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{keyword}{namespace }optkit::ibm::power10\{}
-\DoxyCodeLine{00003     \textcolor{keyword}{enum} power10 : uint64\_t \{}
-\DoxyCodeLine{00004          = 0x45050, \textcolor{comment}{// floating point;One floating point instruction completed (fadd}}
-\DoxyCodeLine{00005         }
-\DoxyCodeLine{00006     \};}
-\DoxyCodeLine{00007 \};}
-\DoxyCodeLine{00008 }
-\DoxyCodeLine{00009 \textcolor{keyword}{namespace }power10 = optkit::ibm::power10;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::ibm::power10\{}
+\DoxyCodeLine{00004     \textcolor{keyword}{enum} power10 : uint64\_t \{}
+\DoxyCodeLine{00005          = 0x45050, \textcolor{comment}{// floating point;One floating point instruction completed (fadd}}
+\DoxyCodeLine{00006         }
+\DoxyCodeLine{00007     \};}
+\DoxyCodeLine{00008 \};}
+\DoxyCodeLine{00009 }
+\DoxyCodeLine{00010 \textcolor{keyword}{namespace }power10 = optkit::ibm::power10;}
 
 \end{DoxyCode}

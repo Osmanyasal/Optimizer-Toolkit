@@ -2,76 +2,77 @@
 \label{hswep__unc__i_8hh_source}\index{hswep\_unc\_i.hh@{hswep\_unc\_i.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
-\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::hswep\_unc\_i\{}
-\DoxyCodeLine{00004     \textcolor{keyword}{enum} hswep\_unc\_i : uint64\_t \{}
-\DoxyCodeLine{00005         UNC\_I\_CLOCKTICKS = 0x0, \textcolor{comment}{// Number of uclks in domain}}
-\DoxyCodeLine{00006         UNC\_I\_SNOOP\_RESP = 0x17, \textcolor{comment}{// Snoop responses}}
-\DoxyCodeLine{00007         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_MISS = 0x100, \textcolor{comment}{// Miss}}
-\DoxyCodeLine{00008         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_HIT\_I = 0x200, \textcolor{comment}{// Hit in Invalid state}}
-\DoxyCodeLine{00009         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_HIT\_ES = 0x400, \textcolor{comment}{// Hit in Exclusive or Shared state}}
-\DoxyCodeLine{00010         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_HIT\_M = 0x800, \textcolor{comment}{// Hit in Modified state}}
-\DoxyCodeLine{00011         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_SNPCODE = 0x1000, \textcolor{comment}{// Snoop Code}}
-\DoxyCodeLine{00012         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_SNPDATA = 0x2000, \textcolor{comment}{// Snoop Data}}
-\DoxyCodeLine{00013         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_SNPINV = 0x4000, \textcolor{comment}{// Snoop Invalid}}
-\DoxyCodeLine{00014         UNC\_I\_MISC0 = 0x14, \textcolor{comment}{// Miscellaneous events}}
-\DoxyCodeLine{00015         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_FAST\_REQ = 0x100, \textcolor{comment}{// Fastpath requests}}
-\DoxyCodeLine{00016         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_FAST\_REJ = 0x200, \textcolor{comment}{// Fastpath rejects}}
-\DoxyCodeLine{00017         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_2ND\_RD\_INSERT = 0x400, \textcolor{comment}{// Cache insert of read transaction as secondary}}
-\DoxyCodeLine{00018         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_2ND\_WR\_INSERT = 0x800, \textcolor{comment}{// Cache insert of write transaction as secondary}}
-\DoxyCodeLine{00019         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_2ND\_ATOMIC\_INSERT = 0x1000, \textcolor{comment}{// Cache insert of atomic transaction as secondary}}
-\DoxyCodeLine{00020         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_FAST\_XFER = 0x2000, \textcolor{comment}{// Fastpath trasnfers from primary to secondary}}
-\DoxyCodeLine{00021         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_PF\_ACK\_HINT = 0x4000, \textcolor{comment}{// Prefetch ack hints from primary to secondary}}
-\DoxyCodeLine{00022         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_PF\_TIMEOUT = 0x8000, \textcolor{comment}{// Prefetch timeout}}
-\DoxyCodeLine{00023         UNC\_I\_COHERENT\_OPS = 0x13, \textcolor{comment}{// Coherent operations}}
-\DoxyCodeLine{00024         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_PCIRDCUR = 0x100, \textcolor{comment}{// PCI read current}}
-\DoxyCodeLine{00025         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_CRD = 0x200, \textcolor{comment}{// CRD}}
-\DoxyCodeLine{00026         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_DRD = 0x400, \textcolor{comment}{// DRD}}
-\DoxyCodeLine{00027         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_RFO = 0x800, \textcolor{comment}{// RFO}}
-\DoxyCodeLine{00028         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_PCITOM = 0x1000, \textcolor{comment}{// DRITOM}}
-\DoxyCodeLine{00029         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_PCIDCAHINT = 0x2000, \textcolor{comment}{// PCIDCAHINT}}
-\DoxyCodeLine{00030         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_WBMTOI = 0x4000, \textcolor{comment}{// WBMTOI}}
-\DoxyCodeLine{00031         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_CFLUSH = 0x8000, \textcolor{comment}{// CFLUSH}}
-\DoxyCodeLine{00032         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY = 0x12, \textcolor{comment}{// Total write cache occupancy}}
-\DoxyCodeLine{00033         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Any source}}
-\DoxyCodeLine{00034         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Track all requests from any source port}}
-\DoxyCodeLine{00035         UNC\_I\_RXR\_AK\_INSERTS = 0xa, \textcolor{comment}{// Egress cycles full}}
-\DoxyCodeLine{00036         UNC\_I\_RXR\_BL\_DRS\_CYCLES\_FULL = 0x4, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00037         UNC\_I\_RXR\_BL\_DRS\_INSERTS = 0x1, \textcolor{comment}{// BL Ingress occupancy DRS}}
-\DoxyCodeLine{00038         UNC\_I\_RXR\_BL\_DRS\_OCCUPANCY = 0x7, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00039         UNC\_I\_RXR\_BL\_NCB\_CYCLES\_FULL = 0x5, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00040         UNC\_I\_RXR\_BL\_NCB\_INSERTS = 0x2, \textcolor{comment}{// BL Ingress occupancy NCB}}
-\DoxyCodeLine{00041         UNC\_I\_RXR\_BL\_NCB\_OCCUPANCY = 0x8, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00042         UNC\_I\_RXR\_BL\_NCS\_CYCLES\_FULL = 0x6, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00043         UNC\_I\_RXR\_BL\_NCS\_INSERTS = 0x3, \textcolor{comment}{// BL Ingress Occupancy NCS}}
-\DoxyCodeLine{00044         UNC\_I\_RXR\_BL\_NCS\_OCCUPANCY = 0x9, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00045         UNC\_I\_TRANSACTIONS = 0x16, \textcolor{comment}{// Inbound transactions}}
-\DoxyCodeLine{00046         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_READS = 0x100, \textcolor{comment}{// Reads (not including prefetches)}}
-\DoxyCodeLine{00047         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_WRITES = 0x200, \textcolor{comment}{// Writes}}
-\DoxyCodeLine{00048         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_RD\_PREF = 0x400, \textcolor{comment}{// Read prefetches}}
-\DoxyCodeLine{00049         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_WR\_PREF = 0x800, \textcolor{comment}{// Write prefetches}}
-\DoxyCodeLine{00050         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_ATOMIC = 0x1000, \textcolor{comment}{// Atomic transactions}}
-\DoxyCodeLine{00051         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_OTHER = 0x2000, \textcolor{comment}{// Other kinds of transactions}}
-\DoxyCodeLine{00052         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_ORDERINGQ = 0x4000, \textcolor{comment}{// Track request coming from port designated in IRP OrderingQ filter}}
-\DoxyCodeLine{00053         UNC\_I\_MISC1 = 0x15, \textcolor{comment}{// Misc events}}
-\DoxyCodeLine{00054         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SLOW\_I = 0x100, \textcolor{comment}{// Slow transfer of I-\/state cacheline}}
-\DoxyCodeLine{00055         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SLOW\_S = 0x200, \textcolor{comment}{// Slow transfer of S-\/state cacheline}}
-\DoxyCodeLine{00056         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SLOW\_E = 0x400, \textcolor{comment}{// Slow transfer of e-\/state cacheline}}
-\DoxyCodeLine{00057         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SLOW\_M = 0x800, \textcolor{comment}{// Slow transfer of M-\/state cacheline}}
-\DoxyCodeLine{00058         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_LOST\_FWD = 0x1000, \textcolor{comment}{// LOST forwards}}
-\DoxyCodeLine{00059         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SEC\_RCVD\_INVLD = 0x2000, \textcolor{comment}{// Received Invalid}}
-\DoxyCodeLine{00060         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SEC\_RCVD\_VLD = 0x4000, \textcolor{comment}{// Received Valid}}
-\DoxyCodeLine{00061         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_DATA\_THROTTLE = 0x8000, \textcolor{comment}{// Data throttled}}
-\DoxyCodeLine{00062         UNC\_I\_TXR\_AD\_STALL\_CREDIT\_CYCLES = 0x18, \textcolor{comment}{// No AD Egress credit stalls}}
-\DoxyCodeLine{00063         UNC\_I\_TXR\_BL\_STALL\_CREDIT\_CYCLES = 0x19, \textcolor{comment}{// No BL Egress credit stalls}}
-\DoxyCodeLine{00064         UNC\_I\_TXR\_DATA\_INSERTS\_NCB = 0xe, \textcolor{comment}{// Outbound read requests}}
-\DoxyCodeLine{00065         UNC\_I\_TXR\_DATA\_INSERTS\_NCS = 0xf, \textcolor{comment}{// Outbound read requests}}
-\DoxyCodeLine{00066         UNC\_I\_TXR\_REQUEST\_OCCUPANCY = 0xd, \textcolor{comment}{// Outbound request queue occupancy}}
-\DoxyCodeLine{00067         }
-\DoxyCodeLine{00068     \};}
-\DoxyCodeLine{00069 \};}
-\DoxyCodeLine{00070 }
-\DoxyCodeLine{00071 \textcolor{keyword}{namespace }hswep\_unc\_i = optkit::intel::hswep\_unc\_i;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00004 \textcolor{keyword}{namespace }optkit::intel::hswep\_unc\_i\{}
+\DoxyCodeLine{00005     \textcolor{keyword}{enum} hswep\_unc\_i : uint64\_t \{}
+\DoxyCodeLine{00006         UNC\_I\_CLOCKTICKS = 0x0, \textcolor{comment}{// Number of uclks in domain}}
+\DoxyCodeLine{00007         UNC\_I\_SNOOP\_RESP = 0x17, \textcolor{comment}{// Snoop responses}}
+\DoxyCodeLine{00008         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_MISS = 0x100, \textcolor{comment}{// Miss}}
+\DoxyCodeLine{00009         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_HIT\_I = 0x200, \textcolor{comment}{// Hit in Invalid state}}
+\DoxyCodeLine{00010         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_HIT\_ES = 0x400, \textcolor{comment}{// Hit in Exclusive or Shared state}}
+\DoxyCodeLine{00011         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_HIT\_M = 0x800, \textcolor{comment}{// Hit in Modified state}}
+\DoxyCodeLine{00012         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_SNPCODE = 0x1000, \textcolor{comment}{// Snoop Code}}
+\DoxyCodeLine{00013         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_SNPDATA = 0x2000, \textcolor{comment}{// Snoop Data}}
+\DoxyCodeLine{00014         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_HSWEP\_UNC\_I\_SNOOP\_RESP\_\_SNPINV = 0x4000, \textcolor{comment}{// Snoop Invalid}}
+\DoxyCodeLine{00015         UNC\_I\_MISC0 = 0x14, \textcolor{comment}{// Miscellaneous events}}
+\DoxyCodeLine{00016         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_FAST\_REQ = 0x100, \textcolor{comment}{// Fastpath requests}}
+\DoxyCodeLine{00017         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_FAST\_REJ = 0x200, \textcolor{comment}{// Fastpath rejects}}
+\DoxyCodeLine{00018         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_2ND\_RD\_INSERT = 0x400, \textcolor{comment}{// Cache insert of read transaction as secondary}}
+\DoxyCodeLine{00019         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_2ND\_WR\_INSERT = 0x800, \textcolor{comment}{// Cache insert of write transaction as secondary}}
+\DoxyCodeLine{00020         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_2ND\_ATOMIC\_INSERT = 0x1000, \textcolor{comment}{// Cache insert of atomic transaction as secondary}}
+\DoxyCodeLine{00021         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_FAST\_XFER = 0x2000, \textcolor{comment}{// Fastpath trasnfers from primary to secondary}}
+\DoxyCodeLine{00022         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_PF\_ACK\_HINT = 0x4000, \textcolor{comment}{// Prefetch ack hints from primary to secondary}}
+\DoxyCodeLine{00023         UNC\_I\_MISC0\_\_MASK\_\_HSWEP\_UNC\_I\_MISC0\_\_PF\_TIMEOUT = 0x8000, \textcolor{comment}{// Prefetch timeout}}
+\DoxyCodeLine{00024         UNC\_I\_COHERENT\_OPS = 0x13, \textcolor{comment}{// Coherent operations}}
+\DoxyCodeLine{00025         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_PCIRDCUR = 0x100, \textcolor{comment}{// PCI read current}}
+\DoxyCodeLine{00026         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_CRD = 0x200, \textcolor{comment}{// CRD}}
+\DoxyCodeLine{00027         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_DRD = 0x400, \textcolor{comment}{// DRD}}
+\DoxyCodeLine{00028         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_RFO = 0x800, \textcolor{comment}{// RFO}}
+\DoxyCodeLine{00029         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_PCITOM = 0x1000, \textcolor{comment}{// DRITOM}}
+\DoxyCodeLine{00030         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_PCIDCAHINT = 0x2000, \textcolor{comment}{// PCIDCAHINT}}
+\DoxyCodeLine{00031         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_WBMTOI = 0x4000, \textcolor{comment}{// WBMTOI}}
+\DoxyCodeLine{00032         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_HSWEP\_UNC\_I\_COHERENT\_OPS\_\_CFLUSH = 0x8000, \textcolor{comment}{// CFLUSH}}
+\DoxyCodeLine{00033         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY = 0x12, \textcolor{comment}{// Total write cache occupancy}}
+\DoxyCodeLine{00034         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Any source}}
+\DoxyCodeLine{00035         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_HSWEP\_UNC\_I\_CACHE\_ACK\_PENDING\_OCCUPANCY\_\_SOURCE = 0x200, \textcolor{comment}{// Track all requests from any source port}}
+\DoxyCodeLine{00036         UNC\_I\_RXR\_AK\_INSERTS = 0xa, \textcolor{comment}{// Egress cycles full}}
+\DoxyCodeLine{00037         UNC\_I\_RXR\_BL\_DRS\_CYCLES\_FULL = 0x4, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00038         UNC\_I\_RXR\_BL\_DRS\_INSERTS = 0x1, \textcolor{comment}{// BL Ingress occupancy DRS}}
+\DoxyCodeLine{00039         UNC\_I\_RXR\_BL\_DRS\_OCCUPANCY = 0x7, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00040         UNC\_I\_RXR\_BL\_NCB\_CYCLES\_FULL = 0x5, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00041         UNC\_I\_RXR\_BL\_NCB\_INSERTS = 0x2, \textcolor{comment}{// BL Ingress occupancy NCB}}
+\DoxyCodeLine{00042         UNC\_I\_RXR\_BL\_NCB\_OCCUPANCY = 0x8, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00043         UNC\_I\_RXR\_BL\_NCS\_CYCLES\_FULL = 0x6, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00044         UNC\_I\_RXR\_BL\_NCS\_INSERTS = 0x3, \textcolor{comment}{// BL Ingress Occupancy NCS}}
+\DoxyCodeLine{00045         UNC\_I\_RXR\_BL\_NCS\_OCCUPANCY = 0x9, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00046         UNC\_I\_TRANSACTIONS = 0x16, \textcolor{comment}{// Inbound transactions}}
+\DoxyCodeLine{00047         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_READS = 0x100, \textcolor{comment}{// Reads (not including prefetches)}}
+\DoxyCodeLine{00048         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_WRITES = 0x200, \textcolor{comment}{// Writes}}
+\DoxyCodeLine{00049         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_RD\_PREF = 0x400, \textcolor{comment}{// Read prefetches}}
+\DoxyCodeLine{00050         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_WR\_PREF = 0x800, \textcolor{comment}{// Write prefetches}}
+\DoxyCodeLine{00051         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_ATOMIC = 0x1000, \textcolor{comment}{// Atomic transactions}}
+\DoxyCodeLine{00052         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_OTHER = 0x2000, \textcolor{comment}{// Other kinds of transactions}}
+\DoxyCodeLine{00053         UNC\_I\_TRANSACTIONS\_\_MASK\_\_HSWEP\_UNC\_I\_TRANSACTIONS\_\_ORDERINGQ = 0x4000, \textcolor{comment}{// Track request coming from port designated in IRP OrderingQ filter}}
+\DoxyCodeLine{00054         UNC\_I\_MISC1 = 0x15, \textcolor{comment}{// Misc events}}
+\DoxyCodeLine{00055         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SLOW\_I = 0x100, \textcolor{comment}{// Slow transfer of I-\/state cacheline}}
+\DoxyCodeLine{00056         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SLOW\_S = 0x200, \textcolor{comment}{// Slow transfer of S-\/state cacheline}}
+\DoxyCodeLine{00057         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SLOW\_E = 0x400, \textcolor{comment}{// Slow transfer of e-\/state cacheline}}
+\DoxyCodeLine{00058         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SLOW\_M = 0x800, \textcolor{comment}{// Slow transfer of M-\/state cacheline}}
+\DoxyCodeLine{00059         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_LOST\_FWD = 0x1000, \textcolor{comment}{// LOST forwards}}
+\DoxyCodeLine{00060         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SEC\_RCVD\_INVLD = 0x2000, \textcolor{comment}{// Received Invalid}}
+\DoxyCodeLine{00061         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_SEC\_RCVD\_VLD = 0x4000, \textcolor{comment}{// Received Valid}}
+\DoxyCodeLine{00062         UNC\_I\_MISC1\_\_MASK\_\_HSWEP\_UNC\_I\_MISC1\_\_DATA\_THROTTLE = 0x8000, \textcolor{comment}{// Data throttled}}
+\DoxyCodeLine{00063         UNC\_I\_TXR\_AD\_STALL\_CREDIT\_CYCLES = 0x18, \textcolor{comment}{// No AD Egress credit stalls}}
+\DoxyCodeLine{00064         UNC\_I\_TXR\_BL\_STALL\_CREDIT\_CYCLES = 0x19, \textcolor{comment}{// No BL Egress credit stalls}}
+\DoxyCodeLine{00065         UNC\_I\_TXR\_DATA\_INSERTS\_NCB = 0xe, \textcolor{comment}{// Outbound read requests}}
+\DoxyCodeLine{00066         UNC\_I\_TXR\_DATA\_INSERTS\_NCS = 0xf, \textcolor{comment}{// Outbound read requests}}
+\DoxyCodeLine{00067         UNC\_I\_TXR\_REQUEST\_OCCUPANCY = 0xd, \textcolor{comment}{// Outbound request queue occupancy}}
+\DoxyCodeLine{00068         }
+\DoxyCodeLine{00069     \};}
+\DoxyCodeLine{00070 \};}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072 \textcolor{keyword}{namespace }hswep\_unc\_i = optkit::intel::hswep\_unc\_i;}
 
 \end{DoxyCode}

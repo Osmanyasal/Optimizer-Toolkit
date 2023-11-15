@@ -71,18 +71,19 @@ $(function() {
 <div class="title">knl_unc_edc_eclk.hh</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;intel_priv.hh&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span>optkit::intel::knl_unc_edc_eclk{</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    <span class="keyword">enum</span> knl_unc_edc_eclk : uint64_t {</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;        UNC_E_E_CLOCKTICKS = 0x00, <span class="comment">// EDC ECLK clockticks (generic counters)</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        UNC_E_RPQ_INSERTS = 0x0101, <span class="comment">// Counts total number of EDC RPQ insers</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        UNC_E_WPQ_INSERTS = 0x0102, <span class="comment">// Counts total number of EDC WPQ insers</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    };</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;};</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>knl_unc_edc_eclk = optkit::intel::knl_unc_edc_eclk;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;intel_priv.hh&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span>optkit::intel::knl_unc_edc_eclk{</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keyword">enum</span> knl_unc_edc_eclk : uint64_t {</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        UNC_E_E_CLOCKTICKS = 0x00, <span class="comment">// EDC ECLK clockticks (generic counters)</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        UNC_E_RPQ_INSERTS = 0x0101, <span class="comment">// Counts total number of EDC RPQ insers</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        UNC_E_WPQ_INSERTS = 0x0102, <span class="comment">// Counts total number of EDC WPQ insers</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    };</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;};</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>knl_unc_edc_eclk = optkit::intel::knl_unc_edc_eclk;</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

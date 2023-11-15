@@ -2,42 +2,43 @@
 \label{knl__unc__m2pcie_8hh_source}\index{knl\_unc\_m2pcie.hh@{knl\_unc\_m2pcie.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
-\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::knl\_unc\_m2pcie\{}
-\DoxyCodeLine{00004     \textcolor{keyword}{enum} knl\_unc\_m2pcie : uint64\_t \{}
-\DoxyCodeLine{00005         UNC\_M2P\_INGRESS\_CYCLES\_NE = 0x10, \textcolor{comment}{// Ingress Queue Cycles Not Empty. Counts the number of cycles when the M2PCIe Ingress is not empty}}
-\DoxyCodeLine{00006         UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_CBO\_IDI = 0x0100, \textcolor{comment}{// CBO\_IDI}}
-\DoxyCodeLine{00007         UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_CBO\_NCB = 0x0200, \textcolor{comment}{// CBO\_NCB}}
-\DoxyCodeLine{00008         UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_CBO\_NCS = 0x0400, \textcolor{comment}{// CBO\_NCS}}
-\DoxyCodeLine{00009         UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_ALL = 0x0800, \textcolor{comment}{// All}}
-\DoxyCodeLine{00010         UNC\_M2P\_EGRESS\_CYCLES\_NE = 0x23, \textcolor{comment}{// Egress (to CMS) Cycles Not Empty. Counts the number of cycles when the M2PCIe Egress is not empty}}
-\DoxyCodeLine{00011         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AD\_0 = 0x0100, \textcolor{comment}{// AD\_0}}
-\DoxyCodeLine{00012         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AK\_0 = 0x0200, \textcolor{comment}{// AK\_0}}
-\DoxyCodeLine{00013         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_BL\_0 = 0x0400, \textcolor{comment}{// BL\_0}}
-\DoxyCodeLine{00014         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AD\_1 = 0x0800, \textcolor{comment}{// AD\_1}}
-\DoxyCodeLine{00015         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AK\_1 = 0x1000, \textcolor{comment}{// AK\_1}}
-\DoxyCodeLine{00016         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_BL\_1 = 0x2000, \textcolor{comment}{// BL\_1}}
-\DoxyCodeLine{00017         UNC\_M2P\_EGRESS\_INSERTS = 0x24, \textcolor{comment}{// Egress (to CMS) Ingress. Counts the number of number of messages inserted into the  the M2PCIe Egress queue}}
-\DoxyCodeLine{00018         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AD\_0 = 0x0100, \textcolor{comment}{// AD\_0}}
-\DoxyCodeLine{00019         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AK\_0 = 0x0200, \textcolor{comment}{// AK\_0}}
-\DoxyCodeLine{00020         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_BL\_0 = 0x0400, \textcolor{comment}{// BL\_0}}
-\DoxyCodeLine{00021         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AK\_CRD\_0 = 0x0800, \textcolor{comment}{// AK\_CRD\_0}}
-\DoxyCodeLine{00022         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AD\_1 = 0x1000, \textcolor{comment}{// AD\_1}}
-\DoxyCodeLine{00023         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AK\_1 = 0x2000, \textcolor{comment}{// AK\_1}}
-\DoxyCodeLine{00024         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_BL\_1 = 0x4000, \textcolor{comment}{// BL\_1}}
-\DoxyCodeLine{00025         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AK\_CRD\_1 = 0x8000, \textcolor{comment}{// AK\_CRD\_1}}
-\DoxyCodeLine{00026         UNC\_M2P\_EGRESS\_CYCLES\_FULL = 0x25, \textcolor{comment}{// Egress (to CMS) Cycles Full. Counts the number of cycles when the M2PCIe Egress is full}}
-\DoxyCodeLine{00027         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AD\_0 = 0x0100, \textcolor{comment}{// AD\_0}}
-\DoxyCodeLine{00028         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AK\_0 = 0x0200, \textcolor{comment}{// AK\_0}}
-\DoxyCodeLine{00029         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_BL\_0 = 0x0400, \textcolor{comment}{// BL\_0}}
-\DoxyCodeLine{00030         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AD\_1 = 0x0800, \textcolor{comment}{// AD\_1}}
-\DoxyCodeLine{00031         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AK\_1 = 0x1000, \textcolor{comment}{// AK\_1}}
-\DoxyCodeLine{00032         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_BL\_1 = 0x2000, \textcolor{comment}{// BL\_1}}
-\DoxyCodeLine{00033         }
-\DoxyCodeLine{00034     \};}
-\DoxyCodeLine{00035 \};}
-\DoxyCodeLine{00036 }
-\DoxyCodeLine{00037 \textcolor{keyword}{namespace }knl\_unc\_m2pcie = optkit::intel::knl\_unc\_m2pcie;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00004 \textcolor{keyword}{namespace }optkit::intel::knl\_unc\_m2pcie\{}
+\DoxyCodeLine{00005     \textcolor{keyword}{enum} knl\_unc\_m2pcie : uint64\_t \{}
+\DoxyCodeLine{00006         UNC\_M2P\_INGRESS\_CYCLES\_NE = 0x10, \textcolor{comment}{// Ingress Queue Cycles Not Empty. Counts the number of cycles when the M2PCIe Ingress is not empty}}
+\DoxyCodeLine{00007         UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_CBO\_IDI = 0x0100, \textcolor{comment}{// CBO\_IDI}}
+\DoxyCodeLine{00008         UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_CBO\_NCB = 0x0200, \textcolor{comment}{// CBO\_NCB}}
+\DoxyCodeLine{00009         UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_CBO\_NCS = 0x0400, \textcolor{comment}{// CBO\_NCS}}
+\DoxyCodeLine{00010         UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_INGRESS\_CYCLES\_NE\_\_ALL = 0x0800, \textcolor{comment}{// All}}
+\DoxyCodeLine{00011         UNC\_M2P\_EGRESS\_CYCLES\_NE = 0x23, \textcolor{comment}{// Egress (to CMS) Cycles Not Empty. Counts the number of cycles when the M2PCIe Egress is not empty}}
+\DoxyCodeLine{00012         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AD\_0 = 0x0100, \textcolor{comment}{// AD\_0}}
+\DoxyCodeLine{00013         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AK\_0 = 0x0200, \textcolor{comment}{// AK\_0}}
+\DoxyCodeLine{00014         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_BL\_0 = 0x0400, \textcolor{comment}{// BL\_0}}
+\DoxyCodeLine{00015         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AD\_1 = 0x0800, \textcolor{comment}{// AD\_1}}
+\DoxyCodeLine{00016         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AK\_1 = 0x1000, \textcolor{comment}{// AK\_1}}
+\DoxyCodeLine{00017         UNC\_M2P\_EGRESS\_CYCLES\_NE\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_BL\_1 = 0x2000, \textcolor{comment}{// BL\_1}}
+\DoxyCodeLine{00018         UNC\_M2P\_EGRESS\_INSERTS = 0x24, \textcolor{comment}{// Egress (to CMS) Ingress. Counts the number of number of messages inserted into the  the M2PCIe Egress queue}}
+\DoxyCodeLine{00019         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AD\_0 = 0x0100, \textcolor{comment}{// AD\_0}}
+\DoxyCodeLine{00020         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AK\_0 = 0x0200, \textcolor{comment}{// AK\_0}}
+\DoxyCodeLine{00021         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_BL\_0 = 0x0400, \textcolor{comment}{// BL\_0}}
+\DoxyCodeLine{00022         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AK\_CRD\_0 = 0x0800, \textcolor{comment}{// AK\_CRD\_0}}
+\DoxyCodeLine{00023         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AD\_1 = 0x1000, \textcolor{comment}{// AD\_1}}
+\DoxyCodeLine{00024         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AK\_1 = 0x2000, \textcolor{comment}{// AK\_1}}
+\DoxyCodeLine{00025         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_BL\_1 = 0x4000, \textcolor{comment}{// BL\_1}}
+\DoxyCodeLine{00026         UNC\_M2P\_EGRESS\_INSERTS\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_INSERTS\_\_AK\_CRD\_1 = 0x8000, \textcolor{comment}{// AK\_CRD\_1}}
+\DoxyCodeLine{00027         UNC\_M2P\_EGRESS\_CYCLES\_FULL = 0x25, \textcolor{comment}{// Egress (to CMS) Cycles Full. Counts the number of cycles when the M2PCIe Egress is full}}
+\DoxyCodeLine{00028         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AD\_0 = 0x0100, \textcolor{comment}{// AD\_0}}
+\DoxyCodeLine{00029         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AK\_0 = 0x0200, \textcolor{comment}{// AK\_0}}
+\DoxyCodeLine{00030         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_BL\_0 = 0x0400, \textcolor{comment}{// BL\_0}}
+\DoxyCodeLine{00031         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AD\_1 = 0x0800, \textcolor{comment}{// AD\_1}}
+\DoxyCodeLine{00032         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_AK\_1 = 0x1000, \textcolor{comment}{// AK\_1}}
+\DoxyCodeLine{00033         UNC\_M2P\_EGRESS\_CYCLES\_FULL\_\_MASK\_\_KNL\_UNC\_M2P\_EGRESS\_CYCLES\_\_BL\_1 = 0x2000, \textcolor{comment}{// BL\_1}}
+\DoxyCodeLine{00034         }
+\DoxyCodeLine{00035     \};}
+\DoxyCodeLine{00036 \};}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038 \textcolor{keyword}{namespace }knl\_unc\_m2pcie = optkit::intel::knl\_unc\_m2pcie;}
 
 \end{DoxyCode}

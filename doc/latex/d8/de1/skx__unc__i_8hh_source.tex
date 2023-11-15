@@ -2,93 +2,94 @@
 \label{skx__unc__i_8hh_source}\index{skx\_unc\_i.hh@{skx\_unc\_i.hh}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001 \textcolor{preprocessor}{\#include <cstdint>}}
-\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
-\DoxyCodeLine{00003 \textcolor{keyword}{namespace }optkit::intel::skx\_unc\_i\{}
-\DoxyCodeLine{00004     \textcolor{keyword}{enum} skx\_unc\_i : uint64\_t \{}
-\DoxyCodeLine{00005         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY = 0xf, \textcolor{comment}{// Accumulates the number of reads and writes that are outstanding in the uncore in each cycle.  This is effectively the sum of the READ\_OCCUPANCY and WRITE\_OCCUPANCY events.}}
-\DoxyCodeLine{00006         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_SKX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Any Source}}
-\DoxyCodeLine{00007         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_SKX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_IV\_Q = 0x200, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Snoops}}
-\DoxyCodeLine{00008         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_SKX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MEM = 0x400, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Mem}}
-\DoxyCodeLine{00009         UNC\_I\_CLOCKTICKS = 0x1, \textcolor{comment}{// IRP Clocks}}
-\DoxyCodeLine{00010         UNC\_I\_COHERENT\_OPS = 0x10, \textcolor{comment}{// Counts the number of coherency related operations servied by the IRP}}
-\DoxyCodeLine{00011         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_CLFLUSH = 0x8000, \textcolor{comment}{// Coherent Ops -\/-\/ CLFlush}}
-\DoxyCodeLine{00012         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_CRD = 0x200, \textcolor{comment}{// Coherent Ops -\/-\/ CRd}}
-\DoxyCodeLine{00013         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_DRD = 0x400, \textcolor{comment}{// Coherent Ops -\/-\/ DRd}}
-\DoxyCodeLine{00014         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_PCIDCAHINT = 0x2000, \textcolor{comment}{// Coherent Ops -\/-\/ PCIDCAHin5t}}
-\DoxyCodeLine{00015         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_PCIRDCUR = 0x100, \textcolor{comment}{// Coherent Ops -\/-\/ PCIRdCur}}
-\DoxyCodeLine{00016         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_PCITOM = 0x1000, \textcolor{comment}{// Coherent Ops -\/-\/ PCIItoM}}
-\DoxyCodeLine{00017         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_RFO = 0x800, \textcolor{comment}{// Coherent Ops -\/-\/ RFO}}
-\DoxyCodeLine{00018         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_WBMTOI = 0x4000, \textcolor{comment}{// Coherent Ops -\/-\/ WbMtoI}}
-\DoxyCodeLine{00019         UNC\_I\_FAF\_FULL = 0x17, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00020         UNC\_I\_FAF\_INSERTS = 0x18, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00021         UNC\_I\_FAF\_OCCUPANCY = 0x19, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00022         UNC\_I\_FAF\_TRANSACTIONS = 0x16, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00023         UNC\_I\_IRP\_ALL = 0x1e, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00024         UNC\_I\_IRP\_ALL\_\_MASK\_\_SKX\_UNC\_I\_IRP\_ALL\_\_INBOUND\_INSERTS = 0x100, \textcolor{comment}{// -\/-\/ All Inserts Inbound (p2p + faf + cset)}}
-\DoxyCodeLine{00025         UNC\_I\_IRP\_ALL\_\_MASK\_\_SKX\_UNC\_I\_IRP\_ALL\_\_OUTBOUND\_INSERTS = 0x200, \textcolor{comment}{// -\/-\/ All Inserts Outbound (BL}}
-\DoxyCodeLine{00026         UNC\_I\_MISC0 = 0x1c, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00027         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_2ND\_ATOMIC\_INSERT = 0x1000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Atomic Transactions as Secondary}}
-\DoxyCodeLine{00028         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_2ND\_RD\_INSERT = 0x400, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Read Transactions as Secondary}}
-\DoxyCodeLine{00029         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_2ND\_WR\_INSERT = 0x800, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Write Transactions as Secondary}}
-\DoxyCodeLine{00030         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_FAST\_REJ = 0x200, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Rejects}}
-\DoxyCodeLine{00031         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_FAST\_REQ = 0x100, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Requests}}
-\DoxyCodeLine{00032         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_FAST\_XFER = 0x2000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Transfers From Primary to Secondary}}
-\DoxyCodeLine{00033         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_PF\_ACK\_HINT = 0x4000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Prefetch Ack Hints From Primary to Secondary}}
-\DoxyCodeLine{00034         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_UNKNOWN = 0x8000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/}}
-\DoxyCodeLine{00035         UNC\_I\_MISC1 = 0x1d, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00036         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_LOST\_FWD = 0x1000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Lost Forward}}
-\DoxyCodeLine{00037         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SEC\_RCVD\_INVLD = 0x2000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Received Invalid}}
-\DoxyCodeLine{00038         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SEC\_RCVD\_VLD = 0x4000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Received Valid}}
-\DoxyCodeLine{00039         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SLOW\_E = 0x400, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of E Line}}
-\DoxyCodeLine{00040         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SLOW\_I = 0x100, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of I Line}}
-\DoxyCodeLine{00041         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SLOW\_M = 0x800, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of M Line}}
-\DoxyCodeLine{00042         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SLOW\_S = 0x200, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of S Line}}
-\DoxyCodeLine{00043         UNC\_I\_P2P\_INSERTS = 0x14, \textcolor{comment}{// P2P requests from the ITC}}
-\DoxyCodeLine{00044         UNC\_I\_P2P\_OCCUPANCY = 0x15, \textcolor{comment}{// P2P B \& S Queue Occupancy}}
-\DoxyCodeLine{00045         UNC\_I\_P2P\_TRANSACTIONS = 0x13, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00046         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_CMPL = 0x800, \textcolor{comment}{// P2P Transactions -\/-\/ P2P completions}}
-\DoxyCodeLine{00047         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_LOC = 0x4000, \textcolor{comment}{// P2P Transactions -\/-\/ match if local only}}
-\DoxyCodeLine{00048         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_LOC\_AND\_TGT\_MATCH = 0x8000, \textcolor{comment}{// P2P Transactions -\/-\/ match if local and target matches}}
-\DoxyCodeLine{00049         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_MSG = 0x400, \textcolor{comment}{// P2P Transactions -\/-\/ P2P Message}}
-\DoxyCodeLine{00050         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_RD = 0x100, \textcolor{comment}{// P2P Transactions -\/-\/ P2P reads}}
-\DoxyCodeLine{00051         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_REM = 0x1000, \textcolor{comment}{// P2P Transactions -\/-\/ Match if remote only}}
-\DoxyCodeLine{00052         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_REM\_AND\_TGT\_MATCH = 0x2000, \textcolor{comment}{// P2P Transactions -\/-\/ match if remote and target matches}}
-\DoxyCodeLine{00053         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_WR = 0x200, \textcolor{comment}{// P2P Transactions -\/-\/ P2P Writes}}
-\DoxyCodeLine{00054         UNC\_I\_SNOOP\_RESP = 0x12, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00055         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_ES = 0x400, \textcolor{comment}{// Snoop Responses -\/-\/ Hit E or S}}
-\DoxyCodeLine{00056         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_I = 0x200, \textcolor{comment}{// Snoop Responses -\/-\/ Hit I}}
-\DoxyCodeLine{00057         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_M = 0x800, \textcolor{comment}{// Snoop Responses -\/-\/ Hit M}}
-\DoxyCodeLine{00058         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_MISS = 0x100, \textcolor{comment}{// Snoop Responses -\/-\/ Miss}}
-\DoxyCodeLine{00059         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_SNPCODE = 0x1000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpCode}}
-\DoxyCodeLine{00060         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_SNPDATA = 0x2000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpData}}
-\DoxyCodeLine{00061         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_SNPINV = 0x4000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpInv}}
-\DoxyCodeLine{00062         UNC\_I\_TRANSACTIONS = 0x11, \textcolor{comment}{// Counts the number of Inbound transactions from the IRP to the Uncore.  This can be filtered based on request type in addition to the source queue.  Note the special filtering equation.  We do OR-\/reduction on the request type.  If the SOURCE bit is set}}
-\DoxyCodeLine{00063         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_ATOMIC = 0x1000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Atomic}}
-\DoxyCodeLine{00064         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_OTHER = 0x2000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Other}}
-\DoxyCodeLine{00065         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_RD\_PREF = 0x400, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Read Prefetches}}
-\DoxyCodeLine{00066         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_READS = 0x100, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Reads}}
-\DoxyCodeLine{00067         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_WRITES = 0x200, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Writes}}
-\DoxyCodeLine{00068         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_WR\_PREF = 0x800, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Write Prefetches}}
-\DoxyCodeLine{00069         UNC\_I\_TXC\_AK\_INSERTS = 0xb, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00070         UNC\_I\_TXC\_BL\_DRS\_CYCLES\_FULL = 0x5, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00071         UNC\_I\_TXC\_BL\_DRS\_INSERTS = 0x2, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00072         UNC\_I\_TXC\_BL\_DRS\_OCCUPANCY = 0x8, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00073         UNC\_I\_TXC\_BL\_NCB\_CYCLES\_FULL = 0x6, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00074         UNC\_I\_TXC\_BL\_NCB\_INSERTS = 0x3, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00075         UNC\_I\_TXC\_BL\_NCB\_OCCUPANCY = 0x9, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00076         UNC\_I\_TXC\_BL\_NCS\_CYCLES\_FULL = 0x7, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00077         UNC\_I\_TXC\_BL\_NCS\_INSERTS = 0x4, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00078         UNC\_I\_TXC\_BL\_NCS\_OCCUPANCY = 0xa, \textcolor{comment}{// TBD}}
-\DoxyCodeLine{00079         UNC\_I\_TXR2\_AD\_STALL\_CREDIT\_CYCLES = 0x1a, \textcolor{comment}{// Counts the number times when it is not possible to issue a request to the R2PCIe because there are no AD Egress Credits available.}}
-\DoxyCodeLine{00080         UNC\_I\_TXR2\_BL\_STALL\_CREDIT\_CYCLES = 0x1b, \textcolor{comment}{// Counts the number times when it is not possible to issue data to the R2PCIe because there are no BL Egress Credits available.}}
-\DoxyCodeLine{00081         UNC\_I\_TXS\_DATA\_INSERTS\_NCB = 0xd, \textcolor{comment}{// Counts the number of requests issued to the switch (towards the devices).}}
-\DoxyCodeLine{00082         UNC\_I\_TXS\_DATA\_INSERTS\_NCS = 0xe, \textcolor{comment}{// Counts the number of requests issued to the switch (towards the devices).}}
-\DoxyCodeLine{00083         UNC\_I\_TXS\_REQUEST\_OCCUPANCY = 0xc, \textcolor{comment}{// Accumultes the number of outstanding outbound requests from the IRP to the switch (towards the devices).  This can be used in conjuection with the allocations event in order to calculate average latency of outbound requests.}}
-\DoxyCodeLine{00084         }
-\DoxyCodeLine{00085     \};}
-\DoxyCodeLine{00086 \};}
-\DoxyCodeLine{00087 }
-\DoxyCodeLine{00088 \textcolor{keyword}{namespace }skx\_unc\_i = optkit::intel::skx\_unc\_i;}
+\DoxyCodeLine{00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{00002 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{00003 \textcolor{preprocessor}{\#include <intel\_priv.hh>}}
+\DoxyCodeLine{00004 \textcolor{keyword}{namespace }optkit::intel::skx\_unc\_i\{}
+\DoxyCodeLine{00005     \textcolor{keyword}{enum} skx\_unc\_i : uint64\_t \{}
+\DoxyCodeLine{00006         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY = 0xf, \textcolor{comment}{// Accumulates the number of reads and writes that are outstanding in the uncore in each cycle.  This is effectively the sum of the READ\_OCCUPANCY and WRITE\_OCCUPANCY events.}}
+\DoxyCodeLine{00007         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_SKX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_ANY = 0x100, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Any Source}}
+\DoxyCodeLine{00008         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_SKX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_IV\_Q = 0x200, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Snoops}}
+\DoxyCodeLine{00009         UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MASK\_\_SKX\_UNC\_I\_CACHE\_TOTAL\_OCCUPANCY\_\_MEM = 0x400, \textcolor{comment}{// Total Write Cache Occupancy -\/-\/ Mem}}
+\DoxyCodeLine{00010         UNC\_I\_CLOCKTICKS = 0x1, \textcolor{comment}{// IRP Clocks}}
+\DoxyCodeLine{00011         UNC\_I\_COHERENT\_OPS = 0x10, \textcolor{comment}{// Counts the number of coherency related operations servied by the IRP}}
+\DoxyCodeLine{00012         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_CLFLUSH = 0x8000, \textcolor{comment}{// Coherent Ops -\/-\/ CLFlush}}
+\DoxyCodeLine{00013         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_CRD = 0x200, \textcolor{comment}{// Coherent Ops -\/-\/ CRd}}
+\DoxyCodeLine{00014         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_DRD = 0x400, \textcolor{comment}{// Coherent Ops -\/-\/ DRd}}
+\DoxyCodeLine{00015         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_PCIDCAHINT = 0x2000, \textcolor{comment}{// Coherent Ops -\/-\/ PCIDCAHin5t}}
+\DoxyCodeLine{00016         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_PCIRDCUR = 0x100, \textcolor{comment}{// Coherent Ops -\/-\/ PCIRdCur}}
+\DoxyCodeLine{00017         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_PCITOM = 0x1000, \textcolor{comment}{// Coherent Ops -\/-\/ PCIItoM}}
+\DoxyCodeLine{00018         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_RFO = 0x800, \textcolor{comment}{// Coherent Ops -\/-\/ RFO}}
+\DoxyCodeLine{00019         UNC\_I\_COHERENT\_OPS\_\_MASK\_\_SKX\_UNC\_I\_COHERENT\_OPS\_\_WBMTOI = 0x4000, \textcolor{comment}{// Coherent Ops -\/-\/ WbMtoI}}
+\DoxyCodeLine{00020         UNC\_I\_FAF\_FULL = 0x17, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00021         UNC\_I\_FAF\_INSERTS = 0x18, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00022         UNC\_I\_FAF\_OCCUPANCY = 0x19, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00023         UNC\_I\_FAF\_TRANSACTIONS = 0x16, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00024         UNC\_I\_IRP\_ALL = 0x1e, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00025         UNC\_I\_IRP\_ALL\_\_MASK\_\_SKX\_UNC\_I\_IRP\_ALL\_\_INBOUND\_INSERTS = 0x100, \textcolor{comment}{// -\/-\/ All Inserts Inbound (p2p + faf + cset)}}
+\DoxyCodeLine{00026         UNC\_I\_IRP\_ALL\_\_MASK\_\_SKX\_UNC\_I\_IRP\_ALL\_\_OUTBOUND\_INSERTS = 0x200, \textcolor{comment}{// -\/-\/ All Inserts Outbound (BL}}
+\DoxyCodeLine{00027         UNC\_I\_MISC0 = 0x1c, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00028         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_2ND\_ATOMIC\_INSERT = 0x1000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Atomic Transactions as Secondary}}
+\DoxyCodeLine{00029         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_2ND\_RD\_INSERT = 0x400, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Read Transactions as Secondary}}
+\DoxyCodeLine{00030         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_2ND\_WR\_INSERT = 0x800, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Cache Inserts of Write Transactions as Secondary}}
+\DoxyCodeLine{00031         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_FAST\_REJ = 0x200, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Rejects}}
+\DoxyCodeLine{00032         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_FAST\_REQ = 0x100, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Requests}}
+\DoxyCodeLine{00033         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_FAST\_XFER = 0x2000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Fastpath Transfers From Primary to Secondary}}
+\DoxyCodeLine{00034         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_PF\_ACK\_HINT = 0x4000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/ Prefetch Ack Hints From Primary to Secondary}}
+\DoxyCodeLine{00035         UNC\_I\_MISC0\_\_MASK\_\_SKX\_UNC\_I\_MISC0\_\_UNKNOWN = 0x8000, \textcolor{comment}{// Misc Events -\/ Set 0 -\/-\/}}
+\DoxyCodeLine{00036         UNC\_I\_MISC1 = 0x1d, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00037         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_LOST\_FWD = 0x1000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Lost Forward}}
+\DoxyCodeLine{00038         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SEC\_RCVD\_INVLD = 0x2000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Received Invalid}}
+\DoxyCodeLine{00039         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SEC\_RCVD\_VLD = 0x4000, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Received Valid}}
+\DoxyCodeLine{00040         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SLOW\_E = 0x400, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of E Line}}
+\DoxyCodeLine{00041         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SLOW\_I = 0x100, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of I Line}}
+\DoxyCodeLine{00042         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SLOW\_M = 0x800, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of M Line}}
+\DoxyCodeLine{00043         UNC\_I\_MISC1\_\_MASK\_\_SKX\_UNC\_I\_MISC1\_\_SLOW\_S = 0x200, \textcolor{comment}{// Misc Events -\/ Set 1 -\/-\/ Slow Transfer of S Line}}
+\DoxyCodeLine{00044         UNC\_I\_P2P\_INSERTS = 0x14, \textcolor{comment}{// P2P requests from the ITC}}
+\DoxyCodeLine{00045         UNC\_I\_P2P\_OCCUPANCY = 0x15, \textcolor{comment}{// P2P B \& S Queue Occupancy}}
+\DoxyCodeLine{00046         UNC\_I\_P2P\_TRANSACTIONS = 0x13, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00047         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_CMPL = 0x800, \textcolor{comment}{// P2P Transactions -\/-\/ P2P completions}}
+\DoxyCodeLine{00048         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_LOC = 0x4000, \textcolor{comment}{// P2P Transactions -\/-\/ match if local only}}
+\DoxyCodeLine{00049         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_LOC\_AND\_TGT\_MATCH = 0x8000, \textcolor{comment}{// P2P Transactions -\/-\/ match if local and target matches}}
+\DoxyCodeLine{00050         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_MSG = 0x400, \textcolor{comment}{// P2P Transactions -\/-\/ P2P Message}}
+\DoxyCodeLine{00051         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_RD = 0x100, \textcolor{comment}{// P2P Transactions -\/-\/ P2P reads}}
+\DoxyCodeLine{00052         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_REM = 0x1000, \textcolor{comment}{// P2P Transactions -\/-\/ Match if remote only}}
+\DoxyCodeLine{00053         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_REM\_AND\_TGT\_MATCH = 0x2000, \textcolor{comment}{// P2P Transactions -\/-\/ match if remote and target matches}}
+\DoxyCodeLine{00054         UNC\_I\_P2P\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_P2P\_TRANSACTIONS\_\_WR = 0x200, \textcolor{comment}{// P2P Transactions -\/-\/ P2P Writes}}
+\DoxyCodeLine{00055         UNC\_I\_SNOOP\_RESP = 0x12, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00056         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_ES = 0x400, \textcolor{comment}{// Snoop Responses -\/-\/ Hit E or S}}
+\DoxyCodeLine{00057         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_I = 0x200, \textcolor{comment}{// Snoop Responses -\/-\/ Hit I}}
+\DoxyCodeLine{00058         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_HIT\_M = 0x800, \textcolor{comment}{// Snoop Responses -\/-\/ Hit M}}
+\DoxyCodeLine{00059         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_MISS = 0x100, \textcolor{comment}{// Snoop Responses -\/-\/ Miss}}
+\DoxyCodeLine{00060         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_SNPCODE = 0x1000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpCode}}
+\DoxyCodeLine{00061         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_SNPDATA = 0x2000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpData}}
+\DoxyCodeLine{00062         UNC\_I\_SNOOP\_RESP\_\_MASK\_\_SKX\_UNC\_I\_SNOOP\_RESP\_\_SNPINV = 0x4000, \textcolor{comment}{// Snoop Responses -\/-\/ SnpInv}}
+\DoxyCodeLine{00063         UNC\_I\_TRANSACTIONS = 0x11, \textcolor{comment}{// Counts the number of Inbound transactions from the IRP to the Uncore.  This can be filtered based on request type in addition to the source queue.  Note the special filtering equation.  We do OR-\/reduction on the request type.  If the SOURCE bit is set}}
+\DoxyCodeLine{00064         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_ATOMIC = 0x1000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Atomic}}
+\DoxyCodeLine{00065         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_OTHER = 0x2000, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Other}}
+\DoxyCodeLine{00066         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_RD\_PREF = 0x400, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Read Prefetches}}
+\DoxyCodeLine{00067         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_READS = 0x100, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Reads}}
+\DoxyCodeLine{00068         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_WRITES = 0x200, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Writes}}
+\DoxyCodeLine{00069         UNC\_I\_TRANSACTIONS\_\_MASK\_\_SKX\_UNC\_I\_TRANSACTIONS\_\_WR\_PREF = 0x800, \textcolor{comment}{// Inbound Transaction Count -\/-\/ Write Prefetches}}
+\DoxyCodeLine{00070         UNC\_I\_TXC\_AK\_INSERTS = 0xb, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00071         UNC\_I\_TXC\_BL\_DRS\_CYCLES\_FULL = 0x5, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00072         UNC\_I\_TXC\_BL\_DRS\_INSERTS = 0x2, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00073         UNC\_I\_TXC\_BL\_DRS\_OCCUPANCY = 0x8, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00074         UNC\_I\_TXC\_BL\_NCB\_CYCLES\_FULL = 0x6, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00075         UNC\_I\_TXC\_BL\_NCB\_INSERTS = 0x3, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00076         UNC\_I\_TXC\_BL\_NCB\_OCCUPANCY = 0x9, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00077         UNC\_I\_TXC\_BL\_NCS\_CYCLES\_FULL = 0x7, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00078         UNC\_I\_TXC\_BL\_NCS\_INSERTS = 0x4, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00079         UNC\_I\_TXC\_BL\_NCS\_OCCUPANCY = 0xa, \textcolor{comment}{// TBD}}
+\DoxyCodeLine{00080         UNC\_I\_TXR2\_AD\_STALL\_CREDIT\_CYCLES = 0x1a, \textcolor{comment}{// Counts the number times when it is not possible to issue a request to the R2PCIe because there are no AD Egress Credits available.}}
+\DoxyCodeLine{00081         UNC\_I\_TXR2\_BL\_STALL\_CREDIT\_CYCLES = 0x1b, \textcolor{comment}{// Counts the number times when it is not possible to issue data to the R2PCIe because there are no BL Egress Credits available.}}
+\DoxyCodeLine{00082         UNC\_I\_TXS\_DATA\_INSERTS\_NCB = 0xd, \textcolor{comment}{// Counts the number of requests issued to the switch (towards the devices).}}
+\DoxyCodeLine{00083         UNC\_I\_TXS\_DATA\_INSERTS\_NCS = 0xe, \textcolor{comment}{// Counts the number of requests issued to the switch (towards the devices).}}
+\DoxyCodeLine{00084         UNC\_I\_TXS\_REQUEST\_OCCUPANCY = 0xc, \textcolor{comment}{// Accumultes the number of outstanding outbound requests from the IRP to the switch (towards the devices).  This can be used in conjuection with the allocations event in order to calculate average latency of outbound requests.}}
+\DoxyCodeLine{00085         }
+\DoxyCodeLine{00086     \};}
+\DoxyCodeLine{00087 \};}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089 \textcolor{keyword}{namespace }skx\_unc\_i = optkit::intel::skx\_unc\_i;}
 
 \end{DoxyCode}

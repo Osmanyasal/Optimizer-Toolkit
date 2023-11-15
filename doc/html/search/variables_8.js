@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['number_5fbuffer_853',['number_buffer',['../d1/d62/classdetail_1_1serializer.html#ace18a55b8304310fee309d31e54a3e27',1,'detail::serializer']]]
+  ['m_5fit_886',['m_it',['../d7/d0e/classdetail_1_1iter__impl.html#a79b7b8c6b778d9f7e76b086b45d9ea2e',1,'detail::iter_impl']]],
+  ['m_5fvalue_887',['m_value',['../d1/d72/classbasic__json.html#acd0f167153f047a246b51858d7c921b8',1,'basic_json']]]
 ];
