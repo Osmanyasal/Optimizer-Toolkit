@@ -5,6 +5,7 @@
 #include <query.hh>
 #include <block_profiler.hh>
 #include <block_group_profiler.hh>
+#include <rapl_profiler.hh>
 #include <pmu_event_manager.hh>
 
 #endif

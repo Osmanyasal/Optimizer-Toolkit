@@ -18,11 +18,11 @@ namespace optkit::core
      *
      *        for more information about grouping @see https://man7.org/linux/man-pages/man2/perf_event_open.2.html
      */
-    class BlockGroupProfiler : public BaseProfiler
+    class BlockGroupProfiler : public BaseProfiler<std::vector<uint64_t>>
     {
         
     public:
-        BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, ProfilerConfig config = ProfilerConfig{true});
+        BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig& config = ProfilerConfig{true});
         virtual ~BlockGroupProfiler();
         /**
          * @brief Disables this block profiler and associated events

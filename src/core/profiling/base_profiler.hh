@@ -55,18 +55,27 @@ struct ProfilerConfig
     perf_event_attr perf_event_config;
 };
 
+struct RaplConfig
+{
+
+};
+
+template<typename T>
 class BaseProfiler
 {
 public:
-    BaseProfiler(const ProfilerConfig& config) : config{config} {}
+    BaseProfiler(const ProfilerConfig &profiler_config) : profiler_config{profiler_config} {}
+    BaseProfiler(const RaplConfig &rapl_config) : rapl_config{rapl_config} {}
+
     virtual ~BaseProfiler() {}
 
     virtual void disable() = 0;
     virtual void enable() = 0;
-    virtual std::vector<uint64_t> read() = 0;
+    virtual T read() = 0;
 
 protected:
-    ProfilerConfig config;
+    ProfilerConfig profiler_config;
+    RaplConfig rapl_config;
 };
 
 } // namespace optkit::core

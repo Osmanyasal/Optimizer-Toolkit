@@ -20,10 +20,10 @@ namespace optkit::core
      *        events E1 and E2 will record the same instructions.<br>
      *        for more information about grouping @see https://man7.org/linux/man-pages/man2/perf_event_open.2.html
      */
-    class BlockProfiler : public BaseProfiler
+    class BlockProfiler : public BaseProfiler <std::vector<uint64_t>>
     {
     public:
-        BlockProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, ProfilerConfig config = ProfilerConfig{false});
+        BlockProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig& config = ProfilerConfig{false});
         virtual ~BlockProfiler();
         /**
          * @brief Disables this block profiler and associated events
