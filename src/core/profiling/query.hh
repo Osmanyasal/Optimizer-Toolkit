@@ -93,7 +93,7 @@ namespace optkit::core
          * @brief Prints core_id / socket_id information
          * @return std::unordered_map<int32_t,std::vector<int32_t>> package - # of cores
          */
-        static std::unordered_map<int32_t, std::vector<int32_t>> detect_packages();
+        static std::map<int32_t, std::vector<int32_t>> detect_packages();
 
     private:
         Query();

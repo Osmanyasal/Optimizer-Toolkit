@@ -184,9 +184,9 @@ namespace optkit::core
         return avail_pmu_ids;
     }
 
-    std::unordered_map<int32_t, std::vector<int32_t>> Query::detect_packages()
+    std::map<int32_t, std::vector<int32_t>> Query::detect_packages()
     {
-        std::unordered_map<int32_t, std::vector<int32_t>> result;
+        std::map<int32_t, std::vector<int32_t>> result;
 
         int last_package_id = -1;
         int core_id = 0;
