@@ -22,10 +22,16 @@ SANDBOX_DIR := ./sandbox/proj1
 SRC_DIR := ./src
 EXAMPLES_DIR := ./examples
 CORE_DIR := $(SRC_DIR)/core
-EVENTS_DIR := $(CORE_DIR)/events
+CORE_EVENTS_DIR := $(CORE_DIR)/events
 CORE_PROFILING := $(CORE_DIR)/profiling
+CORE_RECIPIES := $(CORE_DIR)/recipies
+
 PROFILING_RAPL := $(CORE_PROFILING)/rapl
 PROFILING_PMU := $(CORE_PROFILING)/pmu
+
+RECIPIE_RAPL := $(CORE_RECIPIES)/rapl
+RECIPIE_PMU := $(CORE_RECIPIES)/pmu
+
 PLATFORMS_DIR := $(SRC_DIR)/platforms
 IMGUI_OPENGL_DIR := $(PLATFORMS_DIR)/imgui_opengl3_glfw
 UTILS_DIR := $(SRC_DIR)/utils
@@ -60,8 +66,11 @@ DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ 
 INCLUDE := -I$(SRC_DIR)\
 		   -I$(EXAMPLES_DIR)\
            -I$(CORE_DIR)\
-		   -I$(EVENTS_DIR)\
+		   -I$(CORE_EVENTS_DIR)\
 		   -I$(CORE_PROFILING)\
+		   -I$(CORE_RECIPIES)\
+		   -I$(RECIPIE_PMU)\
+		   -I$(RECIPIE_RAPL)\
 		   -I$(PROFILING_PMU)\
 		   -I$(PROFILING_RAPL)\
            -I$(PLATFORMS_DIR)\
@@ -83,7 +92,7 @@ EXECUTABLE := optimizer_toolkit.core
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(EXAMPLES_DIR) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
-all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop 
+all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop 
 	@if [ ! -d "$(BIN)/fonts" ]; then \
         mkdir -p "$(BIN)/fonts"; \
         cp -R ./lib/fonts/* "$(BIN)/fonts"; \
@@ -129,7 +138,7 @@ run: all
 	@echo "🚀 Executing..."
 	cd $(BIN); ./$(EXECUTABLE)
 
-${EVENTS_DIR}/all_set:
+${CORE_EVENTS_DIR}/all_set:
 	@echo "⛏️ Exporting events from libpfm4"
 	cd $(UTILS_DIR) && python3 pmu_parser.py $(shell find ${LIB_PFM_PATH}/lib/events -type f \( -name "intel*.h" -or -name "amd*.h" -or -name "arm*.h" -or -name "power*.h" \) -exec echo "../../{}" \;)
 
@@ -157,7 +166,7 @@ clean:
 	@echo "🧹 Bin Directory cleaned!"
 
 clean_events:
-	rm -rf ${EVENTS_DIR}/*
+	rm -rf ${CORE_EVENTS_DIR}/*
 	@echo "🧹 Events cleaned!"
 
 clean_libs:
