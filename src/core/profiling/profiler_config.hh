@@ -1,7 +1,9 @@
 #ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PROFILER_CONFIG_HH
 #define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PROFILER_CONFIG_HH
 
-#include <linux/perf_event.h>
+#include <cstring>
+#include <linux/perf_event.h> // for pmu monitoring
+#include <rapl.hh>  // for rapl monitoring
 
 namespace optkit::core
 {
@@ -54,6 +56,13 @@ namespace optkit::core
 
     struct RaplConfig
     {
+        /**
+         * @brief Value must be the combination of RaplDomains.
+         *        e.g RaplDomain::DRAM | RaplDomain::Core
+         * @param monitor_domain 
+         */
+        RaplConfig(int monitor_domain = (int)RaplDomain::ALL);
+        int monitor_domain;
     };
 
 } // namespace optkit::core

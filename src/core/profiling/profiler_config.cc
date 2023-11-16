@@ -1,5 +1,5 @@
 
-#include <base_profiler.hh>
+#include <profiler_config.hh>
 
 namespace optkit::core
 {
@@ -14,6 +14,10 @@ namespace optkit::core
         perf_event_config.exclude_hv = 1;
         if (is_grouped)
             perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
+    }
+ 
+    RaplConfig::RaplConfig(int monitor_domain) : monitor_domain{monitor_domain}
+    {
     }
 
 } // namespace optkit::core

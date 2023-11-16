@@ -12,14 +12,14 @@ namespace optkit::core
      */
     enum class RaplDomain
     {
-        BEGIN,
+        BEGIN = 0,
 
-        PP0,     // CORES
-        PP1,     // INTEGRATED GPU
-        PACKAGE, // PP0 + PP1 + SYSTEM AGENT + LAST_LEVEL_CACHE MEMORY CONTROLLER
-        PSYS,    // PACKAGE + eDRAM + PCH
-        DRAM,    // DRAM DIMM 0 and DRAM DIMM 1
-
+        PP0 = 1,            // CORES
+        PP1 = (1 << 1),     // INTEGRATED GPU
+        PACKAGE = (1 << 2), // PP0 + PP1 + SYSTEM AGENT + LAST_LEVEL_CACHE MEMORY CONTROLLER
+        PSYS = (1 << 3),    // PACKAGE + eDRAM + PCH
+        DRAM = (1 << 4),    // DRAM DIMM 0 and DRAM DIMM 1
+        ALL = (11111),      // All domains
         END,
 
     };
