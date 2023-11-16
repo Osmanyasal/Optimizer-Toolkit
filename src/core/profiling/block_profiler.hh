@@ -60,6 +60,7 @@ namespace optkit::core
 
     private:
         std::chrono::high_resolution_clock::time_point start;
+        ProfilerConfig profiler_config;
     };
  
 } // namespace optkit::core

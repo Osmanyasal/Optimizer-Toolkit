@@ -4,11 +4,10 @@
 #include <ostream>
 #include <unordered_map>
 #include <base_profiler.hh>
-#include <core_rapl.hh> 
+#include <core_rapl.hh>
 
 namespace optkit::core
 {
- 
 
     class RaplProfiler : public BaseProfiler<std::unordered_map<RaplDomain, uint32_t>>
     {
@@ -35,15 +34,15 @@ namespace optkit::core
          * @return std::vector<uint64_t> contains each raw_events' pmu data.
          */
         virtual std::unordered_map<RaplDomain, uint32_t> read() override;
+
+    private:
+        RaplConfig rapl_config;
     };
-
-    // Overloading << for unordered_map with RaplDomain as keys
-    std::ostream &operator<<(std::ostream &os, const std::unordered_map<RaplDomain, uint32_t> &map);
-
-    // Overloading << for RaplDomain enum class
-    std::ostream &
-    operator<<(std::ostream &os, RaplDomain raplDomain);
-
+ 
 } // namespace optkit::core
+
+// Overloading << for unordered_map with RaplDomain as keys
+std::ostream &operator<<(std::ostream &os, const std::unordered_map<optkit::core::RaplDomain, uint32_t> &map);
+ 
 
 #endif

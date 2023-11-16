@@ -3,7 +3,7 @@
 namespace optkit::core
 {
 
-    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig& config) : BaseProfiler{config}, block_name{block_name}, group_leader{-1}, is_active{true}
+    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config) : profiler_config{config}, block_name{block_name}, group_leader{-1}, is_active{true}
     {
 
         PMUEventManager::disable_all_events();
