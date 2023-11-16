@@ -31,6 +31,6 @@
 // FUNCTION DECLERATIONS
 std::string generateGUID();
 
-std::string read_file(std::string location);
+std::string read_file(std::string location, bool is_verbose = true);
 
 #endif

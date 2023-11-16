@@ -13,6 +13,9 @@ int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
 
+    optkit::core::Query::detect_packages();
+    exit(0);
+
     int32_t paranoid = optkit.paranoid();
 
     // exit(0);

@@ -184,6 +184,40 @@ namespace optkit::core
         return avail_pmu_ids;
     }
 
+    void Query::detect_packages(){
+
+        int total_package_count = 0;
+
+        int last_package_id = -1;
+        int core_id = 0;
+        while(true){
+            try
+            {
+                std::string output = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core_id) + "/topology/physical_package_id",false);
+                int package_id = std::stoi(output);
+                if(package_id > last_package_id){
+                    total_package_count++;
+                    last_package_id = package_id;
+                }
+
+                std::cout << core_id << " (" << package_id << ")";
+                if(core_id % 8 == 7)
+                    std::cout << std::endl;
+                else
+                    std::cout << " ";
+
+                core_id++;
+            }
+            catch(const std::exception& e)
+            {
+                // std::cerr << e.what() << '\n';
+                break;
+            }
+        }
+
+        OPTKIT_CORE_INFO("Detected {} cores in {} packages",core_id,total_package_count);
+    }
+
 } // namespace optkit::core
 
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info)

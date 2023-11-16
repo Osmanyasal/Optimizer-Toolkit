@@ -87,6 +87,12 @@ namespace optkit::core
          */
         static std::vector<int32_t> avail_pmu_ids();
 
+        /**
+         * @brief Prints core_id / socket_id information
+         * 
+         */
+        static void detect_packages();
+
     private:
         Query();
         ~Query();
