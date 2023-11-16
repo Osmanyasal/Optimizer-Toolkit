@@ -231,8 +231,7 @@ std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<
                 oss << std::endl;
         }
     }
-    OPTKIT_CORE_INFO("Detected {} cores in {} packages", total_cores, packages.size());
-    OPTKIT_CORE_INFO("\n{}", oss.str());
+    OPTKIT_CORE_INFO("\n\tDetected {} cores in {} packages\n---------------------------------------\n{}", total_cores, packages.size(), oss.str());
     return out;
 }
 
