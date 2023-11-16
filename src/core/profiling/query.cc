@@ -238,7 +238,6 @@ std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<
 
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info)
 {
-
     if (OPT_UNLIKELY(event_info.idx == 0))
         return out;
 
