@@ -48,6 +48,6 @@ namespace optkit::core
     private:
         PMUEventManager();
         ~PMUEventManager();
-};
+    };
 }
 #endif

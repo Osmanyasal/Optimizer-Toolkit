@@ -24,11 +24,7 @@ namespace optkit::core
         int32_t paranoid();
     };
 }
-
-using optkit::core::BlockGroupProfiler;
-using optkit::core::BlockProfiler;
-using optkit::core::RaplDomain;
-using optkit::core::RaplProfiler;
+  
 using optkit::core::OptimizerKit;
 
 

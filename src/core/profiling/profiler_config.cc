@@ -15,8 +15,8 @@ namespace optkit::core
         if (is_grouped)
             perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
     }
- 
-    RaplConfig::RaplConfig(int monitor_domain) : monitor_domain{monitor_domain}
+
+    RaplConfig::RaplConfig(RaplReadMethods read_method, int monitor_domain) : read_method{read_method}, monitor_domain{monitor_domain}
     {
     }
 

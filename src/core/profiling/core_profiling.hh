@@ -6,4 +6,9 @@
 #include <profiling_rapl.hh>
 #include <profiling_pmu.hh> 
 
+using optkit::core::BaseProfiler;
+using optkit::core::ProfilerConfig;
+using optkit::core::Query;
+using optkit::core::RaplConfig;
+
 #endif

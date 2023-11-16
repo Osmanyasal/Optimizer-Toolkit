@@ -96,9 +96,25 @@ namespace optkit::core
          */
         static std::map<int32_t, std::vector<int32_t>> detect_packages();
 
-        static int32_t rapl_read_methods();
+        /**
+         * @brief Returns available Rapl read methods in combination of RaplReadMethods as bitwise OR.
+         * @see RaplReadMethods
+         * @return int32_t
+         */
+        static int32_t avail_rapl_read_methods();
+
         static bool is_rapl_perf_avail();
+
         static bool is_rapl_powercap_avail();
+
+        static bool is_rapl_msr_avail();
+
+        /**
+         * @brief Returns rapl domain info in the system
+         * 
+         * @return std::vector<RaplDomainInfo> 
+         */
+        static std::vector<RaplDomainInfo> rapl_domain_info();
 
     private:
         Query();

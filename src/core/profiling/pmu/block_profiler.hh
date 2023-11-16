@@ -64,5 +64,6 @@ namespace optkit::core
     };
  
 } // namespace optkit::core
+ 
 
 #endif

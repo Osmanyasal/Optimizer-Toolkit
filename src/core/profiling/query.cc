@@ -71,7 +71,7 @@ namespace optkit::core
         {
             pfm_event_info_t info;
             pfm_pmu_info_t pinfo;
-            int i, ret;
+            int32_t i, ret;
 
             memset(&info, 0, sizeof(info));
             memset(&pinfo, 0, sizeof(pinfo));
@@ -106,7 +106,7 @@ namespace optkit::core
 
         pfm_event_info_t info;
         pfm_pmu_info_t pinfo;
-        int i, ret;
+        int32_t i, ret;
 
         memset(&info, 0, sizeof(info));
         memset(&pinfo, 0, sizeof(pinfo));
@@ -188,14 +188,14 @@ namespace optkit::core
     {
         std::map<int32_t, std::vector<int32_t>> result;
 
-        int last_package_id = -1;
-        int core_id = 0;
+        int32_t last_package_id = -1;
+        int32_t core_id = 0;
         while (true)
         {
             try
             {
                 std::string output = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core_id) + "/topology/physical_package_id", false);
-                int package_id = std::stoi(output);
+                int32_t package_id = std::stoi(output);
                 if (package_id > last_package_id)
                 {
                     last_package_id = package_id;
@@ -212,7 +212,7 @@ namespace optkit::core
         return result;
     }
 
-    int32_t Query::rapl_read_methods()
+    int32_t Query::avail_rapl_read_methods()
     {
         int32_t result = 0;
 
@@ -222,9 +222,18 @@ namespace optkit::core
         if (is_rapl_perf_avail())
             result = result | (int32_t)RaplReadMethods::PERF;
 
+        if (is_rapl_msr_avail())
+            result = result | (int32_t)RaplReadMethods::MSR;
+
         return result;
     }
-    
+
+    bool Query::is_rapl_msr_avail()
+    {
+        OPTKIT_CORE_WARN("MSR avail check not implemented in this version!");
+        return false;
+    }
+
     bool Query::is_rapl_perf_avail()
     {
         if (is_path_exists("/sys/bus/event_source/devices/power/type"))
@@ -245,13 +254,42 @@ namespace optkit::core
             return false;
         }
     }
+
+    std::vector<RaplDomainInfo> Query::rapl_domain_info()
+    {
+        std::vector<RaplDomainInfo> res;
+
+        try
+        {
+            for (int32_t domain = static_cast<int>(RaplDomain::BEGIN); domain < static_cast<int>(RaplDomain::END); domain = domain << 1)
+            {
+                std::string domain_name = rapl_domain_name_mapping.at(domain);
+                std::string config = read_file("/sys/bus/event_source/devices/power/events/" + domain_name);
+                std::string scale = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".scale");
+                std::string units = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".unit");
+
+                config.erase(std::remove(config.begin(), config.end(), '\n'), config.end());
+                scale.erase(std::remove(scale.begin(), scale.end(), '\n'), scale.end());
+                units.erase(std::remove(units.begin(), units.end(), '\n'), units.end());
+
+                res.push_back({domain_name, config, scale, units});
+            }
+        }
+        catch (const std::exception &e)
+        {
+            // OPTKIT_CORE_ERROR("{}", e.what());
+        }
+
+        return res;
+    }
+
 } // namespace optkit::core
 
 std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<int32_t>> &packages)
 {
     std::ostringstream oss;
-    int total_cores = 0;
-    int count = 0;
+    int32_t total_cores = 0;
+    int32_t count = 0;
     for (const auto &entry : packages)
     {
         int32_t package_id = entry.first;

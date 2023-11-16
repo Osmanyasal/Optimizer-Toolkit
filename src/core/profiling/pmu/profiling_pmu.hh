@@ -7,4 +7,9 @@
 #include <libpfm4_wrapper.hh>
 #include <pmu_event_manager.hh>
 
+
+using optkit::core::BlockGroupProfiler;
+using optkit::core::BlockProfiler;
+using optkit::core::PMUEventManager;
+
 #endif

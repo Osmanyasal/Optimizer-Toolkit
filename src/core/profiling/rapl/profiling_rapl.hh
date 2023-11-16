@@ -4,4 +4,9 @@
 #include <rapl.hh>
 #include <rapl_profiler.hh>
 
+using optkit::core::RaplDomain;
+using optkit::core::RaplDomainInfo;
+using optkit::core::RaplProfiler;
+using optkit::core::RaplReadMethods;
+
 #endif

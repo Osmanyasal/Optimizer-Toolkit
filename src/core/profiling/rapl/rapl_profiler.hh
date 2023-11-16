@@ -35,11 +35,17 @@ namespace optkit::core
          * @return std::vector<uint64_t> contains each raw_events' pmu data.
          */
         virtual std::unordered_map<RaplDomain, uint32_t> read() override;
+    private:
+        std::unordered_map<RaplDomain, uint32_t> read_perf();
+        std::unordered_map<RaplDomain, uint32_t> read_powercap();
+        std::unordered_map<RaplDomain, uint32_t> read_msr();
 
     private:
         RaplConfig rapl_config;
+        std::unordered_map<RaplDomain, uint32_t> begin;
+        std::unordered_map<RaplDomain, uint32_t> end;
     };
- 
+
 } // namespace optkit::core
 
 // Overloading << for unordered_map with RaplDomain as keys
