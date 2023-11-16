@@ -8,9 +8,11 @@
 #include <libpfm4_wrapper.hh>
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info);
+std::ostream &operator<<(std::ostream &out, const std::unordered_map<int32_t, std::vector<int32_t>> &packages);
 
 namespace optkit::core
 {
@@ -89,9 +91,9 @@ namespace optkit::core
 
         /**
          * @brief Prints core_id / socket_id information
-         * 
+         * @return std::unordered_map<int32_t,std::vector<int32_t>> package - # of cores
          */
-        static void detect_packages();
+        static std::unordered_map<int32_t, std::vector<int32_t>> detect_packages();
 
     private:
         Query();

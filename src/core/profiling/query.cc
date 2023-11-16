@@ -184,41 +184,57 @@ namespace optkit::core
         return avail_pmu_ids;
     }
 
-    void Query::detect_packages(){
-
-        int total_package_count = 0;
+    std::unordered_map<int32_t, std::vector<int32_t>> Query::detect_packages()
+    {
+        std::unordered_map<int32_t, std::vector<int32_t>> result;
 
         int last_package_id = -1;
         int core_id = 0;
-        while(true){
+        while (true)
+        {
             try
             {
-                std::string output = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core_id) + "/topology/physical_package_id",false);
+                std::string output = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core_id) + "/topology/physical_package_id", false);
                 int package_id = std::stoi(output);
-                if(package_id > last_package_id){
-                    total_package_count++;
+                if (package_id > last_package_id)
+                {
                     last_package_id = package_id;
+                    result[last_package_id] = {};
                 }
-
-                std::cout << core_id << " (" << package_id << ")";
-                if(core_id % 8 == 7)
-                    std::cout << std::endl;
-                else
-                    std::cout << " ";
-
+                result[last_package_id].push_back(core_id);
                 core_id++;
             }
-            catch(const std::exception& e)
+            catch (const std::exception &e)
             {
-                // std::cerr << e.what() << '\n';
-                break;
+                break;  // when there's no more file/cores.
             }
         }
-
-        OPTKIT_CORE_INFO("Detected {} cores in {} packages",core_id,total_package_count);
+        return result;
     }
-
 } // namespace optkit::core
+
+std::ostream &operator<<(std::ostream &out, const std::unordered_map<int32_t, std::vector<int32_t>> &packages)
+{
+    std::ostringstream oss;
+    int total_cores = 0;
+    int count = 0;
+    for (const auto &entry : packages)
+    {
+        int32_t package_id = entry.first;
+        const std::vector<int32_t> &core_ids = entry.second;
+        total_cores += core_ids.size();
+       
+        for (int32_t core_id : core_ids)
+        {
+            oss << core_id << " (" << package_id << ") ";
+            if (++count % 8 == 0)
+                oss << std::endl;
+        }
+    }
+    OPTKIT_CORE_INFO("Detected {} cores in {} packages", total_cores, packages.size());
+    OPTKIT_CORE_INFO("\n{}", oss.str());
+    return out;
+}
 
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info)
 {
