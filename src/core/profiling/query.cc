@@ -213,7 +213,7 @@ namespace optkit::core
     }
 } // namespace optkit::core
 
-std::ostream &operator<<(std::ostream &out, const std::unordered_map<int32_t, std::vector<int32_t>> &packages)
+std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<int32_t>> &packages)
 {
     std::ostringstream oss;
     int total_cores = 0;
