@@ -31,3 +31,24 @@ std::ostream &operator<<(std::ostream &os, optkit::core::RaplDomain domain)
 
     return os;
 }
+
+std::ostream &operator<<(std::ostream &os, optkit::core::RaplReadMethods read_method)
+{
+
+    switch (read_method)
+    {
+    case optkit::core::RaplReadMethods::PERF:
+        os << "Perf";
+        break;
+    case optkit::core::RaplReadMethods::MSR:
+        os << "MSR";
+        break;
+    case optkit::core::RaplReadMethods::POWERCAP:
+        os << "PowerCap";
+        break;
+        
+    default:
+        break;
+    }
+    return os;
+}

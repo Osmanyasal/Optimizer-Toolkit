@@ -1,11 +1,11 @@
 #ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__RAPL_PROFILER_HH
 #define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__RAPL_PROFILER_HH
 
+#include <utils.hh>
 #include <ostream>
 #include <unordered_map>
 #include <base_profiler.hh>
 #include <profiler_config.hh>
-#include <rapl.hh>
 
 namespace optkit::core
 {

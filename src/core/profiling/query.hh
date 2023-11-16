@@ -5,10 +5,11 @@
 #include <iostream>
 #include <utils.hh>
 #include <iomanip>
-#include <libpfm4_wrapper.hh>
 #include <vector>
 #include <string>
 #include <map>
+#include <libpfm4_wrapper.hh>
+#include <rapl.hh>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info);
@@ -94,6 +95,10 @@ namespace optkit::core
          * @return std::unordered_map<int32_t,std::vector<int32_t>> package - # of cores
          */
         static std::map<int32_t, std::vector<int32_t>> detect_packages();
+
+        static int32_t rapl_read_methods();
+        static bool is_rapl_perf_avail();
+        static bool is_rapl_powercap_avail();
 
     private:
         Query();

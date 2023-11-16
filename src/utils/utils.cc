@@ -30,7 +30,7 @@ std::string generateGUID()
     return ss.str();
 }
 
-std::string read_file(std::string location, bool is_verbose)
+std::string read_file(const std::string& location, bool is_verbose)
 {
     std::stringstream buffer;
     std::ifstream file(location);
@@ -43,4 +43,9 @@ std::string read_file(std::string location, bool is_verbose)
     file.close();
 
     return buffer.str();
+}
+
+bool is_path_exists(const std::string& location){
+    struct stat buffer;
+    return (stat(location.c_str(), &buffer) == 0);
 }

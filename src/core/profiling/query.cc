@@ -206,10 +206,44 @@ namespace optkit::core
             }
             catch (const std::exception &e)
             {
-                break;  // when there's no more file/cores.
+                break; // when there's no more file/cores.
             }
         }
         return result;
+    }
+
+    int32_t Query::rapl_read_methods()
+    {
+        int32_t result = 0;
+
+        if (is_rapl_powercap_avail())
+            result = result | (int32_t)RaplReadMethods::POWERCAP;
+
+        if (is_rapl_perf_avail())
+            result = result | (int32_t)RaplReadMethods::PERF;
+
+        return result;
+    }
+    
+    bool Query::is_rapl_perf_avail()
+    {
+        if (is_path_exists("/sys/bus/event_source/devices/power/type"))
+            return true;
+        else
+        {
+            OPTKIT_CORE_WARN("No perf_event rapl support found (requires Linux 3.14).");
+            return false;
+        }
+    }
+    bool Query::is_rapl_powercap_avail()
+    {
+        if (is_path_exists("/sys/class/powercap/intel-rapl/intel-rapl:0/"))
+            return true;
+        else
+        {
+            OPTKIT_CORE_WARN("No powercap support found.");
+            return false;
+        }
     }
 } // namespace optkit::core
 
@@ -223,7 +257,7 @@ std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<
         int32_t package_id = entry.first;
         const std::vector<int32_t> &core_ids = entry.second;
         total_cores += core_ids.size();
-       
+
         for (int32_t core_id : core_ids)
         {
             oss << core_id << " (" << package_id << ") ";

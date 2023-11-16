@@ -6,6 +6,7 @@
 */
 #include <cstdint>
 #include <random>
+#include <sys/stat.h>
 
 // CUSTOM HEADERS
 #include <logger.hh>
@@ -31,6 +32,7 @@
 // FUNCTION DECLERATIONS
 std::string generateGUID();
 
-std::string read_file(std::string location, bool is_verbose = true);
+std::string read_file(const std::string &location, bool is_verbose = true);
+bool is_path_exists(const std::string &location);
 
 #endif

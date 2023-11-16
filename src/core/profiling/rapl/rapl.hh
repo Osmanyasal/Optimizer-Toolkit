@@ -19,13 +19,28 @@ namespace optkit::core
         PACKAGE = (1 << 2), // PP0 + PP1 + SYSTEM AGENT + LAST_LEVEL_CACHE MEMORY CONTROLLER
         PSYS = (1 << 3),    // PACKAGE + eDRAM + PCH
         DRAM = (1 << 4),    // DRAM DIMM 0 and DRAM DIMM 1
-        ALL = (11111),      // All domains
+        ALL = 11111,      // All domains
         END,
 
+    };
+
+    /**
+     * @brief Rapl Read Methods
+     * 
+     */
+    enum class RaplReadMethods
+    {
+        BEGIN = 0,
+        PERF = (1 << 1),
+        MSR = (1 << 2),
+        POWERCAP = (1 << 3),
+        ALL = 111,
+        END
     };
 
 } // namespace optkit::core
 
 std::ostream &operator<<(std::ostream &os, optkit::core::RaplDomain domain);
+std::ostream &operator<<(std::ostream &os, optkit::core::RaplReadMethods read_method);
 
 #endif

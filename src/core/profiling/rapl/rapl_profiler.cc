@@ -12,10 +12,10 @@ namespace optkit::core
     }
 
     void RaplProfiler::disable(){
-
+        OPTKIT_CORE_WARN("Rapl cannot be disabled");
     }
     void RaplProfiler::enable(){
-
+        OPTKIT_CORE_WARN("Rapl is always enabled");
     }
 
     std::unordered_map<RaplDomain, uint32_t> RaplProfiler::read()

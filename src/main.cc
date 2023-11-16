@@ -13,8 +13,13 @@ int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
 
+    if(optkit::core::Query::is_rapl_perf_avail())
+        std::cout << "rapl perf avail!\n";
+    if (optkit::core::Query::is_rapl_powercap_avail())
+        std::cout << "rapl powercap avail!\n";
+
     std::cout << optkit::core::Query::detect_packages();
-    exit(0);
+    // exit(0);
 
     int32_t paranoid = optkit.paranoid();
 
