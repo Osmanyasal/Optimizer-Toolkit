@@ -24,7 +24,8 @@ EXAMPLES_DIR := ./examples
 CORE_DIR := $(SRC_DIR)/core
 EVENTS_DIR := $(CORE_DIR)/events
 CORE_PROFILING := $(CORE_DIR)/profiling
-CORE_RAPL := $(CORE_DIR)/rapl
+PROFILING_RAPL := $(CORE_PROFILING)/rapl
+PROFILING_PMU := $(CORE_PROFILING)/pmu
 PLATFORMS_DIR := $(SRC_DIR)/platforms
 IMGUI_OPENGL_DIR := $(PLATFORMS_DIR)/imgui_opengl3_glfw
 UTILS_DIR := $(SRC_DIR)/utils
@@ -61,7 +62,8 @@ INCLUDE := -I$(SRC_DIR)\
            -I$(CORE_DIR)\
 		   -I$(EVENTS_DIR)\
 		   -I$(CORE_PROFILING)\
-		   -I$(CORE_RAPL)\
+		   -I$(PROFILING_PMU)\
+		   -I$(PROFILING_RAPL)\
            -I$(PLATFORMS_DIR)\
            -I$(IMGUI_OPENGL_DIR)\
            -I$(UTILS_DIR)\

@@ -1,0 +1,7 @@
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__PROFILING_RAPL_HH
+#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__PROFILING_RAPL_HH
+ 
+#include <rapl.hh>
+#include <rapl_profiler.hh>
+
+#endif

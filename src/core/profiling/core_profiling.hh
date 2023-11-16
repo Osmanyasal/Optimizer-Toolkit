@@ -1,11 +1,9 @@
 #ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE_PROFILING_HH
 #define OPTIMIZER_TOOLKIT_CORE__SRC__CORE_PROFILING_HH
 
-#include <core_profiling_config.hh>
-#include <query.hh>
-#include <block_profiler.hh>
-#include <block_group_profiler.hh>
-#include <rapl_profiler.hh>
-#include <pmu_event_manager.hh>
+#include <query.hh> 
+#include <profiler_config.hh>
+#include <profiling_rapl.hh>
+#include <profiling_pmu.hh> 
 
 #endif

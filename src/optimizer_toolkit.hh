@@ -4,7 +4,6 @@
 #include <utils.hh>
 #include <core_platforms.hh>
 #include <core_profiling.hh>
-#include <core_rapl.hh>
 #include <utils.hh>
 #include <string>
 

@@ -1,1 +1,0 @@
-#include <amd_rapl.hh>
