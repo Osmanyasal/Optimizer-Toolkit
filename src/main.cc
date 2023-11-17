@@ -13,7 +13,7 @@ int scalar = 3;
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
-    RaplProfiler rapl_profiler;
+    RaplProfiler rapl_profiler{RaplConfig{RaplReadMethods::PERF,(int32_t)RaplDomain::PP0}};
  
 
     if (Query::is_rapl_perf_avail())
@@ -49,6 +49,17 @@ int32_t main(int32_t argc, char **argv)
                                                    icl::FP_ARITH_INST_RETIRED | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE,
                                                }};
         ssize_t j;
+
+        auto val = fp_arit.read();
+        std::cout << "First reading\n";
+        std::cout << val[0] << " " << val[1] << std::endl;
+        aa += 0.23f;                 // + 1 single
+        a[0] = b[0] + scalar * c[0]; // + 2 double
+
+        std::cout << "Second reading\n";
+        val = fp_arit.read();
+        std::cout << val[0] << " " << val[1] << std::endl;
+
 #pragma omp parallel
         {
 

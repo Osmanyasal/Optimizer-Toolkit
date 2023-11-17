@@ -42,6 +42,7 @@ namespace optkit::core
     extern const std::unordered_map<int32_t, std::string> rapl_read_method_name_mapping;
 
     struct RaplDomainInfo{
+        RaplDomain domain;
         std::string event;
         uint64_t config;
         double scale;

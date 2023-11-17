@@ -18,9 +18,10 @@ namespace optkit::core
         /**
          * @brief Construct a new Profiler Config object
          *
+         * @param is_reset_after_read Reset the counter after any read operations or not.
+         * @param is_grouped indicates all events in the BlockProfiler should be groupped or not @see perf_event_open man page
          * @param pid
          * @param cpu
-         * @param is_grouped indicates all events in the BlockProfiler should be groupped or not @see perf_event_open man page
          *
          *  pid == 0 and cpu == -1
          *        This measures the calling process/thread on any CPU.
@@ -46,8 +47,9 @@ namespace optkit::core
          *         This setting is invalid and will return an error.
          *
          */
-        ProfilerConfig(bool is_grouped = false, int pid = 0, int cpu = -1);
+        ProfilerConfig(bool is_reset_after_read = true, bool is_grouped = false, int pid = 0, int cpu = -1);
 
+        bool is_reset_after_read;
         bool is_grouped;
         int pid;
         int cpu;

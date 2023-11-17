@@ -22,11 +22,16 @@ namespace optkit::core
         default:
             break;
         }
+
+        start = std::chrono::high_resolution_clock::now();
     }
 
     RaplProfiler::~RaplProfiler()
     {
-        end = read();
+        // disable clock now!
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
+        std::cout << "Duration : " << duration_ms << std::endl;
     }
 
     void RaplProfiler::disable()

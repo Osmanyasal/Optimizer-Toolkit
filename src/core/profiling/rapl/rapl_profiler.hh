@@ -40,9 +40,7 @@ namespace optkit::core
         private:
             std::unique_ptr<BaseProfiler<std::unordered_map<int32_t, std::unordered_map<RaplDomain, int32_t>>>> rapl_reader;
             RaplConfig rapl_config;
-            std::unordered_map<int32_t, std::unordered_map<RaplDomain, int32_t>> begin;
-            std::unordered_map<int32_t, std::unordered_map<RaplDomain, int32_t>> end;
-            
+            std::chrono::high_resolution_clock::time_point start;
     };
 
 } // namespace optkit::core

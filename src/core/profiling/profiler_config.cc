@@ -3,7 +3,7 @@
 
 namespace optkit::core
 {
-    ProfilerConfig::ProfilerConfig(bool is_grouped, int pid, int cpu) : is_grouped{is_grouped}, pid{pid}, cpu{cpu}
+    ProfilerConfig::ProfilerConfig(bool is_reset_after_read, bool is_grouped, int pid, int cpu) : is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}
     {
         ::memset(&perf_event_config, 0, sizeof(perf_event_attr));
         perf_event_config.type = PERF_TYPE_RAW;
@@ -16,7 +16,7 @@ namespace optkit::core
             perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
     }
 
-    RaplConfig::RaplConfig(RaplReadMethods read_method, int monitor_domain) : read_method{read_method}, monitor_domain{monitor_domain}
+    RaplConfig::RaplConfig(RaplReadMethods read_method, int32_t monitor_domain) : read_method{read_method}, monitor_domain{monitor_domain}
     {
     }
 
@@ -26,7 +26,7 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_
 {
 
     os << "Rapl Config(Read Method - Monitor Domain):\n";
-    os << "  " << optkit::core::rapl_read_method_name_mapping.at((int)rapl_config.read_method) << " ";
+    os << "  " << optkit::core::rapl_read_method_name_mapping.at((int32_t)rapl_config.read_method) << " ";
 
     if (rapl_config.monitor_domain & (int32_t)optkit::core::RaplDomain::PP0)
     {

@@ -7,7 +7,7 @@ namespace optkit::core
     {
 
         PMUEventManager::disable_all_events();
-
+        
         if (raw_event_list.size() > PMUEventManager::pmu_event_size())
         {
             this->is_active = false;
@@ -111,7 +111,8 @@ namespace optkit::core
         {
             result.push_back(rf->values[i].value);
         }
-
+        if(OPT_LIKELY(this->profiler_config.is_reset_after_read))
+            ioctl(group_leader, PERF_EVENT_IOC_RESET, PERF_IOC_FLAG_GROUP);
         PMUEventManager::enable_all_events();
 
         return result;

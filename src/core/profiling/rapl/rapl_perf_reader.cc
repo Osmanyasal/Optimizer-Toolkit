@@ -17,10 +17,15 @@ namespace optkit::core
 
             for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
             {
+                auto selected_domain = rapl_perf_config.avail_domains[domain];
+                if(!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain)){
+                    std::cout << selected_domain.domain << " is being skipped!\n";
+                    continue;
+                }
                 fd__package__domain[package][domain] = -1;
                 ::memset(&attr, 0x0, sizeof(attr));
                 attr.type = type;
-                attr.config = rapl_perf_config.avail_domains[domain].config;
+                attr.config = selected_domain.config;
                 if(attr.config == 0)
                     continue;
                 fd__package__domain[package][domain] = perf_event_open(&attr, -1, package, -1, 0);
@@ -41,8 +46,16 @@ namespace optkit::core
             std::cout << "\tPackage " << package << "\n";
             for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
             {
+                
+                auto selected_domain = rapl_perf_config.avail_domains[domain];
+                if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
+                {
+                    std::cout << selected_domain.domain << " is being skipped!\n";
+                    continue;
+                }
                 if (fd__package__domain[package][domain] != -1)
                 {
+                    value = 0;
                     ::read(fd__package__domain[package][domain], &value, 8);
                     ::close(fd__package__domain[package][domain]);
 

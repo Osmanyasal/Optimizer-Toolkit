@@ -82,6 +82,8 @@ namespace optkit::core
         {
             ::read(fd, &count, sizeof(count));
             result.push_back(count);
+            if (OPT_LIKELY(this->profiler_config.is_reset_after_read))
+                ioctl(fd, PERF_EVENT_IOC_RESET, 0);
         }
 
         PMUEventManager::enable_all_events();

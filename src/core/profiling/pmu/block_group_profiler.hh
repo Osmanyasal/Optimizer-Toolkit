@@ -22,7 +22,7 @@ namespace optkit::core
     {
         
     public:
-        BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig& config = ProfilerConfig{true});
+        BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig& config = ProfilerConfig{true,true});
         virtual ~BlockGroupProfiler();
         /**
          * @brief Disables this block profiler and associated events
