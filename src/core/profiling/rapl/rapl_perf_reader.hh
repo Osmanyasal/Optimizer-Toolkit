@@ -5,6 +5,8 @@
 #include <base_profiler.hh>
 #include <map>
 #include <rapl.hh>
+#include <utils.hh>
+#include <perf_event.h>
 
 namespace optkit::core
 {
@@ -27,6 +29,7 @@ namespace optkit::core
 
     private:
         RaplPerfReaderConfig rapl_perf_config;
+        int** fd__package__domain;
     };
 
 } // namespace optkit::core

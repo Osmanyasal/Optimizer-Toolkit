@@ -43,7 +43,7 @@ namespace optkit::core
 
     struct RaplDomainInfo{
         std::string event;
-        std::string config;
+        uint64_t config;
         double scale;
         std::string units;
     };

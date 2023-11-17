@@ -272,7 +272,13 @@ namespace optkit::core
                 scale.erase(std::remove(scale.begin(), scale.end(), '\n'), scale.end());
                 units.erase(std::remove(units.begin(), units.end(), '\n'), units.end());
 
-                res.push_back({domain_name, config, std::stod(scale), units});
+                config = config.substr(config.find("=") + 1);
+                std::stringstream ss;
+                ss << std::hex << config;
+                uint64_t l_conf;
+                ss >> l_conf;
+
+                res.push_back({domain_name, l_conf, std::stod(scale), units});
             }
         }
         catch (const std::exception &e)

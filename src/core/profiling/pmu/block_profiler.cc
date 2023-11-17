@@ -45,6 +45,7 @@ namespace optkit::core
         for (int32_t fd : fd_list)
         {
             ::read(fd, &count, sizeof(count));     // read last value
+            ::close(fd);
             PMUEventManager::unregister_event(fd); // unregister this event
             std::cout << "\033[1;35m"
                       << "Block: " << this->block_name << "\033[0m"

@@ -1,6 +1,7 @@
 #include <omp.h>
 #include <optimizer_toolkit.hh>
 #include <intel/icl.hh>
+#include <unistd.h>
 
 #define STREAM_ARRAY_SIZE 100000 // 100k
 
@@ -20,6 +21,8 @@ int32_t main(int32_t argc, char **argv)
 
     {
         RaplProfiler rapl_profiler;
+
+        ::sleep(1);
     }
 
     exit(0);

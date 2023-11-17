@@ -62,7 +62,7 @@ namespace optkit::core
         buf.resize(4096);
         const read_format *rf = reinterpret_cast<const read_format *>(buf.data());
         ::read(group_leader, const_cast<char *>(buf.data()), buf.size());
-
+        ::close(group_leader);
         for (int i = 0; i < rf->nr; i++)
         {
             std::cout << "\033[1;35m"

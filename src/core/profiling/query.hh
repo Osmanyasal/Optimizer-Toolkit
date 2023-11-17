@@ -4,6 +4,7 @@
 #include <ostream>
 #include <iostream>
 #include <utils.hh>
+#include <sstream>
 #include <iomanip>
 #include <vector>
 #include <string>
