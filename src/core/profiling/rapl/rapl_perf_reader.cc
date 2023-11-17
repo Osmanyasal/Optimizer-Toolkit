@@ -12,7 +12,7 @@ namespace optkit::core
 
         fd__package__domain = new int *[rapl_perf_config.packages.size()];
         for (size_t package = 0; package < rapl_perf_config.packages.size(); package++)
-        {
+        {   
             fd__package__domain[package] = new int[rapl_perf_config.avail_domains.size()];
 
             for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
@@ -34,23 +34,21 @@ namespace optkit::core
     }
     RaplPerfReader::~RaplPerfReader()
     {
-        int i, j;
         long long value;
 
-        for (j = 0; j < rapl_perf_config.packages.size(); j++)
+        for (int package = 0; package < rapl_perf_config.packages.size(); package++)
         {
-            ::printf("\tPackage %d:\n", j);
-            for (i = 0; i < rapl_perf_config.avail_domains.size(); i++)
+            std::cout << "\tPackage " << package << "\n";
+            for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
             {
-                if (fd__package__domain[i][j] != -1)
+                if (fd__package__domain[package][domain] != -1)
                 {
-                    ::read(fd__package__domain[i][j], &value, 8);
-                    ::close(fd__package__domain[i][j]);
+                    ::read(fd__package__domain[package][domain], &value, 8);
+                    ::close(fd__package__domain[package][domain]);
 
-                    ::printf("\t\t%s Energy Consumed: %lf %s\n",
-                             rapl_perf_config.avail_domains.at(i).event,
-                             (double)value * rapl_perf_config.avail_domains.at(i).scale, 
-                             rapl_perf_config.avail_domains.at(i).units);
+                    std::cout << "\t\t" << rapl_perf_config.avail_domains.at(domain).event
+                              << " Energy Consumed: " << (double)value * rapl_perf_config.avail_domains.at(domain).scale
+                              << " " << rapl_perf_config.avail_domains.at(domain).units << "\n";
                 }
             }
         }
