@@ -40,7 +40,7 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_
     {
         os << "PACKAGE ";
     }
-    if (rapl_config.monitor_domain &  (int32_t)optkit::core::RaplDomain::PSYS)
+    if (rapl_config.monitor_domain & (int32_t)optkit::core::RaplDomain::PSYS)
     {
         os << "PSYS ";
     }

@@ -65,7 +65,7 @@ namespace optkit::core
          */
         RaplConfig(RaplReadMethods read_method = RaplReadMethods::PERF, int monitor_domain = (int)RaplDomain::ALL);
         RaplReadMethods read_method;
-        int monitor_domain;
+        int32_t monitor_domain;
     };
 
 } // namespace optkit::core

@@ -13,7 +13,7 @@ int scalar = 3;
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
-    RaplProfiler rapl_profiler{RaplConfig{RaplReadMethods::PERF,(int32_t)RaplDomain::PP0}};
+    RaplProfiler rapl_profiler;
  
 
     if (Query::is_rapl_perf_avail())
@@ -31,6 +31,10 @@ int32_t main(int32_t argc, char **argv)
 
         for (int j = 0; j < STREAM_ARRAY_SIZE2; j++)
             a[j] = b[j] + scalar * c[j]; // 1 mul 1 addition for scalar double x STREAM_ARRAY_SIZE
+
+        delete[] a;
+        delete[] b;
+        delete[] c;
     }
 
 
@@ -73,6 +77,6 @@ int32_t main(int32_t argc, char **argv)
                 a[j] = b[j] + scalar * c[j]; // 1 mul 1 addition for scalar double x STREAM_ARRAY_SIZE
         }
     }
-
+ 
     return 0;
 }

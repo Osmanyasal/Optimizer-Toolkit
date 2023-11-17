@@ -5,10 +5,11 @@ namespace optkit::core
 
     RaplPerfReader::RaplPerfReader(const RaplPerfReaderConfig &rapl_perf_config) : rapl_perf_config{rapl_perf_config}
     {
+        std::cout << rapl_perf_config << std::endl;
+        static std::string s_type = read_file("/sys/bus/event_source/devices/power/type");
+        static int32_t type = std::atoi(s_type.c_str());
 
         struct perf_event_attr attr;
-        std::string s_type = read_file("/sys/bus/event_source/devices/power/type");
-        int32_t type = std::atoi(s_type.c_str());
 
         fd__package__domain = new int *[rapl_perf_config.packages.size()];
         for (size_t package = 0; package < rapl_perf_config.packages.size(); package++)
@@ -18,11 +19,12 @@ namespace optkit::core
             for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
             {
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
+                fd__package__domain[package][domain] = -1;
+
                 if(!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain)){
                     std::cout << selected_domain.domain << " is being skipped!\n";
                     continue;
-                }
-                fd__package__domain[package][domain] = -1;
+                } 
                 ::memset(&attr, 0x0, sizeof(attr));
                 attr.type = type;
                 attr.config = selected_domain.config;
@@ -39,14 +41,12 @@ namespace optkit::core
     }
     RaplPerfReader::~RaplPerfReader()
     {
-        long long value;
-
+        long long value; 
         for (int package = 0; package < rapl_perf_config.packages.size(); package++)
         {
             std::cout << "\tPackage " << package << "\n";
             for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
-            {
-                
+            { 
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
                 if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
                 {
