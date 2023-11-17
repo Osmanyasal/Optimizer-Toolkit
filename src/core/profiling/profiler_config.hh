@@ -3,7 +3,7 @@
 
 #include <cstring>
 #include <linux/perf_event.h> // for pmu monitoring
-#include <rapl.hh>  // for rapl monitoring
+#include <rapl.hh>            // for rapl monitoring
 
 namespace optkit::core
 {
@@ -59,7 +59,7 @@ namespace optkit::core
         /**
          * @brief Value must be the combination of RaplDomains.
          *        e.g RaplDomain::DRAM | RaplDomain::Core... by default try to monitor ALL of them
-         * @param monitor_domain 
+         * @param monitor_domain
          */
         RaplConfig(RaplReadMethods read_method = RaplReadMethods::PERF, int monitor_domain = (int)RaplDomain::ALL);
         RaplReadMethods read_method;
@@ -68,4 +68,6 @@ namespace optkit::core
 
 } // namespace optkit::core
 
+std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_config);
+ 
 #endif

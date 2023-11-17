@@ -28,8 +28,9 @@ namespace optkit::core
 
 std::ostream &operator<<(std::ostream &os, const optkit::core::RaplPerfReaderConfig &config)
 {
-    os << "RaplPerfReaderConfig:\n";
-    os << "Packages:\n";
+    os << "\nRaplPerfReaderConfig:\n";
+    os << "---------------------:\n";
+    os << "Packages(socket_ids - core_ids):\n";
     for (const auto &package : config.packages)
     {
         os << "  Package " << package.first << ": ";
@@ -44,8 +45,8 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplPerfReaderCon
     {
         os << "  " << domain << "\n";
     }
-    os << "Rapl Config:\n";
-    os << "  " << config.rapl_config.read_method << " " << config.rapl_config.monitor_domain << "\n";
+    
+    os << config.rapl_config << "\n";
 
     return os;
 }

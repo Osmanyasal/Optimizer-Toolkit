@@ -21,3 +21,32 @@ namespace optkit::core
     }
 
 } // namespace optkit::core
+
+std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_config)
+{
+
+    os << "Rapl Config(Read Method - Monitor Domain):\n";
+    os << "  " << optkit::core::rapl_read_method_name_mapping.at((int)rapl_config.read_method) << " ";
+
+    if (rapl_config.monitor_domain & (int32_t)optkit::core::RaplDomain::PP0)
+    {
+        os << "PP0 ";
+    }
+    if (rapl_config.monitor_domain & (int32_t)optkit::core::RaplDomain::PP1)
+    {
+        os << "PP1 ";
+    }
+    if (rapl_config.monitor_domain &  (int32_t)optkit::core::RaplDomain::PACKAGE)
+    {
+        os << "PACKAGE ";
+    }
+    if (rapl_config.monitor_domain &  (int32_t)optkit::core::RaplDomain::PSYS)
+    {
+        os << "PSYS ";
+    }
+    if (rapl_config.monitor_domain & (int32_t)optkit::core::RaplDomain::DRAM)
+    {
+        os << "DRAM ";
+    } 
+    return os;
+}
