@@ -265,14 +265,14 @@ namespace optkit::core
             {
                 std::string domain_name = rapl_domain_name_mapping.at(domain);
                 std::string config = read_file("/sys/bus/event_source/devices/power/events/" + domain_name);
-                std::string scale = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".scale");
+                std::string scale =  read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".scale");
                 std::string units = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".unit");
 
                 config.erase(std::remove(config.begin(), config.end(), '\n'), config.end());
                 scale.erase(std::remove(scale.begin(), scale.end(), '\n'), scale.end());
                 units.erase(std::remove(units.begin(), units.end(), '\n'), units.end());
 
-                res.push_back({domain_name, config, scale, units});
+                res.push_back({domain_name, config, std::stod(scale), units});
             }
         }
         catch (const std::exception &e)

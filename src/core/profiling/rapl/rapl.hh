@@ -1,8 +1,10 @@
 #ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RAPL__RAPL_HH
 #define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RAPL__RAPL_HH
-
-#include <ostream>
+ 
+#include <iostream>
 #include <unordered_map>
+#include <sstream>
+#include <iomanip>
 namespace optkit::core
 {
     /**
@@ -42,14 +44,14 @@ namespace optkit::core
     struct RaplDomainInfo{
         std::string event;
         std::string config;
-        std::string scale;
+        double scale;
         std::string units;
     };
 
 } // namespace optkit::core
 
-std::ostream &operator<<(std::ostream &os, optkit::core::RaplDomain domain);
-std::ostream &operator<<(std::ostream &os, optkit::core::RaplDomainInfo domain_info);
-std::ostream &operator<<(std::ostream &os, optkit::core::RaplReadMethods read_method);
+std::ostream &operator<<(std::ostream &os, const optkit::core::RaplDomain& domain);
+std::ostream &operator<<(std::ostream &os, const optkit::core::RaplDomainInfo& domain_info);
+std::ostream &operator<<(std::ostream &os, const optkit::core::RaplReadMethods& read_method);
  
 #endif

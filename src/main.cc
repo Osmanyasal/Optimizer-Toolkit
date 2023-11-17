@@ -18,8 +18,9 @@ int32_t main(int32_t argc, char **argv)
     if (Query::is_rapl_powercap_avail())
         std::cout << "rapl powercap avail!\n";
 
-    for(auto& item : Query::rapl_domain_info())
-        std::cout << item << std::endl;
+    {
+        RaplProfiler rapl_profiler;
+    }
 
     exit(0);
     

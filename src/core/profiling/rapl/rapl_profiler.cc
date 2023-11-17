@@ -1,11 +1,27 @@
 #include <rapl_profiler.hh>
 
 namespace optkit::core
-{
-
+{ 
     RaplProfiler::RaplProfiler(const RaplConfig &config) : rapl_config{config}
     {
-        begin = read();
+
+        static const std::map<int32_t, std::vector<int32_t>> packages = Query::detect_packages();
+        static const std::vector<RaplDomainInfo> avail_domains = Query::rapl_domain_info();
+
+        switch (rapl_config.read_method)
+        {
+        case RaplReadMethods::PERF:
+            rapl_reader.reset(new RaplPerfReader{{packages, avail_domains, rapl_config}});
+            break;
+
+        case RaplReadMethods::MSR:
+            break;
+
+        case RaplReadMethods::POWERCAP:
+            break;
+        default:
+            break;
+        }
     }
 
     RaplProfiler::~RaplProfiler()
@@ -22,57 +38,15 @@ namespace optkit::core
         OPTKIT_CORE_WARN("Rapl is always enabled");
     }
 
-    std::unordered_map<RaplDomain, uint32_t> RaplProfiler::read()
+    std::unordered_map<int32_t, std::unordered_map<RaplDomain, int32_t>> RaplProfiler::read()
     {
-        std::unordered_map<RaplDomain, uint32_t> result;
-
-        switch (rapl_config.read_method)
-        {
-        case RaplReadMethods::MSR:
-            return read_msr();
-            break;
-
-        case RaplReadMethods::PERF:
-            return read_perf();
-            break;
-
-        case RaplReadMethods::POWERCAP:
-            return read_powercap();
-
-        default:
-            OPTKIT_CORE_WARN("Unknown Rapl read method!");
-            break;
-        }
-
-        return result;
+        return rapl_reader->read();
     }
 
-    std::unordered_map<RaplDomain, uint32_t> RaplProfiler::read_perf()
-    {
-        std::unordered_map<RaplDomain, uint32_t> result;
-
-        return result;
-    }
-
-    std::unordered_map<RaplDomain, uint32_t> RaplProfiler::read_powercap()
-    {
-        std::unordered_map<RaplDomain, uint32_t> result;
-
-        return result;
-    }
-
-    std::unordered_map<RaplDomain, uint32_t> RaplProfiler::read_msr()
-    {
-        OPTKIT_CORE_WARN("MSR reading not implemented with this version!");
-        std::unordered_map<RaplDomain, uint32_t> result;
-
-
-        return result;
-    }
 } // namespace optkit::core
 
 // Overloading << for unordered_map with RaplDomain as keys
-std::ostream &operator<<(std::ostream &os, const std::unordered_map<optkit::core::RaplDomain, uint32_t> &map)
+std::ostream &operator<<(std::ostream &os, const std::unordered_map<optkit::core::RaplDomain, int32_t> &map)
 {
     os << "{ ";
     for (const auto &pair : map)

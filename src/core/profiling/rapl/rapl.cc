@@ -18,7 +18,7 @@ namespace optkit::core
 } // namespace optkit::core
 
 // Overload << operator for RaplDomain
-std::ostream &operator<<(std::ostream &os, optkit::core::RaplDomain domain)
+std::ostream &operator<<(std::ostream &os, const optkit::core::RaplDomain& domain)
 {
     switch (domain)
     {
@@ -44,16 +44,20 @@ std::ostream &operator<<(std::ostream &os, optkit::core::RaplDomain domain)
     return os;
 }
 
-std::ostream &operator<<(std::ostream &os, optkit::core::RaplDomainInfo domain_info)
-{
+std::ostream &operator<<(std::ostream &os, const optkit::core::RaplDomainInfo& domain_info)
+{ 
+    std::ostringstream stream;
+    stream << std::scientific << domain_info.scale;
+    std::string scale_scf = stream.str();
+    
     os << "Event=" << domain_info.event << ", "
        << "Config=" << domain_info.config << ", "
-       << "scale=" << domain_info.scale << ", "
+       << "scale=" << scale_scf << ", "
        << "units=" << domain_info.units;
     return os;
 }
 
-std::ostream &operator<<(std::ostream &os, optkit::core::RaplReadMethods read_method)
+std::ostream &operator<<(std::ostream &os, const optkit::core::RaplReadMethods& read_method)
 {
 
     switch (read_method)
