@@ -14,10 +14,10 @@ int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
     RaplProfiler rapl_profiler;
- 
 
     if (Query::is_rapl_perf_avail())
-        std::cout << "rapl perf avail!\n";
+        std::cout
+            << "rapl perf avail!\n";
     if (Query::is_rapl_powercap_avail())
         std::cout << "rapl powercap avail!\n";
 

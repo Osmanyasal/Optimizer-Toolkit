@@ -259,9 +259,9 @@ namespace optkit::core
     {
         std::vector<RaplDomainInfo> res;
 
-        try
+        for (int32_t domain = static_cast<int>(RaplDomain::BEGIN); domain < static_cast<int>(RaplDomain::END); domain = domain << 1)
         {
-            for (int32_t domain = static_cast<int>(RaplDomain::BEGIN); domain < static_cast<int>(RaplDomain::END); domain = domain << 1)
+            try
             {
                 std::string domain_name = rapl_domain_name_mapping.at(domain);
                 std::string config = read_file("/sys/bus/event_source/devices/power/events/" + domain_name);
@@ -280,10 +280,10 @@ namespace optkit::core
 
                 res.push_back({(RaplDomain)domain, domain_name, l_conf, std::stod(scale), units});
             }
-        }
-        catch (const std::exception &e)
-        {
-            // OPTKIT_CORE_ERROR("{}", e.what());
+            catch (const std::exception &e)
+            {
+                // OPTKIT_CORE_ERROR("{}", e.what());
+            }
         }
 
         return res;
