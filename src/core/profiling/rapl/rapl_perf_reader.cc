@@ -10,34 +10,40 @@ namespace optkit::core
         static int32_t type = std::atoi(s_type.c_str());
 
         struct perf_event_attr attr;
+ 
 
-        fd__package__domain = new int *[rapl_perf_config.packages.size()];
+        fd_package_domain.resize(rapl_perf_config.packages.size());
+
         for (size_t package = 0; package < rapl_perf_config.packages.size(); package++)
-        {   
-            fd__package__domain[package] = new int[rapl_perf_config.avail_domains.size()];
+        {
+            fd_package_domain[package].resize(rapl_perf_config.avail_domains.size());
 
             for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
             {
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
-                fd__package__domain[package][domain] = -1;
+                fd_package_domain[package][domain] = -1;
 
-                if(!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain)){
+                if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
+                {
                     std::cout << selected_domain.domain << " is being skipped!\n";
                     continue;
-                } 
+                }
+
                 ::memset(&attr, 0x0, sizeof(attr));
                 attr.type = type;
                 attr.config = selected_domain.config;
-                if(attr.config == 0)
+
+                if (attr.config == 0)
                     continue;
-                fd__package__domain[package][domain] = perf_event_open(&attr, -1, package, -1, 0);
-                if (fd__package__domain[package][domain] < 0)
+
+                fd_package_domain[package][domain] = ::syscall(__NR_perf_event_open, &attr, -1, package, -1, 0);
+
+                if (fd_package_domain[package][domain] < 0)
                 {
-                    OPTKIT_CORE_ERROR("RAPL PERF: SOMETHING WENT WRONG!! {}", fd__package__domain[package][domain]);
+                    OPTKIT_CORE_ERROR("RAPL PERF: SOMETHING WENT WRONG!! {}", fd_package_domain[package][domain]);
                 }
             }
         }
-
     }
     RaplPerfReader::~RaplPerfReader()
     {
@@ -53,11 +59,11 @@ namespace optkit::core
                     std::cout << selected_domain.domain << " is being skipped!\n";
                     continue;
                 }
-                if (fd__package__domain[package][domain] != -1)
+                if (fd_package_domain[package][domain] != -1)
                 {
                     value = 0;
-                    ::read(fd__package__domain[package][domain], &value, 8);
-                    ::close(fd__package__domain[package][domain]);
+                    ::read(fd_package_domain[package][domain], &value, 8);
+                    ::close(fd_package_domain[package][domain]);
 
                     std::cout << "\t\t" << rapl_perf_config.avail_domains.at(domain).event
                               << " Energy Consumed: " << (double)value * rapl_perf_config.avail_domains.at(domain).scale
@@ -65,13 +71,6 @@ namespace optkit::core
                 }
             }
         }
-
-        // Deallocate memory for 2D file pointers
-        for (int i = 0; i < rapl_perf_config.packages.size(); ++i)
-        {
-            delete[] fd__package__domain[i];
-        }
-        delete[] fd__package__domain;
     }
     void RaplPerfReader::disable()
     {
@@ -79,9 +78,31 @@ namespace optkit::core
     void RaplPerfReader::enable()
     {
     }
-    std::unordered_map<int32_t, std::unordered_map<RaplDomain, int32_t>> RaplPerfReader::read()
+    std::unordered_map<int32_t, std::unordered_map<RaplDomain, double>> RaplPerfReader::read()
     {
-        std::unordered_map<int32_t, std::unordered_map<RaplDomain, int32_t>> result;
+        std::unordered_map<int32_t, std::unordered_map<RaplDomain, double>> result;
+
+        long long value;
+        for (int package = 0; package < rapl_perf_config.packages.size(); package++)
+        {
+            for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
+            {
+                auto selected_domain = rapl_perf_config.avail_domains[domain];
+                if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
+                {
+                    std::cout << selected_domain.domain << " is being skipped!\n";
+                    continue;
+                }
+                if (fd_package_domain[package][domain] != -1)
+                {
+                    value = 0;
+                    ::read(fd_package_domain[package][domain], &value, 8); 
+                    // ::ioctl(fd_package_domain[package][domain], PERF_EVENT_IOC_RESET, 0); // reset counter after read!
+
+                    result[package][selected_domain.domain] = (double)value * selected_domain.scale;
+                }
+            }
+        }
 
         return result;
     }

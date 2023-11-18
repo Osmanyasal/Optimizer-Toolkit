@@ -1,7 +1,7 @@
 #include <rapl_profiler.hh>
 
 namespace optkit::core
-{ 
+{
     RaplProfiler::RaplProfiler(const RaplConfig &config) : rapl_config{config}
     {
 
@@ -16,11 +16,19 @@ namespace optkit::core
             break;
 
         case RaplReadMethods::MSR:
+            // TODO:Implement MSR reader
+            OPTKIT_CORE_WARN("MSR not implemented in this version! Switching to PERF.");
+            rapl_reader.reset(new RaplPerfReader{{packages, avail_domains, rapl_config}});
+
             break;
 
         case RaplReadMethods::POWERCAP:
+            // TODO:Implement POWERCAP reader
+            OPTKIT_CORE_WARN("POWERCAP not implemented in this version! Switching to PERF.");
+            rapl_reader.reset(new RaplPerfReader{{packages, avail_domains, rapl_config}});
             break;
         default:
+            OPTKIT_CORE_WARN("unknown read method!");
             break;
         }
 
@@ -32,6 +40,8 @@ namespace optkit::core
         // disable clock now!
         auto end = std::chrono::high_resolution_clock::now();
         auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
+
+        delete rapl_reader.release();
         std::cout << "Duration : " << duration_ms << std::endl;
     }
 
@@ -44,7 +54,7 @@ namespace optkit::core
         OPTKIT_CORE_WARN("Rapl is always enabled");
     }
 
-    std::unordered_map<int32_t, std::unordered_map<RaplDomain, int32_t>> RaplProfiler::read()
+    std::unordered_map<int32_t, std::unordered_map<RaplDomain, double>> RaplProfiler::read()
     {
         return rapl_reader->read();
     }
@@ -52,13 +62,35 @@ namespace optkit::core
 } // namespace optkit::core
 
 // Overloading << for unordered_map with RaplDomain as keys
-std::ostream &operator<<(std::ostream &os, const std::unordered_map<optkit::core::RaplDomain, int32_t> &map)
+std::ostream &operator<<(std::ostream &os, const std::unordered_map<optkit::core::RaplDomain, double> &map)
 {
-    os << "{ ";
+
+    for (const auto &item : map)
+    {
+        os << item.first << ": " << item.second << "\n";
+    }
+
+    return os;
+}
+
+std::ostream &operator<<(std::ostream &os, const std::unordered_map<int32_t, std::unordered_map<optkit::core::RaplDomain, double>> &map)
+{
+    static const std::vector<optkit::core::RaplDomainInfo> avail_domains = optkit::core::Query::rapl_domain_info();
+
     for (const auto &pair : map)
     {
-        os << pair.first << ": " << pair.second << ", ";
+        os << "\tPackage " << pair.first << "\n";
+        for (const auto &innerpair : pair.second)
+        {
+            for (const auto &info : avail_domains)
+            {
+                if (info.domain == innerpair.first)
+                {
+                    os << "\t\t" << info.event << ": " << innerpair.second << " " << info.units << " Consumed.\n";
+                }
+            }
+            
+        }
     }
-    os << "}";
     return os;
 }

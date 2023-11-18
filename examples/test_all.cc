@@ -39,7 +39,7 @@ int32_t test_all()
     optkit::core::Query::list_avail_events(PFM_PMU_INTEL_ICL);
     std::cout << optkit::core::Query::event_detail(PFM_PMU_INTEL_ICL, icl::UNHALTED_CORE_CYCLES);
 
-    std::unordered_map<RaplDomain, int32_t> raplDomainMap;
+    std::unordered_map<RaplDomain, double> raplDomainMap;
 
     // Inserting values into the unordered_map
     raplDomainMap[RaplDomain::PP0] = 10;

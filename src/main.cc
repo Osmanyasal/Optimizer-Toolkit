@@ -20,8 +20,8 @@ int32_t main(int32_t argc, char **argv)
             << "rapl perf avail!\n";
     if (Query::is_rapl_powercap_avail())
         std::cout << "rapl powercap avail!\n";
-
-    for (int i = 0; i < 100;i++)
+ 
+    for (int i = 0; i < 100; i++)
     {  
         #define STREAM_ARRAY_SIZE2 10000000 // 10000k
         double *a = new double[STREAM_ARRAY_SIZE2];
@@ -77,6 +77,8 @@ int32_t main(int32_t argc, char **argv)
                 a[j] = b[j] + scalar * c[j]; // 1 mul 1 addition for scalar double x STREAM_ARRAY_SIZE
         }
     }
- 
+
+    std::cout << "READING " << std::endl;
+    std::cout << rapl_profiler.read();
     return 0;
 }

@@ -23,19 +23,19 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplDomain& domai
     switch (domain)
     {
     case optkit::core::RaplDomain::PP0:
-        os << "Cores (PowerPlane:0)";
+        os << "energy-cores";
         break;
     case optkit::core::RaplDomain::PP1:
-        os << "Integrated GPU (PowerPlane:1)";
+        os << "energy-gpu";
         break;
     case optkit::core::RaplDomain::PACKAGE:
-        os << "PACKAGE";
+        os << "energy-pkg";
         break;
     case optkit::core::RaplDomain::PSYS:
-        os << "PSYS";
+        os << "energy-psys";
         break;
     case optkit::core::RaplDomain::DRAM:
-        os << "DRAM";
+        os << "energy-ram";
         break;
     default:
         break;
