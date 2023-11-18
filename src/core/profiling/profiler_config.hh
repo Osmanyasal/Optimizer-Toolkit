@@ -63,9 +63,10 @@ namespace optkit::core
          *        e.g RaplDomain::DRAM | RaplDomain::Core... by default try to monitor ALL of them
          * @param monitor_domain
          */
-        RaplConfig(RaplReadMethods read_method = RaplReadMethods::PERF, int monitor_domain = (int)RaplDomain::ALL);
+        RaplConfig(RaplReadMethods read_method = RaplReadMethods::PERF, int monitor_domain = (int)RaplDomain::ALL, bool is_reset_after_read = true);
         RaplReadMethods read_method;
         int32_t monitor_domain;
+        bool is_reset_after_read;
     };
 
 } // namespace optkit::core

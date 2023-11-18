@@ -35,7 +35,7 @@ namespace optkit::core
     enum class RaplReadMethods
     {
         PERF = (1 << 1),
-        MSR = (1 << 2), //TODO: not supported ATM support later on.
+        MSR = (1 << 2),
         POWERCAP = (1 << 3),
     };
 

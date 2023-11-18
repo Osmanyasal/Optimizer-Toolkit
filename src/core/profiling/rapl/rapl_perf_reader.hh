@@ -14,10 +14,10 @@ namespace optkit::core
     {
         const std::map<int32_t, std::vector<int32_t>> &packages;
         const std::vector<RaplDomainInfo> &avail_domains;
-        const RaplConfig& rapl_config;
+        const RaplConfig& rapl_config; 
     };
 
-    class RaplPerfReader : public BaseProfiler<std::unordered_map<int32_t, std::unordered_map<RaplDomain, double>>>
+    class RaplPerfReader : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>
     {
     public:
         RaplPerfReader(const RaplPerfReaderConfig& rapl_perf_config);
@@ -38,9 +38,9 @@ namespace optkit::core
         /**
          * @brief Returns sockect - domain - value relation
          * 
-         * @return std::unordered_map<int32_t, std::unordered_map<RaplDomain, int32_t>> 
+         * @return std::map<int32_t, std::map<RaplDomain, int32_t>> 
          */
-        virtual std::unordered_map<int32_t, std::unordered_map<RaplDomain, double>> read() override;
+        virtual std::map<int32_t, std::map<RaplDomain, double>> read() override;
 
     private:
         RaplPerfReaderConfig rapl_perf_config;

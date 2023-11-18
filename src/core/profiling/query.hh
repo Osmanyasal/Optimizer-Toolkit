@@ -93,9 +93,9 @@ namespace optkit::core
 
         /**
          * @brief Gets core_id / socket_id(package) information
-         * @return std::unordered_map<int32_t,std::vector<int32_t>> package - # of cores
+         * @return const ref of static std::unordered_map<int32_t,std::vector<int32_t>> object: package - # of cores
          */
-        static std::map<int32_t, std::vector<int32_t>> detect_packages();
+        static const std::map<int32_t, std::vector<int32_t>>& detect_packages();
 
         /**
          * @brief Returns available Rapl read methods in combination of RaplReadMethods as bitwise OR.
@@ -112,10 +112,11 @@ namespace optkit::core
 
         /**
          * @brief Returns rapl domain info in the system
-         * 
-         * @return std::vector<RaplDomainInfo> 
+         *
+         *
+         * @return const ref of std::vector<RaplDomainInfo> static object!
          */
-        static std::vector<RaplDomainInfo> rapl_domain_info();
+        static const std::vector<RaplDomainInfo>& rapl_domain_info();
 
     private:
         Query();

@@ -184,29 +184,32 @@ namespace optkit::core
         return avail_pmu_ids;
     }
 
-    std::map<int32_t, std::vector<int32_t>> Query::detect_packages()
+    const std::map<int32_t, std::vector<int32_t>>& Query::detect_packages()
     {
-        std::map<int32_t, std::vector<int32_t>> result;
+        static std::map<int32_t, std::vector<int32_t>> result;
 
-        int32_t last_package_id = -1;
-        int32_t core_id = 0;
-        while (true)
+        if (result.size() == 0)
         {
-            try
+            int32_t last_package_id = -1;
+            int32_t core_id = 0;
+            while (true)
             {
-                std::string output = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core_id) + "/topology/physical_package_id", false);
-                int32_t package_id = std::stoi(output);
-                if (package_id > last_package_id)
+                try
                 {
-                    last_package_id = package_id;
-                    result[last_package_id] = {};
+                    std::string output = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core_id) + "/topology/physical_package_id", false);
+                    int32_t package_id = std::stoi(output);
+                    if (package_id > last_package_id)
+                    {
+                        last_package_id = package_id;
+                        result[last_package_id] = {};
+                    }
+                    result[last_package_id].push_back(core_id);
+                    core_id++;
                 }
-                result[last_package_id].push_back(core_id);
-                core_id++;
-            }
-            catch (const std::exception &e)
-            {
-                break; // when there's no more file/cores.
+                catch (const std::exception &e)
+                {
+                    break; // when there's no more file/cores.
+                }
             }
         }
         return result;
@@ -255,34 +258,38 @@ namespace optkit::core
         }
     }
 
-    std::vector<RaplDomainInfo> Query::rapl_domain_info()
+    const std::vector<RaplDomainInfo> &Query::rapl_domain_info()
     {
-        std::vector<RaplDomainInfo> res;
+        static std::vector<RaplDomainInfo> res;
 
-        for (int32_t domain = static_cast<int>(RaplDomain::BEGIN); domain < static_cast<int>(RaplDomain::END); domain = domain << 1)
+        if (res.size() == 0)
         {
-            try
+
+            for (int32_t domain = static_cast<int>(RaplDomain::BEGIN); domain < static_cast<int>(RaplDomain::END); domain = domain << 1)
             {
-                std::string domain_name = rapl_domain_name_mapping.at(domain);
-                std::string config = read_file("/sys/bus/event_source/devices/power/events/" + domain_name);
-                std::string scale = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".scale");
-                std::string units = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".unit");
+                try
+                {
+                    std::string domain_name = rapl_domain_name_mapping.at(domain);
+                    std::string config = read_file("/sys/bus/event_source/devices/power/events/" + domain_name);
+                    std::string scale = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".scale");
+                    std::string units = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".unit");
 
-                config.erase(std::remove(config.begin(), config.end(), '\n'), config.end());
-                scale.erase(std::remove(scale.begin(), scale.end(), '\n'), scale.end());
-                units.erase(std::remove(units.begin(), units.end(), '\n'), units.end());
+                    config.erase(std::remove(config.begin(), config.end(), '\n'), config.end());
+                    scale.erase(std::remove(scale.begin(), scale.end(), '\n'), scale.end());
+                    units.erase(std::remove(units.begin(), units.end(), '\n'), units.end());
 
-                config = config.substr(config.find("=") + 1);
-                std::stringstream ss;
-                ss << std::hex << config;
-                uint64_t l_conf;
-                ss >> l_conf;
+                    config = config.substr(config.find("=") + 1);
+                    std::stringstream ss;
+                    ss << std::hex << config;
+                    uint64_t l_conf;
+                    ss >> l_conf;
 
-                res.push_back({(RaplDomain)domain, domain_name, l_conf, std::stod(scale), units});
-            }
-            catch (const std::exception &e)
-            {
-                // OPTKIT_CORE_ERROR("{}", e.what());
+                    res.push_back({(RaplDomain)domain, domain_name, l_conf, std::stod(scale), units});
+                }
+                catch (const std::exception &e)
+                {
+                    // OPTKIT_CORE_ERROR("{}", e.what());
+                }
             }
         }
 

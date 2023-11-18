@@ -20,8 +20,7 @@ namespace optkit::core
 
     OptimizerKit::~OptimizerKit()
     {
-        /*
-        OPTKIT::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
+        optkit::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
         while (!glfwWindowShouldClose(impl.m_window))
         {
             // input
@@ -37,7 +36,6 @@ namespace optkit::core
             glfwSwapBuffers(impl.m_window);
             glfwPollEvents();
         }
-        */
         optkit::core::Query::destroy();
         OPTKIT_PROFILE_END_SESSION();
     }

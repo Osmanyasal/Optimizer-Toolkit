@@ -39,15 +39,15 @@ int32_t test_all()
     optkit::core::Query::list_avail_events(PFM_PMU_INTEL_ICL);
     std::cout << optkit::core::Query::event_detail(PFM_PMU_INTEL_ICL, icl::UNHALTED_CORE_CYCLES);
 
-    std::unordered_map<RaplDomain, double> raplDomainMap;
+    std::map<RaplDomain, double> raplDomainMap;
 
-    // Inserting values into the unordered_map
+    // Inserting values into the map
     raplDomainMap[RaplDomain::PP0] = 10;
     raplDomainMap[RaplDomain::PP1] = 20;
     raplDomainMap[RaplDomain::PACKAGE] = 30;
     raplDomainMap[RaplDomain::DRAM] = 40;
 
-    // Printing the unordered_map using overloaded <<
+    // Printing the map using overloaded <<
     std::cout << "RaplDomain Map: " << raplDomainMap << std::endl;
 
     // STREAM TRIAD

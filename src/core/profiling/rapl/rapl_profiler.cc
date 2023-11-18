@@ -4,9 +4,8 @@ namespace optkit::core
 {
     RaplProfiler::RaplProfiler(const RaplConfig &config) : rapl_config{config}
     {
-
-        static const std::map<int32_t, std::vector<int32_t>> packages = Query::detect_packages();
-        static const std::vector<RaplDomainInfo> avail_domains = Query::rapl_domain_info();
+        const std::map<int32_t, std::vector<int32_t>>& packages = Query::detect_packages();
+        const std::vector<RaplDomainInfo>& avail_domains = Query::rapl_domain_info();
 
         std::cout << rapl_config << std::endl;
         switch (rapl_config.read_method)
@@ -54,15 +53,15 @@ namespace optkit::core
         OPTKIT_CORE_WARN("Rapl is always enabled");
     }
 
-    std::unordered_map<int32_t, std::unordered_map<RaplDomain, double>> RaplProfiler::read()
+    std::map<int32_t, std::map<RaplDomain, double>> RaplProfiler::read()
     {
         return rapl_reader->read();
     }
 
 } // namespace optkit::core
 
-// Overloading << for unordered_map with RaplDomain as keys
-std::ostream &operator<<(std::ostream &os, const std::unordered_map<optkit::core::RaplDomain, double> &map)
+// Overloading << for map with RaplDomain as keys
+std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::RaplDomain, double> &map)
 {
 
     for (const auto &item : map)
@@ -73,10 +72,9 @@ std::ostream &operator<<(std::ostream &os, const std::unordered_map<optkit::core
     return os;
 }
 
-std::ostream &operator<<(std::ostream &os, const std::unordered_map<int32_t, std::unordered_map<optkit::core::RaplDomain, double>> &map)
+std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::RaplDomain, double>> &map)
 {
-    static const std::vector<optkit::core::RaplDomainInfo> avail_domains = optkit::core::Query::rapl_domain_info();
-
+    const std::vector<optkit::core::RaplDomainInfo>& avail_domains = optkit::core::Query::rapl_domain_info();
     for (const auto &pair : map)
     {
         os << "\tPackage " << pair.first << "\n";

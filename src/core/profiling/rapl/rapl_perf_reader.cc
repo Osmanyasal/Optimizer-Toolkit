@@ -78,9 +78,9 @@ namespace optkit::core
     void RaplPerfReader::enable()
     {
     }
-    std::unordered_map<int32_t, std::unordered_map<RaplDomain, double>> RaplPerfReader::read()
+    std::map<int32_t, std::map<RaplDomain, double>> RaplPerfReader::read()
     {
-        std::unordered_map<int32_t, std::unordered_map<RaplDomain, double>> result;
+        std::map<int32_t, std::map<RaplDomain, double>> result;
 
         long long value;
         for (int package = 0; package < rapl_perf_config.packages.size(); package++)
