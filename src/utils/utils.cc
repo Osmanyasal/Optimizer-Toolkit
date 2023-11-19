@@ -54,7 +54,7 @@ void write_file(const std::string &location, const std::string &json_val, bool i
         throw std::runtime_error("Failed to open the file for writing: " + location);
     }
 
-    file << json_val;
+    file << json_val << "\n";
     file.close();
 
     if (is_verbose)

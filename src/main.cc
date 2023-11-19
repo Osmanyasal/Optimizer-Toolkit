@@ -79,7 +79,7 @@ int32_t main(int32_t argc, char **argv)
     }
 
     std::cout << "READING " << std::endl;
-    std::cout << rapl_profiler.read();
+    std::cout << rapl_profiler.read_val();
 
     return 0;
 }
