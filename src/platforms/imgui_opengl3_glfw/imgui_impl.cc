@@ -15,7 +15,7 @@ namespace optkit::platforms::imgui
             OPTKIT_CORE_ERROR("Failed to initialize GLFW");
             return;
         }
-        m_window = glfwCreateWindow(CONF__OPTKIT__WINDOW_WIDTH, CONF__OPTKIT__WINDOW_HEIGHT, "Dear ImGui GLFW+OpenGL3 example", nullptr, nullptr);
+        m_window = glfwCreateWindow(CONF__OPTKIT__WINDOW_WIDTH, CONF__OPTKIT__WINDOW_HEIGHT, CONF__OPTKIT__TITLE, nullptr, nullptr);
         if (m_window == nullptr)
             return;
         glfwMakeContextCurrent(m_window);
@@ -85,7 +85,7 @@ namespace optkit::platforms::imgui
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        ImPlot::ShowDemoWindow();
+        // ImPlot::ShowDemoWindow();
         // ImGui::ShowDemoWindow();
     }
     void ImguiLayer_glfw_opengl_impl::end_loop()
@@ -104,7 +104,27 @@ namespace optkit::platforms::imgui
         }
     }
 
-    void ImguiLayer_glfw_opengl_impl::on_update(float delta_time) {}
+    void ImguiLayer_glfw_opengl_impl::on_update(float delta_time)
+    {
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // for of measurements
+        // for each block, draw a chart based on the data!
+        //
+        if (ImGui::Begin("Measurements", nullptr, ImGuiWindowFlags_None))
+        {
+            static std::vector<double> data = {83, 67, 23, 89, 83, 78, 91, 82, 85, 90,  // midterm  // group data
+                                               80, 62, 56, 99, 55, 78, 88, 78, 90, 100, // final
+                                               80, 69, 52, 92, 72, 78, 75, 76, 89, 95}; // course
+
+            static std::vector<const char *> member_labels = {"Midterm Exam", "Final Exam", "Course Grade"};          // events in the group
+            static std::vector<const char *> group_name = {"S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"}; // iterations
+            static std::vector<double> positions = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};                                    // iterations
+            optkit::core::ImplotCharts::bar_groups(3, data, member_labels, group_name, positions);
+        }
+        ImGui::End();
+    }
 
     void ImguiLayer_glfw_opengl_impl::set_dark_theme_colors()
     {
@@ -143,9 +163,9 @@ namespace optkit::platforms::imgui
     {
 
         ImGuiStyle *style = &ImGui::GetStyle();
-        ImVec4 *colors = style->Colors; 
+        ImVec4 *colors = style->Colors;
 
-        //Headers
+        // Headers
         colors[ImGuiCol_Header] = ImVec4(0.26f, 0.59f, 0.98f, 0.31f);
         colors[ImGuiCol_HeaderHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.80f);
         colors[ImGuiCol_HeaderActive] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
@@ -180,7 +200,7 @@ namespace optkit::platforms::imgui
         colors[ImGuiCol_PopupBg] = ImVec4(1.00f, 1.00f, 1.00f, 0.98f);
         colors[ImGuiCol_Border] = ImVec4(0.00f, 0.00f, 0.00f, 0.30f);
         colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
-          
+
         colors[ImGuiCol_MenuBarBg] = ImVec4(0.86f, 0.86f, 0.86f, 1.00f);
         colors[ImGuiCol_ScrollbarBg] = ImVec4(0.98f, 0.98f, 0.98f, 0.53f);
         colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.69f, 0.69f, 0.69f, 0.80f);
@@ -188,15 +208,15 @@ namespace optkit::platforms::imgui
         colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.49f, 0.49f, 0.49f, 1.00f);
         colors[ImGuiCol_CheckMark] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
         colors[ImGuiCol_SliderGrab] = ImVec4(0.26f, 0.59f, 0.98f, 0.78f);
-        colors[ImGuiCol_SliderGrabActive] = ImVec4(0.46f, 0.54f, 0.80f, 0.60f); 
-        
+        colors[ImGuiCol_SliderGrabActive] = ImVec4(0.46f, 0.54f, 0.80f, 0.60f);
+
         colors[ImGuiCol_Separator] = ImVec4(0.39f, 0.39f, 0.39f, 0.62f);
         colors[ImGuiCol_SeparatorHovered] = ImVec4(0.14f, 0.44f, 0.80f, 0.78f);
         colors[ImGuiCol_SeparatorActive] = ImVec4(0.14f, 0.44f, 0.80f, 1.00f);
         colors[ImGuiCol_ResizeGrip] = ImVec4(0.35f, 0.35f, 0.35f, 0.17f);
         colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.67f);
         colors[ImGuiCol_ResizeGripActive] = ImVec4(0.26f, 0.59f, 0.98f, 0.95f);
-        
+
         colors[ImGuiCol_DockingPreview] = colors[ImGuiCol_Header] * ImVec4(1.0f, 1.0f, 1.0f, 0.7f);
         colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.20f, 0.20f, 0.20f, 1.00f);
         colors[ImGuiCol_PlotLines] = ImVec4(0.39f, 0.39f, 0.39f, 1.00f);

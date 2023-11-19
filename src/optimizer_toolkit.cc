@@ -20,27 +20,38 @@ namespace optkit::core
 
     OptimizerKit::~OptimizerKit()
     {
+        optkit::core::Query::destroy();
+        draw();
+        OPTKIT_PROFILE_END_SESSION();
+    }
+
+    void OptimizerKit::draw(const std::vector<const char *> &file_names)
+    {
+        if (OPT_LIKELY(file_names.size() == 0))
+        {
+            OPTKIT_CORE_INFO("Reading all measurement files...");
+        }
         optkit::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
         while (!glfwWindowShouldClose(impl.m_window))
         {
-            // input
+            // Begin loop - create frame
             // -----
             impl.begin_loop();
 
             // render
-            // ------
-            glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
+            // ------ 
+            impl.on_update(0);
 
+            // EndLoop - read events
+            // -----
             impl.end_loop();
             glfwSwapBuffers(impl.m_window);
             glfwPollEvents();
         }
-        optkit::core::Query::destroy();
-        OPTKIT_PROFILE_END_SESSION();
     }
 
-    int32_t OptimizerKit::paranoid(){
+    int32_t OptimizerKit::paranoid()
+    {
         std::string value = read_file("/proc/sys/kernel/perf_event_paranoid");
         return std::stoi(value);
     }

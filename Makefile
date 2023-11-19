@@ -34,6 +34,7 @@ RECIPIE_PMU := $(CORE_RECIPIES)/pmu
 
 PLATFORMS_DIR := $(SRC_DIR)/platforms
 IMGUI_OPENGL_DIR := $(PLATFORMS_DIR)/imgui_opengl3_glfw
+CHARTS := $(PLATFORMS_DIR)/charts
 UTILS_DIR := $(SRC_DIR)/utils
 DEPLOYTMENT_DIR := $(UTILS_DIR)/deployment
 LOGGING_DIR := $(UTILS_DIR)/logging
@@ -74,6 +75,7 @@ INCLUDE := -I$(SRC_DIR)\
 		   -I$(PROFILING_PMU)\
 		   -I$(PROFILING_RAPL)\
            -I$(PLATFORMS_DIR)\
+           -I$(CHARTS)\
            -I$(IMGUI_OPENGL_DIR)\
            -I$(UTILS_DIR)\
            -I$(DEPLOYTMENT_DIR)\

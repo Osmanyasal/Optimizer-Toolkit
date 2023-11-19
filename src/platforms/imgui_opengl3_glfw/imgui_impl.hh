@@ -12,7 +12,7 @@
 #include <imgui_logger.hh>
 #include <implot.h>
 #include <implot_internal.h> 
-
+#include <implot_charts.hh>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 

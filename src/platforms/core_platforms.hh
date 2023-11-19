@@ -3,5 +3,6 @@
 
 #include <gui_config.hh>
 #include <imgui_impl.hh>
+#include <implot_charts.hh>
 
 #endif

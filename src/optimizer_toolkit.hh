@@ -1,11 +1,11 @@
 #ifndef OPTIMIZER_TOOLKIT_CORE__SRC__OPTIMIZER_TOOLKIT_HH
 #define OPTIMIZER_TOOLKIT_CORE__SRC__OPTIMIZER_TOOLKIT_HH
 
+#include <string>
+#include <vector>
 #include <utils.hh>
 #include <core_platforms.hh>
 #include <core_profiling.hh>
-#include <utils.hh>
-#include <string>
 
 namespace optkit::core
 {
@@ -14,6 +14,8 @@ namespace optkit::core
     public:
         OptimizerKit();
         ~OptimizerKit();
+
+        void draw(const std::vector<const char*>& file_names = {});
 
         /**
          * @brief Returns current perf_event_paranoid value from "/proc/sys/kernel/perf_event_paranoid"<br>

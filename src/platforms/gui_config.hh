@@ -28,6 +28,8 @@
 #define CONF__OPTKIT__WINDOW_WIDTH 2560.0
 #define CONF__OPTKIT__WINDOW_HEIGHT 1440.0
 
+#define CONF__OPTKIT__TITLE "Optimizer Toolkit Analysis Realm"
+
  
 
 #endif
