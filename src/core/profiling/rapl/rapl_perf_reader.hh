@@ -20,7 +20,7 @@ namespace optkit::core
     class RaplPerfReader : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>
     {
     public:
-        RaplPerfReader(const RaplPerfReaderConfig& rapl_perf_config);
+        RaplPerfReader(const char *block_name, const RaplPerfReaderConfig &rapl_perf_config);
         virtual ~RaplPerfReader();
 
         /**

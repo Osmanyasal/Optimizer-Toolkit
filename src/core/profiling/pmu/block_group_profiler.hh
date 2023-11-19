@@ -49,13 +49,6 @@ namespace optkit::core
          */
         virtual std::vector<uint64_t> read_val() override;
 
-    public:
-        /**
-         * @brief Used for identification of blocks and chart titles
-         *
-         */
-        const char *block_name;
-
     private:
         int32_t group_leader;
         std::chrono::high_resolution_clock::time_point start;

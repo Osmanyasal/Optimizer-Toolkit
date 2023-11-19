@@ -13,7 +13,7 @@ namespace optkit::core
     class BaseProfiler
     {
     public:
-        BaseProfiler() {}
+        BaseProfiler(const char* block_name) : block_name{block_name} {}
         virtual ~BaseProfiler() {}
 
         virtual void disable() = 0;
@@ -59,6 +59,9 @@ namespace optkit::core
             const std::string &json_data = convert_buffer_to_json();
             ::write_file("file.txt",json_data);
         }
+    
+    public:
+        const char *block_name;
 
     private:
         std::vector<T> read_buffer;

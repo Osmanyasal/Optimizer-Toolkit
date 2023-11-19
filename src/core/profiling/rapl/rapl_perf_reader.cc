@@ -3,14 +3,13 @@
 namespace optkit::core
 {
 
-    RaplPerfReader::RaplPerfReader(const RaplPerfReaderConfig &rapl_perf_config) : rapl_perf_config{rapl_perf_config}
+    RaplPerfReader::RaplPerfReader(const char *block_name, const RaplPerfReaderConfig &rapl_perf_config) : BaseProfiler{block_name}, rapl_perf_config{rapl_perf_config}
     {
         std::cout << rapl_perf_config << std::endl;
         static std::string s_type = read_file("/sys/bus/event_source/devices/power/type");
         static int32_t type = std::atoi(s_type.c_str());
 
         struct perf_event_attr attr;
- 
 
         fd_package_domain.resize(rapl_perf_config.packages.size());
 
@@ -47,12 +46,12 @@ namespace optkit::core
     }
     RaplPerfReader::~RaplPerfReader()
     {
-        long long value; 
+        long long value;
         for (int package = 0; package < rapl_perf_config.packages.size(); package++)
         {
             std::cout << "\tPackage " << package << "\n";
             for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
-            { 
+            {
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
                 if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
                 {
@@ -98,8 +97,10 @@ namespace optkit::core
                 if (fd_package_domain[package][domain] != -1)
                 {
                     value = 0;
-                    ::read(fd_package_domain[package][domain], &value, 8); 
-                    // ::ioctl(fd_package_domain[package][domain], PERF_EVENT_IOC_RESET, 0); // reset counter after read!
+                    ::read(fd_package_domain[package][domain], &value, 8);
+
+                    if (OPT_LIKELY(rapl_perf_config.rapl_config.is_reset_after_read))
+                        ::ioctl(fd_package_domain[package][domain], PERF_EVENT_IOC_RESET, 0); // reset counter after read!
 
                     result[package][selected_domain.domain] = (double)value * selected_domain.scale;
                 }
@@ -109,7 +110,8 @@ namespace optkit::core
         return result;
     }
 
-    std::string RaplPerfReader::convert_buffer_to_json(){
+    std::string RaplPerfReader::convert_buffer_to_json()
+    {
         std::string result = "example rapl perf reader";
         return result;
     }
@@ -127,7 +129,7 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplPerfReaderCon
         for (const auto &value : package.second)
         {
             os << value << " ";
-        } 
+        }
         os << "\n";
     }
     os << "Available Domains:\n";
@@ -135,7 +137,7 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplPerfReaderCon
     {
         os << "  " << domain << "\n";
     }
-    
+
     os << config.rapl_config << "\n";
 
     return os;

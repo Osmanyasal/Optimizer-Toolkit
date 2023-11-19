@@ -58,12 +58,6 @@ namespace optkit::core
          */
         std::vector<int32_t> fd_list;
 
-        /**
-         * @brief Used for identification of blocks and chart titles
-         * 
-         */
-        const char *block_name;
-
     private:
         std::chrono::high_resolution_clock::time_point start;
         ProfilerConfig profiler_config;

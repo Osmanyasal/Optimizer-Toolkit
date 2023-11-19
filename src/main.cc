@@ -10,20 +10,42 @@ double b[100000];
 double c[100000];
 int scalar = 3;
 
+#define STREAM_ARRAY_SIZE2 10000000 // 10000k
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
-    RaplProfiler rapl_profiler;
+    {
+        OPTKIT_RAPL_AVG("custom_block", xx, 10)
+        {
+            for (int i = 0; i < 10; i++)
+            { 
+                double *a = new double[STREAM_ARRAY_SIZE2];
+                double *b = new double[STREAM_ARRAY_SIZE2];
+                double *c = new double[STREAM_ARRAY_SIZE2];
+                int scalar = 3;
+
+                for (int j = 0; j < STREAM_ARRAY_SIZE2; j++)
+                    a[j] = b[j] + scalar * c[j]; // 1 mul 1 addition for scalar double x STREAM_ARRAY_SIZE
+
+                delete[] a;
+                delete[] b;
+                delete[] c;
+            }
+            std::cout << xx.read_val();
+        }
+    }
+    exit(0);
+    RaplProfiler rapl_profiler{"main block!"};
 
     if (Query::is_rapl_perf_avail())
         std::cout
             << "rapl perf avail!\n";
     if (Query::is_rapl_powercap_avail())
         std::cout << "rapl powercap avail!\n";
- 
+
     for (int i = 0; i < 100; i++)
-    {  
-        #define STREAM_ARRAY_SIZE2 10000000 // 10000k
+    {
+#define STREAM_ARRAY_SIZE2 10000000 // 10000k
         double *a = new double[STREAM_ARRAY_SIZE2];
         double *b = new double[STREAM_ARRAY_SIZE2];
         double *c = new double[STREAM_ARRAY_SIZE2];
@@ -36,7 +58,6 @@ int32_t main(int32_t argc, char **argv)
         delete[] b;
         delete[] c;
     }
-
 
     std::cout << Query::detect_packages();
 

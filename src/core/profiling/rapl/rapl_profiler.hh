@@ -17,7 +17,7 @@ namespace optkit::core
     {
     public:
 
-        RaplProfiler(const RaplConfig &config = RaplConfig{});
+        RaplProfiler(const char* block_name,const RaplConfig &config = RaplConfig{});
         virtual ~RaplProfiler();
 
         /**

@@ -7,7 +7,16 @@
 
 using optkit::core::RaplDomain;
 using optkit::core::RaplDomainInfo;
-using optkit::core::RaplReadMethods;
 using optkit::core::RaplProfiler;
+using optkit::core::RaplReadMethods;
+
+namespace optkit::core
+{
+    
+#define OPTKIT_RAPL_AVG(block_name, var_name, count) \
+    RaplProfiler var_name{#block_name};              \
+    for (int i = 0; i < count; i++)
+
+} // namespace optkit::core
 
 #endif
