@@ -16,6 +16,7 @@ namespace optkit::core
     class RaplProfiler : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>
     {
     public:
+
         RaplProfiler(const RaplConfig &config = RaplConfig{});
         virtual ~RaplProfiler();
 
@@ -31,12 +32,15 @@ namespace optkit::core
          */
         virtual void enable() override;
 
+        
+        virtual std::string convert_buffer_to_json() override;
+
         /**
          * @brief Reads the values of all raw_events.
          *
          * @return std::map<int32_t,std::map<RaplDomain, int32_t>> SocketID - RaplDomain - reading
          */
-        virtual std::map<int32_t, std::map<RaplDomain, double>> read() override;
+        virtual std::map<int32_t, std::map<RaplDomain, double>> read_val() override;
 
     private:
         std::unique_ptr<BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>> rapl_reader;

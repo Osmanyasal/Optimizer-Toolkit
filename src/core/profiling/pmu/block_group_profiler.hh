@@ -20,9 +20,9 @@ namespace optkit::core
      */
     class BlockGroupProfiler : public BaseProfiler<std::vector<uint64_t>>
     {
-        
+
     public:
-        BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig& config = ProfilerConfig{true,true});
+        BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config = ProfilerConfig{true, true});
         virtual ~BlockGroupProfiler();
         /**
          * @brief Disables this block profiler and associated events
@@ -32,22 +32,27 @@ namespace optkit::core
 
         /**
          * @brief Enables this block profiler and associated events
-         * 
+         *
          */
         virtual void enable() override;
 
         /**
-         * @brief Reads the values of all raw_events. 
-         * 
-         * @return std::vector<uint64_t> contains each raw_events' pmu data.
+         * @brief  converts buffer to json
+         *
          */
-        virtual std::vector<uint64_t> read() override;
-
-    public: 
+        virtual std::string convert_buffer_to_json() override;
 
         /**
+         * @brief Reads the values of all raw_events.
+         *
+         * @return std::vector<uint64_t> contains each raw_events' pmu data.
+         */
+        virtual std::vector<uint64_t> read_val() override;
+
+    public:
+        /**
          * @brief Used for identification of blocks and chart titles
-         * 
+         *
          */
         const char *block_name;
 
@@ -67,8 +72,7 @@ namespace optkit::core
             } values[];
         };
     };
- 
+
 } // namespace optkit::core
- 
 
 #endif

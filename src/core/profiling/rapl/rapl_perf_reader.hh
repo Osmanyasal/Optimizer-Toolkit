@@ -35,12 +35,14 @@ namespace optkit::core
          */
         virtual void enable() override;
 
+        virtual std::string convert_buffer_to_json() override;
+
         /**
          * @brief Returns sockect - domain - value relation
          * 
          * @return std::map<int32_t, std::map<RaplDomain, int32_t>> 
          */
-        virtual std::map<int32_t, std::map<RaplDomain, double>> read() override;
+        virtual std::map<int32_t, std::map<RaplDomain, double>> read_val() override;
 
     private:
         RaplPerfReaderConfig rapl_perf_config;

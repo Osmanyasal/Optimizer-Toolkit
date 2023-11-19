@@ -33,6 +33,7 @@
 std::string generateGUID();
 
 std::string read_file(const std::string &location, bool is_verbose = true);
+void write_file(const std::string &location, const std::string &json_val, bool is_verbose = false);
 bool is_path_exists(const std::string &location);
 
 #endif

@@ -38,11 +38,17 @@ namespace optkit::core
         virtual void enable() override;
 
         /**
-         * @brief Reads the values of all raw_events. 
-         * 
+         * @brief converts buffer to json 
+         *
+         */
+        virtual std::string convert_buffer_to_json() override;
+
+        /**
+         * @brief Reads the values of all raw_events.
+         *
          * @return std::vector<uint64_t> contains each raw_events' pmu data.
          */
-        virtual std::vector<uint64_t> read() override;
+        virtual std::vector<uint64_t> read_val() override;
 
     public:
         /**

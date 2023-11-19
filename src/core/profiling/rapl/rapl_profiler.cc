@@ -40,8 +40,10 @@ namespace optkit::core
         auto end = std::chrono::high_resolution_clock::now();
         auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
 
+        this->save();
         delete rapl_reader.release();
         std::cout << "Duration : " << duration_ms << std::endl;
+ 
     }
 
     void RaplProfiler::disable()
@@ -53,9 +55,14 @@ namespace optkit::core
         OPTKIT_CORE_WARN("Rapl is always enabled");
     }
 
-    std::map<int32_t, std::map<RaplDomain, double>> RaplProfiler::read()
+    std::map<int32_t, std::map<RaplDomain, double>> RaplProfiler::read_val()
     {
-        return rapl_reader->read();
+        return rapl_reader->read_val();
+    }
+
+    std::string RaplProfiler::convert_buffer_to_json()
+    {
+        return rapl_reader->convert_buffer_to_json();
     }
 
 } // namespace optkit::core

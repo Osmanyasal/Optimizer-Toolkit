@@ -3,7 +3,7 @@
 namespace optkit::core
 {
 
-    BlockProfiler::BlockProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config) : block_name{block_name} ,profiler_config{config}
+    BlockProfiler::BlockProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config) : block_name{block_name}, profiler_config{config}
     {
 
         PMUEventManager::disable_all_events();
@@ -13,7 +13,7 @@ namespace optkit::core
         {
             struct perf_event_attr attr = this->profiler_config.perf_event_config;
             attr.config = raw_event;
- 
+
             fd = syscall(__NR_perf_event_open, &attr, this->profiler_config.pid, this->profiler_config.cpu, -1, 0); // <-- first becomes -1 and later we use the group_leader's fd.
             if (fd == -1)
             {
@@ -44,7 +44,7 @@ namespace optkit::core
         uint64_t count;
         for (int32_t fd : fd_list)
         {
-            ::read(fd, &count, sizeof(count));     // read last value
+            ::read(fd, &count, sizeof(count)); // read last value
             ::close(fd);
             PMUEventManager::unregister_event(fd); // unregister this event
             std::cout << "\033[1;35m"
@@ -53,6 +53,7 @@ namespace optkit::core
                       << "Measured: " << count << std::endl;
         }
 
+        this->save();
         PMUEventManager::enable_all_events();
     }
 
@@ -71,7 +72,13 @@ namespace optkit::core
         }
     }
 
-    std::vector<uint64_t> BlockProfiler::read()
+    std::string BlockProfiler::convert_buffer_to_json()
+    {
+        std::string result = "example";
+        return result;
+    }
+
+    std::vector<uint64_t> BlockProfiler::read_val()
     {
 
         PMUEventManager::disable_all_events();

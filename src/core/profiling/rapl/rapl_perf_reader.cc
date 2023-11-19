@@ -71,6 +71,8 @@ namespace optkit::core
                 }
             }
         }
+
+        this->save();
     }
     void RaplPerfReader::disable()
     {
@@ -78,7 +80,7 @@ namespace optkit::core
     void RaplPerfReader::enable()
     {
     }
-    std::map<int32_t, std::map<RaplDomain, double>> RaplPerfReader::read()
+    std::map<int32_t, std::map<RaplDomain, double>> RaplPerfReader::read_val()
     {
         std::map<int32_t, std::map<RaplDomain, double>> result;
 
@@ -104,6 +106,11 @@ namespace optkit::core
             }
         }
 
+        return result;
+    }
+
+    std::string RaplPerfReader::convert_buffer_to_json(){
+        std::string result = "example rapl perf reader";
         return result;
     }
 

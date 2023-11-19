@@ -70,6 +70,8 @@ namespace optkit::core
                       << " [" << duration_ms << "ms] "
                       << "Measured: " << rf->values[i].value << std::endl;
         }
+
+        this->save();
         PMUEventManager::enable_all_events();
     }
 
@@ -92,7 +94,7 @@ namespace optkit::core
         ioctl(group_leader, PERF_EVENT_IOC_ENABLE, PERF_IOC_FLAG_GROUP);
     }
 
-    std::vector<uint64_t> BlockGroupProfiler::read()
+    std::vector<uint64_t> BlockGroupProfiler::read_val()
     {
 
         PMUEventManager::disable_all_events();
@@ -115,6 +117,12 @@ namespace optkit::core
             ioctl(group_leader, PERF_EVENT_IOC_RESET, PERF_IOC_FLAG_GROUP);
         PMUEventManager::enable_all_events();
 
+        return result;
+    }
+
+    std::string BlockGroupProfiler::convert_buffer_to_json()
+    {
+        std::string result = "example group";
         return result;
     }
 } // namespace optkit::core
