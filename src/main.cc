@@ -14,11 +14,13 @@ int scalar = 3;
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
+
+    
     {
-        OPTKIT_RAPL_AVG("custom_block", xx, 10)
+        OPTKIT_RAPL_FOR(custom_var, custom_block, 10)
         {
             for (int i = 0; i < 10; i++)
-            { 
+            {
                 double *a = new double[STREAM_ARRAY_SIZE2];
                 double *b = new double[STREAM_ARRAY_SIZE2];
                 double *c = new double[STREAM_ARRAY_SIZE2];
@@ -31,7 +33,7 @@ int32_t main(int32_t argc, char **argv)
                 delete[] b;
                 delete[] c;
             }
-            std::cout << xx.read_val();
+            std::cout << custom_var.read_val();
         }
     }
     exit(0);

@@ -2,3 +2,5 @@ example groupexample rapl perf readerexample rapl perf reader
 example rapl perf reader
 example rapl perf reader
 example rapl perf reader
+example rapl perf reader
+example rapl perf reader
