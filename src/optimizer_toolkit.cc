@@ -4,6 +4,8 @@ namespace optkit::core
 {
     OptimizerKit::OptimizerKit(/* args */)
     {
+        optkit::utils::logger::BaseLogger::init();
+        
         int32_t paranoid = this->paranoid();
         if (OPT_UNLIKELY(paranoid > 0))
         {
@@ -15,7 +17,6 @@ namespace optkit::core
         else if (paranoid <= 0)
         {
             OPTKIT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
-            optkit::utils::logger::BaseLogger::init();
             optkit::core::Query::init();
         }
     }

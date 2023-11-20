@@ -14,7 +14,6 @@ int scalar = 3;
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
-
     
     {
         OPTKIT_RAPL_FOR(custom_var, custom_block, 10)
