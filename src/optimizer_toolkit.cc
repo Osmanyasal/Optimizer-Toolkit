@@ -38,6 +38,7 @@ namespace optkit::core
         if (OPT_LIKELY(file_names.size() != 0))
         {
             OPTKIT_CORE_INFO("Reading all measurement files...");
+            //TODO: read all files based on the file pattern and draw charts!
         }
         optkit::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
         while (!glfwWindowShouldClose(impl.m_window))

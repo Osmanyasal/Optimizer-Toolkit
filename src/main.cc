@@ -16,7 +16,7 @@ int32_t main(int32_t argc, char **argv)
     OptimizerKit optkit;
     
     {
-        OPTKIT_RAPL_FOR(custom_var, custom_block, 10)
+        OPTKIT_RAPL_REPEAT(custom_var, custom_block, 10)
         {
             for (int i = 0; i < 10; i++)
             {
