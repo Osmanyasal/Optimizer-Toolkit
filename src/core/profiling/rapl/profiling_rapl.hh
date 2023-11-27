@@ -14,7 +14,8 @@ namespace optkit::core
 {
 
 #define OPTKIT_RAPL_REPEAT(var_name, block_name, count) \
-    RaplProfiler var_name{#block_name};             \
+    OPTKIT_CORE_GANTT_PROFILE_SCOPE(#block_name);       \
+    RaplProfiler var_name{#block_name};                 \
     for (int i = 0; i < count; i++)
 
 } // namespace optkit::core

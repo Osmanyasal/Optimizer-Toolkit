@@ -20,7 +20,7 @@ int32_t test_all()
     double c[100000];
     int scalar = 3;
 
-    OPTKIT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
+    OPTKIT_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
     optkit::utils::logger::BaseLogger::init();
     optkit::core::Query::init();
 
@@ -113,6 +113,6 @@ int32_t test_all()
     */
 
     optkit::core::Query::destroy();
-    OPTKIT_PROFILE_END_SESSION();
+    OPTKIT_GANTT_PROFILE_END_SESSION();
     return 0;
 }

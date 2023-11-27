@@ -16,9 +16,9 @@ namespace optkit::core
         }
         else if (paranoid <= 0)
         {
-            OPTKIT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
             optkit::core::Query::init();
         }
+        OPTKIT_CORE_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
     }
 
     OptimizerKit::~OptimizerKit()
@@ -29,8 +29,8 @@ namespace optkit::core
         {
             draw();
             optkit::core::Query::destroy();
-            OPTKIT_PROFILE_END_SESSION();
         }
+        OPTKIT_CORE_GANTT_PROFILE_END_SESSION();
     }
 
     void OptimizerKit::draw(const std::vector<const char *> &file_names)

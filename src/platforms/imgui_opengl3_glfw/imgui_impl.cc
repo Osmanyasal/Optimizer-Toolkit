@@ -80,7 +80,7 @@ namespace optkit::platforms::imgui
 
     void ImguiLayer_glfw_opengl_impl::begin_loop()
     {
-        OPTKIT_CORE_PROFILE_FUNCTION();
+        OPTKIT_CORE_GANTT_PROFILE_FUNCTION();
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -90,7 +90,7 @@ namespace optkit::platforms::imgui
     }
     void ImguiLayer_glfw_opengl_impl::end_loop()
     {
-        OPTKIT_CORE_PROFILE_FUNCTION();
+        OPTKIT_CORE_GANTT_PROFILE_FUNCTION();
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

@@ -10,3 +10,48 @@ example
 example
 example rapl perf reader
 example rapl perf reader
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example
+example rapl perf reader
+example rapl perf reader
+example group
+example rapl perf reader
+example rapl perf reader

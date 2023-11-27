@@ -198,7 +198,7 @@ namespace optkit::utils
 	}
 } // optkit::utils
 
-#if OPTKIT_CORE_PROFILE || OPTKIT_PROFILE
+#if OPTKIT_CORE_GANTT_PROFILE || OPTKIT_GANTT_PROFILE_
   // Resolve which function signature macro will be used. Note that this only
 // is resolved when the (pre)compiler starts, so the syntax highlighting
 // could mark the wrong one in your editor!
@@ -220,41 +220,41 @@ namespace optkit::utils
 #define OPTKIT_FUNC_SIG "OPTKIT_FUNC_SIG unknown!"
 #endif
 
-#if OPTKIT_CORE_PROFILE
-	#define OPTKIT_CORE_PROFILE_BEGIN_SESSION(name, filepath) OPTKIT::utils::Instrumentor::Get().BeginSession(name, filepath)
-	#define OPTKIT_CORE_PROFILE_END_SESSION() OPTKIT::utils::Instrumentor::Get().EndSession()
-	#define OPTKIT_CORE_PROFILE_SCOPE_LINE2(name, line) OPTKIT::utils::InstrumentationTimer timer##line(name)
-	#define OPTKIT_CORE_PROFILE_SCOPE_LINE(name, line) OPTKIT_PROFILE_SCOPE_LINE2(name, line)
-	#define OPTKIT_CORE_PROFILE_SCOPE(name) OPTKIT_PROFILE_SCOPE_LINE(name, __LINE__)
-	#define OPTKIT_CORE_PROFILE_FUNCTION() OPTKIT_PROFILE_SCOPE(OPTKIT_FUNC_SIG)
+#if OPTKIT_CORE_GANTT_PROFILE
+	#define OPTKIT_CORE_GANTT_PROFILE_BEGIN_SESSION(name, filepath) optkit::utils::Instrumentor::Get().BeginSession(name, filepath)
+	#define OPTKIT_CORE_GANTT_PROFILE_END_SESSION() optkit::utils::Instrumentor::Get().EndSession()
+	#define OPTKIT_CORE_GANTT_PROFILE_SCOPE_LINE2(name, line) optkit::utils::InstrumentationTimer timer##line(name)
+	#define OPTKIT_CORE_GANTT_PROFILE_SCOPE_LINE(name, line) OPTKIT_CORE_GANTT_PROFILE_SCOPE_LINE2(name, line)
+	#define OPTKIT_CORE_GANTT_PROFILE_SCOPE(name) OPTKIT_CORE_GANTT_PROFILE_SCOPE_LINE(name, __LINE__)
+	#define OPTKIT_CORE_GANTT_PROFILE_FUNCTION() OPTKIT_CORE_GANTT_PROFILE_SCOPE(OPTKIT_FUNC_SIG)
  
 #endif
 
 
-#if OPTKIT_PROFILE
-	#define OPTKIT_PROFILE_BEGIN_SESSION(name, filepath) OPTKIT::utils::Instrumentor::Get().BeginSession(name, filepath)
-	#define OPTKIT_PROFILE_END_SESSION() OPTKIT::utils::Instrumentor::Get().EndSession()
-	#define OPTKIT_PROFILE_SCOPE_LINE2(name, line) OPTKIT::utils::InstrumentationTimer timer##line(name)
-	#define OPTKIT_PROFILE_SCOPE_LINE(name, line) OPTKIT_PROFILE_SCOPE_LINE2(name, line)
-	#define OPTKIT_PROFILE_SCOPE(name) OPTKIT_PROFILE_SCOPE_LINE(name, __LINE__)
-	#define OPTKIT_PROFILE_FUNCTION() OPTKIT_PROFILE_SCOPE(OPTKIT_FUNC_SIG)	 
+#if OPTKIT_GANTT_PROFILE
+	#define OPTKIT_GANTT_PROFILE_BEGIN_SESSION(name, filepath) optkit::utils::Instrumentor::Get().BeginSession(name, filepath)
+	#define OPTKIT_GANTT_PROFILE_END_SESSION() optkit::utils::Instrumentor::Get().EndSession()
+	#define OPTKIT_GANTT_PROFILE_SCOPE_LINE2(name, line) optkit::utils::InstrumentationTimer timer##line(name)
+	#define OPTKIT_GANTT_PROFILE_SCOPE_LINE(name, line) OPTKIT_GANTT_PROFILE_SCOPE_LINE2(name, line)
+	#define OPTKIT_GANTT_PROFILE_SCOPE(name) OPTKIT_GANTT_PROFILE_SCOPE_LINE(name, __LINE__)
+	#define OPTKIT_GANTT_PROFILE_FUNCTION() OPTKIT_GANTT_PROFILE_SCOPE(OPTKIT_FUNC_SIG)	 
 #endif
 
 #endif
 
 
-#if !OPTKIT_PROFILE
-	#define OPTKIT_PROFILE_BEGIN_SESSION(name, filepath)
-	#define OPTKIT_PROFILE_END_SESSION()
-	#define OPTKIT_PROFILE_SCOPE(name)
-	#define OPTKIT_PROFILE_FUNCTION()
+#if !OPTKIT_GANTT_PROFILE
+	#define OPTKIT_GANTT_PROFILE_BEGIN_SESSION(name, filepath)
+	#define OPTKIT_GANTT_PROFILE_END_SESSION()
+	#define OPTKIT_GANTT_PROFILE_SCOPE(name)
+	#define OPTKIT_GANTT_PROFILE_FUNCTION()
 #endif
 
-#if !OPTKIT_CORE_PROFILE
-	#define OPTKIT_CORE_PROFILE_BEGIN_SESSION(name, filepath)
-	#define OPTKIT_CORE_PROFILE_END_SESSION()
-	#define OPTKIT_CORE_PROFILE_SCOPE(name)
-	#define OPTKIT_CORE_PROFILE_FUNCTION()
+#if !OPTKIT_CORE_GANTT_PROFILE
+	#define OPTKIT_CORE_GANTT_PROFILE_BEGIN_SESSION(name, filepath)
+	#define OPTKIT_CORE_GANTT_PROFILE_END_SESSION()
+	#define OPTKIT_CORE_GANTT_PROFILE_SCOPE(name)
+	#define OPTKIT_CORE_GANTT_PROFILE_FUNCTION()
 #endif
 
 #endif // end
