@@ -5,7 +5,7 @@ namespace optkit::core
 
     RaplPerfReader::RaplPerfReader(const char *block_name, const RaplPerfReaderConfig &rapl_perf_config) : BaseProfiler{block_name}, rapl_perf_config{rapl_perf_config}
     {
-        std::cout << rapl_perf_config << std::endl;
+        // std::cout << rapl_perf_config << std::endl;
         static std::string s_type = read_file("/sys/bus/event_source/devices/power/type");
         static int32_t type = std::atoi(s_type.c_str());
 

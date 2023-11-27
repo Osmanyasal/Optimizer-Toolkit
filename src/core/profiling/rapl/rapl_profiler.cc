@@ -7,7 +7,7 @@ namespace optkit::core
         const std::map<int32_t, std::vector<int32_t>> &packages = Query::detect_packages();
         const std::vector<RaplDomainInfo> &avail_domains = Query::rapl_domain_info();
 
-        std::cout << rapl_config << std::endl;
+        // std::cout << rapl_config << std::endl;
         switch (rapl_config.read_method)
         {
         case RaplReadMethods::PERF:

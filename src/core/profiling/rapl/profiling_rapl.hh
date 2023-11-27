@@ -9,15 +9,12 @@ using optkit::core::RaplDomain;
 using optkit::core::RaplDomainInfo;
 using optkit::core::RaplProfiler;
 using optkit::core::RaplReadMethods;
-
-namespace optkit::core
-{
+ 
 
 #define OPTKIT_RAPL_REPEAT(var_name, block_name, count) \
     OPTKIT_CORE_GANTT_PROFILE_SCOPE(#block_name);       \
     RaplProfiler var_name{#block_name};                 \
     for (int i = 0; i < count; i++)
-
-} // namespace optkit::core
-
+ 
+ 
 #endif
