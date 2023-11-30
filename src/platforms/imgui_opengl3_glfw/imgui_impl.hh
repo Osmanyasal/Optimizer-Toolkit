@@ -15,7 +15,7 @@
 #include <implot_charts.hh>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
+#include <vector>
 namespace optkit::platforms::imgui
 {
 
@@ -30,7 +30,7 @@ namespace optkit::platforms::imgui
 
         void on_attach();
         void on_detach();
-        void on_update(float delta_time);
+        void on_update(const std::vector<optkit::core::BarGroupsMeta>& meta_list);
 
         void begin_loop();
         void end_loop();

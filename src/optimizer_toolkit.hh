@@ -24,6 +24,7 @@ namespace optkit::core
          * @return int32_t paranoid value.
          */
         int32_t paranoid();
+
     };
 }
   
