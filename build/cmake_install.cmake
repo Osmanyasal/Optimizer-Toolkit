@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/rt7/Desktop/Recursion-Engine/build/example/cmake_install.cmake")
+  include("/home/rt7/Desktop/Optimizer-Toolkit-Core/build/example/cmake_install.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -52,7 +52,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/rt7/Desktop/Recursion-Engine/build/libspdlogd.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/libspdlogd.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -60,14 +60,14 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/rt7/Desktop/Recursion-Engine/build/spdlog.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/spdlog.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog/spdlogConfigTargets.cmake")
     file(DIFFERENT EXPORT_FILE_CHANGED FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog/spdlogConfigTargets.cmake"
-         "/home/rt7/Desktop/Recursion-Engine/build/CMakeFiles/Export/lib/cmake/spdlog/spdlogConfigTargets.cmake")
+         "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles/Export/lib/cmake/spdlog/spdlogConfigTargets.cmake")
     if(EXPORT_FILE_CHANGED)
       file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog/spdlogConfigTargets-*.cmake")
       if(OLD_CONFIG_FILES)
@@ -76,16 +76,16 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
       endif()
     endif()
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES "/home/rt7/Desktop/Recursion-Engine/build/CMakeFiles/Export/lib/cmake/spdlog/spdlogConfigTargets.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles/Export/lib/cmake/spdlog/spdlogConfigTargets.cmake")
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES "/home/rt7/Desktop/Recursion-Engine/build/CMakeFiles/Export/lib/cmake/spdlog/spdlogConfigTargets-debug.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles/Export/lib/cmake/spdlog/spdlogConfigTargets-debug.cmake")
   endif()
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES
-    "/home/rt7/Desktop/Recursion-Engine/build/spdlogConfig.cmake"
-    "/home/rt7/Desktop/Recursion-Engine/build/spdlogConfigVersion.cmake"
+    "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/spdlogConfig.cmake"
+    "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/spdlogConfigVersion.cmake"
     )
 endif()
 
@@ -97,5 +97,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/rt7/Desktop/Recursion-Engine/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

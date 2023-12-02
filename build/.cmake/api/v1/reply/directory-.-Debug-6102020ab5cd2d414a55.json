@@ -98,7 +98,7 @@
 			"destination" : "lib/pkgconfig",
 			"paths" : 
 			[
-				"/home/rt7/Desktop/Recursion-Engine/build/spdlog.pc"
+				"/home/rt7/Desktop/Optimizer-Toolkit-Core/build/spdlog.pc"
 			],
 			"type" : "file"
 		},
@@ -130,8 +130,8 @@
 			"destination" : "lib/cmake/spdlog",
 			"paths" : 
 			[
-				"/home/rt7/Desktop/Recursion-Engine/build/spdlogConfig.cmake",
-				"/home/rt7/Desktop/Recursion-Engine/build/spdlogConfigVersion.cmake"
+				"/home/rt7/Desktop/Optimizer-Toolkit-Core/build/spdlogConfig.cmake",
+				"/home/rt7/Desktop/Optimizer-Toolkit-Core/build/spdlogConfigVersion.cmake"
 			],
 			"type" : "file"
 		}

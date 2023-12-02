@@ -85,7 +85,8 @@ namespace optkit::platforms::imgui
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        ImPlot::ShowDemoWindow();
+        create_default_layout();
+        // ImPlot::ShowDemoWindow();
         // ImGui::ShowDemoWindow();
     }
     void ImguiLayer_glfw_opengl_impl::end_loop()
@@ -112,14 +113,25 @@ namespace optkit::platforms::imgui
         // for of measurements
         // for each block, draw a chart based on the data!
         //
-        for (const auto &meta : meta_list)
+        if (ImGui::Begin("Analysis Results", nullptr, ImGuiWindowFlags_NoMove))
         {
-            if (ImGui::Begin(("#" + meta.block_name).c_str(), nullptr, ImGuiWindowFlags_None))
+            uint32_t counter = 0;
+            for (const auto &meta : meta_list)
             {
-                optkit::core::ImplotCharts::bar_groups(meta);
+                if (ImGui::BeginChild(++counter, {-1, 800}, true, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysUseWindowPadding))
+                    optkit::core::ImplotCharts::bar_groups(meta);
+                ImGui::EndChild();
             }
-            ImGui::End();
         }
+        ImGui::End();
+    }
+
+    void ImguiLayer_glfw_opengl_impl::create_default_layout(uint32_t layout_id)
+    {
+        uint32_t dockspace_id = ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
+        static ImGuiDockNode *dockspace_node_id = ImGui::DockBuilderGetCentralNode(dockspace_id);
+        ImGui::DockBuilderDockWindow("Analysis Results", dockspace_node_id->ID);
+        ImGui::DockBuilderFinish(dockspace_node_id->ID);
     }
 
     void ImguiLayer_glfw_opengl_impl::set_dark_theme_colors()
@@ -231,5 +243,4 @@ namespace optkit::platforms::imgui
         colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.20f, 0.20f, 0.20f, 0.20f);
         colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.20f, 0.20f, 0.20f, 0.35f);
     }
-
 }

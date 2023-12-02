@@ -11,7 +11,7 @@
 #include <imgui_impl_opengl3.h>
 #include <imgui_logger.hh>
 #include <implot.h>
-#include <implot_internal.h> 
+#include <implot_internal.h>
 #include <implot_charts.hh>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -23,19 +23,20 @@ namespace optkit::platforms::imgui
     {
     public:
         ImguiLayer_glfw_opengl_impl()
-        { 
+        {
             on_attach();
         }
         ~ImguiLayer_glfw_opengl_impl() { on_detach(); }
 
         void on_attach();
         void on_detach();
-        void on_update(const std::vector<optkit::core::BarGroupsMeta>& meta_list);
+        void on_update(const std::vector<optkit::core::BarGroupsMeta> &meta_list);
 
         void begin_loop();
         void end_loop();
         void set_dark_theme_colors();
-        void set_white_theme_colors(); 
+        void set_white_theme_colors();
+        void create_default_layout(uint32_t layout_id = 0);
 
     public:
         GLFWwindow *m_window;

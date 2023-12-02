@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/home/rt7/Desktop/Recursion-Engine/lib/spdlog")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/rt7/Desktop/Recursion-Engine/build")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/rt7/Desktop/Optimizer-Toolkit-Core/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

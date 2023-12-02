@@ -12,7 +12,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "/home/rt7/Desktop/Recursion-Engine/build/CMakeFiles/3.22.1/CMakeSystem.cmake"
+			"path" : "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles/3.22.1/CMakeSystem.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -21,7 +21,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "/home/rt7/Desktop/Recursion-Engine/build/CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
+			"path" : "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -177,7 +177,7 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/rt7/Desktop/Recursion-Engine/build",
+		"build" : "/home/rt7/Desktop/Optimizer-Toolkit-Core/build",
 		"source" : "/home/rt7/Desktop/Recursion-Engine/lib/spdlog"
 	},
 	"version" : 

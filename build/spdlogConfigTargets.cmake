@@ -54,7 +54,7 @@ set_target_properties(spdlog::spdlog PROPERTIES
 set_property(TARGET spdlog::spdlog APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(spdlog::spdlog PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "/home/rt7/Desktop/Recursion-Engine/build/libspdlogd.a"
+  IMPORTED_LOCATION_DEBUG "/home/rt7/Desktop/Optimizer-Toolkit-Core/build/libspdlogd.a"
   )
 
 # This file does not depend on other imported targets which have

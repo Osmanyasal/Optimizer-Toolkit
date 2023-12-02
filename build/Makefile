@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/rt7/Desktop/Recursion-Engine/lib/spdlog
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rt7/Desktop/Recursion-Engine/build
+CMAKE_BINARY_DIR = /home/rt7/Desktop/Optimizer-Toolkit-Core/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/rt7/Desktop/Recursion-Engine/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/rt7/Desktop/Optimizer-Toolkit-Core/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -152,9 +152,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rt7/Desktop/Recursion-Engine/build/CMakeFiles /home/rt7/Desktop/Recursion-Engine/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles /home/rt7/Desktop/Optimizer-Toolkit-Core/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rt7/Desktop/Recursion-Engine/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/rt7/Desktop/Recursion-Engine/lib/spdlog
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rt7/Desktop/Recursion-Engine/build
+CMAKE_BINARY_DIR = /home/rt7/Desktop/Optimizer-Toolkit-Core/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/rt7/Desktop/Recursion-Engine/build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /home/rt7/Desktop/Recursion-Engine/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/rt7/Desktop/Recursion-Engine/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/rt7/Desktop/Recursion-Engine/build/CPackSourceConfig.cmake
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/rt7/Desktop/Optimizer-Toolkit-Core/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -152,14 +152,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/rt7/Desktop/Recursion-Engine/build/CMakeFiles /home/rt7/Desktop/Recursion-Engine/build/example//CMakeFiles/progress.marks
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rt7/Desktop/Recursion-Engine/build/CMakeFiles 0
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles /home/rt7/Desktop/Optimizer-Toolkit-Core/build/example//CMakeFiles/progress.marks
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rt7/Desktop/Optimizer-Toolkit-Core/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/clean
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/clean
 .PHONY : clean
 
 # The main clean target
@@ -168,22 +168,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/preinstall
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/preinstall
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 example/CMakeFiles/example.dir/rule:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/CMakeFiles/example.dir/rule
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/CMakeFiles/example.dir/rule
 .PHONY : example/CMakeFiles/example.dir/rule
 
 # Convenience name for target.
@@ -192,7 +192,7 @@ example: example/CMakeFiles/example.dir/rule
 
 # fast build rule for target.
 example/fast:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/example.dir/build.make example/CMakeFiles/example.dir/build
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/example.dir/build.make example/CMakeFiles/example.dir/build
 .PHONY : example/fast
 
 example.o: example.cpp.o
@@ -200,7 +200,7 @@ example.o: example.cpp.o
 
 # target to build an object file
 example.cpp.o:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/example.dir/build.make example/CMakeFiles/example.dir/example.cpp.o
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/example.dir/build.make example/CMakeFiles/example.dir/example.cpp.o
 .PHONY : example.cpp.o
 
 example.i: example.cpp.i
@@ -208,7 +208,7 @@ example.i: example.cpp.i
 
 # target to preprocess a source file
 example.cpp.i:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/example.dir/build.make example/CMakeFiles/example.dir/example.cpp.i
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/example.dir/build.make example/CMakeFiles/example.dir/example.cpp.i
 .PHONY : example.cpp.i
 
 example.s: example.cpp.s
@@ -216,7 +216,7 @@ example.s: example.cpp.s
 
 # target to generate assembly for a file
 example.cpp.s:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/example.dir/build.make example/CMakeFiles/example.dir/example.cpp.s
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(MAKE) $(MAKESILENT) -f example/CMakeFiles/example.dir/build.make example/CMakeFiles/example.dir/example.cpp.s
 .PHONY : example.cpp.s
 
 # Help Target
@@ -248,6 +248,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/rt7/Desktop/Recursion-Engine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/rt7/Desktop/Optimizer-Toolkit-Core/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

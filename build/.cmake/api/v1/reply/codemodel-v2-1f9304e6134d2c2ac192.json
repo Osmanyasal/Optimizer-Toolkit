@@ -11,7 +11,7 @@
 						1
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-2a3e4692e29831dbe501.json",
+					"jsonFile" : "directory-.-Debug-6102020ab5cd2d414a55.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
@@ -92,7 +92,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/rt7/Desktop/Recursion-Engine/build",
+		"build" : "/home/rt7/Desktop/Optimizer-Toolkit-Core/build",
 		"source" : "/home/rt7/Desktop/Recursion-Engine/lib/spdlog"
 	},
 	"version" : 
