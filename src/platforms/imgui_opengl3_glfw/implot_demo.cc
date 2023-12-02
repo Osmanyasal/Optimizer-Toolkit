@@ -2154,7 +2154,7 @@ void Demo_CustomPlottersAndTooltips()  {
         MyImPlot::PlotCandlestick("GOOGL",dates, opens, closes, lows, highs, 218, tooltip, 0.25f, bullCol, bearCol);
         ImPlot::EndPlot();
     }
-    }
+}
 
 //-----------------------------------------------------------------------------
 // DEMO WINDOW

@@ -17,8 +17,12 @@ namespace optkit::core
         const std::vector<const char *> &glables;
         const std::vector<double> &positions;
         mutable float size;
+        mutable bool clamp;
         mutable bool horz;
         mutable ImPlotBarGroupsFlags flags;
+
+        int32_t inital_member_count;
+        mutable bool show_values;
 
         // Constructor
         BarGroupsMeta(
@@ -30,8 +34,11 @@ namespace optkit::core
             const std::vector<double> &positions,
             float size = 0.67f,
             bool horz = false,
-            ImPlotBarGroupsFlags flags = 0) : block_name{block_name}, group_member_count(group_member_count), data(data), member_labels(member_labels),
-                                              glables(glables), positions(positions), size(size), horz(horz), flags(flags) {}
+            ImPlotBarGroupsFlags flags = 0,
+            bool show_values = true) : block_name{block_name}, group_member_count(group_member_count), data(data), member_labels(member_labels),
+                                       glables(glables), positions(positions), size(size), horz(horz), flags(flags), inital_member_count{group_member_count}, show_values{show_values}
+        {
+        }
     };
 
     class ImplotCharts

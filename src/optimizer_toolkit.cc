@@ -46,25 +46,27 @@ namespace optkit::core
             // TODO: read all files based on the file pattern and draw charts!
         }
 
-        std::vector<double> data = {83, 67, 23, 89, 83, 78, 91, 82, 85, 90,  // midterm  // group data
+        std::vector<double> data = {83, 67, 23, 89, 83, 78, 91, 82, 85, 90,  // midterm
+                                    80, 62, 56, 99, 55, 78, 88, 78, 90, 100, // final
                                     80, 62, 56, 99, 55, 78, 88, 78, 90, 100, // final
                                     80, 69, 52, 92, 72, 78, 75, 76, 89, 95}; // course
 
-        std::vector<const char *> member_labels = {"Midterm Exam", "Final Exam", "Course Grade"};             // events in the group
+        std::vector<const char *> member_labels = {"Midterm Exam", "Final Exam", "Course Grade","TMP"};             // events in the group
         std::vector<const char *> group_name = {"S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"}; // iterations
         std::vector<double> positions = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};                                       // iterations
 
         std::vector<double> data2 = {83, 67, 23, 89, 83, 78, 91, 82, 85, 90,  // midterm  // group data
                                      80, 62, 56, 99, 55, 78, 88, 78, 90, 100, // final
+                                     80, 62, 56, 99, 55, 78, 88, 78, 90, 100, // final
                                      80, 69, 52, 92, 72, 78, 75, 76, 89, 95}; // course
 
-        std::vector<const char *> member_labels2 = {"Midterm Exam", "Final Exam", "Course Grade"};             // events in the group
+        std::vector<const char *> member_labels2 = {"Midterm Exam", "Final Exam", "Course Grade","TMP"};             // events in the group
         std::vector<const char *> group_name2 = {"S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"}; // iterations
         std::vector<double> positions2 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};                                       // iterations
 
         std::vector<optkit::core::BarGroupsMeta> meta_list;
-        meta_list.push_back({"block1", 3, data, member_labels, group_name, positions});
-        meta_list.push_back({"block2", 3, data2, member_labels2, group_name2, positions2});
+        meta_list.push_back({"block1", 4, data, member_labels, group_name, positions});
+        meta_list.push_back({"block2", 4, data2, member_labels2, group_name2, positions2});
 
         optkit::platforms::imgui::ImguiLayer_glfw_opengl_impl impl{};
         while (!glfwWindowShouldClose(impl.m_window))
