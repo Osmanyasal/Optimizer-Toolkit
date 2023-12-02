@@ -74,10 +74,11 @@ namespace optkit::core
             // Begin loop - create frame
             // -----
             impl.begin_loop();
-
+        
             // render
             // ------
             impl.on_update(meta_list);
+            
             // EndLoop - read events
             // -----
             impl.end_loop();

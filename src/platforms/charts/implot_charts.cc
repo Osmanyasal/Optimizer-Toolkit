@@ -15,7 +15,9 @@ namespace optkit::core
         ImGui::SameLine();
         ImGui::Checkbox("Horizontal", &meta.horz);
         ImGui::SameLine();
-        ImGui::Checkbox("Show Values", &meta.show_values);
+        ImGui::Checkbox("Show Tooltip", &meta.show_tooltip);
+        ImGui::SameLine();
+        ImGui::Checkbox("Show Annotations", &meta.show_annotations);
 
         ImGui::SliderInt("Group Member Count", &meta.group_member_count, 1, meta.inital_member_count);
         ImGui::SliderFloat("Size", &meta.size, 0, 1);
@@ -27,7 +29,7 @@ namespace optkit::core
             ImPlot::SetupAxisTicks(ImAxis_X1, meta.positions.data(), meta.glables.size(), meta.glables.data());
 
             // Add annotations to each bar
-            if (meta.show_values)
+            if (meta.show_tooltip || meta.show_annotations)
                 for (int i = 0; i < meta.glables.size(); ++i)
                 {
                     for (int j = 0; j < meta.group_member_count; ++j)
@@ -46,7 +48,19 @@ namespace optkit::core
                             xCoord = i + ((j - meta.group_member_count / 3.0f) * individualColumnWidth);
 
                         float yCoord = meta.data[j * meta.glables.size() + i];
-                        ImPlot::Annotation(xCoord, yCoord, ImVec4(1, 1, 1, 0), ImVec2(0, -5), meta.clamp, "%0.3f", yCoord);
+                        if (meta.show_tooltip && ImPlot::IsPlotHovered())
+                        {
+                            ImPlotPoint mouse = ImPlot::GetPlotMousePos();
+                            if (std::abs(mouse.x - xCoord) < 0.1)
+                            {
+                                ImGui::BeginTooltip();
+                                ImGui::Text("Label 1: " CONF__OPTKIT__BAR_GROUP_TOOLKIT_PRECISION, yCoord);
+                                ImGui::EndTooltip();
+                            }
+                        }
+
+                        if (meta.show_annotations)
+                            ImPlot::Annotation(xCoord, yCoord, ImVec4(1, 1, 1, 0), ImVec2(0, -5), meta.clamp, CONF__OPTKIT__BAR_GROUP_PRECISION, yCoord);
                     }
                 }
             if (meta.horz)

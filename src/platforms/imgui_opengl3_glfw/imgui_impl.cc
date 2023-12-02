@@ -86,7 +86,7 @@ namespace optkit::platforms::imgui
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
         create_default_layout();
-        // ImPlot::ShowDemoWindow();
+        ImPlot::ShowDemoWindow();
         // ImGui::ShowDemoWindow();
     }
     void ImguiLayer_glfw_opengl_impl::end_loop()

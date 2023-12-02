@@ -30,6 +30,13 @@
 
 #define CONF__OPTKIT__TITLE "Optimizer Toolkit Analysis Realm"
 
- 
+
+/**
+ * @brief Chart Features
+ * 
+ */
+
+#define CONF__OPTKIT__BAR_GROUP_PRECISION "%0.2f"
+#define CONF__OPTKIT__BAR_GROUP_TOOLKIT_PRECISION "%0.4f"
 
 #endif
