@@ -9,6 +9,7 @@
 #include <sys/ioctl.h>
 #include <base_profiler.hh>
 #include <query.hh>
+#include <rapl_utils.hh>
 namespace optkit::core
 {
     struct RaplPerfReaderConfig

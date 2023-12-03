@@ -51,7 +51,7 @@ namespace optkit::core
             std::cout << read();
             auto end = std::chrono::high_resolution_clock::now();
             auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
-            OPTKIT_CORE_INFO("Duration: %d", duration_ms);
+            OPTKIT_CORE_INFO("Duration: {}", duration_ms);
             this->save();
         }
         else
@@ -59,7 +59,7 @@ namespace optkit::core
             std::cout << read_val();
             auto end = std::chrono::high_resolution_clock::now();
             auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
-            OPTKIT_CORE_INFO("Duration: %d", duration_ms);
+            OPTKIT_CORE_INFO("Duration: {}", duration_ms);
         }
     }
     void RaplPerfReader::disable()
@@ -109,7 +109,7 @@ namespace optkit::core
         // based on the insertion order.
         for (const auto &val : this->read_buffer)
         {
-            ss << val << "\n";
+            ss << core::to_json(val);
         }
         return ss.str();
     }

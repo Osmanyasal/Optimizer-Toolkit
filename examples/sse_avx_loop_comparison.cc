@@ -59,7 +59,7 @@ namespace optkit::examples
         std::cout << "========= EMPTY ===========" << std::endl;
 
         {
-            OPTKIT_RAPL_REPEAT(add_sse, "Add SSE", rapl_repeat)
+            OPTKIT_RAPL_REPEAT(add_sse, "SYSTEM NOISE", rapl_repeat)
             {
                 // do nothing
             }
