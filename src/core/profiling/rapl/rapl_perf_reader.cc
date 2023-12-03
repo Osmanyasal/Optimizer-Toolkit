@@ -3,7 +3,7 @@
 namespace optkit::core
 {
 
-    RaplPerfReader::RaplPerfReader(const char *block_name, const RaplPerfReaderConfig &rapl_perf_config) : BaseProfiler{block_name}, rapl_perf_config{rapl_perf_config}
+    RaplPerfReader::RaplPerfReader(const char *block_name, const char *event_name, const RaplPerfReaderConfig &rapl_perf_config) : BaseProfiler{block_name, event_name}, rapl_perf_config{rapl_perf_config}
     {
         // std::cout << rapl_perf_config << std::endl;
         static std::string s_type = read_file("/sys/bus/event_source/devices/power/type");
@@ -46,39 +46,31 @@ namespace optkit::core
     }
     RaplPerfReader::~RaplPerfReader()
     {
-        long long value;
-        for (int package = 0; package < rapl_perf_config.packages.size(); package++)
+        if (OPT_LIKELY(this->rapl_perf_config.dump_results_to_file))
         {
-            std::cout << "\tPackage " << package << "\n";
-            for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
-            {
-                auto selected_domain = rapl_perf_config.avail_domains[domain];
-                if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
-                {
-                    std::cout << selected_domain.domain << " is being skipped!\n";
-                    continue;
-                }
-                if (fd_package_domain[package][domain] != -1)
-                {
-                    value = 0;
-                    ::read(fd_package_domain[package][domain], &value, 8);
-                    ::close(fd_package_domain[package][domain]);
-
-                    std::cout << "\t\t" << rapl_perf_config.avail_domains.at(domain).event
-                              << " Energy Consumed: " << (double)value * rapl_perf_config.avail_domains.at(domain).scale
-                              << " " << rapl_perf_config.avail_domains.at(domain).units << "\n";
-                }
-            }
+            std::cout << read();
+            auto end = std::chrono::high_resolution_clock::now();
+            auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
+            OPTKIT_CORE_INFO("Duration: %d", duration_ms);
+            this->save();
         }
-
-        this->save();
+        else
+        {
+            std::cout << read_val();
+            auto end = std::chrono::high_resolution_clock::now();
+            auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
+            OPTKIT_CORE_INFO("Duration: %d", duration_ms);
+        }
     }
     void RaplPerfReader::disable()
     {
+        OPTKIT_CORE_WARN("Rapl cannot be disabled");
     }
     void RaplPerfReader::enable()
     {
+        OPTKIT_CORE_WARN("Rapl is always enabled");
     }
+    
     std::map<int32_t, std::map<RaplDomain, double>> RaplPerfReader::read_val()
     {
         std::map<int32_t, std::map<RaplDomain, double>> result;
@@ -91,7 +83,7 @@ namespace optkit::core
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
                 if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
                 {
-                    std::cout << selected_domain.domain << " is being skipped!\n";
+                    OPTKIT_CORE_DEBUG("%d is being skipped", selected_domain.domain);
                     continue;
                 }
                 if (fd_package_domain[package][domain] != -1)
@@ -112,12 +104,37 @@ namespace optkit::core
 
     std::string RaplPerfReader::convert_buffer_to_json()
     {
-        std::string result = "example rapl perf reader";
-        return result;
+        std::stringstream ss;
+
+        // based on the insertion order.
+        for (const auto &val : this->read_buffer)
+        {
+            ss << val << "\n";
+        }
+        return ss.str();
     }
 
 } // namespace optkit::core
 
+std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::RaplDomain, double>> &map)
+{
+    const std::vector<optkit::core::RaplDomainInfo> &avail_domains = optkit::core::Query::rapl_domain_info();
+    for (const auto &pair : map)
+    {
+        os << "\tPackage " << pair.first << "\n";
+        for (const auto &innerpair : pair.second)
+        {
+            for (const auto &info : avail_domains)
+            {
+                if (info.domain == innerpair.first)
+                {
+                    os << "\t\t" << info.event << ": " << innerpair.second << " " << info.units << " Consumed.\n";
+                }
+            }
+        }
+    }
+    return os;
+}
 std::ostream &operator<<(std::ostream &os, const optkit::core::RaplPerfReaderConfig &config)
 {
     os << "\nRaplPerfReaderConfig:\n";

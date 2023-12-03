@@ -54,6 +54,7 @@ namespace optkit::core
             pfm_pmu_info_t info = Query::pmu_info(pmu_id);
             if (info.is_dfl || info.type == PFM_PMU_TYPE_CORE)
             {
+                info.is_dfl = true; // make it default!
                 Query::default_architectural_pmu = info;
                 return Query::default_architectural_pmu;
             }

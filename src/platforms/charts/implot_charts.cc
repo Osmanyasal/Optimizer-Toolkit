@@ -51,10 +51,10 @@ namespace optkit::core
                         if (meta.show_tooltip && ImPlot::IsPlotHovered())
                         {
                             ImPlotPoint mouse = ImPlot::GetPlotMousePos();
-                            if (std::abs(mouse.x - xCoord) < 0.1)
+                            if (std::abs(mouse.x - xCoord) <= meta.size / (meta.group_member_count * 2))
                             {
                                 ImGui::BeginTooltip();
-                                ImGui::Text("Label 1: " CONF__OPTKIT__BAR_GROUP_TOOLKIT_PRECISION, yCoord);
+                                ImGui::Text("Value: " CONF__OPTKIT__BAR_GROUP_TOOLKIT_PRECISION, yCoord);
                                 ImGui::EndTooltip();
                             }
                         }

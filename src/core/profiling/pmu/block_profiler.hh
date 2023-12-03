@@ -23,7 +23,7 @@ namespace optkit::core
     class BlockProfiler : public BaseProfiler <std::vector<uint64_t>>
     {
     public:
-        BlockProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig& config = ProfilerConfig{true,false});
+        BlockProfiler(const char *block_name, const char *event_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config = ProfilerConfig{true, false});
         virtual ~BlockProfiler();
         /**
          * @brief Disables this block profiler and associated events
@@ -59,7 +59,6 @@ namespace optkit::core
         std::vector<int32_t> fd_list;
 
     private:
-        std::chrono::high_resolution_clock::time_point start;
         ProfilerConfig profiler_config;
     };
  

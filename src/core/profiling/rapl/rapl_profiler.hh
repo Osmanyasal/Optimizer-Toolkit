@@ -16,8 +16,7 @@ namespace optkit::core
     class RaplProfiler : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>
     {
     public:
-
-        RaplProfiler(const char* block_name,const RaplConfig &config = RaplConfig{});
+        RaplProfiler(const char *block_name, const char *event_name = "Rapl", const RaplConfig &config = RaplConfig{});
         virtual ~RaplProfiler();
 
         /**
@@ -45,13 +44,11 @@ namespace optkit::core
     private:
         std::unique_ptr<BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>> rapl_reader;
         RaplConfig rapl_config;
-        std::chrono::high_resolution_clock::time_point start;
     };
 
 } // namespace optkit::core
 
 // Overloading << for map with RaplDomain as keys
-std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::RaplDomain, double> &map);
-std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::RaplDomain, double>> &map);
+std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::RaplDomain, double> &map); 
 
 #endif

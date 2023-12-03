@@ -22,7 +22,7 @@ namespace optkit::core
     {
 
     public:
-        BlockGroupProfiler(const char *block_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config = ProfilerConfig{true, true});
+        BlockGroupProfiler(const char *block_name, const char *event_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config = ProfilerConfig{true, true});
         virtual ~BlockGroupProfiler();
         /**
          * @brief Disables this block profiler and associated events
@@ -50,8 +50,7 @@ namespace optkit::core
         virtual std::vector<uint64_t> read_val() override;
 
     private:
-        int32_t group_leader;
-        std::chrono::high_resolution_clock::time_point start;
+        int32_t group_leader; 
         bool is_active;
         ProfilerConfig profiler_config;
 

@@ -59,7 +59,7 @@ namespace optkit::examples
         std::cout << "========= EMPTY ===========" << std::endl;
 
         {
-            OPTKIT_RAPL_REPEAT(add_sse, Add SSE, rapl_repeat)
+            OPTKIT_RAPL_REPEAT(add_sse, "Add SSE", rapl_repeat)
             {
                 // do nothing
             }
@@ -67,7 +67,7 @@ namespace optkit::examples
 
         std::cout << "========= SSE ===========" << std::endl;
         {
-            OPTKIT_RAPL_REPEAT(add_sse, Add SSE, rapl_repeat)
+            OPTKIT_RAPL_REPEAT(add_sse, "Add SSE", rapl_repeat)
             {
                 add__sse(aa, bb, result_sse, ARRAY_SIZE);
             }
@@ -76,7 +76,7 @@ namespace optkit::examples
         std::cout << "========= AVX ===========" << std::endl;
 
         {
-            OPTKIT_RAPL_REPEAT(add_avx, Add AVX, rapl_repeat)
+            OPTKIT_RAPL_REPEAT(add_avx, "Add AVX", rapl_repeat)
             {
                 add__avx(aa, bb, result_avx, ARRAY_SIZE);
             }
@@ -85,7 +85,7 @@ namespace optkit::examples
         std::cout << "========= SERIAL =========" << std::endl;
 
         {
-            OPTKIT_RAPL_REPEAT(add_serial, Add SERIAL, rapl_repeat)
+            OPTKIT_RAPL_REPEAT(add_serial, "Add SERIAL", rapl_repeat)
             {
                 add__serial(aa, bb, result_serial, ARRAY_SIZE);
             }

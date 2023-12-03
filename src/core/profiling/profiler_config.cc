@@ -3,7 +3,7 @@
 
 namespace optkit::core
 {
-    ProfilerConfig::ProfilerConfig(bool is_reset_after_read, bool is_grouped, int pid, int cpu) : is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}
+    ProfilerConfig::ProfilerConfig(bool is_reset_after_read, bool is_grouped, int pid, int cpu, bool dump_results_to_file) : is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}, dump_results_to_file{dump_results_to_file}
     {
         ::memset(&perf_event_config, 0, sizeof(perf_event_attr));
         perf_event_config.type = PERF_TYPE_RAW;
@@ -36,7 +36,7 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_
     {
         os << "PP1 ";
     }
-    if (rapl_config.monitor_domain &  (int32_t)optkit::core::RaplDomain::PACKAGE)
+    if (rapl_config.monitor_domain & (int32_t)optkit::core::RaplDomain::PACKAGE)
     {
         os << "PACKAGE ";
     }
@@ -47,6 +47,6 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_
     if (rapl_config.monitor_domain & (int32_t)optkit::core::RaplDomain::DRAM)
     {
         os << "DRAM ";
-    } 
+    }
     return os;
 }
