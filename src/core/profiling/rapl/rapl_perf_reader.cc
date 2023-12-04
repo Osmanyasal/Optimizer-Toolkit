@@ -70,7 +70,7 @@ namespace optkit::core
     {
         OPTKIT_CORE_WARN("Rapl is always enabled");
     }
-    
+
     std::map<int32_t, std::map<RaplDomain, double>> RaplPerfReader::read_val()
     {
         std::map<int32_t, std::map<RaplDomain, double>> result;
@@ -105,12 +105,13 @@ namespace optkit::core
     std::string RaplPerfReader::convert_buffer_to_json()
     {
         std::stringstream ss;
-
+        ss << "[\n";
         // based on the insertion order.
         for (const auto &val : this->read_buffer)
         {
             ss << core::to_json(val);
         }
+        ss << "]\n";
         return ss.str();
     }
 

@@ -56,7 +56,7 @@ namespace optkit::examples
         float result_avx[ARRAY_SIZE];
         float result_serial[ARRAY_SIZE];
 
-        std::cout << "========= EMPTY ===========" << std::endl;
+        std::cout << "========= SYSTEM NOISE ===========" << std::endl;
 
         {
             OPTKIT_RAPL_REPEAT(add_sse, "SYSTEM NOISE", rapl_repeat)

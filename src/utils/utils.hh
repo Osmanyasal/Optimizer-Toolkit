@@ -4,6 +4,7 @@
     All header files that's defined in utils.
     to access utils include this file
 */
+#include <algorithm>
 #include <cstdint>
 #include <random>
 #include <sys/stat.h>
@@ -29,11 +30,19 @@
 #define BLOCK_TIMER(block_name) \
     OPTKIT::utils::BlockTimer block_timer { block_name }
 
+// GLOBAL VARIABLES
+
+extern const std::string EXECUTION_FOLDER_NAME;
+
 // FUNCTION DECLERATIONS
 std::string generateGUID();
 
 std::string read_file(const std::string &location, bool is_verbose = true);
 void write_file(const std::string &location, const std::string &json_val, bool is_verbose = false);
 bool is_path_exists(const std::string &location);
+
+void create_directory(const std::string &folderName);
+std::string get_date(const std::string &format = "%d_%m_%Y");
+std::string get_time(const std::string &format = "%H_%M_%S");
 
 #endif

@@ -1,5 +1,7 @@
 #include <utils.hh>
 
+const std::string EXECUTION_FOLDER_NAME{get_date() + "__" + get_time() + "__" + generateGUID().substr(0, CONF__LOG__PRINT_GUID_LENGTH)};
+
 std::string generateGUID()
 {
     std::random_device rd;
@@ -67,4 +69,58 @@ bool is_path_exists(const std::string &location)
 {
     struct stat buffer;
     return (stat(location.c_str(), &buffer) == 0);
+}
+
+void create_directory(const std::string &folderName)
+{
+#ifdef _WIN32
+    // For Windows
+    if (_mkdir(folderName.c_str()) != 0)
+    {
+        OPTKIT_CORE_ERROR("Error creating directory {}", folderName);
+        exit(EXIT_FAILURE);
+    }
+#else
+    // For Linux/Unix
+    if (mkdir(folderName.c_str(), 0777) != 0)
+    {
+        OPTKIT_CORE_ERROR("Error creating directory {}", folderName);
+        exit(EXIT_FAILURE);
+    }
+#endif
+}
+
+std::string get_date(const std::string &format)
+{
+    // Get the current time point
+    auto now = std::chrono::system_clock::now();
+
+    // Convert the time point to a time_t object
+    auto currentTime = std::chrono::system_clock::to_time_t(now);
+
+    // Convert the time_t object to a tm struct
+    std::tm *localTime = std::localtime(&currentTime);
+
+    // Format the date using the provided format
+    std::ostringstream oss;
+    oss << std::put_time(localTime, format.c_str());
+
+    return oss.str();
+}
+std::string get_time(const std::string &format)
+{
+    // Get the current time point
+    auto now = std::chrono::system_clock::now();
+
+    // Convert the time point to a time_t object
+    auto currentTime = std::chrono::system_clock::to_time_t(now);
+
+    // Convert the time_t object to a tm struct
+    std::tm *localTime = std::localtime(&currentTime);
+
+    // Format the time using the provided format
+    std::ostringstream oss;
+    oss << std::put_time(localTime, format.c_str());
+
+    return oss.str();
 }

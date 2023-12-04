@@ -21,7 +21,7 @@ namespace optkit::core
     struct RaplPackage
     {
         int32_t package_number;
-        std::vector<std::vector<RaplMetric>> metrics_sets; // Multiple sets of metrics
+        std::vector<RaplMetric> metrics_sets; // Multiple sets of metrics
     };
 
     nlohmann::json to_json(const std::map<int32_t, std::map<optkit::core::RaplDomain, double>> &rapl_map);

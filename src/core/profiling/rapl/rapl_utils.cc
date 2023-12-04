@@ -25,27 +25,13 @@ namespace optkit::core
                 {
                     if (info.domain == innerpair.first)
                     {
-                        RaplMetric metric;
-                        metric.metric_name = info.event;
-                        metric.value = innerpair.second;
-                        metric.units = info.units;
-                        metric.description = "Consumed";
-                        metrics.push_back(metric);
+                        packageJson["metrics_sets"].push_back({{"metric_name", info.event},
+                                                               {"value", innerpair.second},
+                                                               {"units", info.units},
+                                                               {"description", "Consumed"}});
                     }
                 }
-
-                nlohmann::json metricsSet;
-                for (const auto &metric : metrics)
-                {
-                    metricsSet.push_back({{"metric_name", metric.metric_name},
-                                          {"value", metric.value},
-                                          {"units", metric.units},
-                                          {"description", metric.description}});
-                }
-
-                packageJson["metrics_sets"].push_back(metricsSet);
             }
-
             result["packages"].push_back(packageJson);
         }
 

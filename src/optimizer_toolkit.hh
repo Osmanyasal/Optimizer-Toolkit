@@ -10,7 +10,8 @@
 namespace optkit::core
 {
     class OptimizerKit
-    {
+    { 
+
     public:
         OptimizerKit();
         ~OptimizerKit();

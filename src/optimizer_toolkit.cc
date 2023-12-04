@@ -2,6 +2,7 @@
 
 namespace optkit::core
 {
+
     OptimizerKit::OptimizerKit(/* args */)
     {
         optkit::utils::logger::BaseLogger::init();
@@ -19,6 +20,9 @@ namespace optkit::core
         else if (paranoid <= 0)
         {
             optkit::core::Query::init();
+
+            create_directory(EXECUTION_FOLDER_NAME);
+            OPTKIT_CORE_INFO("Execution file created {}", EXECUTION_FOLDER_NAME);
             if (std::remove("imgui.ini") != 0)
             {
                 OPTKIT_CORE_INFO("imgui.ini file succesfully deleted!");
@@ -51,7 +55,7 @@ namespace optkit::core
                                     80, 62, 56, 99, 55, 78, 88, 78, 90, 100, // final
                                     80, 69, 52, 92, 72, 78, 75, 76, 89, 95}; // course
 
-        std::vector<const char *> member_labels = {"Midterm Exam", "Final Exam", "Course Grade","TMP"};             // events in the group
+        std::vector<const char *> member_labels = {"Midterm Exam", "Final Exam", "Course Grade", "TMP"};      // events in the group
         std::vector<const char *> group_name = {"S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"}; // iterations
         std::vector<double> positions = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};                                       // iterations
 
@@ -60,7 +64,7 @@ namespace optkit::core
                                      80, 62, 56, 99, 55, 78, 88, 78, 90, 100, // final
                                      80, 69, 52, 92, 72, 78, 75, 76, 89, 95}; // course
 
-        std::vector<const char *> member_labels2 = {"Midterm Exam", "Final Exam", "Course Grade","TMP"};             // events in the group
+        std::vector<const char *> member_labels2 = {"Midterm Exam", "Final Exam", "Course Grade", "TMP"};      // events in the group
         std::vector<const char *> group_name2 = {"S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"}; // iterations
         std::vector<double> positions2 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};                                       // iterations
 
@@ -74,11 +78,11 @@ namespace optkit::core
             // Begin loop - create frame
             // -----
             impl.begin_loop();
-        
+
             // render
             // ------
             impl.on_update(meta_list);
-            
+
             // EndLoop - read events
             // -----
             impl.end_loop();

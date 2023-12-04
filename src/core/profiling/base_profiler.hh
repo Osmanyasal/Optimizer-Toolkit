@@ -8,12 +8,13 @@
 #include <profiler_config.hh>
 namespace optkit::core
 {
-
     template <typename T>
     class BaseProfiler
     {
     public:
-        BaseProfiler(const char *block_name, const char *event_name) : block_name{block_name}, event_name{event_name} {}
+        BaseProfiler(const char *block_name, const char *event_name) : block_name{block_name}, event_name{event_name}, start{std::chrono::high_resolution_clock::now()}
+        {
+        }
         virtual ~BaseProfiler() {}
 
         virtual void disable() = 0;
@@ -59,18 +60,22 @@ namespace optkit::core
         {
             const std::string &json_data = convert_buffer_to_json();
             std::string file_name = block_name;
+            file_name = file_name;
+            std::replace(file_name.begin(), file_name.end(), ' ', '_');
+            file_name = EXECUTION_FOLDER_NAME + "/" + file_name + "__" + event_name;
+            for (char &c : file_name)
+                c = std::tolower(c);
+
             file_name.append(".json");
-            ::write_file(file_name, json_data);
+            ::write_file(file_name, json_data, true);
         }
-
-    protected:
-        std::chrono::high_resolution_clock::time_point start;
-
+ 
     public:
         const char *block_name;
         const char *event_name;
 
     protected:
+        std::chrono::high_resolution_clock::time_point start;
         std::vector<T> read_buffer;
     };
 
