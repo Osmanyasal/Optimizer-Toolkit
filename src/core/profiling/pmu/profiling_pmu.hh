@@ -12,12 +12,15 @@ using optkit::core::BlockGroupProfiler;
 using optkit::core::BlockProfiler;
 using optkit::core::PMUEventManager;
 
+/*
+    Static instances are defined because monitoring recursive methods would cause an issue
+*/
 #define OPTKIT_PERFORMANCE_EVENTS(block_name, variable_name, ...) \
     OPTKIT_CORE_GANTT_PROFILE_SCOPE(#block_name);\
-    BlockProfiler variable_name{#block_name, __VA_ARGS__}
+    static BlockProfiler variable_name{#block_name, __VA_ARGS__}
 
 #define OPTKIT_PERFORMANCE_BLOCK_EVENTS(block_name, variable_name, ...) \
     OPTKIT_CORE_GANTT_PROFILE_SCOPE(#block_name);\
-    BlockGroupProfiler variable_name{#block_name, __VA_ARGS__}
+    static BlockGroupProfiler variable_name{#block_name, __VA_ARGS__}
 
 #endif
