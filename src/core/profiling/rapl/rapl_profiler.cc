@@ -11,20 +11,20 @@ namespace optkit::core
         switch (rapl_config.read_method)
         {
         case RaplReadMethods::PERF:
-            rapl_reader.reset(new RaplPerfReader{block_name, event_name, {packages, avail_domains, rapl_config}});
+            rapl_reader.reset(new RaplPerfReader{{packages, avail_domains, rapl_config}});
             break;
 
         case RaplReadMethods::MSR:
-            // TODO:Implement MSR reader
+            // TODO:[FUTURE_WORK] Implement MSR reader
             OPTKIT_CORE_WARN("MSR not implemented in this version! Switching to PERF.");
-            rapl_reader.reset(new RaplPerfReader{block_name, event_name, {packages, avail_domains, rapl_config}});
+            rapl_reader.reset(new RaplPerfReader{{packages, avail_domains, rapl_config}});
 
             break;
 
         case RaplReadMethods::POWERCAP:
-            // TODO:Implement POWERCAP reader
+            // TODO:[FUTURE_WORK] Implement POWERCAP reader
             OPTKIT_CORE_WARN("POWERCAP not implemented in this version! Switching to PERF.");
-            rapl_reader.reset(new RaplPerfReader{block_name, event_name, {packages, avail_domains, rapl_config}});
+            rapl_reader.reset(new RaplPerfReader{{packages, avail_domains, rapl_config}});
             break;
         default:
             OPTKIT_CORE_WARN("unknown read method!");
@@ -34,7 +34,22 @@ namespace optkit::core
 
     RaplProfiler::~RaplProfiler()
     {
-        // disable clock now! 
+        //Disable the clock.
+        auto end = std::chrono::high_resolution_clock::now();
+
+        if (OPT_LIKELY(this->rapl_config.dump_results_to_file))
+        {
+            std::cout << read();
+            auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
+            OPTKIT_CORE_INFO("Duration: {}", duration_ms);
+            this->save();
+        }
+        else
+        {
+            std::cout << read_val();
+            auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
+            OPTKIT_CORE_INFO("Duration: {}", duration_ms);
+        }
         delete rapl_reader.release(); 
     }
 
@@ -54,7 +69,15 @@ namespace optkit::core
 
     std::string RaplProfiler::convert_buffer_to_json()
     {
-        return rapl_reader->convert_buffer_to_json();
+        std::stringstream ss;
+        ss << "[\n";
+        // based on the insertion order.
+        for (const auto &val : this->read_buffer)
+        {
+            ss << core::rapl::to_json(val);
+        }
+        ss << "]\n";
+        return ss.str();
     }
 
 } // namespace optkit::core

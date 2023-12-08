@@ -15,6 +15,24 @@ namespace optkit::core
         {static_cast<int32_t>(RaplReadMethods::MSR), "MSR"},
         {static_cast<int32_t>(RaplReadMethods::POWERCAP), "POWERCAP"}};
 
+    RaplDomain mapMetricNameToRaplDomain(const std::string &metric_name)
+    {
+        // Implement the mapping logic based on the rapl_domain_name_mapping
+        auto it = optkit::core::rapl_domain_name_mapping.begin();
+        while (it != optkit::core::rapl_domain_name_mapping.end())
+        {
+            if (it->second == metric_name)
+            {
+                return static_cast<optkit::core::RaplDomain>(it->first);
+            }
+            ++it;
+        }
+
+        OPTKIT_CORE_WARN("Unknown metric_name: {}", metric_name);
+        // Return a default or handle the error accordingly
+        return optkit::core::RaplDomain::BEGIN;
+    }
+
 } // namespace optkit::core
 
 // Overload << operator for RaplDomain

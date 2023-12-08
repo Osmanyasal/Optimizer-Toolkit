@@ -16,7 +16,7 @@ namespace optkit::core
             perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
     }
 
-    RaplConfig::RaplConfig(RaplReadMethods read_method, int32_t monitor_domain, bool is_reset_after_read) : read_method{read_method}, monitor_domain{monitor_domain}, is_reset_after_read{is_reset_after_read}
+    RaplConfig::RaplConfig(RaplReadMethods read_method, int32_t monitor_domain, bool is_reset_after_read, bool dump_results_to_file) : read_method{read_method}, monitor_domain{monitor_domain}, is_reset_after_read{is_reset_after_read}, dump_results_to_file{dump_results_to_file}
     {
     }
 

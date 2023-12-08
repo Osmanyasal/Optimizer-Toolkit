@@ -5,18 +5,17 @@
 #include <utils.hh>
 #include <ostream>
 #include <map>
-
+#include <query.hh>
 #include <base_profiler.hh>
 #include <profiler_config.hh>
 #include <rapl_perf_reader.hh>
-#include <query.hh>
+#include <rapl_utils.hh>
 namespace optkit::core
 {
-
     class RaplProfiler : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>
     {
     public:
-        RaplProfiler(const char *block_name, const char *event_name = "Rapl", const RaplConfig &config = RaplConfig{});
+        RaplProfiler(const char *block_name, const char *event_name = "rapl", const RaplConfig &config = RaplConfig{});
         virtual ~RaplProfiler();
 
         /**
@@ -42,7 +41,7 @@ namespace optkit::core
         virtual std::map<int32_t, std::map<RaplDomain, double>> read_val() override;
 
     private:
-        std::unique_ptr<BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>> rapl_reader;
+        std::unique_ptr<optkit::core::RaplPerfReader> rapl_reader;
         RaplConfig rapl_config;
     };
 

@@ -3,12 +3,11 @@
 
 #include <string>
 #include <sstream>
-#include <rapl.hh>
-#include <rapl_perf_reader.hh>
-#include <rapl_profiler.hh>
 #include <json.hh>
+#include <rapl.hh>
+#include <query.hh>
 
-namespace optkit::core
+namespace optkit::core::rapl
 {
     struct RaplMetric
     {
@@ -25,6 +24,8 @@ namespace optkit::core
     };
 
     nlohmann::json to_json(const std::map<int32_t, std::map<optkit::core::RaplDomain, double>> &rapl_map);
+    std::map<int32_t, std::map<optkit::core::RaplDomain, double>> from_json(const std::string &json);
+
 } // namespace optkit::core
 
 #endif

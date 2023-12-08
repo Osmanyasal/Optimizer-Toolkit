@@ -9,8 +9,8 @@
 #include <vector>
 #include <string>
 #include <map>
-#include <libpfm4_wrapper.hh>
 #include <rapl.hh>
+#include <libpfm4_wrapper.hh>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info);

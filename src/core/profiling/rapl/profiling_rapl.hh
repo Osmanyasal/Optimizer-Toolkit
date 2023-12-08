@@ -16,7 +16,7 @@ using optkit::core::RaplReadMethods;
 */
 #define OPTKIT_RAPL_REPEAT(var_name, block_name, count) \
     OPTKIT_CORE_GANTT_PROFILE_SCOPE(block_name);        \
-    static RaplProfiler var_name{block_name};           \
+    RaplProfiler var_name{block_name};                  \
     for (int i = 0; i < count; i++)
 
 #endif
