@@ -9,22 +9,8 @@
 
 namespace optkit::core::rapl
 {
-    struct RaplMetric
-    {
-        std::string metric_name;
-        double value;
-        std::string units;
-        std::string description;
-    };
-
-    struct RaplPackage
-    {
-        int32_t package_number;
-        std::vector<RaplMetric> metrics_sets; // Multiple sets of metrics
-    };
-
-    nlohmann::json to_json(const std::map<int32_t, std::map<optkit::core::RaplDomain, double>> &rapl_map);
-    std::map<int32_t, std::map<optkit::core::RaplDomain, double>> from_json(const std::string &json);
+    nlohmann::json to_json(const std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::RaplDomain, double>>>> &rapl_pair_list);
+    std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::RaplDomain, double>>>> from_json(const std::string &json);
 
 } // namespace optkit::core
 

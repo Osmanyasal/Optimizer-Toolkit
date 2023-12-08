@@ -16,7 +16,7 @@ namespace optkit::core
         OptimizerKit();
         ~OptimizerKit();
 
-        void draw(const std::vector<const char*>& file_names = {});
+        void draw(const std::vector<std::string>& file_names = {});
 
         /**
          * @brief Returns current perf_event_paranoid value from "/proc/sys/kernel/perf_event_paranoid"<br>

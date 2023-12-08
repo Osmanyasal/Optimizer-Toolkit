@@ -65,6 +65,28 @@ void write_file(const std::string &location, const std::string &json_val, bool i
     }
 }
 
+std::vector<std::string> get_all_files(const std::string &directory_name)
+{
+    std::vector<std::string> files;
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir(directory_name.c_str())) != NULL)
+    {
+        /* print all the files and directories within directory */
+        while ((ent = readdir(dir)) != NULL)
+        {
+            if(OPT_LIKELY(ent->d_name[0] != '.'))
+                files.push_back(ent->d_name);
+        }
+        closedir(dir);
+    }
+    else
+    {
+        OPTKIT_CORE_ERROR("Couldn't open the directory ! {}", directory_name);
+    }
+    return files;
+}
+
 bool is_path_exists(const std::string &location)
 {
     struct stat buffer;

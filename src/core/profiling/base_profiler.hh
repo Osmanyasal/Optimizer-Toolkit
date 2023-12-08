@@ -22,19 +22,32 @@ namespace optkit::core
 
         /**
          * @brief Reads the value and STORES it in a buffer for subsequent saving to a file.
-         *
+         *        Read also store the duration time between start-end and re-set the start to end value afterwards
          * @return T
          */
-        virtual T read() final
+        virtual std::pair<double, T> read() final
         {
+            // stop timer
+            auto end = std::chrono::high_resolution_clock::now();
+
+            // read value
             const T &val = read_val();
-            read_buffer.push_back(val);
-            return val;
+
+            // calculate duration in ms
+            auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
+
+            // write to buffer
+            read_buffer.push_back({duration_ms, val});
+
+            // re-set start time to now
+            this->start = end;
+
+            return read_buffer.back();
         }
 
         /**
          * @brief read_val method that refrains from storing the value in a buffer for future writing.
-         *
+         *        read_val should NOT! mess with time durations, only should read data and retrun it.
          * @return T
          */
         virtual T read_val() = 0;
@@ -46,7 +59,7 @@ namespace optkit::core
          */
         virtual std::string convert_buffer_to_json() = 0;
 
-        virtual const std::vector<T> &get_read_buffer() final
+        virtual const std::vector<std::pair<double, T>> &get_read_buffer() final
         {
             return read_buffer;
         }
@@ -69,14 +82,14 @@ namespace optkit::core
             file_name.append(".json");
             ::write_file(file_name, json_data, true);
         }
- 
+
     public:
         const char *block_name;
         const char *event_name;
 
     protected:
         std::chrono::high_resolution_clock::time_point start;
-        std::vector<T> read_buffer;
+        std::vector<std::pair<double, T>> read_buffer;
     };
 
 } // namespace optkit::core

@@ -33,24 +33,23 @@ namespace optkit::core
     }
 
     RaplProfiler::~RaplProfiler()
-    {
-        //Disable the clock.
-        auto end = std::chrono::high_resolution_clock::now();
-
+    { 
         if (OPT_LIKELY(this->rapl_config.dump_results_to_file))
         {
-            std::cout << read();
-            auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
-            OPTKIT_CORE_INFO("Duration: {}", duration_ms);
+            read();
             this->save();
         }
         else
         {
+            // Disable the clock.
+            auto end = std::chrono::high_resolution_clock::now();
+
             std::cout << read_val();
             auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
             OPTKIT_CORE_INFO("Duration: {}", duration_ms);
         }
-        delete rapl_reader.release(); 
+        
+        delete rapl_reader.release();
     }
 
     void RaplProfiler::disable()
@@ -72,10 +71,7 @@ namespace optkit::core
         std::stringstream ss;
         ss << "[\n";
         // based on the insertion order.
-        for (const auto &val : this->read_buffer)
-        {
-            ss << core::rapl::to_json(val);
-        }
+        ss << core::rapl::to_json(this->read_buffer);
         ss << "]\n";
         return ss.str();
     }
@@ -93,4 +89,3 @@ std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::RaplDoma
 
     return os;
 }
- 

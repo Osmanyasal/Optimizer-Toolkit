@@ -31,7 +31,6 @@ namespace optkit::platforms::imgui
         void on_attach();
         void on_detach();
         void on_update(const std::vector<optkit::core::BarGroupsMeta> &meta_list);
-
         void begin_loop();
         void end_loop();
         void set_dark_theme_colors();

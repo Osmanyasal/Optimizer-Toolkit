@@ -89,6 +89,12 @@ namespace optkit::examples
             {
                 add__serial(aa, bb, result_serial, ARRAY_SIZE);
             }
+
+            sleep(1);
+            add_serial.read();
+            
+            sleep(1);
+            add_serial.read();
         }
 
         std::cout << "========== DONE ==========\n";

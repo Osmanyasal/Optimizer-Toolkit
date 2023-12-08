@@ -24,6 +24,8 @@
 #include <block_timer.hh>
 #include <gantt_instrumentor.hh>
 
+#include <dirent.h>
+
 // MACRO DEFINITIONS
 #define BIT(x) (1 << x)
  
@@ -44,5 +46,6 @@ bool is_path_exists(const std::string &location);
 void create_directory(const std::string &folderName);
 std::string get_date(const std::string &format = "%d_%m_%Y");
 std::string get_time(const std::string &format = "%H_%M_%S");
+std::vector<std::string> get_all_files(const std::string &directory_name);
 
 #endif
