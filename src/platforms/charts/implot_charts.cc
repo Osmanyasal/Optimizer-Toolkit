@@ -52,10 +52,11 @@ namespace optkit::core
                             xCoord = i;
 
                         else if (meta.group_member_count % 2 == 1)
-                            xCoord = i + ((j - meta.group_member_count / 3.0f) * individualColumnWidth);
+                            // xCoord = i + ((j - meta.group_member_count / 3.0f) * individualColumnWidth);
+                            xCoord = i - individualColumnWidth * (meta.group_member_count / 2) + (2 * j) * (individualColumnWidth / 2);
 
                         else
-                            xCoord = i + ((j - meta.group_member_count / 3.0f) * individualColumnWidth);
+                            xCoord = i - individualColumnWidth * (meta.group_member_count / 2) + (2 * j + 1) * (individualColumnWidth / 2);
 
                         float yCoord = meta.data[j * meta.glables.size() + i];
                         if (meta.show_tooltip && ImPlot::IsPlotHovered())
@@ -92,7 +93,7 @@ namespace optkit::core
 
         std::vector<std::string> member_labels = {"Midterm Exam", "Final Exam", "Course Grade", "TMP"};      // events in the group
         std::vector<std::string> group_name = {"S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"}; // iterations
-        std::vector<double> positions = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};                                       // iterations
+        std::vector<double> positions = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};                                      // iterations
 
         BarGroupsMeta bar_group{"Students", "Score", "", "Example Block", 4, data, member_labels, group_name, positions};
         return bar_group;
@@ -104,9 +105,9 @@ namespace optkit::core
         const std::vector<optkit::core::RaplDomainInfo> &avail_domains = optkit::core::Query::rapl_domain_info();
 
         std::vector<double> _data;
-        std::vector<std::string> member_labels = {"duration (seconds)"}; // events in the group
-        std::vector<std::string> group_name = {};                  // iterations
-        std::vector<double> positions = {};                         // iterations
+        std::vector<std::string> member_labels = {"duration (Seconds)"}; // events in the group
+        std::vector<std::string> group_name = {};                        // iterations
+        std::vector<double> positions = {};                              // iterations
 
         int read_count = -1;
         int package_num = -1;
@@ -127,7 +128,7 @@ namespace optkit::core
                     {
                         if (info.domain == domain_value.first)
                         {
-                            std::string _info = info.event + " " + info.units;
+                            std::string _info = info.event + " (" + info.units + ")";
                             if (std::find(member_labels.begin(), member_labels.end(), _info.c_str()) == member_labels.end())
                                 member_labels.push_back(_info.c_str());
                             _data.push_back(domain_value.second);

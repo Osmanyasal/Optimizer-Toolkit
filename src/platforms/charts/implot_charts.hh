@@ -34,7 +34,7 @@ namespace optkit::core
             bool horz = false,
             ImPlotBarGroupsFlags flags = 0,
             bool show_tooltip = true,
-            bool show_annotations = false) : x_axis_name{x_axis_name}, y_left__axis_name{y_left__axis_name}, y_right__axis_name{y_right__axis_name}, block_name{block_name}, group_member_count(group_member_count), data(data), member_labels(member_labels),
+            bool show_annotations = true) : x_axis_name{x_axis_name}, y_left__axis_name{y_left__axis_name}, y_right__axis_name{y_right__axis_name}, block_name{block_name}, group_member_count(group_member_count), data(data), member_labels(member_labels),
                                              glables(glables), positions(positions), size(size), horz(horz), flags(flags), inital_member_count{group_member_count}, show_tooltip{show_tooltip}, show_annotations{show_annotations}
         {
         }
