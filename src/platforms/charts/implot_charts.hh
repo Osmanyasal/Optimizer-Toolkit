@@ -27,8 +27,8 @@ namespace optkit::core
             const std::string &block_name,
             int group_member_count,
             const std::vector<double> &data,
-            const std::vector<const char *> &member_labels,
-            const std::vector<const char *> &glables,
+            const std::vector<std::string> &member_labels,
+            const std::vector<std::string> &glables,
             const std::vector<double> &positions,
             float size = 0.67f,
             bool horz = false,
@@ -44,8 +44,8 @@ namespace optkit::core
         std::string block_name;
         mutable int group_member_count;
         std::vector<double> data;
-        std::vector<const char *> member_labels;
-        std::vector<const char *> glables;
+        std::vector<std::string> member_labels;
+        std::vector<std::string> glables;
         std::vector<double> positions;
         mutable float size;
         mutable bool clamp;
