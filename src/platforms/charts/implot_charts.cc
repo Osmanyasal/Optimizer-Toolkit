@@ -71,7 +71,7 @@ namespace optkit::core
                         }
 
                         if (meta.show_annotations)
-                            ImPlot::Annotation(xCoord, yCoord, ImVec4(1, 1, 1, 0), ImVec2(0, -5), meta.clamp, CONF__OPTKIT__BAR_GROUP_PRECISION, yCoord);
+                            ImPlot::Annotation(xCoord, yCoord, ImVec4(1, 1, 1, 0), ImVec2(0, -1), meta.clamp, CONF__OPTKIT__BAR_GROUP_PRECISION, yCoord);
                     }
                 }
             if (meta.horz)
