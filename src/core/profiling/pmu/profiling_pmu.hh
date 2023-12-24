@@ -12,12 +12,12 @@ using optkit::core::BlockGroupProfiler;
 using optkit::core::BlockProfiler;
 using optkit::core::PMUEventManager;
 
-#define OPTKIT_PERFORMANCE_EVENTS(block_name, variable_name, ...) \
-    OPTKIT_CORE_GANTT_PROFILE_SCOPE(#block_name);\
-    BlockProfiler variable_name{#block_name, __VA_ARGS__}
+#define OPTKIT_PERFORMANCE_EVENTS(block_name, event_name, variable_name, ...) \
+    OPTKIT_CORE_GANTT_PROFILE_SCOPE(block_name);                                    \
+    BlockProfiler variable_name { block_name, event_name, __VA_ARGS__ }
 
-#define OPTKIT_PERFORMANCE_BLOCK_EVENTS(block_name, variable_name, ...) \
-    OPTKIT_CORE_GANTT_PROFILE_SCOPE(#block_name);\
-    BlockGroupProfiler variable_name{#block_name, __VA_ARGS__}
+#define OPTKIT_PERFORMANCE_BLOCK_EVENTS(block_name, event_name, variable_name, ...) \
+    OPTKIT_CORE_GANTT_PROFILE_SCOPE(block_name);                                          \
+    BlockGroupProfiler variable_name { block_name, event_name, __VA_ARGS__ }
 
 #endif

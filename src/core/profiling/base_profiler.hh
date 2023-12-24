@@ -89,7 +89,7 @@ namespace optkit::core
 
     protected:
         std::chrono::high_resolution_clock::time_point start;
-        std::vector<std::pair<double, T>> read_buffer;
+        std::vector<std::pair<double, T>> read_buffer;  // single timestamp -- measurements
     };
 
 } // namespace optkit::core

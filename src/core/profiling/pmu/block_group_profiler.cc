@@ -3,23 +3,23 @@
 namespace optkit::core
 {
 
-    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, const char *event_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config) : BaseProfiler{block_name, event_name}, profiler_config{config}, group_leader{-1}, is_active{true}
+    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config) : BaseProfiler{block_name, event_name}, profiler_config{config}, group_leader{-1}, is_active{true}, raw_events{raw_events}
     {
 
         PMUEventManager::disable_all_events();
-        
-        if (raw_event_list.size() > PMUEventManager::pmu_event_size())
+
+        if (raw_events.size() > PMUEventManager::pmu_event_size())
         {
             this->is_active = false;
-            OPTKIT_CORE_ERROR("Cannot create a blockgroup for block {} by monitoring more than pmu hardware event size {}|{}(max).",this->block_name, raw_event_list.size(), PMUEventManager::pmu_event_size());
+            OPTKIT_CORE_ERROR("Cannot create a blockgroup for block {} by monitoring more than pmu hardware event size {}|{}(max).", this->block_name, raw_events.size(), PMUEventManager::pmu_event_size());
             OPTKIT_CORE_WARN("Consider dividing the BlockGroupProfiler for block {} into multiple sub-groups!", this->block_name);
             return;
         }
 
-        for (auto &raw_event : raw_event_list)
+        for (auto &raw_event : raw_events)
         {
             perf_event_attr attr = this->profiler_config.perf_event_config;
-            attr.config = raw_event;
+            attr.config = raw_event.first;
 
             int32_t fd = syscall(__NR_perf_event_open, &attr, this->profiler_config.pid, this->profiler_config.cpu, group_leader, 0); // <-- first becomes -1 and later we use the group_leader's fd.
             if (fd == -1)
@@ -32,7 +32,7 @@ namespace optkit::core
                 if (group_leader == -1)
                 {
                     group_leader = fd;
-                    PMUEventManager::register_event(group_leader, raw_event_list.size());
+                    PMUEventManager::register_event(group_leader, raw_events.size());
                 }
             }
         }
@@ -50,30 +50,30 @@ namespace optkit::core
 
         if (OPT_UNLIKELY(!is_active))
         {
-            OPTKIT_CORE_WARN("BlockGroupProfiler for block {} is not active!",this->block_name);
+            OPTKIT_CORE_WARN("BlockGroupProfiler for block {} is not active!", this->block_name);
             return;
         }
+        this->read();
 
-        // disable clock now!
-        auto end = std::chrono::high_resolution_clock::now();
-        auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
-
-        std::string buf;
-        buf.resize(4096);
-        const read_format *rf = reinterpret_cast<const read_format *>(buf.data());
-        ::read(group_leader, const_cast<char *>(buf.data()), buf.size());
-        ::close(group_leader);
         PMUEventManager::unregister_event(group_leader);
 
-        for (int i = 0; i < rf->nr; i++)
+        if (OPT_LIKELY(profiler_config.dump_results_to_file))
+            this->save();
+        else
         {
-            std::cout << "\033[1;35m"
-                      << "Block: " << this->block_name << "\033[0m"
-                      << " [" << duration_ms << "ms] "
-                      << "Measured: " << rf->values[i].value << std::endl;
+            int ctr = 0;
+            for (auto iter = this->read_buffer.rbegin(); ctr < raw_events.size() && iter != this->read_buffer.rend(); iter++, ctr++)
+            {
+                std::cout << "\033[1;35m"
+                          << "Block: " << this->block_name << "\033[0m"
+                          << " [" << iter->first << "ms] Measured";
+                for (auto &&i : iter->second)
+                {
+                    std::cout << " " << i << std::endl;
+                }
+            }
         }
 
-        this->save();
         PMUEventManager::enable_all_events();
     }
 
@@ -115,7 +115,7 @@ namespace optkit::core
         {
             result.push_back(rf->values[i].value);
         }
-        if(OPT_LIKELY(this->profiler_config.is_reset_after_read))
+        if (OPT_LIKELY(this->profiler_config.is_reset_after_read))
             ioctl(group_leader, PERF_EVENT_IOC_RESET, PERF_IOC_FLAG_GROUP);
         PMUEventManager::enable_all_events();
 
@@ -124,7 +124,11 @@ namespace optkit::core
 
     std::string BlockGroupProfiler::convert_buffer_to_json()
     {
-        std::string result = "example group";
-        return result;
+        std::stringstream ss;
+        ss << "[\n";
+        // based on the insertion order.
+        ss << core::pmu::to_json(this->event_name, this->read_buffer);
+        ss << "]\n";
+        return ss.str();
     }
 } // namespace optkit::core

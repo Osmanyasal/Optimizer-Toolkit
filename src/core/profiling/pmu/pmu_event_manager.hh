@@ -42,7 +42,7 @@ namespace optkit::core
         static int32_t pmu_event_size();
 
     private:
-        static std::map<int32_t, int32_t> fd__event_count_map; // insertion order is important!!
+        static std::map<int32_t, int32_t> fd__event_count_map; // insertion order is important for enable/disable ordering
         static int32_t event_count_being_monitor;
 
     private:

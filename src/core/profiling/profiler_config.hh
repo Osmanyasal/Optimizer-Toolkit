@@ -48,6 +48,7 @@ namespace optkit::core
          *
          */
         ProfilerConfig(bool is_reset_after_read = true, bool is_grouped = false, int pid = 0, int cpu = -1, bool dump_results_to_file = true);
+        ProfilerConfig(perf_event_attr perf_event_config,bool is_reset_after_read = true, bool is_grouped = false, int pid = 0, int cpu = -1, bool dump_results_to_file = true);
 
         bool is_reset_after_read;
         bool is_grouped;

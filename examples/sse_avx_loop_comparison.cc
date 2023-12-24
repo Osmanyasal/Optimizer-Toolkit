@@ -2,6 +2,7 @@
 #include <optkit.hh>
 #include <immintrin.h> // for AVX
 #include <xmmintrin.h> // for SSE
+#include <events/intel/icl.hh>
 
 namespace optkit::examples
 {
@@ -66,8 +67,12 @@ namespace optkit::examples
         }
 
         std::cout << "========= SSE ===========" << std::endl;
-        {
-            OPTKIT_RAPL_REPEAT(add_sse, "Add SSE", rapl_repeat)
+        {   
+            OPTKIT_PERFORMANCE_EVENTS("SSE FLOPS", "ALL FLOPS" , add_sse_flops, {{icl::FP_ARITH |
+                        icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__128B_PACKED_SINGLE, "Packed128"}}) ;
+            add_sse_flops.profiler_config.dump_results_to_file = false;
+
+            // OPTKIT_RAPL_REPEAT(add_sse, "Add SSE", rapl_repeat)
             {
                 add__sse(aa, bb, result_sse, ARRAY_SIZE);
             }
@@ -76,7 +81,7 @@ namespace optkit::examples
         std::cout << "========= AVX ===========" << std::endl;
 
         {
-            OPTKIT_RAPL_REPEAT(add_avx, "Add AVX", rapl_repeat)
+            // OPTKIT_RAPL_REPEAT(add_avx, "Add AVX", rapl_repeat)
             {
                 add__avx(aa, bb, result_avx, ARRAY_SIZE);
             }
@@ -85,16 +90,16 @@ namespace optkit::examples
         std::cout << "========= SERIAL =========" << std::endl;
 
         {
-            OPTKIT_RAPL_REPEAT(add_serial, "Add SERIAL", rapl_repeat)
+            // OPTKIT_RAPL_REPEAT(add_serial, "Add SERIAL", rapl_repeat)
             {
                 add__serial(aa, bb, result_serial, ARRAY_SIZE);
             }
 
-            sleep(1);
-            add_serial.read();
-            
-            sleep(1);
-            add_serial.read();
+            // sleep(1);
+            // add_serial.read();
+
+            // sleep(1);
+            // add_serial.read();
         }
 
         std::cout << "========== DONE ==========\n";

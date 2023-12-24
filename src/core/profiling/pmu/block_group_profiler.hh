@@ -7,6 +7,7 @@
 #include <utils.hh>
 #include <pmu_event_manager.hh>
 #include <base_profiler.hh>
+#include <pmu_utils.hh>
 
 namespace optkit::core
 {
@@ -22,7 +23,7 @@ namespace optkit::core
     {
 
     public:
-        BlockGroupProfiler(const char *block_name, const char *event_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config = ProfilerConfig{true, true});
+        BlockGroupProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config = ProfilerConfig{true, true});
         virtual ~BlockGroupProfiler();
         /**
          * @brief Disables this block profiler and associated events
@@ -50,9 +51,10 @@ namespace optkit::core
         virtual std::vector<uint64_t> read_val() override;
 
     private:
-        int32_t group_leader; 
+        int32_t group_leader;
         bool is_active;
         ProfilerConfig profiler_config;
+        std::vector<std::pair<uint64_t, std::string>> raw_events;
 
         struct read_format
         {

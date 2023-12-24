@@ -40,12 +40,14 @@ namespace optkit::core
         return tmp;
     }
 
-    void PMUEventManager::disable_all_events(){
+    void PMUEventManager::disable_all_events()
+    {
         // disable all other counters in insertion order
         for (const auto &pair : PMUEventManager::fd__event_count_map)
             ioctl(pair.first, PERF_EVENT_IOC_DISABLE, PERF_IOC_FLAG_GROUP);
     }
-    void PMUEventManager::enable_all_events(){
+    void PMUEventManager::enable_all_events()
+    {
         // enable all other counters in reverse order
         auto rit = PMUEventManager::fd__event_count_map.rbegin();
         while (rit != PMUEventManager::fd__event_count_map.rend())
@@ -54,7 +56,6 @@ namespace optkit::core
             ++rit;
         }
     }
-
 
     std::vector<int32_t> PMUEventManager::all_fds()
     {
@@ -70,7 +71,8 @@ namespace optkit::core
         return PMUEventManager::event_count_being_monitor;
     }
 
-    int32_t PMUEventManager::pmu_event_size(){
+    int32_t PMUEventManager::pmu_event_size()
+    {
         return Query::default_pmu_info().num_cntrs;
     }
 };

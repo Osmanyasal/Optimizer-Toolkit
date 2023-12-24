@@ -3,15 +3,15 @@
 namespace optkit::core
 {
 
-    BlockProfiler::BlockProfiler(const char *block_name, const char *event_name, std::vector<uint64_t> raw_event_list, const ProfilerConfig &config) : BaseProfiler{block_name, event_name}, profiler_config{config}
+    BlockProfiler::BlockProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config) : BaseProfiler{block_name, event_name}, profiler_config{config}, raw_events{raw_events}
     {
         PMUEventManager::disable_all_events();
 
         int32_t fd = -1;
-        for (auto &raw_event : raw_event_list)
+        for (auto &raw_event : raw_events)
         {
             struct perf_event_attr attr = this->profiler_config.perf_event_config;
-            attr.config = raw_event;
+            attr.config = raw_event.first;
 
             fd = syscall(__NR_perf_event_open, &attr, this->profiler_config.pid, this->profiler_config.cpu, -1, 0); // <-- first becomes -1 and later we use the group_leader's fd.
             if (fd == -1)
@@ -33,26 +33,32 @@ namespace optkit::core
     }
     BlockProfiler ::~BlockProfiler()
     {
-
         PMUEventManager::disable_all_events();
 
-        // disable clock now!
-        auto end = std::chrono::high_resolution_clock::now();
-        auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
+        this->read();
 
-        uint64_t count;
         for (int32_t fd : fd_list)
         {
-            ::read(fd, &count, sizeof(count)); // read last value
-            ::close(fd);
             PMUEventManager::unregister_event(fd); // unregister this event
-            std::cout << "\033[1;35m"
-                      << "Block: " << this->block_name << "\033[0m"
-                      << " [" << duration_ms << "ms] "
-                      << "Measured: " << count << std::endl;
         }
 
-        this->save();
+        if (OPT_LIKELY(profiler_config.dump_results_to_file))
+            this->save();
+        else
+        {
+            int ctr = 0;
+            for (auto iter = this->read_buffer.rbegin(); ctr < raw_events.size() && iter != this->read_buffer.rend(); iter++, ctr++)
+            {
+                std::cout << "\033[1;35m"
+                          << "Block: " << this->block_name << "\033[0m"
+                          << " [" << iter->first << "ms] Measured";
+                for (auto &&i : iter->second)
+                {
+                    std::cout << " "<< i << std::endl;
+                }
+            }
+        }
+
         PMUEventManager::enable_all_events();
     }
 
@@ -73,8 +79,12 @@ namespace optkit::core
 
     std::string BlockProfiler::convert_buffer_to_json()
     {
-        std::string result = "example";
-        return result;
+        std::stringstream ss;
+        ss << "[\n";
+        // based on the insertion order.
+        ss << core::pmu::to_json(this->event_name, this->read_buffer);
+        ss << "]\n";
+        return ss.str();
     }
 
     std::vector<uint64_t> BlockProfiler::read_val()
