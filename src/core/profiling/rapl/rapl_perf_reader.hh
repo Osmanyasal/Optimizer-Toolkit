@@ -25,7 +25,6 @@ namespace optkit::core
         {
             
         }
-
         const std::map<int32_t, std::vector<int32_t>> packages;
         const std::vector<RaplDomainInfo> avail_domains;
         const RaplConfig rapl_config; 

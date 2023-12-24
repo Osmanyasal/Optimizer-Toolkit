@@ -24,7 +24,7 @@ namespace optkit::core
 
                 if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
                 {
-                    std::cout << selected_domain.domain << " is being skipped!\n";
+                    OPTKIT_CORE_DEBUG("{} is being skipped", selected_domain.domain);
                     continue;
                 }
 
@@ -64,7 +64,7 @@ namespace optkit::core
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
                 if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
                 {
-                    OPTKIT_CORE_DEBUG("%d is being skipped", selected_domain.domain);
+                    OPTKIT_CORE_DEBUG("{} is being skipped", selected_domain.domain);
                     continue;
                 }
                 if (fd_package_domain[package][domain] != -1)

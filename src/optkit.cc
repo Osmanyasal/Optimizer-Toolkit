@@ -1,4 +1,4 @@
-#include <optimizer_toolkit.hh>
+#include <optkit.hh>
 
 namespace optkit::core
 {

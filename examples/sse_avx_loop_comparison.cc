@@ -1,5 +1,5 @@
 
-#include <optimizer_toolkit.hh>
+#include <optkit.hh>
 #include <immintrin.h> // for AVX
 #include <xmmintrin.h> // for SSE
 

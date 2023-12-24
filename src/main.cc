@@ -1,5 +1,5 @@
 #include <omp.h>
-#include <optimizer_toolkit.hh>
+#include <optkit.hh>
 #include <intel/icl.hh>
 #include <examples.hh>
 
