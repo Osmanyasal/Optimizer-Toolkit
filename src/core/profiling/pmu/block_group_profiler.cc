@@ -127,7 +127,7 @@ namespace optkit::core
         std::stringstream ss;
         ss << "[\n";
         // based on the insertion order.
-        ss << core::pmu::to_json(this->event_name, this->read_buffer);
+        ss << core::pmu::to_json(this->event_name, this->raw_events, this->read_buffer);
         ss << "]\n";
         return ss.str();
     }

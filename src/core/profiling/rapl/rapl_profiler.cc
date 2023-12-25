@@ -71,7 +71,7 @@ namespace optkit::core
         std::stringstream ss;
         ss << "[\n";
         // based on the insertion order.
-        ss << core::rapl::to_json(this->read_buffer);
+        ss << core::rapl::to_json(event_name,this->read_buffer);
         ss << "]\n";
         return ss.str();
     }

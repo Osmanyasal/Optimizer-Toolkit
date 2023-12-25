@@ -68,9 +68,22 @@ namespace optkit::examples
 
         std::cout << "========= SSE ===========" << std::endl;
         {   
+            float ss = 3.14f;
             OPTKIT_PERFORMANCE_EVENTS("SSE FLOPS", "ALL FLOPS" , add_sse_flops, {{icl::FP_ARITH |
-                        icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__128B_PACKED_SINGLE, "Packed128"}}) ;
-            add_sse_flops.profiler_config.dump_results_to_file = false;
+                        icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__128B_PACKED_SINGLE, "Packed128"},
+                        {icl::FP_ARITH |
+                        icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR, "scalar"}}) ;
+
+            ss += 123;
+            ss += 123;
+            ss += 123;
+            ss += 123;
+            ss += 123;
+            ss += 123;
+            ss += 123;
+            ss += 123;
+            
+            // add_sse_flops.profiler_config.dump_results_to_file = false;
 
             // OPTKIT_RAPL_REPEAT(add_sse, "Add SSE", rapl_repeat)
             {

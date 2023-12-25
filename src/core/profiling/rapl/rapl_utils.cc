@@ -3,7 +3,7 @@
 namespace optkit::core::rapl
 {
 
-    nlohmann::json to_json(const std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::RaplDomain, double>>>> &rapl_pair_list)
+    nlohmann::json to_json(const char *event_name, const std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::RaplDomain, double>>>> &rapl_pair_list)
     {
         const std::vector<optkit::core::RaplDomainInfo> &avail_domains = optkit::core::Query::rapl_domain_info();
         nlohmann::json result;
@@ -12,6 +12,7 @@ namespace optkit::core::rapl
         {
             nlohmann::json packageJson;
             packageJson["duration"] = rapl_pair.first;
+            packageJson["event_name"] = event_name;
 
             for (const auto &innerpair : rapl_pair.second)
             {
@@ -48,6 +49,7 @@ namespace optkit::core::rapl
             {
                 for (const auto &packageJson : array_elem["readings"])
                 {
+                    std::string event_name = packageJson["event_name"];
                     int32_t duration = packageJson["duration"];
                     int32_t package_number = packageJson["package_number"];
                     std::map<optkit::core::RaplDomain, double> inner_map;
@@ -58,8 +60,8 @@ namespace optkit::core::rapl
                         double value = metricJson["value"];
                         std::string units = metricJson["units"];
                         std::string description = metricJson["description"];
-                        optkit::core::RaplDomain domain = mapMetricNameToRaplDomain(metric_name);
 
+                        optkit::core::RaplDomain domain = mapMetricNameToRaplDomain(metric_name);
                         inner_map[domain] = value;
                     }
                     rapl_map[package_number] = inner_map;

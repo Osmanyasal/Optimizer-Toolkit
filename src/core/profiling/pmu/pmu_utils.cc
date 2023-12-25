@@ -2,7 +2,7 @@
 
 namespace optkit::core::pmu
 {
-    nlohmann::json to_json(const char *event_name, const std::vector<std::pair<double, std::vector<uint64_t>>> &pmu_pair_list)
+    nlohmann::json to_json(const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const std::vector<std::pair<double, std::vector<uint64_t>>> &pmu_pair_list)
     {
         nlohmann::json result;
         for (const auto &pmu_pair : pmu_pair_list)
@@ -10,10 +10,12 @@ namespace optkit::core::pmu
             nlohmann::json packageJson;
             packageJson["duration"] = pmu_pair.first;
             packageJson["package_number"] = -1; // TODO::Make this package specific -1 means all of them IG?
+            packageJson["event_name"] = event_name;
 
+            int i = 0;
             for (const auto &values : pmu_pair.second)
             {
-                packageJson["metrics_set"].push_back({{"metric_name", event_name},
+                packageJson["metrics_set"].push_back({{"metric_name", raw_events.at(i++).second},
                                                       {"value", values},
                                                       {"units", "piece"},
                                                       {"description", "Counted"}});
