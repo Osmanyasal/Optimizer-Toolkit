@@ -2,9 +2,20 @@
 
 namespace optkit::core
 {
-
-    OptimizerKit::OptimizerKit(/* args */)
+    /**
+     * @brief Construct a new Optimizer Kit:: Optimizer Kit object
+     * 
+     *  Creates Execution Directory | use existing/random one
+     *  Starts Logger and Query class
+     * 
+     * 
+     * @param execution_file 
+     */
+    OptimizerKit::OptimizerKit(const std::string& execution_file)
     {
+        if(execution_file.size() > 0)
+            EXECUTION_FOLDER_NAME = execution_file;
+            
         optkit::utils::logger::BaseLogger::init();
 
         int32_t paranoid = this->paranoid();
@@ -35,6 +46,14 @@ namespace optkit::core
         OPTKIT_CORE_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
     }
 
+
+    /**
+     * @brief Destroy the Optimizer Kit:: Optimizer Kit object
+     * 
+     *  Read all files under the execution directory & print them
+     *  Destroy Query utility
+     * 
+     */
     OptimizerKit::~OptimizerKit()
     {
         draw(::get_all_files(EXECUTION_FOLDER_NAME));

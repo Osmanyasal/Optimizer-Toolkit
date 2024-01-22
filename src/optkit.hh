@@ -13,9 +13,14 @@ namespace optkit::core
     { 
 
     public:
-        OptimizerKit();
+        OptimizerKit(const std::string& execution_file = "");
         ~OptimizerKit();
 
+        /**
+         * @brief Draw given result files using IMGUI api.
+         * 
+         * @param file_names 
+         */
         void draw(const std::vector<std::string>& file_names = {});
 
         /**

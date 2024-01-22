@@ -75,11 +75,7 @@ namespace optkit::core
             std::string file_name = block_name;
             file_name = file_name;
             std::replace(file_name.begin(), file_name.end(), ' ', '_');
-            file_name = EXECUTION_FOLDER_NAME + "/" + file_name + "__" + event_name;
-            for (char &c : file_name)
-                c = std::tolower(c);
-
-            file_name.append(".json");
+            file_name = EXECUTION_FOLDER_NAME + "/" + file_name + "__" + event_name + ".json";
             ::write_file(file_name, json_data, true);
         }
 
@@ -89,7 +85,7 @@ namespace optkit::core
 
     protected:
         std::chrono::high_resolution_clock::time_point start;
-        std::vector<std::pair<double, T>> read_buffer;  // single timestamp -- measurements
+        std::vector<std::pair<double, T>> read_buffer; // single timestamp -- measurements
     };
 
 } // namespace optkit::core

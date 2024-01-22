@@ -34,7 +34,7 @@
 
 // GLOBAL VARIABLES
 
-extern const std::string EXECUTION_FOLDER_NAME;
+extern std::string EXECUTION_FOLDER_NAME;
 
 // FUNCTION DECLERATIONS
 std::string generateGUID();

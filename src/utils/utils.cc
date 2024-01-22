@@ -1,6 +1,6 @@
 #include <utils.hh>
 
-const std::string EXECUTION_FOLDER_NAME{get_date() + "__" + get_time() + "__" + generateGUID().substr(0, CONF__LOG__PRINT_GUID_LENGTH)};
+std::string EXECUTION_FOLDER_NAME{get_date() + "__" + get_time() + "__" + generateGUID().substr(0, CONF__LOG__PRINT_GUID_LENGTH)};
 
 std::string generateGUID()
 {
@@ -95,21 +95,11 @@ bool is_path_exists(const std::string &location)
 
 void create_directory(const std::string &folderName)
 {
-#ifdef _WIN32
-    // For Windows
-    if (_mkdir(folderName.c_str()) != 0)
-    {
-        OPTKIT_CORE_ERROR("Error creating directory {}", folderName);
-        exit(EXIT_FAILURE);
-    }
-#else
     // For Linux/Unix
     if (mkdir(folderName.c_str(), 0777) != 0)
     {
-        OPTKIT_CORE_ERROR("Error creating directory {}", folderName);
-        exit(EXIT_FAILURE);
+        OPTKIT_CORE_ERROR("Directory already exists {}", folderName);
     }
-#endif
 }
 
 std::string get_date(const std::string &format)
