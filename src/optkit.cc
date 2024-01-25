@@ -11,11 +11,11 @@ namespace optkit::core
      * 
      * @param execution_file 
      */
-    OptimizerKit::OptimizerKit(const std::string& execution_file)
+    OptimizerKit::OptimizerKit(const OPTKIT_CONFIG config) : config{config}
     {
-        if(execution_file.size() > 0)
-            EXECUTION_FOLDER_NAME = execution_file;
-            
+        if(this->config.execution_file.size() > 0)
+            EXECUTION_FOLDER_NAME = this->config.execution_file;
+
         optkit::utils::logger::BaseLogger::init();
 
         int32_t paranoid = this->paranoid();
@@ -56,7 +56,9 @@ namespace optkit::core
      */
     OptimizerKit::~OptimizerKit()
     {
-        draw(::get_all_files(EXECUTION_FOLDER_NAME));
+        if(OPT_LIKELY(this->config.is_draw))
+            draw(::get_all_files(EXECUTION_FOLDER_NAME));
+            
         optkit::core::Query::destroy();
         OPTKIT_CORE_GANTT_PROFILE_END_SESSION();
     }
