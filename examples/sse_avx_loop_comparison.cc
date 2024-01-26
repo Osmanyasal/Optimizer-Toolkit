@@ -94,25 +94,28 @@ namespace optkit::examples
         std::cout << "========= AVX ===========" << std::endl;
 
         {
-            // OPTKIT_RAPL_REPEAT(add_avx, "Add AVX", rapl_repeat)
+            OPTKIT_RAPL_REPEAT(add_avx, "Add AVX", rapl_repeat)
             {
                 add__avx(aa, bb, result_avx, ARRAY_SIZE);
             }
+
+            sleep(1);
+            add_avx.read();
         }
 
         std::cout << "========= SERIAL =========" << std::endl;
 
         {
-            // OPTKIT_RAPL_REPEAT(add_serial, "Add SERIAL", rapl_repeat)
+            OPTKIT_RAPL_REPEAT(add_serial, "Add SERIAL", rapl_repeat)
             {
                 add__serial(aa, bb, result_serial, ARRAY_SIZE);
             }
 
-            // sleep(1);
-            // add_serial.read();
+            sleep(1);
+            add_serial.read();
 
-            // sleep(1);
-            // add_serial.read();
+            sleep(1);
+            add_serial.read();
         }
 
         std::cout << "========== DONE ==========\n";

@@ -17,15 +17,15 @@ namespace optkit::core
     {
         BEGIN = 1,
 
-        PP0 = 1,            // CORES
-        PP1 = (1 << 1),     // INTEGRATED GPU
-        PACKAGE = (1 << 2), // PP0 + PP1 + SYSTEM AGENT + LAST_LEVEL_CACHE MEMORY CONTROLLER
-        PSYS = (1 << 3),    // PACKAGE + eDRAM + PCH
-        DRAM = (1 << 4),    // DRAM DIMM 0 and DRAM DIMM 1
+        PP0 = (1 << 1),            // CORES
+        PP1 = (1 << 2),     // INTEGRATED GPU
+        PACKAGE = (1 << 3), // PP0 + PP1 + SYSTEM AGENT + LAST_LEVEL_CACHE MEMORY CONTROLLER
+        PSYS = (1 << 4),    // PACKAGE + eDRAM + PCH
+        DRAM = (1 << 5),    // DRAM DIMM 0 and DRAM DIMM 1
 
-        END = (1 << 5),
+        END = (1 << 6),
 
-        ALL = 0b11111, // All domains
+        ALL = 0b1111111, // All domains
     };
     extern const std::unordered_map<int32_t, std::string> rapl_domain_name_mapping;
 

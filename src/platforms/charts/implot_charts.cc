@@ -138,7 +138,21 @@ namespace optkit::core
             }
         }
 
-        BarGroupsMeta bar_group{"Socket " + std::to_string(package_num), "Score", "", file_name, member_labels.size(), _data, member_labels, group_name, positions};
+        // Rearrange the data
+        std::vector<double> _data_;
+        int num_groups = group_name.size();
+        int num_data_points = _data.size() / num_groups;
+
+        for (int dataIndex = 0; dataIndex < num_data_points; ++dataIndex)
+        {
+            for (int userIndex = 0; userIndex < num_groups; ++userIndex)
+            {
+                int originalIndex = userIndex * num_data_points + dataIndex;
+                _data_.push_back(_data[originalIndex]);
+            }
+        }
+
+        BarGroupsMeta bar_group{"Socket " + std::to_string(package_num), "Score", "", file_name, member_labels.size(), _data_, member_labels, group_name, positions};
         return bar_group;
     }
 } // namespace optkit::core

@@ -49,17 +49,17 @@ namespace optkit::core::rapl
             {
                 for (const auto &packageJson : array_elem["readings"])
                 {
-                    std::string event_name = packageJson["event_name"];
+                    // std::string event_name = packageJson["event_name"];
                     int32_t duration = packageJson["duration"];
                     int32_t package_number = packageJson["package_number"];
+                    
                     std::map<optkit::core::RaplDomain, double> inner_map;
-
                     for (const auto &metricJson : packageJson["metrics_set"])
                     {
                         std::string metric_name = metricJson["metric_name"];
                         double value = metricJson["value"];
-                        std::string units = metricJson["units"];
-                        std::string description = metricJson["description"];
+                        // std::string units = metricJson["units"];
+                        // std::string description = metricJson["description"];
 
                         optkit::core::RaplDomain domain = mapMetricNameToRaplDomain(metric_name);
                         inner_map[domain] = value;

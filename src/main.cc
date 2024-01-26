@@ -10,8 +10,6 @@ int32_t main(int32_t argc, char **argv)
     for (auto &info : optkit::core::Query::rapl_domain_info())
         std::cout << info << "\n";
 
-    return 0;
-
     optkit::examples::example__sse_avx_loop_comparison();
 
     std::cout << "EXECUTION DONE !!!\n";
