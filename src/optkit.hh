@@ -9,19 +9,26 @@
 
 namespace optkit::core
 {
+    struct OPTKIT_CONFIG
+    {
+        OPTKIT_CONFIG(bool is_draw = true, const std::string &execution_file = "") : is_draw{is_draw}, execution_file{execution_file} {}
+
+        const bool is_draw;
+        const std::string execution_file;
+    };
     class OptimizerKit
-    { 
+    {
 
     public:
-        OptimizerKit(const std::string& execution_file = "");
+        OptimizerKit(const OPTKIT_CONFIG config = {});
         ~OptimizerKit();
 
         /**
          * @brief Draw given result files using IMGUI api.
-         * 
-         * @param file_names 
+         *
+         * @param file_names
          */
-        void draw(const std::vector<std::string>& file_names = {});
+        void draw(const std::vector<std::string> &file_names = {});
 
         /**
          * @brief Returns current perf_event_paranoid value from "/proc/sys/kernel/perf_event_paranoid"<br>
@@ -31,10 +38,12 @@ namespace optkit::core
          */
         int32_t paranoid();
 
+    private:
+        const OPTKIT_CONFIG config;
     };
 }
-  
-using optkit::core::OptimizerKit;
 
+using optkit::core::OptimizerKit;
+using optkit::core::OPTKIT_CONFIG;
 
 #endif
