@@ -94,7 +94,7 @@ EXECUTABLE := optimizer_toolkit.core
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(EXAMPLES_DIR) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
-all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/optimizer_toolkit.desktop 
+all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE)
 	@if [ ! -d "$(BIN)/fonts" ]; then \
         mkdir -p "$(BIN)/fonts"; \
         cp -R ./lib/fonts/* "$(BIN)/fonts"; \
@@ -102,23 +102,10 @@ all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_
     else \
         echo "Fonts directory already exists. Skipping installation."; \
     fi
+
+
+################ BUILD COMMANDS ################
  
-## check memory if there're any leaks.
-mem_check:
-	cd $(BIN) && valgrind --leak-check=full --show-leak-kinds=all ./$(EXECUTABLE)
-
-## create a desktop file and move it to applications
-$(BIN)/optimizer_toolkit.desktop:
-	echo -e "[Desktop Entry]\n\
-Version=1.0\n\
-Type=Application\n\
-Terminal=true\n\
-Name=Optimizer Toolkit\n\
-Path=$(shell pwd)/bin/\n\
-Exec=$(shell pwd)/bin/$(EXECUTABLE)\n\
-Icon=$(shell pwd)/icon/icon.png\n" > $(BIN)/optimizer_toolkit.desktop
-
-	cp $(BIN)/optimizer_toolkit.desktop ~/.local/share/applications
 
 $(LIB_GLEW_PATH)/lib/libGLEW.a:
 	cd $(LIB_GLEW_PATH) && ./install.sh
@@ -156,12 +143,44 @@ $(OBJ)/%.o: ./%.cc
 	mkdir -p $(@D)
 	$(CXX) $(CXX_FLAGS) -c -o $@ $< $(INCLUDE) $(CXX_PFM) 
 
+#----------------------------------------------------
+
+
+
+################ INSTALL COMMANDS ################
+
+install: install_headers
+	echo -e "[Desktop Entry]\n\
+Version=1.0\n\
+Type=Application\n\
+Terminal=true\n\
+Name=Optimizer Toolkit\n\
+Path=$(shell pwd)/bin/\n\
+Exec=$(shell pwd)/bin/$(EXECUTABLE)\n\
+Icon=$(shell pwd)/icon/icon.png\n" > $(BIN)/optimizer_toolkit.desktop
+
+	cp $(BIN)/optimizer_toolkit.desktop ~/.local/share/applications
+
+install_headers:
+	sudo mkdir -p /usr/local/include/optkit/
+	sudo find ./src/ -type f -name "*.h*" -exec cp {} "/usr/local/include/optkit/" \;
+#----------------------------------------------------
+
+
+
+################ GEN DOCS COMMANDS ################
+
 doc_build:
 	@doxygen ${DOXYGEN_CONFIG_FILE}
 
 doc_clean:
 	@rm -rf ${DOXYGEN_OUT_FOLDER}
+#----------------------------------------------------
 
+
+
+
+################ CLEAN COMMANDS ################
 clean: 
 	rm -rf $(BIN)/*
 	rm -rf ~/.local/share/applications/optimizer_toolkit.desktop ## remove dekstop icon
@@ -181,8 +200,17 @@ clean_libs:
 
 clean_all: clean clean_events clean_libs doc_clean
 	@echo "🧹 Everything is cleaned"
- 
-## THESE ARE FOR MONITORING
+#----------------------------------------------------
+
+
+
+
+################ MONITORING COMMANDS ################
+
+## check memory if there're any leaks.
+mem_check:
+	cd $(BIN) && valgrind --leak-check=full --show-leak-kinds=all ./$(EXECUTABLE)
+
 CALL_STACK_METHOD := lbr
 monitor_callstack: $(BIN)/$(EXECUTABLE)
 	cd $(BIN);\
@@ -194,3 +222,4 @@ tma_analysis:
 	cd ./"$(BIN)";\
 	sudo perf stat --topdown -a --td-level 0 -- taskset -c 0  ./$(EXECUTABLE); ## counting
 
+#----------------------------------------------------
