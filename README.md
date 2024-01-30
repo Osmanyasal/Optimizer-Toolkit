@@ -43,7 +43,7 @@
 
 ## To run 🚀 <br>
 ```
-git clone --recurse-submodules https://github.com/Osmanyasal/Optimizer-Toolkit-Core.git
+git clone --recursive https://github.com/Osmanyasal/Optimizer-Toolkit-Core.git
 cd ./Optimizer-Toolkit-Core
 make
 ```
