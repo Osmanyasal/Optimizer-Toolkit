@@ -7,11 +7,12 @@ int32_t main(int32_t argc, char **argv)
 
     int value = argc > 1 ? std::atoi(argv[1]) : -1;
     OPTKIT_INFO("Monitoring socket energy for {} sec. (-1 means indefinite)", value);
- 
+
     RaplProfiler main_block{"main_block"};
     if (value == -1)
         while (true)
         {
+            // first read's usually 0 because it executes faster than rapl update (each 1ms)
             std::cout << main_block.read().second << "\n";
             sleep(1);
         }
