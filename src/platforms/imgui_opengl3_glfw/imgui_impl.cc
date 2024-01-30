@@ -53,7 +53,7 @@ namespace optkit::platforms::imgui
         float xscale, yscale;
         glfwGetWindowContentScale(m_window, &xscale, &yscale);
         io.Fonts->Clear();
-        io.Fonts->AddFontFromFileTTF("./fonts/font_opensans/fonts/ttf/OpenSans-Regular.ttf", xscale * CONF__IDE__TEXT_SIZE);
+        io.Fonts->AddFontFromFileTTF("/usr/local/lib/fonts/font_opensans/fonts/ttf/OpenSans-Regular.ttf", xscale * CONF__IDE__TEXT_SIZE);
         io.Fonts->Build();
         ImGui_ImplOpenGL3_DestroyFontsTexture();
         ImGui_ImplOpenGL3_CreateFontsTexture();

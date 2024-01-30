@@ -177,7 +177,7 @@ install_headers:
 
 
 install_library:
-	sudo cp ./bin/liboptkit.a /usr/local/lib
+	sudo cp -R ./bin/liboptkit.a ./bin/fonts /usr/local/lib
 #----------------------------------------------------
 
 
