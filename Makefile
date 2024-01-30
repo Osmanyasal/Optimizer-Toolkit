@@ -146,8 +146,8 @@ $(BIN)/$(STATIC_LIB): $(OBJ_FILES)
 	ar rcs ./$(BIN)/$(STATIC_LIB) $^  ${LIB_IMGUI_PATH}/build/*.o
 
 $(BIN)/$(DYNAMIC_LIB): $(OBJ_FILES)
-	echo "🚧 creating dynamic library..." 
-	$(CXX) $(CXX_FLAGS) -shared -fPIC $^ -o ./$(BIN)/$(DYNAMIC_LIB) ${LIB_IMGUI_PATH}/build/*.o $(INCLUDE) $(DYNAMIC_LIBS) $(CXX_PFM)
+	echo "🚧 dynamic library disabled!" 
+	#$(CXX) $(CXX_FLAGS) -shared -fPIC $^ -o ./$(BIN)/$(DYNAMIC_LIB) ${LIB_IMGUI_PATH}/build/*.o $(INCLUDE) $(DYNAMIC_LIBS) $(CXX_PFM)
 
 $(OBJ)/%.o: ./%.cc
 	mkdir -p $(@D)

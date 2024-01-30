@@ -1,4 +1,0 @@
-<map id="optkit::core::BlockProfiler" name="optkit::core::BlockProfiler">
-<area shape="rect" id="node1" title="The BlockProfiler class utilizes the RAII technique to initiate and conclude profiling for a specific..." alt="" coords="14,95,201,121"/>
-<area shape="rect" id="node2" href="$dd/d92/classoptkit_1_1core_1_1BaseProfiler.html" title=" " alt="" coords="5,5,209,47"/>
-</map>

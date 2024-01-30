@@ -1,5 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$dd/d92/classoptkit_1_1core_1_1BaseProfiler.html" title=" " alt="" coords="5,35,209,76"/>
-<area shape="rect" id="node2" href="$db/dc7/classoptkit_1_1core_1_1BlockGroupProfiler.html" title="The BlockGroupProfiler class utilizes the RAII technique to initiate and conclude profiling for a spe..." alt="" coords="261,5,440,47"/>
-<area shape="rect" id="node3" href="$d9/d21/classoptkit_1_1core_1_1BlockProfiler.html" title="The BlockProfiler class utilizes the RAII technique to initiate and conclude profiling for a specific..." alt="" coords="257,71,444,98"/>
-</map>
