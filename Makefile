@@ -14,9 +14,7 @@ DOXYGEN_OUT_FOLDER := ./doc/
 
 BIN := ./bin
 SRC := ./src
-OBJ := $(BIN)/obj
-SANDBOX := ./sandbox
-SANDBOX_DIR := ./sandbox/proj1 
+OBJ := $(BIN)/obj 
 
 # CORE Directories for source and header files
 SRC_DIR := ./src
@@ -93,7 +91,7 @@ EXECUTABLE := optimizer_toolkit.core
 STATIC_LIB := liboptkit.a
 DYNAMIC_LIB := liboptkit.so
 
-SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(EXAMPLES_DIR) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
+SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(EXAMPLES_DIR) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
 all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB) $(BIN)/$(DYNAMIC_LIB)
