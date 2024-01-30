@@ -177,7 +177,7 @@ install_headers:
 
 
 install_library:
-	sudo cp ./bin/liboptkit.a ./bin/liboptkit.so /usr/local/lib
+	sudo cp ./bin/liboptkit.a /usr/local/lib
 #----------------------------------------------------
 
 
