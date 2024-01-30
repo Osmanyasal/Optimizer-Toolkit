@@ -43,8 +43,9 @@
 
 ## To run 🚀 <br>
 ```
-git clone --recursive https://github.com/Osmanyasal/Optimizer-Toolkit-Core.git
+git clone https://github.com/Osmanyasal/Optimizer-Toolkit-Core.git
 cd ./Optimizer-Toolkit-Core
+git submodule update --force --recursive --init --remote
 make
 ```
 
