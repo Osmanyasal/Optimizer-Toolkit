@@ -90,11 +90,13 @@ INCLUDE := -I$(SRC_DIR)\
 			$(LIB_PFM)
 
 EXECUTABLE := optimizer_toolkit.core
+STATIC_LIB := liboptkit.a
+DYNAMIC_LIB := liboptkit.so
 
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(EXAMPLES_DIR) -type f -name "*.cc") $(shell find $(SANDBOX) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES)) 
  
-all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE)
+all: $(LIB_GLEW_PATH)/lib/libGLEW.a $(LIB_GLFW_PATH)/build/src/libglfw3.a ${LIB_PFM_PATH}/all_set ${LIB_IMGUI_PATH}/build $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB) $(BIN)/$(DYNAMIC_LIB)
 	@if [ ! -d "$(BIN)/fonts" ]; then \
         mkdir -p "$(BIN)/fonts"; \
         cp -R ./lib/fonts/* "$(BIN)/fonts"; \
@@ -139,6 +141,14 @@ $(BIN)/$(EXECUTABLE): $(OBJ_FILES)
 	echo "🚧 Building..."
 	$(CXX) $(CXX_FLAGS) $^ -o ./$(BIN)/$(EXECUTABLE) ${LIB_IMGUI_PATH}/build/*.o $(INCLUDE) $(DYNAMIC_LIBS) $(CXX_PFM) 
 
+$(BIN)/$(STATIC_LIB): $(OBJ_FILES)
+	echo "🚧 creating static library..."
+	ar rcs ./$(BIN)/$(STATIC_LIB) $^  ${LIB_IMGUI_PATH}/build/*.o
+
+$(BIN)/$(DYNAMIC_LIB): $(OBJ_FILES)
+	echo "🚧 creating dynamic library..." 
+	$(CXX) $(CXX_FLAGS) -shared -fPIC $^ -o ./$(BIN)/$(DYNAMIC_LIB) ${LIB_IMGUI_PATH}/build/*.o $(INCLUDE) $(DYNAMIC_LIBS) $(CXX_PFM)
+
 $(OBJ)/%.o: ./%.cc
 	mkdir -p $(@D)
 	$(CXX) $(CXX_FLAGS) -c -o $@ $< $(INCLUDE) $(CXX_PFM) 
@@ -149,7 +159,7 @@ $(OBJ)/%.o: ./%.cc
 
 ################ INSTALL COMMANDS ################
 
-install: install_headers
+install: all install_headers install_library
 	echo -e "[Desktop Entry]\n\
 Version=1.0\n\
 Type=Application\n\
@@ -164,6 +174,10 @@ Icon=$(shell pwd)/icon/icon.png\n" > $(BIN)/optimizer_toolkit.desktop
 install_headers:
 	sudo mkdir -p /usr/local/include/optkit/
 	sudo find ./src/ -type f -name "*.h*" -exec cp {} "/usr/local/include/optkit/" \;
+
+
+install_library:
+	sudo cp ./bin/liboptkit.a ./bin/liboptkit.so /usr/local/lib
 #----------------------------------------------------
 
 
