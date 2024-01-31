@@ -1,10 +1,8 @@
-
-
-all:
+probe.out: probe.cc
 	g++ probe.cc -o probe.out -I/usr/local/include/optkit/ -I/usr/local/include/spdlog -loptkit -lGLEW -lglfw3 -lGL -lspdlog -lpfm
 
-run: all
+run: probe.out
 	./probe.out
 
 clean:
-	rm ./probe.out
+	rm -f probe.out
