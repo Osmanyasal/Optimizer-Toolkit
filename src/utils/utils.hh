@@ -13,10 +13,6 @@
 #include <logger.hh>
 #include <type.hh>
 
-// TODO: Migrate this to a math wrapper.
-//  INCLUDE GLM
-#include <glm_utils.hh>
-
 // OPTIMIZATION HEADERS
 #include <cpu_opt.hh>
 

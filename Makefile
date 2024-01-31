@@ -58,7 +58,7 @@ LIB_IMPLOT := -I./lib/implot/
 LIB_PFM_PATH := ./lib/libpfm4
 LIB_PFM := -I./lib/libpfm4/include/perfmon/ -I./lib/libpfm4/lib/
 
-DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL
+DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -L$(LIB_GLFW_PATH)/build/src/ -lglfw3 -L$(LIB_GLEW_PATH)/lib/ -lGLEW -lGL -ldl
 
 # Include directories
 INCLUDE := -I$(SRC_DIR)\
