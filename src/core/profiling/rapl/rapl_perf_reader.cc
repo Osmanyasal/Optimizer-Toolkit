@@ -35,7 +35,7 @@ namespace optkit::core
                 if (attr.config == 0)
                     continue;
 
-                fd_package_domain[package][domain] = ::syscall(__NR_perf_event_open, &attr, -1, package, -1, 0);
+                fd_package_domain[package][domain] = ::syscall(__NR_perf_event_open, &attr, -1, rapl_perf_config.packages.at(package).at(0), -1, 0);
 
                 if (fd_package_domain[package][domain] < 0)
                 {
