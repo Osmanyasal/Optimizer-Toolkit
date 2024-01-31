@@ -185,7 +185,7 @@ namespace optkit::core
         return avail_pmu_ids;
     }
 
-    const std::map<int32_t, std::vector<int32_t>>& Query::detect_packages()
+    const std::map<int32_t, std::vector<int32_t>> &Query::detect_packages()
     {
         static std::map<int32_t, std::vector<int32_t>> result;
 
@@ -317,7 +317,8 @@ std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<
                 oss << std::endl;
         }
     }
-    OPTKIT_CORE_INFO("\n\tDetected {} cores in {} packages\n---------------------------------------\n{}", total_cores, packages.size(), oss.str());
+    out << "\n\tDetected " << total_cores << " cores in " << packages.size() << " packages\n---------------------------------------\n"
+        << oss.str();
     return out;
 }
 
