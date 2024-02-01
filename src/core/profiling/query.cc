@@ -191,7 +191,6 @@ namespace optkit::core
 
         if (result.size() == 0)
         {
-            int32_t last_package_id = -1;
             int32_t core_id = 0;
             while (true)
             {
@@ -199,12 +198,11 @@ namespace optkit::core
                 {
                     std::string output = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core_id) + "/topology/physical_package_id", false);
                     int32_t package_id = std::stoi(output);
-                    if (package_id > last_package_id)
+                    if (result.find(package_id) == result.end())
                     {
-                        last_package_id = package_id;
-                        result[last_package_id] = {};
+                        result[package_id] = {};
                     }
-                    result[last_package_id].push_back(core_id);
+                    result[package_id].push_back(core_id);
                     core_id++;
                 }
                 catch (const std::exception &e)
