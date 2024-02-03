@@ -22,6 +22,7 @@ namespace optkit::core
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
                 fd_package_domain[package][domain] = -1;
 
+                // if selected domain is being monitored by default...
                 if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))
                 {
                     OPTKIT_CORE_DEBUG("{} is being skipped", selected_domain.domain);
