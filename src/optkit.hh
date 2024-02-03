@@ -18,17 +18,17 @@ namespace optkit::core
     };
     class OptimizerKit
     {
-
     public:
-        OptimizerKit(const OPTKIT_CONFIG config = {});
-        ~OptimizerKit();
-
         /**
          * @brief Draw given result files using IMGUI api.
          *
          * @param file_names
          */
-        void draw(const std::vector<std::string> &file_names = {});
+        static void draw(const std::vector<std::string> &file_names = {});
+
+    public:
+        OptimizerKit(const OPTKIT_CONFIG config = {});
+        ~OptimizerKit();
 
         /**
          * @brief Returns current perf_event_paranoid value from "/proc/sys/kernel/perf_event_paranoid"<br>
