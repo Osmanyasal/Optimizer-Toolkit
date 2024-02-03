@@ -1,7 +1,8 @@
+optkit_rapl_read: rapl_read.cc
+	g++ rapl_read.cc -o optkit_rapl_read
 
+run: optkit_rapl_read
+	while true; do ./optkit_rapl_read -p; done
 
-all:
-	g++ rapl_read.cc -o rapl_read.out
-
-run: all
-	while true; do ./rapl_read.out -p; done
+clean:
+	rm ./optkit_rapl_read

@@ -1,8 +1,8 @@
-probe.out: probe.cc
-	g++ probe.cc -o probe.out -I/usr/local/include/optkit/ -I/usr/local/include/spdlog -loptkit -lGLEW -lglfw3 -lGL -lspdlog -lpfm -ldl -lpthread
+optkit_probe: probe.cc
+	g++ probe.cc -o optkit_probe -I/usr/local/include/optkit/ -I/usr/local/include/spdlog -loptkit -lGLEW -lglfw3 -lGL -lspdlog -lpfm -ldl -lpthread
 
-run: probe.out
-	./probe.out
+run: optkit_probe
+	./optkit_probe
 
 clean:
-	rm -f probe.out
+	rm -f optkit_probe

@@ -1,10 +1,8 @@
-
-
-all:
-	g++ beacon.cc -o beacon.out -I/usr/local/include/optkit/ -I/usr/local/include/spdlog -loptkit -lGLEW -lglfw3 -lGL -lspdlog -lpfm -ldl -lpthread
+optkit_beacon: optkit_beacon.cc
+	g++ optkit_beacon.cc -o optkit_beacon -I/usr/local/include/optkit/ -I/usr/local/include/spdlog -loptkit -lGLEW -lglfw3 -lGL -lspdlog -lpfm -ldl -lpthread
 
 run: all
-	./beacon.out 10
+	./optkit_beacon 10
 
 clean:
-	rm ./beacon.out
+	rm ./optkit_beacon
