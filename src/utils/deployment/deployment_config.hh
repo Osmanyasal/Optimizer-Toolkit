@@ -6,7 +6,7 @@
  * when is enabled, it removes trace logs.
  *
  */
-#define CONF__PORTING__IS_PRODUCTION 0
+#define CONF__PORTING__IS_PRODUCTION 1
 
 
 #endif
