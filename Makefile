@@ -177,7 +177,7 @@ install_library:
 	sudo cp -R ./bin/liboptkit.a ./bin/fonts /usr/local/lib
 
 install_sandbox:
-	./sandbox/install.sh
+	cd sandbox && ./install.sh
 
 #----------------------------------------------------
 

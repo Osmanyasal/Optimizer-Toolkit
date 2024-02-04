@@ -3,7 +3,7 @@
 
 int32_t main(int32_t argc, char **argv)
 {
-    OptimizerKit optkit;
+    OptimizerKit optkit{{false,false}};
 
     int value = argc > 1 ? std::atoi(argv[1]) : -1;
     OPTKIT_INFO("Monitoring socket energy for {} sec. (-1 means indefinite)", value);
@@ -19,7 +19,8 @@ int32_t main(int32_t argc, char **argv)
         }
     else
     {
-        while(value-- >= 0){
+        while (value-- >= 0)
+        {
             std::cout << main_block.read().second << "\n";
             sleep(1);
         }

@@ -11,9 +11,10 @@ namespace optkit::core
 {
     struct OPTKIT_CONFIG
     {
-        OPTKIT_CONFIG(bool is_draw = true, const std::string &execution_file = "") : is_draw{is_draw}, execution_file{execution_file} {}
+        OPTKIT_CONFIG(bool is_draw = true, bool create_folder = true, const std::string &execution_file = "") : is_draw{is_draw}, create_folder{create_folder}, execution_file{execution_file} {}
 
         const bool is_draw;
+        const bool create_folder;
         const std::string execution_file;
     };
     class OptimizerKit

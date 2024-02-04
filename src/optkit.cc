@@ -4,16 +4,16 @@ namespace optkit::core
 {
     /**
      * @brief Construct a new Optimizer Kit:: Optimizer Kit object
-     * 
+     *
      *  Creates Execution Directory | use existing/random one
      *  Starts Logger and Query class
-     * 
-     * 
-     * @param execution_file 
+     *
+     *
+     * @param execution_file
      */
     OptimizerKit::OptimizerKit(const OPTKIT_CONFIG config) : config{config}
     {
-        if(this->config.execution_file.size() > 0)
+        if (this->config.execution_file.size() > 0)
             EXECUTION_FOLDER_NAME = this->config.execution_file;
 
         optkit::utils::logger::BaseLogger::init();
@@ -32,8 +32,14 @@ namespace optkit::core
         {
             optkit::core::Query::init();
 
-            create_directory(EXECUTION_FOLDER_NAME);
-            OPTKIT_CORE_INFO("Execution file created {}", EXECUTION_FOLDER_NAME);
+            if (OPT_LIKELY(config.create_folder))
+            {
+                create_directory(EXECUTION_FOLDER_NAME);
+                OPTKIT_CORE_INFO("Execution file created {}", EXECUTION_FOLDER_NAME);
+            }
+            else{
+                OPTKIT_CORE_INFO("File creation skipped!");
+            }
             if (std::remove("imgui.ini") != 0)
             {
                 OPTKIT_CORE_INFO("imgui.ini file succesfully deleted!");
@@ -46,19 +52,18 @@ namespace optkit::core
         OPTKIT_CORE_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
     }
 
-
     /**
      * @brief Destroy the Optimizer Kit:: Optimizer Kit object
-     * 
+     *
      *  Read all files under the execution directory & print them
      *  Destroy Query utility
-     * 
+     *
      */
     OptimizerKit::~OptimizerKit()
     {
-        if(OPT_LIKELY(this->config.is_draw))
+        if (OPT_LIKELY(this->config.create_folder && this->config.is_draw))
             draw(::get_all_files(EXECUTION_FOLDER_NAME));
-            
+
         optkit::core::Query::destroy();
         OPTKIT_CORE_GANTT_PROFILE_END_SESSION();
     }
@@ -67,8 +72,8 @@ namespace optkit::core
     {
         std::vector<optkit::core::BarGroupsMeta> meta_list;
 
-#if !CONF__PORTING__IS_PRODUCTION       // don't display this in production code!
-        meta_list.push_back(ImplotCharts::example_bar_group());     
+#if !CONF__PORTING__IS_PRODUCTION // don't display this in production code!
+        meta_list.push_back(ImplotCharts::example_bar_group());
 #endif
 
         if (OPT_LIKELY(file_names.size() != 0))
@@ -77,9 +82,9 @@ namespace optkit::core
             {
                 // read file
                 const auto &val = optkit::core::rapl::from_json(read_file(EXECUTION_FOLDER_NAME + "/" + file_name));
-                
+
                 // process json data
-                const auto& meta = BarGroupsMeta::convert(file_name,val);
+                const auto &meta = BarGroupsMeta::convert(file_name, val);
 
                 // add to meta_list
                 meta_list.push_back(meta);
