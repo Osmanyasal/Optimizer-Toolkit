@@ -25,7 +25,7 @@ namespace optkit::core
 
         END = (1 << 6),
 
-        ALL = 0b1111111, // All domains
+        ALL = 0b0111110, // All domains
     };
     extern const std::unordered_map<int32_t, std::string> rapl_domain_name_mapping;
 

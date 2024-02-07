@@ -3,11 +3,13 @@
 namespace optkit::core
 {
     const std::unordered_map<int32_t, std::string> rapl_domain_name_mapping = {
+        {static_cast<int32_t>(RaplDomain::BEGIN), "begin"},
         {static_cast<int32_t>(RaplDomain::PP0), "energy-cores"},
         {static_cast<int32_t>(RaplDomain::PP1), "energy-gpu"},
         {static_cast<int32_t>(RaplDomain::PACKAGE), "energy-pkg"},
         {static_cast<int32_t>(RaplDomain::PSYS), "energy-psys"},
         {static_cast<int32_t>(RaplDomain::DRAM), "energy-ram"},
+        {static_cast<int32_t>(RaplDomain::END), "end"},
         {static_cast<int32_t>(RaplDomain::ALL), "All domains"}};
 
     const std::unordered_map<int32_t, std::string> rapl_read_method_name_mapping = {
