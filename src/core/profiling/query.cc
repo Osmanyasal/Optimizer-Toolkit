@@ -266,9 +266,9 @@ namespace optkit::core
 
             for (int32_t domain = static_cast<int>(RaplDomain::BEGIN); domain < static_cast<int>(RaplDomain::END); domain = domain << 1)
             {
+                std::string domain_name = rapl_domain_name_mapping.at(domain);
                 try
                 {
-                    std::string domain_name = rapl_domain_name_mapping.at(domain);
                     std::string config = read_file("/sys/bus/event_source/devices/power/events/" + domain_name);
                     std::string scale = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".scale");
                     std::string units = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".unit");
@@ -288,6 +288,7 @@ namespace optkit::core
                 catch (const std::exception &e)
                 {
                     // OPTKIT_CORE_ERROR("{}", e.what());
+                    res.push_back({(RaplDomain)domain, domain_name, 0, 0, "Joules"});
                 }
             }
         }
