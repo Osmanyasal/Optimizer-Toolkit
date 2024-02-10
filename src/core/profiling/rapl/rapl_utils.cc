@@ -11,8 +11,8 @@ namespace optkit::core::rapl
         for (const auto &rapl_pair : rapl_pair_list)
         {
             nlohmann::json packageJson;
-            packageJson["duration"] = rapl_pair.first;
             packageJson["event_name"] = event_name;
+            packageJson["duration"] = rapl_pair.first;
 
             for (const auto &innerpair : rapl_pair.second)
             {
@@ -30,8 +30,8 @@ namespace optkit::core::rapl
                         }
                     }
                 }
+                result["readings"].push_back(packageJson);
             }
-            result["readings"].push_back(packageJson);
         }
         return result;
     }
@@ -52,7 +52,7 @@ namespace optkit::core::rapl
                     // std::string event_name = packageJson["event_name"];
                     int32_t duration = packageJson["duration"];
                     int32_t package_number = packageJson["package_number"];
-                    
+
                     std::map<optkit::core::RaplDomain, double> inner_map;
                     for (const auto &metricJson : packageJson["metrics_set"])
                     {

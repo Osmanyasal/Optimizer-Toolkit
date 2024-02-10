@@ -3,22 +3,26 @@
 #include <intel/icl.hh>
 #include <examples.hh>
 
+#define REPEAT_COUNT 3
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
 
-    for (auto &info : optkit::core::Query::rapl_domain_info())
-        std::cout << info << "\n";
+    OPTKIT_RAPL_REPEAT_READ(add_sse, "SYSTEM NOISE", REPEAT_COUNT)
+    {
+        // do nothing
+        sleep(1);
+    }
 
-    optkit::examples::example__sse_avx_loop_comparison();
+    float i = 0.0f;
+    OPTKIT_RAPL_REPEAT_READ(flops, "FLOPS", 20)
+    {
+        i += 0.356f;
+    }
+    std::cout << i << "\n";
+    // optkit::examples::example__sse_avx_loop_comparison();
 
     std::cout << "EXECUTION DONE !!!\n";
-    // const auto &val = optkit::core::rapl::from_json(read_file(EXECUTION_FOLDER_NAME + "/add_serial__rapl.json"));
-    // std::cout << "FROM JSON IS DONE!\n";
-    // for (auto &&i : val)
-    // {
-    //     std::cout << i.first << " " << i.second << "\n";
-    // }
 
     return 0;
 }
