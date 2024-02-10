@@ -37,11 +37,10 @@ namespace optkit::core::rapl
         return result;
     }
 
-    // TODO: Fix this reading according to return parameter.
-    std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::RaplDomain, double>>>> from_json(const std::string &json)
+    std::map<uint32_t, std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::RaplDomain, double>>>>> from_json(const std::string &json)
     {
         const auto json_obj = nlohmann::json::parse(json);
-        std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::RaplDomain, double>>>> result;
+        std::map<uint32_t,std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::RaplDomain, double>>>>> result;
         std::map<int32_t, std::map<optkit::core::RaplDomain, double>> rapl_map;
 
         if (json_obj.is_array())
@@ -51,7 +50,7 @@ namespace optkit::core::rapl
                 for (const auto &packageJson : array_elem["readings"])
                 {
                     // std::string event_name = packageJson["event_name"];
-                    int32_t duration = packageJson["duration"];
+                    double duration = packageJson["duration"];
                     int32_t package_number = packageJson["package_number"];
 
                     std::map<optkit::core::RaplDomain, double> inner_map;
@@ -66,7 +65,8 @@ namespace optkit::core::rapl
                         inner_map[domain] = value;
                     }
                     rapl_map[package_number] = inner_map;
-                    result.push_back({duration, rapl_map});
+                    result[package_number].push_back({duration, rapl_map});
+                    rapl_map.clear();
                 }
             }
         }

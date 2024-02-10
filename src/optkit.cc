@@ -83,11 +83,13 @@ namespace optkit::core
                 // read file
                 const auto &val = optkit::core::rapl::from_json(read_file(EXECUTION_FOLDER_NAME + "/" + file_name));
 
-                // process json data
-                const auto &meta = BarGroupsMeta::convert(file_name, val);
-
-                // add to meta_list
-                meta_list.push_back(meta);
+                for(auto& pkg : val){
+                    // process json data
+                    const auto &meta = BarGroupsMeta::convert(file_name, pkg.second);
+                    // add to meta_list
+                    meta_list.push_back(meta);
+                }
+                
             }
         }
 
