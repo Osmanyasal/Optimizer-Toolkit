@@ -17,6 +17,7 @@ namespace optkit::core::rapl
             for (const auto &innerpair : rapl_pair.second)
             {
                 packageJson["package_number"] = innerpair.first;
+                packageJson["metrics_set"] = {}; // Reset metrics_set array
                 for (const auto &domain_value : innerpair.second)
                 {
                     for (const auto &info : avail_domains)
