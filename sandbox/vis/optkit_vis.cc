@@ -30,7 +30,7 @@ int32_t main(int32_t argc, char **argv)
             {
                 OPTKIT_WARN("{} is not .json file!!", argv[i]);
                 // If it's a folder, use the find command to search for *.json files recursively
-                std::string command = "find " + std::string(argv[i]) + " -name \"*.json\"";
+                std::string command = "find " + std::string(argv[i]) + " -name \"*.json\" | sort";
                 FILE *findPipe = popen(command.c_str(), "r");
                 if (!findPipe)
                 {
