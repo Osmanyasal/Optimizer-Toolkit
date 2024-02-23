@@ -3,7 +3,6 @@
 #include <intel/icl.hh>
 #include <examples.hh>
 
-#define REPEAT_COUNT 3
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
