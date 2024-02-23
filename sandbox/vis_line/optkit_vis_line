@@ -23,13 +23,16 @@ socket0_energy_ram_values = []
 socket0_energy_cores_values = []
 socket0_energy_gpu_values = [] 
 socket0_energy_psys_values = [] 
-
+socket0_energy_total = [] 
+socket0_power = []
 
 socket1_energy_pkg_values = []
 socket1_energy_ram_values = [] 
 socket1_energy_cores_values = []
 socket1_energy_gpu_values = [] 
 socket1_energy_psys_values = [] 
+socket1_energy_total = [] 
+socket1_power = []
 
 def draw_line_chart(): 
     # Subplot for Socket 0 and 1
@@ -50,6 +53,12 @@ def draw_line_chart():
         
     if(len(socket0_energy_psys_values) > 0):
         axes[0].plot(cores, socket0_energy_psys_values, marker='o', label='Energy PSYS', linestyle='--')
+
+    if(len(socket0_energy_total) > 0):
+        axes[0].plot(cores, socket0_energy_total, marker='o', label='Total Energy', linestyle='-')
+
+    if(len(socket0_power) > 0):
+        axes[0].plot(cores, socket0_power, marker='o', label='Power', linestyle='-')
         
     axes[0].set_ylabel('Socket 0') 
     axes[0].grid(True)
@@ -81,6 +90,12 @@ def draw_line_chart():
         
     if(len(socket1_energy_psys_values) > 0):
         axes[1].plot(cores, socket1_energy_psys_values, marker='o', label='Energy PSYS', linestyle='--')
+    
+    if(len(socket1_energy_total) > 0):
+        axes[1].plot(cores, socket1_energy_total, marker='o', label='Total Energy', linestyle='-')
+
+    if(len(socket1_power) > 0):
+        axes[1].plot(cores, socket1_power, marker='o', label='Power', linestyle='-')
         
         
     axes[1].set_ylabel('Socket 1') 
@@ -114,9 +129,11 @@ def fill_line_chart(json_file):
     
     for reading in data[0]["readings"]:
         socket = reading["package_number"]   
+        total_energy = 0
         for metric in reading["metrics_set"]:
             if metric["metric_name"] == "energy-pkg":
                 energy_pkg = metric["value"]
+                total_energy += energy_pkg
                 if socket == 0:
                     socket0_energy_pkg_values.append(energy_pkg)
                 else:
@@ -124,6 +141,7 @@ def fill_line_chart(json_file):
 
             elif metric["metric_name"] == "energy-ram":
                 energy_ram = metric["value"] 
+                total_energy += energy_ram
                 if socket == 0:
                     socket0_energy_ram_values.append(energy_ram)
                 else:
@@ -131,6 +149,7 @@ def fill_line_chart(json_file):
                     
             elif metric["metric_name"] == "energy-cores":
                 energy_cores = metric["value"]
+                total_energy += energy_cores
                 if socket == 0:
                     socket0_energy_cores_values.append(energy_cores)
                 else:
@@ -138,6 +157,7 @@ def fill_line_chart(json_file):
                     
             elif metric["metric_name"] == "energy-gpu":
                 energy_gpu = metric["value"]
+                total_energy += energy_gpu
                 if socket == 0:
                     socket0_energy_gpu_values.append(energy_gpu)
                 else:
@@ -145,11 +165,19 @@ def fill_line_chart(json_file):
                     
             elif metric["metric_name"] == "energy-psys":
                 energy_psys = metric["value"]
+                total_energy += energy_psys
                 if socket == 0:
                     socket0_energy_psys_values.append(energy_psys)
                 else:
                     socket1_energy_psys_values.append(energy_psys)
                       
+        if socket == 0:
+            socket0_energy_total.append(total_energy)
+            socket0_power.append(total_energy / duration)
+        else:
+            socket1_energy_total.append(total_energy)
+            socket1_power.append(total_energy / duration)
+ 
 
 def plot_json_files(json_files):
     for file in json_files:
