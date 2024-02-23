@@ -17,7 +17,7 @@ def read_json_files(directory):
 
 cores = []
 durations = []
- 
+file_name = ""
 socket0_energy_pkg_values = []
 socket0_energy_ram_values = [] 
 socket0_energy_cores_values = []
@@ -97,7 +97,8 @@ def draw_line_chart():
     
     plt.xlabel('Cores')
     plt.xticks(cores)
-    
+    plt.get_current_fig_manager().set_window_title(file_name)
+  
     fig.suptitle('Energy Consumption of Socket 0 and Socket 1')
     plt.tight_layout()
     plt.show()
@@ -168,6 +169,7 @@ if __name__ == "__main__":
         sys.exit(1)
         
     path = sys.argv[1] 
+    file_name = path
     if os.path.isfile(path):
         if path.endswith(".json"):
             fill_line_chart(path)
