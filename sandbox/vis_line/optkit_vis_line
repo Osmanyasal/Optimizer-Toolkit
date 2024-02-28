@@ -149,7 +149,7 @@ def fill_line_chart(json_file):
                     
             elif metric["metric_name"] == "energy-cores":
                 energy_cores = metric["value"]
-                total_energy += energy_cores
+                #total_energy += energy_cores
                 if socket == 0:
                     socket0_energy_cores_values.append(energy_cores)
                 else:
@@ -157,7 +157,7 @@ def fill_line_chart(json_file):
                     
             elif metric["metric_name"] == "energy-gpu":
                 energy_gpu = metric["value"]
-                total_energy += energy_gpu
+                #total_energy += energy_gpu
                 if socket == 0:
                     socket0_energy_gpu_values.append(energy_gpu)
                 else:
