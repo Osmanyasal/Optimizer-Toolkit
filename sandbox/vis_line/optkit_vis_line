@@ -58,7 +58,7 @@ def draw_line_chart():
         axes[0].plot(cores, socket0_energy_total, marker='o', label='Total Energy', linestyle='-')
 
     if(len(socket0_power) > 0):
-        axes[0].plot(cores, socket0_power, marker='o', label='Power', linestyle='-')
+        axes[0].plot(cores, [power * 1000 for power in socket0_power], marker='o', label='KWatt', linestyle='-')
         
     axes[0].set_ylabel('Socket 0') 
     axes[0].grid(True)
@@ -95,7 +95,7 @@ def draw_line_chart():
         axes[1].plot(cores, socket1_energy_total, marker='o', label='Total Energy', linestyle='-')
 
     if(len(socket1_power) > 0):
-        axes[1].plot(cores, socket1_power, marker='o', label='Power', linestyle='-')
+        axes[1].plot(cores, [power * 1000 for power in socket1_power], marker='o', label='KWatt', linestyle='-')
         
         
     axes[1].set_ylabel('Socket 1') 
