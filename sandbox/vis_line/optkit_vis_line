@@ -40,31 +40,31 @@ def draw_line_chart():
     
     # Socket 0
     if(len(socket0_energy_pkg_values) > 0):
-        axes[0].plot(cores, socket0_energy_pkg_values, marker='o', label='Energy Package', linestyle='--')
+        axes[0].plot(cores, socket0_energy_pkg_values, marker='o', label='Energy Package', linestyle='--', color='gold')
         
     if(len(socket0_energy_ram_values) > 0):
-        axes[0].plot(cores, socket0_energy_ram_values, marker='o', label='Energy RAM', linestyle='--')
+        axes[0].plot(cores, socket0_energy_ram_values, marker='o', label='Energy RAM', linestyle='--', color='lightgreen')
         
     if(len(socket0_energy_cores_values) > 0):
-        axes[0].plot(cores, socket0_energy_cores_values, marker='o', label='Energy CORES', linestyle='--')
+        axes[0].plot(cores, socket0_energy_cores_values, marker='o', label='Energy CORES', linestyle='--', color='orange')
         
     if(len(socket0_energy_gpu_values) > 0):
-        axes[0].plot(cores, socket0_energy_gpu_values, marker='o', label='Energy GPU', linestyle='--')
+        axes[0].plot(cores, socket0_energy_gpu_values, marker='o', label='Energy GPU', linestyle='--', color='cyan')
         
     if(len(socket0_energy_psys_values) > 0):
-        axes[0].plot(cores, socket0_energy_psys_values, marker='o', label='Energy PSYS', linestyle='--')
+        axes[0].plot(cores, socket0_energy_psys_values, marker='o', label='Energy PSYS', linestyle='--', color='cadetblue')
 
     if(len(socket0_energy_total) > 0):
-        axes[0].plot(cores, socket0_energy_total, marker='o', label='Total Energy', linestyle='-')
+        axes[0].plot(cores, socket0_energy_total, marker='D', label='Total Energy', linestyle='-', color='firebrick')
 
     if(len(socket0_power) > 0):
-        axes[0].plot(cores, [power * 1000 for power in socket0_power], marker='o', label='KWatt', linestyle='-')
+        axes[0].plot(cores, [power * 1000 for power in socket0_power], marker='P', label='KWatt', linestyle='-', color="steelblue")
         
     axes[0].set_ylabel('Socket 0') 
     axes[0].grid(True)
      
     axes0_2 = axes[0].twinx()
-    axes0_2.plot(cores, durations, marker='o', label='Duration', linestyle='-', color='red')
+    axes0_2.plot(cores, durations, marker='x', label='Duration', linestyle='-', color='red')
     axes0_2.set_ylabel('Duration')   
      
     # Combine legends
@@ -77,32 +77,32 @@ def draw_line_chart():
 
     # Socket 1
     if(len(socket1_energy_pkg_values) > 0):
-        axes[1].plot(cores, socket1_energy_pkg_values, marker='o', label='Energy Package', linestyle='--')
+        axes[1].plot(cores, socket1_energy_pkg_values, marker='o', label='Energy Package', linestyle='--', color='gold')
         
     if(len(socket1_energy_ram_values) > 0):
-        axes[1].plot(cores, socket1_energy_ram_values, marker='o', label='Energy RAM', linestyle='--')
+        axes[1].plot(cores, socket1_energy_ram_values, marker='o', label='Energy RAM', linestyle='--', color='lightgreen')
         
     if(len(socket1_energy_cores_values) > 0):
-        axes[1].plot(cores, socket1_energy_cores_values, marker='o', label='Energy CORES', linestyle='--')
+        axes[1].plot(cores, socket1_energy_cores_values, marker='o', label='Energy CORES', linestyle='--', color='orange')
         
     if(len(socket1_energy_gpu_values) > 0):
-        axes[1].plot(cores, socket1_energy_gpu_values, marker='o', label='Energy GPU', linestyle='--')
+        axes[1].plot(cores, socket1_energy_gpu_values, marker='o', label='Energy GPU', linestyle='--', color='cyan')
         
     if(len(socket1_energy_psys_values) > 0):
-        axes[1].plot(cores, socket1_energy_psys_values, marker='o', label='Energy PSYS', linestyle='--')
+        axes[1].plot(cores, socket1_energy_psys_values, marker='o', label='Energy PSYS', linestyle='--', color='cadetblue')
     
     if(len(socket1_energy_total) > 0):
-        axes[1].plot(cores, socket1_energy_total, marker='o', label='Total Energy', linestyle='-')
+        axes[1].plot(cores, socket1_energy_total, marker='D', label='Total Energy', linestyle='-', color='firebrick')
 
     if(len(socket1_power) > 0):
-        axes[1].plot(cores, [power * 1000 for power in socket1_power], marker='o', label='KWatt', linestyle='-')
+        axes[1].plot(cores, [power * 1000 for power in socket1_power], marker='P', label='KWatt', linestyle='-', color="steelblue")
         
         
     axes[1].set_ylabel('Socket 1') 
     axes[1].grid(True)
     
     axes0_2 = axes[1].twinx()
-    axes0_2.plot(cores, durations, marker='o', label='Duration', linestyle='-', color='red')
+    axes0_2.plot(cores, durations, marker='x', label='Duration', linestyle='-', color='red')
     axes0_2.set_ylabel('Duration')  
  
     # Combine legends
