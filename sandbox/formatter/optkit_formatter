@@ -215,10 +215,10 @@ def fill_values_to_arrays(json_file):
                       
         if socket == 0:
             socket0_energy_total.append(total_energy)
-            socket0_power.append(1000 * total_energy / duration)
+            socket0_power.append(total_energy / duration)
         else:
             socket1_energy_total.append(total_energy)
-            socket1_power.append(1000 * total_energy / duration)
+            socket1_power.append(total_energy / duration)
 
      
 
@@ -232,7 +232,7 @@ def avg_files(json_files,group):
     counter = 0
     for ctr in range((len(json_files) // group)):
         
-        _duration = sum(durations[_start : _end]) * 1000 / group
+        _duration = (sum(durations[_start : _end]) / group) ## seconds
         
         _socket0_energy_pkg = sum(socket0_energy_pkg_values[_start : _end]) / group
         _socket0_energy_ram = sum(socket0_energy_ram_values[_start : _end])/ group
@@ -240,7 +240,7 @@ def avg_files(json_files,group):
         _socket0_energy_gpu = sum(socket0_energy_gpu_values[_start : _end])/ group
         _socket0_energy_psys = sum(socket0_energy_psys_values[_start : _end])/ group
         _socket0_energy_total = sum(socket0_energy_total[_start : _end])/ group
-        _socket0_power = sum(socket0_power[_start : _end])/ group
+        _socket0_power = _socket0_energy_total * 1000 / _duration
         
         _socket1_energy_pkg = sum(socket1_energy_pkg_values[_start : _end])/ group
         _socket1_energy_ram = sum(socket1_energy_ram_values[_start : _end])/ group
@@ -248,9 +248,9 @@ def avg_files(json_files,group):
         _socket1_energy_gpu = sum(socket1_energy_gpu_values[_start : _end])/ group
         _socket1_energy_psys = sum(socket1_energy_psys_values[_start : _end])/ group
         _socket1_energy_total = sum(socket1_energy_total[_start : _end])/ group
-        _socket1_power = sum(socket1_power[_start : _end]) / group
+        _socket1_power = _socket1_energy_total * 1000 / _duration
         
-        avg_json = generate_json_string(_duration,
+        avg_json = generate_json_string(_duration * 1000, ## give as miliseconds
                                         _socket0_energy_pkg,
                                         _socket0_energy_ram,
                                         _socket0_energy_cores,
@@ -268,8 +268,8 @@ def avg_files(json_files,group):
                                         )
         write_json_to_file(avg_json,sys.argv[1]+"/group_"+str(group)+"__file__"+str(counter)+"_formatted.yaml")
         
-        _start = _start + _end
-        _end = _end * 2
+        _start = _start + group
+        _end = _end + group
         counter = counter + 1
         
 if __name__ == "__main__":
