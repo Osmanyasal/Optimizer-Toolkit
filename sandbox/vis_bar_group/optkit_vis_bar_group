@@ -46,7 +46,7 @@ def draw_line_chart():
         # 'energy-ram': socket0_energy_ram_values,
         # 'energy-gpu': socket0_energy_gpu_values,
         # 'energy-psys' : socket0_energy_psys_values,
-        # 'duration(ms)' : durations,
+        'duration(ms)' : durations,
         'total-energy (Joules)' : socket0_energy_total,
         'total-power (Miliwatt)' : socket0_power,
         # 'power-efficiency' : socket0_power_efficiency
@@ -57,7 +57,7 @@ def draw_line_chart():
         # 'energy-ram': socket1_energy_ram_values,
         # 'energy-gpu': socket1_energy_gpu_values,
         # 'energy-psys' : socket1_energy_psys_values,
-        # 'duration(ms)' : durations,
+        'duration(ms)' : durations,
         'total-energy (Joules)' : socket1_energy_total,
         'total-power (Miliwatt)' : socket1_power,
         # 'power-efficiency' : socket1_power_efficiency
@@ -120,7 +120,7 @@ def fill_line_chart(json_file):
     with open(json_file, "r") as file:
         data = json.load(file)
  
-    duration = data[0]["readings"][0]["duration"] / 1000
+    duration = data[0]["readings"][0]["duration"]
     durations.append(duration)
     
     for reading in data[0]["readings"]:
