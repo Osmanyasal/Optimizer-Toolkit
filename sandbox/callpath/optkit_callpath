@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Check if the correct number of arguments are provided
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <executable>"
+    exit 1
+fi
+
+CURRENT_PATH=$(pwd)
+
+# Assign the executable parameter
+EXECUTABLE="$1"
+CALL_STACK_METHOD="dwarf"  # Change this to your preferred call stack method if needed
+
+# Run perf record to monitor the call stack
+sudo perf record --call-graph "$CALL_STACK_METHOD" "$EXECUTABLE"
+
+# Change permissions of perf files for reporting
+sudo chmod a+rwx perf*
+
+mv perf* $CURRENT_PATH
+
+# Generate and display the perf report
+cd $CURRENT_PATH && sudo perf report
+
+
+
