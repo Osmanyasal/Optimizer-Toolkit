@@ -10,7 +10,18 @@ CURRENT_PATH=$(pwd)
 
 # Assign the executable parameter
 EXECUTABLE="$1"
-CALL_STACK_METHOD="dwarf"  # Change this to your preferred call stack method if needed
+ 
+
+CPU_VENDOR=$(lscpu | grep 'Vendor ID' | awk '{print $3}')
+# Set the call stack method based on CPU vendor
+if [ "$CPU_VENDOR" == "GenuineIntel" ]; then
+    CALL_STACK_METHOD="dwarf"
+elif [ "$CPU_VENDOR" == "AuthenticAMD" ]; then
+    CALL_STACK_METHOD="dwarf"
+else
+    echo "Unknown CPU vendor. Defaulting to dwarf call stack method."
+    CALL_STACK_METHOD="dwarf"
+fi 
 
 # Run perf record to monitor the call stack
 sudo perf record --call-graph "$CALL_STACK_METHOD" "$EXECUTABLE"
