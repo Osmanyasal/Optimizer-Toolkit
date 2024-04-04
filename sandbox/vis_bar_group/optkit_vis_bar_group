@@ -111,6 +111,8 @@ def draw_line_chart():
     axs[1].legend(loc="upper right", ncols=1)
 
     # Show the plot
+
+    plt.get_current_fig_manager().set_window_title(sys.argv[1])
     plt.show() 
      
 
@@ -189,12 +191,11 @@ def plot_json_files(json_files):
         fill_line_chart(file) 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python script.py <files_or_directory>")
+    if len(sys.argv) < 3:
+        print("Usage: python script.py <title> <# of files_or_directory>")
         sys.exit(1)
-          
     
-    for path in sys.argv[1:]: 
+    for path in sys.argv[2:]: 
         if os.path.isfile(path):
             file_name = path
             if path.endswith(".json") or path.endswith(".yaml"):

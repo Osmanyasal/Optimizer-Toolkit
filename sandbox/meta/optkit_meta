@@ -267,7 +267,7 @@ def avg_files(json_files,group):
                                         _socket1_power
                                         )
         
-        file_name_builder = sys.argv[1]+"/group_"+str(group)+"__file__"+str(counter)
+        file_name_builder = sys.argv[1]+"/group_"+str(group)+"__file__"+str(counter) if group != 1 else ""
         file_name_builder = file_name_builder + "__" + os.path.basename(json_files[counter]).replace(".json","") + "__" if group == 1 else file_name_builder
         file_name_builder = file_name_builder + "_formatted.yaml"
         write_json_to_file(avg_json,file_name_builder)
