@@ -15,7 +15,7 @@ EXECUTABLE="$1"
 CPU_VENDOR=$(lscpu | grep 'Vendor ID' | awk '{print $3}')
 # Set the call stack method based on CPU vendor
 if [ "$CPU_VENDOR" == "GenuineIntel" ]; then
-    CALL_STACK_METHOD="dwarf"
+    CALL_STACK_METHOD="lbr"
 elif [ "$CPU_VENDOR" == "AuthenticAMD" ]; then
     CALL_STACK_METHOD="dwarf"
 else
@@ -24,7 +24,7 @@ else
 fi 
 
 # Run perf record to monitor the call stack
-sudo perf record --call-graph "$CALL_STACK_METHOD" "$EXECUTABLE"
+sudo perf record -c 4000 --call-graph "$CALL_STACK_METHOD" "$EXECUTABLE"
 
 # Change permissions of perf files for reporting
 sudo chmod a+rwx perf*
