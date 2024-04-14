@@ -58,7 +58,7 @@ def draw_line_chart():
         axes[0].plot(cores, socket0_energy_total, marker='D', label='Total Energy (Joules)', linestyle='-', color='green')
 
     if(len(socket0_power) > 0):
-        axes[0].plot(cores, [power * 1000 for power in socket0_power], marker='P', label='miliwatts', linestyle='-', color="steelblue")
+        axes[0].plot(cores, [power * 1000 for power in socket0_power], marker='P', label='Power (Miliwatts)', linestyle='-', color="steelblue")
         axes[0].plot(cores, [(p * 1000) / core for core, p in zip(cores, socket0_power)], marker='P', label='Power Efficiency (Power(miliwatt)/Core)', linestyle='-', color="orange")
     
     axes[0].set_ylabel('Socket 0\nEnergy (Joules)') 
@@ -96,7 +96,7 @@ def draw_line_chart():
         axes[1].plot(cores, socket1_energy_total, marker='D', label='Total Energy (Joules)', linestyle='-', color='green')
 
     if(len(socket1_power) > 0):
-        axes[1].plot(cores, [power * 1000 for power in socket1_power], marker='P', label='Miliwatts', linestyle='-', color="steelblue")
+        axes[1].plot(cores, [power * 1000 for power in socket1_power], marker='P', label='Power (Miliwatts)', linestyle='-', color="steelblue")
         axes[1].plot(cores, [(p * 1000) / core for core, p in zip(cores, socket1_power)], marker='P', label='Power Efficiency (Power(miliwatt) / Core)', linestyle='-', color="orange")
     
         
