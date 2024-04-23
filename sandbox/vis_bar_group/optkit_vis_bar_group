@@ -6,207 +6,72 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
-def read_json_or_yaml_files(directory):
-    json_files = []
-    for root, _, files in os.walk(directory):
-        for file in files:
-            if file.endswith(".json") or file.endswith(".yaml"):
-                json_files.append(os.path.join(root, file))
-    for file in sorted(json_files):
-        print(file)
-    return sorted(json_files)  # Sort the list of JSON & YAML files
-
-
-categories = ["Vectorised","Non-Vectorised"] 
-durations = []
-file_name = ""
-
-socket0_energy_pkg_values = []
-socket0_energy_ram_values = [] 
-socket0_energy_categories_values = []
-socket0_energy_gpu_values = [] 
-socket0_energy_psys_values = [] 
-socket0_energy_total = [] 
-socket0_power = [] 
-socket0_power_efficiency = []
-
-socket1_energy_pkg_values = []
-socket1_energy_ram_values = [] 
-socket1_energy_categories_values = []
-socket1_energy_gpu_values = [] 
-socket1_energy_psys_values = [] 
-socket1_energy_total = [] 
-socket1_power = [] 
-socket1_power_efficiency = []
+sys.path.append('../')
+import optkit_sandbox_utils as optkit_utils
+   
  
-def draw_line_chart(): 
-    # Define the data for the plot
-    socket0_data = {
-        # 'energy-pkg': socket0_energy_pkg_values,
-        # 'energy-ram': socket0_energy_ram_values,
-        # 'energy-gpu': socket0_energy_gpu_values,
-        # 'energy-psys' : socket0_energy_psys_values,
-        'duration(ms)' : durations,
-        'total-energy (Joules)' : socket0_energy_total,
-        'total-power (Miliwatt)' : socket0_power,
-        # 'power-efficiency' : socket0_power_efficiency
-    }
 
-    socket1_data = {
-        # 'energy-pkg': socket1_energy_pkg_values,
-        # 'energy-ram': socket1_energy_ram_values,
-        # 'energy-gpu': socket1_energy_gpu_values,
-        # 'energy-psys' : socket1_energy_psys_values,
-        'duration(ms)' : durations,
-        'total-energy (Joules)' : socket1_energy_total,
-        'total-power (Miliwatt)' : socket1_power,
-        # 'power-efficiency' : socket1_power_efficiency
-    }
+def draw_line_chart():
+    # Previous categories (labels) for the bars
+    categories = ['Total Energy (Joules)', 'Total Power (Milliwatt)']
 
-    print("size :: ", durations)
+    # Define the x-axis positions for Socket 0 and Socket 1
+    x_pos_socket0 = np.arange(len(categories))
+    x_pos_socket1 = x_pos_socket0 + 0.35  # Offset for Socket 1
 
-    # Define the x-axis labels and the width of each bar 
-    bar_width = 0.25
+    # Create a figure and axis object
+    fig, ax1 = plt.subplots(figsize=(10, 6))
 
-    # Create a numpy array of the x-axis positions for each group of bars
-    x_pos = np.arange(len(categories))
-
-       # Create a figure and axis object with subplots
-    fig, axs = plt.subplots(2, 1, figsize=(10, 8), sharey=True)
-
-    # Loop through each group of bars for socket 0 and create a set of bars for each group
-    for i, (group, values) in enumerate(socket0_data.items()):
-        # Calculate the x-axis position for the current group of bars for socket 0
-        pos = x_pos + (i * bar_width)
-        # Create a set of bars for the current group for socket 0
-        rects = axs[0].bar(pos, values, width=bar_width, label=f'{group}')  
-        axs[0].bar_label(rects, padding=3) 
-
-    # Loop through each group of bars for socket 1 and create a set of bars for each group
-    for i, (group, values) in enumerate(socket1_data.items()):
-        # Calculate the x-axis position for the current group of bars for socket 1
-        pos = x_pos + (i * bar_width)
-        # Create a set of bars for the current group for socket 1
-        rects = axs[1].bar(pos, values, width=bar_width, label=f'{group}')  
-        axs[1].bar_label(rects, padding=3) 
+    # Create bars for Socket 0 energy (Joules) in blue
+    bars1 = ax1.bar(x_pos_socket0, [optkit_utils.socket0_energy_total[0], optkit_utils.socket0_power[0]], width=0.35, label='Socket 0', align='center', alpha=0.8)
+    bars2 = ax1.bar(x_pos_socket1, [optkit_utils.socket1_energy_total[0], optkit_utils.socket1_power[0]], width=0.35, label='Socket 1', align='center', alpha=0.8,color="orange")
+    
+    # Add data labels above the bars
+    for bar in bars1:
+        yval = bar.get_height()
+        ax1.text(bar.get_x() + bar.get_width() / 2, yval + 10, round(yval, 2), ha='center', va='bottom', fontsize=8)
+    
+    for bar in bars2:
+        yval = bar.get_height()
+        ax1.text(bar.get_x() + bar.get_width() / 2, yval + 10, round(yval, 2), ha='center', va='bottom', fontsize=8)
 
     # Set the x-axis labels and tick positions
-    for ax in axs:
-        ax.set_xticks(x_pos + ((len(socket0_data) - 1) / 2) * bar_width)
-        ax.set_xticklabels(categories)
+    ax1.set_xticks(x_pos_socket0 + 0.175)
+    ax1.set_xticklabels(categories)
 
-        # Add axis labels and a title to the plot
-        ax.set_xlabel('Categories')
+    # Set labels for primary (left) and secondary (right) y-axes
+    ax1.set_ylabel('Energy (Joules)') 
+    
+    # Add a legend for both sets of bars
+    ax1.legend(loc='upper left')
 
-    # Add a shared y-axis label
-    axs[0].set_ylabel('Values')
-    axs[1].set_ylabel('Values')
-
-    # Add titles to subplots
-    axs[0].set_title('Socket 0')
-    axs[1].set_title('Socket 1')
-
-    # Add legends to subplots
-    axs[0].legend(loc="upper right", ncols=1)
-    axs[1].legend(loc="upper right", ncols=1)
+    # Set title
+    plt.title('Energy and Power Comparison')
 
     # Show the plot
+    plt.tight_layout()
+    plt.show()
 
-    plt.get_current_fig_manager().set_window_title(sys.argv[1])
-    plt.show() 
-     
-
-def fill_line_chart(json_file):
-    
-    ## read file
-    with open(json_file, "r") as file:
-        data = json.load(file)
  
-    duration = data[0]["readings"][0]["duration"]
-    durations.append(duration)
-    
-    for reading in data[0]["readings"]:
-        socket = reading["package_number"]   
-        for metric in reading["metrics_set"]:
-            if metric["metric_name"] == "energy-pkg":
-                energy_pkg = metric["value"]
-                if socket == 0:
-                    socket0_energy_pkg_values.append(energy_pkg)
-                else:
-                    socket1_energy_pkg_values.append(energy_pkg)
-
-            elif metric["metric_name"] == "energy-ram":
-                energy_ram = metric["value"] 
-                if socket == 0:
-                    socket0_energy_ram_values.append(energy_ram)
-                else:
-                    socket1_energy_ram_values.append(energy_ram)
-                    
-            elif metric["metric_name"] == "energy-categories":
-                energy_categories = metric["value"]
-                if socket == 0:
-                    socket0_energy_categories_values.append(energy_categories)
-                else:
-                    socket1_energy_categories_values.append(energy_categories)
-                    
-            elif metric["metric_name"] == "energy-gpu":
-                energy_gpu = metric["value"]
-                if socket == 0:
-                    socket0_energy_gpu_values.append(energy_gpu)
-                else:
-                    socket1_energy_gpu_values.append(energy_gpu)
-                    
-            elif metric["metric_name"] == "energy-psys":
-                energy_psys = metric["value"]
-                if socket == 0:
-                    socket0_energy_psys_values.append(energy_psys)
-                else:
-                    socket1_energy_psys_values.append(energy_psys)
-
-            elif metric["metric_name"] == "energy-total":
-                energy_total = metric["value"]
-                if socket == 0:
-                    socket0_energy_total.append(energy_total)
-                else:
-                    socket1_energy_total.append(energy_total)
- 
-            elif metric["metric_name"] == "power":
-                power = metric["value"]
-                if socket == 0:
-                    socket0_power.append(power)
-                else:
-                    socket1_power.append(power)
-
-
-            elif metric["metric_name"] == "power-efficiency":
-                power_efficiency = metric["value"]
-                if socket == 0:
-                    socket0_power_efficiency.append(power_efficiency)
-                else:
-                    socket1_power_efficiency.append(power_efficiency)
-
-
-def plot_json_files(json_files):
-    for file in json_files: 
-        fill_line_chart(file) 
-
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python script.py <title> <# of files_or_directory>")
+     
+    if len(sys.argv) < 2:
+        print("Usage: python script.py <# of files_or_directory>")
         sys.exit(1)
     
-    for path in sys.argv[2:]: 
+    for path in sys.argv[1:]: 
         if os.path.isfile(path):
-            file_name = path
             if path.endswith(".json") or path.endswith(".yaml"):
-                print(path)
-                fill_line_chart(path) 
+                print(path) 
+                optkit_utils.load_measurements(path) 
             else:
                 print("The specified file is not a JSON or YAML file.")
+                exit(1)
+
         elif os.path.isdir(path):
-            json_files = read_json_or_yaml_files(path)
+            json_files = optkit_utils.get_all_json_or_yaml_files(path)
             for file in json_files: 
-                fill_line_chart(file)
+                optkit_utils.load_measurements(file)
         else:
             print("The specified path is not a valid file or directory.")
             

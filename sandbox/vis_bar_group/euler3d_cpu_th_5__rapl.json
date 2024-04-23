@@ -1,0 +1,44 @@
+[
+    {
+        "readings": [
+            {
+                "duration": 132641.71875,
+                "event_name": "rapl",
+                "metrics_set": [
+                    {
+                        "description": "Consumed",
+                        "metric_name": "energy-pkg",
+                        "units": "Joules",
+                        "value": 2696.5557250976563
+                    },
+                    {
+                        "description": "Consumed",
+                        "metric_name": "energy-ram",
+                        "units": "Joules",
+                        "value": 70.11482238769531
+                    }
+                ],
+                "package_number": 0
+            },
+            {
+                "duration": 132641.71875,
+                "event_name": "rapl",
+                "metrics_set": [
+                    {
+                        "description": "Consumed",
+                        "metric_name": "energy-pkg",
+                        "units": "Joules",
+                        "value": 4664.5440673828125
+                    },
+                    {
+                        "description": "Consumed",
+                        "metric_name": "energy-ram",
+                        "units": "Joules",
+                        "value": 141.32553100585938
+                    }
+                ],
+                "package_number": 1
+            }
+        ]
+    }
+]
