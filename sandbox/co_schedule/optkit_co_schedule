@@ -79,7 +79,7 @@ _c_occurred=0
 for param in "$@"; do
     if [[ $param == "-c" ]]; then
         if [[ $_c_occurred -eq 1 ]]; then
-            echo "taskset $local_command"
+            echo "executing: taskset $local_command"
             taskset $local_command  &
             taskset_pids+=($!)
         fi
@@ -91,7 +91,7 @@ for param in "$@"; do
 done
 
 if [[ $_c_occurred -eq 1 ]]; then
-    echo "taskset $local_command"
+    echo "executing: taskset $local_command"
     taskset $local_command &
     taskset_pids+=($!)
 fi
