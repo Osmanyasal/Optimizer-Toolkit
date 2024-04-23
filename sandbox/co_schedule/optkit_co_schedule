@@ -25,7 +25,7 @@ cleanup() {
     done
 }
 
-trap cleanup EXIT
+trap cleanup SIGINT
 
 
 # Check if numactl is installed
@@ -95,5 +95,4 @@ if [[ $_c_occurred -eq 1 ]]; then
     taskset $local_command &
     taskset_pids+=($!)
 fi
-
 wait
