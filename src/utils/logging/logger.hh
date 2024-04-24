@@ -7,7 +7,6 @@
 #include <memory>
 #include <spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
-#include <imgui_logger.hh>
 namespace optkit::utils::logger
 {
     class BaseLogger final
@@ -47,24 +46,19 @@ namespace optkit::utils::logger
 // CLIENT LOGGERS
 #define OPTKIT_DEBUG(...)                                                                                                              \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
-    optkit::utils::logger::BaseLogger::get_client_logger()->debug(__VA_ARGS__);                                                  \
-    ImGuiLogger::AddLog(("[DEBUG] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
+    optkit::utils::logger::BaseLogger::get_client_logger()->debug(__VA_ARGS__);                                                  
 #define OPTKIT_TRACE(...)                                                                                                              \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
-    optkit::utils::logger::BaseLogger::get_client_logger()->trace(__VA_ARGS__);                                                  \
-    ImGuiLogger::AddLog(("[TRACE] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
+    optkit::utils::logger::BaseLogger::get_client_logger()->trace(__VA_ARGS__);                                                  
 #define OPTKIT_INFO(...)                                                                                                               \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
-    optkit::utils::logger::BaseLogger::get_client_logger()->info(__VA_ARGS__);                                                   \
-    ImGuiLogger::AddLog(("[INFO] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
+    optkit::utils::logger::BaseLogger::get_client_logger()->info(__VA_ARGS__);                                                   
 #define OPTKIT_WARN(...)                                                                                                               \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
-    optkit::utils::logger::BaseLogger::get_client_logger()->warn(__VA_ARGS__);                                                   \
-    ImGuiLogger::AddLog(("[WARN] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
+    optkit::utils::logger::BaseLogger::get_client_logger()->warn(__VA_ARGS__);                                                   
 #define OPTKIT_ERROR(...)                                                                                                              \
     spdlog::set_pattern("[%n][%^%l%$][%Y-%m-%d %H:%M:%S.%f][" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [%v]"); \
-    optkit::utils::logger::BaseLogger::get_client_logger()->error(__VA_ARGS__);                                                  \
-    ImGuiLogger::AddLog(("[ERROR] [" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "] [" + fmt::format(__VA_ARGS__) + "]\n").c_str())
+    optkit::utils::logger::BaseLogger::get_client_logger()->error(__VA_ARGS__);                                                  
 
 // Get rid of things that shouldn't be on production..
 #if CONF__PORTING__IS_PRODUCTION || !CONF__LOG__ENABLE_TRACE

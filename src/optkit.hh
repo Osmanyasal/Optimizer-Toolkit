@@ -4,29 +4,20 @@
 #include <string>
 #include <vector>
 #include <utils.hh>
-#include <core_platforms.hh>
 #include <core_profiling.hh>
 
 namespace optkit::core
 {
     struct OPTKIT_CONFIG
     {
-        OPTKIT_CONFIG(bool is_draw = true, bool create_folder = true, const std::string &execution_file = "") : is_draw{is_draw}, create_folder{create_folder}, execution_file{execution_file} {}
+        OPTKIT_CONFIG(bool create_folder = true, const std::string &execution_file = "") : create_folder{create_folder}, execution_file{execution_file} {}
 
-        const bool is_draw;
         const bool create_folder;
         const std::string execution_file;
     };
     class OptimizerKit
     {
-    public:
-        /**
-         * @brief Draw given result files using IMGUI api.
-         *
-         * @param file_names
-         */
-        static void draw(const std::vector<std::string> &file_names = {});
-
+   
     public:
         OptimizerKit(const OPTKIT_CONFIG config = {});
         ~OptimizerKit();

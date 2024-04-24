@@ -1,5 +1,7 @@
 #!/bin/bash
-  
+
+source ./uninstall.sh
+
 for dr in $(ls -d */);
 do
     cd $dr

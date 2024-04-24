@@ -3,7 +3,7 @@
 
 int32_t main(int32_t argc, char **argv)
 {
-    OptimizerKit optkit{{false,false}};
+    OptimizerKit optkit;
 
     int value = argc > 1 ? std::atoi(argv[1]) : -1;
     OPTKIT_INFO("Monitoring socket energy for {} sec. (-1 means indefinite)", value);
