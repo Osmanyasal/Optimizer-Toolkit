@@ -14,7 +14,7 @@ int32_t main(int32_t argc, char **argv)
         while (true)
         {
             // first read's usually 0 because it executes faster than rapl update (each 1ms)
-            std::cout << main_block.read().second << "\n";
+            std::cout << main_block.read_val() << "\n";
             sleep(1);
         }
     else
