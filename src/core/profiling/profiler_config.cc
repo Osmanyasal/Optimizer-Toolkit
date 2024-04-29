@@ -3,7 +3,7 @@
 
 namespace optkit::core
 {
-    ProfilerConfig::ProfilerConfig(bool is_reset_after_read, bool is_grouped, int pid, int cpu, bool dump_results_to_file) : is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}, dump_results_to_file{dump_results_to_file}
+    ProfilerConfig::ProfilerConfig(bool dump_results_to_file, bool is_reset_after_read, bool is_grouped, int pid, int cpu) : dump_results_to_file{dump_results_to_file}, is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}
     {
         ::memset(&perf_event_config, 0, sizeof(perf_event_attr));
         perf_event_config.type = PERF_TYPE_RAW;
@@ -16,7 +16,7 @@ namespace optkit::core
             perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
     }
 
-    ProfilerConfig::ProfilerConfig(perf_event_attr perf_event_config, bool is_reset_after_read, bool is_grouped, int pid, int cpu, bool dump_results_to_file) : perf_event_config{perf_event_config}, is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}, dump_results_to_file{dump_results_to_file}
+    ProfilerConfig::ProfilerConfig(perf_event_attr perf_event_config, bool dump_results_to_file, bool is_reset_after_read, bool is_grouped, int pid, int cpu) : dump_results_to_file{dump_results_to_file}, perf_event_config{perf_event_config}, is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}
     {
         if (is_grouped)
             perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;

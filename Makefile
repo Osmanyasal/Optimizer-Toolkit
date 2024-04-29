@@ -18,10 +18,11 @@ OBJ := $(BIN)/obj
 
 # CORE Directories for source and header files
 SRC_DIR := ./src
-EXAMPLES_DIR := ./examples
+TEST_DIR := ./test
 CORE_DIR := $(SRC_DIR)/core
 CORE_EVENTS_DIR := $(CORE_DIR)/events
 CORE_PROFILING := $(CORE_DIR)/profiling
+CORE_FREQUENCY := $(CORE_DIR)/freq
 CORE_RECIPIES := $(CORE_DIR)/recipies
 
 PROFILING_RAPL := $(CORE_PROFILING)/rapl
@@ -47,10 +48,11 @@ DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl
 
 # Include directories
 INCLUDE := -I$(SRC_DIR)\
-		   -I$(EXAMPLES_DIR)\
+		   -I$(TEST_DIR)\
            -I$(CORE_DIR)\
 		   -I$(CORE_EVENTS_DIR)\
 		   -I$(CORE_PROFILING)\
+		   -I$(CORE_FREQUENCY)\
 		   -I$(CORE_RECIPIES)\
 		   -I$(RECIPIE_PMU)\
 		   -I$(RECIPIE_RAPL)\
@@ -68,7 +70,7 @@ EXECUTABLE := optimizer_toolkit.core
 STATIC_LIB := liboptkit.a
 DYNAMIC_LIB := liboptkit.so
 
-SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(EXAMPLES_DIR) -type f -name "*.cc")
+SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(TEST_DIR) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES))
 
 all: ${LIB_PFM_PATH}/all_set $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB)

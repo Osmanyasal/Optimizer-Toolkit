@@ -185,6 +185,7 @@ namespace optkit::core
         return avail_pmu_ids;
     }
 
+    // Socket - cpu list
     const std::map<int32_t, std::vector<int32_t>> &Query::detect_packages()
     {
         static std::map<int32_t, std::vector<int32_t>> result;

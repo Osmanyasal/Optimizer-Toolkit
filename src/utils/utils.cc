@@ -32,39 +32,6 @@ std::string generateGUID()
     return ss.str();
 }
 
-std::string read_file(const std::string &location, bool is_verbose)
-{
-    std::stringstream buffer;
-    std::ifstream file(location);
-    if (OPT_UNLIKELY(is_verbose && !file.is_open()))
-    {
-        OPTKIT_CORE_ERROR("file not found at the location {}", location);
-        throw std::runtime_error("Failed to open the file: " + location);
-    }
-    buffer << file.rdbuf();
-    file.close();
-
-    return buffer.str();
-}
-
-void write_file(const std::string &location, const std::string &json_val, bool is_verbose)
-{
-    std::ofstream file(location, std::ios_base::out | std::ios_base::app); // create & append mode
-    if (OPT_UNLIKELY(is_verbose && !file.is_open()))
-    {
-        OPTKIT_CORE_ERROR("Failed to open the file for writing: {}", location);
-        throw std::runtime_error("Failed to open the file for writing: " + location);
-    }
-
-    file << json_val << "\n";
-    file.close();
-
-    if (is_verbose)
-    {
-        OPTKIT_CORE_INFO("JSON data successfully written to file: {}", location);
-    }
-}
-
 std::vector<std::string> get_all_files(const std::string &directory_name)
 {
     std::vector<std::string> files;
@@ -86,21 +53,8 @@ std::vector<std::string> get_all_files(const std::string &directory_name)
     }
     return files;
 }
-
-bool is_path_exists(const std::string &location)
-{
-    struct stat buffer;
-    return (stat(location.c_str(), &buffer) == 0);
-}
-
-void create_directory(const std::string &folderName)
-{
-    // For Linux/Unix
-    if (mkdir(folderName.c_str(), 0777) != 0)
-    {
-        OPTKIT_CORE_ERROR("Directory already exists {}", folderName);
-    }
-}
+ 
+ 
 
 std::string get_date(const std::string &format)
 {

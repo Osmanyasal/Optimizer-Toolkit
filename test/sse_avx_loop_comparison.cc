@@ -4,7 +4,7 @@
 #include <xmmintrin.h> // for SSE
 #include <events/intel/icl.hh>
 
-namespace optkit::examples
+namespace optkit::test
 {
 
     // Function to perform addition using SSE
