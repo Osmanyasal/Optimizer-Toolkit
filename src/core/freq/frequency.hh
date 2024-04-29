@@ -6,7 +6,7 @@
 #include <utils.hh>
 #include <query.hh>
 
-namespace optkit::core
+namespace optkit::core::freq
 {
 
     class BaseFrequency final

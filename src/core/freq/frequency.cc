@@ -1,11 +1,11 @@
 #include <frequency.hh>
 
-namespace optkit::core
+namespace optkit::core::freq
 {
     // Define static member variables
 
     const std::map<int32_t, std::vector<int32_t>> &BaseFrequency::package_info = Query::detect_packages();
-    std::vector<long> BaseFrequency::core_frequencies;
+    std::vector<long> BaseFrequency::core_frequencies(BaseFrequency::package_info.at(0).size(), 0);
     long BaseFrequency::uncore_frequency;
 
 #define TRAVERSE_CORES(socket)                           \
