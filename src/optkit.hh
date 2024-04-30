@@ -5,6 +5,7 @@
 #include <vector>
 #include <utils.hh>
 #include <core_profiling.hh>
+#include <core_freq.hh>
 
 namespace optkit::core
 {

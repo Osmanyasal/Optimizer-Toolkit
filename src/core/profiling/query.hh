@@ -25,7 +25,7 @@ namespace optkit::core
      * Don't forget to call init() before using it and destroy() when you're done with it.<br>
      * These 2 method calls can be done at the beginning and end of the application.
      */
-    class Query
+    class Query final
     {
     public:
         /**
@@ -119,8 +119,8 @@ namespace optkit::core
         static const std::vector<RaplDomainInfo>& rapl_domain_info();
 
     private:
-        Query();
-        ~Query();
+        Query() = delete;
+        ~Query() = delete;
 
     private:
         static bool is_active;

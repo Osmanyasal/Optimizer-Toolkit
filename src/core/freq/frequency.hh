@@ -1,5 +1,5 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQUENCY_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQUENCY_HH
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ_HH
+#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ_HH
 
 #include <vector>
 #include <map>
@@ -9,15 +9,15 @@
 namespace optkit::core::freq
 {
 
-    class BaseFrequency final
+    class CPUFrequency final
     {
     public:
-        static void set_core_frequency(long frequency,short socket=0);
-        static void set_core_frequency(long frequency, short cpu, short socket = 0);
-        static void set_core_frequency(long frequency, short cpu_start, short cpu_end, short socket = 0);
-        static long get_core_frequency(short cpu, short socket = 0);
-        static std::vector<long> get_core_frequency(short socket = 0);
-        static std::vector<long> get_core_frequency(short cpu_start, short cpu_end, short socket = 0);
+        static void set_core_frequency(long frequency, short socket);
+        static void set_core_frequency(long frequency, short cpu, short socket);
+        static void set_core_frequency(long frequency, short cpu_start, short cpu_end, short socket);
+        static long get_core_frequency(short cpu);
+        static std::vector<long> get_core_frequencies(short socket);
+        static std::vector<long> get_core_frequency(short cpu_start, short cpu_end, short socket);
 
         static long get_uncore_frequency();
         static void set_uncore_frequency(long frequency);
@@ -28,8 +28,8 @@ namespace optkit::core::freq
         static const std::map<int32_t, std::vector<int32_t>> &package_info;
 
     private:
-        BaseFrequency();
-        ~BaseFrequency();
+        CPUFrequency();
+        ~CPUFrequency();
     };
 
 }

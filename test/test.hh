@@ -1,7 +1,4 @@
-#pragma once
-#include <cstdint>
-namespace optkit::test
-{
+#pragma once 
 
+#include <test_frequency.hh>
 
-} // namespace optkit::test
