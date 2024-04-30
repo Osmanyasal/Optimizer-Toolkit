@@ -17,6 +17,7 @@ namespace optkit::test::freq
     
     void test_set_core_frequency(long freq)
     {
+        utils::BlockTimer timer {"set_core_freq"};
         // Test set_core_frequency methods
         CPUFrequency::set_core_frequency(freq, 0);
         // CPUFrequency::set_core_frequency(2200000, 1, 0);
