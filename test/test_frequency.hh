@@ -1,10 +1,12 @@
-#pragma omp once
+#pragma once
 
 #include <optkit.hh>
 #include <cpu_frequency.hh>
 
 namespace optkit::test::freq
 {
+
+    #define THREASHOLD_FREQ 1000    // 1MHz
     // call this
     int run();
 
