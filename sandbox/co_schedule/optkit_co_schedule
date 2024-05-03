@@ -1,7 +1,7 @@
 #!/bin/bash
 
 print_help() {
-    echo "Usage: $0 [OPTION] [-c core_nums 'command'> <and>...]"
+    echo "Usage: $0 [OPTION] [<-c core_nums 'command'>...]"
     
     echo "-------"
     # Print the extracted CPUs for verification
@@ -17,7 +17,6 @@ print_help() {
     echo "-------"
 
     echo "Options:"
-    echo "socket_name"
     echo "  --help      Display this help message"
 }
 
