@@ -1,6 +1,6 @@
 #pragma once
 
-#include <frequency.hh>
+#include <cpu_frequency.hh>
 #include <query_frequency.hh>
 
 using optkit::core::freq::CPUFrequency;

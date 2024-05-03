@@ -11,6 +11,7 @@
 #include <map>
 #include <rapl.hh>
 #include <libpfm4_wrapper.hh>
+#include <unistd.h>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info);
@@ -27,6 +28,9 @@ namespace optkit::core
      */
     class Query final
     {
+    public:
+        static const long num_cores;
+
     public:
         /**
          * @brief Initializes libpfm4 library.
@@ -95,7 +99,7 @@ namespace optkit::core
          * @brief Gets core_id / socket_id(package) information
          * @return const ref of static std::unordered_map<int32_t,std::vector<int32_t>> object: package - # of cores
          */
-        static const std::map<int32_t, std::vector<int32_t>>& detect_packages();
+        static const std::map<int32_t, std::vector<int32_t>> &detect_packages();
 
         /**
          * @brief Returns available Rapl read methods in combination of RaplReadMethods as bitwise OR.
@@ -116,7 +120,7 @@ namespace optkit::core
          *
          * @return const ref of std::vector<RaplDomainInfo> static object!
          */
-        static const std::vector<RaplDomainInfo>& rapl_domain_info();
+        static const std::vector<RaplDomainInfo> &rapl_domain_info();
 
     private:
         Query() = delete;

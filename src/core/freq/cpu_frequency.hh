@@ -23,8 +23,6 @@ namespace optkit::core::freq
         static void set_uncore_frequency(long frequency);
 
     private:
-        static std::vector<long> core_frequencies;
-        static long uncore_frequency;
         static const std::map<int32_t, std::vector<int32_t>> &package_info;
 
     private:
