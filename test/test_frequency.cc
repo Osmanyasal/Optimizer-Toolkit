@@ -6,7 +6,7 @@ namespace optkit::test::freq
     {
         std::cout << "Running frequency test suite...\n\n";
 
-        test_set_core_frequency(1400000);
+        test_set_core_frequency(1400000,0);
         test_get_core_frequency(7);
         // test_get_uncore_frequency();
         // test_set_uncore_frequency();
@@ -15,11 +15,11 @@ namespace optkit::test::freq
         return 0;
     }
     
-    void test_set_core_frequency(long freq)
+    void test_set_core_frequency(long freq,short socket)
     {
         utils::BlockTimer timer {"set_core_freq"};
         // Test set_core_frequency methods
-        CPUFrequency::set_core_frequency(freq, 0);
+        CPUFrequency::set_core_frequency(freq, socket);
         // CPUFrequency::set_core_frequency(2200000, 1, 0);
         // CPUFrequency::set_core_frequency(1800000, 2, 4, 0);
     }
@@ -34,7 +34,7 @@ namespace optkit::test::freq
     void test_get_core_frequencies(short socket)
     {
         // Test get_core_frequency methods
-        std::vector<long> freq = CPUFrequency::get_core_frequencies(0);
+        std::vector<long> freq = CPUFrequency::get_core_frequencies(socket);
 
         for (size_t i = 0; i < freq.size(); i++)
         {
