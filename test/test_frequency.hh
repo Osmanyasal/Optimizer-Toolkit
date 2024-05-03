@@ -1,7 +1,7 @@
 #pragma omp once
 
 #include <optkit.hh>
-#include <frequency.hh>
+#include <cpu_frequency.hh>
 
 namespace optkit::test::freq
 {
