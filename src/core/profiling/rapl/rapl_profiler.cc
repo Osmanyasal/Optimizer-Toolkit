@@ -1,11 +1,11 @@
 #include <rapl_profiler.hh>
 
-namespace optkit::core
+namespace optkit::core::rapl
 {
     RaplProfiler::RaplProfiler(const char *block_name, const char *event_name, const RaplConfig &config) : BaseProfiler{block_name, event_name}, rapl_config{config}
     {
         const std::map<int32_t, std::vector<int32_t>> &packages = Query::detect_packages();
-        const std::vector<RaplDomainInfo> &avail_domains = Query::rapl_domain_info();   // Monitor for all available domains
+        const std::vector<RaplDomainInfo> &avail_domains = QueryRapl::rapl_domain_info();   // Monitor for all available domains
 
         // std::cout << rapl_config << std::endl;
         switch (rapl_config.read_method)
@@ -79,7 +79,7 @@ namespace optkit::core
 } // namespace optkit::core
 
 // Overloading << for map with RaplDomain as keys
-std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::RaplDomain, double> &map)
+std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::rapl::RaplDomain, double> &map)
 {
 
     for (const auto &item : map)

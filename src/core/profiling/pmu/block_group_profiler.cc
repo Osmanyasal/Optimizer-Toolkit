@@ -1,6 +1,6 @@
 #include <block_group_profiler.hh>
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
 
     BlockGroupProfiler::BlockGroupProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config) : BaseProfiler{block_name, event_name}, profiler_config{config}, group_leader{-1}, is_active{true}, raw_events{raw_events}
@@ -131,4 +131,4 @@ namespace optkit::core
         ss << "]\n";
         return ss.str();
     }
-} // namespace optkit::core
+} // namespace optkit::core::pmu

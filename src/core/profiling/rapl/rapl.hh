@@ -6,7 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include <logger.hh>
-namespace optkit::core
+namespace optkit::core::rapl
 {
     /**
      * @brief All available rapl domain by 2023<br>
@@ -53,10 +53,10 @@ namespace optkit::core
         std::string units;
     };
 
-} // namespace optkit::core
+} // namespace optkit::core::rapl
 
-std::ostream &operator<<(std::ostream &os, const optkit::core::RaplDomain &domain);
-std::ostream &operator<<(std::ostream &os, const optkit::core::RaplDomainInfo &domain_info);
-std::ostream &operator<<(std::ostream &os, const optkit::core::RaplReadMethods &read_method);
+std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplDomain &domain);
+std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplDomainInfo &domain_info);
+std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplReadMethods &read_method);
 
 #endif

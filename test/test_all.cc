@@ -5,10 +5,10 @@
 namespace optkit::test
 {
 
-    using optkit::core::BlockGroupProfiler;
-    using optkit::core::BlockProfiler;
-    using optkit::core::RaplDomain;
-    using optkit::core::RaplProfiler;
+    using optkit::core::pmu::BlockGroupProfiler;
+    using optkit::core::pmu::BlockProfiler;
+    using optkit::core::rapl::RaplDomain;
+    using optkit::core::rapl::RaplProfiler;
 
     int32_t test_all()
     {
@@ -25,22 +25,22 @@ namespace optkit::test
 
         OPTKIT_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
         optkit::utils::logger::BaseLogger::init();
-        optkit::core::Query::init();
+        optkit::core::pmu::QueryPMU::init();
 
-        auto default_pmu = optkit::core::Query::default_pmu_info();
-        auto default_pmu2 = optkit::core::Query::default_pmu_info();
-        optkit::core::Query::list_avail_pmus();
-        auto avail_pmu_list = optkit::core::Query::avail_pmu_ids();
+        auto default_pmu = optkit::core::pmu::QueryPMU::default_pmu_info();
+        auto default_pmu2 = optkit::core::pmu::QueryPMU::default_pmu_info();
+        optkit::core::pmu::QueryPMU::list_avail_pmus();
+        auto avail_pmu_list = optkit::core::pmu::QueryPMU::avail_pmu_ids();
 
         for (int32_t i : avail_pmu_list)
             std::cout << i << ", ";
 
-        std::cout << optkit::core::Query::pmu_info(avail_pmu_list[0]);
+        std::cout << optkit::core::pmu::QueryPMU::pmu_info(avail_pmu_list[0]);
 
         std::cout << std::endl;
         std::cout << "___________ 447 ____________" << std::endl;
-        optkit::core::Query::list_avail_events(PFM_PMU_INTEL_ICL);
-        std::cout << optkit::core::Query::event_detail(PFM_PMU_INTEL_ICL, icl::UNHALTED_CORE_CYCLES);
+        optkit::core::pmu::QueryPMU::list_avail_events(PFM_PMU_INTEL_ICL);
+        std::cout << optkit::core::pmu::QueryPMU::event_detail(PFM_PMU_INTEL_ICL, icl::UNHALTED_CORE_CYCLES);
 
         std::map<RaplDomain, double> raplDomainMap;
 
@@ -115,7 +115,7 @@ namespace optkit::test
         }
         */
 
-        optkit::core::Query::destroy();
+        optkit::core::pmu::QueryPMU::destroy();
         OPTKIT_GANTT_PROFILE_END_SESSION();
         return 0;
     }

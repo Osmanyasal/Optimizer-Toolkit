@@ -1,18 +1,18 @@
 
-#include <query.hh>
+#include <query_pmu.hh>
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
-    const long Query::num_cores = sysconf(_SC_NPROCESSORS_ONLN);
-    bool Query::is_active = false;
-    pfm_pmu_info_t Query::default_architectural_pmu;
+    const long QueryPMU::num_cores = sysconf(_SC_NPROCESSORS_ONLN);
+    bool QueryPMU::is_active = false;
+    pfm_pmu_info_t QueryPMU::default_architectural_pmu;
 
-    void Query::init()
+    void QueryPMU::init()
     {
         if (pfm_initialize() == PFM_SUCCESS)
         {
             is_active = true;
-            memset(&Query::default_architectural_pmu, 0, sizeof(pfm_pmu_info_t));
+            memset(&QueryPMU::default_architectural_pmu, 0, sizeof(pfm_pmu_info_t));
             OPTKIT_CORE_INFO("pfm initialized successfully!");
         }
         else
@@ -22,18 +22,18 @@ namespace optkit::core
         }
     }
 
-    void Query::destroy()
+    void QueryPMU::destroy()
     {
         pfm_terminate();
         is_active = false;
     }
 
-    pfm_pmu_info_t Query::pmu_info(int32_t pmu_id)
+    pfm_pmu_info_t QueryPMU::pmu_info(int32_t pmu_id)
     {
         pfm_pmu_info_t pmu_info;
         memset(&pmu_info, 0, sizeof(pfm_pmu_info_t));
 
-        if (OPT_LIKELY(Query::is_active))
+        if (OPT_LIKELY(QueryPMU::is_active))
         {
             pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pmu_info);
         }
@@ -44,20 +44,20 @@ namespace optkit::core
         return pmu_info;
     }
 
-    pfm_pmu_info_t Query::default_pmu_info()
+    pfm_pmu_info_t QueryPMU::default_pmu_info()
     {
-        if (OPT_LIKELY(Query::default_architectural_pmu.is_dfl))
-            return Query::default_architectural_pmu;
+        if (OPT_LIKELY(QueryPMU::default_architectural_pmu.is_dfl))
+            return QueryPMU::default_architectural_pmu;
 
-        std::vector<int32_t> pmu_ids = Query::avail_pmu_ids();
+        std::vector<int32_t> pmu_ids = QueryPMU::avail_pmu_ids();
         for (auto pmu_id : pmu_ids)
         {
-            pfm_pmu_info_t info = Query::pmu_info(pmu_id);
+            pfm_pmu_info_t info = QueryPMU::pmu_info(pmu_id);
             if (info.is_dfl || info.type == PFM_PMU_TYPE_CORE)
             {
                 info.is_dfl = true; // make it default!
-                Query::default_architectural_pmu = info;
-                return Query::default_architectural_pmu;
+                QueryPMU::default_architectural_pmu = info;
+                return QueryPMU::default_architectural_pmu;
             }
         }
         // If not found return defaul pmu_info
@@ -67,9 +67,9 @@ namespace optkit::core
         return pmu_info;
     }
 
-    void Query::list_avail_events(int32_t pmu_id)
+    void QueryPMU::list_avail_events(int32_t pmu_id)
     {
-        if (OPT_LIKELY(Query::is_active))
+        if (OPT_LIKELY(QueryPMU::is_active))
         {
             pfm_event_info_t info;
             pfm_pmu_info_t pinfo;
@@ -103,7 +103,7 @@ namespace optkit::core
             OPTKIT_CORE_WARN("pfm is NOT initialized!");
         }
     }
-    pfm_event_info_t Query::event_detail(int32_t pmu_id, uint32_t event_code)
+    pfm_event_info_t QueryPMU::event_detail(int32_t pmu_id, uint32_t event_code)
     {
 
         pfm_event_info_t info;
@@ -116,7 +116,7 @@ namespace optkit::core
         info.size = sizeof(info);
         pinfo.size = sizeof(pinfo);
 
-        if (OPT_LIKELY(Query::is_active))
+        if (OPT_LIKELY(QueryPMU::is_active))
         {
             ret = pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pinfo);
             if (ret != PFM_SUCCESS)
@@ -146,15 +146,15 @@ namespace optkit::core
         return info;
     }
 
-    void Query::list_avail_pmus()
+    void QueryPMU::list_avail_pmus()
     {
-        if (OPT_LIKELY(Query::is_active))
+        if (OPT_LIKELY(QueryPMU::is_active))
         {
             std::cout << "[INFO] Listing Available PMUs...." << std::endl;
             int32_t i = 0;
             pfm_for_all_pmus(i)
             {
-                pfm_pmu_info_t pmu_info = Query::pmu_info(i);
+                pfm_pmu_info_t pmu_info = QueryPMU::pmu_info(i);
                 if (pmu_info.is_present)
                     std::cout << pmu_info << std::endl;
             }
@@ -165,16 +165,16 @@ namespace optkit::core
         }
     }
 
-    std::vector<int32_t> Query::avail_pmu_ids()
+    std::vector<int32_t> QueryPMU::avail_pmu_ids()
     {
         std::vector<int32_t> avail_pmu_ids;
 
-        if (OPT_LIKELY(Query::is_active))
+        if (OPT_LIKELY(QueryPMU::is_active))
         {
             int32_t i = 0;
             pfm_for_all_pmus(i)
             {
-                if (Query::pmu_info(i).is_present)
+                if (QueryPMU::pmu_info(i).is_present)
                     avail_pmu_ids.push_back(i);
             }
         }
@@ -187,7 +187,7 @@ namespace optkit::core
     }
 
     // Socket - cpu list
-    const std::map<int32_t, std::vector<int32_t>> &Query::detect_packages()
+    const std::map<int32_t, std::vector<int32_t>> &QueryPMU::detect_packages()
     {
         static std::map<int32_t, std::vector<int32_t>> result;
 
@@ -216,112 +216,8 @@ namespace optkit::core
         return result;
     }
 
-    int32_t Query::avail_rapl_read_methods()
-    {
-        int32_t result = 0;
-
-        if (is_rapl_powercap_avail())
-            result = result | (int32_t)RaplReadMethods::POWERCAP;
-
-        if (is_rapl_perf_avail())
-            result = result | (int32_t)RaplReadMethods::PERF;
-
-        if (is_rapl_msr_avail())
-            result = result | (int32_t)RaplReadMethods::MSR;
-
-        return result;
-    }
-
-    bool Query::is_rapl_msr_avail()
-    {
-        OPTKIT_CORE_WARN("MSR avail check not implemented in this version!");
-        return false;
-    }
-
-    bool Query::is_rapl_perf_avail()
-    {
-        if (is_path_exists("/sys/bus/event_source/devices/power/type"))
-            return true;
-        else
-        {
-            OPTKIT_CORE_WARN("No perf_event rapl support found (requires Linux 3.14).");
-            return false;
-        }
-    }
-    bool Query::is_rapl_powercap_avail()
-    {
-        if (is_path_exists("/sys/class/powercap/intel-rapl/intel-rapl:0/"))
-            return true;
-        else
-        {
-            OPTKIT_CORE_WARN("No powercap support found.");
-            return false;
-        }
-    }
-
-    const std::vector<RaplDomainInfo> &Query::rapl_domain_info()
-    {
-        static std::vector<RaplDomainInfo> res;
-
-        if (res.size() == 0)
-        {
-
-            for (int32_t domain = static_cast<int>(RaplDomain::BEGIN); domain < static_cast<int>(RaplDomain::END); domain = domain << 1)
-            {
-                std::string domain_name = rapl_domain_name_mapping.at(domain);
-                try
-                {
-                    std::string config = read_file("/sys/bus/event_source/devices/power/events/" + domain_name);
-                    std::string scale = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".scale");
-                    std::string units = read_file("/sys/bus/event_source/devices/power/events/" + domain_name + ".unit");
-
-                    config.erase(std::remove(config.begin(), config.end(), '\n'), config.end());
-                    scale.erase(std::remove(scale.begin(), scale.end(), '\n'), scale.end());
-                    units.erase(std::remove(units.begin(), units.end(), '\n'), units.end());
-
-                    config = config.substr(config.find("=") + 1);
-                    std::stringstream ss;
-                    ss << std::hex << config;
-                    uint64_t l_conf;
-                    ss >> l_conf;
-
-                    res.push_back({(RaplDomain)domain, domain_name, l_conf, std::stod(scale), units});
-                }
-                catch (const std::exception &e)
-                {
-                    // OPTKIT_CORE_ERROR("{}", e.what());
-                    res.push_back({(RaplDomain)domain, domain_name, 0, 0, "Joules"});
-                }
-            }
-        }
-
-        return res;
-    }
-
-} // namespace optkit::core
-
-std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<int32_t>> &packages)
-{
-    std::ostringstream oss;
-    int32_t total_cores = 0;
-    int32_t count = 0;
-    for (const auto &entry : packages)
-    {
-        int32_t package_id = entry.first;
-        const std::vector<int32_t> &core_ids = entry.second;
-        total_cores += core_ids.size();
-
-        for (int32_t core_id : core_ids)
-        {
-            oss << core_id << " (" << package_id << ") ";
-            if (++count % 8 == 0)
-                oss << std::endl;
-        }
-    }
-    out << "\n\tDetected " << total_cores << " cores in " << packages.size() << " packages\n---------------------------------------\n"
-        << oss.str();
-    return out;
-}
+} // namespace optkit::core::pmu
+ 
 
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info)
 {
@@ -356,9 +252,9 @@ std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info)
     out << "| " << std::setw(16) << "size:" << std::setw(_10_plus_event_info_desc_size) << event_info.size << " |\n";
     out << "| " << std::setw(16) << "code:" << std::setw(_10_plus_event_info_desc_size) << event_info.code << " |\n";
     // Print the rest of the members with appropriate setw values
-    out << "| " << std::setw(16) << "pmu:" << std::setw(_10_plus_event_info_desc_size - 6) << optkit::core::pmu_names[(std::size_t)event_info.pmu] << std::setw(6) << "(" + std::to_string(event_info.pmu) + ")"
+    out << "| " << std::setw(16) << "pmu:" << std::setw(_10_plus_event_info_desc_size - 6) << optkit::core::pmu::pmu_names[(std::size_t)event_info.pmu] << std::setw(6) << "(" + std::to_string(event_info.pmu) + ")"
         << " |\n";
-    out << "| " << std::setw(16) << "dtype:" << std::setw(_10_plus_event_info_desc_size - 6) << optkit::core::pmu_types[(std::size_t)event_info.dtype] << std::setw(6) << "(" + std::to_string(event_info.pmu) + ")"
+    out << "| " << std::setw(16) << "dtype:" << std::setw(_10_plus_event_info_desc_size - 6) << optkit::core::pmu::pmu_types[(std::size_t)event_info.dtype] << std::setw(6) << "(" + std::to_string(event_info.pmu) + ")"
         << " |\n";
 
     out << "| " << std::setw(16) << "idx:" << std::setw(_10_plus_event_info_desc_size) << event_info.idx << " |\n";
@@ -402,9 +298,9 @@ std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info)
     out << "| " << std::setw(16) << "desc:" << std::setw(30) << pmu_info.desc << " |\n";
     out << "| " << std::setw(16) << "size:" << std::setw(30) << pmu_info.size << " |\n";
     // Print the rest of the members with appropriate setw values
-    out << "| " << std::setw(16) << "pmu:" << std::setw(24) << optkit::core::pmu_names[(std::size_t)pmu_info.pmu] << std::setw(6) << "(" + std::to_string(pmu_info.pmu) + ")"
+    out << "| " << std::setw(16) << "pmu:" << std::setw(24) << optkit::core::pmu::pmu_names[(std::size_t)pmu_info.pmu] << std::setw(6) << "(" + std::to_string(pmu_info.pmu) + ")"
         << " |\n";
-    out << "| " << std::setw(16) << "type:" << std::setw(24) << optkit::core::pmu_types[(std::size_t)pmu_info.type] << std::setw(6) << "(" + std::to_string(pmu_info.pmu) + ")"
+    out << "| " << std::setw(16) << "type:" << std::setw(24) << optkit::core::pmu::pmu_types[(std::size_t)pmu_info.type] << std::setw(6) << "(" + std::to_string(pmu_info.pmu) + ")"
         << " |\n";
     out << "| " << std::setw(16) << "nevents:" << std::setw(30) << pmu_info.nevents << " |\n";
     out << "| " << std::setw(16) << "first_event:" << std::setw(30) << pmu_info.first_event << " |\n";

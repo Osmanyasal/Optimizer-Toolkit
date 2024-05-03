@@ -30,7 +30,7 @@ namespace optkit::core
         }
         else if (paranoid <= 0)
         {
-            optkit::core::Query::init();
+            optkit::core::pmu::QueryPMU::init();
 
             if (OPT_LIKELY(config.create_folder))
             {
@@ -53,7 +53,7 @@ namespace optkit::core
      */
     OptimizerKit::~OptimizerKit()
     {
-        optkit::core::Query::destroy();
+        optkit::core::pmu::QueryPMU::destroy();
         OPTKIT_CORE_GANTT_PROFILE_END_SESSION();
     }
 

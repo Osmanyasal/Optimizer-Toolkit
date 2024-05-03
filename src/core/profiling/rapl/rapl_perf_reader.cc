@@ -1,6 +1,6 @@
 #include <rapl_perf_reader.hh>
 
-namespace optkit::core
+namespace optkit::core::rapl
 {
 
     RaplPerfReader::RaplPerfReader(const RaplPerfReaderConfig &rapl_perf_config) : rapl_perf_config{rapl_perf_config}
@@ -84,11 +84,11 @@ namespace optkit::core
         return result;
     }
 
-} // namespace optkit::core
+} // namespace optkit::core::rapl
 
-std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::RaplDomain, double>> &map)
+std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::rapl::RaplDomain, double>> &map)
 {
-    const std::vector<optkit::core::RaplDomainInfo> &avail_domains = optkit::core::Query::rapl_domain_info();
+    const std::vector<optkit::core::rapl::RaplDomainInfo> &avail_domains = optkit::core::rapl::QueryRapl::rapl_domain_info();
     for (const auto &pair : map)
     {
         os << "\tPackage " << pair.first << "\n";
@@ -105,7 +105,7 @@ std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optk
     }
     return os;
 }
-std::ostream &operator<<(std::ostream &os, const optkit::core::RaplPerfReaderConfig &config)
+std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplPerfReaderConfig &config)
 {
     os << "\nRaplPerfReaderConfig:\n";
     os << "---------------------:\n";

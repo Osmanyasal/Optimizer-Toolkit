@@ -3,7 +3,7 @@
 
 #include <perfmon/pfmlib.h>
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
     /**
      * @brief All PMU names,

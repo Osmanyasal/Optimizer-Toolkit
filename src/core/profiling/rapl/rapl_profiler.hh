@@ -6,11 +6,12 @@
 #include <ostream>
 #include <map>
 #include <query.hh>
+#include <query_rapl.hh>
 #include <base_profiler.hh>
 #include <profiler_config.hh>
 #include <rapl_perf_reader.hh>
 #include <rapl_utils.hh>
-namespace optkit::core
+namespace optkit::core::rapl
 {
     class RaplProfiler : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>
     {
@@ -41,13 +42,13 @@ namespace optkit::core
         virtual std::map<int32_t, std::map<RaplDomain, double>> read_val() override;
 
     private:
-        std::unique_ptr<optkit::core::RaplPerfReader> rapl_reader;
+        std::unique_ptr<optkit::core::rapl::RaplPerfReader> rapl_reader;
         RaplConfig rapl_config;
     };
 
-} // namespace optkit::core
+} // namespace optkit::core::rapl
 
 // Overloading << for map with RaplDomain as keys
-std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::RaplDomain, double> &map); 
+std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::rapl::RaplDomain, double> &map); 
 
 #endif

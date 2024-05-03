@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 #include <utils.hh>
-#include <query.hh>
+#include <query.hh> 
 
 namespace optkit::core::freq
 {

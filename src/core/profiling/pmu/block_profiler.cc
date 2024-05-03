@@ -1,6 +1,6 @@
 #include <block_profiler.hh>
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
 
     BlockProfiler::BlockProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config) : BaseProfiler{block_name, event_name}, profiler_config{config}, raw_events{raw_events}
@@ -106,4 +106,4 @@ namespace optkit::core
 
         return result;
     }
-} // namespace optkit::core
+} // namespace optkit::core::pmu

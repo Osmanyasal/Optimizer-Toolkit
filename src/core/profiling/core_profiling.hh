@@ -8,7 +8,7 @@
 
 using optkit::core::BaseProfiler;
 using optkit::core::ProfilerConfig;
-using optkit::core::Query;
 using optkit::core::RaplConfig;
+using optkit::core::Query; 
 
 #endif

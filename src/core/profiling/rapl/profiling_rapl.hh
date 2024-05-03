@@ -5,11 +5,13 @@
 #include <rapl_perf_reader.hh>
 #include <rapl_profiler.hh>
 #include <rapl_utils.hh>
+#include <query_rapl.hh>
 
-using optkit::core::RaplDomain;
-using optkit::core::RaplDomainInfo;
-using optkit::core::RaplProfiler;
-using optkit::core::RaplReadMethods;
+using optkit::core::rapl::QueryRapl;
+using optkit::core::rapl::RaplDomain;
+using optkit::core::rapl::RaplDomainInfo;
+using optkit::core::rapl::RaplProfiler;
+using optkit::core::rapl::RaplReadMethods;
 
 /*
     Static instance is defined because monitoring recursive methods would cause an issue

@@ -4,11 +4,11 @@
 #include <utils.hh>
 #include <vector>
 #include <map>
-#include <query.hh>
+#include <query_pmu.hh>
 #include <sys/ioctl.h>
 #include <linux/perf_event.h>
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
     class PMUEventManager
     {

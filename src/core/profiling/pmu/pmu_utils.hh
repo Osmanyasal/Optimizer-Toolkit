@@ -5,7 +5,7 @@
 #include <sstream>
 #include <json.hh>
 #include <rapl.hh>
-#include <query.hh>
+#include <query_pmu.hh>
 
 namespace optkit::core::pmu
 {

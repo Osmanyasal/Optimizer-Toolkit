@@ -7,10 +7,12 @@
 #include <libpfm4_wrapper.hh>
 #include <pmu_event_manager.hh>
 #include <gantt_instrumentor.hh>
+#include <query_pmu.hh>
 
-using optkit::core::BlockGroupProfiler;
-using optkit::core::BlockProfiler;
-using optkit::core::PMUEventManager;
+using optkit::core::pmu::BlockGroupProfiler;
+using optkit::core::pmu::BlockProfiler;
+using optkit::core::pmu::PMUEventManager;
+using optkit::core::pmu::QueryPMU;
 
 #define OPTKIT_PERFORMANCE_EVENTS(block_name, event_name, variable_name, ...) \
     OPTKIT_CORE_GANTT_PROFILE_SCOPE(block_name);                                    \

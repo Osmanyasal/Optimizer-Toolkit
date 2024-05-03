@@ -1,6 +1,6 @@
 #include <libpfm4_wrapper.hh>
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
     const char *pmu_names[] = {
         "NONE",             /* no PMU */

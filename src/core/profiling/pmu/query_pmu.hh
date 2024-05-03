@@ -1,5 +1,5 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERYPMU_HH
+#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERYPMU_HH
 
 #include <ostream>
 #include <iostream>
@@ -15,18 +15,17 @@
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info);
-std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<int32_t>> &packages);
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
     /**
-     * @brief  ASK CPU PMU and PMU related queries here<br>
+     * @brief  ASK PMU related queries here<br>
      * This Query class uses <b>libpfm4</b> to retrieve information
      *
      * Don't forget to call init() before using it and destroy() when you're done with it.<br>
      * These 2 method calls can be done at the beginning and end of the application.
      */
-    class Query final
+    class QueryPMU final
     {
     public:
         static const long num_cores;
@@ -101,30 +100,9 @@ namespace optkit::core
          */
         static const std::map<int32_t, std::vector<int32_t>> &detect_packages();
 
-        /**
-         * @brief Returns available Rapl read methods in combination of RaplReadMethods as bitwise OR.
-         * @see RaplReadMethods
-         * @return int32_t
-         */
-        static int32_t avail_rapl_read_methods();
-
-        static bool is_rapl_perf_avail();
-
-        static bool is_rapl_powercap_avail();
-
-        static bool is_rapl_msr_avail();
-
-        /**
-         * @brief Returns rapl domain info in the system
-         *
-         *
-         * @return const ref of std::vector<RaplDomainInfo> static object!
-         */
-        static const std::vector<RaplDomainInfo> &rapl_domain_info();
-
     private:
-        Query() = delete;
-        ~Query() = delete;
+        QueryPMU() = delete;
+        ~QueryPMU() = delete;
 
     private:
         static bool is_active;

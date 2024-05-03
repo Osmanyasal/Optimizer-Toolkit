@@ -9,7 +9,7 @@
 #include <base_profiler.hh>
 #include <pmu_utils.hh>
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
     /**
      * @brief The BlockGroupProfiler class utilizes the RAII technique to initiate and conclude profiling for a specific raw event.
@@ -67,6 +67,6 @@ namespace optkit::core
         };
     };
 
-} // namespace optkit::core
+} // namespace optkit::core::pmu
 
 #endif

@@ -1,7 +1,7 @@
 
 #include <pmu_event_manager.hh>
 
-namespace optkit::core
+namespace optkit::core::pmu
 {
     std::map<int32_t, int32_t> PMUEventManager::fd__event_count_map;
     int32_t PMUEventManager::event_count_being_monitor = 0;
@@ -20,7 +20,7 @@ namespace optkit::core
         PMUEventManager::event_count_being_monitor += num_events;
 
         // before adding fd, check if total event coun exceeds the systems' resources. then print a warning!
-        int32_t num_cntrs = Query::default_pmu_info().num_cntrs;
+        int32_t num_cntrs = QueryPMU::default_pmu_info().num_cntrs;
         if (OPT_LIKELY(PMUEventManager::event_count_being_monitor > num_cntrs))
         {
             OPTKIT_CORE_WARN("Total # of events exceed system resources!! {}/{}(max) Multiplexing will take place(BlockGroup is not created by the system when this occures).", PMUEventManager::event_count_being_monitor, num_cntrs);
@@ -73,6 +73,6 @@ namespace optkit::core
 
     int32_t PMUEventManager::pmu_event_size()
     {
-        return Query::default_pmu_info().num_cntrs;
+        return QueryPMU::default_pmu_info().num_cntrs;
     }
 };

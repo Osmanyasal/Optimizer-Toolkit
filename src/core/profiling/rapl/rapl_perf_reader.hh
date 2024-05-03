@@ -9,8 +9,8 @@
 #include <utils.hh>
 #include <sys/ioctl.h>
 #include <base_profiler.hh>
-#include <query.hh>
-namespace optkit::core
+#include <query_rapl.hh>
+namespace optkit::core::rapl
 {
     struct RaplPerfReaderConfig
     {
@@ -48,9 +48,9 @@ namespace optkit::core
         std::vector<std::vector<int32_t>> fd_package_domain;
     };
 
-} // namespace optkit::core
+} // namespace optkit::core::rapl
 
-std::ostream &operator<<(std::ostream &os, const optkit::core::RaplPerfReaderConfig &config);
-std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::RaplDomain, double>> &map);
+std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplPerfReaderConfig &config);
+std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::rapl::RaplDomain, double>> &map);
 
 #endif
