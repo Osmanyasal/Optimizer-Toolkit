@@ -35,7 +35,7 @@ if ! command -v numactl &> /dev/null; then
     # Check the Linux distribution to determine the package manager
     if [[ -n $(command -v apt) ]]; then
         sudo apt update
-        sudo apt install numactl
+        sudo apt install -y numactl
     elif [[ -n $(command -v yum) ]]; then
         sudo yum install numactl
     elif [[ -n $(command -v dnf) ]]; then
