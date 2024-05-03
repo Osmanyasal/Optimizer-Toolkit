@@ -5,8 +5,15 @@ print_help() {
     
     echo "-------"
     # Print the extracted CPUs for verification
-    echo "Socket 0 CPUs: $socket0"
-    echo "Socket 1 CPUs: $socket1"
+    
+    if [[ -n $socket0 ]]; then
+	    echo "Socket 0 CPUs: $socket0"
+    fi
+    
+    if [[ -n $socket1 ]]; then
+	    echo "Socket 1 CPUs: $socket1"
+    fi
+	 
     echo "-------"
 
     echo "Options:"
