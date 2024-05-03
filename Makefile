@@ -141,7 +141,7 @@ Icon=$(shell pwd)/icon/icon.png\n" > $(BIN)/optimizer_toolkit.desktop
 
 install_headers:
 	sudo mkdir -p /usr/local/include/optkit/
-	sudo find ./src/ -type f -name "*.h*" -exec cp {} "/usr/local/include/optkit/" \;
+	sudo find ./src/ -type f -name "*.hh" -exec cp {} "/usr/local/include/optkit/" \;
 
 
 install_library:
