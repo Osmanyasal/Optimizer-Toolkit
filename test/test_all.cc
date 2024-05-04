@@ -25,7 +25,6 @@ namespace optkit::test
 
         OPTKIT_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
         optkit::utils::logger::BaseLogger::init();
-        optkit::core::pmu::QueryPMU::init();
 
         auto default_pmu = optkit::core::pmu::QueryPMU::default_pmu_info();
         auto default_pmu2 = optkit::core::pmu::QueryPMU::default_pmu_info();

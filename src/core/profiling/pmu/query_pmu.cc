@@ -30,22 +30,22 @@ namespace optkit::core::pmu
 
     pfm_pmu_info_t QueryPMU::pmu_info(int32_t pmu_id)
     {
+        if (OPT_UNLIKELY(QueryPMU::is_active == false))
+            init();
+
         pfm_pmu_info_t pmu_info;
         memset(&pmu_info, 0, sizeof(pfm_pmu_info_t));
+        pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pmu_info);
 
-        if (OPT_LIKELY(QueryPMU::is_active))
-        {
-            pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pmu_info);
-        }
-        else
-        {
-            OPTKIT_CORE_WARN("pfm is NOT initialized!");
-        }
         return pmu_info;
     }
 
     pfm_pmu_info_t QueryPMU::default_pmu_info()
     {
+
+        if (OPT_UNLIKELY(QueryPMU::is_active == false))
+            init();
+
         if (OPT_LIKELY(QueryPMU::default_architectural_pmu.is_dfl))
             return QueryPMU::default_architectural_pmu;
 
@@ -69,42 +69,9 @@ namespace optkit::core::pmu
 
     void QueryPMU::list_avail_events(int32_t pmu_id)
     {
-        if (OPT_LIKELY(QueryPMU::is_active))
-        {
-            pfm_event_info_t info;
-            pfm_pmu_info_t pinfo;
-            int32_t i, ret;
 
-            memset(&info, 0, sizeof(info));
-            memset(&pinfo, 0, sizeof(pinfo));
-
-            info.size = sizeof(info);
-            pinfo.size = sizeof(pinfo);
-
-            ret = pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pinfo);
-            if (ret != PFM_SUCCESS)
-            {
-                OPTKIT_CORE_ERROR("Cannot get PMU info");
-            }
-
-            for (i = pinfo.first_event; i != -1; i = pfm_get_event_next(i))
-            {
-                ret = pfm_get_event_info(i, pfm_os_t::PFM_OS_NONE, &info);
-                if (ret != PFM_SUCCESS)
-                {
-                    OPTKIT_CORE_ERROR("Cannot get event info");
-                }
-                else
-                    std::cout << (pinfo.is_present ? "Active" : "Supported") << " Event: " << pinfo.name << "::" << info.name << std::endl;
-            }
-        }
-        else
-        {
-            OPTKIT_CORE_WARN("pfm is NOT initialized!");
-        }
-    }
-    pfm_event_info_t QueryPMU::event_detail(int32_t pmu_id, uint32_t event_code)
-    {
+        if (OPT_UNLIKELY(QueryPMU::is_active == false))
+            init();
 
         pfm_event_info_t info;
         pfm_pmu_info_t pinfo;
@@ -116,108 +83,94 @@ namespace optkit::core::pmu
         info.size = sizeof(info);
         pinfo.size = sizeof(pinfo);
 
-        if (OPT_LIKELY(QueryPMU::is_active))
+        ret = pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pinfo);
+        if (ret != PFM_SUCCESS)
         {
-            ret = pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pinfo);
+            OPTKIT_CORE_ERROR("Cannot get PMU info");
+        }
+
+        for (i = pinfo.first_event; i != -1; i = pfm_get_event_next(i))
+        {
+            ret = pfm_get_event_info(i, pfm_os_t::PFM_OS_NONE, &info);
             if (ret != PFM_SUCCESS)
             {
-                OPTKIT_CORE_ERROR("Cannot get PMU info");
+                OPTKIT_CORE_ERROR("Cannot get event info");
             }
-
-            for (i = pinfo.first_event; i != -1; i = pfm_get_event_next(i))
-            {
-                ret = pfm_get_event_info(i, pfm_os_t::PFM_OS_NONE, &info);
-                if (ret != PFM_SUCCESS)
-                {
-                    OPTKIT_CORE_ERROR("Cannot get event info");
-                }
-                else
-                {
-                    if (info.code != event_code)
-                        continue;
-                    return info;
-                }
-            }
+            else
+                std::cout << (pinfo.is_present ? "Active" : "Supported") << " Event: " << pinfo.name << "::" << info.name << std::endl;
         }
-        else
+    }
+    pfm_event_info_t QueryPMU::event_detail(int32_t pmu_id, uint32_t event_code)
+    {
+        if (OPT_UNLIKELY(QueryPMU::is_active == false))
+            init();
+
+        pfm_event_info_t info;
+        pfm_pmu_info_t pinfo;
+        int32_t i, ret;
+
+        memset(&info, 0, sizeof(info));
+        memset(&pinfo, 0, sizeof(pinfo));
+
+        info.size = sizeof(info);
+        pinfo.size = sizeof(pinfo);
+
+        ret = pfm_get_pmu_info((pfm_pmu_t)pmu_id, &pinfo);
+        if (ret != PFM_SUCCESS)
         {
-            OPTKIT_CORE_WARN("pfm is NOT initialized!");
+            OPTKIT_CORE_ERROR("Cannot get PMU info");
+        }
+
+        for (i = pinfo.first_event; i != -1; i = pfm_get_event_next(i))
+        {
+            ret = pfm_get_event_info(i, pfm_os_t::PFM_OS_NONE, &info);
+            if (ret != PFM_SUCCESS)
+            {
+                OPTKIT_CORE_ERROR("Cannot get event info");
+            }
+            else
+            {
+                if (info.code != event_code)
+                    continue;
+                return info;
+            }
         }
         return info;
     }
 
     void QueryPMU::list_avail_pmus()
     {
-        if (OPT_LIKELY(QueryPMU::is_active))
+        if (OPT_UNLIKELY(QueryPMU::is_active == false))
+            init();
+
+        std::cout << "[INFO] Listing Available PMUs...." << std::endl;
+        int32_t i = 0;
+        pfm_for_all_pmus(i)
         {
-            std::cout << "[INFO] Listing Available PMUs...." << std::endl;
-            int32_t i = 0;
-            pfm_for_all_pmus(i)
-            {
-                pfm_pmu_info_t pmu_info = QueryPMU::pmu_info(i);
-                if (pmu_info.is_present)
-                    std::cout << pmu_info << std::endl;
-            }
-        }
-        else
-        {
-            OPTKIT_CORE_WARN("pfm is NOT initialized!");
+            pfm_pmu_info_t pmu_info = QueryPMU::pmu_info(i);
+            if (pmu_info.is_present)
+                std::cout << pmu_info << std::endl;
         }
     }
 
     std::vector<int32_t> QueryPMU::avail_pmu_ids()
     {
+        if (OPT_UNLIKELY(QueryPMU::is_active == false))
+            init();
+
         std::vector<int32_t> avail_pmu_ids;
 
-        if (OPT_LIKELY(QueryPMU::is_active))
-        {
             int32_t i = 0;
             pfm_for_all_pmus(i)
             {
                 if (QueryPMU::pmu_info(i).is_present)
                     avail_pmu_ids.push_back(i);
             }
-        }
-        else
-        {
-            OPTKIT_CORE_WARN("pfm is NOT initialized!");
-        }
 
         return avail_pmu_ids;
     }
-
-    // Socket - cpu list
-    const std::map<int32_t, std::vector<int32_t>> &QueryPMU::detect_packages()
-    {
-        static std::map<int32_t, std::vector<int32_t>> result;
-
-        if (result.size() == 0)
-        {
-            int32_t core_id = 0;
-            while (true)
-            {
-                try
-                {
-                    std::string output = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core_id) + "/topology/physical_package_id", false);
-                    int32_t package_id = std::stoi(output);
-                    if (result.find(package_id) == result.end())
-                    {
-                        result[package_id] = {};
-                    }
-                    result[package_id].push_back(core_id);
-                    core_id++;
-                }
-                catch (const std::exception &e)
-                {
-                    break; // when there's no more file/cores.
-                }
-            }
-        }
-        return result;
-    }
-
-} // namespace optkit::core::pmu
  
+} // namespace optkit::core::pmu
 
 std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info)
 {

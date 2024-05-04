@@ -30,8 +30,6 @@ namespace optkit::core
         }
         else if (paranoid <= 0)
         {
-            optkit::core::pmu::QueryPMU::init();
-
             if (OPT_LIKELY(config.create_folder))
             {
                 create_directory(EXECUTION_FOLDER_NAME);
@@ -44,6 +42,7 @@ namespace optkit::core
         OPTKIT_CORE_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
     }
 
+    
     /**
      * @brief Destroy the Optimizer Kit:: Optimizer Kit object
      *

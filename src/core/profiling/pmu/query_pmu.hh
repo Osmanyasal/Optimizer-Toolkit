@@ -32,20 +32,6 @@ namespace optkit::core::pmu
 
     public:
         /**
-         * @brief Initializes libpfm4 library.
-         *
-         * @see destroy()
-         */
-        static void init();
-
-        /**
-         * @brief Destroy libpfm4 library.
-         *
-         * @see init()
-         */
-        static void destroy();
-
-        /**
          * @brief Gets PMU detail information based on the pmu_id value.
          * @return pfm_pmu_info_t
          *
@@ -95,15 +81,23 @@ namespace optkit::core::pmu
         static std::vector<int32_t> avail_pmu_ids();
 
         /**
-         * @brief Gets core_id / socket_id(package) information
-         * @return const ref of static std::unordered_map<int32_t,std::vector<int32_t>> object: package - # of cores
+         * @brief Destroy libpfm4 library.
+         *
+         * @see init()
          */
-        static const std::map<int32_t, std::vector<int32_t>> &detect_packages();
+        static void destroy();
 
     private:
         QueryPMU() = delete;
         ~QueryPMU() = delete;
 
+        /**
+         * @brief Initializes libpfm4 library.
+         *
+         * @see destroy()
+         */
+        static void init();
+  
     private:
         static bool is_active;
         static pfm_pmu_info_t default_architectural_pmu;

@@ -54,7 +54,7 @@ namespace optkit::core::rapl
         if (res.size() == 0)
         {
 
-            for (int32_t domain = static_cast<int>(rapl::RaplDomain::BEGIN); domain < static_cast<int>(rapl::RaplDomain::END); domain = domain << 1)
+            for (int32_t domain = static_cast<int>(rapl::RaplDomain::PP0); domain < static_cast<int>(rapl::RaplDomain::END); domain = domain << 1)
             {
                 std::string domain_name = rapl::rapl_domain_name_mapping.at(domain);
                 try
@@ -78,7 +78,7 @@ namespace optkit::core::rapl
                 catch (const std::exception &e)
                 {
                     // OPTKIT_CORE_ERROR("{}", e.what());
-                    res.push_back({(rapl::RaplDomain)domain, domain_name, 0, 0, "Joules"});
+                    // res.push_back({(rapl::RaplDomain)domain, domain_name, 0, 0, "Joules"});
                 }
             }
         }

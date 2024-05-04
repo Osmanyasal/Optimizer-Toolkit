@@ -30,7 +30,7 @@ namespace optkit::core
         static const long num_cores;
 
         /**
-         * @brief Gets core_id / socket_id(package) information
+         * @brief Gets package - # of cores information
          * @return const ref of static std::unordered_map<int32_t,std::vector<int32_t>> object: package - # of cores
          */
         static const std::map<int32_t, std::vector<int32_t>> &detect_packages();
