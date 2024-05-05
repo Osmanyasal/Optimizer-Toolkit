@@ -21,6 +21,8 @@ SRC_DIR := ./src
 TEST_DIR := ./test
 CORE_DIR := $(SRC_DIR)/core
 CORE_EVENTS_DIR := $(CORE_DIR)/events
+CORE_EVENT_RECEPIES_DIR := $(CORE_DIR)/event_recepies
+CORE_EVENT_RECEPIES_INTEL_ICL_DIR := $(CORE_DIR)/event_recepies/intel/icl
 CORE_PROFILING := $(CORE_DIR)/profiling
 CORE_FREQUENCY := $(CORE_DIR)/freq
 CORE_RECIPIES := $(CORE_DIR)/recipies
@@ -50,6 +52,8 @@ DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl
 INCLUDE := -I$(SRC_DIR)\
 		   -I$(TEST_DIR)\
            -I$(CORE_DIR)\
+		   -I$(CORE_EVENT_RECEPIES_DIR)\
+		   -I$(CORE_EVENT_RECEPIES_INTEL_ICL_DIR)\
 		   -I$(CORE_EVENTS_DIR)\
 		   -I$(CORE_PROFILING)\
 		   -I$(CORE_FREQUENCY)\

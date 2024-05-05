@@ -2,20 +2,24 @@
 #include <optkit.hh>
 #include <test.hh>
 
+#include <icl_recepies.hh>
+
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit;
 
-    std::cout << "num sockets: " << Query::num_sockets << " num cores:" << Query::num_cores << "\n";
+    optkit::core::recepies::intel::icl::ComputationalIntensity ci;
+    ci.get_recepies();
 
-    return 0;
+    // std::cout << "num sockets: " << Query::num_sockets << " num cores:" << Query::num_cores << "\n";
 
-    optkit::test::freq::run();
+    // return 0;
 
-    std::cout << "reset frequency !!\n";
+    // optkit::test::freq::run();
 
-    CPUFrequency::reset_core_frequency(0);
-    CPUFrequency::reset_uncore_frequency(0);
+    // std::cout << "reset frequency !!\n";
+
+    // CPUFrequency::reset_core_frequency(0);
+    // CPUFrequency::reset_uncore_frequency(0);
     return 0;
 }
-
