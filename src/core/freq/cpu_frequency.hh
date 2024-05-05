@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 #include <utils.hh>
-#include <query.hh> 
+#include <query.hh>
 #include <query_frequency.hh>
 
 namespace optkit::core::freq
@@ -30,8 +30,8 @@ namespace optkit::core::freq
         static const std::map<int32_t, std::vector<int32_t>> &package_info;
 
     private:
-        CPUFrequency();
-        ~CPUFrequency();
+        CPUFrequency() = delete;
+        ~CPUFrequency() = delete;
     };
 
 }

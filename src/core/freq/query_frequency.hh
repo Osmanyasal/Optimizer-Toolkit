@@ -17,15 +17,15 @@ namespace optkit::core::freq
         static std::string get_scaling_governor(int core = 0);
         static long get_scaling_max_limit(int core = 0);
         static long get_scaling_min_limit(int core = 0);
-    
+
         static long get_cpuinfo_max_freq(int core = 0);
         static long get_cpuinfo_min_freq(int core = 0);
-    
+
     private:
-        QueryFreq();
-        ~QueryFreq();
+        QueryFreq() = delete;
+        ~QueryFreq() = delete;
     };
-    
+
 } // namespace optkit::core::freq
 
 #endif
