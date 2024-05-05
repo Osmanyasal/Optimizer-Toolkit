@@ -17,11 +17,15 @@ using optkit::core::freq::QueryFreq;
     OPTKIT_SET_CPU_UNCORE_FREQ(frequency, socket); \
     OPTKIT_SET_CPU_CORE_FREQ(frequency, socket)
 
+#define OPTKIT_RESET_CPU_CORE_FREQ(socket) CPUFrequency::reset_core_frequency(socket)
+#define OPTKIT_RESET_CPU_UNCORE_FREQ(socket) CPUFrequency::reset_uncore_frequency(socket)
 #else
 
 #define OPTKIT_SET_CPU_CORE_FREQ(frequency, socket)
 #define OPTKIT_SET_CPU_UNCORE_FREQ(frequency, socket)
 #define OPTKIT_SET_CPU_FREQ(frequency, socket)
+#define OPTKIT_RESET_CPU_CORE_FREQ(socket)   
+#define OPTKIT_RESET_CPU_UNCORE_FREQ(socket) 
 
 #endif
 #endif

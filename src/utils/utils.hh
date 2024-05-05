@@ -22,11 +22,20 @@
 
 #include <dirent.h>
 
+#include <query.hh>
+
 // MACRO DEFINITIONS
 #define BIT(x) (1 << x)
 
 #define BLOCK_TIMER(block_name) \
     OPTKIT::utils::BlockTimer block_timer { block_name }
+
+#define EXEC_IF_ROOT                                                                                                  \
+    if (!Query::is_root_priv_enabled)                                                                                 \
+    {                                                                                                                 \
+        OPTKIT_CORE_WARN("Root priv is required for the execution of method '{}' in file '{}'", __func__, __FILE__); \
+        return;                                                                                                       \
+    }
 
 // GLOBAL VARIABLES
 

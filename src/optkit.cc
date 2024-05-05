@@ -35,14 +35,14 @@ namespace optkit::core
                 create_directory(EXECUTION_FOLDER_NAME);
                 OPTKIT_CORE_INFO("Execution file created {}", EXECUTION_FOLDER_NAME);
             }
-            else{
+            else
+            {
                 OPTKIT_CORE_INFO("File creation skipped!");
             }
         }
         OPTKIT_CORE_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit GUI", "optkit_gui_gantt_instr.json");
     }
 
-    
     /**
      * @brief Destroy the Optimizer Kit:: Optimizer Kit object
      *

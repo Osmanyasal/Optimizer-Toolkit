@@ -5,6 +5,7 @@
 #include <map>
 #include <utils.hh>
 #include <query.hh> 
+#include <query_frequency.hh>
 
 namespace optkit::core::freq
 {
@@ -21,6 +22,9 @@ namespace optkit::core::freq
 
         static long get_uncore_frequency();
         static void set_uncore_frequency(long frequency);
+
+        static void reset_core_frequency(short socket);
+        static void reset_uncore_frequency(short socket);
 
     private:
         static const std::map<int32_t, std::vector<int32_t>> &package_info;

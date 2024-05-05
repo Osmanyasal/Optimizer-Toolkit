@@ -14,9 +14,9 @@ namespace optkit::core::freq
     else                                                 \
         for (int32_t __cpu : package_info.at(socket))
 
-
     void CPUFrequency::set_core_frequency(long frequency, short socket)
     {
+        EXEC_IF_ROOT;
         try
         {
             // Set core frequency for all cores
@@ -35,6 +35,7 @@ namespace optkit::core::freq
 
     void CPUFrequency::set_core_frequency(long frequency, short cpu, short socket)
     {
+        EXEC_IF_ROOT;
         if (cpu >= 0 && cpu < Query::num_cores)
         {
             try
@@ -61,6 +62,7 @@ namespace optkit::core::freq
 
     void CPUFrequency::set_core_frequency(long frequency, short cpu_start, short cpu_end, short socket)
     {
+        EXEC_IF_ROOT;
         if (cpu_start >= 0 && cpu_end < Query::num_cores && cpu_start <= cpu_end)
         {
             try
@@ -151,12 +153,37 @@ namespace optkit::core::freq
 
     long CPUFrequency::get_uncore_frequency()
     {
-        //TODO: implement this
+        // TODO: implement this
         return 0;
     }
 
     void CPUFrequency::set_uncore_frequency(long frequency)
     {
+        EXEC_IF_ROOT;
+        // TODO: implement this
+    }
+
+    void CPUFrequency::reset_core_frequency(short socket)
+    {
+        EXEC_IF_ROOT;
+        try
+        {
+            // Set core frequency for all cores
+            TRAVERSE_CORES(socket)
+            {
+
+                ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_max_freq", std::to_string(QueryFreq::get_cpuinfo_max_freq(socket)));
+                ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_min_freq", std::to_string(QueryFreq::get_cpuinfo_min_freq(socket)));
+            }
+        }
+        catch (std::runtime_error err)
+        {
+            OPTKIT_CORE_ERROR(err.what());
+        }
+    }
+    void CPUFrequency::reset_uncore_frequency(short socket)
+    {
+        EXEC_IF_ROOT;
         // TODO: implement this
     }
 
