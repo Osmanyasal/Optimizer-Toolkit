@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <cstdint>
+#include <utils.hh>
 
 namespace optkit::core::recepies::base
 {
@@ -24,13 +25,19 @@ namespace optkit::core::recepies::base
          * @return std::vector<std::pair<uint64_t, std::string>>
          */
         virtual const std::vector<std::pair<uint64_t, std::string>> get_recepies() = 0;
+        virtual void info() {}
     };
 
     class ComputationalIntensity : public BaseRecepie
     {
-        public:
-            ComputationalIntensity(){}
-            virtual ~ComputationalIntensity(){}
+    public:
+        ComputationalIntensity() {}
+        virtual ~ComputationalIntensity() {}
+
+        void info() override
+        {
+            OPTKIT_CORE_INFO("Computational intensity = (Total number of instructions executed / Total number of L3 cache misses)");
+        }
     };
 
 } // namespace optkit::core::recepies::bae
