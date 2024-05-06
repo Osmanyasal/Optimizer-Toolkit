@@ -55,17 +55,17 @@ void print_cpu()
     std::cout << "\n";
 
     std::cout << "TOTAL # OF SOCKETS: " << Query::num_sockets << "\n";
-    std::cout << "TOTAL # OF CORES: " << Query::num_cores << "\n";
-    std::cout << "CPU BIOS LIMIT: " << QueryFreq::get_bios_limit() << "\n";
-    std::cout << "CPU MIN FREQ(HZ): " << QueryFreq::get_cpuinfo_min_freq() << "\n";
-    std::cout << "CPU MAX FREQ(HZ): " << QueryFreq::get_cpuinfo_max_freq() << "\n";
-    std::cout << "CPU CURRENT MIN FREQ(HZ): " << QueryFreq::get_scaling_min_limit() << "\n";
-    std::cout << "CPU CURRENT MAX FREQ(HZ): " << QueryFreq::get_scaling_max_limit() << "\n";
-
-    std::cout << "CPU SCALING DRIVER: " << QueryFreq::get_scaling_driver() << "\n";
-
+    std::cout << "TOTAL # OF CORES: " << Query::num_cores << "\n";  
     for (int i = 0; i < Query::num_sockets; i++)
     {
+
+        std::cout << "CPU(" + std::to_string(i) + ") BIOS LIMIT: " << QueryFreq::get_bios_limit(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") MIN FREQ(HZ): " << QueryFreq::get_cpuinfo_min_freq(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") MAX FREQ(HZ): " << QueryFreq::get_cpuinfo_max_freq(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") CURRENT MIN FREQ(HZ): " << QueryFreq::get_scaling_min_limit(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") CURRENT MAX FREQ(HZ): " << QueryFreq::get_scaling_max_limit(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") SCALING DRIVER: " << QueryFreq::get_scaling_driver(i) << "\n";
+
         std::cout << "CPU(" + std::to_string(i) + ") AVAIL FREQ(HZ): ";
         for (long freq : QueryFreq::get_scaling_available_frequencies(i))
             std::cout << freq << " ";
