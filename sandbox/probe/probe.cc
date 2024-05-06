@@ -56,9 +56,8 @@ void print_cpu()
 
     std::cout << "TOTAL # OF SOCKETS: " << Query::num_sockets << "\n";
     std::cout << "TOTAL # OF CORES: " << Query::num_cores << "\n";  
-    for (int i = 0; i < Query::num_sockets; i++)
+    for (int i = 0; i < Query::num_cores; i++)
     {
-
         std::cout << "CPU(" + std::to_string(i) + ") BIOS LIMIT: " << QueryFreq::get_bios_limit(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") MIN FREQ(HZ): " << QueryFreq::get_cpuinfo_min_freq(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") MAX FREQ(HZ): " << QueryFreq::get_cpuinfo_max_freq(i) << "\n";
