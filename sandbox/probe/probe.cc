@@ -64,11 +64,11 @@ void print_cpu()
         std::cout << "CPU(" + std::to_string(i) + ") MAX FREQ(HZ): " << QueryFreq::get_cpuinfo_max_freq(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") CURRENT MIN FREQ(HZ): " << QueryFreq::get_scaling_min_limit(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") CURRENT MAX FREQ(HZ): " << QueryFreq::get_scaling_max_limit(i) << "\n";
-        std::cout << "CPU(" + std::to_string(i) + ") SCALING DRIVER: " << QueryFreq::get_scaling_driver(i) << "\n";
-
+        std::cout << "CPU(" + std::to_string(i) + ") SCALING DRIVER: " << QueryFreq::get_scaling_driver(i);
         std::cout << "CPU(" + std::to_string(i) + ") AVAIL FREQ(HZ): ";
         for (long freq : QueryFreq::get_scaling_available_frequencies(i))
             std::cout << freq << " ";
+        std::cout << std::endl;
         std::cout << std::endl;
     }
 
