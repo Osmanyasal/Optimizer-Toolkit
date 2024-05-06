@@ -7,14 +7,10 @@ void print_cpu();
 
 int32_t main(int32_t argc, char **argv)
 {
-
-    if (argc < 2)
-    {
-        OptimizerKit optkit{false};
-        print_cpu();
-        print_rapl();
-        print_pmu();
-    }
+    OptimizerKit optkit{false};
+    print_cpu();
+    print_rapl();
+    print_pmu();
     return 0;
 }
 
@@ -35,6 +31,7 @@ void print_pmu()
         QueryPMU::list_avail_events(i);
         std::cout << "\n------------------------\n";
     }
+    std::cout << std::endl;
 }
 void print_rapl()
 {
@@ -48,7 +45,7 @@ void print_rapl()
     std::cout << "RAPL PERF read avail: [" << QueryRapl::is_rapl_perf_avail() << "]\n";
     std::cout << "RAPL powercap read avail: [" << QueryRapl::is_rapl_powercap_avail() << "]\n";
     std::cout << "RAPL MSR read avail: [" << QueryRapl::is_rapl_msr_avail() << "]\n";
-    std::cout << "\n";
+    std::cout << std::endl;
 }
 void print_cpu()
 {
@@ -56,4 +53,24 @@ void print_cpu()
     std::cout << "============== Detect Packages ==============\n";
     std::cout << Query::detect_packages() << std::endl;
     std::cout << "\n";
+
+    std::cout << "TOTAL # OF SOCKETS: " << Query::num_sockets << "\n";
+    std::cout << "TOTAL # OF CORES: " << Query::num_cores << "\n";
+    std::cout << "CPU BIOS LIMIT: " << QueryFreq::get_bios_limit() << "\n";
+    std::cout << "CPU MIN FREQ(HZ): " << QueryFreq::get_cpuinfo_min_freq() << "\n";
+    std::cout << "CPU MAX FREQ(HZ): " << QueryFreq::get_cpuinfo_max_freq() << "\n";
+    std::cout << "CPU CURRENT MIN FREQ(HZ): " << QueryFreq::get_scaling_min_limit() << "\n";
+    std::cout << "CPU CURRENT MAX FREQ(HZ): " << QueryFreq::get_scaling_max_limit() << "\n";
+
+    std::cout << "CPU SCALING DRIVER: " << QueryFreq::get_scaling_driver() << "\n";
+
+    for (int i = 0; i < Query::num_sockets; i++)
+    {
+        std::cout << "CPU(" + std::to_string(i) + ") AVAIL FREQ(HZ): ";
+        for (long freq : QueryFreq::get_scaling_available_frequencies(i))
+            std::cout << freq << " ";
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
 }
