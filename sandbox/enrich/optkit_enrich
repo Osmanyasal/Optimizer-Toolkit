@@ -3,7 +3,43 @@ import json
 import os
 import sys
 import matplotlib.pyplot as plt
+  
+def write_json_to_file(json_string, filename):
+    with open(filename, 'w') as file:
+        file.write(json_string)
+
+def read_json_files(directory):
+    json_files = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".json"):
+                json_files.append(os.path.join(root, file))
+    for file in sorted(json_files):
+        print(file)
+    return sorted(json_files)  # Sort the list of JSON files
+
  
+durations = [] 
+socket0_energy_pkg_values = []
+socket0_energy_ram_values = [] 
+socket0_energy_cores_values = []
+socket0_energy_gpu_values = [] 
+socket0_energy_psys_values = [] 
+socket0_energy_total = [] 
+socket0_power = [] 
+socket0_edp = []
+
+socket1_energy_pkg_values = []
+socket1_energy_ram_values = [] 
+socket1_energy_cores_values = []
+socket1_energy_gpu_values = [] 
+socket1_energy_psys_values = [] 
+socket1_energy_total = [] 
+socket1_power = [] 
+socket1_edp = []
+
+
+
 def generate_json_string(duration, 
                          socket0_value_energy_pkg, 
                          socket0_value_energy_ram, 
@@ -12,6 +48,7 @@ def generate_json_string(duration,
                          socket0_value_energy_psys,
                          socket0_value_energy_total,
                          socket0_value_energy_power,
+                         socket0_value_edp,
                          
                          socket1_value_energy_pkg, 
                          socket1_value_energy_ram,
@@ -20,6 +57,7 @@ def generate_json_string(duration,
                          socket1_value_energy_psys,
                          socket1_value_energy_total,
                          socket1_value_energy_power,
+                         socket1_value_edp
                          ):
     json_string = f'''[
     {{
@@ -28,6 +66,12 @@ def generate_json_string(duration,
                 "duration": {duration},
                 "event_name": "rapl",
                 "metrics_set": [
+                    {{
+                        "description": "Consumed",
+                        "metric_name": "edp",
+                        "units": "",
+                        "value": {socket0_value_edp}
+                    }},
                     {{
                         "description": "Consumed",
                         "metric_name": "energy-total",
@@ -79,6 +123,12 @@ def generate_json_string(duration,
                 "metrics_set": [
                     {{
                         "description": "Consumed",
+                        "metric_name": "edp",
+                        "units": "",
+                        "value": {socket1_value_edp}
+                    }},
+                    {{
+                        "description": "Consumed",
                         "metric_name": "energy-total",
                         "units": "Joules",
                         "value": {socket1_value_energy_total}
@@ -128,45 +178,13 @@ def generate_json_string(duration,
     return json_string
  
 
-def write_json_to_file(json_string, filename):
-    with open(filename, 'w') as file:
-        file.write(json_string)
-
-def read_json_files(directory):
-    json_files = []
-    for root, _, files in os.walk(directory):
-        for file in files:
-            if file.endswith(".json"):
-                json_files.append(os.path.join(root, file))
-    for file in sorted(json_files):
-        print(file)
-    return sorted(json_files)  # Sort the list of JSON files
-
- 
-durations = [] 
-socket0_energy_pkg_values = []
-socket0_energy_ram_values = [] 
-socket0_energy_cores_values = []
-socket0_energy_gpu_values = [] 
-socket0_energy_psys_values = [] 
-socket0_energy_total = [] 
-socket0_power = [] 
-
-socket1_energy_pkg_values = []
-socket1_energy_ram_values = [] 
-socket1_energy_cores_values = []
-socket1_energy_gpu_values = [] 
-socket1_energy_psys_values = [] 
-socket1_energy_total = [] 
-socket1_power = [] 
-
 def fill_values_to_arrays(json_file):
     
     ## read file
     with open(json_file, "r") as file:
         data = json.load(file)
  
-    duration = data[0]["readings"][0]["duration"] / 1000
+    duration = data[0]["readings"][0]["duration"] / 1000    ## ms to sec.
     durations.append(duration)
     
     for reading in data[0]["readings"]:
@@ -191,7 +209,6 @@ def fill_values_to_arrays(json_file):
                     
             elif metric["metric_name"] == "energy-cores":
                 energy_cores = metric["value"]
-                #total_energy += energy_cores
                 if socket == 0:
                     socket0_energy_cores_values.append(energy_cores)
                 else:
@@ -199,7 +216,6 @@ def fill_values_to_arrays(json_file):
                     
             elif metric["metric_name"] == "energy-gpu":
                 energy_gpu = metric["value"]
-                #total_energy += energy_gpu
                 if socket == 0:
                     socket0_energy_gpu_values.append(energy_gpu)
                 else:
@@ -216,13 +232,17 @@ def fill_values_to_arrays(json_file):
         if socket == 0:
             socket0_energy_total.append(total_energy)
             socket0_power.append(total_energy / duration)
+            socket0_edp.append(total_energy * duration) ## joules x time (sec) = edp
         else:
             socket1_energy_total.append(total_energy)
             socket1_power.append(total_energy / duration)
+            socket1_edp.append(total_energy * duration) ## joules x time (sec) = edp
+
 
      
 
 def avg_files(json_files,group):
+
     for file in json_files: 
         fill_values_to_arrays(file)
     print("All files filled in !!!")
@@ -241,13 +261,15 @@ def avg_files(json_files,group):
         _socket0_energy_psys = sum(socket0_energy_psys_values[_start : _end])/ group
         _socket0_energy_total = sum(socket0_energy_total[_start : _end])/ group
         _socket0_power = _socket0_energy_total * 1000 / _duration
-        
+        _socket0_edp = sum(socket0_edp[_start : _end])/ group
+
         _socket1_energy_pkg = sum(socket1_energy_pkg_values[_start : _end])/ group
         _socket1_energy_ram = sum(socket1_energy_ram_values[_start : _end])/ group
         _socket1_energy_cores =sum(socket1_energy_cores_values[_start : _end])/ group
         _socket1_energy_gpu = sum(socket1_energy_gpu_values[_start : _end])/ group
         _socket1_energy_psys = sum(socket1_energy_psys_values[_start : _end])/ group
         _socket1_energy_total = sum(socket1_energy_total[_start : _end])/ group
+        _socket1_edp = sum(socket1_edp[_start : _end])/ group
         _socket1_power = _socket1_energy_total * 1000 / _duration
         
         avg_json = generate_json_string(_duration * 1000, ## give as miliseconds
@@ -258,13 +280,15 @@ def avg_files(json_files,group):
                                         _socket0_energy_psys,
                                         _socket0_energy_total, 
                                         _socket0_power,
+                                        _socket0_edp,
                                         _socket1_energy_pkg,
                                         _socket1_energy_ram,
                                         _socket1_energy_cores,
                                         _socket1_energy_gpu,
                                         _socket1_energy_psys,
                                         _socket1_energy_total,
-                                        _socket1_power
+                                        _socket1_power,
+                                        _socket1_edp
                                         )
         
         file_name_builder = sys.argv[1]+"/group_"+str(group)+"__file__"+str(counter) if group != 1 else ""
@@ -285,7 +309,9 @@ if __name__ == "__main__":
     group = 1 if len(sys.argv) == 2 else sys.argv[2] 
     if os.path.isfile(path):
         if path.endswith(".json"):
-            fill_values_to_arrays(path)
+            print("path --> ",path)
+            avg_files([path],int(group))
+            #fill_values_to_arrays(path)
         else:
             print("The specified file is not a JSON file.")
     elif os.path.isdir(path):
@@ -293,3 +319,8 @@ if __name__ == "__main__":
         avg_files(json_files,int(group))
     else:
         print("The specified path is not a valid file or directory.")
+
+
+
+
+ 
