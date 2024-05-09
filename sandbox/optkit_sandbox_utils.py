@@ -30,11 +30,11 @@ socket1_power = []
 socket1_edp = [] 
 
 
-def get_all_json_or_yaml_files(directory, is_sorted=True):
+def get_json_files(directory, is_sorted=True):
     json_files = []
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith(".json") or file.endswith(".yaml"):
+            if file.endswith(".json"):
                 json_files.append(os.path.join(root, file))
     for file in sorted(json_files):
         print(file)
