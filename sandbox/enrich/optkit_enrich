@@ -9,6 +9,7 @@ sys.path.append('../')
 from optkit_sandbox_utils import *
   
 def write_json_to_file(json_string, filename):
+    print("writing to:",filename)
     with open(filename, 'w') as file:
         file.write(json_string)
 
@@ -284,7 +285,6 @@ def process(json_files):
                                         socket1_power[ctr],
                                         socket1_edp[ctr],
                                         )
-        print("writing to the file!!\n")
         write_json_to_file(enriched_json,file_names[ctr]+"__enriched.json")
         
 if __name__ == "__main__":
