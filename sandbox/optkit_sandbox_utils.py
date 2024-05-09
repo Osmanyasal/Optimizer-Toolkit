@@ -10,31 +10,31 @@ import json
 import os
 
 file_names = []
-durations = []
+durations_ms = []
+socket0_energy_cores_values = []
 socket0_energy_pkg_values = []
 socket0_energy_ram_values = []
-socket0_energy_categories_values = []
 socket0_energy_gpu_values = []
 socket0_energy_psys_values = []
 socket0_energy_total = []
 socket0_power = []
-socket0_power_efficiency = []
+socket0_edp = [] 
 
+socket1_energy_cores_values = []
 socket1_energy_pkg_values = []
 socket1_energy_ram_values = []
-socket1_energy_categories_values = []
 socket1_energy_gpu_values = []
 socket1_energy_psys_values = []
 socket1_energy_total = []
 socket1_power = []
-socket1_power_efficiency = []
+socket1_edp = [] 
 
 
-def get_all_json_or_yaml_files(directory, is_sorted=True):
+def get_json_files(directory, is_sorted=True):
     json_files = []
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith(".json") or file.endswith(".yaml"):
+            if file.endswith(".json"):
                 json_files.append(os.path.join(root, file))
     for file in sorted(json_files):
         print(file)
@@ -50,7 +50,7 @@ def load_measurements(json_file):
 
     file_names.append(json_file)
     duration = data[0]["readings"][0]["duration"]
-    durations.append(duration)
+    durations_ms.append(duration)
 
     for reading in data[0]["readings"]:
         socket = reading["package_number"]
@@ -68,13 +68,6 @@ def load_measurements(json_file):
                     socket0_energy_ram_values.append(energy_ram)
                 else:
                     socket1_energy_ram_values.append(energy_ram)
-
-            elif metric["metric_name"] == "energy-categories":
-                energy_categories = metric["value"]
-                if socket == 0:
-                    socket0_energy_categories_values.append(energy_categories)
-                else:
-                    socket1_energy_categories_values.append(energy_categories)
 
             elif metric["metric_name"] == "energy-gpu":
                 energy_gpu = metric["value"]
@@ -104,25 +97,12 @@ def load_measurements(json_file):
                 else:
                     socket1_power.append(power)
 
-            elif metric["metric_name"] == "power-efficiency":
-                power_efficiency = metric["value"]
+            elif metric["metric_name"] == "edp":
+                edp = metric["value"]
                 if socket == 0:
-                    socket0_power_efficiency.append(power_efficiency)
+                    socket0_edp.append(edp)
                 else:
-                    socket1_power_efficiency.append(power_efficiency)
-
-
-    if len(socket0_energy_total) == 0:
-        socket0_energy_total.append(socket0_energy_pkg_values[0] + socket0_energy_ram_values[0])
-        
-    if len(socket0_power) == 0:
-        socket0_power.append((socket0_energy_total[0] * 1000) / (durations[0] / 1000)) ## convert miliwatt
-        
-    if len(socket1_energy_total) == 0:
-        socket1_energy_total.append(socket1_energy_pkg_values[0] + socket1_energy_ram_values[0])
-         
-    if len(socket1_power) == 0:
-        socket1_power.append((socket1_energy_total[0] * 1000) / (durations[0] / 1000)) ## convert miliwatt
+                    socket1_edp.append(edp) 
         
         
         

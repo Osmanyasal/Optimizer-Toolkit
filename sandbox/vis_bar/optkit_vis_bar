@@ -62,15 +62,15 @@ if __name__ == "__main__":
     
     for path in sys.argv[1:]: 
         if os.path.isfile(path):
-            if path.endswith(".json") or path.endswith(".yaml"):
+            if path.endswith("enriched.json"):
                 print(path) 
                 optkit_utils.load_measurements(path) 
             else:
-                print("The specified file is not a JSON or YAML file.")
+                print("The specified file is not a ENRICHED JSON file.")
                 exit(1)
 
         elif os.path.isdir(path):
-            json_files = optkit_utils.get_all_json_or_yaml_files(path)
+            json_files = optkit_utils.get_json_files(path)
             for file in json_files: 
                 optkit_utils.load_measurements(file)
         else:

@@ -4,11 +4,13 @@ import os
 import sys
 import matplotlib.pyplot as plt
 
+#TODO: use opekit_sandbox_utils to fill arrays, 
+
 def read_json_files(directory):
     json_files = []
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith(".json"):
+            if file.endswith("enriched.json"):
                 json_files.append(os.path.join(root, file))
     for file in sorted(json_files):
         print(file)
@@ -201,7 +203,7 @@ if __name__ == "__main__":
     path = sys.argv[1] 
     file_name = path
     if os.path.isfile(path):
-        if path.endswith(".json"):
+        if path.endswith("enriched.json"):
             fill_line_chart(path)
         else:
             print("The specified file is not a JSON file.")
