@@ -8,6 +8,7 @@
 #include <deployment_config.hh>
 #include <core_profiling.hh>
 #include <core_freq.hh>
+#include <core_event_recepies.hh>
 
 namespace optkit::core
 {
