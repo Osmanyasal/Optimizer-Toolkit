@@ -161,12 +161,15 @@ def generate_json_string(duration,
     return json_string
  
 
+enrich_ctr = 0
 def enrich_measurements(json_file):
     
     ## read file
     with open(json_file, "r") as file:
         data = json.load(file)
- 
+    
+    global enrich_ctr
+    enrich_ctr = enrich_ctr + 1
     duration = data[0]["readings"][0]["duration"]
     durations_ms.append(duration)
     duration_sec = duration / 1000
@@ -218,38 +221,38 @@ def enrich_measurements(json_file):
             socket0_power.append(total_energy / duration_sec) ## joules / time (sec) = power
             socket0_edp.append(total_energy * duration_sec) ## joules x time (sec) = edp
 
-            if len(socket0_energy_cores_values) == 0:
+            if len(socket0_energy_cores_values) != enrich_ctr:
                 socket0_energy_cores_values.append(-1)
 
-            if len(socket0_energy_pkg_values) == 0:
+            if len(socket0_energy_pkg_values) != enrich_ctr:
                 socket0_energy_pkg_values.append(-1)
 
-            if len(socket0_energy_ram_values) == 0:
+            if len(socket0_energy_ram_values) != enrich_ctr:
                 socket0_energy_ram_values.append(-1)
 
-            if len(socket0_energy_gpu_values) == 0:
+            if len(socket0_energy_gpu_values) != enrich_ctr:
                 socket0_energy_gpu_values.append(-1)
 
-            if len(socket0_energy_psys_values) == 0:
+            if len(socket0_energy_psys_values) != enrich_ctr:
                 socket0_energy_psys_values.append(-1)
         else:
             socket1_energy_total.append(total_energy)
             socket1_power.append(total_energy / duration_sec)  ## joules / time (sec) = power
             socket1_edp.append(total_energy * duration_sec) ## joules x time (sec) = edp
 
-            if len(socket1_energy_cores_values) == 0:
+            if len(socket1_energy_cores_values) != enrich_ctr:
                 socket1_energy_cores_values.append(-1)
 
-            if len(socket1_energy_pkg_values) == 0:
+            if len(socket1_energy_pkg_values) != enrich_ctr:
                 socket1_energy_pkg_values.append(-1)
 
-            if len(socket1_energy_ram_values) == 0:
+            if len(socket1_energy_ram_values) != enrich_ctr:
                 socket1_energy_ram_values.append(-1)
 
-            if len(socket1_energy_gpu_values) == 0:
+            if len(socket1_energy_gpu_values) != enrich_ctr:
                 socket1_energy_gpu_values.append(-1)
 
-            if len(socket1_energy_psys_values) == 0:
+            if len(socket1_energy_psys_values) != enrich_ctr:
                 socket1_energy_psys_values.append(-1)
      
 
