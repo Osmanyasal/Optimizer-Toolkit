@@ -30,16 +30,23 @@ socket1_power = []
 socket1_edp = [] 
 
 
-def get_json_files(directory, is_sorted=True):
+def get_json_files(directory, endswith = ".json", is_sorted=True):
     json_files = []
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith(".json"):
+            if file.endswith(endswith):
                 json_files.append(os.path.join(root, file))
     for file in sorted(json_files):
         print(file)
-    # Sort the list of JSON & YAML files
+    # Sort the list of JSON files
     return json_files if not is_sorted else sorted(json_files)
+
+def write_json_to_file(json_string, filename, verbose = True):
+    if verbose:
+        print("writing to:",filename)
+        
+    with open(filename, 'w') as file:
+        file.write(json_string)
 
 
 def load_measurements(json_file):

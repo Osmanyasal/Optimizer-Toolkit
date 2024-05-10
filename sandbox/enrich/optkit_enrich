@@ -7,22 +7,7 @@ import matplotlib.pyplot as plt
 sys.path.append('/usr/local/include')
 sys.path.append('../')
 from optkit_sandbox_utils import *
-  
-def write_json_to_file(json_string, filename):
-    print("writing to:",filename)
-    with open(filename, 'w') as file:
-        file.write(json_string)
-
-def read_json_files(directory):
-    json_files = []
-    for root, _, files in os.walk(directory):
-        for file in files:
-            if file.endswith(".json"):
-                json_files.append(os.path.join(root, file))
-    for file in sorted(json_files):
-        print(file)
-    return sorted(json_files)  # Sort the list of JSON files
-
+   
 
 def generate_json_string(duration, 
                          socket0_value_energy_pkg, 
@@ -299,7 +284,7 @@ if __name__ == "__main__":
             else:
                 print("The specified file is not a JSON file.")
         elif os.path.isdir(path):
-            process(read_json_files(path))
+            process(get_json_files(path))
         else:
             print("The specified path is not a valid file or directory.")
 
