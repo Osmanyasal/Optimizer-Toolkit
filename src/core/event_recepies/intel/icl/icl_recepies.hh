@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <intel/icl.hh>
+#include <icl.hh>
 
 namespace optkit::core::recepies::intel::icl
 {
