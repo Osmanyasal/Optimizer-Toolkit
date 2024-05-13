@@ -57,10 +57,24 @@ PROFILING_DIR := $(UTILS_DIR)/profiling
 LIB_SPD_PATH :=./lib/spdlog
 LIB_SPD := -I./lib/spdlog/include/  -I./lib/spdlog/include/spdlog
 
+LIB_X86_ADAPT_PATH :=./lib/x86_adapt 
+
 LIB_PFM_PATH := ./lib/libpfm4
 LIB_PFM := -I./lib/libpfm4/include/perfmon/ -I./lib/libpfm4/lib/
+ 
+# Determine architecture
+ARCH := $(shell uname -m)
 
-DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl
+# Define the dynamic libraries for Intel systems
+INTEL_LIBS := -lx86_adapt
+
+# Conditionally link x86_adapt only on Intel systems
+ifeq ($(ARCH), x86_64)
+    DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl #$(INTEL_LIBS)
+else
+    DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl
+endif
+
 
 # Include directories
 INCLUDE := -I$(SRC_DIR)\
@@ -103,14 +117,8 @@ DYNAMIC_LIB := liboptkit.so
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(TEST_DIR) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES))
 
-all: ${LIB_PFM_PATH}/all_set $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB)
-	@if [ ! -d "$(BIN)/fonts" ]; then \
-        mkdir -p "$(BIN)/fonts"; \
-        cp -R ./lib/fonts/* "$(BIN)/fonts"; \
-        echo "Fonts installed successfully!"; \
-    else \
-        echo "Fonts directory already exists. Skipping installation."; \
-    fi
+all: ${LIB_PFM_PATH}/all_set $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set ${LIB_X86_ADAPT_PATH}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB)
+	 
 
 
 ################ BUILD COMMANDS ################
@@ -130,6 +138,10 @@ run: all
 ${CORE_EVENTS_DIR}/all_set:
 	@echo "⛏️ Exporting events from libpfm4"
 	cd $(UTILS_DIR) && python3 pmu_parser.py $(shell find ${LIB_PFM_PATH}/lib/events -type f \( -name "intel*.h" -or -name "amd*.h" -or -name "arm*.h" -or -name "power*.h" \) -exec echo "../../{}" \;)
+
+${LIB_X86_ADAPT_PATH}/all_set:
+	@echo "⛏️ Building x86 adapt library"
+	cd $(LIB_X86_ADAPT_PATH) && ./install.sh
 
 clean_run: clean all
 	@echo "🚀 Executing..."
@@ -175,7 +187,7 @@ install_headers:
 
 
 install_library:
-	sudo cp -R ./bin/liboptkit.a ./bin/fonts /usr/local/lib
+	sudo cp -R ./bin/liboptkit.a /usr/local/lib
 
 install_sandbox:
 	cd sandbox && ./install.sh
