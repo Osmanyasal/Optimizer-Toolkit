@@ -20,10 +20,5 @@ namespace optkit::core::recepies::intel::icl
                 {optkit::intel::icl::INSTRUCTIONS_RETIRED, "instructions_retired"},
                 {optkit::intel::icl::MEM_LOAD_RETIRED | optkit::intel::icl::MEM_LOAD_RETIRED__MASK__INTEL_ICL_MEM_LOAD_RETIRED__L3_MISS, "l3_cache_miss"}};
     }
-
-    // const std::vector<std::pair<uint64_t, std::string>> Recepies::computational_intensity()
-    // {
-    //     return {{optkit::intel::icl::INSTRUCTIONS_RETIRED, "instructions_retired"},
-    //             {optkit::intel::icl::MEM_LOAD_RETIRED | optkit::intel::icl::MEM_LOAD_RETIRED__MASK__INTEL_ICL_MEM_LOAD_RETIRED__L3_MISS, "l3_cache_miss"}};
-    // }
+ 
 }

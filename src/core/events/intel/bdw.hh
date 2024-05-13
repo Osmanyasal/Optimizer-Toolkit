@@ -467,8 +467,8 @@ namespace optkit::intel::bdw{
 		OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__L3_MISS_LOCAL = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
 		OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__LLC_MISS_LOCAL = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
 		OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__LLC_MISS_LOCAL_DRAM = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
-		OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__L3_MISS = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
-		OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__L3_MISS = 0xfULL << (26+8), // Supplier: counts L3 misses to local or remote DRAM
+		// OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__L3_MISS = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
+		// OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__L3_MISS = 0xfULL << (26+8), // Supplier: counts L3 misses to local or remote DRAM
 		OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__L3_MISS_REMOTE_HOP0 = 0x1ULL << (27+8), // Supplier: counts L3 misses to remote DRAM with 0 hop
 		OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__L3_MISS_REMOTE_HOP0_DRAM = 0x1ULL << (27+8), // Supplier: counts L3 misses to remote DRAM with 0 hop
 		OFFCORE_RESPONSE_0__MASK__BDW_OFFCORE_RESPONSE__L3_MISS_REMOTE_HOP1 = 0x1ULL << (28+8), // Supplier: counts L3 misses to remote DRAM with 1 hop
@@ -523,8 +523,8 @@ namespace optkit::intel::bdw{
 		OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__L3_MISS_LOCAL = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
 		OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__LLC_MISS_LOCAL = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
 		OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__LLC_MISS_LOCAL_DRAM = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
-		OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__L3_MISS = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
-		OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__L3_MISS = 0xfULL << (26+8), // Supplier: counts L3 misses to local or remote DRAM
+		// OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__L3_MISS = 1ULL << (26+8), // Supplier: counts L3 misses to local DRAM
+		// OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__L3_MISS = 0xfULL << (26+8), // Supplier: counts L3 misses to local or remote DRAM
 		OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__L3_MISS_REMOTE_HOP0 = 0x1ULL << (27+8), // Supplier: counts L3 misses to remote DRAM with 0 hop
 		OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__L3_MISS_REMOTE_HOP0_DRAM = 0x1ULL << (27+8), // Supplier: counts L3 misses to remote DRAM with 0 hop
 		OFFCORE_RESPONSE_1__MASK__BDW_OFFCORE_RESPONSE__L3_MISS_REMOTE_HOP1 = 0x1ULL << (28+8), // Supplier: counts L3 misses to remote DRAM with 1 hop
