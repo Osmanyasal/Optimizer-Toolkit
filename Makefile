@@ -117,7 +117,7 @@ DYNAMIC_LIB := liboptkit.so
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(TEST_DIR) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES))
 
-all: ${LIB_PFM_PATH}/all_set $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set ${LIB_X86_ADAPT_PATH}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB)
+all: ${LIB_PFM_PATH}/all_set $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB) ## ${LIB_X86_ADAPT_PATH}/all_set 
 	 
 
 
