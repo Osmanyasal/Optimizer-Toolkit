@@ -21,7 +21,7 @@ namespace optkit::core::pmu
             perf_event_attr attr = this->profiler_config.perf_event_config;
             attr.config = raw_event.first;
 
-            int32_t fd = syscall(__NR_perf_event_open, &attr, this->profiler_config.pid, this->profiler_config.cpu, group_leader, 0); // <-- first becomes -1 and later we use the group_leader's fd.
+            int32_t fd = syscall(__NR_perf_event_open, &attr, this->profiler_config.pid, 0, group_leader, 0); // <-- first becomes -1 and later we use the group_leader's fd.
             if (fd == -1)
             {
                 OPTKIT_CORE_ERROR("perf_event_open error");
