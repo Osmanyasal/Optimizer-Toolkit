@@ -23,7 +23,7 @@ int32_t main(int32_t argc, char **argv)
 
     {
         double aa = 0;
-        OPTKIT_PERFORMANCE_BLOCK_EVENTS("for_loop", "Computational Intensity", pp, recepies::intel::bdw::Recepies::computational_intensity());
+        OPTKIT_PERFORMANCE_EVENTS("for_loop", "Computational Intensity", pp, recepies::intel::bdw::Recepies::computational_intensity());
 
         for (int i = 0; i < 1000000; i++)
             aa = aa + i * 0.052; // 2M

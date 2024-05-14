@@ -51,9 +51,9 @@ namespace optkit::core::pmu
         virtual std::vector<uint64_t> read_val() override;
 
     private:
+        ProfilerConfig profiler_config;
         int32_t group_leader;
         bool is_active;
-        ProfilerConfig profiler_config;
         std::vector<std::pair<uint64_t, std::string>> raw_events;
 
         struct read_format
