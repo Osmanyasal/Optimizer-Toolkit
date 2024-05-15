@@ -28,8 +28,8 @@ namespace optkit::core::pmu
     // TODO: Fix this reading according to return parameter.
     std::vector<std::pair<double, uint64_t>> from_json(const std::string &json)
     {
-        // const auto json_obj = nlohmann::json::parse(json);
-        // std::vector<std::pair<double, uint64_t>> result;
+        const auto json_obj = nlohmann::json::parse(json);
+        std::vector<std::pair<double, uint64_t>> result;
         // std::map<int32_t, uint64_t> rapl_map;
 
         // if (json_obj.is_array())
@@ -57,6 +57,6 @@ namespace optkit::core::pmu
         //         }
         //     }
         // }
-        // return result;
+        return result;
     }
 } // namespace optkit::core

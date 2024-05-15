@@ -8,7 +8,7 @@ namespace optkit::core::pmu
 
         PMUEventManager::disable_all_events();
 
-        if (raw_events.size() > PMUEventManager::pmu_event_size())
+        if ((int32_t)raw_events.size() > PMUEventManager::pmu_event_size())
         {
             this->is_active = false;
             OPTKIT_CORE_ERROR("Cannot create a blockgroup for block {} by monitoring more than pmu hardware event size {}|{}(max).", this->block_name, raw_events.size(), PMUEventManager::pmu_event_size());
@@ -61,7 +61,7 @@ namespace optkit::core::pmu
             this->save();
         else
         {
-            int ctr = 0;
+            uint64_t ctr = 0u;
             for (auto iter = this->read_buffer.rbegin(); ctr < raw_events.size() && iter != this->read_buffer.rend(); iter++, ctr++)
             {
                 std::cout << "\033[1;35m"
@@ -111,7 +111,7 @@ namespace optkit::core::pmu
         char buf[4096];
         struct read_format *rf = (struct read_format *)buf;
         ::read(group_leader, buf, sizeof(buf));
-        for (int i = 0; i < rf->nr; i++)
+        for (uint64_t i = 0; i < rf->nr; i++)
         {
             result.push_back(rf->values[i].value);
         }

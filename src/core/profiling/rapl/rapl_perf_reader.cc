@@ -17,7 +17,7 @@ namespace optkit::core::rapl
         {
             fd_package_domain[package].resize(rapl_perf_config.avail_domains.size());
 
-            for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
+            for (auto domain = 0u; domain < rapl_perf_config.avail_domains.size(); domain++)
             {
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
                 fd_package_domain[package][domain] = -1;
@@ -48,8 +48,8 @@ namespace optkit::core::rapl
     RaplPerfReader::~RaplPerfReader()
     {
         // Close all file descriptions!
-        for (int package = 0; package < rapl_perf_config.packages.size(); package++)
-            for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
+        for (auto package = 0u; package < rapl_perf_config.packages.size(); package++)
+            for (auto domain = 0u; domain < rapl_perf_config.avail_domains.size(); domain++)
                 ::close(fd_package_domain[package][domain]);
     }
 
@@ -58,9 +58,9 @@ namespace optkit::core::rapl
         std::map<int32_t, std::map<RaplDomain, double>> result;
 
         long long value;
-        for (int package = 0; package < rapl_perf_config.packages.size(); package++)
+        for (auto package = 0u; package < rapl_perf_config.packages.size(); package++)
         {
-            for (int domain = 0; domain < rapl_perf_config.avail_domains.size(); domain++)
+            for (auto domain = 0u; domain < rapl_perf_config.avail_domains.size(); domain++)
             {
                 auto selected_domain = rapl_perf_config.avail_domains[domain];
                 if (!((int32_t)selected_domain.domain & rapl_perf_config.rapl_config.monitor_domain))

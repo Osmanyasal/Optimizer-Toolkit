@@ -46,7 +46,7 @@ namespace optkit::core::pmu
             this->save();
         else
         {
-            int ctr = 0;
+            auto ctr = 0u;
             for (auto iter = this->read_buffer.rbegin(); ctr < raw_events.size() && iter != this->read_buffer.rend(); iter++, ctr++)
             {
                 std::cout << "\033[1;35m"

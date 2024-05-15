@@ -27,7 +27,7 @@ namespace optkit::core::freq
                 ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_min_freq", std::to_string(frequency));
             }
         }
-        catch (std::runtime_error err)
+        catch (const std::runtime_error &err)
         {
             OPTKIT_CORE_ERROR(err.what());
         }
@@ -49,7 +49,7 @@ namespace optkit::core::freq
                     }
                 }
             }
-            catch (std::runtime_error err)
+            catch (const std::runtime_error &err)
             {
                 OPTKIT_CORE_ERROR(err.what());
             }
@@ -76,7 +76,7 @@ namespace optkit::core::freq
                     ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_min_freq", std::to_string(frequency));
                 }
             }
-            catch (std::runtime_error err)
+            catch (const std::runtime_error &err)
             {
                 OPTKIT_CORE_ERROR(err.what());
             }
@@ -105,6 +105,7 @@ namespace optkit::core::freq
         {
             OPTKIT_CORE_ERROR(err.what());
         }
+        return -1;
     }
 
     std::vector<long> CPUFrequency::get_core_frequencies(short socket)
@@ -115,13 +116,13 @@ namespace optkit::core::freq
             TRAVERSE_CORES(socket)
             {
                 core_frequencies.push_back(std::atol(::read_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_cur_freq").c_str()));
-            }
-            return core_frequencies;
+            } 
         }
         catch (const std::runtime_error &err)
         {
             OPTKIT_CORE_ERROR(err.what());
         }
+        return core_frequencies;
     }
 
     std::vector<long> CPUFrequency::get_core_frequency(short cpu_start, short cpu_end, short socket)
@@ -176,7 +177,7 @@ namespace optkit::core::freq
                 ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_min_freq", std::to_string(QueryFreq::get_cpuinfo_min_freq(socket)));
             }
         }
-        catch (std::runtime_error err)
+        catch (const std::runtime_error &err)
         {
             OPTKIT_CORE_ERROR(err.what());
         }
