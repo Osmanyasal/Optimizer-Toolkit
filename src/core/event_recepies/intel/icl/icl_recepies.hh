@@ -11,7 +11,6 @@ namespace optkit::core::recepies::intel::icl
     {
     public:
         static const std::vector<std::pair<uint64_t, std::string>> computational_intensity();
-        // static const std::vector<std::pair<uint64_t, std::string>> computational_intensity();
 
     private:
         Recepies() = delete;

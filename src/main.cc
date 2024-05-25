@@ -1,80 +1,105 @@
 #include <omp.h>
 #include <optkit.hh>
 #include <test.hh>
+#include <signal.h>
+#include <fcntl.h>
+#include <sys/ptrace.h>
+#include <sys/mman.h>
 
+#define MMAP_PAGES 8
+static int fd1;
+static int total;
+
+std::vector<std::chrono::high_resolution_clock::time_point> timee;
+
+static void our_handler(int signum, siginfo_t *oh, void *blah)
+{
+
+    timee.push_back(std::chrono::high_resolution_clock::now());
+
+    int ret;
+
+    ret = ioctl(fd1, PERF_EVENT_IOC_DISABLE, 0);
+
+    total++;
+
+    ret = ioctl(fd1, PERF_EVENT_IOC_ENABLE, 1);
+
+    (void)ret;
+}
 
 int32_t main(int32_t argc, char **argv)
 {
-    OptimizerKit optkit;
+    OptimizerKit optkit{false};
 
-    // optkit::core::recepies::intel::bdw::ComputationalIntensity ci;
-    // recepies::intel::bdw::Recepies::computational_intensity();
+    BLOCK_TIMER("main");
 
-    // std::cout << "num sockets: " << Query::num_sockets << " num cores:" << Query::num_cores << "\n";
+    struct perf_event_attr pe;
+    struct sigaction sa;
+    void *our_mmap;
 
-    // return 0;
+    memset(&sa, 0, sizeof(struct sigaction));
+    sa.sa_sigaction = our_handler;
+    sa.sa_flags = SA_SIGINFO;
 
-    // optkit::test::freq::run();
-
-    // std::cout << "reset frequency !!\n";
-
-    // CPUFrequency::reset_core_frequency(0);
-    // CPUFrequency::reset_uncore_frequency(0);
-
+    if (sigaction(SIGIO, &sa, NULL) < 0)
     {
-        double aa = 0;
-        // OPTKIT_PERFORMANCE_EVENTS("for_loop", "Computational Intensity", pp, {{optkit::intel::bdw::INSTRUCTIONS_RETIRED, "instructions_retired"}});
+        fprintf(stderr, "Error setting up signal handler\n");
+        exit(1);
+    }
+    memset(&pe, 0, sizeof(struct perf_event_attr));
 
-        BlockProfiler variable_name{"for_loop", "Computational Intensity", {{optkit::intel::bdw::INSTRUCTIONS_RETIRED, "instructions_retired"}}};
-        for (int i = 0; i < 1000000; i++)
-            aa = aa + i * 0.052; // 2M
+    pe.type = PERF_TYPE_RAW;
+    pe.size = sizeof(struct perf_event_attr);
 
-        std::cout << aa << "\n";
-        std::cout << "reading val..:" << variable_name.read_val()[0] << "\n";
+    pe.config = 0xc0; // retired instr
+
+    pe.sample_period = 3300000; // set current freq in khz in files (scaling_max_freq) to sample each 1ms * 10 to get ~10ms
+    pe.sample_type = PERF_SAMPLE_RAW;
+    pe.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
+    pe.exclude_kernel = 1;
+    pe.exclude_hv = 1;
+    
+
+    fd1 = syscall(__NR_perf_event_open, &pe, 0, -1, -1, 0);
+    if (fd1 < 0)
+    {
+        fprintf(stderr, "Error opening leader %llx\n", pe.config);
     }
 
-    // {
-    //     OPTKIT_PERFORMANCE_EVENTS("file_read", "Computational Intensity", pp, recepies::intel::bdw::Recepies::computational_intensity());
+    our_mmap = mmap(NULL, (1 + MMAP_PAGES) * getpagesize(),
+                    PROT_READ | PROT_WRITE, MAP_SHARED, fd1, 0);
 
-    //     std::cout << QueryFreq::get_bios_limit();
-    // }
+    fcntl(fd1, F_SETFL, O_RDWR | O_NONBLOCK | O_ASYNC);
+    fcntl(fd1, F_SETSIG, SIGIO);
+    fcntl(fd1, F_SETOWN, getpid());
 
-    // while(1)
-    // {
-    //     // OPTKIT_PERFORMANCE_EVENTS("multiple_file_read", "Computational Intensity", pp, recepies::intel::bdw::Recepies::computational_intensity());
+    ioctl(fd1, PERF_EVENT_IOC_RESET, 0);
+    int ret = ioctl(fd1, PERF_EVENT_IOC_ENABLE, 0);
+    if (ret < 0)
+    {
+        fprintf(stderr, "Error with PERF_EVENT_IOC_ENABLE of group leader: "
+                        "%d %s\n",
+                errno, strerror(errno));
+    }
 
-    //     std::cout << QueryFreq::get_cpuinfo_max_freq() << QueryFreq::get_cpuinfo_min_freq() << QueryFreq::get_scaling_driver() << QueryFreq::get_scaling_max_limit() << QueryFreq::get_scaling_min_limit();
-    // }
+    {
+        // BlockProfiler variable_name{"for_loop", "Computational Intensity", recepies::intel::icl::Recepies::computational_intensity()};
+        double aa = 0;
 
-    // {
-    //     OPTKIT_PERFORMANCE_EVENTS("multiple_file_write", "Computational Intensity", pp, recepies::intel::bdw::Recepies::computational_intensity());
+        for (int i = 0; i < 50000000; i++)
+            aa = aa + i * 0.052; // 2M
 
-    //     for (int i = 0; i < 1; i++)
-    //     {
-    //         CPUFrequency::set_core_frequency(1200000, 0);
-    //         CPUFrequency::set_core_frequency(1300000, 0);
-    //         CPUFrequency::set_core_frequency(3300000, 0);
-    //     }
-    // }
+        // std::cout << aa << "\n";
+    }
 
-    // {
-    //     OPTKIT_PERFORMANCE_EVENTS("combined", "Computational Intensity", pp, recepies::intel::bdw::Recepies::computational_intensity());
-        
-    //     // file write
-    //     CPUFrequency::set_core_frequency(1200000, 0);
-    //     CPUFrequency::set_core_frequency(1300000, 0);
-    //     CPUFrequency::set_core_frequency(3300000, 0);
+    close(fd1);
+    fprintf(stderr, "number of samples: %d\n", total);
 
-    //     // compute
-    //     float aa;
-    //     for (int i = 0; i < 1000000; i++)
-    //         aa = aa + i * 0.052; // 2M
-
-    //     // file read
-    //     std::cout << QueryFreq::get_bios_limit() << QueryFreq::get_cpuinfo_max_freq() << QueryFreq::get_cpuinfo_min_freq() << QueryFreq::get_scaling_driver() << QueryFreq::get_scaling_max_limit();
-    // }
-
-    // CPUFrequency::reset_core_frequency(0);
+    std::cout << "call_ref: " << std::chrono::duration_cast<std::chrono::microseconds>(timee.at(1) - timee.at(0)).count() / 1000.0f << std::endl;
+    std::cout << "call_ref: " << std::chrono::duration_cast<std::chrono::microseconds>(timee.at(2) - timee.at(1)).count() / 1000.0f << std::endl;
+    std::cout << "call_ref: " << std::chrono::duration_cast<std::chrono::microseconds>(timee.at(3) - timee.at(2)).count() / 1000.0f << std::endl;
+    std::cout << "call_ref: " << std::chrono::duration_cast<std::chrono::microseconds>(timee.at(4) - timee.at(3)).count() / 1000.0f << std::endl;
 
     return 0;
 }

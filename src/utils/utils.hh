@@ -24,11 +24,13 @@
 
 #include <query.hh>
 
+#include <block_timer.hh>
+
 // MACRO DEFINITIONS
 #define BIT(x) (1 << x)
 
 #define BLOCK_TIMER(block_name) \
-    OPTKIT::utils::BlockTimer block_timer { block_name }
+    optkit::utils::BlockTimer block_timer { block_name }
 
 #define EXEC_IF_ROOT                                                                                                  \
     if (!Query::is_root_priv_enabled)                                                                                 \

@@ -107,7 +107,11 @@
         "pfmlib_intel_x86_priv.h": "c",
         "version": "cpp",
         "__threading_support": "cpp",
-        "__memory": "cpp"
+        "__memory": "cpp",
+        "stdio.h": "c",
+        "ioctl.h": "c",
+        "stdlib.h": "c",
+        "fcntl.h": "c"
     },
     "cmake.sourceDirectory": "/home/rt7/Desktop/Recursion-Engine/lib/spdlog"
 }
