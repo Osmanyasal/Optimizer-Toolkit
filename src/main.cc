@@ -25,7 +25,7 @@ int32_t main(int32_t argc, char **argv)
         double aa = 0;
         // OPTKIT_PERFORMANCE_EVENTS("for_loop", "Computational Intensity", pp, {{optkit::intel::bdw::INSTRUCTIONS_RETIRED, "instructions_retired"}});
 
-        BlockProfiler variable_name{"for_loop", "Computational Intensity", {{optkit::intel::bdw::INSTRUCTIONS_RETIRED, "instructions_retired"}}};
+        BlockProfiler variable_name{"for_loop", "Computational Intensity", {{0xc0, "instructions_retired"}}};
         for (int i = 0; i < 1000000; i++)
             aa = aa + i * 0.052; // 2M
 

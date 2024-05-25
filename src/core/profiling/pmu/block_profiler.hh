@@ -24,7 +24,7 @@ namespace optkit::core::pmu
     class BlockProfiler : public BaseProfiler<std::vector<uint64_t>>
     {
     public:
-        BlockProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config = ProfilerConfig{});
+        BlockProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config = ProfilerConfig{true, true, false, 0, -1});
         virtual ~BlockProfiler();
         /**
          * @brief Disables this block profiler and associated events
@@ -59,7 +59,7 @@ namespace optkit::core::pmu
          */
         std::vector<int32_t> fd_list;
         ProfilerConfig profiler_config;
-        
+
     private:
         std::vector<std::pair<uint64_t, std::string>> raw_events;
     };
