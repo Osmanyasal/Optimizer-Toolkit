@@ -6,9 +6,9 @@ namespace optkit::core
     ProfilerConfig::ProfilerConfig(bool dump_results_to_file, bool is_reset_after_read, bool is_grouped, int pid, int cpu)
         : dump_results_to_file{dump_results_to_file}, is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}
     {
-        ::memset(&perf_event_config, 0, sizeof(perf_event_attr));
+        ::memset(&perf_event_config, 0, sizeof(struct perf_event_attr));
         perf_event_config.type = PERF_TYPE_RAW;
-        perf_event_config.size = sizeof(perf_event_attr);
+        perf_event_config.size = sizeof(struct perf_event_attr);
         perf_event_config.disabled = 1;
         perf_event_config.inherit = 1;
         perf_event_config.exclude_kernel = 1;

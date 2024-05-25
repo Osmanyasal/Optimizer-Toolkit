@@ -23,7 +23,7 @@ namespace optkit::core::pmu
     {
 
     public:
-        BlockGroupProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config = ProfilerConfig{true, true, true});
+        BlockGroupProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config = ProfilerConfig{true, true, true,0,-1});
         virtual ~BlockGroupProfiler();
         /**
          * @brief Disables this block profiler and associated events
