@@ -3,7 +3,8 @@
 
 namespace optkit::core
 {
-    ProfilerConfig::ProfilerConfig(bool dump_results_to_file, bool is_reset_after_read, bool is_grouped, int pid, int cpu) : dump_results_to_file{dump_results_to_file}, is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}
+    ProfilerConfig::ProfilerConfig(bool dump_results_to_file, bool is_reset_after_read, bool is_grouped, int pid, int cpu)
+        : dump_results_to_file{dump_results_to_file}, is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}
     {
         ::memset(&perf_event_config, 0, sizeof(perf_event_attr));
         perf_event_config.type = PERF_TYPE_RAW;
@@ -12,14 +13,16 @@ namespace optkit::core
         perf_event_config.inherit = 1;
         perf_event_config.exclude_kernel = 1;
         perf_event_config.exclude_hv = 1;
-        if (is_grouped)
+        if (this->is_grouped)
             perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
     }
 
-    ProfilerConfig::ProfilerConfig(perf_event_attr perf_event_config, bool dump_results_to_file, bool is_reset_after_read, bool is_grouped, int pid, int cpu) : dump_results_to_file{dump_results_to_file}, is_reset_after_read{is_reset_after_read}, is_grouped{is_grouped}, pid{pid}, cpu{cpu}, perf_event_config{perf_event_config}
+    ProfilerConfig::ProfilerConfig(perf_event_attr perf_event_config, bool dump_results_to_file, bool is_reset_after_read, int pid, int cpu) : dump_results_to_file{dump_results_to_file}, is_reset_after_read{is_reset_after_read}, pid{pid}, cpu{cpu}, perf_event_config{perf_event_config}
     {
-        if (is_grouped)
-            perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
+        if (perf_event_config.read_format == (PERF_FORMAT_GROUP | PERF_FORMAT_ID))
+            this->is_grouped = true;
+        else
+            this->is_grouped = false;
     }
 
     RaplConfig::RaplConfig(rapl::RaplReadMethods read_method, int32_t monitor_domain, bool is_reset_after_read, bool dump_results_to_file) : read_method{read_method}, monitor_domain{monitor_domain}, is_reset_after_read{is_reset_after_read}, dump_results_to_file{dump_results_to_file}
