@@ -50,6 +50,10 @@ namespace optkit::core::pmu
          */
         virtual std::vector<uint64_t> read_val() override;
 
+        int32_t get_group_leader(){
+            return this->group_leader;
+        }
+
     private:
         ProfilerConfig profiler_config;
         int32_t group_leader;

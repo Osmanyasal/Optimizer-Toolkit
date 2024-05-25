@@ -22,7 +22,7 @@ namespace optkit::core::freq
         static void call_back(int signum, siginfo_t *oh, void *blah);
 
     public:
-        BaseGovernor(long sample_period = QueryFreq::get_cpuinfo_max_freq() * 20); // callback at each 10ms
+        BaseGovernor(long sample_period = QueryFreq::get_scaling_max_limit() * 10); // callback at each 10ms
         virtual ~BaseGovernor();
 
         virtual std::vector<uint64_t> read_pmus() = 0;

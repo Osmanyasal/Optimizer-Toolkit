@@ -10,6 +10,11 @@ namespace optkit::core::freq
         memset(&sa, 0, sizeof(struct sigaction));
         sa.sa_sigaction = BaseGovernor::call_back;
         sa.sa_flags = SA_SIGINFO;
+        if (sigaction(SIGIO, &sa, NULL) < 0)
+        {
+            fprintf(stderr, "Error setting up signal handler\n");
+            exit(1);
+        }
     }
 
     BaseGovernor::~BaseGovernor(){
@@ -19,6 +24,6 @@ namespace optkit::core::freq
     void BaseGovernor::call_back(int signum, siginfo_t *oh, void *blah)
     {
         static int i = 0;
-        std::cout << ++i << " call_back() called";
+        std::cout << ++i << " callback() called\n";
     }
 }
