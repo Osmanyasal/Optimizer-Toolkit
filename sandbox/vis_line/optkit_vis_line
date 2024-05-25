@@ -48,7 +48,7 @@ def draw_line_chart():
     axes[0].grid(True)
      
     axes0_2 = axes[0].twinx()
-    axes0_2.plot(cores, [duration / 100 for duration in durations_ms], marker='.', label='Duration', linestyle=':', color='firebrick')
+    axes0_2.plot(cores, [duration / 1000 for duration in durations_ms], marker='.', label='Duration', linestyle=':', color='firebrick')
     axes0_2.set_ylabel('Duration')   
      
     # Combine legends
