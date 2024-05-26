@@ -10,11 +10,11 @@ namespace optkit::utils
     class BlockTimer
     {
     public:
-        BlockTimer(const std::string &block_name);
+        BlockTimer(const char* block_name);
         ~BlockTimer();
 
     private:
-        const std::string &block_name;
+        const char* block_name;
         std::chrono::high_resolution_clock::time_point start;
     };
 

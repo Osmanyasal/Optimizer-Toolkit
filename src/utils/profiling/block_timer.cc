@@ -3,7 +3,7 @@
 namespace optkit::utils
 {
 
-    BlockTimer::BlockTimer(const std::string &block_name) : block_name{block_name}
+    BlockTimer::BlockTimer(const char* block_name) : block_name{block_name}
     {
         OPTKIT_CORE_INFO("BLOCK :{} is being measured..", this->block_name);
         start = std::chrono::high_resolution_clock::now();
