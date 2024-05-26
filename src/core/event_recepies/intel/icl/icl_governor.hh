@@ -28,7 +28,7 @@ namespace optkit::core::governors::intel::icl
         virtual std::vector<uint64_t> read_pmus() override { return this->block_group_profiler.read_val(); }
 
     private:
-        optkit::core::pmu::BlockGroupProfiler block_group_profiler{"", "", {{optkit::intel::icl::INSTRUCTIONS_RETIRED, "instructions_retired"}}, this->config};
+        optkit::core::pmu::BlockGroupProfiler block_group_profiler{"", "", optkit::core::recepies::intel::icl::Recepies::computational_intensity(), this->config};
     };
 }
 
