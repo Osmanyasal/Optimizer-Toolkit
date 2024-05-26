@@ -3,7 +3,7 @@
 
 namespace optkit::core::freq
 {
-    BaseGovernor::BaseGovernor(long sample_period) : sample_period{sample_period}
+    BaseGovernor::BaseGovernor(long sample_period) : sample_period{sample_period} 
     {
         this->config.perf_event_config.sample_period = this->sample_period;
         memset(&sa, 0, sizeof(struct sigaction));
@@ -16,7 +16,8 @@ namespace optkit::core::freq
         }
     }
 
-    BaseGovernor::~BaseGovernor(){
+    BaseGovernor::~BaseGovernor()
+    {
     }
 
     void BaseGovernor::call_back(int signum, siginfo_t *oh, void *blah)

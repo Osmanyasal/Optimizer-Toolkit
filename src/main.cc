@@ -15,7 +15,7 @@ int32_t main(int32_t argc, char **argv)
     {
         double aa = 0;
         for (int i = 0; i < 50000000; i++)
-            aa = aa + i * 0.052; // 2M
+            aa = aa + i * 0.052; // 2 * 50M -> 100M
     }
  
 
