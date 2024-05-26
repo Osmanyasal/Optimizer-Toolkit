@@ -2,10 +2,10 @@
 
 namespace optkit::core::rapl
 {
-    RaplProfiler::RaplProfiler(const char *block_name, const char *event_name, const RaplConfig &config) : BaseProfiler{block_name, event_name}, rapl_config{config}
+    RaplProfiler::RaplProfiler(const char *block_name, const char *event_name, const RaplConfig &config) : BaseProfiler{block_name, event_name, true}, rapl_config{config}
     {
         const std::map<int32_t, std::vector<int32_t>> &packages = Query::detect_packages();
-        const std::vector<RaplDomainInfo> &avail_domains = QueryRapl::rapl_domain_info();   // Monitor for all available domains
+        const std::vector<RaplDomainInfo> &avail_domains = QueryRapl::rapl_domain_info(); // Monitor for all available domains
 
         // std::cout << rapl_config << std::endl;
         switch (rapl_config.read_method)
@@ -33,13 +33,13 @@ namespace optkit::core::rapl
     }
 
     RaplProfiler::~RaplProfiler()
-    { 
+    {
         if (OPT_LIKELY(this->rapl_config.dump_results_to_file))
         {
             read();
             this->save();
         }
-        else
+        else if(OPT_LIKELY(this->verbose))
         {
             // Disable the clock.
             auto end = std::chrono::high_resolution_clock::now();
@@ -48,7 +48,7 @@ namespace optkit::core::rapl
             auto duration_ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000.0f;
             OPTKIT_CORE_INFO("Duration: {}", duration_ms);
         }
-        
+
         delete rapl_reader.release();
     }
 
@@ -71,7 +71,7 @@ namespace optkit::core::rapl
         std::stringstream ss;
         ss << "[\n";
         // based on the insertion order.
-        ss << core::rapl::to_json(event_name,this->read_buffer);
+        ss << core::rapl::to_json(event_name, this->read_buffer);
         ss << "]\n";
         return ss.str();
     }

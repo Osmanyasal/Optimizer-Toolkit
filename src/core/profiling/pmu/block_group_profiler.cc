@@ -3,7 +3,7 @@
 namespace optkit::core::pmu
 {
 
-    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config) : BaseProfiler{block_name, event_name}, profiler_config{config}, group_leader{-1}, is_active{true}, raw_events{raw_events}
+    BlockGroupProfiler::BlockGroupProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, bool verbose, const ProfilerConfig &config) : BaseProfiler{block_name, event_name, verbose}, profiler_config{config}, group_leader{-1}, is_active{true}, raw_events{raw_events}
     {
 
         PMUEventManager::disable_all_events();
@@ -19,7 +19,7 @@ namespace optkit::core::pmu
         for (auto &raw_event : raw_events)
         {
             struct perf_event_attr attr = this->profiler_config.perf_event_config; // copy default config
-            attr.config = raw_event.first;  // set an event
+            attr.config = raw_event.first;                                         // set an event
 
             int32_t fd = syscall(__NR_perf_event_open, &attr, this->profiler_config.pid, this->profiler_config.cpu, group_leader, 0); // <-- first becomes -1 and later we use the group_leader's fd.
             if (fd == -1)
@@ -59,7 +59,8 @@ namespace optkit::core::pmu
 
         if (OPT_LIKELY(profiler_config.dump_results_to_file))
             this->save();
-        else
+
+        else if(OPT_LIKELY(this->verbose))
         {
             uint64_t ctr = 0u;
             for (auto iter = this->read_buffer.rbegin(); ctr < raw_events.size() && iter != this->read_buffer.rend(); iter++, ctr++)

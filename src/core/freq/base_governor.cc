@@ -5,7 +5,6 @@ namespace optkit::core::freq
 {
     BaseGovernor::BaseGovernor(long sample_period) : sample_period{sample_period}
     {
-        std::cout << "ctor BaseGovernor\n";
         this->config.perf_event_config.sample_period = this->sample_period;
         memset(&sa, 0, sizeof(struct sigaction));
         sa.sa_sigaction = BaseGovernor::call_back;
@@ -18,7 +17,6 @@ namespace optkit::core::freq
     }
 
     BaseGovernor::~BaseGovernor(){
-        std::cout << "dtor BaseGovernor\n";
     }
 
     void BaseGovernor::call_back(int signum, siginfo_t *oh, void *blah)

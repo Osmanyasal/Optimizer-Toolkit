@@ -12,7 +12,7 @@ namespace optkit::core
     class BaseProfiler
     {
     public:
-        BaseProfiler(const char *block_name, const char *event_name) : block_name{block_name}, event_name{event_name}, start{std::chrono::high_resolution_clock::now()}
+        BaseProfiler(const char *block_name, const char *event_name, bool verbose) : block_name{block_name}, event_name{event_name}, verbose{verbose}, start{std::chrono::high_resolution_clock::now()}
         {
         }
         virtual ~BaseProfiler() {}
@@ -76,12 +76,13 @@ namespace optkit::core
             file_name = file_name;
             std::replace(file_name.begin(), file_name.end(), ' ', '_');
             file_name = EXECUTION_FOLDER_NAME + "/" + file_name + "__" + event_name + ".json";
-            ::write_file(file_name, json_data, true);
+            ::write_file(file_name, json_data, verbose);
         }
 
     public:
         const char *block_name;
         const char *event_name;
+        bool verbose;
 
     protected:
         std::chrono::high_resolution_clock::time_point start;

@@ -3,7 +3,7 @@
 namespace optkit::core::pmu
 {
 
-    BlockProfiler::BlockProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, const ProfilerConfig &config) : BaseProfiler{block_name, event_name}, profiler_config{config}, raw_events{raw_events}
+    BlockProfiler::BlockProfiler(const char *block_name, const char *event_name, const std::vector<std::pair<uint64_t, std::string>> &raw_events, bool verbose, const ProfilerConfig &config) : BaseProfiler{block_name, event_name,verbose}, profiler_config{config}, raw_events{raw_events}
     {
         PMUEventManager::disable_all_events();
 
@@ -44,7 +44,7 @@ namespace optkit::core::pmu
 
         if (OPT_LIKELY(profiler_config.dump_results_to_file))
             this->save();
-        else
+        else if (OPT_LIKELY(this->verbose))
         {
             auto ctr = 0u;
             for (auto iter = this->read_buffer.rbegin(); ctr < raw_events.size() && iter != this->read_buffer.rend(); iter++, ctr++)

@@ -28,7 +28,7 @@ namespace optkit::core::freq
         virtual std::vector<uint64_t> read_pmus() = 0;
 
     protected:
-        optkit::core::ProfilerConfig config{false, true, true, 0, -1};
+        optkit::core::ProfilerConfig config{false, true, false, 0, -1};
         long sample_period;
         struct sigaction sa;
         void *our_mmap;
