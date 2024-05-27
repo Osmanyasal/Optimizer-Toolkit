@@ -9,9 +9,9 @@
 #include <block_group_profiler.hh>
 #include <block_profiler.hh>
 #include <query_frequency.hh>
-#include <iostream>
 
 #define MMAP_PAGES 8
+#define GOVERNOR_CALLBACK_PERIOD_MS 10 // 10ms
 
 namespace optkit::core::freq
 {
@@ -22,14 +22,14 @@ namespace optkit::core::freq
         static void call_back(int signum, siginfo_t *oh, void *blah);
 
     public:
-        BaseGovernor(long sample_period = QueryFreq::get_scaling_max_limit() * 10); // callback at each 10ms
+        BaseGovernor(long sample_period = QueryFreq::get_scaling_max_limit() * GOVERNOR_CALLBACK_PERIOD_MS); // callback at each 10ms
         virtual ~BaseGovernor();
         virtual std::vector<uint64_t> read_pmus() = 0;
         
 
     protected:
-        optkit::core::ProfilerConfig config{false, true, false, 0, -1};
-        long sample_period;
+        optkit::core::ProfilerConfig config;
+        const long sample_period;
         struct sigaction sa;
         void *our_mmap;
     };

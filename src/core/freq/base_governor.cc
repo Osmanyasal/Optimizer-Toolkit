@@ -3,7 +3,7 @@
 
 namespace optkit::core::freq
 {
-    BaseGovernor::BaseGovernor(long sample_period) : sample_period{sample_period} 
+    BaseGovernor::BaseGovernor(long sample_period) : config{false, true, false, 0, -1}, sample_period{sample_period}
     {
         this->config.perf_event_config.sample_period = this->sample_period;
         memset(&sa, 0, sizeof(struct sigaction));
@@ -11,7 +11,7 @@ namespace optkit::core::freq
         sa.sa_flags = SA_SIGINFO;
         if (sigaction(SIGIO, &sa, NULL) < 0)
         {
-            fprintf(stderr, "Error setting up signal handler\n");
+            OPTKIT_CORE_ERROR("Error setting up signal handler");
             exit(1);
         }
     }
@@ -23,6 +23,6 @@ namespace optkit::core::freq
     void BaseGovernor::call_back(int signum, siginfo_t *oh, void *blah)
     {
         static int i = 0;
-        std::cout << ++i << " callback() called\n";
+        OPTKIT_CORE_INFO("{} th call_back() called", ++i);
     }
 }
