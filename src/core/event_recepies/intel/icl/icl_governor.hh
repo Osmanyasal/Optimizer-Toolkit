@@ -8,7 +8,7 @@
 #include <icl_recepies.hh>
 
 namespace optkit::core::governors::intel::icl
-{
+{ 
     class Governor final : public core::freq::BaseGovernor
     {
     public:
