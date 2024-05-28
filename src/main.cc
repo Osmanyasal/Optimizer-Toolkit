@@ -12,7 +12,7 @@ int32_t main(int32_t argc, char **argv)
 
     {
         double aa = 0;
-        for (int i = 0; i < 2000000; i++)
+        for (int i = 0; i < 20000000; i++)
             aa = aa + i * 0.052; // 2 * 50M -> 100M
     }
 
