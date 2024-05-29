@@ -14,11 +14,11 @@ namespace optkit::core::governors::intel::icl
     public:
         Governor();
         virtual ~Governor() {}
-        virtual std::vector<uint64_t> read_pmus() override { return this->block_group_profiler.read_val(); }
+        virtual std::vector<uint64_t> read_pmus() override { return this->interested_events.read_val(); }
 
     private:
         optkit::core::pmu::BlockProfiler core_cycle_watcher;
-        optkit::core::pmu::BlockGroupProfiler block_group_profiler;
+        optkit::core::pmu::BlockGroupProfiler interested_events;
     };
 }
 
