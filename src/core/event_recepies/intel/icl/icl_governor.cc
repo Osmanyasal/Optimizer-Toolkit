@@ -7,7 +7,7 @@ namespace optkit::core::governors::intel::icl
         Governor::current_governor = this;
         int cycle_pmc_fd = core_cycle_watcher.fd_list.at(0);
 
-        mmap(NULL, (1 + MMAP_PAGES) * getpagesize(),
+        mmap(NULL, (1 + OPTKIT_BASE_GOVERNOR_MMAP_PAGES) * getpagesize(),
              PROT_READ | PROT_WRITE, MAP_SHARED, cycle_pmc_fd, 0);
 
         fcntl(cycle_pmc_fd, F_SETFL, O_RDWR | O_NONBLOCK | O_ASYNC);
