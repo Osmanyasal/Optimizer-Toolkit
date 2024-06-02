@@ -38,7 +38,7 @@ def draw_line_chart():
         axes[0].plot(cores, socket0_energy_total, marker='D', label='Total Energy (Joules)', linestyle='-', color='green')
 
     if(len(socket0_edp) > 0):
-        axes[0].plot(cores, [edp / 1000 for edp in socket0_edp], marker='D', label='EDP (10 x KiloJoules x sec)', linestyle='-', color='orange')
+        axes[0].plot(cores, [edp / 100 for edp in socket0_edp], marker='D', label='EDP (10 x KiloJoules x sec)', linestyle='-', color='orange')
 
     if(len(socket0_power) > 0):
         axes[0].plot(cores, [power * 100 for power in socket0_power], marker='P', label='Power (100 x Watts)', linestyle='-', color="steelblue")
