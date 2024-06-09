@@ -159,7 +159,8 @@ $(BIN)/$(EXECUTABLE): $(OBJ_FILES)
 
 $(BIN)/$(STATIC_LIB): $(OBJ_FILES)
 	echo "🚧 creating static library..."
-	ar rcs ./$(BIN)/$(STATIC_LIB) $^ 
+	gcc-ar rcs ./$(BIN)/$(STATIC_LIB) $^ 
+	gcc-ranlib ./$(BIN)/$(STATIC_LIB)
 
 $(BIN)/$(DYNAMIC_LIB): $(OBJ_FILES)
 	echo "🚧 dynamic library disabled!"

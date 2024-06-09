@@ -28,13 +28,12 @@ namespace optkit::core::freq
         static int i = 0;
         OPTKIT_CORE_INFO("{} th call_back() called", ++i);
 
-        // TODO: it's possible that current_governor is null at the very beginning...
-        // TODO: should I disable the interested events? overhead ~ precision tradeoff..
-        for (uint64_t i : current_governor->read_pmus())
-        {
-            OPTKIT_CORE_INFO("{}", i);
-        }
+        // TODO: it's possible that current_governor is null at the very beginning... 
+        // for (uint64_t i : current_governor->read_pmus())
+        // {
+        //     OPTKIT_CORE_INFO("{}", i);
+        // }
 
-        OPTKIT_CORE_INFO("---------------------");
+        // OPTKIT_CORE_INFO("---------------------");
     }
 }
