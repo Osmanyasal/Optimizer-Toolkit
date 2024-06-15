@@ -419,7 +419,7 @@ namespace optkit::intel::ivb{
 		OFFCORE_RESPONSE_0__MASK__IVB_OFFCORE_RESPONSE__LLC_MISS_LOCAL = 1ULL << (22+8), // Supplier: counts L3 misses to local DRAM
 		OFFCORE_RESPONSE_0__MASK__IVB_OFFCORE_RESPONSE__LLC_MISS_REMOTE = 0xffULL << (23+8), // Supplier: counts L3 misses to remote DRAM
 		OFFCORE_RESPONSE_0__MASK__IVB_OFFCORE_RESPONSE__L3_MISS = 0x1ULL << (22+8), // Supplier: counts L3 misses to local DRAM
-		OFFCORE_RESPONSE_0__MASK__IVB_OFFCORE_RESPONSE__L3_MISS = 0x3ULL << (22+8), // Supplier: counts L3 misses to local or remote DRAM
+		OFFCORE_RESPONSE_0__MASK__IVB_OFFCORE_RESPONSE__L3_MISS__REPEAT__1 = 0x3ULL << (22+8), // Supplier: counts L3 misses to local or remote DRAM
 		OFFCORE_RESPONSE_0__MASK__IVB_OFFCORE_RESPONSE__LLC_MISS_REMOTE_DRAM = 0xffULL << (23+8), // Supplier: counts L3 misses to remote DRAM
 		OFFCORE_RESPONSE_0__MASK__IVB_OFFCORE_RESPONSE__LLC_HITMESF = 0xfULL << (18+8), // Supplier: counts L3 hits in any state (M
 		OFFCORE_RESPONSE_0__MASK__IVB_OFFCORE_RESPONSE__SNP_NONE = 1ULL << (31+8), // Snoop: counts number of times no snoop-related information is available
@@ -457,7 +457,7 @@ namespace optkit::intel::ivb{
 		OFFCORE_RESPONSE_1__MASK__IVB_OFFCORE_RESPONSE__LLC_MISS_LOCAL = 1ULL << (22+8), // Supplier: counts L3 misses to local DRAM
 		OFFCORE_RESPONSE_1__MASK__IVB_OFFCORE_RESPONSE__LLC_MISS_REMOTE = 0xffULL << (23+8), // Supplier: counts L3 misses to remote DRAM
 		OFFCORE_RESPONSE_1__MASK__IVB_OFFCORE_RESPONSE__L3_MISS = 0x1ULL << (22+8), // Supplier: counts L3 misses to local DRAM
-		OFFCORE_RESPONSE_1__MASK__IVB_OFFCORE_RESPONSE__L3_MISS = 0x3ULL << (22+8), // Supplier: counts L3 misses to local or remote DRAM
+		OFFCORE_RESPONSE_1__MASK__IVB_OFFCORE_RESPONSE__L3_MISS__REPEAT__1 = 0x3ULL << (22+8), // Supplier: counts L3 misses to local or remote DRAM
 		OFFCORE_RESPONSE_1__MASK__IVB_OFFCORE_RESPONSE__LLC_MISS_REMOTE_DRAM = 0xffULL << (23+8), // Supplier: counts L3 misses to remote DRAM
 		OFFCORE_RESPONSE_1__MASK__IVB_OFFCORE_RESPONSE__LLC_HITMESF = 0xfULL << (18+8), // Supplier: counts L3 hits in any state (M
 		OFFCORE_RESPONSE_1__MASK__IVB_OFFCORE_RESPONSE__SNP_NONE = 1ULL << (31+8), // Snoop: counts number of times no snoop-related information is available

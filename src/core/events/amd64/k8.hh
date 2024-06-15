@@ -102,7 +102,7 @@ namespace optkit::amd64::k8{
 		L2_FILL_WRITEBACK__MASK__AMD64_K8_L2_FILL_WRITEBACK__L2_FILLS = 0x1, // L2 fills (victims from L1 caches
 		L2_FILL_WRITEBACK__MASK__AMD64_K8_L2_FILL_WRITEBACK__ALL = 0x1, // All sub-events selected
 		L2_FILL_WRITEBACK__MASK__AMD64_K8_L2_FILL_WRITEBACK__L2_WRITEBACKS = 0x2, // L2 Writebacks to system.
-		L2_FILL_WRITEBACK__MASK__AMD64_K8_L2_FILL_WRITEBACK__ALL = 0x3, // All sub-events selected
+		L2_FILL_WRITEBACK__MASK__AMD64_K8_L2_FILL_WRITEBACK__ALL__REPEAT__1 = 0x3, // All sub-events selected
 		INSTRUCTION_CACHE_FETCHES = 0x80, // Instruction Cache Fetches
 		INSTRUCTION_CACHE_MISSES = 0x81, // Instruction Cache Misses
 		INSTRUCTION_CACHE_REFILLS_FROM_L2 = 0x82, // Instruction Cache Refills from L2
@@ -192,7 +192,7 @@ namespace optkit::amd64::k8{
 		THERMAL_STATUS_AND_ECC_ERRORS__MASK__AMD64_K8_THERMAL_STATUS_AND_ECC_ERRORS__CLKS_TEMP_THRESHOLD_EXCEEDED = 0x8, // Number of clocks when high temperature threshold was exceeded
 		THERMAL_STATUS_AND_ECC_ERRORS__MASK__AMD64_K8_THERMAL_STATUS_AND_ECC_ERRORS__DRAM_ECC_ERRORS = 0x80, // Number of correctable and Uncorrectable DRAM ECC errors
 		THERMAL_STATUS_AND_ECC_ERRORS__MASK__AMD64_K8_THERMAL_STATUS_AND_ECC_ERRORS__ALL = 0x80, // All sub-events selected
-		THERMAL_STATUS_AND_ECC_ERRORS__MASK__AMD64_K8_THERMAL_STATUS_AND_ECC_ERRORS__ALL = 0x8f, // All sub-events selected
+		THERMAL_STATUS_AND_ECC_ERRORS__MASK__AMD64_K8_THERMAL_STATUS_AND_ECC_ERRORS__ALL__REPEAT__1 = 0x8f, // All sub-events selected
 		CPU_IO_REQUESTS_TO_MEMORY_IO = 0xe9, // CPU/IO Requests to Memory/IO
 		CPU_IO_REQUESTS_TO_MEMORY_IO__MASK__AMD64_K8_CPU_IO_REQUESTS_TO_MEMORY_IO__I_O_TO_I_O = 0x1, // I/O to I/O
 		CPU_IO_REQUESTS_TO_MEMORY_IO__MASK__AMD64_K8_CPU_IO_REQUESTS_TO_MEMORY_IO__I_O_TO_MEM = 0x2, // I/O to Mem
@@ -228,7 +228,7 @@ namespace optkit::amd64::k8{
 		PROBE__MASK__AMD64_K8_PROBE__UPSTREAM_NON_DISPLAY_REFRESH_READS = 0x20, // Upstream non-display refresh reads
 		PROBE__MASK__AMD64_K8_PROBE__ALL = 0x3f, // All sub-events selected
 		PROBE__MASK__AMD64_K8_PROBE__UPSTREAM_WRITES = 0x40, // Upstream writes
-		PROBE__MASK__AMD64_K8_PROBE__ALL = 0x7f, // All sub-events selected
+		PROBE__MASK__AMD64_K8_PROBE__ALL__REPEAT__1 = 0x7f, // All sub-events selected
 		GART = 0xee, // GART Events
 		GART__MASK__AMD64_K8_GART__APERTURE_HIT_FROM_CPU = 0x1, // GART aperture hit on access from CPU
 		GART__MASK__AMD64_K8_GART__APERTURE_HIT_FROM_IO = 0x2, // GART aperture hit on access from I/O

@@ -97,6 +97,10 @@ def process_event_dic(event_dict,event_pe):
         if event_counter.get(event_name,0) == 0: ## first encounter to that event_name
             event_counter[event_name] = 1
             result += PMU_EVENT.format(event_name,event_code,event_desc) + "\n\t\t"
+        else:
+            encounter = event_counter[event_name]
+            event_counter[event_name] += 1
+            result += PMU_EVENT.format(event_name+"__REPEAT__"+str(encounter),event_code,event_desc) + "\n\t\t"
             
         if len(event_umasks) > 0:
             for mask in event_dict[event_umasks]:
@@ -104,7 +108,16 @@ def process_event_dic(event_dict,event_pe):
                 mask_name = next((mask_val for mask_val in mask_members if ".uname" in  mask_val.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
                 mask_code = next((mask_val for mask_val in mask_members if ".ucode" in mask_val.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
                 mask_desc = next((mask_val for mask_val in mask_members if ".udesc" in mask_val.replace(" ",""))," ").split("=")[-1].replace("\"","").strip()
-                result += PMU_EVENT.format(event_name + "__MASK__" + event_umasks.upper() + "__" + mask_name ,mask_code,mask_desc) + "\n\t\t"
+                temp_mask = event_name + "__MASK__" + event_umasks.upper() + "__" + mask_name 
+
+                encounter = event_counter.get(temp_mask,0)
+                if encounter == 0:
+                    event_counter[temp_mask] = 1
+                    result += PMU_EVENT.format(temp_mask,mask_code,mask_desc) + "\n\t\t"
+                else:
+                    event_counter[temp_mask] += 1
+                    result += PMU_EVENT.format(temp_mask+"__REPEAT__"+str(encounter),mask_code,mask_desc) + "\n\t\t"
+
  
     return result + EVENT_CLASS_END + NAMESPACE_END + NAMESPACE_ALIASING.format(pmu_name, vendor_name, pmu_name)
 

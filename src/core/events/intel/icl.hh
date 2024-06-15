@@ -455,6 +455,7 @@ namespace optkit::intel::icl{
 		OFFCORE_RESPONSE_0__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HIT_WITH_FWD = 0x8003c000100ull, // Counts demand data reads that resulted in a snoop hit in another core's caches which forwarded the unmodified data to the requesting core.
 		OFFCORE_RESPONSE_0__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HITM = 0x10003c000100ull, // Counts demand data reads that resulted in a snoop hit a modified line in another core's caches which forwarded the data.
 		OFFCORE_RESPONSE_0__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HIT_NO_FWD = 0x4003c000100ull, // Counts demand data reads that resulted in a snoop that hit in another core
+		OFFCORE_RESPONSE_0__REPEAT__1 = 0x01b7, // Offcore response event
 		OFFCORE_RESPONSE_0__MASK__INTEL_ICL_OCR__OTHER_LOCAL_DRAM = 0x18400800000ull, // Counts miscellaneous requests
 		OFFCORE_RESPONSE_0__MASK__INTEL_ICL_OCR__STREAMING_WR_LOCAL_DRAM = 0x18400080000ull, // Counts streaming stores that DRAM supplied the request.
 		OFFCORE_RESPONSE_0__MASK__INTEL_ICL_OCR__HWPF_L1D_AND_SWPF_LOCAL_DRAM = 0x18400040000ull, // Counts L1 data cache prefetch requests and software prefetches (except PREFETCHW) that DRAM supplied the request.
@@ -617,6 +618,7 @@ namespace optkit::intel::icl{
 		OFFCORE_RESPONSE_1__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HIT_WITH_FWD = 0x8003c000100ull, // Counts demand data reads that resulted in a snoop hit in another core's caches which forwarded the unmodified data to the requesting core.
 		OFFCORE_RESPONSE_1__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HITM = 0x10003c000100ull, // Counts demand data reads that resulted in a snoop hit a modified line in another core's caches which forwarded the data.
 		OFFCORE_RESPONSE_1__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HIT_NO_FWD = 0x4003c000100ull, // Counts demand data reads that resulted in a snoop that hit in another core
+		OFFCORE_RESPONSE_1__REPEAT__1 = 0x01bb, // Offcore response event
 		OFFCORE_RESPONSE_1__MASK__INTEL_ICL_OCR__OTHER_LOCAL_DRAM = 0x18400800000ull, // Counts miscellaneous requests
 		OFFCORE_RESPONSE_1__MASK__INTEL_ICL_OCR__STREAMING_WR_LOCAL_DRAM = 0x18400080000ull, // Counts streaming stores that DRAM supplied the request.
 		OFFCORE_RESPONSE_1__MASK__INTEL_ICL_OCR__HWPF_L1D_AND_SWPF_LOCAL_DRAM = 0x18400040000ull, // Counts L1 data cache prefetch requests and software prefetches (except PREFETCHW) that DRAM supplied the request.
@@ -779,6 +781,7 @@ namespace optkit::intel::icl{
 		OCR__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HIT_WITH_FWD = 0x8003c000100ull, // Counts demand data reads that resulted in a snoop hit in another core's caches which forwarded the unmodified data to the requesting core.
 		OCR__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HITM = 0x10003c000100ull, // Counts demand data reads that resulted in a snoop hit a modified line in another core's caches which forwarded the data.
 		OCR__MASK__INTEL_ICX_OCR__DEMAND_DATA_RD_L3_HIT_SNOOP_HIT_NO_FWD = 0x4003c000100ull, // Counts demand data reads that resulted in a snoop that hit in another core
+		OCR__REPEAT__1 = 0x01b7, // Offcore response event
 		OCR__MASK__INTEL_ICL_OCR__OTHER_LOCAL_DRAM = 0x18400800000ull, // Counts miscellaneous requests
 		OCR__MASK__INTEL_ICL_OCR__STREAMING_WR_LOCAL_DRAM = 0x18400080000ull, // Counts streaming stores that DRAM supplied the request.
 		OCR__MASK__INTEL_ICL_OCR__HWPF_L1D_AND_SWPF_LOCAL_DRAM = 0x18400040000ull, // Counts L1 data cache prefetch requests and software prefetches (except PREFETCHW) that DRAM supplied the request.
