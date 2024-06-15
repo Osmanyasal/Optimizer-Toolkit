@@ -7,9 +7,8 @@
 
 using optkit::core::freq::CPUFrequency;
 using optkit::core::freq::QueryFreq;
- 
 
-#if defined(CONF__PMU__MACROS__ENABLED) && CONF__PMU__MACROS__ENABLED == 1
+#if defined(CONF__FREQ__MACROS__ENABLED) && CONF__FREQ__MACROS__ENABLED == 1
 
 #define OPTKIT_SET_CPU_CORE_FREQ(frequency, socket) CPUFrequency::set_core_frequency(frequency, socket)
 #define OPTKIT_SET_CPU_UNCORE_FREQ(frequency, socket) CPUFrequency::set_uncore_frequency(frequency, socket)
