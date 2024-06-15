@@ -27,13 +27,11 @@ namespace optkit::core::freq
     {
         static int i = 0;
         OPTKIT_CORE_INFO("{} th call_back() called", ++i);
+        current_governor->snapshot_pmus();
 
-        // TODO: it's possible that current_governor is null at the very beginning... 
-        // for (uint64_t i : current_governor->read_pmus())
-        // {
-        //     OPTKIT_CORE_INFO("{}", i);
-        // }
-
-        // OPTKIT_CORE_INFO("---------------------");
+        current_governor->computational_intensity();
+        current_governor->io_intensity();
+        current_governor->dram_intensity();
+        current_governor->cache_intensity();
     }
 }

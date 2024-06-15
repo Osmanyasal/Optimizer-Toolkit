@@ -15,6 +15,10 @@
 
 namespace optkit::core::freq
 {
+    /**
+     * @brief Base governor is called each 5ms by defaut.
+     * 
+     */
     class BaseGovernor
     {
     public:
@@ -25,10 +29,15 @@ namespace optkit::core::freq
     public:
         BaseGovernor(long sample_period = QueryFreq::get_cpuinfo_max_freq() * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS); // callback at each 10ms
         virtual ~BaseGovernor();
-        virtual std::vector<uint64_t> read_pmus() = 0;
-        
+
+        virtual void snapshot_pmus() = 0;
+        virtual double computational_intensity() = 0;
+        virtual double cache_intensity() = 0;
+        virtual double dram_intensity() = 0;
+        virtual double io_intensity() = 0;
 
     protected:
+        std::vector<uint64_t> pmu_record;
         optkit::core::ProfilerConfig config;
         const long sample_period;
         struct sigaction sa;

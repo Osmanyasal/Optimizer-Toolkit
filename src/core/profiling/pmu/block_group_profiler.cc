@@ -118,6 +118,7 @@ namespace optkit::core::pmu
         }
         if (OPT_LIKELY(this->profiler_config.is_reset_after_read))
             ioctl(group_leader, PERF_EVENT_IOC_RESET, PERF_IOC_FLAG_GROUP);
+            
         PMUEventManager::enable_all_events();
 
         return result;
