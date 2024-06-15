@@ -49,7 +49,7 @@ std::string get_date(const std::string &format = "%d_%m_%Y");
 std::string get_time(const std::string &format = "%H_%M_%S");
 std::vector<std::string> get_all_files(const std::string &directory_name);
 
-inline __attribute__((always_inline)) std::string read_file(const std::string &location, bool is_verbose = true)
+OPT_FORCE_INLINE std::string read_file(const std::string &location, bool is_verbose = true)
 {
     std::stringstream buffer;
     std::ifstream file(location);
@@ -63,7 +63,7 @@ inline __attribute__((always_inline)) std::string read_file(const std::string &l
 
     return buffer.str();
 }
-inline __attribute__((always_inline)) void write_file(const std::string &location, const std::string &text, bool is_verbose = false)
+OPT_FORCE_INLINE void write_file(const std::string &location, const std::string &text, bool is_verbose = false)
 {
     std::ofstream file(location, std::ios_base::out | std::ios_base::app); // create & append mode
     if (OPT_UNLIKELY(is_verbose && !file.is_open()))
@@ -80,13 +80,13 @@ inline __attribute__((always_inline)) void write_file(const std::string &locatio
         OPTKIT_CORE_INFO("Data successfully written to file: {}", location);
     }
 }
-inline __attribute__((always_inline)) bool is_path_exists(const std::string &location)
+OPT_FORCE_INLINE bool is_path_exists(const std::string &location)
 {
     struct stat buffer;
     return (stat(location.c_str(), &buffer) == 0);
 }
 
-inline __attribute__((always_inline)) void create_directory(const std::string &folderName)
+OPT_FORCE_INLINE void create_directory(const std::string &folderName)
 {
     // For Linux/Unix
     if (mkdir(folderName.c_str(), 0777) != 0)

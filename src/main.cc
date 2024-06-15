@@ -1,14 +1,14 @@
 #include <omp.h>
 #include <optkit.hh>
 #include <test.hh>
-#include <icl_governor.hh>
+#include <core_events.hh>
 
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit{false};
 
     {
-        optkit::core::governors::intel::icl::Governor gg;
+        freq_governors::intel::skl::Governor gg;
 
         BLOCK_TIMER("Operation Block");
         double aa = 0;
@@ -19,7 +19,7 @@ int32_t main(int32_t argc, char **argv)
     }
 
     {
-        optkit::core::governors::intel::icl::Governor gg;
+        freq_governors::intel::skl::Governor gg;
 
         BLOCK_TIMER("IO Block");
 

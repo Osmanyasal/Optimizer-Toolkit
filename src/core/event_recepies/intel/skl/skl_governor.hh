@@ -1,13 +1,13 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__EVENT_RECEPIES__INTEL__ICL__ICL_GOVERNOR__HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__EVENT_RECEPIES__INTEL__ICL__ICL_GOVERNOR__HH
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__EVENT_RECEPIES__INTEL__SKL__SKL_GOVERNOR__HH
+#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__EVENT_RECEPIES__INTEL__SKL__SKL_GOVERNOR__HH
 
 #include <vector>
 #include <string>
-#include <icl.hh>
+#include <skl.hh>
 #include <base_governor.hh>
-#include <icl_recepies.hh>
+#include <skl_recepies.hh>
 
-namespace optkit::core::governors::intel::icl
+namespace optkit::core::governors::intel::skl
 {
     class Governor final : public core::freq::BaseGovernor
     {
