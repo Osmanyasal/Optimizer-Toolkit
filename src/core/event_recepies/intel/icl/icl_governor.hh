@@ -19,7 +19,7 @@ namespace optkit::core::governors::intel::icl
         OPT_FORCE_INLINE virtual double computational_intensity() override {
             double flops_executed = pmu_record[1];
             double total_l3_misses = pmu_record[3];
-            double result = flops_executed / total_l3_misses;
+            double result = flops_executed / (total_l3_misses + 1);
             OPTKIT_CORE_INFO("compute intensity = # flops {} -- # l3 miss {} -- result {}", flops_executed, total_l3_misses,result);
             return result;
         }
