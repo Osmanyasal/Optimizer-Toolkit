@@ -49,6 +49,7 @@ namespace optkit::core::governors::intel::icl
         }
 
     private:
+        // cycle watcher gets extended to other cores. we need to fix this to a single core only!!!
         optkit::core::pmu::BlockProfiler core_cycle_watcher;
         optkit::core::pmu::BlockGroupProfiler interested_events;
     };
