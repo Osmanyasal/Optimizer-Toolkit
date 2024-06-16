@@ -20,7 +20,7 @@ namespace optkit::core::governors::intel::skl
             double flops_executed = pmu_record[1];
             double total_l3_misses = pmu_record[3];
             double result = flops_executed / total_l3_misses;
-            OPTKIT_CORE_INFO("compute_Intensity = # flops {} -- # l3 miss {} -- result {}", flops_executed, total_l3_misses,result);
+            OPTKIT_CORE_INFO("compute intensity = # flops {} -- # l3 miss {} -- result {}", flops_executed, total_l3_misses,result);
             return result;
         }
 
@@ -29,17 +29,17 @@ namespace optkit::core::governors::intel::skl
             double total_l1_l2_hits_misses_l3_hits = pmu_record[2];
             double total_instructions = pmu_record[0];
             double result = total_l1_l2_hits_misses_l3_hits / total_instructions;
-            OPTKIT_CORE_INFO("cache_I = # instructions {} -- # l1_l2_hits_misses_l3_hits {} -- result {}", total_instructions, total_l1_l2_hits_misses_l3_hits,result);
+            OPTKIT_CORE_INFO("cache intensity = # instructions {} -- # l1_l2_hits_misses_l3_hits {} -- result {}", total_instructions, total_l1_l2_hits_misses_l3_hits,result);
             return result;
         }
 
         OPT_FORCE_INLINE virtual double dram_intensity() override
         {
             double total_instructions = pmu_record[0];
-            double total_l3_misses = pmu_record[2];
+            double total_l3_misses = pmu_record[3];
 
             double result = total_l3_misses / total_instructions;
-            OPTKIT_CORE_INFO("dram_I = # instructions {} -- # l3 miss {} -- result {}", total_instructions, total_l3_misses,result);
+            OPTKIT_CORE_INFO("dram intensity = # instructions {} -- # l3 miss {} -- result {}", total_instructions, total_l3_misses,result);
             return result;
         }
 
