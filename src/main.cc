@@ -12,6 +12,8 @@ int32_t main(int32_t argc, char **argv)
 
         BLOCK_TIMER("Operation Block");
         double aa = 0;
+
+        #pragma omp parallel for
         for (int i = 0; i < 20000000; i++)
             aa = aa + i * 0.052; // 2 * 50M -> 100M
 
@@ -23,7 +25,8 @@ int32_t main(int32_t argc, char **argv)
 
         BLOCK_TIMER("IO Block");
 
-        for (int i = 0; i < 100000; i++)
+        #pragma omp parallel for
+        for (int i = 0; i < 1000; i++)
         {
             QueryFreq::get_bios_limit();
             QueryFreq::get_cpuinfo_max_freq();

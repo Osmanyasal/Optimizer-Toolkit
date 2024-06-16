@@ -32,7 +32,7 @@ namespace optkit::core::freq
         static int32_t DRAM_TRESHOLD;
 
     public:
-        BaseGovernor(long sample_period = QueryFreq::get_cpuinfo_min_freq() * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS); // callback at each 10ms
+        BaseGovernor(long sample_period = QueryFreq::get_cpuinfo_max_freq() * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS); // callback at each 10ms
         virtual ~BaseGovernor();
 
         virtual void snapshot_pmus() = 0;
