@@ -5,7 +5,7 @@
 
 int32_t main(int32_t argc, char **argv)
 {
-    OptimizerKit optkit{false};
+    OptimizerKit optkit{false}; 
 
     {
         freq_governors::intel::skl::Governor gg;

@@ -48,6 +48,7 @@ std::string generateGUID();
 std::string get_date(const std::string &format = "%d_%m_%Y");
 std::string get_time(const std::string &format = "%H_%M_%S");
 std::vector<std::string> get_all_files(const std::string &directory_name);
+std::vector<std::string> str_split(std::string s, std::string delimiter);
 
 OPT_FORCE_INLINE std::string read_file(const std::string &location, bool is_verbose = true)
 {
