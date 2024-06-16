@@ -12,7 +12,7 @@
 #include <query_frequency.hh>
 
 #define OPTKIT_BASE_GOVERNOR_MMAP_PAGES 8
-#define OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS 10 // 1 call per 10 ms -- on-demand checks each 10ms as well
+#define OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS 5 // 1 call per 10 ms -- on-demand checks each 10ms as well
 
 namespace optkit::core::freq
 {

@@ -15,7 +15,7 @@ int32_t main(int32_t argc, char **argv)
         for (int i = 0; i < 20000000; i++)
             aa = aa + i * 0.052; // 2 * 50M -> 100M
 
-        std::cout << aa << std::endl;
+        std::cout << aa << std::endl; 
     }
 
     {
