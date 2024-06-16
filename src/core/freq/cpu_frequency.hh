@@ -16,6 +16,7 @@ namespace optkit::core::freq
         static void set_core_frequency(long frequency, short socket);
         static void set_core_frequency(long frequency, short cpu, short socket);
         static void set_core_frequency(long frequency, short cpu_start, short cpu_end, short socket);
+        static void set_core_frequency(long frequency, std::vector<short> cpu_list);
         static long get_core_frequency(short cpu);
         static std::vector<long> get_core_frequencies(short socket);
         static std::vector<long> get_core_frequency(short cpu_start, short cpu_end, short socket);

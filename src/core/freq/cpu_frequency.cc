@@ -87,6 +87,23 @@ namespace optkit::core::freq
         }
     }
 
+    void CPUFrequency::set_core_frequency(long frequency, std::vector<short> cpu_list)
+    {
+        EXEC_IF_ROOT;
+        try
+        {
+            for (short & __cpu: cpu_list)
+            {
+                ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_max_freq", std::to_string(frequency));
+                ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_min_freq", std::to_string(frequency));
+            }
+        }
+        catch (const std::runtime_error &err)
+        {
+            OPTKIT_CORE_ERROR(err.what());
+        }
+    }
+
     long CPUFrequency::get_core_frequency(short cpu)
     {
         try
@@ -116,7 +133,7 @@ namespace optkit::core::freq
             TRAVERSE_CORES(socket)
             {
                 core_frequencies.push_back(std::atol(::read_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_cur_freq").c_str()));
-            } 
+            }
         }
         catch (const std::runtime_error &err)
         {
