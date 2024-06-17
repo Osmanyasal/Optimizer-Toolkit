@@ -16,31 +16,21 @@ namespace optkit::core::governors::intel::skl
         virtual ~Governor() {}
         virtual void snapshot_pmus() override { this->pmu_record = interested_events.read_val(); }
 
-        OPT_FORCE_INLINE virtual double computational_intensity() override {
+        OPT_FORCE_INLINE virtual double compute_intensity() override {
             double flops_executed = pmu_record[1];
-            double total_l3_misses = pmu_record[3];
-            double result = flops_executed / (total_l3_misses + 1);
-            OPTKIT_CORE_INFO("compute intensity = # flops {} -- # l3 miss {} -- result {}", flops_executed, total_l3_misses,result);
-            return result;
+            double l3_misses = pmu_record[3];
+            double compute_intensity = flops_executed / (l3_misses + 1);
+            OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
+            return compute_intensity;
         }
 
-        OPT_FORCE_INLINE virtual double cache_intensity() override
-        {
-            double total_l1_l2_hits_misses_l3_hits = pmu_record[2];
-            double total_instructions = pmu_record[0];
-            double result = total_l1_l2_hits_misses_l3_hits / total_instructions;
-            OPTKIT_CORE_INFO("cache intensity = # instructions {} -- # l1_l2_hits_misses_l3_hits {} -- result {}", total_instructions, total_l1_l2_hits_misses_l3_hits,result);
-            return result;
-        }
-
-        OPT_FORCE_INLINE virtual double dram_intensity() override
+        OPT_FORCE_INLINE virtual double memory_intensity() override
         {
             double total_instructions = pmu_record[0];
-            double total_l3_misses = pmu_record[3];
-
-            double result = total_l3_misses / total_instructions;
-            OPTKIT_CORE_INFO("dram intensity = # instructions {} -- # l3 miss {} -- result {}", total_instructions, total_l3_misses,result);
-            return result;
+            double cache_hits_misses = pmu_record[2];
+            double memory_intensity = cache_hits_misses / total_instructions;
+            OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
+            return memory_intensity;
         }
 
         OPT_FORCE_INLINE virtual double io_intensity() override

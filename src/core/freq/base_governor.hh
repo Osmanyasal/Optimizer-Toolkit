@@ -28,17 +28,15 @@ namespace optkit::core::freq
         static BaseGovernor *current_governor;
         static int32_t COMPUTE_TRESHOLD;
         static int32_t IO_TRESHOLD;
-        static int32_t CACHE_TRESHOLD;
-        static int32_t DRAM_TRESHOLD;
+        static int32_t MEMORY_TRESHOLD;
 
     public:
         BaseGovernor(long sample_period = ((QueryFreq::get_cpuinfo_max_freq() + QueryFreq::get_cpuinfo_min_freq()) / 2) * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS);
         virtual ~BaseGovernor();
 
         virtual void snapshot_pmus() = 0;
-        virtual double computational_intensity() = 0;
-        virtual double cache_intensity() = 0;
-        virtual double dram_intensity() = 0;
+        virtual double compute_intensity() = 0;
+        virtual double memory_intensity() = 0;
         virtual double io_intensity() = 0;
 
     protected:
