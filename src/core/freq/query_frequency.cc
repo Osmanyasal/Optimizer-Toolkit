@@ -18,13 +18,13 @@ namespace optkit::core::freq
 
     long QueryFreq::get_bios_limit(int core)
     {
-        std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/bios_limit", false);
+        static std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/bios_limit", false);
         return std::stol(file_content);
     }
 
     std::string QueryFreq::get_scaling_driver(int core)
     {
-        std::string scaling_driver = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/scaling_driver", false);
+        static std::string scaling_driver = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/scaling_driver", false);
         return scaling_driver;
     }
 
@@ -36,7 +36,7 @@ namespace optkit::core::freq
 
     std::vector<std::string> QueryFreq::get_available_governors(int core)
     {
-        std::string available_governors = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/scaling_available_governors", false);
+        static std::string available_governors = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/scaling_available_governors", false);
         return str_split(available_governors, " ");
     }
 
@@ -54,13 +54,13 @@ namespace optkit::core::freq
 
     long QueryFreq::get_cpuinfo_max_freq(int core)
     {
-        std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/cpuinfo_max_freq", false);
+        static std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/cpuinfo_max_freq", false);
         return std::stol(file_content);
     }
 
     long QueryFreq::get_cpuinfo_min_freq(int core)
     {
-        std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/cpuinfo_min_freq", false);
+        static std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/cpuinfo_min_freq", false);
         return std::stol(file_content);
     }
 }
