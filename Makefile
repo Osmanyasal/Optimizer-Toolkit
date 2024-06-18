@@ -66,6 +66,8 @@ LIB_X86_ADAPT_PATH :=./lib/x86_adapt
 
 LIB_PFM_PATH := ./lib/libpfm4
 LIB_PFM := -I./lib/libpfm4/include/perfmon/ -I./lib/libpfm4/lib/
+
+LIB_MSR_SAFE_PATH := ./lib/msr-safe
  
 # Determine architecture
 ARCH := $(shell uname -m)
@@ -125,12 +127,16 @@ DYNAMIC_LIB := liboptkit.so
 SRC_FILES := $(shell find $(SRC) -type f -name "*.cc") $(shell find $(TEST_DIR) -type f -name "*.cc")
 OBJ_FILES := $(patsubst ./%.cc,$(OBJ)/%.o,$(SRC_FILES))
 
-all: ${LIB_PFM_PATH}/all_set $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB) ## ${LIB_X86_ADAPT_PATH}/all_set 
+all: ${LIB_PFM_PATH}/all_set ${LIB_MSR_SAFE_PATH}/all_set $(LIB_SPD_PATH)/build/libspdlog.a ${CORE_EVENTS_DIR}/all_set $(BIN)/$(EXECUTABLE) $(BIN)/$(STATIC_LIB) ## ${LIB_X86_ADAPT_PATH}/all_set 
 	 
 
 
 ################ BUILD COMMANDS ################
 
+${LIB_MSR_SAFE_PATH}/all_set:
+	cd $(LIB_MSR_SAFE_PATH) && make && sudo insmod ./msr-safe.ko && sudo chmod g+rw /dev/cpu/*/msr_safe /dev/cpu/msr_* &&\
+	sudo chgrp "$(whoami)" /dev/cpu/*/msr_safe /dev/cpu/msr_batch /dev/cpu/msr_safe_version &&\
+	sudo chgrp "$(whoami)" /dev/cpu/msr_allowlist && touch all_set
 
 $(LIB_SPD_PATH)/build/libspdlog.a:
 	cd $(LIB_SPD_PATH) && ./install.sh

@@ -7,3 +7,6 @@
 [submodule "lib/libpfm4"]
 	path = lib/libpfm4
 	url = https://github.com/Osmanyasal/libpfm4.git
+[submodule "lib/msr-safe"]
+	path = lib/msr-safe
+	url = https://github.com/LLNL/msr-safe.git
