@@ -1,5 +1,11 @@
 #include <cpu_frequency.hh>
 
+std::ostream &operator<<(std::ostream &os, const std::pair<long, long> &pair)
+{
+    os << "Pair(" << pair.first << ", " << pair.second << ")\n"; 
+    return os;
+}
+
 namespace optkit::core::freq
 {
     // Define static member variables
@@ -92,7 +98,7 @@ namespace optkit::core::freq
         EXEC_IF_ROOT;
         try
         {
-            for (short & __cpu: cpu_list)
+            for (short &__cpu : cpu_list)
             {
                 ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_max_freq", std::to_string(frequency));
                 ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_min_freq", std::to_string(frequency));
@@ -171,8 +177,36 @@ namespace optkit::core::freq
 
     long CPUFrequency::get_uncore_frequency()
     {
-        // TODO: implement this
+
+        uint64_t MSR_UNCORE_RATIO_LIMIT_bits;
+        core::freq::read_msr(0, MSR_UNCORE_RATIO_LIMIT, &MSR_UNCORE_RATIO_LIMIT_bits);
+
+        long max_uncore_freq = (MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_max_mask) * 100000000;
+        long min_uncore_freq = ((MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_min_mask) >> MSR_UNCORE_RATIO_LIMIT_min_shift) * 100000000;
+
+        OPTKIT_CORE_INFO("uncore freq min {}, max {}", min_uncore_freq, max_uncore_freq);
         return 0;
+    }
+
+    std::pair<long, long> CPUFrequency::get_uncore_frequencies(short socket)
+    {
+        static std::pair<long, long> result{0, 0};
+
+        if (OPT_LIKELY(result.first != 0))
+            return result;
+
+        uint64_t MSR_UNCORE_RATIO_LIMIT_bits;
+        core::freq::read_msr(0, MSR_UNCORE_RATIO_LIMIT, &MSR_UNCORE_RATIO_LIMIT_bits);
+
+        // min uncore freq
+        result.first = ((MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_min_mask) >> MSR_UNCORE_RATIO_LIMIT_min_shift) * 100000000;
+
+        // max uncore freq
+        result.second = (MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_max_mask) * 100000000;
+
+        OPTKIT_CORE_INFO("uncore freq min {}, max {}", result.first, result.second);
+
+        return result;
     }
 
     void CPUFrequency::set_uncore_frequency(long frequency)

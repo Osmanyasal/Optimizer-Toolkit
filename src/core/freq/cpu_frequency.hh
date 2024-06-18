@@ -1,11 +1,17 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__CPU__FREQ__HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__CPU__FREQ__HH
+#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__CPU__FREQ__HH
+#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__CPU__FREQ__HH
 
 #include <vector>
 #include <map>
 #include <utils.hh>
 #include <query.hh>
 #include <query_frequency.hh>
+#include <msr_util.hh>
+#include <msrs.hh>
+#include <utility>
+
+template<typename T>
+std::ostream &operator<<(std::ostream &os, const std::pair<T,T> &pair);
 
 namespace optkit::core::freq
 {
@@ -20,6 +26,7 @@ namespace optkit::core::freq
         static long get_core_frequency(short cpu);
         static std::vector<long> get_core_frequencies(short socket);
         static std::vector<long> get_core_frequency(short cpu_start, short cpu_end, short socket);
+        static std::pair<long, long> get_uncore_frequencies(short socket);
 
         static long get_uncore_frequency();
         static void set_uncore_frequency(long frequency);
@@ -36,5 +43,6 @@ namespace optkit::core::freq
     };
 
 }
+ 
 
 #endif

@@ -3,9 +3,15 @@
 #include <test.hh>
 #include <core_events.hh>
 
-int32_t main(int32_t argc, char **argv)
+  
+int32_t main(int32_t argc, char **argv) 
 {
-    OptimizerKit optkit{false};
+    OptimizerKit optkit{false}; 
+ 
+    std::cout << CPUFrequency::get_uncore_frequencies(0) << "\n";
+
+    // OPTKIT_INFO("{}",CPUFrequency::get_uncore_frequencies(0)); 
+    return 0;
 
     BLOCK_TIMER("Whole Program");
     {
@@ -22,8 +28,7 @@ int32_t main(int32_t argc, char **argv)
     }
 
     {
-        freq_governors::intel::skl::Governor gg;
-
+        freq_governors::intel::skl::Governor gg; 
         BLOCK_TIMER("IO Block");
 
         #pragma omp parallel for

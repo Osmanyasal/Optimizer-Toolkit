@@ -178,7 +178,7 @@ $(OBJ)/%.o: ./%.cc
 
 ################ INSTALL COMMANDS ################
 
-install: all install_headers install_library install_sandbox
+install: all install_headers install_library install_tools
 	echo -e "[Desktop Entry]\n\
 Version=1.0\n\
 Type=Application\n\
@@ -198,8 +198,8 @@ install_headers:
 install_library:
 	sudo cp -R ./bin/liboptkit.a /usr/local/lib
 
-install_sandbox:
-	cd sandbox && ./install.sh
+install_tools:
+	cd tools && ./install.sh
 
 #----------------------------------------------------
 

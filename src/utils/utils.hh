@@ -32,11 +32,11 @@
 #define BLOCK_TIMER(block_name) \
     optkit::utils::BlockTimer block_timer { block_name }
 
-#define EXEC_IF_ROOT                                                                                                  \
-    if (!Query::is_root_priv_enabled)                                                                                 \
-    {                                                                                                                 \
+#define EXEC_IF_ROOT                                                                                                 \
+    if (!optkit::core::Query::is_root_priv_enabled)                                                                  \
+    {                                                                                                                \
         OPTKIT_CORE_WARN("Root priv is required for the execution of method '{}' in file '{}'", __func__, __FILE__); \
-        return;                                                                                                       \
+        return;                                                                                                      \
     }
 
 // GLOBAL VARIABLES
