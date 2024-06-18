@@ -1,6 +1,6 @@
 #include <cpu_frequency.hh>
 
-std::ostream &operator<<(std::ostream &os, const std::pair<long, long> &pair)
+std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair)
 {
     os << "Pair(" << pair.first << ", " << pair.second << ")\n"; 
     return os;
@@ -20,7 +20,7 @@ namespace optkit::core::freq
     else                                                 \
         for (int32_t __cpu : package_info.at(socket))
 
-    void CPUFrequency::set_core_frequency(long frequency, short socket)
+    void CPUFrequency::set_core_frequency(int64_t frequency, int16_t socket)
     {
         EXEC_IF_ROOT;
         try
@@ -39,7 +39,7 @@ namespace optkit::core::freq
         }
     }
 
-    void CPUFrequency::set_core_frequency(long frequency, short cpu, short socket)
+    void CPUFrequency::set_core_frequency(int64_t frequency, int16_t cpu, int16_t socket)
     {
         EXEC_IF_ROOT;
         if (cpu >= 0 && cpu < Query::num_cores)
@@ -66,7 +66,7 @@ namespace optkit::core::freq
         }
     }
 
-    void CPUFrequency::set_core_frequency(long frequency, short cpu_start, short cpu_end, short socket)
+    void CPUFrequency::set_core_frequency(int64_t frequency, int16_t cpu_start, int16_t cpu_end, int16_t socket)
     {
         EXEC_IF_ROOT;
         if (cpu_start >= 0 && cpu_end < Query::num_cores && cpu_start <= cpu_end)
@@ -93,12 +93,12 @@ namespace optkit::core::freq
         }
     }
 
-    void CPUFrequency::set_core_frequency(long frequency, std::vector<short> cpu_list)
+    void CPUFrequency::set_core_frequency(int64_t frequency, std::vector<int16_t> cpu_list)
     {
         EXEC_IF_ROOT;
         try
         {
-            for (short &__cpu : cpu_list)
+            for (int16_t &__cpu : cpu_list)
             {
                 ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_max_freq", std::to_string(frequency));
                 ::write_file("/sys/devices/system/cpu/cpu" + std::to_string(__cpu) + "/cpufreq/scaling_min_freq", std::to_string(frequency));
@@ -110,7 +110,7 @@ namespace optkit::core::freq
         }
     }
 
-    long CPUFrequency::get_core_frequency(short cpu)
+    int64_t CPUFrequency::get_core_frequency(int16_t cpu)
     {
         try
         {
@@ -131,9 +131,9 @@ namespace optkit::core::freq
         return -1;
     }
 
-    std::vector<long> CPUFrequency::get_core_frequencies(short socket)
+    std::vector<int64_t> CPUFrequency::get_core_frequencies(int16_t socket)
     {
-        std::vector<long> core_frequencies;
+        std::vector<int64_t> core_frequencies;
         try
         {
             TRAVERSE_CORES(socket)
@@ -148,7 +148,7 @@ namespace optkit::core::freq
         return core_frequencies;
     }
 
-    std::vector<long> CPUFrequency::get_core_frequency(short cpu_start, short cpu_end, short socket)
+    std::vector<int64_t> CPUFrequency::get_core_frequency(int16_t cpu_start, int16_t cpu_end, int16_t socket)
     {
         if (cpu_start < 0 || cpu_end < cpu_start || cpu_end >= Query::num_cores)
         {
@@ -156,7 +156,7 @@ namespace optkit::core::freq
             return {};
         }
 
-        std::vector<long> core_frequencies;
+        std::vector<int64_t> core_frequencies;
         try
         {
             TRAVERSE_CORES(socket)
@@ -175,27 +175,27 @@ namespace optkit::core::freq
         return core_frequencies;
     }
 
-    long CPUFrequency::get_uncore_frequency()
+    int64_t CPUFrequency::get_uncore_frequency()
     {
 
         uint64_t MSR_UNCORE_RATIO_LIMIT_bits;
         core::freq::read_msr(0, MSR_UNCORE_RATIO_LIMIT, &MSR_UNCORE_RATIO_LIMIT_bits);
 
-        long max_uncore_freq = (MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_max_mask) * 100000000;
-        long min_uncore_freq = ((MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_min_mask) >> MSR_UNCORE_RATIO_LIMIT_min_shift) * 100000000;
+        int64_t max_uncore_freq = (MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_max_mask) * 100000000;
+        int64_t min_uncore_freq = ((MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_min_mask) >> MSR_UNCORE_RATIO_LIMIT_min_shift) * 100000000;
 
         OPTKIT_CORE_INFO("uncore freq min {}, max {}", min_uncore_freq, max_uncore_freq);
         return 0;
     }
 
-    std::pair<long, long> CPUFrequency::get_uncore_frequencies(short socket)
+    std::pair<int64_t, int64_t> CPUFrequency::get_uncore_frequencies(int16_t socket)
     {
-        static std::pair<long, long> result{0, 0};
+        static std::pair<int64_t, int64_t> result{0, 0};
 
         if (OPT_LIKELY(result.first != 0))
             return result;
 
-        uint64_t MSR_UNCORE_RATIO_LIMIT_bits;
+        uint64_t MSR_UNCORE_RATIO_LIMIT_bits = 0;
         core::freq::read_msr(0, MSR_UNCORE_RATIO_LIMIT, &MSR_UNCORE_RATIO_LIMIT_bits);
 
         // min uncore freq
@@ -209,13 +209,13 @@ namespace optkit::core::freq
         return result;
     }
 
-    void CPUFrequency::set_uncore_frequency(long frequency)
+    void CPUFrequency::set_uncore_frequency(int64_t frequency)
     {
         EXEC_IF_ROOT;
         // TODO: implement this
     }
 
-    void CPUFrequency::reset_core_frequency(short socket)
+    void CPUFrequency::reset_core_frequency(int16_t socket)
     {
         EXEC_IF_ROOT;
         try
@@ -233,7 +233,7 @@ namespace optkit::core::freq
             OPTKIT_CORE_ERROR(err.what());
         }
     }
-    void CPUFrequency::reset_uncore_frequency(short socket)
+    void CPUFrequency::reset_uncore_frequency(int16_t socket)
     {
         EXEC_IF_ROOT;
         // TODO: implement this

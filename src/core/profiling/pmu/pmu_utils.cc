@@ -12,7 +12,7 @@ namespace optkit::core::pmu
             packageJson["package_number"] = -1; // TODO::Make this package specific -1 means all of them IG?
             packageJson["event_name"] = event_name;
 
-            int i = 0;
+            int32_t i = 0;
             for (const auto &values : pmu_pair.second)
             {
                 packageJson["metrics_set"].push_back({{"metric_name", raw_events.at(i++).second},

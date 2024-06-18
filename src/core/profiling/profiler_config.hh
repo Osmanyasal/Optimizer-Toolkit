@@ -47,14 +47,14 @@ namespace optkit::core
          *         This setting is invalid and will return an error.
          *
          */
-        ProfilerConfig(bool dump_results_to_file = true, bool is_reset_after_read = true, bool is_grouped = false, int pid = 0, int cpu = -1);
-        ProfilerConfig(perf_event_attr perf_event_config, bool dump_results_to_file = true, bool is_reset_after_read = true, int pid = 0, int cpu = -1);
+        ProfilerConfig(bool dump_results_to_file = true, bool is_reset_after_read = true, bool is_grouped = false, int32_t pid = 0, int32_t cpu = -1);
+        ProfilerConfig(perf_event_attr perf_event_config, bool dump_results_to_file = true, bool is_reset_after_read = true, int32_t pid = 0, int32_t cpu = -1);
 
         bool dump_results_to_file;
         bool is_reset_after_read;
         bool is_grouped;
-        int pid;
-        int cpu;
+        int32_t pid;
+        int32_t cpu;
         perf_event_attr perf_event_config;
     };
 
@@ -65,7 +65,7 @@ namespace optkit::core
          *        e.g RaplDomain::DRAM | RaplDomain::Core... by default try to monitor ALL of them
          * @param monitor_domain
          */
-        RaplConfig(rapl::RaplReadMethods read_method = rapl::RaplReadMethods::PERF, int monitor_domain = (int)rapl::RaplDomain::ALL, bool is_reset_after_read = true, bool dump_results_to_file = true);
+        RaplConfig(rapl::RaplReadMethods read_method = rapl::RaplReadMethods::PERF, int32_t monitor_domain = (int32_t)rapl::RaplDomain::ALL, bool is_reset_after_read = true, bool dump_results_to_file = true);
         rapl::RaplReadMethods read_method;
         int32_t monitor_domain;
         bool is_reset_after_read;

@@ -10,7 +10,6 @@ int32_t main(int32_t argc, char **argv)
  
     std::cout << CPUFrequency::get_uncore_frequencies(0) << "\n";
 
-    // OPTKIT_INFO("{}",CPUFrequency::get_uncore_frequencies(0)); 
     return 0;
 
     BLOCK_TIMER("Whole Program");
@@ -21,7 +20,7 @@ int32_t main(int32_t argc, char **argv)
         double aa = 0;
 
         #pragma omp parallel for
-        for (int i = 0; i < 20000000; i++) 
+        for (int32_t i = 0; i < 20000000; i++) 
             aa = aa + i * 0.052; // 2 * 50M -> 100M
 
         std::cout << aa << std::endl; 
@@ -32,7 +31,7 @@ int32_t main(int32_t argc, char **argv)
         BLOCK_TIMER("IO Block");
 
         #pragma omp parallel for
-        for (int i = 0; i < 1000; i++)
+        for (int32_t i = 0; i < 1000; i++)
         {
             QueryFreq::get_bios_limit();
             QueryFreq::get_cpuinfo_max_freq();

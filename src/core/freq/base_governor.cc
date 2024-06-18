@@ -9,7 +9,7 @@ namespace optkit::core::freq
     int32_t BaseGovernor::IO_TRESHOLD = 0;      // TODO: set values later
     int32_t BaseGovernor::MEMORY_TRESHOLD = 0;  // TODO: set values later
 
-    BaseGovernor::BaseGovernor(long sample_period) : config{false, true, false, 0, -1}, sample_period{sample_period}
+    BaseGovernor::BaseGovernor(int64_t sample_period) : config{false, true, false, 0, -1}, sample_period{sample_period}
     {
         this->config.perf_event_config.sample_period = this->sample_period;
         this->config.cpu = 0; /// set thread 0 for cpu_cycle callbacks!!
@@ -28,9 +28,9 @@ namespace optkit::core::freq
     {
     }
 
-    void BaseGovernor::call_back(int signum, siginfo_t *oh, void *blah)
+    void BaseGovernor::call_back(int32_t signum, siginfo_t *oh, void *blah)
     {
-        static int i = 0;
+        static int32_t i = 0;
         OPTKIT_CORE_INFO("{} th call_back() called", ++i);
         current_governor->snapshot_pmus();
         double compute_intensity = current_governor->compute_intensity();

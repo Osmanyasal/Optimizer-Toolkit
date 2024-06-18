@@ -3,8 +3,8 @@
 
 namespace optkit::core
 {
-    const short Query::num_cores = sysconf(_SC_NPROCESSORS_ONLN);
-    const short Query::num_sockets = Query::detect_packages().size();
+    const int16_t Query::num_cores = sysconf(_SC_NPROCESSORS_ONLN);
+    const int16_t Query::num_sockets = Query::detect_packages().size();
     const bool Query::is_root_priv_enabled = (geteuid() == 0);
 
     // Socket - cpu list

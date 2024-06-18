@@ -54,7 +54,7 @@ namespace optkit::core::rapl
         if (res.size() == 0)
         {
 
-            for (int32_t domain = static_cast<int>(rapl::RaplDomain::PP0); domain < static_cast<int>(rapl::RaplDomain::END); domain = domain << 1)
+            for (int32_t domain = static_cast<int32_t>(rapl::RaplDomain::PP0); domain < static_cast<int32_t>(rapl::RaplDomain::END); domain = domain << 1)
             {
                 std::string domain_name = rapl::rapl_domain_name_mapping.at(domain);
                 try

@@ -3,7 +3,7 @@
 
 namespace optkit::core::pmu
 {
-    const long QueryPMU::num_cores = sysconf(_SC_NPROCESSORS_ONLN);
+    const int64_t QueryPMU::num_cores = sysconf(_SC_NPROCESSORS_ONLN);
     bool QueryPMU::is_active = false;
     pfm_pmu_info_t QueryPMU::default_architectural_pmu;
 

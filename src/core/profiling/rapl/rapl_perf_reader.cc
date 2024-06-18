@@ -57,7 +57,7 @@ namespace optkit::core::rapl
     {
         std::map<int32_t, std::map<RaplDomain, double>> result;
 
-        long long value;
+        int64_t value;
         for (auto package = 0u; package < rapl_perf_config.packages.size(); package++)
         {
             for (auto domain = 0u; domain < rapl_perf_config.avail_domains.size(); domain++)

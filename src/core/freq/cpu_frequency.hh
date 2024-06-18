@@ -10,8 +10,7 @@
 #include <msrs.hh>
 #include <utility>
 
-template<typename T>
-std::ostream &operator<<(std::ostream &os, const std::pair<T,T> &pair);
+std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair);
 
 namespace optkit::core::freq
 {
@@ -19,20 +18,20 @@ namespace optkit::core::freq
     class CPUFrequency final
     {
     public:
-        static void set_core_frequency(long frequency, short socket);
-        static void set_core_frequency(long frequency, short cpu, short socket);
-        static void set_core_frequency(long frequency, short cpu_start, short cpu_end, short socket);
-        static void set_core_frequency(long frequency, std::vector<short> cpu_list);
-        static long get_core_frequency(short cpu);
-        static std::vector<long> get_core_frequencies(short socket);
-        static std::vector<long> get_core_frequency(short cpu_start, short cpu_end, short socket);
-        static std::pair<long, long> get_uncore_frequencies(short socket);
+        static void set_core_frequency(int64_t frequency, int16_t socket);
+        static void set_core_frequency(int64_t frequency, int16_t cpu, int16_t socket);
+        static void set_core_frequency(int64_t frequency, int16_t cpu_start, int16_t cpu_end, int16_t socket);
+        static void set_core_frequency(int64_t frequency, std::vector<int16_t> cpu_list);
+        static int64_t get_core_frequency(int16_t cpu);
+        static std::vector<int64_t> get_core_frequencies(int16_t socket);
+        static std::vector<int64_t> get_core_frequency(int16_t cpu_start, int16_t cpu_end, int16_t socket);
+        static std::pair<int64_t, int64_t> get_uncore_frequencies(int16_t socket);
 
-        static long get_uncore_frequency();
-        static void set_uncore_frequency(long frequency);
+        static int64_t get_uncore_frequency();
+        static void set_uncore_frequency(int64_t frequency);
 
-        static void reset_core_frequency(short socket);
-        static void reset_uncore_frequency(short socket);
+        static void reset_core_frequency(int16_t socket);
+        static void reset_uncore_frequency(int16_t socket);
 
     private:
         static const std::map<int32_t, std::vector<int32_t>> &package_info;
@@ -43,6 +42,5 @@ namespace optkit::core::freq
     };
 
 }
- 
 
 #endif

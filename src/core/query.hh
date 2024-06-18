@@ -27,8 +27,8 @@ namespace optkit::core
     class Query final
     {
     public:
-        static const short num_cores;
-        static const short num_sockets;
+        static const int16_t num_cores;
+        static const int16_t num_sockets;
         static const bool is_root_priv_enabled;
 
         /**

@@ -27,12 +27,12 @@ using optkit::core::rapl::RaplReadMethods;
 #define OPTKIT_RAPL_REPEAT(var_name, block_name, count) \
     OPTKIT_CORE_GANTT_PROFILE_SCOPE(block_name);        \
     RaplProfiler var_name{block_name};                  \
-    for (int i = 0; i < count; i++)
+    for (int32_t i = 0; i < count; i++)
 
 #define OPTKIT_RAPL_REPEAT_READ(var_name, block_name, count) \
     OPTKIT_CORE_GANTT_PROFILE_SCOPE(block_name);             \
     RaplProfiler var_name{block_name};                       \
-    for (int i = 0; i < count; i++, var_name.read())
+    for (int32_t i = 0; i < count; i++, var_name.read())
 
 #else
     #define OPTKIT_RAPL(var_name, block_name)

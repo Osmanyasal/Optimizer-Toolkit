@@ -12,12 +12,12 @@
 namespace optkit::core::freq
 {
 
-    OPT_FORCE_INLINE void read_msr(int cpuid, off_t MSR_REGISTER_address, uint64_t *MSR_REGISTER_bits)
+    OPT_FORCE_INLINE void read_msr(int32_t cpuid, off_t MSR_REGISTER_address, uint64_t *MSR_REGISTER_bits)
     {
         EXEC_IF_ROOT;
         char msr_file_name[64];
         sprintf(msr_file_name, "/dev/cpu/%d/msr_safe", cpuid);
-        int fd = open(msr_file_name, O_RDONLY);
+        int32_t fd = open(msr_file_name, O_RDONLY);
         if (fd < 0)
         {
             OPTKIT_CORE_WARN("read msr error [{}]", cpuid);
@@ -32,12 +32,12 @@ namespace optkit::core::freq
         close(fd);
     }
 
-    OPT_FORCE_INLINE static void write_msr(int cpuid, off_t MSR_REGISTER_address, uint64_t MSR_REGISTER_bits)
+    OPT_FORCE_INLINE static void write_msr(int32_t cpuid, off_t MSR_REGISTER_address, uint64_t MSR_REGISTER_bits)
     {
         EXEC_IF_ROOT;
         char msr_file_name[64];
         sprintf(msr_file_name, "/dev/cpu/%d/msr_safe", cpuid);
-        int fd = open(msr_file_name, O_WRONLY);
+        int32_t fd = open(msr_file_name, O_WRONLY);
         if (fd < 0)
         {
             OPTKIT_CORE_WARN("write msr error [{}]", cpuid);

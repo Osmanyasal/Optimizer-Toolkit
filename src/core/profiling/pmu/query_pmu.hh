@@ -28,7 +28,7 @@ namespace optkit::core::pmu
     class QueryPMU final
     {
     public:
-        static const long num_cores;
+        static const int64_t num_cores;
 
     public:
         /**
