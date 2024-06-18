@@ -134,9 +134,9 @@ all: ${LIB_PFM_PATH}/all_set ${LIB_MSR_SAFE_PATH}/all_set $(LIB_SPD_PATH)/build/
 ################ BUILD COMMANDS ################
 
 ${LIB_MSR_SAFE_PATH}/all_set:
-	cd $(LIB_MSR_SAFE_PATH) && make && sudo insmod ./msr-safe.ko && sudo chmod g+rw /dev/cpu/*/msr_safe /dev/cpu/msr_* &&\
+	cd $(LIB_MSR_SAFE_PATH) && make && make install && sudo insmod ./msr-safe.ko && sudo chmod g+rw /dev/cpu/*/msr_safe /dev/cpu/msr_* &&\
 	sudo chgrp "$(whoami)" /dev/cpu/*/msr_safe /dev/cpu/msr_batch /dev/cpu/msr_safe_version &&\
-	sudo chgrp "$(whoami)" /dev/cpu/msr_allowlist && touch all_set
+	sudo chgrp "$(whoami)" /dev/cpu/msr_allowlist && touch all_set 
 
 $(LIB_SPD_PATH)/build/libspdlog.a:
 	cd $(LIB_SPD_PATH) && ./install.sh
