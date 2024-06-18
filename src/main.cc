@@ -10,7 +10,7 @@ int32_t main(int32_t argc, char **argv)
  
     std::cout << CPUFrequency::get_uncore_frequencies(0) << "\n";
 
-    return 0;
+    // return 0;
 
     BLOCK_TIMER("Whole Program");
     {
