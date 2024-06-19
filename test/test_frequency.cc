@@ -67,14 +67,14 @@ namespace optkit::test::freq
     void test_get_uncore_frequency()
     {
         // Test get_uncore_frequency method
-        long uncoreFreq = CPUFrequency::get_uncore_frequency();
+        long uncoreFreq = CPUFrequency::get_uncore_frequency(0);
         std::cout << "Uncore Frequency: " << uncoreFreq << " Hz\n";
     }
 
     void test_set_uncore_frequency()
     {
         // Test set_uncore_frequency method
-        CPUFrequency::set_uncore_frequency(3000000);
+        CPUFrequency::set_uncore_frequency(3000000,0);
     }
 
 }

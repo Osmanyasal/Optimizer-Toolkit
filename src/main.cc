@@ -6,11 +6,24 @@
   
 int32_t main(int32_t argc, char **argv) 
 {
-    OptimizerKit optkit{false}; 
- 
-    std::cout << CPUFrequency::get_uncore_frequencies(0) << "\n";
+    OptimizerKit optkit{false};
 
-    // return 0;
+    std::cout << "default uncore !\n";
+    std::cout << CPUFrequency::get_uncore_min_max(0) << "\n";
+    std::cout << CPUFrequency::get_uncore_frequency(0) << "\n";
+
+    std::cout << "setting uncore !\n";
+    CPUFrequency::set_uncore_frequency(2400000000,0);
+    std::cout << CPUFrequency::get_uncore_frequency(0) << "\n";
+
+    std::cout << "setting uncore !\n";
+    CPUFrequency::set_uncore_frequency(1100000000, 0);
+    std::cout << CPUFrequency::get_uncore_frequency(0) << "\n";
+
+    std::cout << "resetting uncore !\n";
+    CPUFrequency::reset_uncore_frequency(0);
+    std::cout << CPUFrequency::get_uncore_frequency(0) << "\n";
+    return 0;
 
     BLOCK_TIMER("Whole Program");
     {

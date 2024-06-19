@@ -38,6 +38,12 @@
         OPTKIT_CORE_WARN("Root priv is required for the execution of method '{}' in file '{}'", __func__, __FILE__); \
         return;                                                                                                      \
     }
+#define EXEC_IF_ROOT_RETURN(ret_value)                                                                               \
+    if (!optkit::core::Query::is_root_priv_enabled)                                                                  \
+    {                                                                                                                \
+        OPTKIT_CORE_WARN("Root priv is required for the execution of method '{}' in file '{}'", __func__, __FILE__); \
+        return ret_value;                                                                                            \
+    }
 
 // GLOBAL VARIABLES
 

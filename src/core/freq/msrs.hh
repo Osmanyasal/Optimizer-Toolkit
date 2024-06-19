@@ -1202,7 +1202,7 @@ const uint64_t MSR_PLATFORM_POWER_LIMIT_time_y_shift = 17;
 const uint64_t MSR_PLATFORM_POWER_LIMIT_lock_mask = 0x8000000000000000;
 const uint64_t MSR_PLATFORM_POWER_LIMIT_lock_shift = 63;
 
-#ifdef _INTEL_
+// #ifdef _INTEL_
 #ifndef MSR_PKG_POWER_LIMIT
 #define MSR_PKG_POWER_LIMIT 0x610
 #endif
@@ -1230,7 +1230,7 @@ const uint64_t MSR_PLATFORM_POWER_LIMIT_lock_shift = 63;
 #ifndef MSR_PLATFORM_POWER_LIMIT
 #define MSR_PLATFORM_POWER_LIMIT 0x65C
 #endif
-#endif
+// #endif
 
 // RAPL energy measurement /////////////////////////////////////////////////////
 /**

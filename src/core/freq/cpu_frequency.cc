@@ -2,7 +2,7 @@
 
 std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair)
 {
-    os << "Pair(" << pair.first << ", " << pair.second << ")\n"; 
+    os << "Pair(" << pair.first << ", " << pair.second << ")\n";
     return os;
 }
 
@@ -112,6 +112,7 @@ namespace optkit::core::freq
 
     int64_t CPUFrequency::get_core_frequency(int16_t cpu)
     {
+        EXEC_IF_ROOT_RETURN(-1);
         try
         {
             if (cpu >= 0 && cpu < Query::num_cores)
@@ -133,6 +134,7 @@ namespace optkit::core::freq
 
     std::vector<int64_t> CPUFrequency::get_core_frequencies(int16_t socket)
     {
+        EXEC_IF_ROOT_RETURN({});
         std::vector<int64_t> core_frequencies;
         try
         {
@@ -150,6 +152,7 @@ namespace optkit::core::freq
 
     std::vector<int64_t> CPUFrequency::get_core_frequency(int16_t cpu_start, int16_t cpu_end, int16_t socket)
     {
+        EXEC_IF_ROOT_RETURN({});
         if (cpu_start < 0 || cpu_end < cpu_start || cpu_end >= Query::num_cores)
         {
             OPTKIT_CORE_WARN("Invalid range cpu_start={} cpu_end={}", cpu_start, cpu_end);
@@ -175,28 +178,27 @@ namespace optkit::core::freq
         return core_frequencies;
     }
 
-    int64_t CPUFrequency::get_uncore_frequency()
+    int64_t CPUFrequency::get_uncore_frequency(int16_t socket)
     {
 
-        uint64_t MSR_UNCORE_RATIO_LIMIT_bits;
-        core::freq::read_msr(0, MSR_UNCORE_RATIO_LIMIT, &MSR_UNCORE_RATIO_LIMIT_bits);
+        EXEC_IF_ROOT_RETURN(-1);
+        uint64_t MSR_UNCORE_RATIO_LIMIT_bits = 0;
+        core::freq::read_msr(package_info.at(socket)[0], MSR_UNCORE_RATIO_LIMIT, &MSR_UNCORE_RATIO_LIMIT_bits);
 
-        int64_t max_uncore_freq = (MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_max_mask) * 100000000;
-        int64_t min_uncore_freq = ((MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_min_mask) >> MSR_UNCORE_RATIO_LIMIT_min_shift) * 100000000;
-
-        OPTKIT_CORE_INFO("uncore freq min {}, max {}", min_uncore_freq, max_uncore_freq);
-        return 0;
+        int64_t uncore_freq = (MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_CURRENT_RATIO_mask) * 100000000;
+        return uncore_freq;
     }
 
-    std::pair<int64_t, int64_t> CPUFrequency::get_uncore_frequencies(int16_t socket)
+    std::pair<int64_t, int64_t> CPUFrequency::get_uncore_min_max(int16_t socket)
     {
+        EXEC_IF_ROOT_RETURN({});
         static std::pair<int64_t, int64_t> result{0, 0};
 
         if (OPT_LIKELY(result.first != 0))
             return result;
 
         uint64_t MSR_UNCORE_RATIO_LIMIT_bits = 0;
-        core::freq::read_msr(0, MSR_UNCORE_RATIO_LIMIT, &MSR_UNCORE_RATIO_LIMIT_bits);
+        core::freq::read_msr(package_info.at(socket)[0], MSR_UNCORE_RATIO_LIMIT, &MSR_UNCORE_RATIO_LIMIT_bits);
 
         // min uncore freq
         result.first = ((MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_min_mask) >> MSR_UNCORE_RATIO_LIMIT_min_shift) * 100000000;
@@ -204,15 +206,21 @@ namespace optkit::core::freq
         // max uncore freq
         result.second = (MSR_UNCORE_RATIO_LIMIT_bits & MSR_UNCORE_RATIO_LIMIT_max_mask) * 100000000;
 
-        OPTKIT_CORE_INFO("uncore freq min {}, max {}", result.first, result.second);
-
         return result;
     }
-
-    void CPUFrequency::set_uncore_frequency(int64_t frequency)
+    void CPUFrequency::reset_uncore_frequency(int16_t socket)
     {
         EXEC_IF_ROOT;
-        // TODO: implement this
+        std::pair<int64_t, int64_t> default_uncore = get_uncore_min_max(socket);
+        uint64_t MSR_UNCORE_RATIO_LIMIT_bits = ((default_uncore.first / 100000000) << MSR_UNCORE_RATIO_LIMIT_min_shift) + default_uncore.second / 100000000;
+        core::freq::write_msr(socket, MSR_UNCORE_RATIO_LIMIT, MSR_UNCORE_RATIO_LIMIT_bits);
+    }
+
+    void CPUFrequency::set_uncore_frequency(int64_t frequency, int16_t socket)
+    {
+        EXEC_IF_ROOT;
+        uint64_t MSR_UNCORE_RATIO_LIMIT_bits = ((frequency / 100000000) << MSR_UNCORE_RATIO_LIMIT_min_shift) + frequency / 100000000;
+        core::freq::write_msr(socket, MSR_UNCORE_RATIO_LIMIT, MSR_UNCORE_RATIO_LIMIT_bits);
     }
 
     void CPUFrequency::reset_core_frequency(int16_t socket)
@@ -232,11 +240,6 @@ namespace optkit::core::freq
         {
             OPTKIT_CORE_ERROR(err.what());
         }
-    }
-    void CPUFrequency::reset_uncore_frequency(int16_t socket)
-    {
-        EXEC_IF_ROOT;
-        // TODO: implement this
     }
 
 #undef TRAVERSE_CORES
