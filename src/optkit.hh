@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <utils.hh>
+#include <cstdlib>
 
 #include <deployment_config.hh>
 #include <core_profiling.hh>
