@@ -12,7 +12,7 @@ int32_t main(int32_t argc, char **argv)
     print_rapl();
     print_pmu();
     return 0;
-} 
+}
 
 void print_pmu()
 {
@@ -55,10 +55,12 @@ void print_cpu()
     std::cout << "TOTAL # OF SOCKETS: " << Query::num_sockets << "\n";
     std::cout << "TOTAL # OF CORES: " << Query::num_cores << "\n";
 
-    for (int socket = 0; socket < Query::num_sockets; socket++){
+    for (int socket = 0; socket < Query::num_sockets; socket++)
+    {
         std::cout << "Socket[" << socket << "] Core Avail Freq(HZ): ";
-        for (long freq : QueryFreq::get_scaling_available_frequencies(Query::detect_packages().at(socket)[0]))
-            std::cout << freq << " ";
+        const auto &freq_list = QueryFreq::get_scaling_available_frequencies(Query::detect_packages().at(socket)[0]);
+        for (auto iter = freq_list.rbegin(); iter != freq_list.rend(); iter++)
+            std::cout << *iter << " ";
         std::cout << "\n";
         std::cout << "Socket[" << socket << "] Uncore Limits Min-Max(HZ): " << CPUFrequency::get_uncore_min_max(socket) << "\n";
 
@@ -74,8 +76,9 @@ void print_cpu()
         std::cout << "CPU(" + std::to_string(i) + ") CURRENT MAX CORE FREQ(HZ): " << QueryFreq::get_scaling_max_limit(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") SCALING DRIVER: " << QueryFreq::get_scaling_driver(i);
         std::cout << "CPU(" + std::to_string(i) + ") AVAIL CORE FREQ(HZ): ";
-        for (long freq : QueryFreq::get_scaling_available_frequencies(i))
-            std::cout << freq << " ";
+        const auto &freq_list = QueryFreq::get_scaling_available_frequencies(i);
+        for (auto iter = freq_list.rbegin(); iter != freq_list.rend(); iter++)
+            std::cout << *iter << " ";
         std::cout << std::endl;
         std::cout << std::endl;
     }
