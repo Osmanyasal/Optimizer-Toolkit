@@ -12,7 +12,7 @@ int32_t main(int32_t argc, char **argv)
     print_rapl();
     print_pmu();
     return 0;
-}
+} 
 
 void print_pmu()
 {
@@ -52,15 +52,17 @@ void print_cpu()
 
     std::cout << "============== Detect Packages ==============\n";
     std::cout << Query::detect_packages() << std::endl;
-    std::cout << "\n";
-
     std::cout << "TOTAL # OF SOCKETS: " << Query::num_sockets << "\n";
-    std::cout << "TOTAL # OF CORES: " << Query::num_cores << "\n";  
+    std::cout << "TOTAL # OF CORES: " << Query::num_cores << "\n";
+
+    for (int socket = 0; socket < Query::num_sockets; socket++)
+        std::cout << "Socket[" << socket << "] Uncore Limits Min-Max(HZ): " << CPUFrequency::get_uncore_min_max(socket) << "\n";
+
     for (int i = 0; i < Query::num_cores; i++)
     {
         std::cout << "CPU(" + std::to_string(i) + ") BIOS LIMIT: " << QueryFreq::get_bios_limit(i) << "\n";
-        std::cout << "CPU(" + std::to_string(i) + ") MIN FREQ(HZ): " << QueryFreq::get_cpuinfo_min_freq(i) << "\n";
-        std::cout << "CPU(" + std::to_string(i) + ") MAX FREQ(HZ): " << QueryFreq::get_cpuinfo_max_freq(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") MIN CORE FREQ(HZ): " << QueryFreq::get_cpuinfo_min_freq(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") MAX CORE FREQ(HZ): " << QueryFreq::get_cpuinfo_max_freq(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") CURRENT MIN FREQ(HZ): " << QueryFreq::get_scaling_min_limit(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") CURRENT MAX FREQ(HZ): " << QueryFreq::get_scaling_max_limit(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") SCALING DRIVER: " << QueryFreq::get_scaling_driver(i);
