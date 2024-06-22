@@ -1,17 +1,23 @@
 #!/bin/bash
  
+# Extract CPUs for socket 0
+socket0_cpus=$(numactl --hardware | awk '/node 0 cpus:/ {print substr($0, index($0, ":") + 2)}')
+
+# Extract CPUs for socket 1
+socket1_cpus=$(numactl --hardware | awk '/node 1 cpus:/ {print substr($0, index($0, ":") + 2)}')
+
 print_help() {
     echo "Usage: $0 [OPTION] [<-s socket_number_1 -s socket_number_2> -c command...]"
     
     echo "-------"
     # Print the extracted CPUs for verification
     
-    if [[ -n $socket0 ]]; then
-	    echo "Socket 0 CPUs: $socket0"
+    if [[ -n $socket0_cpus ]]; then
+	    echo "Socket 0 CPUs: $socket0_cpus"
     fi
     
-    if [[ -n $socket1 ]]; then
-	    echo "Socket 1 CPUs: $socket1"
+    if [[ -n $socket1_cpus ]]; then
+	    echo "Socket 1 CPUs: $socket1_cpus"
     fi
 	 
     echo "-------"
@@ -19,19 +25,13 @@ print_help() {
     echo "Options:"
     echo "  --help      Display this help message"
 }
+ 
 
-
-if [[ "$1" == "--help" ]]; then
+if [[ "$1" == "--help"  || "$#" == 0 ]]; then
     print_help
     exit 0
 fi
-
-# Extract CPUs for socket 0
-socket0_cpus=$(numactl --hardware | awk '/node 0 cpus:/ {print substr($0, index($0, ":") + 2)}')
-
-# Extract CPUs for socket 1
-socket1_cpus=$(numactl --hardware | awk '/node 1 cpus:/ {print substr($0, index($0, ":") + 2)}')
-
+ 
 # Initialize variables
 socket0=""
 socket1=""
