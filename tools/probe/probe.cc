@@ -55,18 +55,25 @@ void print_cpu()
     std::cout << "TOTAL # OF SOCKETS: " << Query::num_sockets << "\n";
     std::cout << "TOTAL # OF CORES: " << Query::num_cores << "\n";
 
-    for (int socket = 0; socket < Query::num_sockets; socket++)
+    for (int socket = 0; socket < Query::num_sockets; socket++){
+        std::cout << "Socket[" << socket << "] Core Avail Freq(HZ): ";
+        for (long freq : QueryFreq::get_scaling_available_frequencies(Query::detect_packages().at(socket)[0]))
+            std::cout << freq << " ";
+        std::cout << "\n";
         std::cout << "Socket[" << socket << "] Uncore Limits Min-Max(HZ): " << CPUFrequency::get_uncore_min_max(socket) << "\n";
+
+        std::cout << std::endl;
+    }
 
     for (int i = 0; i < Query::num_cores; i++)
     {
         std::cout << "CPU(" + std::to_string(i) + ") BIOS LIMIT: " << QueryFreq::get_bios_limit(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") MIN CORE FREQ(HZ): " << QueryFreq::get_cpuinfo_min_freq(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") MAX CORE FREQ(HZ): " << QueryFreq::get_cpuinfo_max_freq(i) << "\n";
-        std::cout << "CPU(" + std::to_string(i) + ") CURRENT MIN FREQ(HZ): " << QueryFreq::get_scaling_min_limit(i) << "\n";
-        std::cout << "CPU(" + std::to_string(i) + ") CURRENT MAX FREQ(HZ): " << QueryFreq::get_scaling_max_limit(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") CURRENT MIN CORE FREQ(HZ): " << QueryFreq::get_scaling_min_limit(i) << "\n";
+        std::cout << "CPU(" + std::to_string(i) + ") CURRENT MAX CORE FREQ(HZ): " << QueryFreq::get_scaling_max_limit(i) << "\n";
         std::cout << "CPU(" + std::to_string(i) + ") SCALING DRIVER: " << QueryFreq::get_scaling_driver(i);
-        std::cout << "CPU(" + std::to_string(i) + ") AVAIL FREQ(HZ): ";
+        std::cout << "CPU(" + std::to_string(i) + ") AVAIL CORE FREQ(HZ): ";
         for (long freq : QueryFreq::get_scaling_available_frequencies(i))
             std::cout << freq << " ";
         std::cout << std::endl;

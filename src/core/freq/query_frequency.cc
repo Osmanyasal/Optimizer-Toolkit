@@ -11,7 +11,7 @@ namespace optkit::core::freq
         int64_t freq;
         while (iss >> freq)
         {
-            frequencies.push_back(freq);
+            frequencies.push_back(freq * 1000);
         }
         return frequencies;
     }
@@ -19,7 +19,7 @@ namespace optkit::core::freq
     int64_t QueryFreq::get_bios_limit(int32_t core)
     {
         static std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/bios_limit", false);
-        return std::stol(file_content);
+        return std::stol(file_content) * 1000;
     }
 
     std::string QueryFreq::get_scaling_driver(int32_t core)
@@ -43,24 +43,24 @@ namespace optkit::core::freq
     int64_t QueryFreq::get_scaling_max_limit(int32_t core)
     {
         std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/scaling_max_freq", false);
-        return std::stol(file_content);
+        return std::stol(file_content) * 1000;
     }
 
     int64_t QueryFreq::get_scaling_min_limit(int32_t core)
     {
         std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/scaling_min_freq", false);
-        return std::stol(file_content);
+        return std::stol(file_content) * 1000;
     }
 
     int64_t QueryFreq::get_cpuinfo_max_freq(int32_t core)
     {
         static std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/cpuinfo_max_freq", false);
-        return std::stol(file_content);
+        return std::stol(file_content) * 1000;
     }
 
     int64_t QueryFreq::get_cpuinfo_min_freq(int32_t core)
     {
         static std::string file_content = read_file("/sys/devices/system/cpu/cpu" + std::to_string(core) + "/cpufreq/cpuinfo_min_freq", false);
-        return std::stol(file_content);
+        return std::stol(file_content) * 1000;
     }
 }
