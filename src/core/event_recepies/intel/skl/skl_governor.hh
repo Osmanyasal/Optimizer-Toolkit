@@ -13,7 +13,7 @@ namespace optkit::core::governors::intel::skl
     {
     public:
         Governor();
-        virtual ~Governor() {}
+        virtual ~Governor() { BaseGovernor::current_governor = nullptr; }
         virtual void snapshot_pmus() override { this->pmu_record = interested_events.read_val(); }
 
         OPT_FORCE_INLINE virtual double compute_intensity() override {
@@ -36,6 +36,15 @@ namespace optkit::core::governors::intel::skl
         OPT_FORCE_INLINE virtual double io_intensity() override
         {
             return 0;
+        }
+
+        OPT_FORCE_INLINE void disalbe_callback_trigger() override
+        {
+            core_cycle_watcher.disable();
+        }
+        OPT_FORCE_INLINE void enable_callback_trigger() override
+        {
+            core_cycle_watcher.enable();
         }
 
     private:

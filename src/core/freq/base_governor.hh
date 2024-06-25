@@ -31,13 +31,15 @@ namespace optkit::core::freq
         static int32_t MEMORY_TRESHOLD;
 
     public:
-        BaseGovernor(int64_t sample_period = ((QueryFreq::get_cpuinfo_max_freq() + QueryFreq::get_cpuinfo_min_freq()) / 2) * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS);
+        BaseGovernor(int64_t sample_period = (((QueryFreq::get_cpuinfo_max_freq() + QueryFreq::get_cpuinfo_min_freq()) / 2) / 1000) * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS);
         virtual ~BaseGovernor();
 
         virtual void snapshot_pmus() = 0;
         virtual double compute_intensity() = 0;
         virtual double memory_intensity() = 0;
         virtual double io_intensity() = 0;
+        virtual void disalbe_callback_trigger() = 0;
+        virtual void enable_callback_trigger() = 0;
 
     protected:
         std::vector<uint64_t> pmu_record;

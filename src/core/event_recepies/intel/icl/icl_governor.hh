@@ -13,10 +13,11 @@ namespace optkit::core::governors::intel::icl
     {
     public:
         Governor();
-        virtual ~Governor() {}
+        virtual ~Governor() { BaseGovernor::current_governor = nullptr; }
         virtual void snapshot_pmus() override { this->pmu_record = interested_events.read_val(); }
 
-        OPT_FORCE_INLINE virtual double compute_intensity() override {
+        OPT_FORCE_INLINE virtual double compute_intensity() override
+        {
             double flops_executed = pmu_record[1];
             double l3_misses = pmu_record[3];
             double compute_intensity = flops_executed / (l3_misses + 1);
@@ -36,6 +37,15 @@ namespace optkit::core::governors::intel::icl
         OPT_FORCE_INLINE virtual double io_intensity() override
         {
             return 0;
+        }
+
+        OPT_FORCE_INLINE void disalbe_callback_trigger() override
+        {
+            core_cycle_watcher.disable();
+        }
+        OPT_FORCE_INLINE void enable_callback_trigger() override
+        {
+            core_cycle_watcher.enable();
         }
 
     private:

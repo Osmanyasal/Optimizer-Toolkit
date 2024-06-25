@@ -30,6 +30,12 @@ namespace optkit::core::freq
 
     void BaseGovernor::call_back(int32_t signum, siginfo_t *oh, void *blah)
     {
+        if(OPT_UNLIKELY(BaseGovernor::current_governor == nullptr))
+            return;
+            
+        // DISABLE CALL_BACK TRIGGER to prevent multiple entry
+        current_governor->disalbe_callback_trigger();
+
         static int32_t i = 0;
         OPTKIT_CORE_INFO("{} th call_back() called", ++i);
         current_governor->snapshot_pmus();
@@ -57,6 +63,9 @@ namespace optkit::core::freq
         }
         else
         {
-        } 
+        }
+
+        // ENABLE CALL_BACK TRIGGER to prevent multiple entry 
+        current_governor->enable_callback_trigger();
     }
 }
