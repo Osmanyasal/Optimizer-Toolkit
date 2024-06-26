@@ -135,8 +135,8 @@ all: ${LIB_PFM_PATH}/all_set ${LIB_MSR_SAFE_PATH}/all_set $(LIB_SPD_PATH)/build/
 
 ${LIB_MSR_SAFE_PATH}/all_set:
 	cd $(LIB_MSR_SAFE_PATH) && make && make install && sudo insmod ./msr-safe.ko && sudo chmod g+rw /dev/cpu/*/msr_safe /dev/cpu/msr_* &&\
-	sudo chgrp "$(whoami)" /dev/cpu/*/msr_safe /dev/cpu/msr_batch /dev/cpu/msr_safe_version &&\
-	sudo chgrp "$(whoami)" /dev/cpu/msr_allowlist && touch all_set 
+	sudo chgrp "$(shell whoami)" /dev/cpu/*/msr_safe /dev/cpu/msr_batch /dev/cpu/msr_safe_version &&\
+	sudo chgrp "$(shell whoami)" /dev/cpu/msr_allowlist && echo "0x00000620 0xFFFFFFFFFFFFFFFF" > /dev/cpu/msr_allowlist && touch all_set 
 
 $(LIB_SPD_PATH)/build/libspdlog.a:
 	cd $(LIB_SPD_PATH) && ./install.sh
@@ -236,6 +236,7 @@ clean_events:
 clean_libs:
 	cd $(LIB_SPD_PATH) && ./install.sh clean
 	cd $(LIB_PFM_PATH) && ./install.sh clean
+	cd $(LIB_MSR_SAFE_PATH) && make clean && sudo rmmod msr-safe && rm all_set
 	@echo "🧹 Libraries cleaned!"
 
 clean_all: clean clean_events clean_libs doc_clean
