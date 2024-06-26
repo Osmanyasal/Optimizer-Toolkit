@@ -115,13 +115,18 @@ uncore_range=$(echo $uncore_range | sed 's/ $//')
 echo "Uncore Freq Range: $uncore_range"
 
 rm freq_mapping.txt
+
+count=0
 for CORE_FREQ in $CORE_FREQ_RANGE
 do
-    for UNCORE_FREQ in $uncore_range
-    do
-        export OPTKIT_UNCORE_FREQ=$UNCORE_FREQ
-        export OPTKIT_CORE_FREQ=$CORE_FREQ 
-        taskset -c "$cores" sudo $command
-        echo "core freq: $OPTKIT_CORE_FREQ  uncore_freq: $OPTKIT_UNCORE_FREQ" >> freq_mapping.txt
-    done
+    if (( count % 2 == 0 )); then
+        for UNCORE_FREQ in $uncore_range
+            do
+                export OPTKIT_UNCORE_FREQ=$UNCORE_FREQ
+                export OPTKIT_CORE_FREQ=$CORE_FREQ 
+                taskset -c "$cores" sudo $command
+                echo "core freq: $OPTKIT_CORE_FREQ  uncore_freq: $OPTKIT_UNCORE_FREQ" >> freq_mapping.txt
+            done
+    fi
+    ((count++))
 done
