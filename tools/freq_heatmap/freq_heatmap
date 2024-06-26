@@ -125,6 +125,9 @@ if __name__ == "__main__":
     file_name = path
     if os.path.isdir(path):
         json_files = get_json_files(path,"enriched.json")
+        if len(json_files) == 0:
+            print("NO enriched files found!")
+            sys.exit(-1)
         for file in json_files:
             load_measurements(file)
     else:
