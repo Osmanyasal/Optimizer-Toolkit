@@ -29,10 +29,10 @@ def read_freq_mapping(file_path):
 
 def fill_entry_values(search_key,socket,entry_and_values):
     
+    ctor = 0
     if socket == 0:
-        ctor = 0
         for key in entry_and_values.keys():
-            if search_key == "epd":
+            if search_key == "edp":
                 entry_and_values[key] = socket0_edp[ctor]
                 ctor+=1
             elif search_key == "duration":
@@ -61,7 +61,7 @@ def fill_entry_values(search_key,socket,entry_and_values):
                 ctor+=1
     elif socket == 1:
         for key in entry_and_values.keys():
-            if search_key == "epd":
+            if search_key == "edp":
                 entry_and_values[key] = socket1_edp[ctor]
                 ctor+=1
             elif search_key == "duration":
@@ -108,7 +108,7 @@ def generate_heatmap(core_freqs, uncore_freqs,entry_and_values,search_key):
         heatmap_values[core_index, uncore_index] = value 
     
     plt.figure(figsize=(10, 8))
-    sns.heatmap(heatmap_values, xticklabels=uncore_freqs, yticklabels=core_freqs, cmap="RdYlGn")
+    sns.heatmap(heatmap_values, xticklabels=uncore_freqs, yticklabels=core_freqs, cmap="RdYlGn_r")
     plt.xlabel('Uncore Frequency(GHz)')
     plt.ylabel('Core Frequency(GHz)')
     plt.title('Heatmap of Core vs Uncore Frequencies with "'+ search_key+"\"")
@@ -120,7 +120,7 @@ if __name__ == "__main__":
         sys.exit(1)
     
     search_key = sys.argv[1]
-    socket = sys.argv[2]
+    socket = int(sys.argv[2])
     path = sys.argv[3] 
     file_name = path
     if os.path.isdir(path):
@@ -139,5 +139,10 @@ if __name__ == "__main__":
     fill_entry_values(search_key,socket,entry_and_values)
     print("core frequencies :", core_freqs)
     print("uncore frequencies :", uncore_freqs)
+
+    max_key = max(entry_and_values, key=entry_and_values.get)
+    min_key = min(entry_and_values, key=entry_and_values.get)
+    print(f"The key with the maximum value is: {max_key}")
+    print(f"The key with the minimum value is: {min_key}")
     pd(entry_and_values,search_key)
     generate_heatmap(core_freqs, uncore_freqs,entry_and_values,search_key)
