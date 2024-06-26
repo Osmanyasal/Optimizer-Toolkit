@@ -108,15 +108,16 @@ done
 
 # Remove trailing space
 uncore_range=$(echo $uncore_range | sed 's/ $//')
-echo "Uncore Freq RAnge: $uncore_range"
+echo "Uncore Freq Range: $uncore_range"
 
+rm freq_mapping.txt
 for CORE_FREQ in $CORE_FREQ_RANGE
 do
     for UNCORE_FREQ in $uncore_range
     do
         export OPTKIT_UNCORE_FREQ=$UNCORE_FREQ
         export OPTKIT_CORE_FREQ=$CORE_FREQ 
-        echo "core freq: $OPTKIT_CORE_FREQ  uncore_freq: $OPTKIT_UNCORE_FREQ"
-        #  && taskset -c "$cores" $command
+        taskset -c "$cores" $command
+        echo "core freq: $OPTKIT_CORE_FREQ  uncore_freq: $OPTKIT_UNCORE_FREQ" >> freq_mapping.txt
     done
 done
