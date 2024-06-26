@@ -15,6 +15,10 @@ std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pa
 namespace optkit::core::freq
 {
 
+    /**
+     * @brief All frequencies are HZ !
+     * 
+     */
     class CPUFrequency final
     {
     public:

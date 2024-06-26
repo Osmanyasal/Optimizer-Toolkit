@@ -23,6 +23,7 @@ namespace optkit::core::freq
     void CPUFrequency::set_core_frequency(int64_t frequency, int16_t socket)
     {
         EXEC_IF_ROOT;
+        frequency = frequency / 1000;
         try
         {
             // Set core frequency for all cores
@@ -42,6 +43,7 @@ namespace optkit::core::freq
     void CPUFrequency::set_core_frequency(int64_t frequency, int16_t cpu, int16_t socket)
     {
         EXEC_IF_ROOT;
+        frequency = frequency / 1000;
         if (cpu >= 0 && cpu < Query::num_cores)
         {
             try
@@ -69,6 +71,7 @@ namespace optkit::core::freq
     void CPUFrequency::set_core_frequency(int64_t frequency, int16_t cpu_start, int16_t cpu_end, int16_t socket)
     {
         EXEC_IF_ROOT;
+        frequency = frequency / 1000;
         if (cpu_start >= 0 && cpu_end < Query::num_cores && cpu_start <= cpu_end)
         {
             try
@@ -96,6 +99,7 @@ namespace optkit::core::freq
     void CPUFrequency::set_core_frequency(int64_t frequency, std::vector<int16_t> cpu_list)
     {
         EXEC_IF_ROOT;
+        frequency = frequency / 1000;
         try
         {
             for (int16_t &__cpu : cpu_list)
