@@ -56,6 +56,8 @@ while [[ "$#" -gt 0 ]]; do
                 # Extract Socket[0] Uncore Limits Min-Max(HZ)
                 UNCORE_FREQ_RANGE=$(echo "$probing_dump" | grep 'Socket\[0\] Uncore Limits Min-Max(HZ):' | awk -F ': ' '{print $2}'| tr -d '(),')
 
+                export OPTKIT_SOCKET_0=0
+
             elif [[ "$1" == "1" ]]; then
                 socket1=1
                 cores="$socket1_cpus"
@@ -63,6 +65,8 @@ while [[ "$#" -gt 0 ]]; do
                 CORE_FREQ_RANGE=$(echo "$probing_dump" | grep 'Socket\[1\] Core Avail Freq(HZ):' | awk -F ': ' '{print $2}')
                 # Extract Socket[1] Uncore Limits Min-Max(HZ)
                 UNCORE_FREQ_RANGE=$(echo "$probing_dump" | grep 'Socket\[1\] Uncore Limits Min-Max(HZ):' | awk -F ': ' '{print $2}'| tr -d '(),')
+
+                export OPTKIT_SOCKET_1=1
             fi
             ;;
         -c)
