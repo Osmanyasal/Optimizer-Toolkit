@@ -121,7 +121,7 @@ do
     do
         export OPTKIT_UNCORE_FREQ=$UNCORE_FREQ
         export OPTKIT_CORE_FREQ=$CORE_FREQ 
-        taskset -c "$cores" $command
+        taskset -c "$cores" sudo $command
         echo "core freq: $OPTKIT_CORE_FREQ  uncore_freq: $OPTKIT_UNCORE_FREQ" >> freq_mapping.txt
     done
 done
