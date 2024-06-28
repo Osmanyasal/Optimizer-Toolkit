@@ -2,7 +2,7 @@
 
 std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair)
 {
-    os << "(" << pair.first << ", " << pair.second << ")\n";
+    os << "(" << pair.first << ", " << pair.second << ")";
     return os;
 }
 

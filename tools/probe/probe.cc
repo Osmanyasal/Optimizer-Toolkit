@@ -62,7 +62,9 @@ void print_cpu()
         for (auto iter = freq_list.rbegin(); iter != freq_list.rend(); iter++)
             std::cout << *iter << " ";
         std::cout << "\n";
+        
         std::cout << "Socket[" << socket << "] Uncore Limits Min-Max(HZ): " << CPUFrequency::get_uncore_min_max(socket) << "\n";
+        std::cout << "Socket[" << socket << "] Current Uncore Freq(HZ): " << CPUFrequency::get_uncore_frequency(socket) << "\n";
 
         std::cout << std::endl;
     }
