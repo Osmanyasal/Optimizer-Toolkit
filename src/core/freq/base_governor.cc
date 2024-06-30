@@ -9,7 +9,7 @@ namespace optkit::core::freq
     BaseGovernor::BaseGovernor(int64_t sample_period) : config{false, true, false, 0, -1}, sample_period{sample_period}
     {
         this->config.perf_event_config.sample_period = this->sample_period;
-        this->config.cpu = 0; /// set thread 0 for cpu_cycle callbacks!!
+        this->config.cpu = 1; /// set thread 1 for cpu_cycle callbacks!!
 
         memset(&sa, 0, sizeof(struct sigaction));
         sa.sa_sigaction = BaseGovernor::call_back;

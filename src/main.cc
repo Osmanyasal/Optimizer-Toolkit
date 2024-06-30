@@ -3,10 +3,10 @@
 #include <test.hh>
 #include <core_events.hh>
 
-  
-int32_t main(int32_t argc, char **argv) 
+int32_t main(int32_t argc, char **argv)
 {
-    OptimizerKit optkit{false};
+    OptimizerKit optkit{};
+    freq_governors::intel::skl::Governor gg;
 
     for (size_t i = 0; i < Query::num_sockets; i++)
     {
@@ -20,28 +20,25 @@ int32_t main(int32_t argc, char **argv)
         std::cout << "Uncore min-max: " << CPUFrequency::get_uncore_min_max(i) << "\n";
         std::cout << "Uncore current: " << CPUFrequency::get_uncore_frequency(i) << "\n";
     }
- 
-    // return 0;
-    
-    freq_governors::intel::skl::Governor gg;
+
     BLOCK_TIMER("Whole Program");
     {
 
         BLOCK_TIMER("Operation Block");
         double aa = 0;
 
-        #pragma omp parallel for
-        for (int32_t i = 0; i < 20000000; i++) 
+#pragma omp parallel for
+        for (int32_t i = 0; i < 20000000; i++)
             aa = aa + i * 0.052; // 2 * 50M -> 100M
 
-        std::cout << aa << std::endl; 
+        std::cout << aa << std::endl;
     }
 
     {
-        // freq_governors::intel::icl::Governor gg; 
+        // freq_governors::intel::icl::Governor gg;
         BLOCK_TIMER("IO Block");
 
-        #pragma omp parallel for
+#pragma omp parallel for
         for (int32_t i = 0; i < 1000; i++)
         {
             QueryFreq::get_bios_limit();
