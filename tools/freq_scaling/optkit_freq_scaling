@@ -122,8 +122,14 @@ do
     if (( count % 2 == 0 )); then
         for UNCORE_FREQ in $uncore_range
             do
-                export OPTKIT_UNCORE_FREQ=$UNCORE_FREQ
-                export OPTKIT_CORE_FREQ=$CORE_FREQ 
+                if (( OPTKIT_SOCKET0__ENABLED == 1 ));then
+                    export OPTKIT_SOCKET0__UNCORE_FREQ=$UNCORE_FREQ
+                    export OPTKIT_SOCKET0__CORE_FREQ=$CORE_FREQ 
+                fi
+                if (( OPTKIT_SOCKET1__ENABLED == 1 ));then
+                    export OPTKIT_SOCKET1__UNCORE_FREQ=$UNCORE_FREQ
+                    export OPTKIT_SOCKET1__CORE_FREQ=$CORE_FREQ 
+                fi
                 taskset -c "$cores" sudo -E $command
                 echo "core freq: $OPTKIT_CORE_FREQ  uncore_freq: $OPTKIT_UNCORE_FREQ" >> freq_mapping.txt
             done
