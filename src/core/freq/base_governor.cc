@@ -48,17 +48,17 @@ namespace optkit::core::freq
 
         if (Query::OPTKIT_SOCKET0__ENABLED)
         {
-            if (Query::OPTKIT_SOCKET0__CORE_FREQ != -1)
-                CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET0__CORE_FREQ, 0);
-            if (Query::OPTKIT_SOCKET0__UNCORE_FREQ != -1)
-                CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET0__UNCORE_FREQ, 0);
+            if (Query::OPTKIT_SOCKET0__CORE_FREQ != -1){}
+                // CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET0__CORE_FREQ, 0);
+            if (Query::OPTKIT_SOCKET0__UNCORE_FREQ != -1){}
+                // CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET0__UNCORE_FREQ, 0);
         }
         if (Query::OPTKIT_SOCKET1__ENABLED)
         {
-            if (Query::OPTKIT_SOCKET1__CORE_FREQ != -1)
-                CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET1__CORE_FREQ, 1);
-            if (Query::OPTKIT_SOCKET1__UNCORE_FREQ != -1)
-                CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET1__UNCORE_FREQ, 1);
+            if (Query::OPTKIT_SOCKET1__CORE_FREQ != -1){}
+                // CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET1__CORE_FREQ, 1);
+            if (Query::OPTKIT_SOCKET1__UNCORE_FREQ != -1){}
+                // CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET1__UNCORE_FREQ, 1);
         }
 
         // ENABLE CALL_BACK TRIGGER to prevent multiple entry
