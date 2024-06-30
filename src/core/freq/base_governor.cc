@@ -34,7 +34,7 @@ namespace optkit::core::freq
         current_governor->disalbe_callback_trigger();
 
         static int32_t i = 0;
-        // OPTKIT_CORE_INFO("{} th call_back() called", ++i);
+        OPTKIT_CORE_INFO("{} th call_back() called", ++i);
         current_governor->snapshot_pmus();
         double compute_intensity = current_governor->compute_intensity();
         double io_intensity = current_governor->io_intensity();
