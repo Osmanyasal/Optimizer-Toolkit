@@ -40,9 +40,9 @@ namespace optkit::core::freq
         double io_intensity = current_governor->io_intensity();
         double memory_intensity = current_governor->memory_intensity();
 
-        OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
-        OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
-        OPTKIT_CORE_INFO("io intensity ={}", io_intensity);
+        // OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
+        // OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
+        // OPTKIT_CORE_INFO("io intensity ={}", io_intensity);
 
         // call decision model here!
 
