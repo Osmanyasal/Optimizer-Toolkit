@@ -11,6 +11,7 @@ namespace optkit::core
      *
      * @param execution_file
      */
+
     OptimizerKit::OptimizerKit(const OPTKIT_CONFIG config) : config{config}
     {
         if (this->config.execution_file.size() > 0)
@@ -40,66 +41,88 @@ namespace optkit::core
                 OPTKIT_CORE_INFO("File creation skipped!");
             }
 
-            char *core_freq = std::getenv("OPTKIT_CORE_FREQ");
-            char *uncore_freq = std::getenv("OPTKIT_UNCORE_FREQ");
-            char *socket_0 = std::getenv("OPTKIT_SOCKET_0");
-            char *socket_1 = std::getenv("OPTKIT_SOCKET_1");
-
-            if (core_freq == nullptr)
-            {
-                OPTKIT_CORE_INFO("OPTKIT_CORE_FREQ is not specified");
-            }
-            else
-            {
-                OPTKIT_CORE_INFO("env read--- core_freq:{} ", std::atol(core_freq));
-
-                if (socket_1 == nullptr && socket_0 == nullptr)
-                {
-                    OPTKIT_CORE_WARN("OPTKIT_SOCKET_0 or OPTKIT_SOCKET_1 must be defined with core - uncore frequency request");
-                    exit(EXIT_FAILURE);
-                }
-
-                if (socket_0 != nullptr)
-                {
-                    OPTKIT_CORE_INFO("env read--- socket_0:{} ", std::atol(socket_0));
-                    CPUFrequency::set_core_frequency(std::atol(core_freq), std::atoi(socket_0));
-                }
-
-                if (socket_1 != nullptr)
-                {
-                    OPTKIT_CORE_INFO("env read--- socket_1:{} ", std::atol(socket_1));
-                    CPUFrequency::set_core_frequency(std::atol(core_freq), std::atoi(socket_1));
-                }
-            }
-
-            if (uncore_freq == nullptr)
-            {
-                OPTKIT_CORE_INFO("OPTKIT_UNCORE_FREQ is not specified");
-            }
-            else
-            {
-                OPTKIT_CORE_INFO("env read--- uncore_freq:{} ", std::atol(uncore_freq));
-
-                if (socket_1 == nullptr && socket_0 == nullptr)
-                {
-                    OPTKIT_CORE_WARN("OPTKIT_SOCKET_0 or OPTKIT_SOCKET_1 must be defined with core - uncore frequency request");
-                    exit(EXIT_FAILURE);
-                }
-
-                if (socket_0 != nullptr)
-                {
-                    OPTKIT_CORE_INFO("env read--- socket_0:{} ", std::atol(socket_0));
-                    CPUFrequency::set_uncore_frequency(std::atol(uncore_freq), std::atoi(socket_0));
-                }
-
-                if (socket_1 != nullptr)
-                {
-                    OPTKIT_CORE_INFO("env read--- socket_1:{} ", std::atol(socket_1));
-                    CPUFrequency::set_uncore_frequency(std::atol(uncore_freq), std::atoi(socket_1));
-                }
-            }
+            process_env_variables();
         }
         OPTKIT_CORE_GANTT_PROFILE_BEGIN_SESSION("Optimizer Toolkit", "optkit_gui_gantt_instr.json");
+    }
+
+    void OptimizerKit::process_env_variables()
+    {
+
+        char *socket0__enabled = std::getenv("OPTKIT_SOCKET0__ENABLED");
+        char *socket0__core_freq = std::getenv("OPTKIT_SOCKET0__CORE_FREQ");
+        char *socket0__uncore_freq = std::getenv("OPTKIT_SOCKET0__UNCORE_FREQ");
+
+        char *socket1__enabled = std::getenv("OPTKIT_SOCKET1__ENABLED");
+        char *socket1__core_freq = std::getenv("OPTKIT_SOCKET1__CORE_FREQ");
+        char *socket1__uncore_freq = std::getenv("OPTKIT_SOCKET1__UNCORE_FREQ");
+
+        if (socket0__enabled == nullptr && socket1__enabled == nullptr)
+        {
+            OPTKIT_CORE_INFO("OPTKIT_SOCKET0__ENABLED and OPTKIT_SOCKET1__ENABLED are not specified");
+            return;
+        }
+
+        if (socket0__enabled != nullptr)
+        {
+            Query::OPTKIT_SOCKET0__ENABLED = true;
+
+            if (socket0__core_freq != nullptr)
+            {
+                Query::OPTKIT_SOCKET0__CORE_FREQ = std::atol(socket0__core_freq);
+                CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET0__CORE_FREQ, 0);
+                OPTKIT_CORE_INFO("---env read--- OPTKIT_SOCKET0__CORE_FREQ:{} ", Query::OPTKIT_SOCKET0__CORE_FREQ);
+            }
+            else
+            {
+                OPTKIT_CORE_INFO("OPTKIT_SOCKET0__CORE_FREQ is not specified");
+            }
+
+            if (socket0__uncore_freq != nullptr)
+            {
+                Query::OPTKIT_SOCKET0__UNCORE_FREQ = std::atol(socket0__uncore_freq);
+                CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET0__UNCORE_FREQ, 0);
+                OPTKIT_CORE_INFO("---env read--- OPTKIT_SOCKET0__UNCORE_FREQ:{} ", Query::OPTKIT_SOCKET0__UNCORE_FREQ);
+            }
+            else
+            {
+                OPTKIT_CORE_INFO("OPTKIT_SOCKET0__UNCORE_FREQ is not specified");
+            }
+        }
+        else{
+            OPTKIT_CORE_INFO("OPTKIT_SOCKET0__ENABLED is not specified");
+        }
+
+        if (socket1__enabled != nullptr)
+        {
+            Query::OPTKIT_SOCKET1__ENABLED = true;
+
+            if (socket1__core_freq != nullptr)
+            {
+                Query::OPTKIT_SOCKET1__CORE_FREQ = std::atol(socket1__core_freq);
+                CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET1__CORE_FREQ, 1);
+                OPTKIT_CORE_INFO("---env read--- OPTKIT_SOCKET1__CORE_FREQ:{} ", Query::OPTKIT_SOCKET1__CORE_FREQ);
+            }
+            else
+            {
+                OPTKIT_CORE_INFO("OPTKIT_SOCKET1__CORE_FREQ is not specified");
+            }
+
+            if (socket1__uncore_freq != nullptr)
+            {
+                Query::OPTKIT_SOCKET1__UNCORE_FREQ = std::atol(socket1__uncore_freq);
+                CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET1__UNCORE_FREQ, 1);
+                OPTKIT_CORE_INFO("---env read--- OPTKIT_SOCKET0__UNCORE_FREQ:{} ", Query::OPTKIT_SOCKET1__UNCORE_FREQ);
+            }
+            else
+            {
+                OPTKIT_CORE_INFO("OPTKIT_SOCKET1__UNCORE_FREQ is not specified");
+            }
+        }
+        else
+        {
+            OPTKIT_CORE_INFO("OPTKIT_SOCKET1__ENABLED is not specified");
+        }
     }
 
     /**

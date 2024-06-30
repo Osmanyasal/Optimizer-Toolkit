@@ -56,7 +56,7 @@ while [[ "$#" -gt 0 ]]; do
                 # Extract Socket[0] Uncore Limits Min-Max(HZ)
                 UNCORE_FREQ_RANGE=$(echo "$probing_dump" | grep 'Socket\[0\] Uncore Limits Min-Max(HZ):' | awk -F ': ' '{print $2}'| tr -d '(),')
 
-                export OPTKIT_SOCKET_0=0
+                export OPTKIT_SOCKET0__ENABLED=1
 
             elif [[ "$1" == "1" ]]; then
                 socket1=1
@@ -66,7 +66,7 @@ while [[ "$#" -gt 0 ]]; do
                 # Extract Socket[1] Uncore Limits Min-Max(HZ)
                 UNCORE_FREQ_RANGE=$(echo "$probing_dump" | grep 'Socket\[1\] Uncore Limits Min-Max(HZ):' | awk -F ': ' '{print $2}'| tr -d '(),')
 
-                export OPTKIT_SOCKET_1=1
+                export OPTKIT_SOCKET1__ENABLED=1
             fi
             ;;
         -c)
@@ -124,7 +124,7 @@ do
             do
                 export OPTKIT_UNCORE_FREQ=$UNCORE_FREQ
                 export OPTKIT_CORE_FREQ=$CORE_FREQ 
-                taskset -c "$cores" sudo $command
+                taskset -c "$cores" sudo -E $command
                 echo "core freq: $OPTKIT_CORE_FREQ  uncore_freq: $OPTKIT_UNCORE_FREQ" >> freq_mapping.txt
             done
     fi

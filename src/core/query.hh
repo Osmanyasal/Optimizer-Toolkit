@@ -27,19 +27,27 @@ namespace optkit::core
     class Query final
     {
     public:
-        static const int16_t num_cores;
-        static const int16_t num_sockets;
-        static const bool is_root_priv_enabled;
+       public:
+           static long OPTKIT_SOCKET0__ENABLED;
+           static long OPTKIT_SOCKET1__ENABLED;
+           static long OPTKIT_SOCKET0__CORE_FREQ;
+           static long OPTKIT_SOCKET1__CORE_FREQ;
+           static long OPTKIT_SOCKET0__UNCORE_FREQ;
+           static long OPTKIT_SOCKET1__UNCORE_FREQ;
 
-        /**
-         * @brief Gets package - # of cores information
-         * @return const ref of static std::unordered_map<int32_t,std::vector<int32_t>> object: package - # of cores
-         */
-        static const std::map<int32_t, std::vector<int32_t>> &detect_packages();
+           static const int16_t num_cores;
+           static const int16_t num_sockets;
+           static const bool is_root_priv_enabled;
 
-    private:
-        Query() = delete;
-        ~Query() = delete;
+           /**
+            * @brief Gets package - # of cores information
+            * @return const ref of static std::unordered_map<int32_t,std::vector<int32_t>> object: package - # of cores
+            */
+           static const std::map<int32_t, std::vector<int32_t>> &detect_packages();
+
+       private:
+           Query() = delete;
+           ~Query() = delete;
 
     };
 

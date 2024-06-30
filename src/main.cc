@@ -8,30 +8,19 @@ int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit{false};
 
-    std::cout << "current uncore socket 0 !\n";
-    std::cout << CPUFrequency::get_uncore_min_max(0) << "\n";
-    std::cout << CPUFrequency::get_uncore_frequency(0) << "\n";
-
-    std::cout << "current uncore socket 1 !\n";
-    std::cout << CPUFrequency::get_uncore_min_max(1) << "\n";
-    std::cout << CPUFrequency::get_uncore_frequency(1) << "\n";
-
-    std::cout << "current core socket 0: " << CPUFrequency::get_core_frequency(0) << "\n";
-
-    std::cout << "current core socket 1:" << CPUFrequency::get_core_frequency(1) << "\n";
-
-    // std::cout << "setting uncore !\n";
-    // CPUFrequency::set_uncore_frequency(2400000000,0);
-    // std::cout << CPUFrequency::get_uncore_frequency(0) << "\n";
-
-    // std::cout << "setting uncore !\n";
-    // CPUFrequency::set_uncore_frequency(1100000000, 0);
-    // std::cout << CPUFrequency::get_uncore_frequency(0) << "\n";
-
-    // std::cout << "resetting uncore !\n";
-    // CPUFrequency::reset_uncore_frequency(0);
-    // std::cout << CPUFrequency::get_uncore_frequency(0) << "\n";
-    
+    for (size_t i = 0; i < Query::num_sockets; i++)
+    {
+        std::cout << "Socket [" << i << "]\n";
+        std::cout << "Core avail: ";
+        const auto &freq_list = QueryFreq::get_scaling_available_frequencies(Query::detect_packages().at(i)[0]);
+        for (auto iter = freq_list.rbegin(); iter != freq_list.rend(); iter++)
+            std::cout << *iter << " ";
+        std::cout << "\n";
+        std::cout << "Core current: " << CPUFrequency::get_core_frequency(Query::detect_packages().at(i)[0]) << "\n";
+        std::cout << "Uncore min-max: " << CPUFrequency::get_uncore_min_max(i) << "\n";
+        std::cout << "Uncore current: " << CPUFrequency::get_uncore_frequency(i) << "\n";
+    }
+ 
     return 0;
     
     // freq_governors::intel::icl::Governor gg;

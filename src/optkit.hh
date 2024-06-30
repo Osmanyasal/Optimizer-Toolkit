@@ -21,8 +21,8 @@ namespace optkit::core
         const std::string execution_file;
     };
     class OptimizerKit
-    {
-   
+    { 
+
     public:
         OptimizerKit(const OPTKIT_CONFIG config = {});
         ~OptimizerKit();
@@ -36,7 +36,11 @@ namespace optkit::core
         int32_t paranoid();
 
     private:
+        void process_env_variables();
+
+    private:
         const OPTKIT_CONFIG config;
+        
     };
 }
 
