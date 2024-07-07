@@ -21,7 +21,6 @@ namespace optkit::core::governors::intel::icl
             double flops_executed = pmu_record[1];
             double l3_misses = pmu_record[3];
             double compute_intensity = flops_executed / (l3_misses + 1);
-            OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
             return compute_intensity;
         }
 
@@ -30,22 +29,18 @@ namespace optkit::core::governors::intel::icl
             double total_instructions = pmu_record[0];
             double cache_hits_misses = pmu_record[2];
             double memory_intensity = cache_hits_misses / total_instructions;
-            OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
             return memory_intensity;
-        }
-
-        OPT_FORCE_INLINE virtual double io_intensity() override
-        {
-            return 0;
         }
 
         OPT_FORCE_INLINE void disalbe_callback_trigger() override
         {
             core_cycle_watcher.disable();
+            interested_events.disable();
         }
         OPT_FORCE_INLINE void enable_callback_trigger() override
         {
             core_cycle_watcher.enable();
+            interested_events.enable();
         }
 
     private:

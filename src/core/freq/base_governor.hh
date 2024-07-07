@@ -10,6 +10,7 @@
 #include <block_profiler.hh>
 #include <cpu_frequency.hh>
 #include <query_frequency.hh>
+#include <iostream>
 
 #define OPTKIT_BASE_GOVERNOR_MMAP_PAGES 8
 #define OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS 50 // 1 call per 7 ms -- on-demand checks each 10ms as well
@@ -34,7 +35,6 @@ namespace optkit::core::freq
         virtual void snapshot_pmus() = 0;
         virtual double compute_intensity() = 0;
         virtual double memory_intensity() = 0;
-        virtual double io_intensity() = 0;
         virtual void disalbe_callback_trigger() = 0;
         virtual void enable_callback_trigger() = 0;
 

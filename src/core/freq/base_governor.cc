@@ -33,32 +33,38 @@ namespace optkit::core::freq
         // DISABLE CALL_BACK TRIGGER to prevent multiple entry
         current_governor->disalbe_callback_trigger();
 
-        static int32_t i = 0;
-        OPTKIT_CORE_INFO("{} th call_back() called", ++i);
+        // static int32_t i = 0;
+        // OPTKIT_CORE_INFO("{} th call_back() called", ++i);
         current_governor->snapshot_pmus();
         double compute_intensity = current_governor->compute_intensity();
-        double io_intensity = current_governor->io_intensity();
         double memory_intensity = current_governor->memory_intensity();
-
-        OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
-        OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
-        OPTKIT_CORE_INFO("io intensity ={}", io_intensity);
+        std::cout << compute_intensity << "," << memory_intensity << ",best_core_freq" << ",best_uncore_freq\n";
+        // OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
+        // OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
 
         // call decision model here!
 
         if (Query::OPTKIT_SOCKET0__ENABLED)
         {
-            if (Query::OPTKIT_SOCKET0__CORE_FREQ != -1){}
-                // CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET0__CORE_FREQ, 0);
-            if (Query::OPTKIT_SOCKET0__UNCORE_FREQ != -1){}
-                // CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET0__UNCORE_FREQ, 0);
+            if (Query::OPTKIT_SOCKET0__CORE_FREQ != -1)
+            {
+            }
+            // CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET0__CORE_FREQ, 0);
+            if (Query::OPTKIT_SOCKET0__UNCORE_FREQ != -1)
+            {
+            }
+            // CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET0__UNCORE_FREQ, 0);
         }
         if (Query::OPTKIT_SOCKET1__ENABLED)
         {
-            if (Query::OPTKIT_SOCKET1__CORE_FREQ != -1){}
-                // CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET1__CORE_FREQ, 1);
-            if (Query::OPTKIT_SOCKET1__UNCORE_FREQ != -1){}
-                // CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET1__UNCORE_FREQ, 1);
+            if (Query::OPTKIT_SOCKET1__CORE_FREQ != -1)
+            {
+            }
+            // CPUFrequency::set_core_frequency(Query::OPTKIT_SOCKET1__CORE_FREQ, 1);
+            if (Query::OPTKIT_SOCKET1__UNCORE_FREQ != -1)
+            {
+            }
+            // CPUFrequency::set_uncore_frequency(Query::OPTKIT_SOCKET1__UNCORE_FREQ, 1);
         }
 
         // ENABLE CALL_BACK TRIGGER to prevent multiple entry
