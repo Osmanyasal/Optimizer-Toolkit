@@ -33,16 +33,16 @@ namespace optkit::core::freq
         // DISABLE CALL_BACK TRIGGER to prevent multiple entry
         current_governor->disalbe_callback_trigger();
 
-        // static int32_t i = 0;
-        // OPTKIT_CORE_INFO("{} th call_back() called", ++i);
+        static int32_t i = 0;
+        OPTKIT_CORE_INFO("{} th call_back() called", ++i);
         current_governor->snapshot_pmus();
         double compute_intensity = current_governor->compute_intensity();
         double io_intensity = current_governor->io_intensity();
         double memory_intensity = current_governor->memory_intensity();
 
-        // OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
-        // OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
-        // OPTKIT_CORE_INFO("io intensity ={}", io_intensity);
+        OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
+        OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
+        OPTKIT_CORE_INFO("io intensity ={}", io_intensity);
 
         // call decision model here!
 
