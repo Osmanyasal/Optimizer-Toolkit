@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Sequential, load_model
 import joblib
-
+import sys
 # Load the data from a single file
 def load_data(file_path):
     data = []
@@ -108,7 +108,9 @@ else:
 # for i in prediction:
 #     print(i)
 
-new_data = np.array([[893191,0.272149]])
+if len(sys.argv) < 2:
+     exit(0)
+new_data = np.array([[sys.argv[1],sys.argv[2]]])
 new_data_scaled = scaler.transform(new_data)
 prediction = nn_model.predict(new_data_scaled)
 print('Predicted best core and uncore frequencies:', prediction)

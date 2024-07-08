@@ -60,7 +60,7 @@ int main()
     // Load the SavedModel
     TF_SessionOptions *session_opts = TF_NewSessionOptions();
     TF_Buffer *run_opts = nullptr;
-    const char *saved_model_dir = "./saved_model";
+    const char *saved_model_dir = "/usr/local/include/optkit_governor_model/";
     const char *tags[] = {"serve"};
     TF_Graph *graph = TF_NewGraph();
     TF_Status *status = TF_NewStatus(); // Initialize TF_Status
@@ -81,7 +81,7 @@ int main()
 
     // Load scaler
     std::vector<float> scaler_mean, scaler_scale;
-    readScalerFile("./saved_model/scaler.txt", scaler_mean, scaler_scale);
+    readScalerFile("/usr/local/include/optkit_governor_model/scaler.txt", scaler_mean, scaler_scale);
 
     // Scale input data
     scaleInput(new_data, scaler_mean, scaler_scale, 2);

@@ -10,6 +10,7 @@
 #include <block_profiler.hh>
 #include <cpu_frequency.hh>
 #include <query_frequency.hh>
+#include <tensorflow/c/c_api.h>
 #include <iostream>
 
 #define OPTKIT_BASE_GOVERNOR_MMAP_PAGES 8
@@ -27,6 +28,17 @@ namespace optkit::core::freq
         // this will be called when sample period exceeds
         static void call_back(int32_t signum, siginfo_t *oh, void *blah);
         static BaseGovernor *current_governor;
+    private:
+        static std::vector<float> mean;
+        static std::vector<float> scale;
+        static TF_Tensor *input_tensor;
+        static TF_SessionOptions *session_opts;
+        static TF_Buffer *run_opts;
+        static const char *saved_model_dir;
+        static const char *tags[1];
+        static TF_Graph *graph;
+        static TF_Status *status;
+        static TF_Session *session;
 
     public:
         BaseGovernor(int64_t sample_period = (((QueryFreq::get_cpuinfo_max_freq() + QueryFreq::get_cpuinfo_min_freq()) / 2) / 1000) * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS);
@@ -37,6 +49,11 @@ namespace optkit::core::freq
         virtual double memory_intensity() = 0;
         virtual void disalbe_callback_trigger() = 0;
         virtual void enable_callback_trigger() = 0;
+
+    private:
+        // Function to read scaler values from scaler.txt
+        void read_scaler_file(std::vector<float> &mean_values, std::vector<float> &scale_values);
+ 
 
     protected:
         std::vector<uint64_t> pmu_record;

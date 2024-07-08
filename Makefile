@@ -77,9 +77,9 @@ INTEL_LIBS := -lx86_adapt
 
 # Conditionally link x86_adapt only on Intel systems
 ifeq ($(ARCH), x86_64)
-    DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl #$(INTEL_LIBS)
+    DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl -ltensorflow#$(INTEL_LIBS)
 else
-    DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl
+    DYNAMIC_LIBS := -L$(LIB_SPD_PATH)/build/ -lspdlog -ldl -ltensorflow
 endif
 
 
