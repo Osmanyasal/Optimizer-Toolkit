@@ -70,7 +70,7 @@ namespace optkit::core::freq
         double memory_intensity = current_governor->memory_intensity();
         // OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
         // OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
-        std::cout << compute_intensity << "," << memory_intensity << " --- ";
+        // std::cout << compute_intensity << "," << memory_intensity << " --- ";
 
         // scale input!
         static float new_data[2]{0, 0};
