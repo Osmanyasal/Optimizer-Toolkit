@@ -105,7 +105,7 @@ namespace optkit::core::freq
             auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
             // std::cout << "current vals: " << current_core_freq << "--" << current_uncore_freq << " *** ";
-            std::cout << "predicted values: " << data[0] << "--" << data[1] << " ";
+            // std::cout << "predicted values: " << data[0] << "--" << data[1] << " ";
 
             data[0] = std::floor(data[0] * 10 + 0.5) / 10;
             data[1] = std::floor(data[1] * 10 + 0.5) / 10;
@@ -117,7 +117,7 @@ namespace optkit::core::freq
             // std::cout << "\n";
             current_core_freq = data[0];
             current_uncore_freq = data[1];
-            // std::cout << "changed to: " << current_core_freq << " - " << current_uncore_freq << "\n";
+            std::cout << "changed to: " << current_core_freq << " - " << current_uncore_freq << "\n";
 
             // std::cout << "Predicted values: ";
             // for (int i = 0; i < 2; ++i)
