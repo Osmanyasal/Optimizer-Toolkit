@@ -70,73 +70,75 @@ namespace optkit::core::freq
         double memory_intensity = current_governor->memory_intensity();
         // OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
         // OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
-        
+
+        std::cout << compute_intensity << ", " << memory_intensity << ", best_core_freq, best_uncore_freq\n";
+
         // scale input!
-        static float new_data[2]{0, 0};
-        new_data[0] = (compute_intensity - BaseGovernor::mean[0]) / BaseGovernor::scale[0];
-        new_data[1] = (memory_intensity - BaseGovernor::mean[1]) / BaseGovernor::scale[1];
+        // static float new_data[2]{0, 0};
+        // new_data[0] = (compute_intensity - BaseGovernor::mean[0]) / BaseGovernor::scale[0];
+        // new_data[1] = (memory_intensity - BaseGovernor::mean[1]) / BaseGovernor::scale[1];
 
-        static const int64_t input_dims[2]{1, 2};
-        input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 2 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
+        // static const int64_t input_dims[2]{1, 2};
+        // input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 2 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
 
-        static const char *input_names[] = {"serving_default_dense_input"};
-        static TF_Output inputs[] = {
-            {TF_GraphOperationByName(graph, input_names[0]), 0}};
+        // static const char *input_names[] = {"serving_default_dense_input"};
+        // static TF_Output inputs[] = {
+        //     {TF_GraphOperationByName(graph, input_names[0]), 0}};
 
-        static const char *output_names[] = {"StatefulPartitionedCall"};
-        static TF_Output outputs[] = {
-            {TF_GraphOperationByName(graph, output_names[0]), 0}};
+        // static const char *output_names[] = {"StatefulPartitionedCall"};
+        // static TF_Output outputs[] = {
+        //     {TF_GraphOperationByName(graph, output_names[0]), 0}};
 
-        // Run session to make prediction
-        static TF_Tensor *output_tensor = nullptr;
-        TF_SessionRun(session,
-                      nullptr,                    // Run options.
-                      inputs, &input_tensor, 1,   // Input tensors, input tensor count.
-                      outputs, &output_tensor, 1, // Output tensors, output tensor count.
-                      nullptr, 0,                 // Target operations, number of targets.
-                      nullptr,                    // Run metadata.
-                      status);                    // Status object
+        // // Run session to make prediction
+        // static TF_Tensor *output_tensor = nullptr;
+        // TF_SessionRun(session,
+        //               nullptr,                    // Run options.
+        //               inputs, &input_tensor, 1,   // Input tensors, input tensor count.
+        //               outputs, &output_tensor, 1, // Output tensors, output tensor count.
+        //               nullptr, 0,                 // Target operations, number of targets.
+        //               nullptr,                    // Run metadata.
+        //               status);                    // Status object
 
-        // Print prediction
-        if (output_tensor)
-        {
-            auto data = static_cast<float *>(TF_TensorData(output_tensor));
+        // // Print prediction
+        // if (output_tensor)
+        // {
+        //     auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
-            // std::cout << "current vals: " << current_core_freq << "--" << current_uncore_freq << " *** ";
-            // std::cout << "predicted values: " << data[0] << "--" << data[1] << " ";
+        //     // std::cout << "current vals: " << current_core_freq << "--" << current_uncore_freq << " *** ";
+        //     // std::cout << "predicted values: " << data[0] << "--" << data[1] << " ";
 
-            data[0] = std::floor(data[0] * 10 + 0.5) / 10;
-            data[1] = std::floor(data[1] * 10 + 0.5) / 10;
-            if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
-            {
-                // std::cout << "*** returning ***" << std::endl;
-                return;
-            }
-            // std::cout << "\n";
-            current_core_freq = data[0];
-            current_uncore_freq = data[1];
-            // std::cout << "changed to: " << current_core_freq << " - " << current_uncore_freq << "\n";
+        //     data[0] = std::floor(data[0] * 10 + 0.5) / 10;
+        //     data[1] = std::floor(data[1] * 10 + 0.5) / 10;
+        //     if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
+        //     {
+        //         // std::cout << "*** returning ***" << std::endl;
+        //         return;
+        //     }
+        //     // std::cout << "\n";
+        //     current_core_freq = data[0];
+        //     current_uncore_freq = data[1];
+        //     // std::cout << "changed to: " << current_core_freq << " - " << current_uncore_freq << "\n";
 
-            // std::cout << "Predicted values: ";
-            // for (int i = 0; i < 2; ++i)
-            // {
-            //     std::cout << data[i] << " ";
-            // }
-            // std::cout << std::endl;
+        //     // std::cout << "Predicted values: ";
+        //     // for (int i = 0; i < 2; ++i)
+        //     // {
+        //     //     std::cout << data[i] << " ";
+        //     // }
+        //     // std::cout << std::endl;
 
-            if (Query::OPTKIT_SOCKET0__ENABLED)
-            {
-                CPUFrequency::set_core_frequency(current_core_freq * GHZ, 0);
-                CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 0);
-            }
-            if (Query::OPTKIT_SOCKET1__ENABLED)
-            {
-                CPUFrequency::set_core_frequency(current_core_freq * GHZ, 1);
-                CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 1);
-            }
+        //     if (Query::OPTKIT_SOCKET0__ENABLED)
+        //     {
+        //         CPUFrequency::set_core_frequency(current_core_freq * GHZ, 0);
+        //         CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 0);
+        //     }
+        //     if (Query::OPTKIT_SOCKET1__ENABLED)
+        //     {
+        //         CPUFrequency::set_core_frequency(current_core_freq * GHZ, 1);
+        //         CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 1);
+        //     }
 
-            TF_DeleteTensor(output_tensor);
-        }
+        //     TF_DeleteTensor(output_tensor);
+        // }
 
         // ENABLE CALL_BACK TRIGGER to prevent multiple entry
         current_governor->enable_callback_trigger();

@@ -14,7 +14,7 @@
 #include <iostream>
 
 #define OPTKIT_BASE_GOVERNOR_MMAP_PAGES 8
-#define OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS 50 // 1 call per 7 ms -- on-demand checks each 10ms as well
+#define OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS 250 // 1 call per 250 ms
 #define GHZ 1000000000
 namespace optkit::core::freq
 {
