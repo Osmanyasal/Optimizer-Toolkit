@@ -71,7 +71,7 @@ namespace optkit::core::freq
         // OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
         // OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
 
-        std::cout << compute_intensity << ", " << memory_intensity << ", best_core_freq, best_uncore_freq\n";
+        // std::cout << compute_intensity << ", " << memory_intensity << ", best_core_freq, best_uncore_freq\n";
 
         // scale input!
         static float new_data[2]{0, 0};
