@@ -16,7 +16,7 @@ namespace optkit::core::freq
     TF_Graph *BaseGovernor::graph;
     TF_Status *BaseGovernor::status;
     TF_Session *BaseGovernor::session;
-    
+
     float BaseGovernor::current_core_freq = 0;
     float BaseGovernor::current_uncore_freq = 0;
 
@@ -70,8 +70,7 @@ namespace optkit::core::freq
         double memory_intensity = current_governor->memory_intensity();
         // OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
         // OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
-        // std::cout << compute_intensity << "," << memory_intensity << " --- ";
-
+        
         // scale input!
         static float new_data[2]{0, 0};
         new_data[0] = (compute_intensity - BaseGovernor::mean[0]) / BaseGovernor::scale[0];
@@ -89,7 +88,7 @@ namespace optkit::core::freq
             {TF_GraphOperationByName(graph, output_names[0]), 0}};
 
         // Run session to make prediction
-        TF_Tensor *output_tensor = nullptr;
+        static TF_Tensor *output_tensor = nullptr;
         TF_SessionRun(session,
                       nullptr,                    // Run options.
                       inputs, &input_tensor, 1,   // Input tensors, input tensor count.
@@ -105,7 +104,8 @@ namespace optkit::core::freq
 
             // std::cout << "current vals: " << current_core_freq << "--" << current_uncore_freq << " *** ";
             // std::cout << "predicted values: " << data[0] << "--" << data[1] << " ";
-            if (std::abs(current_core_freq - data[0]) < 0.1 && std::abs(current_uncore_freq - data[1]) < 0.1){ 
+            if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
+            {
                 // std::cout << "*** returning ***" << std::endl;
                 return;
             }
@@ -123,25 +123,13 @@ namespace optkit::core::freq
 
             if (Query::OPTKIT_SOCKET0__ENABLED)
             {
-                if (Query::OPTKIT_SOCKET0__CORE_FREQ != -1)
-                {
-                    CPUFrequency::set_core_frequency(current_core_freq * GHZ, 0);
-                }
-                if (Query::OPTKIT_SOCKET0__UNCORE_FREQ != -1)
-                {
-                    CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 0);
-                }
+                CPUFrequency::set_core_frequency(current_core_freq * GHZ, 0);
+                CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 0);
             }
             if (Query::OPTKIT_SOCKET1__ENABLED)
             {
-                if (Query::OPTKIT_SOCKET1__CORE_FREQ != -1)
-                {
-                    CPUFrequency::set_core_frequency(current_core_freq * GHZ, 1);
-                }
-                if (Query::OPTKIT_SOCKET1__UNCORE_FREQ != -1)
-                {
-                    CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 1);
-                }
+                CPUFrequency::set_core_frequency(current_core_freq * GHZ, 1);
+                CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 1);
             }
 
             TF_DeleteTensor(output_tensor);
