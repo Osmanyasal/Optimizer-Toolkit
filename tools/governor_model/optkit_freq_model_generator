@@ -101,7 +101,7 @@ else:
     print('Neural Network MSE:', mse)
 
 # Example prediction
-# new_data = load_data("gemm_out.dump")
+# new_data = load_data("lavamd.dump")
 # new_data_scaled = scaler.transform(new_data)
 # prediction = nn_model.predict(new_data_scaled)
 # print('Predicted best core and uncore frequencies:')
