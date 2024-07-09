@@ -115,7 +115,7 @@ namespace optkit::core::freq
             // std::cout << "\n";
             current_core_freq = data[0];
             current_uncore_freq = data[1];
-            std::cout << "changed to: " << current_core_freq << " - " << current_uncore_freq << "\n";
+            // std::cout << "changed to: " << current_core_freq << " - " << current_uncore_freq << "\n";
 
             // std::cout << "Predicted values: ";
             // for (int i = 0; i < 2; ++i)
