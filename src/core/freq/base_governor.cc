@@ -103,12 +103,13 @@ namespace optkit::core::freq
         {
             auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
-            std::cout << "\nPredicted values: " << data[0] << "--" << data[1];
-            if (std::abs(current_core_freq - data[0]) < 0.1 && std::abs(current_core_freq - data[1]) < 0.1){
-                std::cout << "current vals: " << current_core_freq << "--" << current_uncore_freq << " ";
-                std::cout << "*** returning ***\n";
+            std::cout << "current vals: " << current_core_freq << "--" << current_uncore_freq << " *** ";
+            std::cout << "predicted values: " << data[0] << "--" << data[1] << " ";
+            if (std::abs(current_core_freq - data[0]) < 0.1 && std::abs(current_core_freq - data[1]) < 0.1){ 
+                std::cout << "*** returning ***" << std::endl;
                 return;
             }
+            std::cout << "\n";
             current_core_freq = data[0];
             current_uncore_freq = data[1];
 
