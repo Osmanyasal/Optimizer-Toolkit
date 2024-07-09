@@ -104,6 +104,9 @@ namespace optkit::core::freq
 
             // std::cout << "current vals: " << current_core_freq << "--" << current_uncore_freq << " *** ";
             // std::cout << "predicted values: " << data[0] << "--" << data[1] << " ";
+
+            data[0] = std::floor(data[0] * 10 + 0.5) / 10;
+            data[1] = std::floor(data[1] * 10 + 0.5) / 10;
             if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
             {
                 // std::cout << "*** returning ***" << std::endl;
