@@ -106,6 +106,9 @@ namespace optkit::core::freq
 
             data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
             data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
+
+            std::cout << "estimation: " << data[0] << " - " << data[1] << "\n";
+
             if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
                 return;
 
