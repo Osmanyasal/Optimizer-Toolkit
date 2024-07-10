@@ -28,7 +28,7 @@ namespace optkit::core::freq
         memset(&sa, 0, sizeof(struct sigaction));
         sa.sa_sigaction = BaseGovernor::call_back;
         sa.sa_flags = SA_SIGINFO;
-        if (sigaction(SIGIO, &sa, NULL) < 0)
+        if (sigaction(SIGUSR2, &sa, NULL) < 0)
         {
             OPTKIT_CORE_ERROR("Error setting up signal handler");
             exit(1);

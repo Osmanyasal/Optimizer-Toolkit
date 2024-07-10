@@ -11,7 +11,7 @@ namespace optkit::core::governors::intel::skl
              PROT_READ | PROT_WRITE, MAP_SHARED, cycle_pmc_fd, 0);
 
         fcntl(cycle_pmc_fd, F_SETFL, O_RDWR | O_NONBLOCK | O_ASYNC);
-        fcntl(cycle_pmc_fd, F_SETSIG, SIGIO);
+        fcntl(cycle_pmc_fd, F_SETSIG, SIGUSR2);
         fcntl(cycle_pmc_fd, F_SETOWN, getpid());
         ioctl(cycle_pmc_fd, PERF_EVENT_IOC_RESET, PERF_IOC_FLAG_GROUP);
     }
