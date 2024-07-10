@@ -104,37 +104,32 @@ namespace optkit::core::freq
         {
             auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
-            // std::cout << "current vals: " << current_core_freq << "--" << current_uncore_freq << " *** ";
-            // std::cout << "predicted values: " << data[0] << "--" << data[1] << " ";
-
-            data[0] = std::floor(data[0] * 10 + 0.5) / 10;
-            data[1] = std::floor(data[1] * 10 + 0.5) / 10;
+            data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
+            data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
             if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
-            {
-                // std::cout << "*** returning ***" << std::endl;
                 return;
-            }
-            // std::cout << "\n";
+
+            // return if freq bigger than the freq rank!
+            static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
+            static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
+            static auto uncore_min_max = CPUFrequency::get_uncore_min_max(1);
+
+            if (data[0] > max_core_freq || data[0] < min_core_freq || data[1] < uncore_min_max.first || data[1] > uncore_min_max.second)
+                return;
+            
             current_core_freq = data[0];
             current_uncore_freq = data[1];
             std::cout << "changed to: " << current_core_freq << " - " << current_uncore_freq << "\n";
 
-            // std::cout << "Predicted values: ";
-            // for (int i = 0; i < 2; ++i)
-            // {
-            //     std::cout << data[i] << " ";
-            // }
-            // std::cout << std::endl;
-
             if (Query::OPTKIT_SOCKET0__ENABLED)
             {
-                CPUFrequency::set_core_frequency(current_core_freq * GHZ, 0);
-                CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 0);
+                CPUFrequency::set_core_frequency(current_core_freq, 0);
+                CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
             }
             if (Query::OPTKIT_SOCKET1__ENABLED)
             {
-                CPUFrequency::set_core_frequency(current_core_freq * GHZ, 1);
-                CPUFrequency::set_uncore_frequency(current_uncore_freq * GHZ, 1);
+                CPUFrequency::set_core_frequency(current_core_freq, 1);
+                CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
             }
 
             TF_DeleteTensor(output_tensor);
