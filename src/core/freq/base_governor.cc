@@ -23,7 +23,7 @@ namespace optkit::core::freq
     BaseGovernor::BaseGovernor(int64_t sample_period) : config{false, true, false, 0, -1}, sample_period{sample_period}
     {
         this->config.perf_event_config.sample_period = this->sample_period;
-        this->config.cpu = 1; /// set thread 1 for cpu_cycle callbacks!!    // TODO: This must be changed based on the cores given to the program!
+        this->config.cpu = Query::OPTKIT_SOCKET0__ENABLED ? Query::detect_packages().at(0)[0] : Query::detect_packages().at(1)[0];
 
         memset(&sa, 0, sizeof(struct sigaction));
         sa.sa_sigaction = BaseGovernor::call_back;
@@ -59,8 +59,6 @@ namespace optkit::core::freq
     {
         if (OPT_UNLIKELY(BaseGovernor::current_governor == nullptr))
             return;
-
-        // DISABLE CALL_BACK TRIGGER to prevent multiple entry
         current_governor->disalbe_callback_trigger();
 
         // static int32_t i = 0;
@@ -68,10 +66,6 @@ namespace optkit::core::freq
         current_governor->snapshot_pmus();
         double compute_intensity = current_governor->compute_intensity();
         double memory_intensity = current_governor->memory_intensity();
-        // OPTKIT_CORE_INFO("compute intensity = {}", compute_intensity);
-        // OPTKIT_CORE_INFO("memory intensity ={}", memory_intensity);
-
-        // std::cout << compute_intensity << ", " << memory_intensity << ", best_core_freq, best_uncore_freq\n";
 
         // scale input!
         static float new_data[2]{0, 0};
@@ -99,43 +93,53 @@ namespace optkit::core::freq
                       nullptr,                    // Run metadata.
                       status);                    // Status object
 
-        // Print prediction
         if (output_tensor)
         {
             auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
             data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
             data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
-
-            std::cout << "estimation: " << data[0] << " - " << data[1] << "\n";
-
+ 
             if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
                 return;
+
+            std::cout << "current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
 
             // return if freq bigger than the freq rank!
             static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
             static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
-            static auto uncore_min_max = CPUFrequency::get_uncore_min_max(1);
-
-            if (data[0] > max_core_freq || data[0] < min_core_freq || data[1] < uncore_min_max.first || data[1] > uncore_min_max.second)
-                return;
-            
-            current_core_freq = data[0];
-            current_uncore_freq = data[1];
-            std::cout << "changed to: " << current_core_freq << " - " << current_uncore_freq << "\n";
+            static std::pair<int64_t, int64_t> uncore_min_max = CPUFrequency::get_uncore_min_max(0); // get socket 1s core-uncore freq
 
             if (Query::OPTKIT_SOCKET0__ENABLED)
             {
-                CPUFrequency::set_core_frequency(current_core_freq, 0);
-                CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
+                if (data[0] <= max_core_freq && data[0] >= min_core_freq)
+                {
+                    current_core_freq = data[0];
+                    CPUFrequency::set_core_frequency(current_core_freq, 0);
+                }
+
+                if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
+                {
+                    current_uncore_freq = data[1];
+                    CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
+                }
             }
             if (Query::OPTKIT_SOCKET1__ENABLED)
             {
-                CPUFrequency::set_core_frequency(current_core_freq, 1);
-                CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
+                if (data[0] <= max_core_freq && data[0] >= min_core_freq)
+                {
+                    current_core_freq = data[0];
+                    CPUFrequency::set_core_frequency(current_core_freq, 1);
+                }
+                if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
+                {
+                    current_uncore_freq = data[1];
+                    CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
+                }
             }
 
             TF_DeleteTensor(output_tensor);
+            TF_DeleteTensor(input_tensor);
         }
 
         // ENABLE CALL_BACK TRIGGER to prevent multiple entry
@@ -144,9 +148,6 @@ namespace optkit::core::freq
 
     void BaseGovernor::read_scaler_file(std::vector<float> &mean_values, std::vector<float> &scale_values)
     {
-        if (mean_values.size() != 0 && scale_values.size() != 0)
-            return;
-
         mean_values.clear();
         scale_values.clear();
         static std::string file_txt = ::read_file("/usr/local/include/optkit_governor_model/scaler.txt");
