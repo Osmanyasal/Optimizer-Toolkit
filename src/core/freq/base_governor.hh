@@ -61,6 +61,7 @@ namespace optkit::core::freq
  
 
     protected:
+        bool data_collector_mode;
         std::vector<uint64_t> pmu_record;
         optkit::core::ProfilerConfig config;
         const int64_t sample_period;

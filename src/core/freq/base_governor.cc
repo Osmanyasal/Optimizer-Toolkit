@@ -20,7 +20,7 @@ namespace optkit::core::freq
     float BaseGovernor::current_core_freq = 0;
     float BaseGovernor::current_uncore_freq = 0;
 
-    BaseGovernor::BaseGovernor(bool data_collector_mode, int64_t sample_period) : config{false, true, false, 0, -1}, sample_period{sample_period}
+    BaseGovernor::BaseGovernor(bool data_collector_mode, int64_t sample_period) : data_collector_mode{data_collector_mode}, config{false, true, false, 0, -1}, sample_period{sample_period}
     {
         this->config.perf_event_config.sample_period = this->sample_period;
         this->config.cpu = Query::OPTKIT_SOCKET1__ENABLED ? Query::detect_packages().at(1)[0] : Query::detect_packages().at(0)[0];
@@ -29,6 +29,7 @@ namespace optkit::core::freq
             sa.sa_sigaction = BaseGovernor::collector_call_back;
         else
             sa.sa_sigaction = BaseGovernor::call_back;
+            
         sa.sa_flags = SA_SIGINFO;
         if (sigaction(SIGUSR2, &sa, NULL) < 0)
         {
@@ -36,25 +37,32 @@ namespace optkit::core::freq
             exit(1);
         }
 
-        read_scaler_file(BaseGovernor::mean, BaseGovernor::scale);
+        if (!data_collector_mode)
+        {
+            read_scaler_file(BaseGovernor::mean, BaseGovernor::scale);
 
-        session_opts = TF_NewSessionOptions();
-        run_opts = nullptr;
-        tags[0] = "serve";
-        graph = TF_NewGraph();
-        status = TF_NewStatus();
-        saved_model_dir = "/usr/local/include/optkit_governor_model/";
-        session = TF_LoadSessionFromSavedModel(session_opts, run_opts, saved_model_dir, tags, 1, graph, nullptr, status);
+            session_opts = TF_NewSessionOptions();
+            run_opts = nullptr;
+            tags[0] = "serve";
+            graph = TF_NewGraph();
+            status = TF_NewStatus();
+            saved_model_dir = "/usr/local/include/optkit_governor_model/";
+            session = TF_LoadSessionFromSavedModel(session_opts, run_opts, saved_model_dir, tags, 1, graph, nullptr, status);
+        }
     }
 
     BaseGovernor::~BaseGovernor()
     {
-        // Clean up
-        TF_DeleteTensor(input_tensor);
-        TF_DeleteGraph(graph);
-        TF_DeleteSession(session, status); // Use status for TF_DeleteSession
-        TF_DeleteSessionOptions(session_opts);
-        TF_DeleteStatus(status); // Clean up status
+
+        if (!data_collector_mode)
+        {
+            // Clean up
+            TF_DeleteTensor(input_tensor);
+            TF_DeleteGraph(graph);
+            TF_DeleteSession(session, status); // Use status for TF_DeleteSession
+            TF_DeleteSessionOptions(session_opts);
+            TF_DeleteStatus(status); // Clean up status
+        }
     }
 
     void BaseGovernor::collector_call_back(int32_t signum, siginfo_t *oh, void *blah)
