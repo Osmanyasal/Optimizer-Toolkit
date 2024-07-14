@@ -68,7 +68,7 @@ namespace optkit::core::freq
         double dram_intensity = current_governor->dram_intensity();
         double cache_intensity = current_governor->cache_intensity();
 
-        std::cout << compute_intensity << "," << cache_intensity << "," << dram_intensity << "\n";
+        std::cout << compute_intensity << "," << cache_intensity << "," << dram_intensity << ",best_core_freq,best_uncore_freq\n";
 
         // ENABLE CALL_BACK TRIGGER to prevent multiple entry
         current_governor->enable_callback_trigger();
