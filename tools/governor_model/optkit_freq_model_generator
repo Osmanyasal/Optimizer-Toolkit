@@ -52,10 +52,10 @@ else:
     data = load_all_data(data_dir)
 
     # Convert to DataFrame
-    df = pd.DataFrame(data, columns=['compute_intensity', 'memory_intensity', 'best_core_freq', 'best_uncore_freq'])
+    df = pd.DataFrame(data, columns=['compute_intensity', 'cache_intensity','dram_intensity', 'best_core_freq', 'best_uncore_freq'])
 
     # Features and target variables
-    X = df[['compute_intensity', 'memory_intensity']]
+    X = df[['compute_intensity', 'cache_intensity','dram_intensity']]
     y = df[['best_core_freq', 'best_uncore_freq']]
 
     # Split the data
