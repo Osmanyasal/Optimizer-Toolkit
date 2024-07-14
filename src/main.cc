@@ -3,7 +3,7 @@
 #include <test.hh>
 #include <core_events.hh>
 
-#define VECTOR_SIZE 100000000 // 1 billion elements
+#define VECTOR_SIZE 100000000  // 1 billion elements
 #define NUM_ACCESSES 100000000 // 100 million random accesses
 
 void randomAccesses(std::vector<double> &vec, int num_accesses)
@@ -33,7 +33,7 @@ void randomAccesses(std::vector<double> &vec, int num_accesses)
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit{};
-    freq_governors::intel::icl::Governor gg;
+    freq_governors::intel::icl::Governor gg{true};
 
     for (size_t i = 0; i < Query::num_sockets; i++)
     {
@@ -50,52 +50,50 @@ int32_t main(int32_t argc, char **argv)
 
     BLOCK_TIMER("Whole Program");
 
+        {
 
-//     {
+            BLOCK_TIMER("Triad Block");
+            double aa = 0;
 
-//         BLOCK_TIMER("Operation Block");
-//         double aa = 0;
+    #pragma omp parallel for
+            for (int32_t i = 0; i < 900000000; i++)
+                aa = aa + i * 0.052; // 2 * 50M -> 100M
 
-// #pragma omp parallel for
-//         for (int32_t i = 0; i < 900000000; i++)
-//             aa = aa + i * 0.052; // 2 * 50M -> 100M
+            // std::cout << aa << std::endl;
+        }
 
-//         std::cout << aa << std::endl;
-//     }
+        {
 
-//     {
+            BLOCK_TIMER("Matrix MUL Block");
 
-//         BLOCK_TIMER("Triad Block");
+            #define ARRAY_SIZE 100000000
+            #define SCALE_FACTOR 2.134
 
-//         #define ARRAY_SIZE 100000000
-//         #define SCALE_FACTOR 2.134
+            double *A = new double[ARRAY_SIZE];
+            double *B = new double[ARRAY_SIZE];
+            double *C = new double[ARRAY_SIZE];
 
+            // Initialize arrays A and B
+            #pragma omp parallel for
+            for (int i = 0; i < ARRAY_SIZE; ++i)
+            {
+                A[i] = 1.0;
+                B[i] = 2.0;
+                C[i] = 0.0; // Initialize C to zero
+            }
 
-//         double *A = new double[ARRAY_SIZE];
-//         double *B = new double[ARRAY_SIZE];
-//         double *C = new double[ARRAY_SIZE];
+            #pragma omp parallel for
+            for (int i = 0; i < ARRAY_SIZE; ++i)
+            {
+                C[i] = A[i] + SCALE_FACTOR * B[i];
+            }
 
-//         // Initialize arrays A and B
-//         #pragma omp parallel for
-//         for (int i = 0; i < ARRAY_SIZE; ++i)
-//         {
-//             A[i] = 1.0;
-//             B[i] = 2.0;
-//             C[i] = 0.0; // Initialize C to zero
-//         }
-
-//         #pragma omp parallel for
-//         for (int i = 0; i < ARRAY_SIZE; ++i)
-//         {
-//             C[i] = A[i] + SCALE_FACTOR * B[i];
-//         }
-
-//         // Clean up
-//         delete[] A;
-//         delete[] B;
-//         delete[] C;
-// #undef MATRIX_SIZE
-//     }
+            // Clean up
+            delete[] A;
+            delete[] B;
+            delete[] C;
+    #undef MATRIX_SIZE
+        }
 
     {
         BLOCK_TIMER("Random access !");
@@ -104,21 +102,21 @@ int32_t main(int32_t argc, char **argv)
         randomAccesses(vec, NUM_ACCESSES);
     }
 
-//     {
-//         // freq_governors::intel::icl::Governor gg;
-//         BLOCK_TIMER("IO Block");
+    //     {
+    //         // freq_governors::intel::icl::Governor gg;
+    //         BLOCK_TIMER("IO Block");
 
-// #pragma omp parallel for
-//         for (int32_t i = 0; i < 1000; i++)
-//         {
-//             QueryFreq::get_bios_limit();
-//             QueryFreq::get_cpuinfo_max_freq();
-//             QueryFreq::get_cpuinfo_min_freq();
-//             QueryFreq::get_scaling_driver();
-//             QueryFreq::get_scaling_governor();
-//             QueryFreq::get_scaling_max_limit();
-//             QueryFreq::get_scaling_min_limit();
-//         }
-//     }
+    // #pragma omp parallel for
+    //         for (int32_t i = 0; i < 1000; i++)
+    //         {
+    //             QueryFreq::get_bios_limit();
+    //             QueryFreq::get_cpuinfo_max_freq();
+    //             QueryFreq::get_cpuinfo_min_freq();
+    //             QueryFreq::get_scaling_driver();
+    //             QueryFreq::get_scaling_governor();
+    //             QueryFreq::get_scaling_max_limit();
+    //             QueryFreq::get_scaling_min_limit();
+    //         }
+    //     }
     return 0;
 }

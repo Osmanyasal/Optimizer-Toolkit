@@ -20,13 +20,15 @@ namespace optkit::core::freq
     float BaseGovernor::current_core_freq = 0;
     float BaseGovernor::current_uncore_freq = 0;
 
-    BaseGovernor::BaseGovernor(int64_t sample_period) : config{false, true, false, 0, -1}, sample_period{sample_period}
+    BaseGovernor::BaseGovernor(bool data_collector_mode, int64_t sample_period) : config{false, true, false, 0, -1}, sample_period{sample_period}
     {
         this->config.perf_event_config.sample_period = this->sample_period;
-        this->config.cpu = Query::OPTKIT_SOCKET0__ENABLED ? Query::detect_packages().at(0)[0] : Query::detect_packages().at(1)[0];
-
+        this->config.cpu = Query::OPTKIT_SOCKET1__ENABLED ? Query::detect_packages().at(1)[0] : Query::detect_packages().at(0)[0];
         memset(&sa, 0, sizeof(struct sigaction));
-        sa.sa_sigaction = BaseGovernor::call_back;
+        if (data_collector_mode)
+            sa.sa_sigaction = BaseGovernor::collector_call_back;
+        else
+            sa.sa_sigaction = BaseGovernor::call_back;
         sa.sa_flags = SA_SIGINFO;
         if (sigaction(SIGUSR2, &sa, NULL) < 0)
         {
@@ -55,92 +57,108 @@ namespace optkit::core::freq
         TF_DeleteStatus(status); // Clean up status
     }
 
+    void BaseGovernor::collector_call_back(int32_t signum, siginfo_t *oh, void *blah)
+    {
+        if (OPT_UNLIKELY(BaseGovernor::current_governor == nullptr))
+            return;
+        current_governor->disalbe_callback_trigger();
+
+        current_governor->snapshot_pmus();
+        double compute_intensity = current_governor->compute_intensity();
+        double dram_intensity = current_governor->dram_intensity();
+        double cache_intensity = current_governor->cache_intensity();
+
+        std::cout << compute_intensity << "," << cache_intensity << "," << dram_intensity << "\n";
+
+        // ENABLE CALL_BACK TRIGGER to prevent multiple entry
+        current_governor->enable_callback_trigger();
+    }
+
     void BaseGovernor::call_back(int32_t signum, siginfo_t *oh, void *blah)
     {
         if (OPT_UNLIKELY(BaseGovernor::current_governor == nullptr))
             return;
         current_governor->disalbe_callback_trigger();
 
-        // static int32_t i = 0;
-        // OPTKIT_CORE_INFO("{} th call_back() called", ++i);
         current_governor->snapshot_pmus();
         double compute_intensity = current_governor->compute_intensity();
-        double memory_intensity = current_governor->memory_intensity();
+        double dram_intensity = current_governor->dram_intensity();
+        double cache_intensity = current_governor->cache_intensity();
 
         // scale input!
-        static float new_data[2]{0, 0};
-        new_data[0] = (compute_intensity - BaseGovernor::mean[0]) / BaseGovernor::scale[0];
-        new_data[1] = (memory_intensity - BaseGovernor::mean[1]) / BaseGovernor::scale[1];
+        // static float new_data[2]{0, 0};
+        // new_data[0] = (compute_intensity - BaseGovernor::mean[0]) / BaseGovernor::scale[0];
+        // new_data[1] = (memory_intensity - BaseGovernor::mean[1]) / BaseGovernor::scale[1];
 
-        static const int64_t input_dims[2]{1, 2};
-        input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 2 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
+        // static const int64_t input_dims[2]{1, 2};
+        // input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 2 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
 
-        static const char *input_names[] = {"serving_default_dense_input"};
-        static TF_Output inputs[] = {
-            {TF_GraphOperationByName(graph, input_names[0]), 0}};
+        // static const char *input_names[] = {"serving_default_dense_input"};
+        // static TF_Output inputs[] = {
+        //     {TF_GraphOperationByName(graph, input_names[0]), 0}};
 
-        static const char *output_names[] = {"StatefulPartitionedCall"};
-        static TF_Output outputs[] = {
-            {TF_GraphOperationByName(graph, output_names[0]), 0}};
+        // static const char *output_names[] = {"StatefulPartitionedCall"};
+        // static TF_Output outputs[] = {
+        //     {TF_GraphOperationByName(graph, output_names[0]), 0}};
 
-        // Run session to make prediction
-        static TF_Tensor *output_tensor = nullptr;
-        TF_SessionRun(session,
-                      nullptr,                    // Run options.
-                      inputs, &input_tensor, 1,   // Input tensors, input tensor count.
-                      outputs, &output_tensor, 1, // Output tensors, output tensor count.
-                      nullptr, 0,                 // Target operations, number of targets.
-                      nullptr,                    // Run metadata.
-                      status);                    // Status object
+        // // Run session to make prediction
+        // static TF_Tensor *output_tensor = nullptr;
+        // TF_SessionRun(session,
+        //               nullptr,                    // Run options.
+        //               inputs, &input_tensor, 1,   // Input tensors, input tensor count.
+        //               outputs, &output_tensor, 1, // Output tensors, output tensor count.
+        //               nullptr, 0,                 // Target operations, number of targets.
+        //               nullptr,                    // Run metadata.
+        //               status);                    // Status object
 
-        if (output_tensor)
-        {
-            auto data = static_cast<float *>(TF_TensorData(output_tensor));
+        // if (output_tensor)
+        // {
+        //     auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
-            data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
-            data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
- 
-            if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
-                return;
+        //     data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
+        //     data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
 
-            std::cout << "current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
+        //     if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
+        //         return;
 
-            // return if freq bigger than the freq rank!
-            static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
-            static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
-            static std::pair<int64_t, int64_t> uncore_min_max = CPUFrequency::get_uncore_min_max(0); // get socket 1s core-uncore freq
+        //     std::cout << "current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
 
-            if (Query::OPTKIT_SOCKET0__ENABLED)
-            {
-                if (data[0] <= max_core_freq && data[0] >= min_core_freq)
-                {
-                    current_core_freq = data[0];
-                    CPUFrequency::set_core_frequency(current_core_freq, 0);
-                }
+        //     // return if freq bigger than the freq rank!
+        //     static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
+        //     static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
+        //     static std::pair<int64_t, int64_t> uncore_min_max = CPUFrequency::get_uncore_min_max(0); // get socket 1s core-uncore freq
 
-                if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
-                {
-                    current_uncore_freq = data[1];
-                    CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
-                }
-            }
-            if (Query::OPTKIT_SOCKET1__ENABLED)
-            {
-                if (data[0] <= max_core_freq && data[0] >= min_core_freq)
-                {
-                    current_core_freq = data[0];
-                    CPUFrequency::set_core_frequency(current_core_freq, 1);
-                }
-                if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
-                {
-                    current_uncore_freq = data[1];
-                    CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
-                }
-            }
+        //     if (Query::OPTKIT_SOCKET0__ENABLED)
+        //     {
+        //         if (data[0] <= max_core_freq && data[0] >= min_core_freq)
+        //         {
+        //             current_core_freq = data[0];
+        //             CPUFrequency::set_core_frequency(current_core_freq, 0);
+        //         }
 
-            TF_DeleteTensor(output_tensor);
-            TF_DeleteTensor(input_tensor);
-        }
+        //         if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
+        //         {
+        //             current_uncore_freq = data[1];
+        //             CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
+        //         }
+        //     }
+        //     if (Query::OPTKIT_SOCKET1__ENABLED)
+        //     {
+        //         if (data[0] <= max_core_freq && data[0] >= min_core_freq)
+        //         {
+        //             current_core_freq = data[0];
+        //             CPUFrequency::set_core_frequency(current_core_freq, 1);
+        //         }
+        //         if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
+        //         {
+        //             current_uncore_freq = data[1];
+        //             CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
+        //         }
+        //     }
+
+        //     TF_DeleteTensor(output_tensor);
+        //     TF_DeleteTensor(input_tensor);
+        // }
 
         // ENABLE CALL_BACK TRIGGER to prevent multiple entry
         current_governor->enable_callback_trigger();

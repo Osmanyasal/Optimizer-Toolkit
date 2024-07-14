@@ -27,6 +27,7 @@ namespace optkit::core::freq
     public:
         // this will be called when sample period exceeds
         static void call_back(int32_t signum, siginfo_t *oh, void *blah);
+        static void collector_call_back(int32_t signum, siginfo_t *oh, void *blah);
         static BaseGovernor *current_governor;
         
     private:
@@ -44,12 +45,13 @@ namespace optkit::core::freq
         static float current_uncore_freq;
 
     public:
-        BaseGovernor(int64_t sample_period = (((QueryFreq::get_cpuinfo_max_freq() + QueryFreq::get_cpuinfo_min_freq()) / 2) / 1000) * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS);
+        BaseGovernor(bool data_collector_mode = false ,int64_t sample_period = (((QueryFreq::get_cpuinfo_max_freq() + QueryFreq::get_cpuinfo_min_freq()) / 2) / 1000) * OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS);
         virtual ~BaseGovernor();
 
         virtual void snapshot_pmus() = 0;
         virtual double compute_intensity() = 0;
-        virtual double memory_intensity() = 0;
+        virtual double dram_intensity() = 0;
+        virtual double cache_intensity() = 0;
         virtual void disalbe_callback_trigger() = 0;
         virtual void enable_callback_trigger() = 0;
 

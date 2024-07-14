@@ -12,7 +12,7 @@ namespace optkit::core::governors::intel::skl
     class Governor final : public core::freq::BaseGovernor
     {
     public:
-        Governor();
+        Governor(bool data_collector_mode = false);
         virtual ~Governor() { BaseGovernor::current_governor = nullptr; }
         virtual void snapshot_pmus() override { this->pmu_record = interested_events.read_val(); }
 
@@ -24,12 +24,20 @@ namespace optkit::core::governors::intel::skl
             return compute_intensity;
         }
 
-        OPT_FORCE_INLINE virtual double memory_intensity() override
+        OPT_FORCE_INLINE virtual double cache_intensity() override
         {
             double total_instructions = pmu_record[0];
             double cache_hits_misses = pmu_record[2];
-            double memory_intensity = cache_hits_misses / total_instructions;
-            return memory_intensity;
+            double cache_intensity = cache_hits_misses / total_instructions;
+            return cache_intensity;
+        }
+
+        OPT_FORCE_INLINE virtual double dram_intensity() override
+        {
+            double total_instructions = pmu_record[0];
+            double l3_misses = pmu_record[3];
+            double dram_intensity = l3_misses / total_instructions;
+            return dram_intensity;
         }
 
         OPT_FORCE_INLINE void disalbe_callback_trigger() override
