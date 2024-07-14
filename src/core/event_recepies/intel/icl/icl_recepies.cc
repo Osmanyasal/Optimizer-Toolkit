@@ -8,7 +8,7 @@ namespace optkit::core::recepies::intel::icl
      *
      * @return const std::vector<std::pair<uint64_t, std::string>>
      */
-    const std::vector<std::pair<uint64_t, std::string>> Recepies::computational_intensity()
+    const std::vector<std::pair<uint64_t, std::string>> Recepies::freq_governor_events()
     {
         return {
             {{optkit::intel::icl::INSTRUCTIONS_RETIRED}, "instructions"},

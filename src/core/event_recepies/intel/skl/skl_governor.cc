@@ -2,7 +2,7 @@
 
 namespace optkit::core::governors::intel::skl
 {
-    Governor::Governor(bool data_collector_mode) : BaseGovernor{data_collector_mode}, core_cycle_watcher{"core_cycles", "core_cycles", {{optkit::intel::skl::UNHALTED_CORE_CYCLES, "unhalted_core_cycles"}}, true, this->config}, interested_events{"computational_intensity", "computational_intensity", optkit::core::recepies::intel::skl::Recepies::computational_intensity(), true, {false, true, true, 0, -1}}
+    Governor::Governor(bool data_collector_mode) : BaseGovernor{data_collector_mode}, core_cycle_watcher{"core_cycles", "core_cycles", {{optkit::intel::skl::UNHALTED_CORE_CYCLES, "unhalted_core_cycles"}}, true, this->config}, interested_events{"computational_intensity", "computational_intensity", optkit::core::recepies::intel::skl::Recepies::freq_governor_events(), true, {false, true, true, 0, -1}}
     {
         Governor::current_governor = this;
         int32_t cycle_pmc_fd = core_cycle_watcher.fd_list.at(0);
