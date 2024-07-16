@@ -56,7 +56,6 @@ namespace optkit::core::freq
         if (!data_collector_mode)
         {
             // Clean up
-            TF_DeleteTensor(input_tensor);
             TF_DeleteGraph(graph);
             TF_DeleteSession(session, status); // Use status for TF_DeleteSession
             TF_DeleteSessionOptions(session_opts);
@@ -124,9 +123,9 @@ namespace optkit::core::freq
             auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
             data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
-            data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ; 
+            data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
 
-            if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
+            if (std::abs(current_core_freq - data[0]) < 0.2 * GHZ && std::abs(current_uncore_freq - data[1]) < 0.2 * GHZ)
                 return;
 
             std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- estimation: " << data[0] << " - " << data[1] << "\n";

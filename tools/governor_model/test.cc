@@ -77,7 +77,7 @@ int main()
     }
 
     // Example input data
-    float new_data[3]{52495.1, 0.197864, 3.56931e-06};
+    float new_data[3]{138944, 0.202812, 1.46747e-06};
 
     // Load scaler
     std::vector<float> scaler_mean, scaler_scale;
