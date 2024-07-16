@@ -130,9 +130,14 @@ namespace optkit::core::freq
             int64_t data_0 = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
             int64_t data_1 = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
 
+            // early return
+            if (std::abs(current_core_freq - data_0) < 0.2 * GHZ && std::abs(current_uncore_freq - data_1) < 0.2 * GHZ)
+                return;
+
             data_0 = std::max(min_core_freq, std::min(data_0, max_core_freq));
             data_1 = std::max(uncore_min_max.first, std::min(data_1, uncore_min_max.second));
 
+            // late return
             if (std::abs(current_core_freq - data_0) < 0.2 * GHZ && std::abs(current_uncore_freq - data_1) < 0.2 * GHZ)
                 return;
 
