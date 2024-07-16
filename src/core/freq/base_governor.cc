@@ -100,7 +100,7 @@ namespace optkit::core::freq
             (std::abs(current_cache_intensity - cache_intensity) < cache_intensity / 10) &&
             (std::abs(current_dram_intensity - dram_intensity) < dram_intensity / 10))
         {
-            std::cout << "Early return\n";
+            // std::cout << "Early return\n";
             current_governor->enable_callback_trigger();
             return;
         }
