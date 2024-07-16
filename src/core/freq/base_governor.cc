@@ -87,9 +87,25 @@ namespace optkit::core::freq
         current_governor->disalbe_callback_trigger();
 
         current_governor->snapshot_pmus();
-        double compute_intensity = current_governor->compute_intensity();
-        double cache_intensity = current_governor->cache_intensity();
-        double dram_intensity = current_governor->dram_intensity();
+        static double compute_intensity = 0;
+        static double cache_intensity = 0;
+        static double dram_intensity = 0;
+
+        double current_compute_intensity = current_governor->compute_intensity();
+        double current_cache_intensity = current_governor->cache_intensity();
+        double current_dram_intensity = current_governor->dram_intensity();
+
+        // detect phase change and return if necessary
+        if ((current_compute_intensity < compute_intensity / 10) && (current_cache_intensity < cache_intensity / 10) && (current_dram_intensity < dram_intensity / 10))
+        {
+            std::cout << "Early return\n";
+            current_governor->enable_callback_trigger();
+            return;
+        }
+
+        compute_intensity = current_compute_intensity;
+        cache_intensity = current_cache_intensity;
+        dram_intensity = current_dram_intensity;
 
         // scale input!
         static float new_data[3]{0, 0, 0};
@@ -127,24 +143,17 @@ namespace optkit::core::freq
 
         int64_t data_0 = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
         int64_t data_1 = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
+        data_0 = std::max(min_core_freq, std::min(data_0, max_core_freq));
+        data_1 = std::max(uncore_min_max.first, std::min(data_1, uncore_min_max.second));
 
         static int64_t _threshold = 0.2 * GHZ;
+        if (std::abs(current_core_freq - data_0) < _threshold && std::abs(current_uncore_freq - data_1) < _threshold)
+        {
+            current_governor->enable_callback_trigger();
+            return;
+        }
 
         std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
-
-        // early return
-        if (std::abs(current_core_freq - data_0) < _threshold && std::abs(current_uncore_freq - data_1) < _threshold)
-            return;
-        else
-        {
-            data_0 = std::max(min_core_freq, std::min(data_0, max_core_freq));
-            data_1 = std::max(uncore_min_max.first, std::min(data_1, uncore_min_max.second));
-
-            // late return
-            if (std::abs(current_core_freq - data_0) < _threshold && std::abs(current_uncore_freq - data_1) < _threshold)
-                return;
-        }
-        // std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
 
         // std::cout << "current uncore -----> " << uncore_min_max << std::endl;
         if (Query::OPTKIT_SOCKET0__ENABLED)
