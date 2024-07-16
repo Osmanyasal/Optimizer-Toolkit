@@ -16,7 +16,7 @@ bool readScalerFile(const char *filename, std::vector<float> &mean_values, std::
 
     std::string line;
     int count = 0;
-    while (std::getline(file, line) && count < 4)
+    while (std::getline(file, line) && count < 6)
     {
         std::istringstream iss(line);
         float value;
@@ -25,7 +25,7 @@ bool readScalerFile(const char *filename, std::vector<float> &mean_values, std::
             std::cerr << "Error reading scaler file: " << filename << std::endl;
             return false;
         }
-        if (count < 2)
+        if (count < 3)
         {
             mean_values.push_back(value);
         }
@@ -36,7 +36,7 @@ bool readScalerFile(const char *filename, std::vector<float> &mean_values, std::
         count++;
     }
 
-    if (mean_values.size() != 2 || scale_values.size() != 2)
+    if (mean_values.size() != 3 || scale_values.size() != 3)
     {
         std::cerr << "Error: scaler file does not contain expected number of values." << std::endl;
         return false;
@@ -77,18 +77,19 @@ int main()
     }
 
     // Example input data
-    float new_data[2]{893191, 0.272149};
+    float new_data[3]{140657, 0.200313, 1.38993e-06};
 
     // Load scaler
     std::vector<float> scaler_mean, scaler_scale;
     readScalerFile("/usr/local/include/optkit_governor_model/scaler.txt", scaler_mean, scaler_scale);
 
     // Scale input data
-    scaleInput(new_data, scaler_mean, scaler_scale, 2);
+    scaleInput(new_data, scaler_mean, scaler_scale, 3);
 
     // Create input tensor
-    const int64_t input_dims[2]{1, 2};
-    TF_Tensor *input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 2 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
+    const int64_t input_dims[2]{1, 3};
+    TF_Tensor *input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 3 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
+ 
 
     // Prepare input and output tensors
     const char *input_names[] = {"serving_default_dense_input"};
@@ -98,7 +99,7 @@ int main()
     const char *output_names[] = {"StatefulPartitionedCall"};
     TF_Output outputs[] = {
         {TF_GraphOperationByName(graph, output_names[0]), 0}};
-
+ 
     // Run session to make prediction
     TF_Tensor *output_tensor = nullptr;
     TF_SessionRun(session,
@@ -108,13 +109,13 @@ int main()
                   nullptr, 0,                 // Target operations, number of targets.
                   nullptr,                    // Run metadata.
                   status);                    // Status object
-
+ 
     // Print prediction
     if (output_tensor)
     {
         auto data = static_cast<float *>(TF_TensorData(output_tensor));
         std::cout << "Predicted values:" << std::endl;
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 3; ++i)
         {
             std::cout << data[i] << " ";
         }

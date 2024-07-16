@@ -71,14 +71,16 @@ else:
     with open(saved_model_path+"/scaler.txt", 'w') as file:
         file.write(f"{scaler.mean_[0]}\n")
         file.write(f"{scaler.mean_[1]}\n")
+        file.write(f"{scaler.mean_[2]}\n")
         file.write(f"{scaler.scale_[0]}\n")
         file.write(f"{scaler.scale_[1]}\n")
+        file.write(f"{scaler.scale_[2]}\n")
 
 
 
     # Neural Network Model
     nn_model = Sequential([
-        Dense(128, input_dim=2, activation='relu'),
+        Dense(128, input_dim=3, activation='relu'),
         Dense(64, activation='relu'),
         Dense(32, activation='relu'),
         Dense(16, activation='relu'),
@@ -101,16 +103,16 @@ else:
     print('Neural Network MSE:', mse)
 
 # Example prediction
-# new_data = load_data("lavamd.dump")
+# new_data = load_data("3D.dump")
 # new_data_scaled = scaler.transform(new_data)
 # prediction = nn_model.predict(new_data_scaled)
 # print('Predicted best core and uncore frequencies:')
 # for i in prediction:
 #     print(i)
 
-if len(sys.argv) < 2:
-     exit(0)
-new_data = np.array([[sys.argv[1],sys.argv[2]]])
-new_data_scaled = scaler.transform(new_data)
-prediction = nn_model.predict(new_data_scaled)
-print('Predicted best core and uncore frequencies:', prediction)
+# if len(sys.argv) < 3:
+#      exit(0)
+# new_data = np.array([[sys.argv[1],sys.argv[2], sys.argv[3]]])
+# new_data_scaled = scaler.transform(new_data)
+# prediction = nn_model.predict(new_data_scaled)
+# print('Predicted best core and uncore frequencies:', prediction)

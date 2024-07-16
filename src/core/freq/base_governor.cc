@@ -53,7 +53,6 @@ namespace optkit::core::freq
 
     BaseGovernor::~BaseGovernor()
     {
-
         if (!data_collector_mode)
         {
             // Clean up
@@ -94,79 +93,80 @@ namespace optkit::core::freq
         double cache_intensity = current_governor->cache_intensity();
 
         // scale input!
-        // static float new_data[2]{0, 0};
-        // new_data[0] = (compute_intensity - BaseGovernor::mean[0]) / BaseGovernor::scale[0];
-        // new_data[1] = (memory_intensity - BaseGovernor::mean[1]) / BaseGovernor::scale[1];
+        static float new_data[3]{0, 0, 0};
+        new_data[0] = (compute_intensity - BaseGovernor::mean[0]) / BaseGovernor::scale[0];
+        new_data[1] = (dram_intensity - BaseGovernor::mean[1]) / BaseGovernor::scale[1];
+        new_data[2] = (cache_intensity - BaseGovernor::mean[2]) / BaseGovernor::scale[2];
 
-        // static const int64_t input_dims[2]{1, 2};
-        // input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 2 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
+        static const int64_t input_dims[2]{1, 3};
+        input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 3 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
 
-        // static const char *input_names[] = {"serving_default_dense_input"};
-        // static TF_Output inputs[] = {
-        //     {TF_GraphOperationByName(graph, input_names[0]), 0}};
+        static const char *input_names[] = {"serving_default_dense_input"};
+        static TF_Output inputs[] = {
+            {TF_GraphOperationByName(graph, input_names[0]), 0}};
 
-        // static const char *output_names[] = {"StatefulPartitionedCall"};
-        // static TF_Output outputs[] = {
-        //     {TF_GraphOperationByName(graph, output_names[0]), 0}};
+        static const char *output_names[] = {"StatefulPartitionedCall"};
+        static TF_Output outputs[] = {
+            {TF_GraphOperationByName(graph, output_names[0]), 0}};
 
-        // // Run session to make prediction
-        // static TF_Tensor *output_tensor = nullptr;
-        // TF_SessionRun(session,
-        //               nullptr,                    // Run options.
-        //               inputs, &input_tensor, 1,   // Input tensors, input tensor count.
-        //               outputs, &output_tensor, 1, // Output tensors, output tensor count.
-        //               nullptr, 0,                 // Target operations, number of targets.
-        //               nullptr,                    // Run metadata.
-        //               status);                    // Status object
+        // Run session to make prediction
+        static TF_Tensor *output_tensor = nullptr;
+        TF_SessionRun(session,
+                      nullptr,                    // Run options.
+                      inputs, &input_tensor, 1,   // Input tensors, input tensor count.
+                      outputs, &output_tensor, 1, // Output tensors, output tensor count.
+                      nullptr, 0,                 // Target operations, number of targets.
+                      nullptr,                    // Run metadata.
+                      status);                    // Status object
 
-        // if (output_tensor)
-        // {
-        //     auto data = static_cast<float *>(TF_TensorData(output_tensor));
+        if (output_tensor)
+        {
+            auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
-        //     data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
-        //     data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
+            data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
+            data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ; 
 
-        //     if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
-        //         return;
+            if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
+                return;
 
-        //     std::cout << "current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
+            std::cout << "current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
 
-        //     // return if freq bigger than the freq rank!
-        //     static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
-        //     static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
-        //     static std::pair<int64_t, int64_t> uncore_min_max = CPUFrequency::get_uncore_min_max(0); // get socket 1s core-uncore freq
+            // return if freq bigger than the freq rank!
+            static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
+            static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
+            static std::pair<int64_t, int64_t> uncore_min_max = CPUFrequency::get_uncore_min_max(0); // get socket 1s core-uncore freq
 
-        //     if (Query::OPTKIT_SOCKET0__ENABLED)
-        //     {
-        //         if (data[0] <= max_core_freq && data[0] >= min_core_freq)
-        //         {
-        //             current_core_freq = data[0];
-        //             CPUFrequency::set_core_frequency(current_core_freq, 0);
-        //         }
+            if (Query::OPTKIT_SOCKET0__ENABLED)
+            {
+                if (data[0] <= max_core_freq && data[0] >= min_core_freq)
+                {
+                    current_core_freq = data[0];
+                    CPUFrequency::set_core_frequency(current_core_freq, 0);
+                }
 
-        //         if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
-        //         {
-        //             current_uncore_freq = data[1];
-        //             CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
-        //         }
-        //     }
-        //     if (Query::OPTKIT_SOCKET1__ENABLED)
-        //     {
-        //         if (data[0] <= max_core_freq && data[0] >= min_core_freq)
-        //         {
-        //             current_core_freq = data[0];
-        //             CPUFrequency::set_core_frequency(current_core_freq, 1);
-        //         }
-        //         if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
-        //         {
-        //             current_uncore_freq = data[1];
-        //             CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
-        //         }
-        //     }
+                if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
+                {
+                    current_uncore_freq = data[1];
+                    CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
+                }
+            }
+            if (Query::OPTKIT_SOCKET1__ENABLED)
+            {
+                if (data[0] <= max_core_freq && data[0] >= min_core_freq)
+                {
+                    current_core_freq = data[0];
+                    CPUFrequency::set_core_frequency(current_core_freq, 1);
+                }
+                if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
+                {
+                    current_uncore_freq = data[1];
+                    CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
+                }
+            }
 
-        //     TF_DeleteTensor(output_tensor);
-        //     TF_DeleteTensor(input_tensor);
-        // }
+            TF_DeleteTensor(output_tensor);
+            TF_DeleteTensor(input_tensor);
+        }
 
         // ENABLE CALL_BACK TRIGGER to prevent multiple entry
         current_governor->enable_callback_trigger();
@@ -180,7 +180,9 @@ namespace optkit::core::freq
         auto lines = ::str_split(file_txt, "\n");
         mean_values.push_back(std::atof(lines[0].c_str()));
         mean_values.push_back(std::atof(lines[1].c_str()));
-        scale_values.push_back(std::atof(lines[2].c_str()));
+        mean_values.push_back(std::atof(lines[2].c_str()));
         scale_values.push_back(std::atof(lines[3].c_str()));
+        scale_values.push_back(std::atof(lines[4].c_str()));
+        scale_values.push_back(std::atof(lines[5].c_str()));
     }
 }
