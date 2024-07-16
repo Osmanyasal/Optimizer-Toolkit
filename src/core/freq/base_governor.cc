@@ -120,39 +120,56 @@ namespace optkit::core::freq
 
         if (output_tensor)
         {
-            // return if freq bigger than the freq rank!
-            static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
-            static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
-            static std::pair<int64_t, int64_t> uncore_min_max = CPUFrequency::get_uncore_min_max(0); // get socket 1s core-uncore freq
-
             auto data = static_cast<float *>(TF_TensorData(output_tensor));
 
-            int64_t data_0 = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
-            int64_t data_1 = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
+            data[0] = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
+            data[1] = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
 
-            // early return
-            if (std::abs(current_core_freq - data_0) < 0.2 * GHZ && std::abs(current_uncore_freq - data_1) < 0.2 * GHZ)
-                return;
-
-            data_0 = std::max(min_core_freq, std::min(data_0, max_core_freq));
-            data_1 = std::max(uncore_min_max.first, std::min(data_1, uncore_min_max.second));
-
-            // late return
-            if (std::abs(current_core_freq - data_0) < 0.2 * GHZ && std::abs(current_uncore_freq - data_1) < 0.2 * GHZ)
+            if (std::abs(current_core_freq - data[0]) < 0.2 * GHZ && std::abs(current_uncore_freq - data[1]) < 0.2 * GHZ)
                 return;
 
             std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
 
-            // std::cout << "current uncore -----> " << uncore_min_max << std::endl;
+            // return if freq bigger than the freq rank!
+            static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
+            static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
+            static std::pair<int64_t, int64_t> uncore_min_max = CPUFrequency::get_uncore_min_max(0); // get socket 1s core-uncore freq
+            
             if (Query::OPTKIT_SOCKET0__ENABLED)
             {
-                CPUFrequency::set_core_frequency(current_core_freq = data_0, 0);
-                CPUFrequency::set_uncore_frequency(current_uncore_freq = data_1, 0);
+                if (data[0] < min_core_freq)
+                    current_core_freq = min_core_freq;
+                else if (data[0] > max_core_freq)
+                    current_core_freq = max_core_freq;
+                else
+                    current_core_freq = data[0];
+                CPUFrequency::set_core_frequency(current_core_freq, 0);
+
+                if (data[1] < uncore_min_max.first)
+                    current_uncore_freq = uncore_min_max.first;
+                else if (data[1] > uncore_min_max.second)
+                    current_uncore_freq = uncore_min_max.second;
+                else
+                    current_uncore_freq = data[1];
+                CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
             }
             if (Query::OPTKIT_SOCKET1__ENABLED)
             {
-                CPUFrequency::set_core_frequency(current_core_freq = data_0, 1);
-                CPUFrequency::set_uncore_frequency(current_uncore_freq = data_1, 1);
+                if (data[0] < min_core_freq)
+                    current_core_freq = min_core_freq;
+                else if (data[0] > max_core_freq)
+                    current_core_freq = max_core_freq;
+                else
+                    current_core_freq = data[0];
+                CPUFrequency::set_core_frequency(current_core_freq, 1);
+
+                if (data[1] < uncore_min_max.first)
+                    current_uncore_freq = uncore_min_max.first;
+                else if (data[1] > uncore_min_max.second)
+                    current_uncore_freq = uncore_min_max.second;
+                else
+                    current_uncore_freq = data[1];
+                CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
             }
 
             TF_DeleteTensor(output_tensor);
