@@ -33,7 +33,7 @@ void randomAccesses(std::vector<double> &vec, int num_accesses)
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit{};
-    freq_governors::intel::icl::Governor gg{true};
+    freq_governors::intel::icl::Governor gg{};
 
     for (size_t i = 0; i < Query::num_sockets; i++)
     {

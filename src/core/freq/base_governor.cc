@@ -129,7 +129,7 @@ namespace optkit::core::freq
             if (std::abs(current_core_freq - data[0]) < 0.2 && std::abs(current_uncore_freq - data[1]) < 0.2)
                 return;
 
-            std::cout << "current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
+            std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- estimation: " << data[0] << " - " << data[1] << "\n";
 
             // return if freq bigger than the freq rank!
             static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();

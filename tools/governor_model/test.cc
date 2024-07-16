@@ -115,7 +115,7 @@ int main()
     {
         auto data = static_cast<float *>(TF_TensorData(output_tensor));
         std::cout << "Predicted values:" << std::endl;
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             std::cout << data[i] << " ";
         }
