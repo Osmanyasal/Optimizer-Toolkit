@@ -129,6 +129,9 @@ namespace optkit::core::freq
         int64_t data_1 = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
 
         static int64_t _threshold = 0.2 * GHZ;
+
+        std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
+
         // early return
         if (std::abs(current_core_freq - data_0) < _threshold && std::abs(current_uncore_freq - data_1) < _threshold)
             return;
@@ -141,7 +144,7 @@ namespace optkit::core::freq
             if (std::abs(current_core_freq - data_0) < _threshold && std::abs(current_uncore_freq - data_1) < _threshold)
                 return;
         }
-        std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
+        // std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
 
         // std::cout << "current uncore -----> " << uncore_min_max << std::endl;
         if (Query::OPTKIT_SOCKET0__ENABLED)
