@@ -155,7 +155,7 @@ namespace optkit::core::freq
             return;
         }
 
-        std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data[0] << " - " << data[1] << "\n";
+        std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data_0 << " - " << data_1 << "\n";
 
         // std::cout << "current uncore -----> " << uncore_min_max << std::endl;
         if (Query::OPTKIT_SOCKET0__ENABLED)
