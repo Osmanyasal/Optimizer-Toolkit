@@ -143,8 +143,8 @@ namespace optkit::core::freq
 
         float *data = static_cast<float *>(TF_TensorData(output_tensor));
 
-        int64_t data_0 = (std::floor(data[0] * 10 + 0.5) / 10) * GHZ;
-        int64_t data_1 = (std::floor(data[1] * 10 + 0.5) / 10) * GHZ;
+        int64_t data_0 = (std::ceil(data[0] * 10 + 0.5) / 10) * GHZ;
+        int64_t data_1 = (std::ceil(data[1] * 10 + 0.5) / 10) * GHZ;
         data_0 = std::max(min_core_freq, std::min(data_0, max_core_freq));
         data_1 = std::max(uncore_min_max.first, std::min(data_1, uncore_min_max.second));
 
@@ -155,7 +155,7 @@ namespace optkit::core::freq
             return;
         }
 
-        std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estimation: " << data_0 << " - " << data_1 << "\n";
+        std::cout << "pmu snapshot: " << compute_intensity << ", " << cache_intensity << ", " << dram_intensity << " --- current: " << current_core_freq << " - " << current_uncore_freq << " --- estm: " << data_0 << " - " << data_1 << "\n";
 
         // std::cout << "current uncore -----> " << uncore_min_max << std::endl;
         if (Query::OPTKIT_SOCKET0__ENABLED)
