@@ -95,8 +95,8 @@ namespace optkit::core::freq
         // scale input!
         static float new_data[3]{0, 0, 0};
         new_data[0] = (compute_intensity - BaseGovernor::mean[0]) / BaseGovernor::scale[0];
-        new_data[1] = (dram_intensity - BaseGovernor::mean[1]) / BaseGovernor::scale[1];
-        new_data[2] = (cache_intensity - BaseGovernor::mean[2]) / BaseGovernor::scale[2];
+        new_data[1] = (cache_intensity - BaseGovernor::mean[1]) / BaseGovernor::scale[1];
+        new_data[2] = (dram_intensity - BaseGovernor::mean[2]) / BaseGovernor::scale[2];
 
         static const int64_t input_dims[2]{1, 3};
         input_tensor = TF_NewTensor(TF_FLOAT, input_dims, 2, new_data, 3 * sizeof(float), [](void *data, size_t len, void *arg) {}, nullptr);
