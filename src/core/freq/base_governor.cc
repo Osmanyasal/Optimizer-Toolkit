@@ -29,7 +29,7 @@ namespace optkit::core::freq
             sa.sa_sigaction = BaseGovernor::collector_call_back;
         else
             sa.sa_sigaction = BaseGovernor::call_back;
-            
+
         sa.sa_flags = SA_SIGINFO;
         if (sigaction(SIGUSR2, &sa, NULL) < 0)
         {
@@ -137,13 +137,33 @@ namespace optkit::core::freq
             std::cout << "current uncore -----> " << uncore_min_max << std::endl;
             if (Query::OPTKIT_SOCKET0__ENABLED)
             {
-                if (data[0] <= max_core_freq && data[0] >= min_core_freq)
+                if (data[0] < min_core_freq)
+                {
+                    current_core_freq = min_core_freq;
+                    CPUFrequency::set_core_frequency(min_core_freq, 0);
+                }
+                else if (data[0] > max_core_freq)
+                {
+                    current_core_freq = max_core_freq;
+                    CPUFrequency::set_core_frequency(max_core_freq, 0);
+                }
+                else
                 {
                     current_core_freq = data[0];
                     CPUFrequency::set_core_frequency(current_core_freq, 0);
                 }
 
-                if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
+                if (data[1] < uncore_min_max.first)
+                {
+                    current_uncore_freq = uncore_min_max.first;
+                    CPUFrequency::set_core_frequency(uncore_min_max.first, 0);
+                }
+                else if (data[1] > uncore_min_max.second)
+                {
+                    current_uncore_freq = uncore_min_max.second;
+                    CPUFrequency::set_core_frequency(current_uncore_freq, 0);
+                }
+                else
                 {
                     current_uncore_freq = data[1];
                     CPUFrequency::set_uncore_frequency(current_uncore_freq, 0);
@@ -151,12 +171,33 @@ namespace optkit::core::freq
             }
             if (Query::OPTKIT_SOCKET1__ENABLED)
             {
-                if (data[0] <= max_core_freq && data[0] >= min_core_freq)
+                if (data[0] < min_core_freq)
+                {
+                    current_core_freq = min_core_freq;
+                    CPUFrequency::set_core_frequency(min_core_freq, 1);
+                }
+                else if (data[0] > max_core_freq)
+                {
+                    current_core_freq = max_core_freq;
+                    CPUFrequency::set_core_frequency(max_core_freq, 1);
+                }
+                else
                 {
                     current_core_freq = data[0];
                     CPUFrequency::set_core_frequency(current_core_freq, 1);
                 }
-                if (data[1] >= uncore_min_max.first && data[1] <= uncore_min_max.second)
+
+                if (data[1] < uncore_min_max.first)
+                {
+                    current_uncore_freq = uncore_min_max.first;
+                    CPUFrequency::set_core_frequency(uncore_min_max.first, 1);
+                }
+                else if (data[1] > uncore_min_max.second)
+                {
+                    current_uncore_freq = uncore_min_max.second;
+                    CPUFrequency::set_core_frequency(current_uncore_freq, 1);
+                }
+                else
                 {
                     current_uncore_freq = data[1];
                     CPUFrequency::set_uncore_frequency(current_uncore_freq, 1);
