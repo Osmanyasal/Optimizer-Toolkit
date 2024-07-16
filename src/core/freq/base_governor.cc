@@ -134,7 +134,7 @@ namespace optkit::core::freq
             static int64_t max_core_freq = QueryFreq::get_cpuinfo_max_freq();
             static int64_t min_core_freq = QueryFreq::get_cpuinfo_min_freq();
             static std::pair<int64_t, int64_t> uncore_min_max = CPUFrequency::get_uncore_min_max(0); // get socket 1s core-uncore freq
-            std::cout << "current uncore -----> " << uncore_min_max << std::endl;
+            // std::cout << "current uncore -----> " << uncore_min_max << std::endl;
             if (Query::OPTKIT_SOCKET0__ENABLED)
             {
                 if (data[0] < min_core_freq)
