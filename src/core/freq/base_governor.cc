@@ -89,8 +89,8 @@ namespace optkit::core::freq
 
         current_governor->snapshot_pmus();
         double compute_intensity = current_governor->compute_intensity();
-        double dram_intensity = current_governor->dram_intensity();
         double cache_intensity = current_governor->cache_intensity();
+        double dram_intensity = current_governor->dram_intensity();
 
         // scale input!
         static float new_data[3]{0, 0, 0};

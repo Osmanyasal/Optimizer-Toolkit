@@ -110,9 +110,9 @@ else:
 # for i in prediction:
 #     print(i)
 
-# if len(sys.argv) < 3:
-#      exit(0)
-# new_data = np.array([[sys.argv[1],sys.argv[2], sys.argv[3]]])
-# new_data_scaled = scaler.transform(new_data)
-# prediction = nn_model.predict(new_data_scaled)
-# print('Predicted best core and uncore frequencies:', prediction)
+if len(sys.argv) < 3:
+     exit(0)
+new_data = np.array([[sys.argv[1],sys.argv[2], sys.argv[3]]])
+new_data_scaled = scaler.transform(new_data)
+prediction = nn_model.predict(new_data_scaled)
+print('Predicted best core and uncore frequencies:', prediction)
