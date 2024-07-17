@@ -15,7 +15,7 @@
 
 
 #define OPTKIT_BASE_GOVERNOR_MMAP_PAGES 8
-#define OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS 3000 // 3 call per 1sec
+#define OPTKIT_BASE_GOVERNOR_GOVERNOR_CALLBACK_PERIOD_MS 1000 // 3 call per 1sec
 #define GHZ 1000000000
 namespace optkit::core::freq
 {
