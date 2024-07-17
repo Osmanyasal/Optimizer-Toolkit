@@ -85,7 +85,9 @@ namespace optkit::core::freq
         if (OPT_UNLIKELY(BaseGovernor::current_governor == nullptr))
             return;
         current_governor->disalbe_callback_trigger();
-
+        static int ctor = 1;
+        std::cout << "called:" << ctor++
+                  << std::endl;
         current_governor->snapshot_pmus();
         static double compute_intensity = 0;
         static double cache_intensity = 0;
