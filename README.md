@@ -27,20 +27,6 @@
                 <img align="center" title="Doxygen" alt="Doxygen" width="150px" src="https://www.doxygen.nl/images/doxygen.png" /> 
 </div>
 
-## About <br>
-* Cross Platform Performance Ecosystem mainly developed for Linux and MacOS environments.<br>
-* <b>Utilizes</b> all advantageous features of <b>PAPI, Linux Perf, Intel Vtune/Advisor, and AMD uProf profilers into a single, unified platform</b> by harnessing the code and binary instrumentation techniques while providing a straightforward but elegant GUI for advanced in- and post-development monitoring.
-* <b>100% CPU agnostic profiling</b>
-* Provides <b>100% accuracy</b> thanks to code-line instrumentation.
-* <b>An Intuitive Programming API for in-development monitoring support</b>
-* Supports diverse PMU monitoring with <b>0 learning curve</b>.
-* <b>Bottleneck detection in any phase of the development.</b>
-* <b>Overhead is very very low</b> and upto the programmer itself.
-* Python binding. Yes, you’ll have full Python support in code-line instrumentation.
-* Developed with C++ and Make/Bash scripts.
-* <b>You can monitor any executable file</b>
-* <b>Use in your c++ and python projects</b>
-
 ## To run 🚀 <br>
 ```
 git clone https://github.com/Osmanyasal/Optimizer-Toolkit-Core.git
@@ -48,22 +34,5 @@ cd ./Optimizer-Toolkit-Core
 git submodule update --force --recursive --init --remote
 make
 ```
-
-## IN DEVELOPMENT PERFORMANCE AID 🔎  
-<img align="center" alt="ICON" width="100%" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/039b5dd2-6635-435d-9dfc-4977336db0a8" />
- 
- * Recursion Optimizer Toolkit gives you an API that you can use in your C++ and Python projects to monitor Performance Monitoring Unit (PMU) events in your CPU.<br>
- * With the help of RAII, you can monitor any pmu events including (cycles, instruction count, LXX cache hits/misses) or use cases including (microarchitecture analysis, energy-consumption analysis, thread interaction monitoring, etc.)
- * API can also draw charts as your program is being run for live monitoring
-
-
-
-## POST MORTERM PERFORMANCE MONITORING 🔎  
- <img align="center" alt="ICON" width="100%" src="https://github.com/Osmanyasal/Optimizer-Toolkit/assets/22853419/f17c6d7f-0d50-4785-8282-5259d277a653" />
- 
- * Recursion Optimizer Toolkit also gives you a total GUI to perform post-mortem analysis on `any` executable.
- * The binary executable does `NOT` need to be written with Recursion Optimizer Toolkit API.
- * It simply injects API code into binary executable via static and dynamic binary instrumentation with the Intel PIN tool.
- * User can monitor any method in the executable, all monitoring in API is available here as well.
 
  
