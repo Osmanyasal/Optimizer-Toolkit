@@ -4,6 +4,7 @@ import os
 import sys
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
+import heapq
 
 sys.path.append('/usr/local/include')
 sys.path.append('../')
@@ -114,33 +115,42 @@ def draw_line_chart():
 
     if suggest:
         
-        socket0_edp_list = [edp / 100 for edp in socket0_edp]
-        socket0_core_list = [cores[-1] - core if core < cores[-1] / 2 else core for core in cores]
-        socket0_co_scheduling_suggestion_cores = [x / y**2 for x, y in zip(socket0_edp_list, socket0_core_list)]
-        print("socket0_numbers", socket0_co_scheduling_suggestion_cores)
+        # socket0_edp_list = [edp / 100 for edp in socket0_edp]
+        # socket0_core_list = [cores[-1] - core if core < cores[-1] / 2 else core for core in cores]
+        # socket0_co_scheduling_suggestion_cores = [x / y**2 for x, y in zip(socket0_edp_list, socket0_core_list)]
+        # print("socket0_numbers", socket0_co_scheduling_suggestion_cores)
 
         socket1_edp_list = [edp / 100 for edp in socket1_edp]
         socket1_core_list = [cores[-1] - core if core < cores[-1] / 2 else core for core in cores]
-        socket1_co_scheduling_suggestion_cores = [x / y**2 for x, y in zip(socket1_edp_list, socket1_core_list)]
-        print("socket0_numbers", socket1_co_scheduling_suggestion_cores)
+        socket1_co_scheduling_suggestion_cores = [x / y**4 for x, y in zip(socket1_edp_list, socket1_core_list)]
+        print("socket1_numbers", socket1_co_scheduling_suggestion_cores)
 
+        # largest = heapq.nlargest(len(cores) // 2, socket1_co_scheduling_suggestion_cores)
+
+        
         prev_suggestion = socket1_co_scheduling_suggestion_cores[0]
+        suggest_count = 0
         iter = -1
         for core in cores:
+            if suggest_count >= 3 or iter >= len(cores)/2: break
             iter += 1
+
             # Create separate rectangles for each subplot
             if prev_suggestion >= socket1_co_scheduling_suggestion_cores[iter]:
-                prev_suggestion = socket1_co_scheduling_suggestion_cores[iter]
+                # prev_suggestion = socket1_co_scheduling_suggestion_cores[iter]
                 continue
-
+            
+            
             prev_suggestion = socket1_co_scheduling_suggestion_cores[iter]
-
+            # if prev_suggestion not in largest: continue
+             
             rect_1 = Rectangle(xy=(core - width / 2 - x_offset, y_offset), 
                             width=width, height=height, fill=True, edgecolor='red',facecolor="#f1c23263")
             rect_0 = Rectangle(xy=(core - width / 2 - x_offset, y_offset), 
                             width=width, height=height, fill=True, edgecolor='red',facecolor="#f1c23263")
             axes[0].add_patch(rect_0)
             axes[1].add_patch(rect_1)
+            suggest_count +=1 
             
   
     fig.suptitle('Energy Consumption of Socket 0 and Socket 1')
