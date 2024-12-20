@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__PROFILING__BLOCK_TIMING_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__PROFILING__BLOCK_TIMING_HH
+#pragma once
 
 #include <profiling_config.hh>
 #include <logger.hh>
@@ -256,5 +255,3 @@ namespace optkit::utils
 	#define OPTKIT_CORE_GANTT_PROFILE_SCOPE(name)
 	#define OPTKIT_CORE_GANTT_PROFILE_FUNCTION()
 #endif
-
-#endif // end

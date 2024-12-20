@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__MSR_UTILS__HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__MSR_UTILS__HH
+#pragma once
 
 #include <sys/types.h>
 #include <cstdint>
@@ -52,4 +51,3 @@ namespace optkit::core::freq
 
 }
 
-#endif

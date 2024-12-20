@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__TYPE
-#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__TYPE
+#pragma once
 
 /*
     Following works like this class structure..
@@ -34,5 +33,3 @@
 
 #define INSTANCEOF(CLASS, objREF) (dynamic_cast<CLASS *>(&objREF) != nullptr)
 #define INSTANCEOF_PTR(CLASS, objPTR) (dynamic_cast<CLASS *>(objPTR) != nullptr)
-
-#endif

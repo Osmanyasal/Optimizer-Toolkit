@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__QUERY_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__QUERY_HH
+#pragma once
 
 #include <vector>
 #include <string>
@@ -29,5 +28,3 @@ namespace optkit::core::freq
     };
 
 } // namespace optkit::core::freq
-
-#endif

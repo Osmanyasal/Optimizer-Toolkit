@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__BASE_GOVERNOR_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__BASE_GOVERNOR_HH
+#pragma once
 
 #include <signal.h>
 #include <fcntl.h>
@@ -70,5 +69,3 @@ namespace optkit::core::freq
         void *our_mmap;
     };
 }
-
-#endif

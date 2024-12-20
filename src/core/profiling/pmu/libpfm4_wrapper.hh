@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PMU__LIBPFM4_WRAPPER_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PMU__LIBPFM4_WRAPPER_HH
+#pragma once
 
 #include <perfmon/pfmlib.h>
 
@@ -13,5 +12,3 @@ namespace optkit::core::pmu
     extern const char *pmu_names[];
     extern const char *pmu_types[];
 }
-
-#endif

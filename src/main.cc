@@ -3,9 +3,9 @@
 #include <test.hh>
 #include <core_events.hh>
 
-#define OPTKIT_COMPUTE_INTENSITY(var_name, block_name)                                                              \
-    optkit::core::pmu::BlockGroupProfiler var_name                                                                  \
-    {                                                                                                               \
+#define OPTKIT_COMPUTE_INTENSITY(var_name, block_name)                                                                   \
+    optkit::core::pmu::BlockGroupProfiler var_name                                                                       \
+    {                                                                                                                    \
         block_name, "compute_and_memory_intensity", optkit::core::recepies::intel::icl::Recepies::freq_governor_events() \
     }
 
@@ -75,10 +75,51 @@ void triad()
     // std::cout << aa << std::endl;
 }
 
+// fibonacci function
+int fib(int n)
+{
+    long i, a = 0;
+    int b = 1;
+    for (i = 0; i < n; i++)
+    {
+        b = b + a;
+        a = b - a;
+    }
+
+    return b;
+}
+
+// work function
+int work(int n, int f)
+{
+    int i, b;
+    b = 0;
+    for (i = 0; i < n; i++)
+    {
+        b += fib(f);
+    }
+
+    return 0;
+}
+
+
 int32_t main(int32_t argc, char **argv)
 {
     OptimizerKit optkit{};
-    OPTKIT_RAPL(rapl_var, "main_block");
-    random_access();
+    // OPTKIT_RAPL(rapl_var, "main_block");
+
+    BlockGroupProfiler bb{"main block", "level1", {{0x0400ull, "slot"}, {0x8000ull, "ret"}, {0x8100ull, "bs"}, {0x8200ull, "fe"}, {0x8300ull, "be"}}};
+    // BlockGroupProfiler bb{"main block", "level2", {{0x0400ull, "slot"}, {0x8400ull, "heavy"}, {0x8500ull, "br_mispredict"}, {0x8600ull, "fetch_lat"}, {0x8700ull, "mem_bound"}}};
+
+    // // random_access();
+    // // do some work
+    work(10, 6000000);
+
+    auto val = bb.read_val();
+    auto ret = (double)val[1] / (double)val[0] * 100.0;
+    auto bs = (double)val[2] / (double)val[0] * 100.0;
+    auto fe = (double)val[3] / (double)val[0] * 100.0;
+    auto be = (double)val[4] / (double)val[0] * 100.0;
+    std::cout << ret << " " << bs << " " << fe << " " << be << "\n";
     return 0;
 }

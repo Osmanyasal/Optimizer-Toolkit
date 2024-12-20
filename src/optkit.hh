@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__OPTIMIZER_TOOLKIT_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__OPTIMIZER_TOOLKIT_HH
+#pragma once
 
 #include <string>
 #include <vector>
@@ -46,5 +45,3 @@ namespace optkit::core
 
 using optkit::core::OptimizerKit;
 using optkit::core::OPTKIT_CONFIG;
-
-#endif

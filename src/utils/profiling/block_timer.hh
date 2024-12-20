@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__PROFILING__BLOCK_TIMER_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__PROFILING__BLOCK_TIMER_HH
+#pragma once
 
 #include <logger.hh>
 #include <string>
@@ -19,5 +18,3 @@ namespace optkit::utils
     };
 
 } // namespace optkit::utils
-
-#endif

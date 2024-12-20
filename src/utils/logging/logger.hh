@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__LOGGING__LOGGER_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__LOGGING__LOGGER_HH
+#pragma once
 
 #include <deployment_config.hh>
 #include <logger_config.hh>
@@ -108,7 +107,5 @@ namespace optkit::utils::logger
 
 #define OPTKIT_CORE_ERROR(...)
 #define OPTKIT_ERROR(...)
-
-#endif
 
 #endif

@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PROFILER_CONFIG_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PROFILER_CONFIG_HH
+#pragma once
 
 #include <cstring>
 #include <linux/perf_event.h> // for pmu monitoring
@@ -75,5 +74,3 @@ namespace optkit::core
 } // namespace optkit::core
 
 std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_config);
-
-#endif

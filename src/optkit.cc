@@ -14,11 +14,7 @@ namespace optkit::core
 
     OptimizerKit::OptimizerKit(const OPTKIT_CONFIG config) : config{config}
     {
-        if (this->config.execution_file.size() > 0)
-            EXECUTION_FOLDER_NAME = this->config.execution_file;
-
         optkit::utils::logger::BaseLogger::init();
-
         int32_t paranoid = this->paranoid();
         if (OPT_UNLIKELY(paranoid > 0))
         {
@@ -30,8 +26,12 @@ namespace optkit::core
         }
         else if (paranoid <= 0)
         {
+
             if (OPT_LIKELY(config.create_folder))
             {
+                if (this->config.execution_file.size() > 0)
+                    EXECUTION_FOLDER_NAME = this->config.execution_file;
+                    
                 create_directory(EXECUTION_FOLDER_NAME);
                 OPTKIT_CORE_INFO("Execution file created {}", EXECUTION_FOLDER_NAME);
             }
@@ -47,14 +47,13 @@ namespace optkit::core
 
     void OptimizerKit::process_env_variables()
     {
+        const char *socket0__enabled = std::getenv("OPTKIT_SOCKET0__ENABLED");
+        const char *socket0__core_freq = std::getenv("OPTKIT_SOCKET0__CORE_FREQ");
+        const char *socket0__uncore_freq = std::getenv("OPTKIT_SOCKET0__UNCORE_FREQ");
 
-        char *socket0__enabled = std::getenv("OPTKIT_SOCKET0__ENABLED");
-        char *socket0__core_freq = std::getenv("OPTKIT_SOCKET0__CORE_FREQ");
-        char *socket0__uncore_freq = std::getenv("OPTKIT_SOCKET0__UNCORE_FREQ");
-
-        char *socket1__enabled = std::getenv("OPTKIT_SOCKET1__ENABLED");
-        char *socket1__core_freq = std::getenv("OPTKIT_SOCKET1__CORE_FREQ");
-        char *socket1__uncore_freq = std::getenv("OPTKIT_SOCKET1__UNCORE_FREQ");
+        const char *socket1__enabled = std::getenv("OPTKIT_SOCKET1__ENABLED");
+        const char *socket1__core_freq = std::getenv("OPTKIT_SOCKET1__CORE_FREQ");
+        const char *socket1__uncore_freq = std::getenv("OPTKIT_SOCKET1__UNCORE_FREQ");
 
         if (socket0__enabled == nullptr && socket1__enabled == nullptr)
         {
@@ -88,7 +87,8 @@ namespace optkit::core
                 OPTKIT_CORE_INFO("OPTKIT_SOCKET0__UNCORE_FREQ is not specified");
             }
         }
-        else{
+        else
+        {
             OPTKIT_CORE_INFO("OPTKIT_SOCKET0__ENABLED is not specified");
         }
 

@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__RAPL_PROFILER_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__RAPL_PROFILER_HH
+#pragma once
 
 #include <memory>
 #include <utils.hh>
@@ -50,5 +49,3 @@ namespace optkit::core::rapl
 
 // Overloading << for map with RaplDomain as keys
 std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::rapl::RaplDomain, double> &map); 
-
-#endif

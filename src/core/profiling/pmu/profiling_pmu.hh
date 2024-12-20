@@ -1,6 +1,4 @@
-
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PMU__PROFILING_PMU_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PMU__PROFILING_PMU_HH
+#pragma once
 
 #include <deployment_config.hh>
 #include <block_group_profiler.hh>
@@ -28,7 +26,6 @@ using optkit::core::pmu::QueryPMU;
 #define OPTKIT_PERFORMANCE_EVENTS(block_name, event_name, variable_name, ...)
 #define OPTKIT_PERFORMANCE_BLOCK_EVENTS(block_name, event_name, variable_name, ...)
 
-#endif
 #endif
 
 

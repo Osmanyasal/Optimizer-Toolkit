@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__EVENT_RECEPIES__INTEL__BDW__BDW_RECEPIES__HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__EVENT_RECEPIES__INTEL__BDW__BDW_RECEPIES__HH
+#pragma once
 
 #include <vector>
 #include <string>
@@ -18,5 +17,3 @@ namespace optkit::core::recepies::intel::bdw
         ~Recepies() = delete;
     };
 }
-
-#endif

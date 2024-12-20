@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__EVENT_RECEPIES__INTEL__ICL__ICL_GOVERNOR__HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__EVENT_RECEPIES__INTEL__ICL__ICL_GOVERNOR__HH
+#pragma once
 
 #include <vector>
 #include <string>
@@ -57,5 +56,3 @@ namespace optkit::core::governors::intel::icl
         optkit::core::pmu::BlockGroupProfiler interested_events;
     };
 }
-
-#endif

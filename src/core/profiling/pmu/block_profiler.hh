@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PMU__BLOCK_PROFILER_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PMU__BLOCK_PROFILER_HH
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -65,5 +64,3 @@ namespace optkit::core::pmu
     };
 
 } // namespace optkit::core::pmu
-
-#endif

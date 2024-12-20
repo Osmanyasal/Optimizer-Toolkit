@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PMU__PMU_EVENT_MANAGER_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__PMU__PMU_EVENT_MANAGER_HH
+#pragma once
 
 #include <utils.hh>
 #include <vector>
@@ -50,4 +49,3 @@ namespace optkit::core::pmu
         ~PMUEventManager();
     };
 }
-#endif

@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PMU__UTILS_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PMU__UTILS_HH
+#pragma once
 
 #include <string>
 #include <sstream>
@@ -13,5 +12,3 @@ namespace optkit::core::pmu
     std::vector<std::pair<double, uint64_t>> from_json(const std::string &json);
 
 } // namespace optkit::core
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__MSRS__HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__MSRS__HH
+#pragma once
 
 #include <cstdint>
 
@@ -1513,4 +1512,3 @@ const std::map<uint64_t, uint64_t> msr_whitelist = {
 
 };
 
-#endif /* OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__MSRS__HH */

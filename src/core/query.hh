@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH
+#pragma once
 
 #include <ostream>
 #include <iostream>
@@ -52,5 +51,3 @@ namespace optkit::core
     };
 
 } // namespace optkit::core
-
-#endif // OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH

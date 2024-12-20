@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERYPMU_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERYPMU_HH
+#pragma once
 
 #include <ostream>
 #include <iostream>
@@ -104,5 +103,3 @@ namespace optkit::core::pmu
     };
 
 } // namespace optkit::core
-
-#endif // OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__QUERY_HH

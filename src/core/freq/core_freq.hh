@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__HH
+#pragma once
 
 #include <deployment_config.hh>
 #include <cpu_frequency.hh>
@@ -26,5 +25,4 @@ using optkit::core::freq::QueryFreq;
 #define OPTKIT_RESET_CPU_CORE_FREQ(socket)   
 #define OPTKIT_RESET_CPU_UNCORE_FREQ(socket) 
 
-#endif
 #endif

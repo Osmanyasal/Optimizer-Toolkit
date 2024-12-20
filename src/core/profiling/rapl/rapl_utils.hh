@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RAPL__UTILS_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RAPL__UTILS_HH
+#pragma once
 
 #include <string>
 #include <sstream>
@@ -13,5 +12,3 @@ namespace optkit::core::rapl
     std::map<uint32_t, std::vector<std::pair<double, std::map<int32_t, std::map<optkit::core::rapl::RaplDomain, double>>>>> from_json(const std::string &json);
 
 } // namespace optkit::core
-
-#endif

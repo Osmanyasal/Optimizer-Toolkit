@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__CPU__FREQ__HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__FREQ__CPU__FREQ__HH
+#pragma once
 
 #include <vector>
 #include <map>
@@ -47,4 +46,3 @@ namespace optkit::core::freq
 
 }
 
-#endif

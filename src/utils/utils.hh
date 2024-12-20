@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__UTILS
-#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__UTILS
+#pragma once
 /*
     All header files that's defined in utils.
     to access utils include this file
@@ -101,5 +100,3 @@ OPT_FORCE_INLINE void create_directory(const std::string &folderName)
         OPTKIT_CORE_ERROR("Directory already exists {}", folderName);
     }
 }
-
-#endif

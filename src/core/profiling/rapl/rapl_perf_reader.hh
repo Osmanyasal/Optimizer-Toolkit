@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__RAPL_PERF_READER_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__RAPL_PERF_READER_HH
+#pragma once
 
 #include <ostream>
 #include <map>
@@ -52,5 +51,3 @@ namespace optkit::core::rapl
 
 std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplPerfReaderConfig &config);
 std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::rapl::RaplDomain, double>> &map);
-
-#endif

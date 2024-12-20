@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__OPTIMIZATIONS__CPU_OPT_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__UTILS__OPTIMIZATIONS__CPU_OPT_HH
+#pragma once
 
 // all macros start with OPT_ prefix.
 
@@ -16,6 +15,4 @@
     #define OPT_UNLIKELY(EXPR) EXPR
     #define OPT_PREFETCH(address, rw, locality)
     #define OPT_FORCE_INLINE 
-#endif
-
 #endif

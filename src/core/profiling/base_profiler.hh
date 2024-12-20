@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__BASE_PROFILER_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__BASE_PROFILER_HH
+#pragma once
 
 #include <utils.hh>
 #include <cstdint>
@@ -90,5 +89,3 @@ namespace optkit::core
     };
 
 } // namespace optkit::core
-
-#endif

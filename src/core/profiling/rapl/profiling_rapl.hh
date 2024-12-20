@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__PROFILING_RAPL_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__PROFILING__RAPL__PROFILING_RAPL_HH
+#pragma once
 
 #include <deployment_config.hh>
 #include <rapl.hh>
@@ -38,5 +37,4 @@ using optkit::core::rapl::RaplReadMethods;
     #define OPTKIT_RAPL(var_name, block_name)
     #define OPTKIT_RAPL_REPEAT(var_name, block_name, count)
     #define OPTKIT_RAPL_REPEAT_READ(var_name, block_name, count)
-#endif
 #endif

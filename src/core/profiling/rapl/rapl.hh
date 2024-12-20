@@ -1,5 +1,4 @@
-#ifndef OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RAPL__RAPL_HH
-#define OPTIMIZER_TOOLKIT_CORE__SRC__CORE__RAPL__RAPL_HH
+#pragma once
 
 #include <iostream>
 #include <unordered_map>
@@ -58,5 +57,3 @@ namespace optkit::core::rapl
 std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplDomain &domain);
 std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplDomainInfo &domain_info);
 std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplReadMethods &read_method);
-
-#endif
