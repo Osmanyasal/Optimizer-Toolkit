@@ -1,4 +1,13 @@
 ---@diagnostic disable: undefined-global
+
+print("Current platform: " .. os.target())
+-- Check if the platform is Linux
+if os.target() ~= "linux" then
+    print("❌ This script is only supported on Linux platforms.")
+    os.exit(1)  -- Exit with a non-zero status to terminate the script
+end
+
+
 workspace "OptimizerToolkit"
     configurations { "Debug", "Release" }
     architecture "x64"
@@ -21,12 +30,11 @@ project "OptimizerToolkit"
     }
 
     -- Linking dynamic libraries for Intel systems
-    filter "system:linux"
-        linkoptions { "-fopenmp", "-lpfm" }
-        links { "pthread", "dl", "tensorflow", "spdlog" }
+    linkoptions { "-fopenmp", "-lpfm" }
+    links { "pthread", "dl", "tensorflow", "spdlog" }
 
     -- Compiler options
-    filter "system:linux and configurations:Debug"
+    filter "configurations:Debug"
         symbols "On"
         defines { "OPTKIT_MODE_DEBUG" }
         buildoptions { "-Wall", "-O0", "-g", "-fopenmp", "-msse", "-march=native", "-mavx2" } 
