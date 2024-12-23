@@ -1,11 +1,12 @@
 #pragma once
-
-#include <deployment_config.hh>
-#include <logger_config.hh>
+ 
 #include <string>
 #include <memory>
-#include <spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
+
+#include "lib/spdlog/include/spdlog/spdlog.h"
+#include "lib/spdlog/include/spdlog/sinks/stdout_color_sinks.h"
+#include "src/utils/deployment/deployment_config.hh"
+#include "src/utils/logging/logger_config.hh"
 namespace optkit::utils::logger
 {
     class BaseLogger final

@@ -2,12 +2,13 @@
 
 #include <vector>
 #include <map>
-#include <utils.hh>
-#include <query.hh>
-#include <query_frequency.hh>
-#include <msr_util.hh>
-#include <msrs.hh>
 #include <utility>
+
+#include "src/utils/utils.hh"
+#include "src/core/query.hh"
+#include "src/core/freq/query_frequency.hh"
+#include "src/core/freq/msr_util.hh"
+#include "src/core/freq/msrs.hh"
 
 std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair);
 

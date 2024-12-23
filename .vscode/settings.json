@@ -113,5 +113,8 @@
         "stdlib.h": "c",
         "fcntl.h": "c"
     },
-    "cmake.sourceDirectory": "/home/rt7/Desktop/Recursion-Engine/lib/spdlog"
+    "cmake.sourceDirectory": "/home/rt7/Desktop/Recursion-Engine/lib/spdlog",
+    "Lua.diagnostics.disable": [
+        "undefined-field"
+    ]
 }

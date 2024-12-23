@@ -1,4 +1,4 @@
-#include <cpu_frequency.hh>
+#include "src/core/freq/cpu_frequency.hh"
 
 std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair)
 {

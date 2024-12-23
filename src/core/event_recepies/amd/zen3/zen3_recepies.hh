@@ -2,8 +2,8 @@
 
 #include <vector>
 #include <string>
-#include <fam19h_zen3.hh>
-#include <fam19h_zen3_l3.hh>
+#include "src/core/events/amd64/fam19h_zen3.hh"
+#include "src/core/events/amd64/fam19h_zen3_l3.hh"
 
 namespace optkit::core::recepies::amd64::zen3
 {

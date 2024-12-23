@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::skx_unc_i{
 	enum skx_unc_i : uint64_t {
 		UNC_I_CACHE_TOTAL_OCCUPANCY = 0xf, // Accumulates the number of reads and writes that are outstanding in the uncore in each cycle.  This is effectively the sum of the READ_OCCUPANCY and WRITE_OCCUPANCY events.

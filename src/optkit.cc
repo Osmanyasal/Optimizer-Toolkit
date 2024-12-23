@@ -1,4 +1,4 @@
-#include <optkit.hh>
+#include "src/optkit.hh"
 
 namespace optkit::core
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::pii{
 	enum pii : uint64_t {
 		CPU_CLK_UNHALTED = 0x79, // Number cycles during which the processor is not halted

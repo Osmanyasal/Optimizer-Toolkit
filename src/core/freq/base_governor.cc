@@ -1,5 +1,5 @@
 
-#include <base_governor.hh>
+#include "src/core/freq/base_governor.hh"
 
 namespace optkit::core::freq
 {

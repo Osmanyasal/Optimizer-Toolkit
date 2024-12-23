@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::wsm_unc{
 	enum wsm_unc : uint64_t {
 		UNC_CLK_UNHALTED = 0xff, // Uncore clockticks.

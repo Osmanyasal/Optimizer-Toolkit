@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::hswep_unc_u{
 	enum hswep_unc_u : uint64_t {
 		UNC_U_EVENT_MSG = 0x42, // VLW Received

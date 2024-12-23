@@ -1,9 +1,9 @@
 #pragma once
 
-#include <logger.hh>
 #include <string>
 #include <chrono> 
 
+#include "src/utils/logging/logger.hh"
 namespace optkit::utils
 {
     class BlockTimer

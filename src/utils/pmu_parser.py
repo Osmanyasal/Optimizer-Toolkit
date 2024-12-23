@@ -16,7 +16,7 @@ example layout is as follows:
 -- icl.hh --
 
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::icl{
 	enum icl : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x3c, // Count core clock cycles whenever the clock signal on the specific core is running (not halted)
@@ -53,7 +53,7 @@ NAMESPACE_ALIASING = "\n\nnamespace {} = optkit::{}::{};"
 
 PRIV_DEFINITIONS = {
     "intel":[
-        "#include <intel_priv.hh>\n",
+        "#include \"src/intel_priv.hh\"\n",
     ]
 }
 

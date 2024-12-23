@@ -2,9 +2,10 @@
 
 #include <string>
 #include <sstream>
-#include <json.hh>
-#include <rapl.hh>
-#include <query_pmu.hh>
+
+#include "src/utils/json.hh"
+#include "src/core/profiling/rapl/rapl.hh"
+#include "src/core/profiling/pmu/query_pmu.hh"
 
 namespace optkit::core::pmu
 {

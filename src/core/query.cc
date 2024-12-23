@@ -1,5 +1,5 @@
 
-#include <query.hh>
+#include "src/core/query.hh"
 
 namespace optkit::core
 {

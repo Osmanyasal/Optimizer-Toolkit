@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::bdx_unc_q{
 	enum bdx_unc_q : uint64_t {
 		UNC_Q_CLOCKTICKS = 0x14, // Counts the number of clocks in the QPI LL.  This clock runs at 1/4th the GT/s speed of the QPI link.  For example

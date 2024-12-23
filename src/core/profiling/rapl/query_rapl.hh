@@ -2,16 +2,16 @@
 
 #include <ostream>
 #include <iostream>
-#include <utils.hh>
 #include <sstream>
 #include <iomanip>
 #include <vector>
 #include <string>
-#include <map>
-#include <rapl.hh>
-#include <libpfm4_wrapper.hh>
+#include <map> 
 #include <unistd.h>
 
+#include "src/core/profiling/pmu/libpfm4_wrapper.hh"
+#include "src/core/profiling/rapl/rapl.hh"
+#include "src/utils/utils.hh"
 namespace optkit::core::rapl
 {
     /**

@@ -1,7 +1,6 @@
 #include <omp.h>
-#include <optkit.hh>
-#include <test.hh>
-#include <core_events.hh>
+#include "src/optkit.hh"
+#include "src/core/event_recepies/core_events.hh"
 
 #define OPTKIT_COMPUTE_INTENSITY(var_name, block_name)                                                                   \
     optkit::core::pmu::BlockGroupProfiler var_name                                                                       \

@@ -1,4 +1,4 @@
-#include <query_frequency.hh>
+#include "src/core/freq/query_frequency.hh"
 
 namespace optkit::core::freq
 {

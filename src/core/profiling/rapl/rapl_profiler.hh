@@ -1,15 +1,16 @@
 #pragma once
 
 #include <memory>
-#include <utils.hh>
 #include <ostream>
 #include <map>
-#include <query.hh>
-#include <query_rapl.hh>
-#include <base_profiler.hh>
-#include <profiler_config.hh>
-#include <rapl_perf_reader.hh>
-#include <rapl_utils.hh>
+
+#include "src/utils/utils.hh"
+#include "src/core/query.hh"
+#include "src/core/profiling/rapl/query_rapl.hh"
+#include "src/core/profiling/base_profiler.hh"
+#include "src/core/profiling/profiler_config.hh"
+#include "src/core/profiling/rapl/rapl_perf_reader.hh"
+#include "src/core/profiling/rapl/rapl_utils.hh"
 namespace optkit::core::rapl
 {
     class RaplProfiler : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>

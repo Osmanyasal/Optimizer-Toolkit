@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::ivbep_unc_p{
 	enum ivbep_unc_p : uint64_t {
 		UNC_P_CLOCKTICKS = 0x00, // PCU Uncore clockticks

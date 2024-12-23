@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::atom{
 	enum atom : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x3c, // Unhalted core cycles

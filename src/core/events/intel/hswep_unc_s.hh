@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::hswep_unc_s{
 	enum hswep_unc_s : uint64_t {
 		BL = 0x00, // S-box Uncore clockticks

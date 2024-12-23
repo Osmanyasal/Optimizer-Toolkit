@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-#include <bdw.hh>
+#include "src/core/events/intel/bdw.hh"
 
 namespace optkit::core::recepies::intel::bdw
 {

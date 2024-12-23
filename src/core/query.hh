@@ -2,15 +2,16 @@
 
 #include <ostream>
 #include <iostream>
-#include <utils.hh>
 #include <sstream>
 #include <iomanip>
 #include <vector>
 #include <string>
 #include <map>
-#include <rapl.hh>
-#include <libpfm4_wrapper.hh>
 #include <unistd.h>
+
+#include "src/utils/utils.hh" 
+#include "src/core/profiling/rapl/rapl.hh"
+#include "src/core/profiling/pmu/libpfm4_wrapper.hh"
  
 std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<int32_t>> &packages);
 

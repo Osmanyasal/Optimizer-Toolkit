@@ -3,10 +3,10 @@
 #include <iostream>
 #include <initializer_list>
 #include <vector>
-#include <utils.hh>
-#include <pmu_event_manager.hh>
-#include <base_profiler.hh>
-#include <pmu_utils.hh>
+#include "src/utils/utils.hh"
+#include "src/core/profiling/pmu/pmu_event_manager.hh"
+#include "src/core/profiling/base_profiler.hh"
+#include "src/core/profiling/pmu/pmu_utils.hh"
 
 namespace optkit::core::pmu
 {

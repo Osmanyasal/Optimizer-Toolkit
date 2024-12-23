@@ -1,4 +1,4 @@
-#include <skl_governor.hh>
+#include "src/core/event_recepies/intel/skl/skl_governor.hh"
 
 namespace optkit::core::governors::intel::skl
 {

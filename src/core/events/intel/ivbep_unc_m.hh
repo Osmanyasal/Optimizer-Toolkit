@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::ivbep_unc_m{
 	enum ivbep_unc_m : uint64_t {
 		VMSE_RETRY = 0xff, // IMC Uncore clockticks (fixed counter)

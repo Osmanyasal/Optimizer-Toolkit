@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::bdx_unc_u{
 	enum bdx_unc_u : uint64_t {
 		UNC_U_EVENT_MSG = 0x42, // Virtual Logical Wire (legacy) message were received from uncore

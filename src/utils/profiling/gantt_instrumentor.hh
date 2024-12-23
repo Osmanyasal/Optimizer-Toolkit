@@ -1,7 +1,5 @@
 #pragma once
-
-#include <profiling_config.hh>
-#include <logger.hh>
+ 
 #include <algorithm>
 #include <chrono>
 #include <fstream>
@@ -10,6 +8,10 @@
 #include <thread>
 #include <sstream>
 #include <mutex>
+
+
+#include "src/utils/profiling/profiling_config.hh"
+#include "src/utils/logging/logger.hh"
 
 namespace optkit::utils
 {

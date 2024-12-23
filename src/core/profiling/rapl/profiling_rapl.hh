@@ -1,11 +1,11 @@
 #pragma once
 
-#include <deployment_config.hh>
-#include <rapl.hh>
-#include <rapl_perf_reader.hh>
-#include <rapl_profiler.hh>
-#include <rapl_utils.hh>
-#include <query_rapl.hh>
+#include "src/utils/deployment/deployment_config.hh"
+#include "src/core/profiling/rapl/rapl.hh"
+#include "src/core/profiling/rapl/rapl_perf_reader.hh"
+#include "src/core/profiling/rapl/rapl_profiler.hh"
+#include "src/core/profiling/rapl/rapl_utils.hh"
+#include "src/core/profiling/rapl/query_rapl.hh"
 
 using optkit::core::rapl::QueryRapl;
 using optkit::core::rapl::RaplDomain;

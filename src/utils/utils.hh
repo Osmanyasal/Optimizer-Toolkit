@@ -7,23 +7,21 @@
 #include <cstdint>
 #include <random>
 #include <sys/stat.h>
-
-// CUSTOM HEADERS
-#include <logger.hh>
-#include <type.hh>
-
-// OPTIMIZATION HEADERS
-#include <cpu_opt.hh>
-
-// PROFILING HEADERS
-#include <block_timer.hh>
-#include <gantt_instrumentor.hh>
-
 #include <dirent.h>
 
-#include <query.hh>
 
-#include <block_timer.hh>
+// CUSTOM HEADERS
+#include "src/utils/logging/logger.hh"
+#include "src/utils/type.hh"
+
+// OPTIMIZATION HEADERS
+#include "src/utils/optimizations/cpu_opt.hh"
+
+// PROFILING HEADERS
+#include "src/utils/profiling/block_timer.hh"
+#include "src/utils/profiling/gantt_instrumentor.hh"
+ 
+#include "src/core/query.hh"
 
 // MACRO DEFINITIONS
 #define BIT(x) (1 << x)

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::hswep_unc_q{
 	enum hswep_unc_q : uint64_t {
 		UNC_Q_CLOCKTICKS = 0x14, // Number of qfclks

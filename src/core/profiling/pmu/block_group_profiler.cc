@@ -1,4 +1,4 @@
-#include <block_group_profiler.hh>
+#include "src/core/profiling/pmu/block_group_profiler.hh"
 
 namespace optkit::core::pmu
 {

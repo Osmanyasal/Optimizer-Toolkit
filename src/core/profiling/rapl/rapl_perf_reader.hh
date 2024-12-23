@@ -3,12 +3,12 @@
 #include <ostream>
 #include <map>
 #include <vector>
-
-#include <rapl.hh>
-#include <utils.hh>
 #include <sys/ioctl.h>
-#include <base_profiler.hh>
-#include <query_rapl.hh>
+
+#include "src/core/profiling/rapl/rapl.hh"
+#include "src/utils/utils.hh"
+#include "src/core/profiling/base_profiler.hh"
+#include "src/core/profiling/rapl/query_rapl.hh"
 namespace optkit::core::rapl
 {
     struct RaplPerfReaderConfig

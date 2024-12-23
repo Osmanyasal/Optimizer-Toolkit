@@ -1,5 +1,4 @@
-
-#include <query_pmu.hh>
+#include "src/core/profiling/pmu/query_pmu.hh"
 
 namespace optkit::core::pmu
 {

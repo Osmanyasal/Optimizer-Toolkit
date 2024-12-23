@@ -1,12 +1,12 @@
 #pragma once
 
-#include <deployment_config.hh>
-#include <block_group_profiler.hh>
-#include <block_profiler.hh>
-#include <libpfm4_wrapper.hh>
-#include <pmu_event_manager.hh>
-#include <gantt_instrumentor.hh>
-#include <query_pmu.hh>
+#include "src/utils/deployment/deployment_config.hh"
+#include "src/core/profiling/pmu/block_group_profiler.hh"
+#include "src/core/profiling/pmu/block_profiler.hh"
+#include "src/core/profiling/pmu/libpfm4_wrapper.hh"
+#include "src/core/profiling/pmu/pmu_event_manager.hh"
+#include "src/utils/profiling/gantt_instrumentor.hh"
+#include "src/core/profiling/pmu/query_pmu.hh"
 
 using optkit::core::pmu::BlockGroupProfiler;
 using optkit::core::pmu::BlockProfiler;
@@ -27,7 +27,3 @@ using optkit::core::pmu::QueryPMU;
 #define OPTKIT_PERFORMANCE_BLOCK_EVENTS(block_name, event_name, variable_name, ...)
 
 #endif
-
-
-
-

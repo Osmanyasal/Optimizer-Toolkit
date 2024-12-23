@@ -1,10 +1,10 @@
 #pragma once
 
-#include <utils.hh>
 #include <cstdint>
 #include <cstring>
 #include <vector>
-#include <profiler_config.hh>
+#include "src/utils/utils.hh"
+#include "src/core/profiling/profiler_config.hh"
 namespace optkit::core
 {
     template <typename T>

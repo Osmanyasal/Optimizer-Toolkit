@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <sstream>
 #include <iomanip>
-#include <logger.hh>
+#include "src/utils/logging/logger.hh"
 namespace optkit::core::rapl
 {
     /**

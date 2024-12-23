@@ -2,13 +2,13 @@
 
 #include <string>
 #include <vector>
-#include <utils.hh>
 #include <cstdlib>
 
-#include <deployment_config.hh>
-#include <core_profiling.hh>
-#include <core_freq.hh>
-#include <core_events.hh>
+#include "src/utils/utils.hh"
+#include <src/utils/deployment/deployment_config.hh>
+#include <src/core/profiling/core_profiling.hh>
+#include "src/core/freq/core_freq.hh"
+#include "src/core/event_recepies/core_events.hh"
 
 namespace optkit::core
 {

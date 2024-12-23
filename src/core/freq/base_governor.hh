@@ -1,16 +1,18 @@
 #pragma once
 
+#include <iostream>
 #include <signal.h>
 #include <fcntl.h>
 #include <sys/ptrace.h>
 #include <sys/mman.h>
-#include <profiler_config.hh>
-#include <block_group_profiler.hh>
-#include <block_profiler.hh>
-#include <cpu_frequency.hh>
-#include <query_frequency.hh>
 #include <tensorflow/c/c_api.h>
-#include <iostream>
+
+#include "src/core/profiling/profiler_config.hh"
+#include "src/core/profiling/pmu/block_group_profiler.hh"
+#include "src/core/profiling/pmu/block_profiler.hh"
+#include "src/core/freq/cpu_frequency.hh"
+#include "src/core/freq/query_frequency.hh"
+ 
 
 
 #define OPTKIT_BASE_GOVERNOR_MMAP_PAGES 8

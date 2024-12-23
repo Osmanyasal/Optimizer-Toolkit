@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intel_priv.hh>
+#include "src/intel_priv.hh"
 namespace optkit::intel::glm{
 	enum glm : uint64_t {
 		ICACHE = 0x80, // References per ICache line that are available in the ICache (hit). This event counts differently than Intel processors based on Silvermont microarchitecture

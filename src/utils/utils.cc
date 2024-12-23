@@ -1,4 +1,4 @@
-#include <utils.hh>
+#include "src/utils/utils.hh"
 
 std::string EXECUTION_FOLDER_NAME{get_date() + "__" + get_time() + "__" + generateGUID().substr(0, CONF__LOG__PRINT_GUID_LENGTH)};
 
