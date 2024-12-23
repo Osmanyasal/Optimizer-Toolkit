@@ -8,6 +8,13 @@ if os.target() ~= "linux" then
 end
 
 
+LIB_MSR_SAFE_PATH = './lib/msr-safe'
+LIB_SPD_PATH = './lib/spdlog'
+LIB_PFM_PATH = './lib/libpfm'
+CORE_EVENTS_DIR = './core/events'
+UTILS_DIR = './utils'
+LIB_X86_ADAPT_PATH = './lib/x86-adapt'
+
 workspace "OptimizerToolkit"
     configurations { "Debug", "Release" }
     architecture "x64"
@@ -46,6 +53,38 @@ project "OptimizerToolkit"
         buildoptions { "-Wall", "-O2", "-fopenmp", "-msse", "-march=native", "-mavx2" }
  
     filter{}    -- stop filtering, below is globally accessible
+
+   
+    prebuildcommands {
+        -- Use global variables in the prebuildcommands
+        "if [ ! -f " .. LIB_MSR_SAFE_PATH .. "/all_set ]; then \\",
+        "    cd " .. LIB_MSR_SAFE_PATH .. " && make && make install && \\",
+        "    sudo insmod ./msr-safe.ko && sudo chmod g+rw /dev/cpu/*/msr_safe /dev/cpu/msr_* && \\",
+        "    sudo chgrp $(whoami) /dev/cpu/*/msr_safe /dev/cpu/msr_batch /dev/cpu/msr_safe_version && \\",
+        "    sudo chgrp $(whoami) /dev/cpu/msr_allowlist && \\",
+        "    echo \"0x00000620 0xFFFFFFFFFFFFFFFF\" > /dev/cpu/msr_allowlist && \\",
+        "    touch all_set; \\",
+        "fi",
+
+        "if [ ! -f " .. LIB_SPD_PATH .. "/build/libspdlog.a ]; then \\",
+        "    cd " .. LIB_SPD_PATH .. " && ./install.sh; \\",
+        "fi",
+
+        "if [ ! -f " .. LIB_PFM_PATH .. "/all_set ]; then \\",
+        "    cd " .. LIB_PFM_PATH .. " && ./install.sh; \\",
+        "fi",
+
+        "if [ ! -f " .. CORE_EVENTS_DIR .. "/all_set ]; then \\",
+        "    echo \"⛏️ Exporting events from libpfm4\" && \\",
+        "    cd " .. UTILS_DIR .. " && python3 pmu_parser.py $(find " .. LIB_PFM_PATH .. "/lib/events -type f \\( -name \"intel*.h\" -or -name \"amd*.h\" -or -name \"arm*.h\" -or -name \"power*.h\" \\) -exec echo \"../../{}\" \\;); \\",
+        "    touch " .. CORE_EVENTS_DIR .. "/all_set; \\",
+        "fi",
+
+        "if [ ! -f " .. LIB_X86_ADAPT_PATH .. "/all_set ]; then \\",
+        "    echo \"⛏️ Building x86 adapt library\" && \\",
+        "    cd " .. LIB_X86_ADAPT_PATH .. " && ./install.sh; \\",
+        "fi"
+    }
 
     local actions = {
         clean = "clean",
