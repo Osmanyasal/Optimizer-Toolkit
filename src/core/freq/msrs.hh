@@ -1123,7 +1123,7 @@ const uint64_t U_MSR_PMON_FIXED_CTL_shift = 22;
     This bit is writeable only when CPUID (EAX=6):EAX[4] is set.
  * Time Window for Platform Power Limit #1 (bits 23:17):
     Specifies the duration of the time window over which Platform Power Limit #1
-    value should be maintained for sustained long duration. This field is made
+    value should be maintained for sustained int64_t duration. This field is made
     up of two numbers from the following equation:
         Time Window = (float) ((1+(X/4))*(2^Y)), where:
         X = POWER_LIMIT_1_TIME[23:22]

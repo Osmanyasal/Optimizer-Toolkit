@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::hswep_unc_m{
 	enum hswep_unc_m : uint64_t {
 		VMSE_RETRY = 0xff, // IMC Uncore clockticks (fixed counter)

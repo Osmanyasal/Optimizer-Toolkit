@@ -16,7 +16,7 @@ ifeq ($(config),debug)
   TARGET = $(TARGETDIR)/OptimizerToolkit
   OBJDIR = bin/obj/Debug
   DEFINES += -DOPTKIT_MODE_DEBUG
-  INCLUDES += -I.
+  INCLUDES += -Isrc
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g -Wall -O0 -g -fopenmp -msse -march=native -mavx2
@@ -69,7 +69,7 @@ ifeq ($(config),release)
   TARGET = $(TARGETDIR)/OptimizerToolkit
   OBJDIR = bin/obj/Release
   DEFINES += -DOPTKIT_MODE_NDEBUG
-  INCLUDES += -I.
+  INCLUDES += -Isrc
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -Wall -O2 -fopenmp -msse -march=native -mavx2

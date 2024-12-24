@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::knl_unc_m2pcie{
 	enum knl_unc_m2pcie : uint64_t {
 		UNC_M2P_INGRESS_CYCLES_NE = 0x10, // Ingress Queue Cycles Not Empty. Counts the number of cycles when the M2PCIe Ingress is not empty

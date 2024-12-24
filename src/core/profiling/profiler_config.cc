@@ -1,5 +1,5 @@
 
-#include "src/core/profiling/profiler_config.hh"
+#include "core/profiling/profiler_config.hh"
 
 namespace optkit::core
 {

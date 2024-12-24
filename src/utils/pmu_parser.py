@@ -53,7 +53,7 @@ NAMESPACE_ALIASING = "\n\nnamespace {} = optkit::{}::{};"
 
 PRIV_DEFINITIONS = {
     "intel":[
-        "#include \"src/intel_priv.hh\"\n",
+        "#include \"intel_priv.hh\"\n",
     ]
 }
 

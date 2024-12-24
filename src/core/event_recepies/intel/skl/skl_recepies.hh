@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-#include "src/core/events/intel/skl.hh"
+#include "core/events/intel/skl.hh"
 
 namespace optkit::core::recepies::intel::skl
 {

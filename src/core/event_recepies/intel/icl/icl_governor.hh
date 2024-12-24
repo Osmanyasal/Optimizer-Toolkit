@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <string>
-#include "src/core/events/intel/icl.hh"
-#include "src/core/freq/base_governor.hh"
-#include "src/core/event_recepies/intel/icl/icl_recepies.hh"
+#include "core/events/intel/icl.hh"
+#include "core/freq/base_governor.hh"
+#include "core/event_recepies/intel/icl/icl_recepies.hh"
 
 namespace optkit::core::governors::intel::icl
 {

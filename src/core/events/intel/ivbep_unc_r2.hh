@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::ivbep_unc_r2{
 	enum ivbep_unc_r2 : uint64_t {
 		UNC_R2_CLOCKTICKS = 0x1, // Number of uclks in domain

@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-#include "src/core/events/intel/icl.hh"
+#include "core/events/intel/icl.hh"
 
 namespace optkit::core::recepies::intel::icl
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::snb_unc_cbo{
 	enum snb_unc_cbo : uint64_t {
 		UNC_CBO_XSNP_RESPONSE = 0x22, // Snoop responses (must provide a snoop type and filter)

@@ -1,5 +1,5 @@
 
-#include "src/core/profiling/rapl/query_rapl.hh"
+#include "core/profiling/rapl/query_rapl.hh"
 
 namespace optkit::core::rapl
 {

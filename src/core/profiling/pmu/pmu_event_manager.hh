@@ -5,8 +5,8 @@
 #include <sys/ioctl.h>
 #include <linux/perf_event.h>
 
-#include "src/utils/utils.hh"
-#include "src/core/profiling/pmu/query_pmu.hh"
+#include "utils/utils.hh"
+#include "core/profiling/pmu/query_pmu.hh"
 namespace optkit::core::pmu
 {
     class PMUEventManager

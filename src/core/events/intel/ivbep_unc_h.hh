@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::ivbep_unc_h{
 	enum ivbep_unc_h : uint64_t {
 		LAST = 0x00, // HA Uncore clockticks

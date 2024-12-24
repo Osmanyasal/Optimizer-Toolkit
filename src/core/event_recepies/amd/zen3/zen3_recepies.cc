@@ -1,5 +1,5 @@
 
-#include "src/core/event_recepies/amd/zen3/zen3_recepies.hh"
+#include "core/event_recepies/amd/zen3/zen3_recepies.hh"
 
 namespace optkit::core::recepies::amd64::zen3
 {

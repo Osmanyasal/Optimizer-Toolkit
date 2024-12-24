@@ -1,5 +1,5 @@
 
-#include "src/core/event_recepies/intel/skl/skl_recepies.hh"
+#include "core/event_recepies/intel/skl/skl_recepies.hh"
 
 namespace optkit::core::recepies::intel::skl
 {

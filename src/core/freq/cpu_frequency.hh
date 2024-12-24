@@ -4,11 +4,11 @@
 #include <map>
 #include <utility>
 
-#include "src/utils/utils.hh"
-#include "src/core/query.hh"
-#include "src/core/freq/query_frequency.hh"
-#include "src/core/freq/msr_util.hh"
-#include "src/core/freq/msrs.hh"
+#include "utils/utils.hh"
+#include "core/query.hh"
+#include "core/freq/query_frequency.hh"
+#include "core/freq/msr_util.hh"
+#include "core/freq/msrs.hh"
 
 std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair);
 

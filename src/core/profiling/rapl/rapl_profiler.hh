@@ -4,13 +4,13 @@
 #include <ostream>
 #include <map>
 
-#include "src/utils/utils.hh"
-#include "src/core/query.hh"
-#include "src/core/profiling/rapl/query_rapl.hh"
-#include "src/core/profiling/base_profiler.hh"
-#include "src/core/profiling/profiler_config.hh"
-#include "src/core/profiling/rapl/rapl_perf_reader.hh"
-#include "src/core/profiling/rapl/rapl_utils.hh"
+#include "utils/utils.hh"
+#include "core/query.hh"
+#include "core/profiling/rapl/query_rapl.hh"
+#include "core/profiling/base_profiler.hh"
+#include "core/profiling/profiler_config.hh"
+#include "core/profiling/rapl/rapl_perf_reader.hh"
+#include "core/profiling/rapl/rapl_utils.hh"
 namespace optkit::core::rapl
 {
     class RaplProfiler : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>

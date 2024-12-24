@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::coreduo{
 	enum coreduo : uint64_t {
 		UNHALTED_CORE_CYCLES = 0x3c, // Unhalted core cycles

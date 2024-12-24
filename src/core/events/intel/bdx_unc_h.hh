@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::bdx_unc_h{
 	enum bdx_unc_h : uint64_t {
 		UNC_H_BT_CYCLES_NE = 0x42, // Cycles the Backup Tracker (BT) is not empty. The BT is the actual HOM tracker in IVT.

@@ -3,10 +3,10 @@
 #include <string>
 #include <memory>
 
-#include "lib/spdlog/include/spdlog/spdlog.h"
-#include "lib/spdlog/include/spdlog/sinks/stdout_color_sinks.h"
-#include "src/utils/deployment/deployment_config.hh"
-#include "src/utils/logging/logger_config.hh"
+#include "utils/logging/spdlog.hh"
+#include "utils/logging/stdout_color_sinks.hh"
+#include "utils/deployment/deployment_config.hh"
+#include "utils/logging/logger_config.hh"
 namespace optkit::utils::logger
 {
     class BaseLogger final

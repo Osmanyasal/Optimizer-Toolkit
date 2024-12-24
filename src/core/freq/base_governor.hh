@@ -7,11 +7,11 @@
 #include <sys/mman.h>
 #include <tensorflow/c/c_api.h>
 
-#include "src/core/profiling/profiler_config.hh"
-#include "src/core/profiling/pmu/block_group_profiler.hh"
-#include "src/core/profiling/pmu/block_profiler.hh"
-#include "src/core/freq/cpu_frequency.hh"
-#include "src/core/freq/query_frequency.hh"
+#include "core/profiling/profiler_config.hh"
+#include "core/profiling/pmu/block_group_profiler.hh"
+#include "core/profiling/pmu/block_profiler.hh"
+#include "core/freq/cpu_frequency.hh"
+#include "core/freq/query_frequency.hh"
  
 
 

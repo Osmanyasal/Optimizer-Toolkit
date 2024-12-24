@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::hswep_unc_h{
 	enum hswep_unc_h : uint64_t {
 		UNC_H_CLOCKTICKS = 0x00, // HA Uncore clockticks

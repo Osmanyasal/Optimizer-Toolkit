@@ -1,4 +1,4 @@
-#include "src/core/event_recepies/intel/icl/icl_governor.hh"
+#include "core/event_recepies/intel/icl/icl_governor.hh"
 
 namespace optkit::core::governors::intel::icl
 {

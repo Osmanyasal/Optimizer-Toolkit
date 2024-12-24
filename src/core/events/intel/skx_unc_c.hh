@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::skx_unc_c{
 	enum skx_unc_c : uint64_t {
 		UNC_C_AG0_AD_CRD_ACQUIRED = 0x80, // Number of CMS Agent 0 AD credits acquired in a given cycle

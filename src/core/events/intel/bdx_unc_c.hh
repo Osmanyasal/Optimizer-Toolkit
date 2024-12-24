@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::bdx_unc_c{
 	enum bdx_unc_c : uint64_t {
 		UNC_C_BOUNCE_CONTROL = 0xa, // TBD

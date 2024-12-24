@@ -1,12 +1,12 @@
 #pragma once
 
-#include "src/utils/deployment/deployment_config.hh"
-#include "src/core/profiling/pmu/block_group_profiler.hh"
-#include "src/core/profiling/pmu/block_profiler.hh"
-#include "src/core/profiling/pmu/libpfm4_wrapper.hh"
-#include "src/core/profiling/pmu/pmu_event_manager.hh"
-#include "src/utils/profiling/gantt_instrumentor.hh"
-#include "src/core/profiling/pmu/query_pmu.hh"
+#include "utils/deployment/deployment_config.hh"
+#include "core/profiling/pmu/block_group_profiler.hh"
+#include "core/profiling/pmu/block_profiler.hh"
+#include "core/profiling/pmu/libpfm4_wrapper.hh"
+#include "core/profiling/pmu/pmu_event_manager.hh"
+#include "utils/profiling/gantt_instrumentor.hh"
+#include "core/profiling/pmu/query_pmu.hh"
 
 using optkit::core::pmu::BlockGroupProfiler;
 using optkit::core::pmu::BlockProfiler;

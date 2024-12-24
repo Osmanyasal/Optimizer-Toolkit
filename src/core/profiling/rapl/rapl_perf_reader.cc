@@ -1,4 +1,4 @@
-#include "src/core/profiling/rapl/rapl_perf_reader.hh"
+#include "core/profiling/rapl/rapl_perf_reader.hh"
 
 namespace optkit::core::rapl
 {

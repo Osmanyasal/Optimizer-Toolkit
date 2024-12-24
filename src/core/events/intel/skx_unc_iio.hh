@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::skx_unc_iio{
 	enum skx_unc_iio : uint64_t {
 		UNC_IO_CLOCKTICKS = 0x1, // IIO clockticks

@@ -10,8 +10,8 @@
 #include <mutex>
 
 
-#include "src/utils/profiling/profiling_config.hh"
-#include "src/utils/logging/logger.hh"
+#include "utils/profiling/profiling_config.hh"
+#include "utils/logging/logger.hh"
 
 namespace optkit::utils
 {

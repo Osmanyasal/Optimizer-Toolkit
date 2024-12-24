@@ -5,10 +5,10 @@
 #include <vector>
 #include <sys/ioctl.h>
 
-#include "src/core/profiling/rapl/rapl.hh"
-#include "src/utils/utils.hh"
-#include "src/core/profiling/base_profiler.hh"
-#include "src/core/profiling/rapl/query_rapl.hh"
+#include "core/profiling/rapl/rapl.hh"
+#include "utils/utils.hh"
+#include "core/profiling/base_profiler.hh"
+#include "core/profiling/rapl/query_rapl.hh"
 namespace optkit::core::rapl
 {
     struct RaplPerfReaderConfig

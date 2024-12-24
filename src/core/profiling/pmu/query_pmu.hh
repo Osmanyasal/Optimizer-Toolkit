@@ -8,9 +8,9 @@
 #include <string>
 #include <map>
 
-#include "src/utils/utils.hh"
-#include "src/core/profiling/rapl/rapl.hh"
-#include "src/core/profiling/pmu/libpfm4_wrapper.hh"
+#include "utils/utils.hh"
+#include "core/profiling/rapl/rapl.hh"
+#include "core/profiling/pmu/libpfm4_wrapper.hh"
 #include <unistd.h>
 
 std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);

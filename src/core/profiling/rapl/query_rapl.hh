@@ -9,9 +9,9 @@
 #include <map> 
 #include <unistd.h>
 
-#include "src/core/profiling/pmu/libpfm4_wrapper.hh"
-#include "src/core/profiling/rapl/rapl.hh"
-#include "src/utils/utils.hh"
+#include "core/profiling/pmu/libpfm4_wrapper.hh"
+#include "core/profiling/rapl/rapl.hh"
+#include "utils/utils.hh"
 namespace optkit::core::rapl
 {
     /**

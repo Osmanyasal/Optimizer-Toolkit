@@ -1,4 +1,4 @@
-#include "src/core/profiling/pmu/libpfm4_wrapper.hh"
+#include "core/profiling/pmu/libpfm4_wrapper.hh"
 namespace optkit::core::pmu
 {
     const char *pmu_names[] = {

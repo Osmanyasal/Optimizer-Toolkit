@@ -1,5 +1,5 @@
 
-#include "src/core/freq/base_governor.hh"
+#include "core/freq/base_governor.hh"
 
 namespace optkit::core::freq
 {
@@ -85,7 +85,7 @@ namespace optkit::core::freq
         if (OPT_UNLIKELY(BaseGovernor::current_governor == nullptr))
             return;
         current_governor->disalbe_callback_trigger();
-        static int ctor = 1;
+        static int32_t ctor = 1;
         std::cout << "called:" << ctor++
                   << std::endl;
         current_governor->snapshot_pmus();

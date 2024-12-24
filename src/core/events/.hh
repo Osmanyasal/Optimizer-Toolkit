@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::::{
 	enum  : uint64_t {
 		ICACHE_MISS = 0x00, // Instruction cache miss (includes speculative accesses)

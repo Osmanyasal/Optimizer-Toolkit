@@ -3,8 +3,8 @@
 #include <cstdint>
 #include <cstring>
 #include <vector>
-#include "src/utils/utils.hh"
-#include "src/core/profiling/profiler_config.hh"
+#include "utils/utils.hh"
+#include "core/profiling/profiler_config.hh"
 namespace optkit::core
 {
     template <typename T>

@@ -1,0 +1,3 @@
+[
+{"readings":[{"duration":160.8699951171875,"event_name":"flop","metrics_set":[{"description":"Counted","metric_name":"double_operations","units":"piece","value":1800000000}],"package_number":-1}]}]
+

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::knl_unc_cha{
 	enum knl_unc_cha : uint64_t {
 		UNC_H_U_CLOCKTICKS = 0x00, // Uncore clockticks

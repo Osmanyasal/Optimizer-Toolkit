@@ -7,7 +7,7 @@
 #include <iostream>
 #include <unistd.h>
 
-#include "src/utils/utils.hh"
+#include "utils/utils.hh"
 
 namespace optkit::core::freq
 {

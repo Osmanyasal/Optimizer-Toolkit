@@ -9,9 +9,9 @@
 #include <map>
 #include <unistd.h>
 
-#include "src/utils/utils.hh" 
-#include "src/core/profiling/rapl/rapl.hh"
-#include "src/core/profiling/pmu/libpfm4_wrapper.hh"
+#include "utils/utils.hh" 
+#include "core/profiling/rapl/rapl.hh"
+#include "core/profiling/pmu/libpfm4_wrapper.hh"
  
 std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<int32_t>> &packages);
 
@@ -28,12 +28,12 @@ namespace optkit::core
     {
     public:
        public:
-           static long OPTKIT_SOCKET0__ENABLED;
-           static long OPTKIT_SOCKET1__ENABLED;
-           static long OPTKIT_SOCKET0__CORE_FREQ;
-           static long OPTKIT_SOCKET1__CORE_FREQ;
-           static long OPTKIT_SOCKET0__UNCORE_FREQ;
-           static long OPTKIT_SOCKET1__UNCORE_FREQ;
+           static int64_t OPTKIT_SOCKET0__ENABLED;
+           static int64_t OPTKIT_SOCKET1__ENABLED;
+           static int64_t OPTKIT_SOCKET0__CORE_FREQ;
+           static int64_t OPTKIT_SOCKET1__CORE_FREQ;
+           static int64_t OPTKIT_SOCKET0__UNCORE_FREQ;
+           static int64_t OPTKIT_SOCKET1__UNCORE_FREQ;
 
            static const int16_t num_cores;
            static const int16_t num_sockets;

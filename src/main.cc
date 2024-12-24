@@ -1,6 +1,6 @@
 #include <omp.h>
-#include "src/optkit.hh"
-#include "src/core/event_recepies/core_events.hh"
+#include "optkit.hh"
+#include "core/event_recepies/core_events.hh"
 
 #define OPTKIT_COMPUTE_INTENSITY(var_name, block_name)                                                                   \
     optkit::core::pmu::BlockGroupProfiler var_name                                                                       \
@@ -35,9 +35,9 @@ void random_access()
         std::uniform_int_distribution<> thread_dis(0, vec.size() - 1);
 
 #pragma omp for
-        for (int i = 0; i < NUM_ACCESSES; ++i)
+        for (int32_t i = 0; i < NUM_ACCESSES; ++i)
         {
-            int idx = thread_dis(thread_gen); // Get a truly random index
+            int32_t idx = thread_dis(thread_gen); // Get a truly random index
             sum += vec[idx];
         }
     }
@@ -76,10 +76,10 @@ void triad()
 }
 
 // fibonacci function
-int fib(int n)
+int32_t fib(int32_t n)
 {
-    long i, a = 0;
-    int b = 1;
+    int64_t i, a = 0;
+    int32_t b = 1;
     for (i = 0; i < n; i++)
     {
         b = b + a;
@@ -90,9 +90,9 @@ int fib(int n)
 }
 
 // work function
-int work(int n, int f)
+int32_t work(int32_t n, int32_t f)
 {
-    int i, b;
+    int32_t i, b;
     b = 0;
     for (i = 0; i < n; i++)
     {

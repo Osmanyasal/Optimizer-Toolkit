@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-#include "src/utils/utils.hh"
+#include "utils/utils.hh"
 
 namespace optkit::core::freq
 {

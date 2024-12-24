@@ -1,16 +1,16 @@
 
-#include "src/core/query.hh"
+#include "core/query.hh"
 
 namespace optkit::core
 {
 
-    long Query::OPTKIT_SOCKET0__ENABLED = 0;
-    long Query::OPTKIT_SOCKET1__ENABLED = 0;
+    int64_t Query::OPTKIT_SOCKET0__ENABLED = 0;
+    int64_t Query::OPTKIT_SOCKET1__ENABLED = 0;
 
-    long Query::OPTKIT_SOCKET0__CORE_FREQ = -1;
-    long Query::OPTKIT_SOCKET1__CORE_FREQ = -1;
-    long Query::OPTKIT_SOCKET0__UNCORE_FREQ = -1;
-    long Query::OPTKIT_SOCKET1__UNCORE_FREQ = -1;
+    int64_t Query::OPTKIT_SOCKET0__CORE_FREQ = -1;
+    int64_t Query::OPTKIT_SOCKET1__CORE_FREQ = -1;
+    int64_t Query::OPTKIT_SOCKET0__UNCORE_FREQ = -1;
+    int64_t Query::OPTKIT_SOCKET1__UNCORE_FREQ = -1;
 
     const int16_t Query::num_cores = sysconf(_SC_NPROCESSORS_ONLN);
     const int16_t Query::num_sockets = Query::detect_packages().size();

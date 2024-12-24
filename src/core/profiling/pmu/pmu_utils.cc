@@ -1,4 +1,4 @@
-#include "src/core/profiling/rapl/rapl_utils.hh"
+#include "core/profiling/rapl/rapl_utils.hh"
 
 namespace optkit::core::pmu
 {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "src/utils/deployment/deployment_config.hh"
-#include "src/core/freq/cpu_frequency.hh"
-#include "src/core/freq/query_frequency.hh"
+#include "utils/deployment/deployment_config.hh"
+#include "core/freq/cpu_frequency.hh"
+#include "core/freq/query_frequency.hh"
 
 using optkit::core::freq::CPUFrequency;
 using optkit::core::freq::QueryFreq;

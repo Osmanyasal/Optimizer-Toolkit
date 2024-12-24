@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <string>
-#include "src/core/events/intel/skl.hh"
-#include "src/core/freq/base_governor.hh"
-#include "src/core/event_recepies/intel/skl/skl_recepies.hh"
+#include "core/events/intel/skl.hh"
+#include "core/freq/base_governor.hh"
+#include "core/event_recepies/intel/skl/skl_recepies.hh"
 
 namespace optkit::core::governors::intel::skl
 {

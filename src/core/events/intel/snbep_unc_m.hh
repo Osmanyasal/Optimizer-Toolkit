@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::snbep_unc_m{
 	enum snbep_unc_m : uint64_t {
 		UNC_M_CLOCKTICKS = 0xff, // IMC Uncore clockticks

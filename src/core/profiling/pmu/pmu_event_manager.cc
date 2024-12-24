@@ -1,5 +1,5 @@
 
-#include "src/core/profiling/pmu/pmu_event_manager.hh"
+#include "core/profiling/pmu/pmu_event_manager.hh"
 
 namespace optkit::core::pmu
 {

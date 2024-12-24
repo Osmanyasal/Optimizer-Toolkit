@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::knc{
 	enum knc : uint64_t {
 		BANK_CONFLICTS = 0xa, // Number of actual bank conflicts

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::ivb{
 	enum ivb : uint64_t {
 		ARITH = 0x14, // Counts arithmetic multiply operations

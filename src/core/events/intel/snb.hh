@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::snb{
 	enum snb : uint64_t {
 		AGU_BYPASS_CANCEL = 0xb6, // Number of executed load operations with all the following traits: 1. addressing of the format [base + offset]

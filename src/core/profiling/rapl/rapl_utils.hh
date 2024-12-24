@@ -2,9 +2,9 @@
 
 #include <string>
 #include <sstream>
-#include "src/utils/json.hh"
-#include "src/core/profiling/rapl/rapl.hh"
-#include "src/core/profiling/rapl/query_rapl.hh"
+#include "utils/json.hh"
+#include "core/profiling/rapl/rapl.hh"
+#include "core/profiling/rapl/query_rapl.hh"
 
 namespace optkit::core::rapl
 {                                                  // vector<duration, map<package_num, map<rapl_domain, value>>>

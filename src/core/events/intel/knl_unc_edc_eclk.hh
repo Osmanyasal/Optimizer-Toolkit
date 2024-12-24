@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "src/intel_priv.hh"
+#include "intel_priv.hh"
 namespace optkit::intel::knl_unc_edc_eclk{
 	enum knl_unc_edc_eclk : uint64_t {
 		UNC_E_E_CLOCKTICKS = 0x00, // EDC ECLK clockticks (generic counters)

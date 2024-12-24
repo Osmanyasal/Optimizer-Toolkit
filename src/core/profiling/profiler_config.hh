@@ -2,7 +2,7 @@
 
 #include <cstring>
 #include <linux/perf_event.h> // for pmu monitoring
-#include "src/core/profiling/rapl/rapl.hh"            // for rapl monitoring
+#include "core/profiling/rapl/rapl.hh"            // for rapl monitoring
 
 namespace optkit::core
 {

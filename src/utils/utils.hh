@@ -11,17 +11,17 @@
 
 
 // CUSTOM HEADERS
-#include "src/utils/logging/logger.hh"
-#include "src/utils/type.hh"
+#include "utils/logging/logger.hh"
+#include "utils/type.hh"
 
 // OPTIMIZATION HEADERS
-#include "src/utils/optimizations/cpu_opt.hh"
+#include "utils/optimizations/cpu_opt.hh"
 
 // PROFILING HEADERS
-#include "src/utils/profiling/block_timer.hh"
-#include "src/utils/profiling/gantt_instrumentor.hh"
+#include "utils/profiling/block_timer.hh"
+#include "utils/profiling/gantt_instrumentor.hh"
  
-#include "src/core/query.hh"
+#include "core/query.hh"
 
 // MACRO DEFINITIONS
 #define BIT(x) (1 << x)

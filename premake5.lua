@@ -29,7 +29,7 @@ targetdir "bin/%{cfg.buildcfg}"
 objdir "bin/obj/%{cfg.buildcfg}"
 
 includedirs {
-    "."
+    "./src/"
 }
 
 files {
@@ -150,9 +150,8 @@ newaction {
     trigger = actions.install,
     description = "Install headers and libraries to system directories",
     execute = function()
-        os.execute("sudo mkdir -p /usr/local/include/optkit")                                                                  -- create optkit directory for headers
-        os.execute(
-        "cd src; sudo find ./ -type f -name \"*.hh\" -exec cp --parents {} \"/usr/local/include/optkit/\" \\;")                -- copy all header files by keeping the file structure as-is
+        os.execute("sudo rm -rf /usr/local/include/optkit && sudo mkdir -p /usr/local/include/optkit")                         -- create optkit directory for headers
+        os.execute("cd src; sudo find ./ -type f -name \"*.hh\" -exec cp --parents {} \"/usr/local/include/optkit/\" \\;")     -- copy all header files by keeping the file structure as-is
         os.execute("sudo cp -R ./bin/liboptkit.a /usr/local/lib")                                                              -- copy static library
         os.execute("sudo cp -R ./bin/liboptkit.so /usr/local/lib")                                                             -- copy dynamic library
         print("✅ Installed headers and libraries!")
