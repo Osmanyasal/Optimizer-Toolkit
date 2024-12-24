@@ -1,5 +1,6 @@
 #include <omp.h>
 #include "optkit.hh"
+#include "core/event_recepies/tma_recepies.hh"
 
 #define OPTKIT_COMPUTE_INTENSITY(var_name, block_name)                                                                   \
     optkit::core::pmu::BlockGroupProfiler var_name                                                                       \
@@ -103,8 +104,8 @@ int32_t work(int32_t n, int32_t f)
 
 int32_t main(int32_t argc, char **argv)
 {
-    OPTKIT_INIT();
-    OPTKIT_RAPL(rapl_var, "main_block");
+    // OPTKIT_INIT();
+    // OPTKIT_RAPL(rapl_var, "main_block");
 
     // BlockGroupProfiler bb{"main block", "level1", {{0x0400ull, "slot"}, {0x8000ull, "ret"}, {0x8100ull, "bs"}, {0x8200ull, "fe"}, {0x8300ull, "be"}}};
     // BlockGroupProfiler bb{"main block", "level2", {{0x0400ull, "slot"}, {0x8400ull, "heavy"}, {0x8500ull, "br_mispredict"}, {0x8600ull, "fetch_lat"}, {0x8700ull, "mem_bound"}}};
@@ -120,11 +121,29 @@ int32_t main(int32_t argc, char **argv)
     // auto be = (double)val[4] / (double)val[0] * 100.0;
     // std::cout << ret << " " << bs << " " << fe << " " << be << "\n";
 
-    {
-        OPTKIT_PERFORMANCE_EVENTS("triad_block", "flop", var, {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}});
-        // BlockProfiler triad_block{"triad_block", "flop", {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}}};
-        triad();
-    }
+    // {
+    //     OPTKIT_PERFORMANCE_EVENTS("triad_block", "flop", var, {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}});
+    //     // BlockProfiler triad_block{"triad_block", "flop", {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}}};
+    //     triad();
+    // }
 
+    // Example L1Metric unordered_map
+    std::unordered_map<optkit::core::recepies::L1Metric, double> L1Data = {
+        {optkit::core::recepies::L1Metric::BackendBound, 0.5},
+        {optkit::core::recepies::L1Metric::BadSpeculation, 0.3},
+        {optkit::core::recepies::L1Metric::Retiring, 0.2}};
+
+    // Example L2Metric unordered_map
+    std::unordered_map<optkit::core::recepies::L2Metric, double> L2Data = {
+        {optkit::core::recepies::L2Metric::MemoryBound, 0.7},
+        {optkit::core::recepies::L2Metric::CoreBound, 0.1},
+        {optkit::core::recepies::L2Metric::BranchMisprediction, 0.05}};
+
+    std::cout << optkit::core::recepies::to_string(optkit::core::recepies::L1Metric::BackendBound);
+    // Print the L1 data
+    std::cout << "L1 Data: " << L1Data << std::endl;
+
+    // Print the L2 data
+    std::cout << "L2 Data: " << L2Data << std::endl;
     return 0;
 }
