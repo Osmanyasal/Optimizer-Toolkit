@@ -71,7 +71,8 @@ void triad()
     for (int32_t i = 0; i < 900000000; i++)
         aa = aa + i * 0.052; // 2 * 900_000_000 -> 1_800_000_000
 
-    // std::cout << aa << std::endl;
+    std::cout << aa << std::endl;
+    std::cout << "hello from osman yasal\n";
 }
 
 // fibonacci function
