@@ -1,6 +1,5 @@
 #include <omp.h>
 #include "optkit.hh"
-#include "core/event_recepies/core_events.hh"
 
 #define OPTKIT_COMPUTE_INTENSITY(var_name, block_name)                                                                   \
     optkit::core::pmu::BlockGroupProfiler var_name                                                                       \
@@ -48,17 +47,17 @@ void random_access()
 void print_info()
 {
 
-    for (size_t i = 0; i < Query::num_sockets; i++)
+    for (size_t i = 0; i < optkit::core::Query::num_sockets; i++)
     {
         std::cout << "Socket [" << i << "]\n";
         std::cout << "Core avail: ";
-        const auto &freq_list = QueryFreq::get_scaling_available_frequencies(Query::detect_packages().at(i)[0]);
+        const auto &freq_list = optkit::core::freq::QueryFreq::get_scaling_available_frequencies(optkit::core::Query::detect_packages().at(i)[0]);
         for (auto iter = freq_list.rbegin(); iter != freq_list.rend(); iter++)
             std::cout << *iter << " ";
         std::cout << "\n";
-        std::cout << "Core current: " << CPUFrequency::get_core_frequency(Query::detect_packages().at(i)[0]) << "\n";
-        std::cout << "Uncore min-max: " << CPUFrequency::get_uncore_min_max(i) << "\n";
-        std::cout << "Uncore current: " << CPUFrequency::get_uncore_frequency(i) << "\n";
+        std::cout << "Core current: " << optkit::core::freq::CPUFrequency::get_core_frequency(optkit::core::Query::detect_packages().at(i)[0]) << "\n";
+        std::cout << "Uncore min-max: " << optkit::core::freq::CPUFrequency::get_uncore_min_max(i) << "\n";
+        std::cout << "Uncore current: " << optkit::core::freq::CPUFrequency::get_uncore_frequency(i) << "\n";
     }
 }
 
@@ -104,8 +103,8 @@ int32_t work(int32_t n, int32_t f)
 
 int32_t main(int32_t argc, char **argv)
 {
-    OptimizerKit optkit{};
-    // OPTKIT_RAPL(rapl_var, "main_block");
+    OPTKIT_INIT();
+    OPTKIT_RAPL(rapl_var, "main_block");
 
     // BlockGroupProfiler bb{"main block", "level1", {{0x0400ull, "slot"}, {0x8000ull, "ret"}, {0x8100ull, "bs"}, {0x8200ull, "fe"}, {0x8300ull, "be"}}};
     // BlockGroupProfiler bb{"main block", "level2", {{0x0400ull, "slot"}, {0x8400ull, "heavy"}, {0x8500ull, "br_mispredict"}, {0x8600ull, "fetch_lat"}, {0x8700ull, "mem_bound"}}};
@@ -122,7 +121,8 @@ int32_t main(int32_t argc, char **argv)
     // std::cout << ret << " " << bs << " " << fe << " " << be << "\n";
 
     {
-        BlockProfiler triad_block{"triad_block", "flop", {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}}};
+        OPTKIT_PERFORMANCE_EVENTS("triad_block", "flop", var, {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}});
+        // BlockProfiler triad_block{"triad_block", "flop", {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}}};
         triad();
     }
 

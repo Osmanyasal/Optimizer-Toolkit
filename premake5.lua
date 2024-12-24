@@ -16,173 +16,210 @@ local UTILS_DIR = './src/utils'
 local LIB_X86_ADAPT_PATH = './lib/x86-adapt'
 local WHOAMI = io.popen("whoami"):read("*a"):gsub("\n", "")
 
-workspace "OptimizerToolkit"
-configurations { "Debug", "Release" }
-architecture "x64"
+local OPTKIT_APP = "OptimizerToolkitApp"
+local OPTKIT_LIB_DYNAMIC = "OptimizerToolkitShared"
+local OPTKIT_LIB_STATIC = "OptimizerToolkitStatic"
 
-project "OptimizerToolkit"
-kind "ConsoleApp"
-language "C++"
-cppdialect "C++11"
 
-targetdir "bin/%{cfg.buildcfg}"
-objdir "bin/obj/%{cfg.buildcfg}"
+function BaseProjectSetup()
+     
+    language "C++"
+    cppdialect "C++11"
+    targetdir "bin/%{cfg.buildcfg}"
+    objdir "bin/obj"
 
-includedirs {
-    "./src/"
-}
+    includedirs {
+        "./src/"
+    }
 
-files {
-    "./src/**.cc",
-    "./src/**.hh"
-}
+    files {
+        "./src/**.cc",
+        "./src/**.hh"
+    }
 
--- Linking dynamic libraries for Intel systems
-linkoptions { "-fopenmp", "-lpfm" }
-links { "pthread", "dl", "tensorflow", "spdlog" }
+    -- Linking dynamic libraries for Intel systems
+    linkoptions { "-fopenmp", "-lpfm" }
+    links { "pthread", "dl", "tensorflow", "spdlog" }
 
 -- Compiler options
-filter "configurations:Debug"
-symbols "On"
-defines { "OPTKIT_MODE_DEBUG" }
-buildoptions { "-Wall", "-O0", "-g", "-fopenmp", "-msse", "-march=native", "-mavx2" }
+    filter "configurations:Debug"
+        symbols "On"
+        defines { "OPTKIT_MODE_DEBUG" }
+        buildoptions { "-Wall", "-O0", "-g", "-fopenmp", "-msse", "-march=native", "-mavx2" }
 
-filter "configurations:Release"
-optimize "On"
-symbols "Off"
-defines { "OPTKIT_MODE_NDEBUG" }
-buildoptions { "-Wall", "-O2", "-fopenmp", "-msse", "-march=native", "-mavx2" }
+    filter "configurations:Release"
+        optimize "On"
+        symbols "Off"
+        defines { "OPTKIT_MODE_NDEBUG" }
+        buildoptions { "-Wall", "-O2", "-fopenmp", "-msse", "-march=native", "-mavx2" }
 
-filter {}    -- stop filtering, below is globally accessible
-
-
-prebuildcommands {
-    -- Use global variables in the prebuildcommands
-
-    "@echo [CHECK MSR-SAFE]",
-    "if [ ! -f " .. LIB_MSR_SAFE_PATH .. "/all_set ]; then \\",
-    "    cd " .. LIB_MSR_SAFE_PATH .. " && make clean && make && make install && (sudo rmmod msr-safe || true) && \\",
-    "    (sudo insmod ./msr-safe.ko || true) && sudo chmod g+rw /dev/cpu/*/msr_safe /dev/cpu/msr_* && \\",
-    "    sudo chgrp " .. WHOAMI .. " /dev/cpu/*/msr_safe /dev/cpu/msr_batch /dev/cpu/msr_safe_version && \\",
-    "    sudo chgrp " .. WHOAMI .. " /dev/cpu/msr_allowlist && \\",
-    "    echo \"0x00000620 0xFFFFFFFFFFFFFFFF\" > /dev/cpu/msr_allowlist && \\",
-    "    touch all_set; \\",
-    "fi",
+    filter {} -- stop filtering, below is globally accessible
 
 
-    "@echo [CHECK SPDLOG]",
-    "if [ ! -f " .. LIB_SPD_PATH .. "/build/libspdlog.a ]; then \\",
-    "    cd " .. LIB_SPD_PATH .. " && ./install.sh; \\",
-    "fi",
+    prebuildcommands {
+        -- Use global variables in the prebuildcommands
 
-    "@echo [CHECK LIBPFM]",
-    "if [ ! -f " .. LIB_PFM_PATH .. "/all_set ]; then \\",
-    "    cd " .. LIB_PFM_PATH .. " && ./install.sh; \\",
-    "fi",
+        "@echo [CHECK MSR-SAFE]",
+        "if [ ! -f " .. LIB_MSR_SAFE_PATH .. "/all_set ]; then \\",
+        "    cd " .. LIB_MSR_SAFE_PATH .. " && make clean && make && make install && (sudo rmmod msr-safe || true) && \\",
+        "    (sudo insmod ./msr-safe.ko || true) && sudo chmod g+rw /dev/cpu/*/msr_safe /dev/cpu/msr_* && \\",
+        "    sudo chgrp " .. WHOAMI .. " /dev/cpu/*/msr_safe /dev/cpu/msr_batch /dev/cpu/msr_safe_version && \\",
+        "    sudo chgrp " .. WHOAMI .. " /dev/cpu/msr_allowlist && \\",
+        "    echo \"0x00000620 0xFFFFFFFFFFFFFFFF\" > /dev/cpu/msr_allowlist && \\",
+        "    touch all_set; \\",
+        "fi",
 
-    "@echo [CHECK EVENTS]",
-    "if [ ! -f " .. CORE_EVENTS_DIR .. "/all_set ]; then \\",
-    "    echo \"⛏️ Exporting events from libpfm4\" && \\",
-    "    mkdir -p " .. CORE_EVENTS_DIR .. " && \\",
-    "    cd " .. UTILS_DIR .. " && \\",
-    "    python3 pmu_parser.py $(shell find " .. LIB_PFM_PATH .. "/lib/events -type f \\( -name \"intel*.h\" -or -name \"amd*.h\" -or -name \"arm*.h\" -or -name \"power*.h\" \\) -exec echo \"../../{}\" \\;) && \\",
-    "    touch ../../" .. CORE_EVENTS_DIR .. "/all_set; \\",
-    "fi",
-}
+        "@echo [CHECK SPDLOG]",
+        "if [ ! -f " .. LIB_SPD_PATH .. "/build/libspdlog.a ]; then \\",
+        "    cd " .. LIB_SPD_PATH .. " && ./install.sh; \\",
+        "fi",
 
-local actions = {
-    clean = "clean",              -- clean the optkit build.
-    return0 = "return0",          -- clean the build, events, and libs, simply un-build everything
-    install = "install",          -- build & install libs
-    remove = "remove",            -- remove installed libs from the system
-    gen_doc = "gen-doc",          -- generate documentaiton
-    remove_doc = "remove-doc"     -- delete documentaiton
-}
+        "@echo [CHECK LIBPFM]",
+        "if [ ! -f " .. LIB_PFM_PATH .. "/all_set ]; then \\",
+        "    cd " .. LIB_PFM_PATH .. " && ./install.sh; \\",
+        "fi",
 
--- Tasks for clean, install, and generate docs
-newaction {
-    trigger = actions.clean,
-    description = "clean bin and build directory",
-    execute = function()
-        print("[CLEANING] ./bin")
-        os.rmdir("./bin")
+        "@echo [CHECK EVENTS]",
+        "if [ ! -f " .. CORE_EVENTS_DIR .. "/all_set ]; then \\",
+        "    echo \"⛏️ Exporting events from libpfm4\" && \\",
+        "    mkdir -p " .. CORE_EVENTS_DIR .. " && \\",
+        "    cd " .. UTILS_DIR .. " && \\",
+        "    python3 pmu_parser.py $(shell find " .. LIB_PFM_PATH .. "/lib/events -type f \\( -name \"intel*.h\" -or -name \"amd*.h\" -or -name \"arm*.h\" -or -name \"power*.h\" \\) -exec echo \"../../{}\" \\;) && \\",
+        "    touch ../../" .. CORE_EVENTS_DIR .. "/all_set; \\",
+        "fi",
+    }
 
-        print("[CLEANING] ./build")
-        os.rmdir("./build")
-        print("🧹 Cleaned build directories!")
-    end
-}
+    local actions = {
+        clean = "clean",          -- clean the optkit build.
+        return0 = "return0",      -- clean the build, events, and libs, simply un-build everything
+        install = "install",      -- build & install libs
+        remove = "remove",        -- remove installed libs from the system
+        gen_doc = "gen-doc",      -- generate documentaiton
+        remove_doc = "remove-doc" -- delete documentaiton
+    }
 
-newaction {
-    trigger = actions.return0,
-    description = "un-build everything",
-    execute = function()
-        print("[CLEANING] ./bin")
-        os.rmdir("./bin")
+    -- Tasks for clean, install, and generate docs
+    newaction {
+        trigger = actions.clean,
+        description = "clean bin and build directory",
+        execute = function()
+            print("[CLEANING] ./bin")
+            os.rmdir("./bin")
 
-        print("[CLEANING] ./build")
-        os.rmdir("./build")
+            print("[CLEANING] ./build")
+            os.rmdir("./build")
 
-        print("[CLEANING] ./src/core/events")
-        os.rmdir("./src/core/events")
+            print("[REMOVE] Makefile")
+            os.remove("Makefile")
 
-        print("[CLEANING] " .. LIB_SPD_PATH)
-        os.execute("cd " .. LIB_SPD_PATH .. " && ./install.sh clean")
+            print("[REMOVE] "..OPTKIT_APP..".make")
+            os.remove(OPTKIT_APP..".make")
 
-        print("[CLEANING] " .. LIB_PFM_PATH)
-        os.execute("cd " .. LIB_PFM_PATH .. " && ./install.sh clean")
+            print("[REMOVE] "..OPTKIT_LIB_DYNAMIC..".make")
+            os.remove(OPTKIT_LIB_DYNAMIC..".make")
 
-        print("[CLEANING] " .. LIB_MSR_SAFE_PATH)
-        os.execute("cd " .. LIB_MSR_SAFE_PATH .. " && make clean && rm all_set && sudo rmmod msr-safe")
+            print("[REMOVE] lib"..OPTKIT_LIB_STATIC..".make")
+            os.remove(OPTKIT_LIB_STATIC..".make")
 
-        print("[REMOVE] Makefile")
-        os.remove("Makefile")
+            print("🧹 Cleaned build directories!")
+        end
+    }
 
+    newaction {
+        trigger = actions.return0,
+        description = "un-build everything",
+        execute = function()
+            print("[CLEANING] ./bin")
+            os.rmdir("./bin")
 
-        print("[REMOVE] Makefile")
-        os.remove("OptimizerToolkit.make")
+            print("[CLEANING] ./build")
+            os.rmdir("./build")
 
-        print("🧹 Cleaned build directories!")
-    end
-}
+            print("[CLEANING] ./src/core/events")
+            os.rmdir("./src/core/events")
 
-newaction {
-    trigger = actions.install,
-    description = "Install headers and libraries to system directories",
-    execute = function()
-        os.execute("sudo rm -rf /usr/local/include/optkit && sudo mkdir -p /usr/local/include/optkit")                         -- create optkit directory for headers
-        os.execute("cd src; sudo find ./ -type f -name \"*.hh\" -exec cp --parents {} \"/usr/local/include/optkit/\" \\;")     -- copy all header files by keeping the file structure as-is
-        os.execute("sudo cp -R ./bin/liboptkit.a /usr/local/lib")                                                              -- copy static library
-        os.execute("sudo cp -R ./bin/liboptkit.so /usr/local/lib")                                                             -- copy dynamic library
-        print("✅ Installed headers and libraries!")
-    end
-}
+            print("[CLEANING] " .. LIB_SPD_PATH)
+            os.execute("cd " .. LIB_SPD_PATH .. " && ./install.sh clean")
 
-newaction {
-    trigger = actions.remove,
-    description = "Remove OPTKIT from the system. (deletes all OPTKIT-cli and libraries from the system)",
-    execute = function()
-        os.execute("rm -rf /usr/local/include/optkit")     -- removes optkit headers
-        os.execute("rm -f /usr/local/bin/optkit*")         -- removes optkit binaries
-        os.execute("rm -f /usr/local/lib/liboptkit.a")     -- removes optkit library
-        print("🧹 OPTKIT removed from the system")
-    end
-}
+            print("[CLEANING] " .. LIB_PFM_PATH)
+            os.execute("cd " .. LIB_PFM_PATH .. " && ./install.sh clean")
 
-newaction {
-    trigger = actions.gen_doc,
-    description = "Generate documentation",
-    execute = function()
-        os.execute("doxygen ./doxyfile")     -- create doxygen file
-        print("📄 Documentation generated!")
-    end
-}
+            print("[CLEANING] " .. LIB_MSR_SAFE_PATH)
+            os.execute("cd " .. LIB_MSR_SAFE_PATH .. " && make clean && rm all_set && sudo rmmod msr-safe")
 
-newaction {
-    trigger = actions.remove_doc,
-    description = "Remove documentation",
-    execute = function()
-        os.execute("rm -rf ./doc")     -- create doxygen file
-        print("📄 Documentation Removed!")
-    end
-}
+            print("[REMOVE] Makefile")
+            os.remove("Makefile")
+
+            print("[REMOVE] OptimizerToolkit.make")
+            os.remove("OptimizerToolkit.make")
+
+            print("🧹 Cleaned build directories!")
+        end
+    }
+
+    newaction {
+        trigger = actions.install,
+        description = "Install headers and libraries to system directories",
+        execute = function()
+            -- Check if the Release directory exists
+            if not os.isdir("./bin/Release") then
+                print("❌ Release directory not found!")
+                return
+            end
+
+            os.execute("sudo rm -rf /usr/local/include/optkit/ && sudo mkdir -p /usr/local/include/optkit")                                                                   -- create optkit directory for headers
+            os.execute("cd ./src; sudo find ./ -type f -name \"*.hh\" -exec cp --parents {} \"/usr/local/include/optkit/\" \\;")    -- copy all header files by keeping the file structure as-is
+            os.execute("sudo cp -R ./bin/Release/" ..OPTKIT_LIB_STATIC..".a /usr/local/lib")                                        -- copy static library
+            os.execute("sudo cp -R ./bin/Release/"..OPTKIT_LIB_DYNAMIC..".so /usr/local/lib")                                       -- copy dynamic library
+            print("✅ Installed headers and libraries!")
+        end
+    }
+
+    newaction {
+        trigger = actions.remove,
+        description = "Remove OPTKIT from the system. (deletes all OPTKIT-cli and libraries from the system)",
+        execute = function()
+            os.execute("rm -rf /usr/local/include/optkit") -- removes optkit headers
+            os.execute("rm -f /usr/local/bin/optkit*")     -- removes optkit binaries
+            os.execute("rm -f /usr/local/lib/liboptkit.a") -- removes optkit library
+            print("🧹 OPTKIT removed from the system")
+        end
+    }
+
+    newaction {
+        trigger = actions.gen_doc,
+        description = "Generate documentation",
+        execute = function()
+            os.execute("doxygen ./doxyfile") -- create doxygen file
+            print("📄 Documentation generated!")
+        end
+    }
+
+    newaction {
+        trigger = actions.remove_doc,
+        description = "Remove documentation",
+        execute = function()
+            os.execute("rm -rf ./doc") -- create doxygen file
+            print("📄 Documentation Removed!")
+        end
+    }
+
+end
+
+workspace "OptimizerToolkit"
+    configurations { "Debug", "Release" }
+    architecture "x64"
+
+    project (OPTKIT_APP)
+        kind "ConsoleApp"
+        BaseProjectSetup()
+
+    project (OPTKIT_LIB_DYNAMIC)
+        kind "SharedLib"
+        BaseProjectSetup()
+        removefiles{"./src/main.cc"}
+
+    project (OPTKIT_LIB_STATIC)
+        kind "StaticLib"
+        BaseProjectSetup()
+        removefiles{"./src/main.cc"}

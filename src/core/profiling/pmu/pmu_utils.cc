@@ -17,7 +17,7 @@ namespace optkit::core::pmu
             {
                 packageJson["metrics_set"].push_back({{"metric_name", raw_events.at(i++).second},
                                                       {"value", values},
-                                                      {"units", "piece"},
+                                                      {"units", "int"},
                                                       {"description", "Counted"}});
             }
             result["readings"].push_back(packageJson);

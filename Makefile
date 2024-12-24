@@ -9,26 +9,44 @@ ifndef verbose
 endif
 
 ifeq ($(config),debug)
-  OptimizerToolkit_config = debug
+  OptimizerToolkitApp_config = debug
+  OptimizerToolkitShared_config = debug
+  OptimizerToolkitStatic_config = debug
 endif
 ifeq ($(config),release)
-  OptimizerToolkit_config = release
+  OptimizerToolkitApp_config = release
+  OptimizerToolkitShared_config = release
+  OptimizerToolkitStatic_config = release
 endif
 
-PROJECTS := OptimizerToolkit
+PROJECTS := OptimizerToolkitApp OptimizerToolkitShared OptimizerToolkitStatic
 
 .PHONY: all clean help $(PROJECTS) 
 
 all: $(PROJECTS)
 
-OptimizerToolkit:
-ifneq (,$(OptimizerToolkit_config))
-	@echo "==== Building OptimizerToolkit ($(OptimizerToolkit_config)) ===="
-	@${MAKE} --no-print-directory -C . -f OptimizerToolkit.make config=$(OptimizerToolkit_config)
+OptimizerToolkitApp:
+ifneq (,$(OptimizerToolkitApp_config))
+	@echo "==== Building OptimizerToolkitApp ($(OptimizerToolkitApp_config)) ===="
+	@${MAKE} --no-print-directory -C . -f OptimizerToolkitApp.make config=$(OptimizerToolkitApp_config)
+endif
+
+OptimizerToolkitShared:
+ifneq (,$(OptimizerToolkitShared_config))
+	@echo "==== Building OptimizerToolkitShared ($(OptimizerToolkitShared_config)) ===="
+	@${MAKE} --no-print-directory -C . -f OptimizerToolkitShared.make config=$(OptimizerToolkitShared_config)
+endif
+
+OptimizerToolkitStatic:
+ifneq (,$(OptimizerToolkitStatic_config))
+	@echo "==== Building OptimizerToolkitStatic ($(OptimizerToolkitStatic_config)) ===="
+	@${MAKE} --no-print-directory -C . -f OptimizerToolkitStatic.make config=$(OptimizerToolkitStatic_config)
 endif
 
 clean:
-	@${MAKE} --no-print-directory -C . -f OptimizerToolkit.make clean
+	@${MAKE} --no-print-directory -C . -f OptimizerToolkitApp.make clean
+	@${MAKE} --no-print-directory -C . -f OptimizerToolkitShared.make clean
+	@${MAKE} --no-print-directory -C . -f OptimizerToolkitStatic.make clean
 
 help:
 	@echo "Usage: make [config=name] [target]"
@@ -40,6 +58,8 @@ help:
 	@echo "TARGETS:"
 	@echo "   all (default)"
 	@echo "   clean"
-	@echo "   OptimizerToolkit"
+	@echo "   OptimizerToolkitApp"
+	@echo "   OptimizerToolkitShared"
+	@echo "   OptimizerToolkitStatic"
 	@echo ""
 	@echo "For more information, see https://github.com/premake/premake-core/wiki"

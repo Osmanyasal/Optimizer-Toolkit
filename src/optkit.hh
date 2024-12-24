@@ -6,9 +6,9 @@
 
 #include "utils/utils.hh"
 #include "utils/deployment/deployment_config.hh"
-#include "core/profiling/core_profiling.hh"
-#include "core/freq/core_freq.hh"
-#include "core/event_recepies/core_events.hh"
+#include "core/profiling/module.hh"
+#include "core/freq/module.hh"
+#include "core/event_recepies/module.hh"
 
 namespace optkit::core
 {
@@ -43,5 +43,4 @@ namespace optkit::core
     };
 }
 
-using optkit::core::OptimizerKit;
-using optkit::core::OPTKIT_CONFIG;
+#define OPTKIT_INIT(...) optkit::core::OptimizerKit optkit{__VA_ARGS__}
