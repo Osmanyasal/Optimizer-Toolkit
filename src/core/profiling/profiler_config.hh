@@ -71,6 +71,9 @@ namespace optkit::core
         const bool dump_results_to_file;
     };
 
+
+    std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_config);
+    
 } // namespace optkit::core
 
-std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_config);
+using optkit::core::operator<<; // make available to global namespace

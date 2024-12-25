@@ -6,7 +6,7 @@
 #include <iomanip>
 #include "utils/logging/logger.hh"
 namespace optkit::core::rapl
-{
+{ 
     /**
      * @brief All available rapl domain by 2023<br>
      * check intel_rapl for more information.
@@ -16,7 +16,7 @@ namespace optkit::core::rapl
     {
         BEGIN = 1,
 
-        PP0 = (1 << 1),            // CORES
+        PP0 = (1 << 1),     // CORES
         PP1 = (1 << 2),     // INTEGRATED GPU
         PACKAGE = (1 << 3), // PP0 + PP1 + SYSTEM AGENT + LAST_LEVEL_CACHE MEMORY CONTROLLER
         PSYS = (1 << 4),    // PACKAGE + eDRAM + PCH
@@ -51,9 +51,9 @@ namespace optkit::core::rapl
         double scale;
         std::string units;
     };
+    
+    std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplDomain &domain);
+    std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplDomainInfo &domain_info);
+    std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplReadMethods &read_method);
 
 } // namespace optkit::core::rapl
-
-std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplDomain &domain);
-std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplDomainInfo &domain_info);
-std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplReadMethods &read_method);

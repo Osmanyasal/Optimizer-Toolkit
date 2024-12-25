@@ -12,7 +12,8 @@
 #include "core/profiling/rapl/rapl_perf_reader.hh"
 #include "core/profiling/rapl/rapl_utils.hh"
 namespace optkit::core::rapl
-{
+{ 
+
     class RaplProfiler : public BaseProfiler<std::map<int32_t, std::map<RaplDomain, double>>>
     {
     public:
@@ -31,7 +32,6 @@ namespace optkit::core::rapl
          */
         virtual void enable() override;
 
-        
         virtual std::string convert_buffer_to_json() override;
 
         /**
@@ -45,8 +45,10 @@ namespace optkit::core::rapl
         std::unique_ptr<optkit::core::rapl::RaplPerfReader> rapl_reader;
         RaplConfig rapl_config;
     };
+ 
+    // Overloading << for map with RaplDomain as keys
+    std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::rapl::RaplDomain, double> &map);
 
 } // namespace optkit::core::rapl
 
-// Overloading << for map with RaplDomain as keys
-std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::rapl::RaplDomain, double> &map); 
+using optkit::core::rapl::operator<<; // make available to global namespace

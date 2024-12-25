@@ -84,48 +84,48 @@ namespace optkit::core::rapl
         return result;
     }
 
-} // namespace optkit::core::rapl
-
-std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::rapl::RaplDomain, double>> &map)
-{
-    const std::vector<optkit::core::rapl::RaplDomainInfo> &avail_domains = optkit::core::rapl::QueryRapl::rapl_domain_info();
-    for (const auto &pair : map)
+    std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::rapl::RaplDomain, double>> &map)
     {
-        os << "\tPackage " << pair.first << "\n";
-        for (const auto &innerpair : pair.second)
+        const std::vector<optkit::core::rapl::RaplDomainInfo> &avail_domains = optkit::core::rapl::QueryRapl::rapl_domain_info();
+        for (const auto &pair : map)
         {
-            for (const auto &info : avail_domains)
+            os << "\tPackage " << pair.first << "\n";
+            for (const auto &innerpair : pair.second)
             {
-                if (info.domain == innerpair.first)
+                for (const auto &info : avail_domains)
                 {
-                    os << "\t\t" << info.event << ": " << innerpair.second << " " << info.units << " Consumed.\n";
+                    if (info.domain == innerpair.first)
+                    {
+                        os << "\t\t" << info.event << ": " << innerpair.second << " " << info.units << " Consumed.\n";
+                    }
                 }
             }
         }
+        return os;
     }
-    return os;
-}
-std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplPerfReaderConfig &config)
-{
-    os << "\nRaplPerfReaderConfig:\n";
-    os << "---------------------:\n";
-    os << "Packages(socket_ids - core_ids):\n";
-    for (const auto &package : config.packages)
+    std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplPerfReaderConfig &config)
     {
-        os << "  Package " << package.first << ": ";
-        for (const auto &value : package.second)
+        os << "\nRaplPerfReaderConfig:\n";
+        os << "---------------------:\n";
+        os << "Packages(socket_ids - core_ids):\n";
+        for (const auto &package : config.packages)
         {
-            os << value << " ";
+            os << "  Package " << package.first << ": ";
+            for (const auto &value : package.second)
+            {
+                os << value << " ";
+            }
+            os << "\n";
         }
-        os << "\n";
-    }
-    os << "Available Domains:\n";
-    for (const auto &domain : config.avail_domains)
-    {
-        os << "  " << domain << "\n";
+        os << "Available Domains:\n";
+        for (const auto &domain : config.avail_domains)
+        {
+            os << "  " << domain << "\n";
+        }
+
+        os << config.rapl_config << "\n";
+
+        return os;
     }
 
-    os << config.rapl_config << "\n";
-
-    return os;
-}
+} // namespace optkit::core::rapl

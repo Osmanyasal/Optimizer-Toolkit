@@ -11,6 +11,7 @@
 #include "core/profiling/rapl/query_rapl.hh"
 namespace optkit::core::rapl
 {
+ 
     struct RaplPerfReaderConfig
     {
         // Constructor
@@ -22,11 +23,10 @@ namespace optkit::core::rapl
                                                       avail_domains(avail_domains),
                                                       rapl_config(rapl_config)
         {
-            
         }
         const std::map<int32_t, std::vector<int32_t>> packages;
         const std::vector<RaplDomainInfo> avail_domains;
-        const RaplConfig rapl_config; 
+        const RaplConfig rapl_config;
     };
 
     class RaplPerfReader
@@ -47,7 +47,7 @@ namespace optkit::core::rapl
         std::vector<std::vector<int32_t>> fd_package_domain;
     };
 
+    std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplPerfReaderConfig &config);
+    std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::rapl::RaplDomain, double>> &map);
 } // namespace optkit::core::rapl
-
-std::ostream &operator<<(std::ostream &os, const optkit::core::rapl::RaplPerfReaderConfig &config);
-std::ostream &operator<<(std::ostream &os, const std::map<int32_t, std::map<optkit::core::rapl::RaplDomain, double>> &map);
+ 

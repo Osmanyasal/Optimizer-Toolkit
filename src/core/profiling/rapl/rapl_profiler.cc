@@ -75,8 +75,7 @@ namespace optkit::core::rapl
         ss << "]\n";
         return ss.str();
     }
-
-} // namespace optkit::core
+ 
 
 // Overloading << for map with RaplDomain as keys
 std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::rapl::RaplDomain, double> &map)
@@ -89,3 +88,5 @@ std::ostream &operator<<(std::ostream &os, const std::map<optkit::core::rapl::Ra
 
     return os;
 }
+
+} // namespace optkit::core

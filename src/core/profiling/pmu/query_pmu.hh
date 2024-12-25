@@ -12,12 +12,9 @@
 #include "core/profiling/rapl/rapl.hh"
 #include "core/profiling/pmu/libpfm4_wrapper.hh"
 #include <unistd.h>
-
-std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
-std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info);
-
 namespace optkit::core::pmu
-{
+{ 
+
     /**
      * @brief  ASK PMU related queries here<br>
      * This Query class uses <b>libpfm4</b> to retrieve information
@@ -97,10 +94,14 @@ namespace optkit::core::pmu
          * @see destroy()
          */
         static void init();
-  
+
     private:
         static bool is_active;
         static pfm_pmu_info_t default_architectural_pmu;
     };
 
+
+    std::ostream &operator<<(std::ostream &out, const pfm_pmu_info_t &pmu_info);
+    std::ostream &operator<<(std::ostream &out, const pfm_event_info_t &event_info);
 } // namespace optkit::core
+ 

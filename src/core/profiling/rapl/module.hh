@@ -32,3 +32,6 @@
     #define OPTKIT_RAPL_REPEAT(var_name, block_name, count)
     #define OPTKIT_RAPL_REPEAT_READ(var_name, block_name, count)
 #endif
+
+
+using optkit::core::rapl::operator<<; // make available to global namespace

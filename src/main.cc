@@ -102,9 +102,29 @@ int32_t work(int32_t n, int32_t f)
     return 0;
 }
 
+
+void print_pmu()
+{
+    std::cout << "============== Default PMU ==============\n\n";
+    std::cout << optkit::core::pmu::QueryPMU::default_pmu_info();
+
+    std::cout << "\n";
+    std::cout << "============== Avail PMUs ==============\n\n";
+
+    optkit::core::pmu::QueryPMU::list_avail_pmus();
+
+    std::cout << "\n";
+    std::cout << "============== Avail PMU Events ==============\n\n";
+    for (int i : optkit::core::pmu::QueryPMU::avail_pmu_ids())
+    {
+        optkit::core::pmu::QueryPMU::list_avail_events(i);
+        std::cout << "\n------------------------\n";
+    }
+    std::cout << std::endl;
+}
 int32_t main(int32_t argc, char **argv)
 {
-    // OPTKIT_INIT();
+    OPTKIT_INIT();
     // OPTKIT_RAPL(rapl_var, "main_block");
 
     // BlockGroupProfiler bb{"main block", "level1", {{0x0400ull, "slot"}, {0x8000ull, "ret"}, {0x8100ull, "bs"}, {0x8200ull, "fe"}, {0x8300ull, "be"}}};
@@ -126,6 +146,7 @@ int32_t main(int32_t argc, char **argv)
     //     // BlockProfiler triad_block{"triad_block", "flop", {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}}};
     //     triad();
     // }
+    print_pmu();
 
     // Example L1Metric unordered_map
     std::unordered_map<optkit::core::recepies::L1Metric, double> L1Data = {

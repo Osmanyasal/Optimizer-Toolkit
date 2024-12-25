@@ -169,8 +169,8 @@ function BaseProjectSetup()
 
             os.execute("sudo rm -rf /usr/local/include/optkit/ && sudo mkdir -p /usr/local/include/optkit")                                                                   -- create optkit directory for headers
             os.execute("cd ./src; sudo find ./ -type f -name \"*.hh\" -exec cp --parents {} \"/usr/local/include/optkit/\" \\;")    -- copy all header files by keeping the file structure as-is
-            os.execute("sudo cp -R ./bin/Release/" ..OPTKIT_LIB_STATIC..".a /usr/local/lib")                                        -- copy static library
-            os.execute("sudo cp -R ./bin/Release/"..OPTKIT_LIB_DYNAMIC..".so /usr/local/lib")                                       -- copy dynamic library
+            os.execute("sudo cp -R ./bin/Release/lib" ..OPTKIT_LIB_STATIC..".a /usr/local/lib")                                        -- copy static library
+            os.execute("sudo cp -R ./bin/Release/lib"..OPTKIT_LIB_DYNAMIC..".so /usr/local/lib")                                       -- copy dynamic library
             print("✅ Installed headers and libraries!")
         end
     }

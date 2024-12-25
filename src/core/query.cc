@@ -44,8 +44,7 @@ namespace optkit::core
         }
         return result;
     }
-
-} // namespace optkit::core::pmu
+ 
 
 std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<int32_t>> &packages)
 {
@@ -69,3 +68,5 @@ std::ostream &operator<<(std::ostream &out, const std::map<int32_t, std::vector<
         << oss.str();
     return out;
 }
+
+} // namespace optkit::core::pmu

@@ -10,14 +10,12 @@
 #include "core/freq/msr_util.hh"
 #include "core/freq/msrs.hh"
 
-std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair);
-
 namespace optkit::core::freq
 {
 
     /**
      * @brief All frequencies are HZ !
-     * 
+     *
      */
     class CPUFrequency final
     {
@@ -29,7 +27,7 @@ namespace optkit::core::freq
         static int64_t get_core_frequency(int16_t cpu);
         static std::vector<int64_t> get_core_frequencies(int16_t socket);
         static std::vector<int64_t> get_core_frequency(int16_t cpu_start, int16_t cpu_end, int16_t socket);
-        static std::pair<int64_t, int64_t> get_uncore_min_max(int16_t socket); 
+        static std::pair<int64_t, int64_t> get_uncore_min_max(int16_t socket);
 
         static int64_t get_uncore_frequency(int16_t socket);
         static void set_uncore_frequency(int64_t frequency, int16_t socket);
@@ -45,5 +43,7 @@ namespace optkit::core::freq
         ~CPUFrequency() = delete;
     };
 
+    std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair);
 }
 
+using optkit::core::freq::operator<<; // make available to global namespace

@@ -1,11 +1,5 @@
 #include "core/freq/cpu_frequency.hh"
 
-std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair)
-{
-    os << "(" << pair.first << ", " << pair.second << ")";
-    return os;
-}
-
 namespace optkit::core::freq
 {
     // Define static member variables
@@ -244,6 +238,12 @@ namespace optkit::core::freq
         {
             OPTKIT_CORE_ERROR(err.what());
         }
+    }
+    
+    std::ostream &operator<<(std::ostream &os, const std::pair<int64_t, int64_t> &pair)
+    {
+        os << "(" << pair.first << ", " << pair.second << ")";
+        return os;
     }
 
 #undef TRAVERSE_CORES

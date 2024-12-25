@@ -28,8 +28,7 @@ namespace optkit::core
     RaplConfig::RaplConfig(rapl::RaplReadMethods read_method, int32_t monitor_domain, bool is_reset_after_read, bool dump_results_to_file) : read_method{read_method}, monitor_domain{monitor_domain}, is_reset_after_read{is_reset_after_read}, dump_results_to_file{dump_results_to_file}
     {
     }
-
-} // namespace optkit::core
+ 
 
 std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_config)
 {
@@ -59,3 +58,4 @@ std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_
     }
     return os;
 }
+} // namespace optkit::core
