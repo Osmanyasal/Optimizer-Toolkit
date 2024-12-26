@@ -99,7 +99,7 @@ int32_t work(int32_t n, int32_t f)
         b += fib(f);
     }
 
-    return 0;
+    return b;
 }
 
 
@@ -146,25 +146,34 @@ int32_t main(int32_t argc, char **argv)
     //     // BlockProfiler triad_block{"triad_block", "flop", {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}}};
     //     triad();
     // }
-    print_pmu();
+
+
+    // print_pmu();
 
     // Example L1Metric unordered_map
-    std::unordered_map<optkit::core::recepies::L1Metric, double> L1Data = {
-        {optkit::core::recepies::L1Metric::BackendBound, 0.5},
-        {optkit::core::recepies::L1Metric::BadSpeculation, 0.3},
-        {optkit::core::recepies::L1Metric::Retiring, 0.2}};
+    // std::unordered_map<optkit::core::recepies::L1Metric, double> L1Data = {
+    //     {optkit::core::recepies::L1Metric::BackendBound, 0.5},
+    //     {optkit::core::recepies::L1Metric::BadSpeculation, 0.3},
+    //     {optkit::core::recepies::L1Metric::Retiring, 0.2}};
 
     // Example L2Metric unordered_map
-    std::unordered_map<optkit::core::recepies::L2Metric, double> L2Data = {
-        {optkit::core::recepies::L2Metric::MemoryBound, 0.7},
-        {optkit::core::recepies::L2Metric::CoreBound, 0.1},
-        {optkit::core::recepies::L2Metric::BranchMisprediction, 0.05}};
+    // std::unordered_map<optkit::core::recepies::L2Metric, double> L2Data = {
+    //     {optkit::core::recepies::L2Metric::MemoryBound, 0.7},
+    //     {optkit::core::recepies::L2Metric::CoreBound, 0.1},
+    //     {optkit::core::recepies::L2Metric::BranchMisprediction, 0.05}};
 
-    std::cout << optkit::core::recepies::to_string(optkit::core::recepies::L1Metric::BackendBound);
-    // Print the L1 data
-    std::cout << "L1 Data: " << L1Data << std::endl;
+    // std::cout << optkit::core::recepies::to_string(optkit::core::recepies::L1Metric::BackendBound);
+    // // Print the L1 data
+    // std::cout << "L1 Data: " << L1Data << std::endl;
 
-    // Print the L2 data
-    std::cout << "L2 Data: " << L2Data << std::endl;
+    // // Print the L2 data
+    // std::cout << "L2 Data: " << L2Data << std::endl;
+
+
+    optkit::core::recepies::TMARecepies tma;
+    optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", tma.L1_recipie()};
+    std::cout << work(10, 6000000);
+
+    std::cout << tma.L1_analysis(bb.read_val());
     return 0;
 }

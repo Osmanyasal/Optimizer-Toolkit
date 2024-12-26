@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 """
 Created on Tue Apr 23 13:19:06 2024
 
@@ -110,10 +111,6 @@ def load_measurements(json_file):
                     socket0_edp.append(edp)
                 else:
                     socket1_edp.append(edp) 
-        
-        
-        
-        
         
         
         

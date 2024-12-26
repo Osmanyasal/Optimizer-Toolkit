@@ -6,6 +6,7 @@
 #include <utility>
 #include <iostream>
 #include <iomanip>
+#include "intel_priv.hh"
 
 namespace optkit::core::recepies
 {
@@ -36,18 +37,26 @@ namespace optkit::core::recepies
     class TMARecepies
     {
     public:
-        virtual std::unordered_map<L1Metric, double> L1_analysis() = 0;
-        virtual std::unordered_map<L1Metric, double> L2_analysis() = 0;
-
-    protected:
-        virtual std::vector<std::pair<uint64_t, std::string>> L1_recipie() = 0;
-        virtual std::vector<std::pair<uint64_t, std::string>> L2_recipie() = 0;
-
-    protected:
         TMARecepies(/* args */) {}
-
-    public:
         virtual ~TMARecepies() {}
+
+        virtual std::unordered_map<L1Metric, double> L1_analysis(const std::vector<uint64_t> &pmu_record);
+        virtual std::unordered_map<L1Metric, double> L2_analysis(const std::vector<uint64_t> &pmu_record);
+
+        /**
+         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
+         *
+         * @return std::vector<std::pair<uint64_t, std::string>>
+         */
+        virtual std::vector<std::pair<uint64_t, std::string>> L1_recipie();
+
+        /**
+         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
+         *
+         * @return std::vector<std::pair<uint64_t, std::string>>
+         */
+        virtual std::vector<std::pair<uint64_t, std::string>> L2_recipie();
+
     };
 
     // Overloading the << operator for L1Metric and L2Metric unordered maps

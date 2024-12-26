@@ -48,6 +48,55 @@ namespace optkit::core::recepies
         }
     }
 
+    std::vector<std::pair<uint64_t, std::string>> TMARecepies::L1_recipie()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {0x3c, "CPU_CLK_UNHALTED"},                                                // 0
+            {(0x9c | 0x100), "IDQ_UOPS_NOT_DELIVERED"},                                // 1
+            {(0xe | 0x100), "UOPS_ISSUED_ANY"},                                        // 2
+            {(0xc2 | 0x200), "UOPS_RETIRED_RETIRE_SLOTS"},                             // 3
+            {(0xd | 0x300 | (1 << INTEL_X86_CMASK_BIT)), "INT_MISC_RECOVERY_CYCLES"}}; // 4
+
+        // be_bound = 1 - (fe_bound + bad_speculation + retiring)
+
+        return default_mapping;
+    }
+
+    std::unordered_map<L1Metric, double> TMARecepies::L1_analysis(const std::vector<uint64_t> &pmu_record)
+    {
+        std::unordered_map<L1Metric, double> result;
+
+        double SLOTS = 4 * pmu_record[0];
+        result[L1Metric::FrontendBound] = (pmu_record[1] / SLOTS) * 100.0;                                        // IDQ_UOPS_NOT_DELIVERED.CORE / Slots
+        result[L1Metric::Retiring] = (pmu_record[3] / SLOTS) * 100.0;                                             // UOPS_RETIRED.RETIRE_SLOTS / Slots
+        result[L1Metric::BadSpeculation] = ((pmu_record[2] - pmu_record[3] + 4 * pmu_record[4]) / SLOTS) * 100.0; // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
+        result[L1Metric::BackendBound] = (100 - (result[L1Metric::FrontendBound] +
+                                              result[L1Metric::BadSpeculation] +
+                                              result[L1Metric::Retiring])); // 1 – (Frontend Bound + Bad Speculation + Retiring)
+
+        return result;
+    }
+
+    std::vector<std::pair<uint64_t, std::string>> TMARecepies::L2_recipie()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {0x3c, "CPU_CLK_UNHALTED"},                                                // 0
+            {(0x9c | 0x100), "IDQ_UOPS_NOT_DELIVERED"},                                // 1
+            {(0xe | 0x100), "UOPS_ISSUED_ANY"},                                        // 2
+            {(0xc2 | 0x200), "UOPS_RETIRED_RETIRE_SLOTS"},                             // 3
+            {(0xd | 0x300 | (1 << INTEL_X86_CMASK_BIT)), "INT_MISC_RECOVERY_CYCLES"}}; // 4
+
+        // be_bound = 1 - (fe_bound + bad_speculation + retiring)
+
+        return default_mapping;
+    }
+
+    std::unordered_map<L1Metric, double> TMARecepies::L2_analysis(const std::vector<uint64_t> &pmu_record)
+    {
+        std::unordered_map<L1Metric, double> result;
+
+        return result;
+    }
     // Overloading the << operator for L1Metric and L2Metric unordered maps
     std::ostream &operator<<(std::ostream &out, const std::unordered_map<L1Metric, double> &map)
     {
@@ -61,7 +110,7 @@ namespace optkit::core::recepies
             }
             first = false;
             out << to_string(pair.first) << " = " << pair.second << "%";
-        } 
+        }
         out << "}";
         return out;
     }

@@ -87,7 +87,7 @@ function BaseProjectSetup()
         "    python3 pmu_parser.py $(shell find " .. LIB_PFM_PATH .. "/lib/events -type f \\( -name \"intel*.h\" -or -name \"amd*.h\" -or -name \"arm*.h\" -or -name \"power*.h\" \\) -exec echo \"../../{}\" \\;) && \\",
         "    touch ../../" .. CORE_EVENTS_DIR .. "/all_set; \\",
         "fi",
-    }
+    } 
 
     local actions = {
         clean = "clean",          -- clean the optkit build.
@@ -129,31 +129,31 @@ function BaseProjectSetup()
         trigger = actions.return0,
         description = "un-build everything",
         execute = function()
-            print("[CLEANING] ./bin")
+            print("[CLEANING]: ./bin")
             os.rmdir("./bin")
 
-            print("[CLEANING] ./build")
+            print("[CLEANING]: ./build")
             os.rmdir("./build")
 
-            print("[CLEANING] ./src/core/events")
+            print("[CLEANING]: ./src/core/events")
             os.rmdir("./src/core/events")
 
-            print("[CLEANING] " .. LIB_SPD_PATH)
+            print("[CLEANING]: " .. LIB_SPD_PATH)
             os.execute("cd " .. LIB_SPD_PATH .. " && ./install.sh clean")
 
-            print("[CLEANING] " .. LIB_PFM_PATH)
+            print("[CLEANING]: " .. LIB_PFM_PATH)
             os.execute("cd " .. LIB_PFM_PATH .. " && ./install.sh clean")
 
-            print("[CLEANING] " .. LIB_MSR_SAFE_PATH)
+            print("[CLEANING]: " .. LIB_MSR_SAFE_PATH)
             os.execute("cd " .. LIB_MSR_SAFE_PATH .. " && make clean && rm all_set && sudo rmmod msr-safe")
 
-            print("[REMOVE] Makefile")
+            print("[REMOVE]: Makefile")
             os.remove("Makefile")
 
-            print("[REMOVE] OptimizerToolkit.make")
+            print("[REMOVE]: OptimizerToolkit.make")
             os.remove("OptimizerToolkit.make")
 
-            print("🧹 Cleaned build directories!")
+            print("[Cleaned 🧹]: build directories!")
         end
     }
 
@@ -167,11 +167,16 @@ function BaseProjectSetup()
                 return
             end
 
+            print("[Installing]: headers and libraries!")
             os.execute("sudo rm -rf /usr/local/include/optkit/ && sudo mkdir -p /usr/local/include/optkit")                                                                   -- create optkit directory for headers
             os.execute("cd ./src; sudo find ./ -type f -name \"*.hh\" -exec cp --parents {} \"/usr/local/include/optkit/\" \\;")    -- copy all header files by keeping the file structure as-is
             os.execute("sudo cp -R ./bin/Release/lib" ..OPTKIT_LIB_STATIC..".a /usr/local/lib")                                        -- copy static library
             os.execute("sudo cp -R ./bin/Release/lib"..OPTKIT_LIB_DYNAMIC..".so /usr/local/lib")                                       -- copy dynamic library
-            print("✅ Installed headers and libraries!")
+            print("[Installed ✅]: headers and libraries!")
+
+            print("[Installing]: utility tools!")
+            os.execute("cd ./tools && ./install.sh")
+            print("[Installed ✅]: utility tools!")
         end
     }
 
@@ -179,10 +184,11 @@ function BaseProjectSetup()
         trigger = actions.remove,
         description = "Remove OPTKIT from the system. (deletes all OPTKIT-cli and libraries from the system)",
         execute = function()
+            print("[Removing]: OPTKIT from the system")
             os.execute("rm -rf /usr/local/include/optkit") -- removes optkit headers
             os.execute("rm -f /usr/local/bin/optkit*")     -- removes optkit binaries
             os.execute("rm -f /usr/local/lib/liboptkit.a") -- removes optkit library
-            print("🧹 OPTKIT removed from the system")
+            print("[Removed 🧹]: OPTKIT from the system")
         end
     }
 

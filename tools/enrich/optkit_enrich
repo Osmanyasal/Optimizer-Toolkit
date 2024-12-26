@@ -287,8 +287,3 @@ if __name__ == "__main__":
             process(get_json_files(path))
         else:
             print("The specified path is not a valid file or directory.")
-
-
-
-
- 
