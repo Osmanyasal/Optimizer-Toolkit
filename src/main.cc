@@ -122,11 +122,51 @@ void print_pmu()
 }
 
 #include <memory>
+
+struct Temp
+{
+    std::vector<std::pair<uint64_t, std::string>> get_mapping()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {0x3c, "CPU_CLK_UNHALTED"},                                               // 0
+            {(0x9c | 0x100), "IDQ_UOPS_NOT_DELIVERED"},                               // 1
+            {(0xe | 0x100), "UOPS_ISSUED_ANY"},                                       // 2
+            {(0xc2 | 0x200), "UOPS_RETIRED_RETIRE_SLOTS"},                            // 3
+            {(0xd | 0x300 | (1 << INTEL_X86_CMASK_BIT)), "INT_MISC_RECOVERY_CYCLES"}, // 4
+            {0xc0, "INSTRUCTION_RETIRED"}};                                           // 5
+
+        return default_mapping;
+    }
+    Temp()
+    {
+        std::cout << "ctor Temp\n";
+        profiler_ref = std::unique_ptr<optkit::core::pmu::BlockGroupProfiler>(
+            new optkit::core::pmu::BlockGroupProfiler("main block", "level1", get_mapping(), false, optkit::core::ProfilerConfig{false, true, true, 0, -1}));
+    }
+
+    ~Temp()
+    {
+        std::cout << "dtor Temp\n";
+
+        auto pmu_record = profiler_ref->read_val();
+        double SLOTS = 4 * pmu_record[0];
+
+        std::cout << ((double)pmu_record[5] / pmu_record[0]) << "\n";
+        std::cout << (pmu_record[1] / SLOTS) * 100.0 << "\n";                                       // IDQ_UOPS_NOT_DELIVERED.CORE / Slots
+        std::cout << (pmu_record[3] / SLOTS) * 100.0 << "\n";                                       // UOPS_RETIRED.RETIRE_SLOTS / Slots
+        std::cout << ((pmu_record[2] - pmu_record[3] + 4 * pmu_record[4]) / SLOTS) * 100.0 << "\n"; // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
+
+    }
+
+    std::unique_ptr<optkit::core::BaseProfiler<std::vector<uint64_t>>> profiler_ref;
+};
+
 int32_t main(int32_t argc, char **argv)
 {
     OPTKIT_INIT();
     // OPTKIT_RAPL(rapl_var, "main_block");
     {
+        // Temp tmp{};
         // static std::vector<std::pair<uint64_t, std::string>> default_mapping{
         //     {0x3c, "CPU_CLK_UNHALTED"},                                               // 0
         //     {(0x9c | 0x100), "IDQ_UOPS_NOT_DELIVERED"},                               // 1
@@ -145,15 +185,15 @@ int32_t main(int32_t argc, char **argv)
 
         // // random_access();
         // // do some work
-        // work(10, 6000000);
+        std::cout << work(10, 6000000) << "\n";
 
         // auto pmu_record = profiler_ref->read_val();
         // double SLOTS = 4 * pmu_record[0];
 
         // std::cout << ((double)pmu_record[5] / pmu_record[0]) << "\n";
-        // std::cout << (pmu_record[1] / SLOTS) * 100.0 << "\n";                               // IDQ_UOPS_NOT_DELIVERED.CORE / Slots
-        // std::cout << (pmu_record[3] / SLOTS) * 100.0 << "\n";                               // UOPS_RETIRED.RETIRE_SLOTS / Slots
-        // std::cout << ((pmu_record[2] - pmu_record[3] + 4 * pmu_record[4]) / SLOTS) * 100.0<< "\n"; // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
+        // std::cout << (pmu_record[1] / SLOTS) * 100.0 << "\n";                                       // IDQ_UOPS_NOT_DELIVERED.CORE / Slots
+        // std::cout << (pmu_record[3] / SLOTS) * 100.0 << "\n";                                       // UOPS_RETIRED.RETIRE_SLOTS / Slots
+        // std::cout << ((pmu_record[2] - pmu_record[3] + 4 * pmu_record[4]) / SLOTS) * 100.0 << "\n"; // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
 
         // auto val = bb.read_val();
         // auto ret = (double)val[1] / (double)val[0] * 100.0;

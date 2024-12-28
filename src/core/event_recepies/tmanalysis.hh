@@ -20,11 +20,7 @@ namespace optkit::core::recepies
 {
     class TMAnalysis
     {
-
-    public:
-        uint64_t start_time;
-        uint64_t delta_time;
-
+ 
     public:
         TMAnalysis(const char *block_name, const char *event_name, bool verbose = true, const ProfilerConfig &config = ProfilerConfig{false, true, false, 0, -1});
         void begin_monitoring(L1Metric metric);
@@ -130,13 +126,16 @@ namespace optkit::core::recepies
         virtual void choose_profiler() final;
 
     private:
+        uint64_t start_time;
+        uint64_t delta_time;
+        
         std::unique_ptr<core::BaseProfiler<std::vector<uint64_t>>> profiler_ref;
         std::vector<std::pair<uint64_t, std::string>> recipie_to_monitor;
 
         const char *block_name;
         const char *event_name;
         bool verbose;
-        ProfilerConfig config;
+        ProfilerConfig profiler_config;
     };
 
 } // namespace optkit::core::recepies

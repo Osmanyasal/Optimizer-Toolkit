@@ -2,10 +2,11 @@
 
 namespace optkit::core::recepies
 {
-    TMAnalysis::TMAnalysis(const char *block_name, const char *event_name, bool verbose, const ProfilerConfig &config) : block_name{block_name}, event_name{event_name}, verbose{verbose}, config{config}
+    TMAnalysis::TMAnalysis(const char *block_name, const char *event_name, bool verbose, const ProfilerConfig &config) : block_name{block_name}, event_name{event_name}, verbose{verbose}, profiler_config{config}
     {
         start_time = __rdtsc();
     }
+    
     void TMAnalysis::begin_monitoring(L1Metric metric)
     {
         switch (metric)
@@ -104,16 +105,17 @@ namespace optkit::core::recepies
         if (OPT_UNLIKELY(core::pmu::PMUEventManager::number_of_events_being_monitored() + this->recipie_to_monitor.size() > num_cntrs))
         {
             OPTKIT_CORE_INFO("TMA chose block profiler");
-            this->config.is_grouped = false;
+            this->profiler_config.is_grouped = false;
             profiler_ref = std::unique_ptr<core::pmu::BlockProfiler>(
-                new core::pmu::BlockProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->config));
+                new core::pmu::BlockProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->profiler_config));
         }
         else
         {
             OPTKIT_CORE_INFO("TMA chose block group profiler");
-            this->config.is_grouped = true;
+            this->profiler_config.is_grouped = true;
+            this->profiler_config.perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
             profiler_ref = std::unique_ptr<core::pmu::BlockGroupProfiler>(
-                new core::pmu::BlockGroupProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->config));
+                new core::pmu::BlockGroupProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->profiler_config));
         }
     }
 
