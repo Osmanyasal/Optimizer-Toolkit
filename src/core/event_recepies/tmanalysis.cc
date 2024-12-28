@@ -11,41 +11,41 @@ namespace optkit::core::recepies
         switch (metric)
         {
         case L1Metric::Default:
-            recipie_to_monitor = L1__default__recipie();
+            this->recipie_to_monitor = L1__default__recipie();
             break;
 
         case L1Metric::IPC:
-            recipie_to_monitor = L1__default__recipie();
+            this->recipie_to_monitor = L1__default__recipie();
             break;
 
         case L1Metric::BackendBound:
         {
-            recipie_to_monitor = L2__backend__core();
+            this->recipie_to_monitor = L2__backend__core();
             auto temp = L2__backend__memory();
-            recipie_to_monitor.insert(recipie_to_monitor.end(), temp.begin(), temp.end());
+            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), temp.begin(), temp.end());
             break;
         }
 
         case L1Metric::BadSpeculation:
-            recipie_to_monitor = L2__bad_speculation__branch_mispredict();
+            this->recipie_to_monitor = L2__bad_speculation__branch_mispredict();
             break;
 
         case L1Metric::Retiring:
         {
-            recipie_to_monitor = L2__retiring__base();
+            this->recipie_to_monitor = L2__retiring__base();
             auto temp = L2__retiring__micro_sequencer();
-            recipie_to_monitor.insert(recipie_to_monitor.end(), temp.begin(), temp.end());
+            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), temp.begin(), temp.end());
             break;
         }
         case L1Metric::FrontendBound:
         {
-            recipie_to_monitor = L2__frontend__fetch_bandwidth();
+            this->recipie_to_monitor = L2__frontend__fetch_bandwidth();
             auto temp = L2__frontend__fetch_latency();
-            recipie_to_monitor.insert(recipie_to_monitor.end(), temp.begin(), temp.end());
+            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), temp.begin(), temp.end());
             break;
         }
         default:
-            recipie_to_monitor = L1__default__recipie();
+            this->recipie_to_monitor = L1__default__recipie();
             break;
         }
 
@@ -56,19 +56,19 @@ namespace optkit::core::recepies
         switch (metric)
         {
         case L2Metric::Default:
-            recipie_to_monitor = L2__default__recipie();
+            this->recipie_to_monitor = L2__default__recipie();
             break;
 
         case L2Metric::MemoryBound:
         {
-            recipie_to_monitor = L3__memory__ext_memory();
+            this->recipie_to_monitor = L3__memory__ext_memory();
             auto l1 = L3__memory__l1();
             auto l2 = L3__memory__l2();
             auto l3 = L3__memory__l3();
 
-            recipie_to_monitor.insert(recipie_to_monitor.end(), l1.begin(), l1.end());
-            recipie_to_monitor.insert(recipie_to_monitor.end(), l2.begin(), l2.end());
-            recipie_to_monitor.insert(recipie_to_monitor.end(), l3.begin(), l3.end());
+            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), l1.begin(), l1.end());
+            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), l2.begin(), l2.end());
+            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), l3.begin(), l3.end());
             break;
         }
 
@@ -85,7 +85,7 @@ namespace optkit::core::recepies
             break;
 
         default:
-            recipie_to_monitor = L2__default__recipie();
+            this->recipie_to_monitor = L2__default__recipie();
             break;
         }
 
@@ -101,23 +101,26 @@ namespace optkit::core::recepies
     void TMAnalysis::choose_profiler()
     {
         int32_t num_cntrs = core::pmu::QueryPMU::default_pmu_info().num_cntrs;
-        if (OPT_UNLIKELY(core::pmu::PMUEventManager::number_of_events_being_monitored() + recipie_to_monitor.size() > num_cntrs))
+        if (OPT_UNLIKELY(core::pmu::PMUEventManager::number_of_events_being_monitored() + this->recipie_to_monitor.size() > num_cntrs))
         {
             OPTKIT_CORE_INFO("TMA chose block profiler");
-            config.is_grouped = false;
-            profiler_ref = std::make_unique<core::pmu::BlockProfiler>(block_name, event_name, recipie_to_monitor, true, config);
+            this->config.is_grouped = false;
+            profiler_ref = std::unique_ptr<core::pmu::BlockProfiler>(
+                new core::pmu::BlockProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->config));
         }
         else
         {
-            OPTKIT_CORE_INFO("TMA chose group profiler");
-            config.is_grouped = true;
-            profiler_ref = std::make_unique<core::pmu::BlockGroupProfiler>(block_name, event_name, recipie_to_monitor, true, config);
+            OPTKIT_CORE_INFO("TMA chose block group profiler");
+            this->config.is_grouped = true;
+            profiler_ref = std::unique_ptr<core::pmu::BlockGroupProfiler>(
+                new core::pmu::BlockGroupProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->config));
         }
     }
 
     TMAnalysis::~TMAnalysis()
     {
-        delta_time = __rdtsc() - start_time;
+        delta_time = __rdtsc() - start_time;    // get delta time.
+        std::cout << L1__analise();
     }
 
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L1__default__recipie()

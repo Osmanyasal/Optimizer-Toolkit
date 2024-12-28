@@ -1,6 +1,5 @@
 #include <omp.h>
 #include "optkit.hh"
-#include "core/event_recepies/tma_recepies.hh"
 
 #define OPTKIT_COMPUTE_INTENSITY(var_name, block_name)                                                                   \
     optkit::core::pmu::BlockGroupProfiler var_name                                                                       \
@@ -122,24 +121,47 @@ void print_pmu()
     std::cout << std::endl;
 }
 
+#include <memory>
 int32_t main(int32_t argc, char **argv)
 {
     OPTKIT_INIT();
     // OPTKIT_RAPL(rapl_var, "main_block");
+    {
+        // static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+        //     {0x3c, "CPU_CLK_UNHALTED"},                                               // 0
+        //     {(0x9c | 0x100), "IDQ_UOPS_NOT_DELIVERED"},                               // 1
+        //     {(0xe | 0x100), "UOPS_ISSUED_ANY"},                                       // 2
+        //     {(0xc2 | 0x200), "UOPS_RETIRED_RETIRE_SLOTS"},                            // 3
+        //     {(0xd | 0x300 | (1 << INTEL_X86_CMASK_BIT)), "INT_MISC_RECOVERY_CYCLES"}, // 4
+        //     {0xc0, "INSTRUCTION_RETIRED"}};                                           // 5
 
-    // BlockGroupProfiler bb{"main block", "level1", {{0x0400ull, "slot"}, {0x8000ull, "ret"}, {0x8100ull, "bs"}, {0x8200ull, "fe"}, {0x8300ull, "be"}}};
-    // BlockGroupProfiler bb{"main block", "level2", {{0x0400ull, "slot"}, {0x8400ull, "heavy"}, {0x8500ull, "br_mispredict"}, {0x8600ull, "fetch_lat"}, {0x8700ull, "mem_bound"}}};
+        // std::unique_ptr<optkit::core::BaseProfiler<std::vector<uint64_t>>> profiler_ref = std::unique_ptr<optkit::core::pmu::BlockGroupProfiler>(
+        //     new optkit::core::pmu::BlockGroupProfiler("main block", "level1", default_mapping));
 
-    // // random_access();
-    // // do some work
-    // work(10, 6000000);
+        // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0x0400ull, "slot"}, {0x8000ull, "ret"}, {0x8100ull, "bs"}, {0x8200ull, "fe"}, {0x8300ull, "be"}, {optkit::intel::icl::CYCLE_ACTIVITY, "fe"}}};
+        // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", default_mapping};
 
-    // auto val = bb.read_val();
-    // auto ret = (double)val[1] / (double)val[0] * 100.0;
-    // auto bs = (double)val[2] / (double)val[0] * 100.0;
-    // auto fe = (double)val[3] / (double)val[0] * 100.0;
-    // auto be = (double)val[4] / (double)val[0] * 100.0;
-    // std::cout << ret << " " << bs << " " << fe << " " << be << "\n";
+        // BlockGroupProfiler bb{"main block", "level2", {{0x0400ull, "slot"}, {0x8400ull, "heavy"}, {0x8500ull, "br_mispredict"}, {0x8600ull, "fetch_lat"}, {0x8700ull, "mem_bound"}}};
+
+        // // random_access();
+        // // do some work
+        // work(10, 6000000);
+
+        // auto pmu_record = profiler_ref->read_val();
+        // double SLOTS = 4 * pmu_record[0];
+
+        // std::cout << ((double)pmu_record[5] / pmu_record[0]) << "\n";
+        // std::cout << (pmu_record[1] / SLOTS) * 100.0 << "\n";                               // IDQ_UOPS_NOT_DELIVERED.CORE / Slots
+        // std::cout << (pmu_record[3] / SLOTS) * 100.0 << "\n";                               // UOPS_RETIRED.RETIRE_SLOTS / Slots
+        // std::cout << ((pmu_record[2] - pmu_record[3] + 4 * pmu_record[4]) / SLOTS) * 100.0<< "\n"; // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
+
+        // auto val = bb.read_val();
+        // auto ret = (double)val[1] / (double)val[0] * 100.0;
+        // auto bs = (double)val[2] / (double)val[0] * 100.0;
+        // auto fe = (double)val[3] / (double)val[0] * 100.0;
+        // auto be = (double)val[4] / (double)val[0] * 100.0;
+        // std::cout << ret << " " << bs << " " << fe << " " << be << " " << val[5] << "\n";
+    }
 
     // {
     //     OPTKIT_PERFORMANCE_EVENTS("triad_block", "flop", var, {{icl::FP_ARITH | icl::FP_ARITH__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "double_operations"}});
@@ -168,10 +190,9 @@ int32_t main(int32_t argc, char **argv)
     // // Print the L2 data
     // std::cout << "L2 Data: " << L2Data << std::endl;
 
-    {
-        optkit::core::recepies::TMARecepies tma;
-        std::cout << work(10, 6000000) << "\n";
-    }
+    optkit::core::recepies::TMAnalysis tma{"main", "tma analysis"};
+    tma.begin_monitoring(optkit::core::recepies::L1Metric::Default);
+    std::cout << work(10, 6000000) << "\n";
 
     std::cout << "program completed!\n";
 

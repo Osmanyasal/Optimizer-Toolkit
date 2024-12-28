@@ -1,5 +1,3 @@
-#pragma once
-
 #include <iostream>
 #include "core/event_recepies/tma_metrics.hh"
 

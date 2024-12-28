@@ -4,7 +4,7 @@
             "name": "Optimizer Toolkit Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/optimizer_toolkit.core",
+            "program": "${workspaceFolder}/bin/Debug/OptimizerToolkitApp",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin/",
