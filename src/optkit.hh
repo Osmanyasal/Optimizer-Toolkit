@@ -43,4 +43,8 @@ namespace optkit::core
     };
 }
 
-#define OPTKIT_INIT(...) optkit::core::OptimizerKit optkit{__VA_ARGS__}
+#ifdef CONF__OPTKIT__ENABLED
+    #define OPTKIT_INIT(...) optkit::core::OptimizerKit optkit{__VA_ARGS__}
+#else 
+    #define OPTKIT_INIT(...)
+#endif

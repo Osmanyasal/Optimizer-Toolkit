@@ -102,7 +102,6 @@ int32_t work(int32_t n, int32_t f)
     return b;
 }
 
-
 void print_pmu()
 {
     std::cout << "============== Default PMU ==============\n\n";
@@ -122,6 +121,7 @@ void print_pmu()
     }
     std::cout << std::endl;
 }
+
 int32_t main(int32_t argc, char **argv)
 {
     OPTKIT_INIT();
@@ -147,7 +147,6 @@ int32_t main(int32_t argc, char **argv)
     //     triad();
     // }
 
-
     // print_pmu();
 
     // Example L1Metric unordered_map
@@ -169,11 +168,12 @@ int32_t main(int32_t argc, char **argv)
     // // Print the L2 data
     // std::cout << "L2 Data: " << L2Data << std::endl;
 
+    {
+        optkit::core::recepies::TMARecepies tma;
+        std::cout << work(10, 6000000) << "\n";
+    }
 
-    optkit::core::recepies::TMARecepies tma;
-    optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", tma.L1_recipie()};
-    std::cout << work(10, 6000000);
+    std::cout << "program completed!\n";
 
-    std::cout << tma.L1_analysis(bb.read_val());
     return 0;
 }

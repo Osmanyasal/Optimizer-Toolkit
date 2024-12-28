@@ -123,7 +123,8 @@ OBJECTS := \
 	$(OBJDIR)/icl_recepies.o \
 	$(OBJDIR)/skl_governor.o \
 	$(OBJDIR)/skl_recepies.o \
-	$(OBJDIR)/tma_recepies.o \
+	$(OBJDIR)/tma_metrics.o \
+	$(OBJDIR)/tmanalysis.o \
 	$(OBJDIR)/base_governor.o \
 	$(OBJDIR)/cpu_frequency.o \
 	$(OBJDIR)/query_frequency.o \
@@ -220,7 +221,10 @@ $(OBJDIR)/skl_governor.o: src/core/event_recepies/intel/skl/skl_governor.cc
 $(OBJDIR)/skl_recepies.o: src/core/event_recepies/intel/skl/skl_recepies.cc
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/tma_recepies.o: src/core/event_recepies/tma_recepies.cc
+$(OBJDIR)/tma_metrics.o: src/core/event_recepies/tma_metrics.cc
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/tmanalysis.o: src/core/event_recepies/tmanalysis.cc
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/base_governor.o: src/core/freq/base_governor.cc
