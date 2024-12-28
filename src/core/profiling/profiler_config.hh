@@ -1,8 +1,8 @@
 #pragma once
 
 #include <cstring>
-#include <linux/perf_event.h> // for pmu monitoring
-#include "core/profiling/rapl/rapl.hh"            // for rapl monitoring
+#include <linux/perf_event.h>          // for pmu monitoring
+#include "core/profiling/rapl/rapl.hh" // for rapl monitoring
 
 namespace optkit::core
 {
@@ -48,7 +48,8 @@ namespace optkit::core
          */
         ProfilerConfig(bool dump_results_to_file = true, bool is_reset_after_read = true, bool is_grouped = false, int32_t pid = 0, int32_t cpu = -1);
         ProfilerConfig(perf_event_attr perf_event_config, bool dump_results_to_file = true, bool is_reset_after_read = true, int32_t pid = 0, int32_t cpu = -1);
-
+        void setGrouped(bool is_grouped);
+    
         bool dump_results_to_file;
         bool is_reset_after_read;
         bool is_grouped;
@@ -71,9 +72,8 @@ namespace optkit::core
         const bool dump_results_to_file;
     };
 
-
     std::ostream &operator<<(std::ostream &os, const optkit::core::RaplConfig &rapl_config);
-    
+
 } // namespace optkit::core
 
 using optkit::core::operator<<; // make available to global namespace

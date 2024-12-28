@@ -18,9 +18,14 @@
 
 namespace optkit::core::recepies
 {
+
+    /**
+     * @brief Implemented for set of events of most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override any method as needed.
+     *
+     */
     class TMAnalysis
     {
- 
+
     public:
         TMAnalysis(const char *block_name, const char *event_name, bool verbose = true, const ProfilerConfig &config = ProfilerConfig{false, true, false, 0, -1});
         void begin_monitoring(L1Metric metric);
@@ -29,98 +34,50 @@ namespace optkit::core::recepies
         virtual ~TMAnalysis();
 
     protected:
+        using L1AnaliseFunc = std::map<L1Metric, double> (TMAnalysis::*)();
+        using L2AnaliseFunc = std::map<L2Metric, double> (TMAnalysis::*)();
+        using L3AnaliseFunc = std::map<L3Metric, double> (TMAnalysis::*)();
+
+        L1AnaliseFunc analise_method_L1 = nullptr;
+        L2AnaliseFunc analise_method_L2 = nullptr;
+        L3AnaliseFunc analise_method_L3 = nullptr;
+
         virtual std::map<L1Metric, double> L1__analise();
+        virtual std::map<L1Metric, double> L1__backend__analise();
+        virtual std::map<L1Metric, double> L1__retiring__analise();
+        virtual std::map<L1Metric, double> L1__bad_speculation__analise();
+        virtual std::map<L1Metric, double> L1__frontend_bound__analise();
+
         virtual std::map<L1Metric, double> L2__analise();
+        virtual std::map<L1Metric, double> L2__memory_bound__analise();
+        virtual std::map<L1Metric, double> L2__core_bound__analise();
+        virtual std::map<L1Metric, double> L2__base__analise();
+        virtual std::map<L1Metric, double> L2__fetch_latency__analise();
+        virtual std::map<L1Metric, double> L2__fetch_bandwidth__analise();
 
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
         virtual std::vector<std::pair<uint64_t, std::string>> L1__default__recipie();
-
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
         virtual std::vector<std::pair<uint64_t, std::string>> L2__default__recipie();
-
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
+        
+        // these 2 returns l1 backend-bound
         virtual std::vector<std::pair<uint64_t, std::string>> L2__backend__memory();
-
-        /**
-        //  * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-        //  *
-        //  * @return std::vector<std::pair<uint64_t, std::string>>
-        //  */
         virtual std::vector<std::pair<uint64_t, std::string>> L2__backend__core();
 
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
-        virtual std::vector<std::pair<uint64_t, std::string>> L2__retiring__base();
+        // following 2 returns l1 bad-specualtion
+        virtual std::vector<std::pair<uint64_t, std::string>> L2__bad_speculation__branch_mispredict();
+        virtual std::vector<std::pair<uint64_t, std::string>> L2__machine_clears();
 
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
+        // following 2 returns l1 retiring
+        virtual std::vector<std::pair<uint64_t, std::string>> L2__retiring__base();
         virtual std::vector<std::pair<uint64_t, std::string>> L2__retiring__micro_sequencer();
 
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
-        virtual std::vector<std::pair<uint64_t, std::string>> L2__bad_speculation__branch_mispredict();
-
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
+        // following 2 returns l1 frontend-bound
         virtual std::vector<std::pair<uint64_t, std::string>> L2__frontend__fetch_latency();
-
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
         virtual std::vector<std::pair<uint64_t, std::string>> L2__frontend__fetch_bandwidth();
 
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
+        // followign returns l2 memory bound
         virtual std::vector<std::pair<uint64_t, std::string>> L3__memory__ext_memory();
-
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
         virtual std::vector<std::pair<uint64_t, std::string>> L3__memory__l1();
-
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
         virtual std::vector<std::pair<uint64_t, std::string>> L3__memory__l2();
-
-        /**
-         * @brief Returns the default set of events for most Intel architectures. To customize for your specific architecture, check the /src/core/events/intel/ directory and override this method as needed.
-         *
-         * @return std::vector<std::pair<uint64_t, std::string>>
-         */
         virtual std::vector<std::pair<uint64_t, std::string>> L3__memory__l3();
 
         virtual void choose_profiler() final;
@@ -128,7 +85,7 @@ namespace optkit::core::recepies
     private:
         uint64_t start_time;
         uint64_t delta_time;
-        
+
         std::unique_ptr<core::BaseProfiler<std::vector<uint64_t>>> profiler_ref;
         std::vector<std::pair<uint64_t, std::string>> recipie_to_monitor;
 

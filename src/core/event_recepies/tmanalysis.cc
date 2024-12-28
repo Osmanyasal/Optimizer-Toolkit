@@ -6,7 +6,7 @@ namespace optkit::core::recepies
     {
         start_time = __rdtsc();
     }
-    
+
     void TMAnalysis::begin_monitoring(L1Metric metric)
     {
         switch (metric)
@@ -105,15 +105,14 @@ namespace optkit::core::recepies
         if (OPT_UNLIKELY(core::pmu::PMUEventManager::number_of_events_being_monitored() + this->recipie_to_monitor.size() > num_cntrs))
         {
             OPTKIT_CORE_INFO("TMA chose block profiler");
-            this->profiler_config.is_grouped = false;
+            this->profiler_config.setGrouped(false);
             profiler_ref = std::unique_ptr<core::pmu::BlockProfiler>(
                 new core::pmu::BlockProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->profiler_config));
         }
         else
         {
             OPTKIT_CORE_INFO("TMA chose block group profiler");
-            this->profiler_config.is_grouped = true;
-            this->profiler_config.perf_event_config.read_format = PERF_FORMAT_GROUP | PERF_FORMAT_ID;
+            this->profiler_config.setGrouped(true);
             profiler_ref = std::unique_ptr<core::pmu::BlockGroupProfiler>(
                 new core::pmu::BlockGroupProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->profiler_config));
         }
@@ -121,7 +120,7 @@ namespace optkit::core::recepies
 
     TMAnalysis::~TMAnalysis()
     {
-        delta_time = __rdtsc() - start_time;    // get delta time.
+        delta_time = __rdtsc() - start_time; // get delta time.
         std::cout << L1__analise();
     }
 
@@ -183,13 +182,23 @@ namespace optkit::core::recepies
         return result;
     }
 
+    // these 2 returns l1 backend-bound
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__backend__core() {};
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__backend__memory() {};
+
+    // following 2 returns l1 bad-specualtion
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__bad_speculation__branch_mispredict() {};
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__machine_clears() {};
+
+    // following 2 returns l1 frontend-bound
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__frontend__fetch_bandwidth() {};
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__frontend__fetch_latency() {};
+
+    // following 2 returns l1 retiring
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__retiring__base() {};
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__retiring__micro_sequencer() {};
+
+    // followign returns l2 memory bound
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__ext_memory() {};
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__l1() {};
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__l2() {};
