@@ -155,7 +155,6 @@ struct Temp
         std::cout << (pmu_record[1] / SLOTS) * 100.0 << "\n";                                       // IDQ_UOPS_NOT_DELIVERED.CORE / Slots
         std::cout << (pmu_record[3] / SLOTS) * 100.0 << "\n";                                       // UOPS_RETIRED.RETIRE_SLOTS / Slots
         std::cout << ((pmu_record[2] - pmu_record[3] + 4 * pmu_record[4]) / SLOTS) * 100.0 << "\n"; // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
-
     }
 
     std::unique_ptr<optkit::core::BaseProfiler<std::vector<uint64_t>>> profiler_ref;
@@ -231,7 +230,13 @@ int32_t main(int32_t argc, char **argv)
     // std::cout << "L2 Data: " << L2Data << std::endl;
 
     optkit::core::recepies::TMAnalysis tma{"main", "tma analysis"};
-    tma.begin_monitoring(optkit::core::recepies::L1Metric::Default);
+    tma.begin_monitoring(optkit::core::recepies::L1Metric::BackendBound);
+
+    // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0x00c3 | 0x0100ull | (0x1 << INTEL_X86_CMASK_BIT) | (0x1 << INTEL_X86_EDGE_BIT), "MACHINE_CLEARS"}}};
+    // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0xa3 | 0x0c00 | 0x0500 | 0x0600, "STALLED_CYCLES_MEM_ANY"}}};
+    // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0xa3 | 0x0c00 | (0xc << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY"}, {0xa3 | 0x0500 | (0x5 << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY2"}, {0xa3 | 0x0600 | (0x6 << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY3"}}};
+
+    // std::cout << work(10, 6000000) << "\n";
     std::cout << work(10, 6000000) << "\n";
 
     std::cout << "program completed!\n";

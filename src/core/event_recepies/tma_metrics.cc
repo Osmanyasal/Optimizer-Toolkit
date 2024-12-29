@@ -97,7 +97,7 @@ namespace optkit::core::recepies
                 out << ", ";
             }
             first = false;
-            out << to_string(pair.first) << " = " << pair.second << ((char)pair.first != static_cast<char>(L1Metric::IPC) ? "%" : "");
+            out << to_string(pair.first) << " = " << pair.second;
         }
         out << "}";
         return out;
@@ -114,7 +114,7 @@ namespace optkit::core::recepies
                 out << ", ";
             }
             first = false;
-            out << to_string(pair.first) << " = " << pair.second << "%";
+            out << to_string(pair.first) << " = " << pair.second;
         }
         out << "}";
         return out;
@@ -131,7 +131,7 @@ namespace optkit::core::recepies
                 out << ", ";
             }
             first = false;
-            out << to_string(pair.first) << " = " << pair.second << "%";
+            out << to_string(pair.first) << " = " << pair.second;
         }
         out << "}";
         return out;
