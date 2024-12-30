@@ -81,7 +81,7 @@ namespace optkit::core::recepies
         case L3Metric::ExtMemoryBound:
             return "L3 External Memory Bound";
         default:
-            return "Unknown L2 Metric";
+            return "Unknown L3 Metric";
         }
     }
 

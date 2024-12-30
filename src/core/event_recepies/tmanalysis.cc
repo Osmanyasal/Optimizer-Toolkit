@@ -68,6 +68,12 @@ namespace optkit::core::recepies
 
         choose_profiler();
     }
+
+    /**
+     * @brief WARNING! METHOD CALLING ORDERS ARE IMPORTANT!! PLEASE DON'T CHANGE EVENT ORDER UNLESS YOU ALTER THE ASSOCIATED ANALISE METHOD ACCORDINGLY!
+     *
+     * @param metric
+     */
     void TMAnalysis::begin_monitoring(L2Metric metric)
     {
         switch (metric)
@@ -78,14 +84,15 @@ namespace optkit::core::recepies
 
         case L2Metric::MemoryBound:
         {
-            this->recipie_to_monitor = L3__memory__ext_memory();
-            auto l1 = L3__memory__l1();
+            this->recipie_to_monitor = L3__memory__l1();
             auto l2 = L3__memory__l2();
             auto l3 = L3__memory__l3();
+            auto ext = L3__memory__ext_memory();
 
-            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), l1.begin(), l1.end());
             this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), l2.begin(), l2.end());
             this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), l3.begin(), l3.end());
+            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), ext.begin(), ext.end());
+            analise_method_L3 = &TMAnalysis::L2__memory_bound__analise;
             break;
         }
 
@@ -109,6 +116,11 @@ namespace optkit::core::recepies
         choose_profiler();
     }
 
+    /**
+     * @brief WARNING! METHOD CALLING ORDERS ARE IMPORTANT!! PLEASE DON'T CHANGE EVENT ORDER UNLESS YOU ALTER THE ASSOCIATED ANALISE METHOD ACCORDINGLY!
+     *
+     * @param metric
+     */
     void TMAnalysis::begin_monitoring(L3Metric metric)
     {
 
@@ -345,10 +357,58 @@ namespace optkit::core::recepies
     }
 
     // followign returns l2 memory bound
-    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__ext_memory() {};
-    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__l1() {};
-    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__l2() {};
-    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__l3() {};
-    std::map<L3Metric, double> TMAnalysis::L2__memory_bound__analise() {}
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__l1()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {0x3c, "CPU_CLK_UNHALTED"},                                          // 0
+            {(0xa3 | 0x0c00 | (0xc << INTEL_X86_CMASK_BIT)), "STALLS_L1D_MISS"}, // 1
+            {(0xa3 | 0x0500 | (0x5 << INTEL_X86_CMASK_BIT)), "STALLS_L2_MISS"},  // 2
+            {(0xa3 | 0x0600 | (0x6 << INTEL_X86_CMASK_BIT)), "STALLS_L3_MISS"},  // 3
+            // STALLSMEM.ANY
+        };
+
+        return default_mapping;
+    };
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__l2()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {(0xa3 | 0x0500 | (0x5 << INTEL_X86_CMASK_BIT)), "STALLS_L2_MISS"}, // 4
+        };
+
+        return default_mapping;
+    };
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__l3()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {0x4f2e, "LLC_REFERENCES"}, // 5
+            {0x412e, "LLC_MISS"},       // 6
+        };
+        return default_mapping;
+    };
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__ext_memory()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {}};
+        return default_mapping;
+    };
+    std::map<L3Metric, double> TMAnalysis::L2__memory_bound__analise()
+    {
+
+        std::map<L3Metric, double> result;
+        const std::vector<uint64_t> &pmu_record = profiler_ref->read_val();
+
+        double CLOCKS = pmu_record[0];
+        double SLOTS = CLOCKS * 4;
+
+        result[L3Metric::L1Bound] = (pmu_record[1] + pmu_record[2] + pmu_record[3] - pmu_record[1]) / CLOCKS;
+        result[L3Metric::L2Bound] = (pmu_record[1] - pmu_record[2]) / CLOCKS;
+
+        double LLC_HIT = pmu_record[5] - pmu_record[6];
+        double L3_HIT_FRACTION = (LLC_HIT / (LLC_HIT + pmu_record[6]));
+        result[L3Metric::L3Bound] = L3_HIT_FRACTION * pmu_record[2] / CLOCKS;
+        result[L3Metric::ExtMemoryBound] = (1 - L3_HIT_FRACTION) * pmu_record[4] / CLOCKS;
+
+        return result;
+    }
 
 } // namespace optkit::core::recepies
