@@ -7,6 +7,11 @@ namespace optkit::core::recepies
         start_time = __rdtsc();
     }
 
+    /**
+     * @brief WARNING! METHOD CALLING ORDERS ARE IMPORTANT!! PLEASE DON'T CHANGE EVENT ORDER UNLESS YOU ALTER THE ASSOCIATED ANALISE METHOD ACCORDINGLY!
+     *
+     * @param metric
+     */
     void TMAnalysis::begin_monitoring(L1Metric metric)
     {
         switch (metric)
@@ -50,6 +55,7 @@ namespace optkit::core::recepies
             this->recipie_to_monitor = L2__frontend__fetch_bandwidth();
             auto temp = L2__frontend__fetch_latency();
             this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), temp.begin(), temp.end());
+            analise_method_L2 = &TMAnalysis::L1__frontend_bound__analise;
             break;
         }
         default:
@@ -257,29 +263,49 @@ namespace optkit::core::recepies
     };
     std::map<L2Metric, double> TMAnalysis::L1__bad_speculation__analise()
     {
-
-        /**
-         * @brief #BrMispredFraction BrMispredRetired / (BrMispredRetired + MachineClears)
-                Branch Mispredicts #BrMispredFraction * Bad Speculation
-                Machine Clears Bad Speculation – Branch Mispredicts
-         *
-         */
         std::map<L2Metric, double> result;
         const std::vector<uint64_t> &pmu_record = profiler_ref->read_val();
 
         double CLOCKS = pmu_record[0];
         double SLOTS = CLOCKS * 4;
         double BAD_SPEC = ((pmu_record[3] - pmu_record[4] + 4 * pmu_record[5]) / SLOTS); // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
-        std::cout << "BAD SPEC=" << BAD_SPEC << "\n";
         result[L2Metric::BranchMisprediction] = (((double)pmu_record[1] / (pmu_record[1] + pmu_record[2])) * BAD_SPEC);
         result[L2Metric::MachineClear] = (BAD_SPEC - result[L2Metric::BranchMisprediction]);
         return result;
     }
 
     // following 2 returns l1 frontend-bound
-    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__frontend__fetch_bandwidth() {};
-    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__frontend__fetch_latency() {};
-    std::map<L2Metric, double> TMAnalysis::L1__frontend_bound__analise() {}
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__frontend__fetch_latency()
+    {
+        OPTKIT_CORE_WARN("This setting is vaild for intel {ivb, spr, snb, skl, icl, bdw , hsw} architectures check MACHINE_CLEARS_COUNT event for different u-arch.");
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {0x3c, "CPU_CLK_UNHALTED"},                                              // 0
+            {(0x9c | 0x100 | (4 << INTEL_X86_CMASK_BIT)), "IDQ_UOPS_NOT_DELIVERED"}, // 1
+            {(0x9c | 0x100), "IDQ_UOPS_NOT_DELIVERED"},                              // 2
+        };
+
+        return default_mapping;
+    };
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__frontend__fetch_bandwidth()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{}; 
+        return default_mapping;                                                 // FrontendBound - FrontendFetchLatency.
+    };
+
+    std::map<L2Metric, double> TMAnalysis::L1__frontend_bound__analise()
+    {
+
+        std::map<L2Metric, double> result;
+        const std::vector<uint64_t> &pmu_record = profiler_ref->read_val();
+
+        double CLOCKS = pmu_record[0];
+        double SLOTS = CLOCKS * 4;
+
+        result[L2Metric::FetchBandwidth] = pmu_record[1] / CLOCKS;
+        result[L2Metric::FetchLatency] = (pmu_record[2] / SLOTS) - result[L2Metric::FetchBandwidth];
+
+        return result;
+    }
 
     // following 2 returns l1 retiring
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__retiring__base() {};
