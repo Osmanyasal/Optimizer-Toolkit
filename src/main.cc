@@ -229,8 +229,10 @@ int32_t main(int32_t argc, char **argv)
     // // Print the L2 data
     // std::cout << "L2 Data: " << L2Data << std::endl;
 
-    optkit::core::recepies::TMAnalysis tma{"main", "tma analysis"};
-    tma.begin_monitoring(optkit::core::recepies::L1Metric::BackendBound);
+    // optkit::core::recepies::TMAnalysis tma{"main", "tma analysis"};
+    // tma.begin_monitoring(optkit::core::recepies::L1Metric::BackendBound);
+
+    OPTKIT_TMA_ANALYSIS("main", temp, optkit::core::recepies::L1Metric::Default);
 
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0x00c3 | 0x0100ull | (0x1 << INTEL_X86_CMASK_BIT) | (0x1 << INTEL_X86_EDGE_BIT), "MACHINE_CLEARS"}}};
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0xa3 | 0x0c00 | 0x0500 | 0x0600, "STALLED_CYCLES_MEM_ANY"}}};

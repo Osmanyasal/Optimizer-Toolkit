@@ -8,6 +8,8 @@ namespace optkit::core::recepies
     {
         switch (metric)
         {
+        case L1Metric::Default:
+            return "L1 Analysis";
         case L1Metric::IPC:
             return "IPC";
         case L1Metric::BackendBound:
@@ -28,6 +30,8 @@ namespace optkit::core::recepies
     {
         switch (metric)
         {
+        case L2Metric::Default:
+            return "L2 Analysis";
         case L2Metric::FetchLatency:
             return "L2 Fetch Latency";
         case L2Metric::FetchBandwidth:
@@ -54,6 +58,8 @@ namespace optkit::core::recepies
     {
         switch (metric)
         {
+        case L3Metric::Default:
+            return "L3 Analysis";
         case L3Metric::ITLBMiss:
             return "L3 ITLB Miss";
         case L3Metric::ICacheMiss:
@@ -85,7 +91,7 @@ namespace optkit::core::recepies
         }
     }
 
-      // Overloading the << operator for L1Metric and L2Metric unordered maps
+    // Overloading the << operator for L1Metric and L2Metric unordered maps
     std::ostream &operator<<(std::ostream &out, const std::map<L1Metric, double> &map)
     {
         out << "{";

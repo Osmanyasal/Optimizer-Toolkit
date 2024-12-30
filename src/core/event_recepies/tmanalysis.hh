@@ -81,15 +81,20 @@ namespace optkit::core::recepies
         virtual std::vector<std::pair<uint64_t, std::string>> L3__memory__l2();
         virtual std::vector<std::pair<uint64_t, std::string>> L3__memory__l3();
 
+
+        virtual std::vector<std::pair<uint64_t, std::string>> L3__core__divider();
+        virtual std::vector<std::pair<uint64_t, std::string>> L3__core__exec_port_utils();
+
         virtual void choose_profiler() final;
 
-    private:
+    protected:
         uint64_t start_time;
         uint64_t delta_time;
 
         std::unique_ptr<core::BaseProfiler<std::vector<uint64_t>>> profiler_ref;
         std::vector<std::pair<uint64_t, std::string>> recipie_to_monitor;
 
+    private:
         const char *block_name;
         const char *event_name;
         bool verbose;

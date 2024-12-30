@@ -79,9 +79,10 @@ namespace optkit::core::recepies
         switch (metric)
         {
         case L2Metric::Default:
+        {
             this->recipie_to_monitor = L2__default__recipie();
             break;
-
+        }
         case L2Metric::MemoryBound:
         {
             this->recipie_to_monitor = L3__memory__l1();
@@ -97,20 +98,34 @@ namespace optkit::core::recepies
         }
 
         case L2Metric::CoreBound:
-            break;
+        {
+            this->recipie_to_monitor = L3__core__divider();
+            auto exec_ports = L3__core__exec_port_utils();
 
+            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), exec_ports.begin(), exec_ports.end());
+            break;
+        }
         case L2Metric::Base:
+        {
             break;
-
+        }
         case L2Metric::FetchLatency:
+        {
+
             break;
+        }
 
         case L2Metric::FetchBandwidth:
+        {
+
             break;
+        }
 
         default:
+        {
             this->recipie_to_monitor = L2__default__recipie();
             break;
+        }
         }
 
         choose_profiler();
@@ -387,8 +402,7 @@ namespace optkit::core::recepies
     };
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__ext_memory()
     {
-        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
-            {}};
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{};
         return default_mapping;
     };
     std::map<L3Metric, double> TMAnalysis::L2__memory_bound__analise()
@@ -409,6 +423,17 @@ namespace optkit::core::recepies
         result[L3Metric::ExtMemoryBound] = (1 - L3_HIT_FRACTION) * pmu_record[4] / CLOCKS;
 
         return result;
+    }
+
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__core__divider()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{};
+        return default_mapping;
+    }
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__core__exec_port_utils()
+    {
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{};
+        return default_mapping;
     }
 
 } // namespace optkit::core::recepies
