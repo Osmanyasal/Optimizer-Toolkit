@@ -34,7 +34,6 @@ namespace optkit::core::recepies
             analise_method_L2 = &TMAnalysis::L1__backend__analise;
             break;
         }
-
         case L1Metric::BadSpeculation:
         {
             this->recipie_to_monitor = L2__bad_speculation__branch_mispredict();
@@ -48,6 +47,7 @@ namespace optkit::core::recepies
             this->recipie_to_monitor = L2__retiring__base();
             auto temp = L2__retiring__micro_sequencer();
             this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), temp.begin(), temp.end());
+            analise_method_L2 = &TMAnalysis::L1__retiring__analise;
             break;
         }
         case L1Metric::FrontendBound:
@@ -279,17 +279,17 @@ namespace optkit::core::recepies
     {
         OPTKIT_CORE_WARN("This setting is vaild for intel {ivb, spr, snb, skl, icl, bdw , hsw} architectures check MACHINE_CLEARS_COUNT event for different u-arch.");
         static std::vector<std::pair<uint64_t, std::string>> default_mapping{
-            {0x3c, "CPU_CLK_UNHALTED"},                                              // 0
-            {(0x9c | 0x100 | (4 << INTEL_X86_CMASK_BIT)), "IDQ_UOPS_NOT_DELIVERED"}, // 1
-            {(0x9c | 0x100), "IDQ_UOPS_NOT_DELIVERED"},                              // 2
+            {0x3c, "CPU_CLK_UNHALTED"},                                                        // 0
+            {(0x9c | 0x100 | (4 << INTEL_X86_CMASK_BIT)), "IDQ_UOPS_NOT_DELIVERED__CYCLES_0"}, // 1
+            {(0x9c | 0x100), "IDQ_UOPS_NOT_DELIVERED"},                                        // 2
         };
 
         return default_mapping;
     };
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__frontend__fetch_bandwidth()
     {
-        static std::vector<std::pair<uint64_t, std::string>> default_mapping{}; 
-        return default_mapping;                                                 // FrontendBound - FrontendFetchLatency.
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{};
+        return default_mapping; // FrontendBound - FrontendFetchLatency.
     };
 
     std::map<L2Metric, double> TMAnalysis::L1__frontend_bound__analise()
@@ -308,9 +308,41 @@ namespace optkit::core::recepies
     }
 
     // following 2 returns l1 retiring
-    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__retiring__base() {};
-    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__retiring__micro_sequencer() {};
-    std::map<L2Metric, double> TMAnalysis::L1__retiring__analise() {}
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__retiring__micro_sequencer()
+    {
+        // MsSlotsRetired / TotlaSlots
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{};
+        return default_mapping;
+    };
+
+    std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__retiring__base()
+    {
+        // Retiring - MicroSequencer
+
+        OPTKIT_CORE_WARN("This setting is vaild for intel {ivb, wsm, snb, skl, nhm, icl, spr, bdw , hsw} architectures check MACHINE_CLEARS_COUNT event for different u-arch.");
+        static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            {0x3c, "CPU_CLK_UNHALTED"},                      // 0
+            {(0xc2 | 0x200), "UOPS_RETIRED__RETIRED_SLOTS"}, // 1
+            {(0x79 | 0x3000), "IDQ.MS_UOPS"},                // 2
+            {(0xe | 0x100), "UOPS_ISSUED_ANY"},              // 3
+        };
+
+        return default_mapping;
+    };
+    std::map<L2Metric, double> TMAnalysis::L1__retiring__analise()
+    {
+
+        std::map<L2Metric, double> result;
+        const std::vector<uint64_t> &pmu_record = profiler_ref->read_val();
+
+        double CLOCKS = pmu_record[0];
+        double SLOTS = CLOCKS * 4;
+
+        result[L2Metric::MicroSequencer] = ((double)pmu_record[1] / (double)pmu_record[3]) * (double)pmu_record[2] / SLOTS;
+        result[L2Metric::Base] = (pmu_record[1] / SLOTS) - result[L2Metric::MicroSequencer];
+
+        return result;
+    }
 
     // followign returns l2 memory bound
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L3__memory__ext_memory() {};
