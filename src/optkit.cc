@@ -32,7 +32,7 @@ namespace optkit::core
                 if (this->config.execution_file.size() > 0)
                     EXECUTION_FOLDER_NAME = this->config.execution_file;
                     
-                create_directory(EXECUTION_FOLDER_NAME);
+                ::create_directory(EXECUTION_FOLDER_NAME);
                 OPTKIT_CORE_INFO("Execution file created {}", EXECUTION_FOLDER_NAME);
             }
             else

@@ -232,7 +232,7 @@ int32_t main(int32_t argc, char **argv)
     // optkit::core::recepies::TMAnalysis tma{"main", "tma analysis"};
     // tma.begin_monitoring(optkit::core::recepies::L1Metric::BackendBound);
 
-    OPTKIT_TMA_ANALYSIS("main", temp, optkit::core::recepies::L1Metric::Default);
+    OPTKIT_TMA_ANALYSIS("main", temp, optkit::core::recepies::L2Metric::CoreBound);
 
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0x00c3 | 0x0100ull | (0x1 << INTEL_X86_CMASK_BIT) | (0x1 << INTEL_X86_EDGE_BIT), "MACHINE_CLEARS"}}};
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0xa3 | 0x0c00 | 0x0500 | 0x0600, "STALLED_CYCLES_MEM_ANY"}}};
@@ -245,3 +245,13 @@ int32_t main(int32_t argc, char **argv)
 
     return 0;
 }
+/**
+ *
+ *
+    {CPU UTIL = 0.902322, IPC = 1.49041, L1 Frontend Bound = 0.0101911, L1 Bad Speculation = 0.00780583, L1 Retiring = 0.310562, L1 Backend Bound = 0.671441}
+    {CPU UTIL = 1.08685, IPC = 1.48424, L1 Frontend Bound = 0.0160113, L1 Bad Speculation = 0.0112863, L1 Retiring = 0.309331, L1 Backend Bound = 0.663372}
+    {CPU UTIL = 0.979173, IPC = 1.49616, L1 Frontend Bound = 0.00292939, L1 Bad Speculation = 0.00139238, L1 Retiring = 0.311738, L1 Backend Bound = 0.68394}
+
+    
+ *
+ */

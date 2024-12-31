@@ -99,26 +99,32 @@ namespace optkit::core::recepies
 
         case L2Metric::CoreBound:
         {
-            this->recipie_to_monitor = L3__core__divider();
-            auto exec_ports = L3__core__exec_port_utils();
-
-            this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), exec_ports.begin(), exec_ports.end());
+            OPTKIT_CORE_WARN("L2Metric::CoreBound Analysis Not Implemented");
+            return;
+            // this->recipie_to_monitor = L3__core__divider();
+            // auto exec_ports = L3__core__exec_port_utils();
+            // this->recipie_to_monitor.insert(this->recipie_to_monitor.end(), exec_ports.begin(), exec_ports.end());
+            // analise_method_L3 = &TMAnalysis::L2__core_bound__analise;
             break;
         }
         case L2Metric::Base:
         {
-            break;
+            OPTKIT_CORE_WARN("L2Metric::Base Analysis Not Implemented");
+            return;
+            // break;
         }
         case L2Metric::FetchLatency:
         {
-
-            break;
+            OPTKIT_CORE_WARN("L2Metric::FetchLatency Analysis Not Implemented");
+            return;
+            // break;
         }
 
         case L2Metric::FetchBandwidth:
         {
-
-            break;
+            OPTKIT_CORE_WARN("L2Metric::FetchBandwidth Analysis Not Implemented");
+            return;
+            // break;
         }
 
         default:
@@ -139,6 +145,8 @@ namespace optkit::core::recepies
     void TMAnalysis::begin_monitoring(L3Metric metric)
     {
 
+        OPTKIT_CORE_WARN("L3Metric::* Analysis Not Implemented");
+        return;
         choose_profiler();
     }
 
@@ -164,21 +172,22 @@ namespace optkit::core::recepies
     TMAnalysis::~TMAnalysis()
     {
         delta_time = __rdtsc() - start_time; // get delta time.
-        if (analise_method_L1)
-        {
-            OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 1");
-            std::cout << (this->*analise_method_L1)() << "\n";
-        }
-        if (analise_method_L2)
-        {
-            OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 2");
-            std::cout << (this->*analise_method_L2)() << "\n";
-        }
-        if (analise_method_L3)
-        {
-            OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 3");
-            std::cout << (this->*analise_method_L3)() << "\n";
-        }
+        if (OPT_LIKELY(!this->profiler_config.dump_results_to_file))
+            if (analise_method_L1)
+            {
+                OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 1");
+                std::cout << (this->*analise_method_L1)() << "\n";
+            }
+            else if (analise_method_L2)
+            {
+                OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 2");
+                std::cout << (this->*analise_method_L2)() << "\n";
+            }
+            else
+            {
+                OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 3");
+                std::cout << (this->*analise_method_L3)() << "\n";
+            }
     }
 
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L1__default__recipie()
@@ -226,8 +235,6 @@ namespace optkit::core::recepies
             {(0xd | 0x300 | (1 << INTEL_X86_CMASK_BIT)), "INT_MISC_RECOVERY_CYCLES"}, // 4
             {0xc0, "INSTRUCTION_RETIRED"}};                                           // 5
 
-        // be_bound = 1 - (fe_bound + bad_speculation + retiring)
-
         return default_mapping;
     }
 
@@ -248,6 +255,7 @@ namespace optkit::core::recepies
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L2__backend__memory()
     {
         static std::vector<std::pair<uint64_t, std::string>> default_mapping{
+            // here 1 + 2 + 3 = stalls_mem_any
             {0x3c, "CPU_CLK_UNHALTED"},                                          // 0
             {(0xa3 | 0x0c00 | (0xc << INTEL_X86_CMASK_BIT)), "STALLS_L1D_MISS"}, // 1
             {(0xa3 | 0x0500 | (0x5 << INTEL_X86_CMASK_BIT)), "STALLS_L2_MISS"},  // 2
@@ -406,6 +414,26 @@ namespace optkit::core::recepies
         return default_mapping;
     };
     std::map<L3Metric, double> TMAnalysis::L2__memory_bound__analise()
+    {
+
+        std::map<L3Metric, double> result;
+        const std::vector<uint64_t> &pmu_record = profiler_ref->read_val();
+
+        double CLOCKS = pmu_record[0];
+        double SLOTS = CLOCKS * 4;
+
+        result[L3Metric::L1Bound] = (pmu_record[1] + pmu_record[2] + pmu_record[3] - pmu_record[1]) / CLOCKS;
+        result[L3Metric::L2Bound] = (pmu_record[1] - pmu_record[2]) / CLOCKS;
+
+        double LLC_HIT = pmu_record[5] - pmu_record[6];
+        double L3_HIT_FRACTION = (LLC_HIT / (LLC_HIT + pmu_record[6]));
+        result[L3Metric::L3Bound] = L3_HIT_FRACTION * pmu_record[2] / CLOCKS;
+        result[L3Metric::ExtMemoryBound] = (1 - L3_HIT_FRACTION) * pmu_record[4] / CLOCKS;
+
+        return result;
+    }
+
+    std::map<L3Metric, double> TMAnalysis::L2__core__analise()
     {
 
         std::map<L3Metric, double> result;

@@ -39,7 +39,6 @@ namespace optkit::core
 
     private:
         const OPTKIT_CONFIG config;
-        
     };
 }
 

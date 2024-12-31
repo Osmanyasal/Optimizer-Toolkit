@@ -50,6 +50,7 @@ namespace optkit::core::recepies
 
         virtual std::map<L1Metric, double> L2__analise();
         virtual std::map<L3Metric, double> L2__memory_bound__analise();
+        virtual std::map<L3Metric, double> L2__core__analise();
 
         // virtual std::map<L3Metric, double> L2__core_bound__analise();
         // virtual std::map<L3Metric, double> L2__base__analise();

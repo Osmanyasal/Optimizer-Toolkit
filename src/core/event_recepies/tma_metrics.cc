@@ -12,6 +12,8 @@ namespace optkit::core::recepies
             return "L1 Analysis";
         case L1Metric::IPC:
             return "IPC";
+        case L1Metric::CPU_UTIL:
+            return "CPU UTIL";
         case L1Metric::BackendBound:
             return "L1 Backend Bound";
         case L1Metric::BadSpeculation:
