@@ -155,14 +155,14 @@ namespace optkit::core::recepies
         int32_t num_cntrs = core::pmu::QueryPMU::default_pmu_info().num_cntrs;
         if (OPT_UNLIKELY(core::pmu::PMUEventManager::number_of_events_being_monitored() + this->recipie_to_monitor.size() > num_cntrs))
         {
-            OPTKIT_CORE_INFO("TMA chose block profiler");
+            OPTKIT_CORE_DEBUG("TMA chose block profiler");
             this->profiler_config.setGrouped(false);
             profiler_ref = std::unique_ptr<core::pmu::BlockProfiler>(
                 new core::pmu::BlockProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->profiler_config));
         }
         else
         {
-            OPTKIT_CORE_INFO("TMA chose block group profiler");
+            OPTKIT_CORE_DEBUG("TMA chose block group profiler");
             this->profiler_config.setGrouped(true);
             profiler_ref = std::unique_ptr<core::pmu::BlockGroupProfiler>(
                 new core::pmu::BlockGroupProfiler(this->block_name, this->event_name, this->recipie_to_monitor, false, this->profiler_config));
@@ -172,22 +172,39 @@ namespace optkit::core::recepies
     TMAnalysis::~TMAnalysis()
     {
         delta_time = __rdtsc() - start_time; // get delta time.
-        if (OPT_LIKELY(!this->profiler_config.dump_results_to_file))
-            if (analise_method_L1)
+        if (analise_method_L1)
+        {
+            OPTKIT_CORE_DEBUG("EXECUTING ANALYSIS METHOD 1");
+            auto result = (this->*analise_method_L1)();
+            if (OPT_LIKELY(!this->profiler_config.dump_results_to_file))
             {
-                OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 1");
-                std::cout << (this->*analise_method_L1)() << "\n";
+                std::ostringstream oss;
+                oss << result;
+                OPTKIT_CORE_INFO(oss.str());
             }
-            else if (analise_method_L2)
+        }
+        else if (analise_method_L2)
+        {
+            OPTKIT_CORE_DEBUG("EXECUTING ANALYSIS METHOD 2");
+            auto result = (this->*analise_method_L2)();
+            if (OPT_LIKELY(!this->profiler_config.dump_results_to_file))
             {
-                OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 2");
-                std::cout << (this->*analise_method_L2)() << "\n";
+                std::ostringstream oss;
+                oss << result;
+                OPTKIT_CORE_INFO(oss.str());
             }
-            else
+        }
+        else
+        {
+            OPTKIT_CORE_DEBUG("EXECUTING ANALYSIS METHOD 3");
+            auto result = (this->*analise_method_L3)();
+            if (OPT_LIKELY(!this->profiler_config.dump_results_to_file))
             {
-                OPTKIT_CORE_INFO("EXECUTING ANALYSIS METHOD 3");
-                std::cout << (this->*analise_method_L3)() << "\n";
+                std::ostringstream oss;
+                oss << result;
+                OPTKIT_CORE_INFO(oss.str());
             }
+        }
     }
 
     std::vector<std::pair<uint64_t, std::string>> TMAnalysis::L1__default__recipie()

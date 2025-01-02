@@ -144,4 +144,23 @@ namespace optkit::core::recepies
         out << "}";
         return out;
     }
+
+    nlohmann::json to_json(const char *event_name, const std::map<L1Metric, double> &map)
+    {
+        nlohmann::json result;
+
+        return result;
+    }
+    nlohmann::json to_json(const char *event_name, const std::map<L2Metric, double> &map)
+    {
+        nlohmann::json result;
+
+        return result;
+    }
+    nlohmann::json to_json(const char *event_name, const std::map<L3Metric, double> &map)
+    {
+        nlohmann::json result;
+
+        return result;
+    }
 }

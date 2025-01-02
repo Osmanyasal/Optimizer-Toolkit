@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 
+#include "utils/json.hh"
 // Enum for L1, L2 and L3 analysis metrics
 
 namespace optkit::core::recepies
@@ -73,4 +74,8 @@ namespace optkit::core::recepies
     std::ostream &operator<<(std::ostream &out, const std::map<L1Metric, double> &map);
     std::ostream &operator<<(std::ostream &out, const std::map<L2Metric, double> &map);
     std::ostream &operator<<(std::ostream &out, const std::map<L3Metric, double> &map);
+
+    nlohmann::json to_json(const char *event_name, const std::map<L1Metric, double> &map);
+    nlohmann::json to_json(const char *event_name, const std::map<L2Metric, double> &map);
+    nlohmann::json to_json(const char *event_name, const std::map<L3Metric, double> &map);
 }

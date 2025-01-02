@@ -12,7 +12,7 @@
 
 void random_access()
 {
-    OPTKIT_COMPUTE_INTENSITY(ci_random_access, "random_access");
+    // OPTKIT_COMPUTE_INTENSITY(ci_random_access, "random_access");
 
     // Initialize the vector with random values
     std::vector<double> vec(VECTOR_SIZE);
@@ -182,9 +182,9 @@ int32_t main(int32_t argc, char **argv)
 
         // BlockGroupProfiler bb{"main block", "level2", {{0x0400ull, "slot"}, {0x8400ull, "heavy"}, {0x8500ull, "br_mispredict"}, {0x8600ull, "fetch_lat"}, {0x8700ull, "mem_bound"}}};
 
-        // // random_access();
+        // random_access();
         // // do some work
-        std::cout << work(10, 6000000) << "\n";
+        // std::cout << work(10, 6000000) << "\n";
 
         // auto pmu_record = profiler_ref->read_val();
         // double SLOTS = 4 * pmu_record[0];
@@ -232,17 +232,29 @@ int32_t main(int32_t argc, char **argv)
     // optkit::core::recepies::TMAnalysis tma{"main", "tma analysis"};
     // tma.begin_monitoring(optkit::core::recepies::L1Metric::BackendBound);
 
-    OPTKIT_TMA_ANALYSIS("main", temp, optkit::core::recepies::L2Metric::CoreBound);
+    // OPTKIT_TMA_ANALYSIS("main", temp, optkit::core::recepies::L1Metric::Default);
+
+    float fp = 0.0;
+    double fd = 0.0;
+    OPTKIT_PERFORMANCE_EVENTS("TEST", "FLOPS", tt, {{0x00c7 | optkit::intel::icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | optkit::intel::icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "FLOPS SINGLE"}});
 
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0x00c3 | 0x0100ull | (0x1 << INTEL_X86_CMASK_BIT) | (0x1 << INTEL_X86_EDGE_BIT), "MACHINE_CLEARS"}}};
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0xa3 | 0x0c00 | 0x0500 | 0x0600, "STALLED_CYCLES_MEM_ANY"}}};
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0xa3 | 0x0c00 | (0xc << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY"}, {0xa3 | 0x0500 | (0x5 << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY2"}, {0xa3 | 0x0600 | (0x6 << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY3"}}};
 
     // std::cout << work(10, 6000000) << "\n";
-    std::cout << work(10, 6000000) << "\n";
+    // std::cout << work(10, 6000000) << "\n";
+    // random_access();
+
+    for (int i = 0; i < 10; i++)
+    {
+        fd++;
+        fp += i;
+    }
+
+    std::cout << fp << "\n";
 
     std::cout << "program completed!\n";
-
     return 0;
 }
 /**
@@ -251,7 +263,5 @@ int32_t main(int32_t argc, char **argv)
     {CPU UTIL = 0.902322, IPC = 1.49041, L1 Frontend Bound = 0.0101911, L1 Bad Speculation = 0.00780583, L1 Retiring = 0.310562, L1 Backend Bound = 0.671441}
     {CPU UTIL = 1.08685, IPC = 1.48424, L1 Frontend Bound = 0.0160113, L1 Bad Speculation = 0.0112863, L1 Retiring = 0.309331, L1 Backend Bound = 0.663372}
     {CPU UTIL = 0.979173, IPC = 1.49616, L1 Frontend Bound = 0.00292939, L1 Bad Speculation = 0.00139238, L1 Retiring = 0.311738, L1 Backend Bound = 0.68394}
-
-    
  *
  */
