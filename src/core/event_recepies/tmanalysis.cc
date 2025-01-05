@@ -153,7 +153,7 @@ namespace optkit::core::recepies
     void TMAnalysis::choose_profiler()
     {
         int32_t num_cntrs = core::pmu::QueryPMU::default_pmu_info().num_cntrs;
-        if (OPT_UNLIKELY(core::pmu::PMUEventManager::number_of_events_being_monitored() + this->recipie_to_monitor.size() > num_cntrs))
+        if (OPT_UNLIKELY(core::pmu::PMUEventManager::number_of_events_being_monitored() + (int32_t)this->recipie_to_monitor.size() > num_cntrs))
         {
             OPTKIT_CORE_DEBUG("TMA chose block profiler");
             this->profiler_config.setGrouped(false);
@@ -320,6 +320,7 @@ namespace optkit::core::recepies
 
         double CLOCKS = pmu_record[0];
         double SLOTS = CLOCKS * 4;
+        
         double BAD_SPEC = ((pmu_record[3] - pmu_record[4] + 4 * pmu_record[5]) / SLOTS); // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
         result[L2Metric::BranchMisprediction] = (((double)pmu_record[1] / (pmu_record[1] + pmu_record[2])) * BAD_SPEC);
         result[L2Metric::MachineClear] = (BAD_SPEC - result[L2Metric::BranchMisprediction]);
@@ -437,7 +438,6 @@ namespace optkit::core::recepies
         const std::vector<uint64_t> &pmu_record = profiler_ref->read_val();
 
         double CLOCKS = pmu_record[0];
-        double SLOTS = CLOCKS * 4;
 
         result[L3Metric::L1Bound] = (pmu_record[1] + pmu_record[2] + pmu_record[3] - pmu_record[1]) / CLOCKS;
         result[L3Metric::L2Bound] = (pmu_record[1] - pmu_record[2]) / CLOCKS;
@@ -457,7 +457,6 @@ namespace optkit::core::recepies
         const std::vector<uint64_t> &pmu_record = profiler_ref->read_val();
 
         double CLOCKS = pmu_record[0];
-        double SLOTS = CLOCKS * 4;
 
         result[L3Metric::L1Bound] = (pmu_record[1] + pmu_record[2] + pmu_record[3] - pmu_record[1]) / CLOCKS;
         result[L3Metric::L2Bound] = (pmu_record[1] - pmu_record[2]) / CLOCKS;

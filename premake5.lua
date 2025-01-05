@@ -38,20 +38,20 @@ function BaseProjectSetup()
     }
 
     -- Linking dynamic libraries for Intel systems
-    linkoptions { "-fopenmp", "-lpfm" }
-    links { "pthread", "dl", "tensorflow", "spdlog" }
+    linkoptions { "-fopenmp" }
+    links { "pthread", "dl", "tensorflow", "spdlog", "pfm" }
 
 -- Compiler options
     filter "configurations:Debug"
         symbols "On"
         defines { "OPTKIT_MODE_DEBUG" }
-        buildoptions { "-Wall", "-O0", "-g", "-fopenmp", "-msse", "-march=native", "-mavx2" }
+        buildoptions { "-Wall", "-O0", "-g", "-fopenmp", "-msse", "-march=native" }
 
     filter "configurations:Release"
         optimize "On"
         symbols "Off"
         defines { "OPTKIT_MODE_NDEBUG" }
-        buildoptions { "-Wall", "-O2", "-fopenmp", "-msse", "-march=native", "-mavx2" }
+        buildoptions { "-Wall", "-O2", "-fopenmp", "-msse", "-march=native" }
 
     filter {} -- stop filtering, below is globally accessible
 
@@ -173,7 +173,8 @@ function BaseProjectSetup()
             os.execute("sudo cp -R ./bin/Release/lib" ..OPTKIT_LIB_STATIC..".a /usr/local/lib")                                        -- copy static library
             os.execute("sudo cp -R ./bin/Release/lib"..OPTKIT_LIB_DYNAMIC..".so /usr/local/lib")                                       -- copy dynamic library
             print("[Installed ✅]: headers and libraries!")
-
+            
+            -- BUILD TOOLS AND ALSO INSTALL THEM, TOOLS WILL BE USING THE STATIC-DYNAMIC LIBRARY THAT'S INSTALLED.
             print("[Installing]: utility tools!")
             os.execute("cd ./tools && ./install.sh")
             print("[Installed ✅]: utility tools!")
