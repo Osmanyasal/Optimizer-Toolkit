@@ -320,7 +320,7 @@ namespace optkit::core::recepies
 
         double CLOCKS = pmu_record[0];
         double SLOTS = CLOCKS * 4;
-        
+
         double BAD_SPEC = ((pmu_record[3] - pmu_record[4] + 4 * pmu_record[5]) / SLOTS); // (UOPS_ISSUED.ANY - UOPS_RETIRED.RETIRE_SLOTS + 4* INT_MISC.RECOVERY_CYCLES) / Slots
         result[L2Metric::BranchMisprediction] = (((double)pmu_record[1] / (pmu_record[1] + pmu_record[2])) * BAD_SPEC);
         result[L2Metric::MachineClear] = (BAD_SPEC - result[L2Metric::BranchMisprediction]);

@@ -7,7 +7,7 @@
         block_name, "compute_and_memory_intensity", optkit::core::recepies::intel::icl::Recepies::freq_governor_events() \
     }
 
-#define VECTOR_SIZE 100000000  // 1 billion elements
+#define VECTOR_SIZE 100000000  // 100 million elements
 #define NUM_ACCESSES 100000000 // 100 million random accesses
 
 void random_access()
@@ -30,7 +30,7 @@ void random_access()
 
 #pragma omp parallel reduction(+ : sum)
     {
-        std::mt19937 thread_gen(rd() ^ omp_get_thread_num()); // Seed differently for each thread
+        std::mt19937 thread_gen(rd() ^ std::hash<int>{}(omp_get_thread_num() ^ time(nullptr)));
         std::uniform_int_distribution<> thread_dis(0, vec.size() - 1);
 
 #pragma omp for
@@ -160,6 +160,42 @@ struct Temp
     std::unique_ptr<optkit::core::BaseProfiler<std::vector<uint64_t>>> profiler_ref;
 };
 
+void normalMatrixMultiplication(const std::vector<std::vector<int>> &A, const std::vector<std::vector<int>> &B, std::vector<std::vector<int>> &C)
+{
+    int n = A.size();
+    int m = B[0].size();
+    int p = B.size();
+
+    for (int i = 0; i < n; i++)
+    { // Iterate over rows of A
+        for (int j = 0; j < m; j++)
+        {                // Iterate over columns of B
+            for (int k = 0; k < p; k++)
+            { // Sum over the common dimension
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+void loopInterchangeMatrixMultiplication(const std::vector<std::vector<int>> &A, const std::vector<std::vector<int>> &B, std::vector<std::vector<int>> &C)
+{
+    int n = A.size();
+    int m = B[0].size();
+    int p = B.size();
+
+    for (int i = 0; i < n; i++)
+    { // Iterate over rows of A
+        for (int k = 0; k < p; k++)
+        { // Iterate over columns of A/rows of B
+            for (int j = 0; j < m; j++)
+            { // Iterate over columns of B
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
 int32_t main(int32_t argc, char **argv)
 {
     OPTKIT_INIT();
@@ -232,27 +268,57 @@ int32_t main(int32_t argc, char **argv)
     // optkit::core::recepies::TMAnalysis tma{"main", "tma analysis"};
     // tma.begin_monitoring(optkit::core::recepies::L1Metric::BackendBound);
 
-    // OPTKIT_TMA_ANALYSIS("main", temp, optkit::core::recepies::L1Metric::Default);
+    OPTKIT_TMA_ANALYSIS("main", temp, optkit::core::recepies::L1Metric::Default);
 
-    float fp = 0.0;
-    double fd = 0.0;
-    OPTKIT_PERFORMANCE_EVENTS("TEST", "FLOPS", tt, {{0x00c7 | optkit::intel::icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | optkit::intel::icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "FLOPS SINGLE"}});
+    const int SIZE = 2000; // 2k
+    std::vector<std::vector<int>> A(SIZE, std::vector<int>(SIZE));
+    std::vector<std::vector<int>> B(SIZE, std::vector<int>(SIZE));
+    std::vector<std::vector<int>> C(SIZE, std::vector<int>(SIZE, 0));
+
+    srand(42); // Fixed seed for reproducibility
+    // Initialize matrices A and B with random values
+    // srand(static_cast<unsigned>(time(0)));
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            A[i][j] = rand() % 100; // Random values between 0 and 99
+            B[i][j] = rand() % 100;
+        }
+    }
+
+    // normalMatrixMultiplication(A, B, C);
+    loopInterchangeMatrixMultiplication(A, B, C);
+
+    // std::cout << "Result of loop interchange matrix multiplication:\n";
+    // for (const auto &row : C)
+    // {
+    //     for (int val : row)
+    //     {
+    //         std::cout << val << " ";
+    //     }
+    //     std::cout << "\n";
+    // }
+
+    // float fp = 0.0;
+    // double fd = 0.0;
+    // OPTKIT_PERFORMANCE_EVENTS("TEST", "FLOPS", tt, {{0x00c7 | optkit::intel::icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_SINGLE | optkit::intel::icl::FP_ARITH_INST_RETIRED__MASK__INTEL_ICL_FP_ARITH_INST_RETIRED__SCALAR_DOUBLE, "FLOPS SINGLE"}});
 
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0x00c3 | 0x0100ull | (0x1 << INTEL_X86_CMASK_BIT) | (0x1 << INTEL_X86_EDGE_BIT), "MACHINE_CLEARS"}}};
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0xa3 | 0x0c00 | 0x0500 | 0x0600, "STALLED_CYCLES_MEM_ANY"}}};
     // optkit::core::pmu::BlockGroupProfiler bb{"main block", "level1", {{0xa3 | 0x0c00 | (0xc << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY"}, {0xa3 | 0x0500 | (0x5 << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY2"}, {0xa3 | 0x0600 | (0x6 << INTEL_X86_CMASK_BIT), "STALLED_CYCLES_MEM_ANY3"}}};
 
     // std::cout << work(10, 6000000) << "\n";
-    // std::cout << work(10, 6000000) << "\n";
+    // std::cout << work(5, 4) << "\n";
     // random_access();
 
-    for (int i = 0; i < 10; i++)
-    {
-        fd++;
-        fp += i;
-    }
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     fd++;
+    //     fp += i;
+    // }
 
-    std::cout << fp << "\n";
+    // std::cout << fp << "\n";
 
     std::cout << "program completed!\n";
     return 0;
